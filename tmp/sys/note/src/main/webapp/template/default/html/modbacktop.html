@@ -1,0 +1,30 @@
+<%@ page pageEncoding="utf-8"%>
+<style>
+.mod_back_top{position:fixed;_position:absolute;z-index:99999;bottom:45px;_bottom:auto;right:30px}
+.mod_back_top .back_top{display:block;width:50px;height:50px;line-height:100;overflow:hidden;background-position:-16px 0;cursor:pointer}
+.mod_back_top .back_top:hover{background-position:-76px 0}
+.back_top{display:inline-block;width:16px;height:16px;font-size:0;overflow:hidden;background:url(${templatePath}/img/bg.png) 0 0 no-repeat;}
+</style>
+<script>
+function modbacktop(){
+if (window.addEventListener) {
+window.addEventListener('scroll', scrollToTop, false);
+} else if (window.attachEvent) {
+ window.attachEvent('onscroll', scrollToTop);
+}
+};
+function scrollToTop(){
+var diffY;
+if (document.documentElement && document.documentElement.scrollTop)
+    diffY = document.documentElement.scrollTop;
+else if (document.body)
+    diffY = document.body.scrollTop;
+else
+    {/*Netscape stuff*/}
+var dbs=document.body.scrollHeight;
+if(diffY>dbs*0.2){document.getElementById('modBackTop').style.display='block';}
+else{document.getElementById('modBackTop').style.display='none';}
+}
+modbacktop();
+</script>
+<div class="mod_back_top" id="modBackTop" style="display: none;"><a title="返回顶部" class="back_top" href="javascript:scroll(0,0);">返回顶部</a></div>

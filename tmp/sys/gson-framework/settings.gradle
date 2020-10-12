@@ -1,0 +1,4 @@
+rootProject.name = 'framework'
+include 'front-end'
+include 'server'
+

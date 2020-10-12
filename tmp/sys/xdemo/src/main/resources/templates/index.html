@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+    <head>
+        <meta charset="UTF-8">
+        <title>demo</title>
+        <script type="text/javascript" src="../js/framework/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/app/index.js"></script>
+        <link type="text/css" rel="stylesheet" href="../css/index.css">
+    </head>
+    <body>
+        <div id="header">
+            <p data-th-text="'Hello！, ' + ${currentSysUserName} + '!'" ></p>
+            <input type="button" value="注销" onclick="logout()">
+        </div>
+        <div id="menu">
+            <div>
+                <a href="/swagger-ui.html" target="_blank">api测试</a>
+            </div>
+            <div>
+                <a href="/test/testGlobalException">全局异常测试</a>
+            </div>
+        </div>
+        <div id="content">
+            <p>内容区域</p>
+        </div>
+    </body>
+</html>

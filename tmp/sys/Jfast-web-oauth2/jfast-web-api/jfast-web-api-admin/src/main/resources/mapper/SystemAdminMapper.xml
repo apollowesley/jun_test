@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfast.web.api.admin.mapper.SystemAdminMapper">
+
+    <select id="findByName" resultType="map">
+        select * from system_admin where login_name = #{userName}
+    </select>
+
+    <select id="findRoleByAdminId" resultType="map">
+       select role_id from system_admin_role where admin_id = #{id}
+    </select>
+
+    <select id="queryList" resultType="map">
+        select * from system_admin order by id desc
+    </select>
+</mapper>

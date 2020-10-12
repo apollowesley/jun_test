@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Config\CSVReader.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Main.cs" Line="15" Column="1" />
+      <File FileName="Assets\Scripts\Config\CSVReader.cs" Line="46" Column="50" />
+      <File FileName="Assets\Scripts\Config\ConfigMgr.cs" Line="59" Column="2" />
+      <File FileName="Assets\Scripts\Config\ItemItemConfigTable.cs" Line="171" Column="15" />
+      <File FileName="Assets\Scripts\Config\CSVUtility.cs" Line="27" Column="13" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="E:\git_projects\xlsxtools\demo\unity3d\Assets\Scripts\Config\CSVReader.cs" line="55" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

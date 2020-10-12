@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  mvc:
+    #设置启动时自动装载Servlet
+    servlet:
+      load-on-startup: 1
+
+
+
+#自定义配置属性测试
+system:
+  username: admin
+  password: testPassword

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <base href="/">
+    <title>权限平台管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="asset/css/index.css" />
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+</head>
+
+<body>
+    <pp-ms>Loading...</pp-ms>
+    <script src="lib/angular2-polyfills.js"></script>
+    <script src="lib/system.src.js"></script>
+    <script src="lib/Rx.js"></script>
+    <script src="lib/angular2.dev.js"></script>
+    <script src="lib/http.js"></script>
+    <script src="lib/router.dev.js"></script>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/ng2-bootstrap.min.js"></script>
+    <script>
+        System.config({
+            packages: {
+                app: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                }
+            },
+            map: {
+                'moment': 'lib/moment.js',
+                'ng2-modal/Modal': 'lib/Modal.js'
+            }
+        });
+      System.import('app/app').then(null, console.error.bind(console));
+    </script>
+</body>
+
+</html>

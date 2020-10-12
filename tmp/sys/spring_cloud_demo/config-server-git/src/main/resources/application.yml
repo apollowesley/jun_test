@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: config-server-git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/xieke90/config-server-demo
+#          search-paths: repo
+#          username:
+#          password:
+
+server:
+  port: 1201

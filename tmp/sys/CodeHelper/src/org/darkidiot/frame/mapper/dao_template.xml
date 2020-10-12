@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class>
+/* 
+ * CreateDate #now#
+ *
+ * Email ：darkidiot@icloud.com 
+ * School：CUIT 
+ * Copyright For darkidiot
+ */
+package #class.package#.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import #class.package#.model.#class.name#;
+
+/**
+ * #table.desc# Mapper服务
+ * 
+ * @author #author#
+ * @version 1.0
+ */
+@Mapper
+public interface #class.name#Mapper{
+
+	#class.name# load(@Param("id")Long id);
+	
+	List<#class.name#> loads(@Param("ids")List<Long> ids);
+	
+	List<#class.name#> list(Map<String, Object> criteria);
+
+	List<#class.name#> listAll();
+
+	List<#class.name#> pagingRow(Map<String, Object> criteria, Integer offset, Integer limit);
+
+	Integer pagingCount(Map<String, Object> criteria);
+	
+	Integer create(#class.name# bean);
+
+	Integer creates(List<#class.name#> beanList);
+	
+	Integer update(#class.name# bean);
+
+	Integer delete(@Param("id")Long id);
+	
+	Integer deletes(@Param("ids")List<Long> ids);
+}
+</class>

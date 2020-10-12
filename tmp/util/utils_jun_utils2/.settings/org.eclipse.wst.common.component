@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="jun_plugin_utils">
+        <wb-resource deploy-path="/" source-path="/src/main/core"/>
+        <wb-resource deploy-path="/" source-path="/src/test/core"/>
+        <wb-resource deploy-path="/" source-path="/src/main/log"/>
+        <wb-resource deploy-path="/" source-path="/src/test/log"/>
+        <wb-resource deploy-path="/" source-path="/src/main/setting"/>
+        <wb-resource deploy-path="/" source-path="/src/test/setting"/>
+        <wb-resource deploy-path="/" source-path="/src/main/cache"/>
+        <wb-resource deploy-path="/" source-path="/src/main/env"/>
+        <wb-resource deploy-path="/" source-path="/src/test/cache"/>
+        <wb-resource deploy-path="/" source-path="/src/main/cron"/>
+        <wb-resource deploy-path="/" source-path="/src/test/cron"/>
+        <wb-resource deploy-path="/" source-path="/src/main/db"/>
+        <wb-resource deploy-path="/" source-path="/src/test/db"/>
+        <wb-resource deploy-path="/" source-path="/src/main/json"/>
+        <wb-resource deploy-path="/" source-path="/src/test/json"/>
+        <wb-resource deploy-path="/" source-path="/src/main/http"/>
+        <wb-resource deploy-path="/" source-path="/src/main/script"/>
+        <wb-resource deploy-path="/" source-path="/src/test/http"/>
+        <wb-resource deploy-path="/" source-path="/src/main/geo"/>
+        <wb-resource deploy-path="/" source-path="/src/main/aop"/>
+        <wb-resource deploy-path="/" source-path="/src/main/crypto"/>
+        <wb-resource deploy-path="/" source-path="/src/main/dfa"/>
+        <wb-resource deploy-path="/" source-path="/src/main/extra"/>
+        <wb-resource deploy-path="/" source-path="/src/test/aop"/>
+        <wb-resource deploy-path="/" source-path="/src/test/crypto"/>
+        <wb-resource deploy-path="/" source-path="/src/test/dfa"/>
+        <wb-resource deploy-path="/" source-path="/src/main/bloomFilter"/>
+        <wb-resource deploy-path="/" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/target/generated-sources/annotations"/>
+    </wb-module>
+</project-modules>

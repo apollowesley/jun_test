@@ -1,0 +1,13 @@
+# Project exclude paths
+/hors/hors-admin-api/target/
+/hors/hors-orm/target/
+/hors/hors-service/target/
+/hors/hors-user-api/target/
+/veles/veles-base/target/
+/veles/veles-core/target/
+/veles/veles-utils/target/
+/.idea/
+/slavic.iml
+*.iml
+/hors/hors-admin-api/hors-admin-api.iml
+

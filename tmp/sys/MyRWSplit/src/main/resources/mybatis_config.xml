@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<properties resource="resource.properties">
+		<property name="aaa" value="bbb" />
+	</properties>
+
+	<settings>
+		<!-- <setting name="logPrefix" value="xxxxxxx" /> -->
+		<setting name="cacheEnabled" value="false" />
+		<setting name="localCacheScope" value="STATEMENT" />
+		<setting name="defaultStatementTimeout" value="10" /><!--单位:Seconds-->
+		
+	</settings>
+
+
+	<typeAliases>
+		<typeAlias alias="role" type="java.lang.Object" />
+	</typeAliases>
+
+	<!-- 
+	<typeHandlers> <typeHandler jdbcType="" javaType="" handler="xxxx"/> 
+	</typeHandlers> 
+	-->
+
+
+
+
+	<!-- we must use default !!!!,should not self defined!!! 
+	<objectFactory type="object.factory.MyFactory"> 
+		<property name="someProperty" value="100" /> 
+	</objectFactory> 
+	-->
+
+	<!-- we must use default !!!!,should not self defined!!! 
+	<objectWrapperFactory type="object.factory.MyObjectWrapperFactory" />
+	-->
+
+
+	<!-- we must use default!!! 
+	<reflectorFactory type="object.factory.MyReflectorFactory" /> 
+	-->
+
+
+	<plugins>
+		<!-- 这里interceptor可以是一个别名，通过上面的typeAlias配合完成真正的类寻址 -->
+		<plugin interceptor="com.freedom.mysql.myrwsplit.plugin.ExecutorInterceptor">
+		</plugin>
+		<plugin
+			interceptor="com.freedom.mysql.myrwsplit.plugin.StatementHandlerInterceptor">
+		</plugin>
+	</plugins>
+
+
+
+	<environments default="development">
+		<environment id="development">
+
+			<transactionManager type="JDBC">
+				<!--setProperties do nothing,so here,delete!!! -->
+			</transactionManager>
+
+			<dataSource
+				type="com.freedom.mysql.myrwsplit.datasource.MasterSlaveDataSourceFactory">
+				<!-- http://blog.csdn.net/hj7jay/article/details/51686418 -->
+				<!-- whether to init -->
+				<property name="init" value="true" />
+
+				<!-- now ,let us create & plus filters -->
+				<property name="initialSize" value="6" />
+				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://[127.0.0.1:3306,127.0.0.1:3306]/ambari?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false" />
+				<property name="password" value="." />
+				<property name="username" value="root" />
+				<property name="filters"
+					value="com.alibaba.druid.filter.stat.MergeStatFilter" />
+
+				<!-- let us init it -->
+				<property name="defaultAutoCommit" value="true" />
+				<property name="defaultReadOnly" value="false" />
+				<property name="defaultTransactionIsolation" value="REPEATABLE_READ" /><!-- 默认第3级别:可重复读 -->
+				<property name="defaultCatalog" value="mysql" />
+
+				<!-- let us validate it after created,time default is 1,default is select 
+					1 -->
+				<property name="validationQuery" value="select 'x'" />
+				<property name="validationQueryTimeout" value="10000" />
+				<!--here, we have create initial connections -->
+
+				<!--create a log stat thread... -->
+				<property name="druid.timeBetweenLogStatsMillis" value="0" />
+
+				<!-- keep alive -->
+				<property name="druid.keepAlive" value="true" />
+				<property name="minIdle" value="10" />
+				<property name="maxActive" value="21" />
+				<property name="maxWait" value="3000" />
+
+				<property name="timeBetweenEvictionRunsMillis" value="3000" />
+				<property name="numTestsPerEvictionRun" value="3" />
+				<property name="minEvictableIdleTimeMillis" value="60000" />
+
+				<property name="testOnBorrow" value="false" />
+				<property name="testOnReturn" value="false" />
+				<property name="testWhileIdle" value="true" />
+
+
+
+
+
+				<!-- <property name="maxIdle" value="10" /> <property name="phyTimeoutMillis" 
+					value="10000" /> <property name="accessToUnderlyingConnectionAllowed" value="false" 
+					/> <property name="removeAbandoned" value="true" /> <property name="removeAbandonedTimeout" 
+					value="3000000" /> <property name="logAbandoned" value="true" /> <property 
+					name="poolPreparedStatements" value="true" /> <property name="maxOpenPreparedStatements" 
+					value="10" /> <property name="exceptionSorter" value="a.b.c" /> <property 
+					name="exception-sorter-class-name" value="a.b.c" /> <property name="connectionProperties" 
+					value="xxx" /> <property name="druid.testWhileIdle" value="true" /> <property 
+					name="druid.testOnBorrow" value="true" /> <property name="druid.validationQuery" 
+					value="select 'x'" /> <property name="druid.useGlobalDataSourceStat" value="true" 
+					/> <property name="druid.useGloalDataSourceStat" value="true" /> <property 
+					name="druid.filters" value="a,b,c" /> <property name="druid.stat.sql.MaxSize" 
+					value="10240" /> <property name="druid.clearFiltersEnable" value="true" /> 
+					<property name="druid.resetStatEnable" value="true" /> <property name="druid.notFullTimeoutRetryCount" 
+					value="100" /> <property name="druid.maxWaitThreadCount" value="10" /> <property 
+					name="druid.failFast" value="true" /> <property name="druid.phyTimeoutMillis" 
+					value="10000" /> <property name="druid.minEvictableIdleTimeMillis" value="1000" 
+					/> <property name="druid.maxEvictableIdleTimeMillis" value="1000" /> <property 
+					name="druid.poolPreparedStatements" value="100" /> <property name="druid.initVariants" 
+					value="true" /> <property name="druid.initGlobalVariants" value="true" /> 
+					<property name="druid.useUnfairLock" value="true" /> -->
+
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- can not be set,or there will be something wrong happened 
+	<databaseIdProvider type="VENDOR" > 
+		<property name="DB2" value="db2"/> 
+		<property name="Oracle" value="oracle" /> 
+		<property name="Adaptive Server Enterprise" value="sybase"/> 
+		<property name="MySQL" value="mysql" /> 
+	</databaseIdProvider> 
+	-->
+
+
+	<!-- -->
+	<mappers>
+		<mapper resource="mysql_mapper.xml" />
+	</mappers>
+</configuration>

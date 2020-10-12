@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: admin-server
+  cloud:
+    kubernetes:
+      discovery:
+        primaryPortName: management     #---按设要监控 Service 的端口名称
+        serviceLabels:
+          admin: enabled                #---设置要监控 Service 的 Label 标签
+server:
+  port: 8769

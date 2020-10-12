@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:web="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+        version="2.4">
+
+	<display-name>JSP Layout</display-name>
+	
+	<!-- servlets -->
+	<servlet>
+		<servlet-name>jsp_layout</servlet-name>
+		<servlet-class>my.servlet.JSPLayoutServlet</servlet-class>
+		<init-param>
+			<param-name>template_path</param-name>
+			<param-value>/WEB-INF/jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>layout_path</param-name>
+			<param-value>/WEB-INF/layout</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default_layout</param-name>
+			<param-value>main.jsp</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>jsp_layout</servlet-name>
+		<url-pattern>*.jspx</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

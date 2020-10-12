@@ -1,0 +1,6 @@
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+spring.application.name: gateway
+
+server:
+  port: 9000
+  tomcat.uri-encoding: UTF-8

@@ -1,0 +1,89 @@
+html
+  head
+    title #{title}
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/jg.css')
+  body
+    div#fileDiv.left
+      
+    div.right
+      label
+        文件名
+      input#filename(type='text')
+      label
+        示例数据长度
+      input#listsize(type='text')
+      input#btn1(type='button' value='生成数据')
+      
+      div#tblDiv
+
+
+    script(type='text/javascript' src='/javascripts/jquery-1.11.0.min.js')
+    script(type='text/javascript' src='/javascripts/jg.js')
+    script(type='text/javascript' src='/javascripts/test.js')
+    script.
+
+      var myJG = new JG('tblDiv');
+      document.getElementById('btn1').addEventListener('click',function(){
+        var filename = document.getElementById('filename').value;
+        var listsize = document.getElementById('listsize').value;
+        if(!filename){
+          alert('请填写文件名');
+          return;
+        }
+        if(!listsize||isNaN(listsize)){
+          alert('请填写数字,确定需要生成json数据的长度');
+          return;
+        }
+        myJG.generator(filename,listsize,showFile);
+      });
+      function editJson(filename){
+        $.ajax({
+          url:'/myfs/read',
+          data:'filetype=model&filename='+filename,
+          type:'post',
+          success:function(ret){
+            var content = eval('('+ret.content+')');
+            myJG.edit(content,showFile);
+          }
+        });
+      }
+      function showFile(){
+        var div = document.getElementById('fileDiv');
+        while(div.hasChildNodes()){
+          div.removeChild(div.lastChild);
+        }
+        $.ajax({
+          url:'/myfs/loopDir',
+          type:'get',
+          success:function(ret){
+            var ul = document.createElement('ul');
+            var files = ret.fileArray;
+            
+            for(var i in files){
+              var filename = files[i];
+              var li = document.createElement('li');
+              li.innerHTML = '<a href="javascript:;" onclick="editJson(\''+filename+'\');">'+filename+'</a>';
+
+              ul.appendChild(li);
+            }
+            div.appendChild(ul);
+          }
+        });
+      }
+      $(function(){
+        // test.js start
+
+        var dd = jView.init('tblDiv');
+        Test.test1();
+        //var obj = {};
+        //obj.name = 'aaaaaaaaaaaaaaaaa';
+        var t = ThisTest.test11.call(jView);
+
+        // test.js end
+
+
+        showFile();
+      });
+
+  

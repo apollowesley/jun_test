@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.site.auth.mapper.UserMapper">
+
+	<resultMap id="userMap" type="com.site.auth.model.User">
+		<result column="ID" property="id" />
+		<result column="EMAIL" property="email" />
+		<result column="USER_NAME" property="userName" />
+		<result column="LOGIN_NAME" property="loginName" />
+		<result column="PASS_WORD" property="password" />
+		<result column="SALT" property="salt" />
+		<result column="IS_DEL" property="isDel" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.site.auth.model.User">
+		insert into t_auth_user(id , email , login_name , user_name ,pass_word , salt , is_del , create_time , update_time) values(#{id} , #{email} , #{loginName} ,#{userName} , #{password} , #{salt} ,#{isDel} ,
+		#{createTime} , #{updateTime})
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+			select id , email , login_name , user_name ,pass_word , salt , is_del , create_time , update_time
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM t_auth_user
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="string" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE ID=#{id}
+		]]>
+	</select>
+
+	<select id="findUserByLoginName" parameterType="string" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE login_name=#{loginName}
+		]]>
+	</select>
+
+	<select id="findUserByName" parameterType="string" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE USER_NAME=#{username}
+		]]>
+	</select>
+
+	<select id="findUsers" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+	</select>
+
+	<update id="update" parameterType="com.site.auth.model.User">
+		UPDATE t_auth_user
+		<set>
+			<if test="email != null">
+				EMAIL = #{email},
+			</if>
+			<if test="loginName != null and loginName!=''">
+				login_Name = #{loginName},
+			</if>
+			<if test="userName != null and userName!=''">
+				USER_NAME = #{userName},
+			</if>
+			<if test="password != null and password!=''">
+				PASS_WORD = #{password},
+			</if>
+			<if test="salt != null">
+				SALT = #{salt},
+			</if>
+			<if test="isDel != null">
+				IS_DEL = #{isDel},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				CREATE_TIME = #{createTime},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				UPDATE_TIME = #{updateTime},
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<select id="paginateUserPage" resultMap="userMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<delete id="delete" parameterType="Map">
+		DELETE FROM t_auth_user WHERE ID IN
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,133 @@
+# 注意：spring.application.name只能放在bootstrap.*文件中，不能放在application.*文件中，因为我们使用了自定义的logback-spring.xml。
+# 如果放在application.*文件中，自定义的logback文件将无法正确读取属性。
+
+# 微服端口
+server:
+    port: ${server_port}
+# 服务注册中心配置
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+#        hostname: shop.cnbbx.com
+        prefer-ip-address: true
+#        ip-address: 172.16.20.100
+#        instance-id: team:${microserver}:${Prefixes}{server.port}
+    client:
+        serviceUrl:
+            defaultZone: http://admin:a1234567@dev.amyun.cn:8761/eureka/
+#        healthcheck:
+#            enabled: true
+# 微服配置
+spring:
+    # 微服注册名
+    application:
+        name: ${microserver}
+    # 配置中心
+    cloud:
+        config:
+            username: amez999
+            password: gogs.amez999.com
+            profile: dev
+            label: master
+            discovery:
+                enabled: true
+                service-id: amez-config
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: NON_NULL
+    devtools:
+        restart:
+            enabled: true
+            exclude: WEB-INF/**
+    jpa:
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+    # 数据库配置
+    datasource:
+        platform: mysql
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://master.cnbbx.com:3307/${microserver_instance?lower_case}_db?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+        username: java
+        password: java520
+        # druid连接池配置
+        druid:
+            initial-size: 10
+            max-active: 200
+            min-idle: 20
+            max-wait: 50
+            filters: stat,wall,slf4j
+            filter:
+                wall:
+                    config:
+                        drop-table-allow: false
+                        alter-table-allow: false
+                        rename-table-allow: false
+                stat:
+                    enabled: true
+                    log-slow-sql: true
+                    slow-sql-millis: 2000
+                slf4j:
+                    enabled: true
+                    statement-sql-pretty-format: true
+            # druid sql监控控制台页面
+            stat-view-servlet:
+                enabled: true
+                login-username: druid-user
+                login-password: druid-pwd-amez999
+                url-pattern: /druid/*
+    # redis配置
+    redis:
+        password: amez999.com
+        timeout: 5000
+        cluster:
+            max-redirects: 3
+            nodes:
+            - 120.78.92.224:7000
+            - 120.78.92.224:7001
+            - 120.78.92.224:7002
+            - 120.78.92.224:7003
+            - 120.78.92.224:7004
+            - 120.78.92.224:7005
+    sleuth:
+        sampler:
+            percentage: 1.0
+    # 消息队列配置
+    rabbitmq:
+        host: 120.78.92.224
+        port: 5672
+        username: amez999
+        password: rabbit.amez999.com
+# 微服密码
+microservice:
+    ${shortname}-username: ${shortname}-username
+    ${shortname}-password: 111111
+# 取消密码验证
+security:
+    basic:
+        enabled: false
+# 隐藏服务器暴露信息
+management:
+    security:
+        enabled: false
+    port: -1
+# 配置熔断的超时时间
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 5000
+# 请求和响应GZIP压缩支持
+feign:
+    compression:
+        request:
+            enabled: true
+            mime-types: text/xml,application/xml,application/json
+            min-request-size: 2048
+        response:
+            enabled: true

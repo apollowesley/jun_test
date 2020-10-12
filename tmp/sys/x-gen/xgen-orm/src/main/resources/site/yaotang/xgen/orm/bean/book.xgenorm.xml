@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<class name="site.yaotang.xgen.orm.bean.Book" table="txg_om_book">
+	<id name="bookId" column="fbook_id" autoIncrement="true"/>
+	<property name="bookName" column="fbook_name" defaultValue="hello world"/>
+	<property name="author" column="fauthor" />
+	<property name="publisher" column="fpublisher" />
+	<manyToOne name="style" class="site.yaotang.xgen.orm.bean.Style">
+		<key field="styleId" column="fstyle_id"/>
+	</manyToOne>
+</class>

@@ -1,0 +1,7 @@
+<div class="jumbotron">
+  <h1 class="display-4">Formless</h1>
+  <p class="lead">动态表单，数据录入，导出，自定义字段</p>
+  <%= unless @current_user do %>
+    <%= link "开始使用", to: Routes.session_path(@conn, :new), class: "btn btn-primary btn-lg" %>
+  <% end %>
+</div>

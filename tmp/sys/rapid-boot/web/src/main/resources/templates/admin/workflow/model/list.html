@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>模型列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <table class="layui-hide" id="workFlow" lay-filter="workFlow"></table>
+    </div>
+</div>
+</body>
+<script src="/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    layui.use(['table'], function () {
+        var table = layui.table;
+        // 表格
+        table.render({
+            elem: '#workFlow',
+            url: '/api/admin/workflow/model/list',
+            page: true,
+            cols: [
+                [
+                    {field: 'id', title: '流程ID', align: 'center', sort: true},
+                    {field: 'name', title: '流程名称', align: 'center'},
+                    {field: 'key', title: '流程key', align: 'center'},
+                    {
+                        field: 'deploymentTime',
+                        title: '部署时间',
+                        align: 'center',
+                        templet: '<div>{{layui.util.toDateString(d.deploymentTime, "yyyy-MM-dd HH:mm:ss")}}</div>'
+                    }
+                ]
+            ]
+        });
+    });
+    /*]]>*/
+</script>
+</html>

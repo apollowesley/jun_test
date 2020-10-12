@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+  <description>Xuehu admin tablib defination</description>
+  <tlib-version>1.0</tlib-version>
+  <short-name>xh</short-name>
+  <uri>http://xuehu365.com/admin/taglib</uri>
+
+  <tag>
+    <description>pagination tag</description>
+    <name>pagination</name>
+    <tag-class>cn.backflow.admin.common.taglib.PageTag</tag-class>
+    <!-- 指定标签体内容：
+      tagdependent：指定标签处理类自己负责处理标签体。
+      empty：指定该标签只能作用空标签使用。
+      scriptless：指定该标签的标签体可以是静态HTML元素，表达式语言，但不允许出现JSP 脚本。
+      JSP：指定该标签的标签体可以使用JSP 脚本。
+    -->
+    <body-content>empty</body-content>
+    <attribute>
+      <description>The Page Object</description>
+      <name>page</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>cn.backflow.admin.common.pagination.Page</type>
+    </attribute>
+
+    <attribute>
+      <description>The Page Object</description>
+      <name>pageRequest</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>cn.backflow.admin.common.pagination.PageRequest</type>
+    </attribute>
+
+    <attribute>
+      <description>Pass the parameter by the link or not</description>
+      <name>pageByLink</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <dynamic-attributes>true</dynamic-attributes>
+  </tag>
+
+  <tag>
+    <description>Dict tag</description>
+    <name>dict</name>
+    <tag-class>cn.backflow.admin.common.taglib.DictTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <description>Dict code</description>
+      <name>code</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description>Property name</description>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description>Default value</description>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.Object</type>
+    </attribute>
+    <attribute>
+      <description>Default values</description>
+      <name>values</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.Object</type>
+    </attribute>
+    <attribute>
+      <description>Witch HTML Element will be generated, default is `select`</description>
+      <name>element</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description>Default option for select element</description>
+      <name>defaultOption</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <dynamic-attributes>true</dynamic-attributes>
+  </tag>
+
+  <tag>
+    <description>Bootstrap treeview</description>
+    <name>tree</name>
+    <tag-class>cn.backflow.admin.common.taglib.TreeTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>treeables</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>cn.backflow.admin.common.treeable.Treeable</type>
+    </attribute>
+    <attribute>
+      <description>Property name (Two inputs with name {Property name} + Id and {Property name} + Name will be
+        generated)
+      </description>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description>jstree or bootstrap-tree (default is jstree)</description>
+      <name>type</name>
+      <required>false</required>
+      <fragment>false</fragment>
+    </attribute>
+    <attribute>
+      <description>Defines the level of depth will be shown</description>
+      <name>showLevel</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.Integer</type>
+    </attribute>
+    <attribute>
+      <description>Multi select, (default: false)</description>
+      <name>multi</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description>Inherit select, (default: false)</description>
+      <name>inherit</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description>Display checkboxes or not, (default: false)</description>
+      <name>checkbox</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description>Default value</description>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.Comparable</type>
+    </attribute>
+    <attribute>
+      <description>Display checkboxes or not, (default: false)</description>
+      <name>selected</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.Comparable</type>
+    </attribute>
+    <attribute>
+      <description>Display checkboxes or not, (default: false)</description>
+      <name>unselectable</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.Comparable</type>
+    </attribute>
+    <dynamic-attributes>true</dynamic-attributes>
+  </tag>
+</taglib>

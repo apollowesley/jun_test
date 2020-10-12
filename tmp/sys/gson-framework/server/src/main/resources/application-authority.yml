@@ -1,0 +1,20 @@
+# 菜单结构配置
+authority:
+  resources:
+    - key: index
+      path: /index
+      text: 测试菜单
+      type: MENU
+    - children:
+        - key: index
+          path: /index
+          text: 测试菜单
+          type: MENU
+        - key: index
+          path: /index
+          text: 测试菜单
+          type: MENU
+      key: index
+      path: /index
+      text: 测试菜单
+      type: MENU

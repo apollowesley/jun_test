@@ -1,0 +1,31 @@
+<view class="centerTop">
+    <view class='hd' style='background-image:url({{rawData.avatarUrl}})'></view>
+    <view class='bd'>
+        <view class='name'>{{rawData.nickName}}</view>
+    </view>
+</view>
+
+<view class='borderbox'>
+    <view class='tbviewlist'>
+         <view class='items' bindtap="goPersonData">
+            <view class='c'>个人资料</view>
+        </view>
+
+        <!-- <view class='items'>
+          <view class='c'>所在部门</view>
+        </view> -->
+        <view class='items' bindtap='getCountAll'>
+          <view class='c'>全部统计</view>
+        </view>
+        <!-- <view class='items'>
+          <view class='c'>成长值</view>
+        </view> -->
+        <view class='items' bindtap='getMyGainGrowth'>
+          <view class='c'>我获得的成长值</view>
+        </view>
+
+        <view class='items' bindtap='getMyGiveGrowth'>
+            <view class='c'>我赠送的成长值</view>
+        </view>
+    </view>
+</view>

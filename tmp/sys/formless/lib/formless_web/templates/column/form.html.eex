@@ -1,0 +1,34 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="form-row">
+    <div class="form-group col-6">
+      <%= label f, :name, "字段名称" %>
+      <%= text_input f, :name, class: "form-control #{error_class(f, :name)}" %>
+      <%= error_tag f, :name %>
+    </div>
+    <div class="form-group col-6">
+      <%= label f, :field_name, "内部字段名" %>
+      <%= text_input f, :field_name, class: "form-control #{error_class(f, :field_name)}" %>
+      <%= error_tag f, :field_name %>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-6">
+      <%= label f, :data_type, "数据类型" %>
+      <%= select f, :data_type,
+          Formless.Store.Column.support_data_types,
+          class: "form-control custom-select #{error_class(f, :data_type)}" %>
+      <%= error_tag f, :data_type %>
+    </div>
+    <div class="form-group col-6">
+      <%= label f, :desc, "描述" %>
+      <%= textarea f, :desc, class: "form-control #{error_class(f, :desc)}", rows: 5 %>
+      <%= error_tag f, :desc %>
+    </div>
+  </div>
+
+  <div>
+    <%= submit "保存", class: "btn btn-primary mr-2" %>
+    <%= link "取消", to: Routes.table_path(@conn, :show, @table), class: "btn btn-secondary" %>
+  </div>
+<% end %>

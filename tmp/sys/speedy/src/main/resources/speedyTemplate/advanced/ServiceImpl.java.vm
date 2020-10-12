@@ -1,0 +1,12 @@
+package ${package.ServiceImpl};
+
+import ${package.Service}.${table.entityName}Service;
+import org.springframework.stereotype.Service;
+/**
+ *
+ *
+ */
+@Service
+public class ${table.entityName}ServiceImpl implements ${table.entityName}Service{
+
+}

@@ -1,0 +1,50 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+    //读取yml的自定义属性
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.zhengjieblog.pocket'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+}
+
+dependencies {
+    //Jpa
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    //Spring boot内置web容器
+    compile('org.springframework.boot:spring-boot-starter-web')
+    //Spring boot单元测试
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    //安全验证
+    //compile("org.springframework.boot:spring-boot-starter-security")
+    //设备类型检查
+    //compile("org.springframework.mobile:spring-mobile-device:1.1.5.RELEASE")
+    //Mysql
+    runtime('mysql:mysql-connector-java')
+    //lombok
+    compileOnly('org.projectlombok:lombok')
+    //阿里云连接池
+    compile("com.alibaba:druid:1.1.6")
+    //jwt
+    compile("com.auth0:java-jwt:2.2.0")
+    //处理JSON
+    compile("com.alibaba:fastjson:1.2.31")
+
+
+}

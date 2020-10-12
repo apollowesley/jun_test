@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configure>
+	<basedir>D:\\code</basedir>
+	<basePackage>club.mzli.blog.front</basePackage>
+	<db>
+		<dbName>blog</dbName>
+		<dbType>mysql</dbType>
+		<user>root</user>
+		<pwd>**</pwd>
+		<driver>com.mysql.jdbc.Driver</driver>
+		<url>**</url>
+	</db>
+	<packageSetting>
+		<objectPackage>base</objectPackage>
+		<controllerPackage>controller</controllerPackage>
+		<daoPackage>dao</daoPackage>
+		<daoImplPackage>impl</daoImplPackage>
+		<servicePackage>service</servicePackage>
+		<serviceImplPackage>impl</serviceImplPackage>
+		<entityPackage>pojo</entityPackage>
+		<mapperPackage>mapper</mapperPackage>
+		<viewPackage>jsp</viewPackage>
+		<jsPackage>js</jsPackage>
+		<isDeleteTablePrefix>true</isDeleteTablePrefix>
+	</packageSetting>
+	<module>
+		<persistance>mybatis</persistance>
+		<name></name>
+		<isDeleteTablePrefix>true</isDeleteTablePrefix>
+		<savePath></savePath>
+		<framework>mvc</framework>
+		<table name="sys_task"
+		prefix="sys_" isAutoIncrement="true"></table>
+	</module>
+</configure>

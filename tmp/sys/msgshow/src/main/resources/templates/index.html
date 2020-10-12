@@ -1,0 +1,469 @@
+﻿<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery留言评论发布</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/zxf_page.css"/>
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		body {
+			background: url("/static/images/bg.jpg") no-repeat fixed;
+		}
+
+		#qq {
+			width: 600px;
+			/*宽*/
+			height: 170px;
+			/*高*/
+			background: #fff;
+			/*背景颜色*/
+			margin: 50px auto 30px;
+			border-radius: 5px;
+			/*Html5 圆角*/
+		}
+
+		#qq p {
+			font-size: 12px;
+			color: #666;
+			font-family: "微软雅黑";
+			line-height: 45px;
+			text-indent: 20px;
+		}
+
+		#qq .message {
+			width: 560px;
+			height: 70px;
+			margin: 0 auto;
+			overflow: hidden;
+			outline: none;
+			border: 1px solid #ddd;
+			padding: 8px;
+			box-sizing: border-box;
+			font-size: 14px;
+			-webkit-background-clip: text;
+			color: transparent;
+			background-image: linear-gradient(to right, #778899 0%, #333 100%);
+			/*粗细 风格 颜色*/
+		}
+
+		#qq .But {
+			width: 560px;
+			height: 35px;
+			margin: 15px auto 0px;
+			position: relative;
+			/*相对，参考对象*/
+		}
+
+		#qq .But img.bq {
+			float: left;
+			/*左浮动*/
+		}
+
+		#qq .But span.submit {
+			width: 80px;
+			height: 30px;
+			background: #ff8140;
+			display: block;
+			float: right;
+			/*右浮动*/
+			line-height: 30px;
+			border-radius: 5px;
+			cursor: pointer;
+			/*手指*/
+			color: #fff;
+			font-size: 12px;
+			text-align: center;
+			font-family: "微软雅黑";
+		}
+
+		/*face begin*/
+		#qq .But .face {
+			width: 440px;
+			background: #fff;
+			border: 1px solid #ddd;
+			box-shadow: 0 0 12px #666;
+			position: absolute;
+			/*绝对定位*/
+			top: 21px;
+			left: 15px;
+			display: none;
+			/*隐藏*/
+		}
+
+		#qq .But .face ul {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			padding: 8px;
+			box-sizing: border-box;
+		}
+
+		#qq .But .face ul li {
+			width: 30px;
+			height: 30px;
+			list-style-type: none;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		/*msgCon begin*/
+		.msgCon {
+			width: 600px;
+			margin: 0px auto;
+			margin-bottom: 60px;
+		}
+
+		.msgCon .msgBox {
+			background: #fff;
+			padding: 10px;
+			box-sizing: border-box;
+			margin-top: 16px;
+			border-radius: 4px;
+		}
+
+		.msgCon .msgBox .headUrl {
+			width: 100%;
+			height: 60px;
+			border-bottom: 1px dotted #ddd;
+			display: flex;
+			align-items: center;
+		}
+
+		.msgCon .msgBox .headUrl img {
+			width: 46px;
+			height: 46px;
+			border-radius: 50%
+		}
+
+		.msgCon .msgBox .headUrl div {
+			flex: 1;
+			display: flex;
+			flex-flow: column;
+			font-size: 16px;
+			margin-left: 16px;
+			-webkit-background-clip: text;
+			color: transparent;
+			background-image: linear-gradient(to top, #b224ef 0%, #7579ff 100%);
+		}
+
+		.msgCon .msgBox .headUrl div .time {
+			font-size: 14px;
+			margin-top: 6px;
+			-webkit-background-clip: text;
+			color: transparent;
+			background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
+		}
+
+		.msgCon .msgBox .headUrl a {
+			font-size: 14px;
+			padding: 10px;
+			color: salmon;
+			cursor: pointer;
+		}
+
+		.msgCon .msgBox .msgTxt {
+			font-size: 14px;
+			color: #666;
+			min-height: 40px;
+			line-height: 24px;
+			padding: 10px;
+			box-sizing: border-box;
+			word-wrap: break-word;
+			-webkit-background-clip: text;
+			color: transparent;
+			background-image: linear-gradient(to right, #778899 0%, #333 100%);
+		}
+        .showorin{
+            font-size: 14px;
+            padding: 10px;
+            color: #778899;
+            cursor: pointer;
+        }
+	</style>
+    <style>
+        .pop {  display: none;  width: 600px; min-height: 200px;  max-height: 300px;  height:300px;  position: absolute;  top: 0;  left: 0;  bottom: 0;  right: 0;  margin: auto;  padding: 25px;  z-index: 130;  border-radius: 8px;  background-color: #fff;  box-shadow: 0 3px 18px rgba(100, 0, 0, .5);  }
+        .pop-top{  height:40px;  width:100%;  border-bottom: 1px #E5E5E5 solid;  }
+        .pop-top h2{  float: left;  display:block}
+        .pop-top span{  float: right;  cursor: pointer;  font-weight: bold; display:block}
+        .pop-foot{  height:50px;  line-height:50px;  width:100%;  border-top: 1px #E5E5E5 solid;  text-align: right;  }
+        .pop-cancel, .pop-ok {  padding:8px 15px;  margin:15px 5px;  border: none;  border-radius: 5px;  background-color: #337AB7;  color: #fff;  cursor:pointer;  }
+        .pop-cancel {  background-color: #FFF;  border:1px #CECECE solid;  color: #000;  }
+        .pop-content{  height: 200px;  }
+        .pop-content-right{  width:310px;  float: left;  padding-top:20px;  padding-left:20px;  font-size: 16px;  line-height:35px;  }
+        .bgPop{  display: none;  position: absolute;  z-index: 129;  left: 0;  top: 0;  width: 100%;  height: 100%;  background: rgba(0,0,0,.2);  }
+    </style>
+</head>
+<body>
+
+<div id="qq">
+	<p>有什么新鲜事想告诉大家?</p>
+    <div class="message" contentEditable='true'></div>
+
+    <div class="But">
+        <img src="/static/images/bba_thumb.gif" class='bq' alt="点我添加表情包"/>
+        <span class='submit'>发表</span>
+
+        <div class="face">
+            <ul>
+                <li><img src="/static/images/smilea_thumb.gif" title="呵呵]"></li>
+                <li><img src="/static/images/tootha_thumb.gif" title="嘻嘻]"></li>
+                <li><img src="/static/images/laugh.gif" title="[哈哈]"></li>
+                <li><img src="/static/images/tza_thumb.gif" title="[可爱]"></li>
+                <li><img src="/static/images/kl_thumb.gif" title="[可怜]"></li>
+                <li><img src="/static/images/kbsa_thumb.gif" title="[挖鼻屎]"></li>
+                <li><img src="/static/images/cj_thumb.gif" title="[吃惊]"></li>
+                <li><img src="/static/images/shamea_thumb.gif" title="[害羞]"></li>
+                <li><img src="/static/images/zy_thumb.gif" title="[挤眼]"></li>
+                <li><img src="/static/images/bz_thumb.gif" title="[闭嘴]"></li>
+                <li><img src="/static/images/bs2_thumb.gif" title="[鄙视]"></li>
+                <li><img src="/static/images/lovea_thumb.gif" title="[爱你]"></li>
+                <li><img src="/static/images/sada_thumb.gif" title="[泪]"></li>
+                <li><img src="/static/images/heia_thumb.gif" title="[偷笑]"></li>
+                <li><img src="/static/images/qq_thumb.gif" title="[亲亲]"></li>
+                <li><img src="/static/images/sb_thumb.gif" title="[生病]"></li>
+                <li><img src="/static/images/mb_thumb.gif" title="[太开心]"></li>
+                <li><img src="/static/images/ldln_thumb.gif" title="[懒得理你]"></li>
+                <li><img src="/static/images/yhh_thumb.gif" title="[右哼哼]"></li>
+                <li><img src="/static/images/zhh_thumb.gif" title="[左哼哼]"></li>
+                <li><img src="/static/images/x_thumb.gif" title="[嘘]"></li>
+                <li><img src="/static/images/cry.gif" title="[衰]"></li>
+                <li><img src="/static/images/wq_thumb.gif" title="[委屈]"></li>
+                <li><img src="/static/images/t_thumb.gif" title="[吐]"></li>
+                <li><img src="/static/images/k_thumb.gif" title="[打哈气]"></li>
+                <li><img src="/static/images/bba_thumb.gif" title="[抱抱]"></li>
+                <li><img src="/static/images/angrya_thumb.gif" title="[怒]"></li>
+                <li><img src="/static/images/yw_thumb.gif" title="[疑问]"></li>
+                <li><img src="/static/images/cza_thumb.gif" title="[馋嘴]"></li>
+                <li><img src="/static/images/88_thumb.gif" title="[拜拜]"></li>
+                <li><img src="/static/images/sk_thumb.gif" title="[思考]"></li>
+                <li><img src="/static/images/sweata_thumb.gif" title="[汗]"></li>
+                <li><img src="/static/images/sleepya_thumb.gif" title="[困]"></li>
+                <li><img src="/static/images/sleepa_thumb.gif" title="[睡觉]"></li>
+                <li><img src="/static/images/money_thumb.gif" title="[钱]"></li>
+                <li><img src="/static/images/sw_thumb.gif" title="[失望]"></li>
+                <li><img src="/static/images/cool_thumb.gif" title="[酷]"></li>
+                <li><img src="/static/images/hsa_thumb.gif" title="[花心]"></li>
+                <li><img src="/static/images/hatea_thumb.gif" title="[哼]"></li>
+                <li><img src="/static/images/gza_thumb.gif" title="[鼓掌]"></li>
+                <li><img src="/static/images/dizzya_thumb.gif" title="[晕]"></li>
+                <li><img src="/static/images/bs_thumb.gif" title="[悲伤]"></li>
+                <li><img src="/static/images/crazya_thumb.gif" title="[抓狂]"></li>
+                <li><img src="/static/images/h_thumb.gif" title="[黑线]"></li>
+                <li><img src="/static/images/yx_thumb.gif" title="[阴险]"></li>
+                <li><img src="/static/images/nm_thumb.gif" title="[怒骂]"></li>
+                <li><img src="/static/images/hearta_thumb.gif" title="[心]"></li>
+                <li><img src="/static/images/unheart.gif" title="[伤心]"></li>
+                <li><img src="/static/images/pig.gif" title="[猪头]"></li>
+                <li><img src="/static/images/ok_thumb.gif" title="[ok]"></li>
+                <li><img src="/static/images/ye_thumb.gif" title="[耶]"></li>
+                <li><img src="/static/images/good_thumb.gif" title="[good]"></li>
+                <li><img src="/static/images/no_thumb.gif" title="[不要]"></li>
+                <li><img src="/static/images/z2_thumb.gif" title="[赞]"></li>
+                <li><img src="/static/images/come_thumb.gif" title="[来]"></li>
+                <li><img src="/static/images/sad_thumb.gif" title="[弱]"></li>
+                <li><img src="/static/images/lazu_thumb.gif" title="[蜡烛]"></li>
+                <li><img src="/static/images/clock_thumb.gif" title="[钟]"></li>
+                <li><img src="/static/images/cake.gif" title="[蛋糕]"></li>
+                <li><img src="/static/images/m_thumb.gif" title="[话筒]"></li>
+                <li><img src="/static/images/weijin_thumb.gif" title="[围脖]"></li>
+                <li><img src="/static/images/lxhzhuanfa_thumb.gif" title="[转发]"></li>
+                <li><img src="/static/images/lxhluguo_thumb.gif" title="[路过这儿]"></li>
+                <li><img src="/static/images/bofubianlian_thumb.gif" title="[bofu变脸]"></li>
+                <li><img src="/static/images/gbzkun_thumb.gif" title="[gbz困]"></li>
+                <li><img src="/static/images/boboshengmenqi_thumb.gif" title="[生闷气]"></li>
+                <li><img src="/static/images/chn_buyaoya_thumb.gif" title="[不要啊]"></li>
+                <li><img src="/static/images/daxiongleibenxiong_thumb.gif" title="[dx泪奔]"></li>
+                <li><img src="/static/images/cat_yunqizhong_thumb.gif" title="[运气中]"></li>
+                <li><img src="/static/images/youqian_thumb.gif" title="[有钱]"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="msgCon">
+	<div class='msgBox' th:each="allmessage : *{allMsg}">
+		<!-- 主贴 -->
+        <div class="headUrl">
+            <img src='/static/images/tx.jpg' width='50' height='50'>
+            <div>
+                <span class="title">[[${allmessage.key.msgusername}]]</span>
+                <span class="time">[[${allmessage.key.msgdate}]]</span>
+            </div>
+            <!-- th:href="@{/reply(msgmainid=${allmessage.key.msguuid})}"-->
+            <input type="hidden"  name="mainid" th:value="${allmessage.key.msguuid}" />
+            <a class="showorin replymsg click_pop">回复</a>
+            <a class="del" th:href="@{/delete(msguuid=${allmessage.key.msguuid})}">删除</a>
+        </div>
+        <div class='msgTxt'>
+            [[${allmessage.key.msgcontent}]]
+        </div>
+        <a class="showorin inin">隐藏</a>&nbsp;&nbsp;&nbsp;<a class="showorin outout">显示</a>
+        <!-- 跟贴 -->
+        <div class="buttonshoworin" style="display: none">
+            <div class='msgTxt' th:each="genties:${allmessage.value}">
+                <div class='msgBox'>
+                    <div class="headUrl">
+                        <img src='/static/images/tx.jpg' width='50' height='50'>
+                        <div>
+                            <span class="title">[[${genties.msgusername}]]</span>
+                            <span class="time">[[${genties.msgdate}]]</span>
+                        </div>
+                    </div>
+                    <div class='msgTxt'>
+                        [[${genties.msgcontent}]]
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	</div>
+
+</div>
+
+<!--弹出层-->
+<!--遮罩层-->
+<div class="bgPop"></div>
+<!--弹出框-->
+<div class="pop">
+    <form action="/reply" method="post">
+        <div class="pop-top">
+            <h2>回复</h2>
+            <span class="pop-close">Ｘ</span>
+        </div>
+        <input type="hidden" class="replyid"  name="replyid" value="" />
+        <div class="pop-content">
+            <div class="pop-content-right">
+                <textarea id="mainmessage" name="replymessage" rows="10" cols="78" style="resize: none"></textarea>
+            </div>
+        </div>
+        <div class="pop-foot">
+            <input type="button" value="关闭" class="pop-cancel pop-close">
+            <input type="submit" value="发表" class="pop-ok">
+        </div>
+    </form>
+</div>
+
+
+<!--分页实现-->
+<div class="zxf_pagediv"></div>
+<!--分页实现-->
+
+<script type="text/javascript" src="/static/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/static/js/zxf_page.js"></script>
+<script type="text/javascript">
+	//点击小图片，显示表情
+	$(".bq").click(function (e) {
+		$(".face").slideDown(); //慢慢向下展开
+		e.stopPropagation(); //阻止冒泡事件
+	});
+
+	//在桌面任意地方点击，关闭表情框
+	$(document).click(function () {
+		$(".face").slideUp(); //慢慢向上收
+	});
+
+	//点击小图标时，添加功能
+	$(".face ul li").click(function () {
+		var simg = $(this).find("img").clone();
+		$(".message").append(simg); //将表情添加到输入框
+	});
+
+	//点击发表按扭，发表内容
+	$("span.submit").click(function () {
+		var txt = $(".message").html(); //获取输入框内容
+
+		if (!txt) {
+			$('.message').focus(); //自动获取焦点
+			return;
+		}
+		// alert(txt);
+        // alert($(".message").children("img").attr('src'));
+        //ajax 提交
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/show" ,//url
+            data:  {message: txt},
+        });
+		$('.message').html('') // 清空输入框
+	});
+	//
+	// //删除当前数据
+	// $("body").on('click', '.del', function () {
+	// 	let index = $(this).parent().parent().index();
+	// 	msgBoxList.splice(index, 1)
+	// 	window.localStorage.setItem('msgBoxList', JSON.stringify(msgBoxList)) //将数据保存到缓存
+	// 	$(this).parent().parent().remove()
+	// })
+	//
+	// //渲染html
+	// function innerHTMl(List) {
+	// 	List = List || []
+	// 	List.forEach(item => {
+	// 		let str =
+	// 			`<div class='msgBox'>
+	// 				<div class="headUrl">
+	// 					<img src='images/tx.jpg' width='50' height='50'>
+	// 					<div>
+	// 						<span class="title">木林森里没有木</span>
+	// 						<span class="time">2018-01-01</span>
+	// 					</div>
+	// 					<a class="del">回复</a>
+	// 					<a class="del">删除</a>
+	// 				</div>
+	// 				<div class='msgTxt'>
+	// 					${item.msg}
+	// 				</div>
+	//
+	// 			</div>`
+	// 		$(".msgCon").prepend(str);
+	// 	})
+	// }
+
+    //对评论进行显示或者隐藏
+    $('.inin').click(function () {
+        $(this).next().next().hide();
+    })
+    $('.outout').click(function () {
+        $(this).next().show();
+    })
+</script>
+
+<!--弹出层js-->
+<script>
+    $(document).ready(function () {
+        $('.pop-close').click(function () {
+            $('.bgPop,.pop').hide();
+        });
+        $('.click_pop').click(function () {
+            $('.bgPop,.pop').show();
+            $('.replyid').val($(this).prev().val());
+        });
+        $('.pop-ok').click(function () {
+            $('#mainmessage').html('');
+        })
+    })
+
+</script>
+<!--
+这里面添加分页
+-->
+<!--翻页-->
+<script type="text/javascript">
+    //翻页
+    $(".zxf_pagediv").createPage({
+        pageNum: [[${pageNum}]],
+        current: [[${current}]],
+    });
+</script>
+</body>
+</html>

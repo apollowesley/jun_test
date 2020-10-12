@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.api.ws.kiwipeach.cn/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://api.ws.kiwipeach.cn/" name="HelloWorldWSImplService" targetNamespace="http://impl.api.ws.kiwipeach.cn/">
+  <wsdl:import location="http://192.168.1.107:8080/firstWS?wsdl=HelloWorldWS.wsdl" namespace="http://api.ws.kiwipeach.cn/">
+    </wsdl:import>
+  <wsdl:binding name="HelloWorldWSImplServiceSoapBinding" type="ns1:HelloWorldWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMapUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMapUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMapUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getListUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getListUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getListUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorldWSImplService">
+    <wsdl:port binding="tns:HelloWorldWSImplServiceSoapBinding" name="HelloWorldWSImplPort">
+      <soap:address location="http://192.168.1.107:8080/firstWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,28 @@
+<view class="calendar">
+  <view class="header">
+    <view class="previous-year" bindtap="previousYear">{{'<<'}}</view>
+    <view class="previous-month" bindtap="previousMonth">{{'<'}}</view>
+    <view class="current-year">
+      <picker bindchange="bindYearChange" value="{{yearIndex}}" range="{{yearArray}}">
+        {{currentYear}}
+      </picker>
+    </view>
+    <view class="current-month">
+      <picker bindchange="bindMonthChange" value="{{monthIndex}}" range="{{monthArray}}">
+        {{currentMonth}}
+      </picker>
+    </view>
+    <view class="next-month" bindtap="nextMonth">{{'>'}}</view>
+    <view class="next-year" bindtap="nextYear">{{'>>'}}</view>
+  </view>
+  <view class="body">
+    <view class="item" wx:for="{{weekIndices}}" wx:key="">{{item}}</view>
+  </view>
+  <view class="body">
+    <view wx:for="{{daysArray}}" class="item" wx:key="">
+      <view class="day {{index < range[0] || index > range[1] ? 'gray' : ''}}">{{item}}</view>
+      <view class="lunar">{{lunarArray[index]}}</view>
+    </view>
+  </view>
+</view>
+<ad unit-id="adunit-e406b44681194b7e"></ad>

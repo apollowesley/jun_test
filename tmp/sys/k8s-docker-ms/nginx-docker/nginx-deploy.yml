@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: ns-boot-ms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: reg.jdy.com/sentinel/nginx:v1
+          imagePullPolicy: Always
+          name: nginx
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: registry-harbor
+status:
+  replicas: 1
+
+
+
+

@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>服务器运行状态信息</title>
+<link rel="stylesheet" type="text/css" href="{{ static_url("css/bootstrap.css") }}">
+</head>
+<body>
+  <script src="{{ static_url("js/bootstrap.js") }}"></script>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">L项目版本自动化发布系统</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+            </p>
+            <ul class="nav">
+              <li><a href="/">Index</a></li>
+               <li class="active"><a href="/serverinfo/">服务信息查看</a></li>
+               <li><a href="/taskinfo/">任务信息查看</a></li>
+               <li><a href="/projects/">项目管理</a></li>
+               <li><a href="/areas/">游戏大区管理</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+
+<div class="pagination pagination-large">
+  <h3>&nbsp;</h3>
+  <legend>L项目服务器运行状态</legend>
+  <table class="table table-hover condensed table-bordered">
+    <tr class="info"><td>大区名<td>ip<td>进程名<td>进程组<td>运行状态<td>进程信息<td colspan="6">操作</tr>
+  {% for app_name in process_infos %}
+    <tr>
+      <td>{{  app_name }}
+      <td>{{ app_ips.get(app_name) }}
+      <td>{{ process_infos.get(app_name).get('name') }}
+      <td>{{ process_infos.get(app_name).get('group') }}
+      <td>{{ process_infos.get(app_name).get('statename') }}
+      <td>{{ process_infos.get(app_name).get('description') }}
+      <td><a href="/services/?active=start&name={{ process_infos.get(app_name).get('name') }}&ip={{app_ips.get(app_name)}}">启动</a>
+      <td><a href="/services/?active=stop&name={{ process_infos.get(app_name).get('name') }}&ip={{app_ips.get(app_name)}}">停止</a>
+      <td><a href="/services/?active=restart&name={{ process_infos.get(app_name).get('name') }}&ip={{app_ips.get(app_name)}}">重启</a>
+      <td><a href="/services/?active=readlog&name={{ process_infos.get(app_name).get('name') }}&ip={{app_ips.get(app_name)}}">ProcessLog</a>
+      <td><a href="/services/?active=tailProcessStdoutLog&name={{ process_infos.get(app_name).get('name') }}&ip={{app_ips.get(app_name)}}">StdoutLog</a>
+      <td><a href="/services/?active=tailProcessStderrLog&name={{ process_infos.get(app_name).get('name') }}&ip={{app_ips.get(app_name)}}">StderrLog</a>
+    </tr>
+  {% end %}
+</table>
+</div>
+ </body>
+ </html>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="freemarker-2.3.23">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/freemarker-2.3.23.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/hutool-all-4.0.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

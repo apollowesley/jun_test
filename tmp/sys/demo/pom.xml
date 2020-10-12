@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zccoder</groupId>
+    <artifactId>demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>demo</name>
+    <description>技术学习案例项目源码</description>
+    <url>https://github.com/zccodere/demo</url>
+
+    <mailingLists>
+        <mailingList>
+            <name>Contact Developer</name>
+            <post>zccoder@aliyun.com</post>
+        </mailingList>
+    </mailingLists>
+
+    <modules>
+        <module>01-redis</module>
+        <module>02-spring</module>
+        <module>03-log4j2</module>
+        <module>04-fastdfs</module>
+        <module>05-dubbo</module>
+
+        <module>06-sftp</module>
+        <module>07-spring-aop</module>
+        <module>08-unionpay</module>
+        <module>09-pay</module>
+        <module>10-cloud</module>
+
+        <module>11-spring-schema</module>
+        <module>12-nacos</module>
+        <module>13-es</module>
+        <module>14-time</module>
+        <module>15-task</module>
+
+        <module>16-script</module>
+        <module>17-image</module>
+        <module>18-face</module>
+        <module>19-retry</module>
+        <module>20-mongodb</module>
+
+        <module>21-excel</module>
+        <module>22-plugin</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <spring.version>5.1.14.RELEASE</spring.version>
+        <spring.boot.version>2.1.13.RELEASE</spring.boot.version>
+        <spring.cloud.version>Greenwich.SR5</spring.cloud.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <log4j2.version>2.11.2</log4j2.version>
+
+        <commons.io.version>2.6</commons.io.version>
+        <commons.lang3.version>3.8.1</commons.lang3.version>
+        <commons.collections4.version>4.4</commons.collections4.version>
+
+        <fastjson.version>1.2.66</fastjson.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- 资源文件拷贝插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- java编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!--源码打包插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>huaweicloud</id>
+            <url>https://mirrors.huaweicloud.com/repository/maven/</url>
+        </repository>
+    </repositories>
+
+</project>

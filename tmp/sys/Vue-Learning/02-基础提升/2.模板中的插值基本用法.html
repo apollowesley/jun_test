@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-html="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script type="text/javascript" src="../03-高级语法/vue-2.6.10.js"></script>
+</head>
+<body>
+<div id="app" style="text-align: left">
+    <h4>1.插值获取姓名:</h4>
+    <div>
+        {{name}}
+    </div>
+    <h4>2.插值获取姓名(无法渲染dom元素):</h4>
+    <div>
+        {{hobby}}
+    </div>
+    <h4>3.v-html获取html代码并渲染:</h4>
+    <div v-html="hobby">
+    </div>
+    <h4>3.dom节点属性赋值使用v-bind:</h4>
+    <div>
+        <a v-bind:href="website" :target="'blank'">我的博客地址</a>
+    </div>
+    <h4>3.在模板中使用表达式:</h4>
+    <div>
+        {{ ok ? 'YES' : 'NO'}}<br>
+        {{ email.split('').reverse().join('') }}<br>
+        <div v-bind:id="'studentid-' + id">查看次文字内容div的id属性。</div>
+    </div>
+    <h4>3.动态的绑定DOM属性:</h4>
+    <div>
+        <a v-bind:[customattr.attr]="customattr.value">超链接</a>
+    </div>
+    <h4>3.绑定对象:</h4>
+    <div>
+        <a v-bind="attr">超链接</a>
+        <!--<a color="red" high="1.8">超链接</a>-->
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var stu = {
+        id: "0133846",
+        name: "kiwipeach",
+        email: "liuburu@qq.com",
+        website: 'http://www.kiwipeach.cn',
+        hobby: '<span style="color: red">喜欢轮滑</span>',
+        ok: 'YES',
+        attr:{
+            color:'red',
+            high:'1.8'
+        }
+    };
+
+    var app = new Vue({
+        el: '#app',
+        data: stu,
+        computed:{
+            customattr: function () {
+                return {
+                    // attr:'href',
+                    // value:'http://www.kiwipeach.cn'
+                    attr: 'id',
+                    value: this.id
+                }
+            }
+        }
+    });
+</script>
+</html>

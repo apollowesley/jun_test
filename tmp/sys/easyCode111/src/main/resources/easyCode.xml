@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <!--<jdbc name="dialect" value="oracle"/>-->
+    <!--<jdbc name="driverClassName" value="oracle.jdbc.OracleDriver"/>-->
+    <!--<jdbc name="url" value="jdbc:oracle:thin:@172.23.0.32:1522/tyydtest"/>-->
+    <!--<jdbc name="username" value="ytxt"/>-->
+    <!--<jdbc name="password" value="ytxt123"/>-->
+
+    <jdbc name="dialect" value="mysql"/>
+    <jdbc name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <jdbc name="url" value="jdbc:mysql://localhost:3306/dexcoder?useUnicode=true&amp;characterEncoding=utf-8"/>
+    <jdbc name="username" value="root"/>
+    <jdbc name="password" value=""/>
+
+    <!--<jdbc name="dialect" value="mysql"/>-->
+    <!--<jdbc name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+    <!--<jdbc name="url" value="jdbc:mysql://192.168.10.49:3306/sms?characterEncoding=utf8&amp;connectTimeout=2000&amp;autoReconnect=true"/>-->
+    <!--<jdbc name="username" value="sms"/>-->
+    <!--<jdbc name="password" value="zQ6MvkVd"/>-->
+
+    <constant name="encoding" value="UTF-8"/>
+    <constant name="templateDir" value="template"/>
+    <constant name="targetDir" value="/home/liyd/workspace/idea/dexcoder-site"/>
+    <constant name="creator" value="liyd"/>
+
+    <convert dbType="number" jdbcType="BIGINT" javaType="java.lang.Long"/>
+    <convert dbType="VARCHAR2" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    <convert dbType="SYS.XMLTYPE" jdbcType="LONGVARCHAR" javaType="java.lang.String"/>
+    <convert dbType="TIMESTAMP" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    <convert dbType="datetime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    <convert dbType="BLOB" jdbcType="BLOB" javaType="java.lang.Byte[]"/>
+
+    <include file="tableConfig.xml"/>
+
+</config>

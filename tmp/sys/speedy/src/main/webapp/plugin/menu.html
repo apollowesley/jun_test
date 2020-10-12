@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>数据库链接信息设置</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/public.js"></script>
+<link href="/static/public/css/system.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/Alert.js"></script>
+<style>
+.list-box .context{float:left;width:100%;height:74%;overflow-y:scroll;}
+.sonMenus .name{text-indent:2em;}
+.showMenu{cursor:pointer}
+.showMenu:after{content:"+";}
+.showMenus:after{content:"-";}
+.handles .name{text-indent:4em;}
+</style>
+<body>
+	<div class="list-box">
+		<div class="nav_title"><p><span style="color: #2aabd2;font-weight: bold;width: 10px;background:#2aabd2;margin-right: 10px;">|</span>栏目管理</p></div>
+		<div class="handle" >
+			<div class="input-group left" style="width:300px;" th:if="${session.handle.hasHandel(session.user.handle,'/menu/search')}">
+	            <input type="text" class="form-control"  id="sval">
+	            <span class="input-group-addon btn btn-default" id="search">搜索</span>
+	        </div>
+		</div>
+		<div class="context table-responsive">
+			<table class="menu table">
+				<thead>
+					<tr>
+						<th width="20">
+							  <div class="checkbox">
+							        <input type="checkbox" id="all">
+							            <label for="all"></label>
+							</div>
+						</th>
+						<th class="id">序列</th>
+						<th class="name" width="200px">名称</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

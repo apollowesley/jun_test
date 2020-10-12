@@ -1,0 +1,13 @@
+<!--pages/index/login/login.wxml-->
+<view class="container">
+  <view class="userinfo">
+    
+    <block>
+      <image class="userinfo-avatar" src="../../images/avatar.jpeg" mode="cover"></image>
+    </block>
+    <button class='login-button' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> <image class='login-png' src='../../images/login.png'></image>   微信登录 </button>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>

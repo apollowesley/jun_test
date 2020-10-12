@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--mysql scott用户 数据源-->
+    <bean id="mysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${mysql.jdbcUrl}"/>
+        <property name="username" value="${mysql.username}"/>
+        <property name="password" value="${mysql.password}"/>
+        <property name="driverClassName" value="${mysql.driverClassName}"></property>
+        <property name="initialSize" value="${mysql.initialSize}"/>
+        <property name="minIdle" value="${mysql.minIdle}"/>
+        <property name="maxActive" value="${mysql.maxActive}"/>
+        <property name="maxWait" value="${mysql.maxWait}"/>
+        <property name="poolPreparedStatements" value="${mysql.poolPreparedStatements}"/>
+        <property name="validationQuery" value="${mysql.validationQuery}"/>
+        <property name="testWhileIdle" value="${mysql.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${mysql.testOnBorrow}"/>
+        <property name="testOnReturn" value="${mysql.testOnReturn}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${mysql.timeBetweenEvictionRunsMillis}"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="1800"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="filters" value="${mysql.filters}"/>
+        <property name="connectionProperties" value="${mysql.connectionProperties}"/>
+    </bean>
+
+
+    <!--oracle kiwipeach用户数据源-->
+    <bean id="oracleDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
+        <property name="url" value="${oracle.jdbcUrl}"/>
+        <property name="username" value="${oracle.username}"/>
+        <property name="password" value="${oracle.password}"/>
+        <property name="driverClassName" value="${oracle.driverClassName}"></property>
+        <property name="initialSize" value="${oracle.initialSize}"/>
+        <property name="minIdle" value="${oracle.minIdle}"/>
+        <property name="maxActive" value="${oracle.maxActive}"/>
+        <property name="maxWait" value="${oracle.maxWait}"/>
+        <property name="poolPreparedStatements" value="${oracle.poolPreparedStatements}"/>
+        <property name="validationQuery" value="${oracle.validationQuery}"/>
+        <property name="testWhileIdle" value="${oracle.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${oracle.testOnBorrow}"/>
+        <property name="testOnReturn" value="${oracle.testOnReturn}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${oracle.timeBetweenEvictionRunsMillis}"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="1800"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="filters" value="${oracle.filters}"/>
+        <property name="connectionProperties" value="${oracle.connectionProperties}"/>
+    </bean>
+
+
+
+    <!--数据源注解切面，实现自动切换数据源信息-->
+    <bean id="loggingAspect" class="cn.kiwipeach.demo.aspect.DatasourceAspect"></bean>
+    <aop:config>
+        <aop:pointcut id="logPointcut" expression="execution(public * cn.kiwipeach.demo.mapper.*.*(..))"/>
+        <aop:aspect ref="loggingAspect">
+            <aop:before method="beforedMethod" pointcut-ref="logPointcut"></aop:before>
+            <aop:after method="afterMethod" pointcut-ref="logPointcut"></aop:after>
+            <aop:after-returning method="afterReturnMethod" pointcut-ref="logPointcut" returning="result"></aop:after-returning>
+            <aop:after-throwing method="afterThrowMethod" pointcut-ref="logPointcut" throwing="ex"></aop:after-throwing>
+        </aop:aspect>
+    </aop:config>
+
+
+</beans>

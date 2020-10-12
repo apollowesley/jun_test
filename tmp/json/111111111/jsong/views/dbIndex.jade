@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title #{title}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+  body
+    div#mainDiv.container
+      div.form-group
+        label.col-sm-2.control-label 数据库名称
+        div.col-sm-10
+          input(type="text" class="form-control" id="dbName" value="medEnt")
+      div.form-group
+        label.col-sm-2.control-label 项 目 名 称
+        div.col-sm-10
+          input(type="text" class="form-control" id="projectName" value="medEnt")
+      div.form-group
+        div.col-sm-offset-2.col-sm-10
+          button#lookDb.btn-sm 获取数据表
+      div#tableDiv.col-md-6
+      div#infoDiv.col-md-6
+
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    script(type='text/javascript' src='/javascripts/jgUtil.js')
+    script(type='text/javascript' src='/javascripts/ajaxUtil.js')
+    script(type='text/javascript' src='/javascripts/dbIndex.js')
+

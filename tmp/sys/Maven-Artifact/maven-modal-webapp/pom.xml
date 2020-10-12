@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--该模块独立于所有其他模块-->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.liuburu.demo</groupId>
+    <artifactId>maven-modal-webapp</artifactId>
+    <packaging>pom</packaging>
+    <version>${maven.project.version}</version>
+
+    <properties>
+        <maven.project.version>3.0.0-SNAPSHOT</maven.project.version>
+        <war.plugin.version>2.6</war.plugin.version>
+        <yuicompressor.plugin.version>1.4.0</yuicompressor.plugin.version>
+        <jetty.plugin.version>9.2.19.v20160908</jetty.plugin.version>
+        <jetty.plugin.port>80</jetty.plugin.port>
+        <jetty.plugin.contextPath>/</jetty.plugin.contextPath>
+        <jdk.version>1.8</jdk.version><!--jdk版本-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!--编译字符集-->
+        <repository.releases.url>http://192.168.56.114:8081/nexus/content/repositories/releases/</repository.releases.url>
+        <repository.snapshot.url>http://192.168.56.114:8081/nexus/content/repositories/snapshots/</repository.snapshot.url>
+    </properties>
+
+    <profiles>
+    </profiles>
+
+    <modules>
+        <module>maven-modal-web</module>
+        <module>maven-modal-api</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--
+            注意：web层调用service层提供的服务只是依赖logical层，
+            不能直接通过dependence依赖（service）来进行调用，需
+            要使用服务注册然后间接地进行进行调用
+            -->
+            <dependency>
+                <groupId>com.liuburu.demo</groupId>
+                <artifactId>service01-modal-logical</artifactId>
+                <version>${maven.project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>buruliu的正式库</name>
+            <url>${repository.releases.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>buruliu的快照库</name>
+            <url>${repository.snapshot.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${war.plugin.version}</version>                    <!--war打包插件-->
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.plugin.version}</version>                  <!--jetty服务器插件-->
+                <configuration>
+                    <httpConnector>
+                        <port>${jetty.plugin.port}</port>
+                    </httpConnector>
+                    <stopKey>shutdown</stopKey>
+                    <stopPort>9966</stopPort>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>${jetty.plugin.contextPath}</contextPath>
+                    </webApp>
+                    <requestLog implementation="org.eclipse.jetty.server.NCSARequestLog">
+                        <filename>target/access-yyyy_mm_dd.log</filename>
+                        <filenameDateFormat>yyyy_MM_dd</filenameDateFormat>
+                        <logDateFormat>yyyy-MM-dd HH:mm:ss</logDateFormat>
+                        <logTimeZone>GMT+8:00</logTimeZone>
+                        <append>true</append>
+                        <logServer>true</logServer>
+                        <retainDays>120</retainDays>
+                        <logCookies>true</logCookies>
+                    </requestLog>
+                </configuration>
+            </plugin>
+
+            <!--tomcat插件-->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/wp</path><!--上下文路径-->
+                    <port>8080</port>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <url>http://localhost:8080/manager/html</url>
+                    <server>tomcat6</server>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>yuicompressor-maven-plugin</artifactId>
+                <version>${yuicompressor.plugin.version}</version>           <!--jss或者css压缩插件-->
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>compress</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- 读取js,css文件采用UTF-8编码 -->
+                    <encoding>UTF-8</encoding>
+                    <!-- 不显示js可能的错误 -->
+                    <jswarn>false</jswarn>
+                    <!-- js或者cs有改动是否强制覆盖defalut=false -->
+                    <force>true</force>
+                    <!-- 在指定的列号后插入新行 -->
+                    <linebreakpos>-1</linebreakpos>
+                    <!-- 压缩之前先执行聚合文件操作 -->
+                    <preProcessAggregates>true</preProcessAggregates>
+                    <!-- 是否不采用后缀?defalut=false -->
+                    <nosuffix>false</nosuffix>
+                    <!-- 压缩后保存文件后缀 -->
+                    <suffix>.min</suffix>
+                    <!-- 源目录，即需压缩的根目录 -->
+                    <!-- <sourceDirectory>src/main/webapp/js</sourceDirectory><outputDirectory>${basedir}/yui</outputDirectory>-->
+                    <!-- 压缩js和css文件 -->
+                    <includes>
+                        <include>**/*.js</include>
+                        <include>**/*.css</include>
+                    </includes>
+                    <!-- 以下目录和文件不会被压缩 -->
+                    <excludes>
+                        <exclude>**/*.min.js</exclude>
+                        <exclude>**/*.min.css</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>

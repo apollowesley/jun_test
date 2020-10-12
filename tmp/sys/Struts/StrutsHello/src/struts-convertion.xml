@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="convertion" extends="struts-default" namespace="/convertion">
+        <action name="convertion" class="com.gs.struts.ConvertionAction">
+            <result>/WEB-INF/pages/convertion.jsp</result>
+            <result name="input">/WEB-INF/pages/convertion.jsp</result>
+        </action>
+
+        <action name="*" class="com.gs.struts.Convertion1Action" method="{1}">
+            <result>/WEB-INF/pages/convertion1.jsp</result>
+            <result name="input">/WEB-INF/pages/convertion1.jsp</result>
+        </action>
+    </package>
+</struts>

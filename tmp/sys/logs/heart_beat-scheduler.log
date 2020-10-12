@@ -1,0 +1,3 @@
+2016-12-25 23:19:09,880 INFO [com.andaily.infrastructure.scheduler.DynamicSchedulerFactory] - Initial DynamicSchedulerFactory successful, scheduler instance: org.quartz.impl.StdScheduler@1170a47
+2016-12-25 23:22:53,838 INFO [com.andaily.infrastructure.scheduler.DynamicSchedulerFactory] - Initial DynamicSchedulerFactory successful, scheduler instance: org.quartz.impl.StdScheduler@1ca87c
+2016-12-25 23:27:27,400 INFO [com.andaily.infrastructure.scheduler.DynamicSchedulerFactory] - Initial DynamicSchedulerFactory successful, scheduler instance: org.quartz.impl.StdScheduler@192d3b1

@@ -1,0 +1,32 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: teaching-gateway
+  datasource:
+      url: jdbc:mysql://localhost:3306/idea-school-teach?useUnicode=true&amp;characterEncoding=UTF-8
+      username: root
+      password: 730805
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:1001/eureka
+zuul:
+  prefix: /api
+  routes:
+   article-service: /article/**  #将文章微服务映射到/article/**下边
+
+hystrix:
+  command:
+    default:
+       execution:
+         isolation:
+             thread:
+               timeoutInMilliseconde: 5000 #熔断器超时时间
+
+
+ribbon:
+  ConnectTimeout: 1000 #ribbon链接超时时间
+  ReadTimeout: 3500 #ribbon读取时间时长
+  MaxAutoRetries: 0 #当前服务重试次数
+  MaxAutoRetriesNextServer: 0 #切换服务重试次数

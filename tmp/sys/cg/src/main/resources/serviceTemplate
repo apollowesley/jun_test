@@ -1,0 +1,47 @@
+package $servicePackageName;
+
+import java.util.List;
+
+import $importClassName;
+
+public interface $serviceClassName {
+
+	/**
+	 * 新增
+	 * 
+	 * @param $lowerEntityName
+	 * @return 
+	 */
+	public $entityName save$entityName($entityName $lowerEntityName);
+
+	/**
+	 * 修改
+	 * 
+	 * @param $lowerEntityName
+	 * @return
+	 */
+	public $entityName update$entityName($entityName $lowerEntityName);
+
+	/**
+	 * 根据主键删除单个实例
+	 * 
+	 * @param $primaryKey
+	 * @return
+	 */
+	public void delete$entityName($type $primaryKey);
+
+	/**
+	 * 根据主键获取单个实例
+	 * 
+	 * @param $primaryKey
+	 * @return
+	 */
+	public $entityName get$entityName($type $primaryKey);
+
+	/**
+	 * 查询所有
+	 * 
+	 * @return
+	 */
+	public List<$entityName> queryAll();
+}

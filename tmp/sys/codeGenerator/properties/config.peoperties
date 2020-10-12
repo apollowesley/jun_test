@@ -1,0 +1,8 @@
+jdbc=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/gds?serverTimezone=UTC
+user=root
+password=root
+#DAO文件后缀
+daoFileSuffix=Mapper
+#package前缀
+packagePrefix=com.lyh.test

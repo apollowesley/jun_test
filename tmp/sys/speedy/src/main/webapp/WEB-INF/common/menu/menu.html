@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>数据库链接信息设置</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/public.js"></script>
+<link href="/static/public/css/system.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/Alert.js"></script>
+<style>
+.list-box .context{float:left;width:100%;height:74%;overflow-y:scroll;}
+.pagination{float: left}
+.sonMenus .name{text-indent:2em;}
+.showMenu{cursor:pointer}
+.showMenu:after{content:"+";}
+.showMenus:after{content:"-";}
+.handles .name{text-indent:4em;}
+</style>
+<body>
+	<div class="list-box">
+		<div class="nav_title"><p><span style="color: #2aabd2;font-weight: bold;width: 10px;background:#2aabd2;margin-right: 10px;">|</span>栏目管理</p></div>
+		<div class="handle" >
+			<div class="input-group left" style="width:300px;" th:if="${session.handle.hasHandel(session.user.handle,'/menu/search')}">
+	            <input type="text" class="form-control"  id="sval">
+	            <span class="input-group-addon btn btn-default" id="search">搜索</span>
+	        </div>
+			<button class="btn btn-success left" onclick="javascript:window.location.href='/common/menu/addPage';" th:if="${session.handle.hasHandel(session.user.handle,'/menu/add')}">增加</button>
+			<button class="btn btn-primary left" id="update" th:if="${session.handle.hasHandel(session.user.handle,'/menu/update')}">修改</button>
+			<button class="btn btn-danger left" id="delete" th:if="${session.handle.hasHandel(session.user.handle,'/menu/delete')}">删除</button>
+		</div>
+		<div class="context table-responsive" id="context">
+			<table class="menu table">
+				<thead>
+					<tr>
+						<th>
+							  <div class="checkbox">
+							        <input type="checkbox" id="all">
+							            <label for="all"></label>
+							</div>
+						</th>
+						<th class="id">序列</th>
+						<th class="name" width="200px">名称</th>
+						<th class="path">路径</th>
+						<th class="ismenu">是否菜单</th>
+						<th class="icon">图标</th>
+						<th class="sort">排序</th>
+						<th class="createtime">创建时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="w">
+						<th>
+							<div class="checkbox">
+							        <input type="checkbox" id="RememberMe1">
+							            <label for="RememberMe1"></label>
+							</div>
+						</th>
+						<td>1</td>
+						<td>XXX</td>
+						<td>XXX</td>
+						<td>XXX</td>
+						<td>XXX</td>
+					</tr>
+					<tr class="q">
+						<th>
+							<div class="checkbox">
+							        <input type="checkbox" id="RememberMe2">
+							            <label for="RememberMe2"></label>
+							</div>
+						</th>
+						<td>2</td>
+						<td>XXX</td>
+						<td>XXX</td>
+						<td>XXX</td>
+						<td>XXX</td>
+					</tr>
+					<tr class="">
+						<th>
+							<div class="checkbox">
+							        <input type="checkbox" id="RememberMe2">
+							            <label for="RememberMe2"></label>
+							</div>
+						</th>
+						<td>3</td>
+						<td>XXX</td>
+						<td>XXX</td>
+						<td>XXX</td>
+						<td>XXX</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="paging">
+			<ul class="pagination">
+			</ul>
+		</div>
+	</div>
+	<script src="/static/common/menu/menu.js"></script>
+	<script>
+		var page=0;
+		var pageSize=20;
+		menu.loadPage(page,20);
+		menu.update();
+		$(".pages").bind("click",function(){
+			$(".pages").each(function(){
+				$(this).removeClass("active");
+			})
+			$(this).addClass("active");
+			var index=$(this).text()-1;
+			menu.loadPage(index,20);
+		})
+	</script>
+</body>
+</html>

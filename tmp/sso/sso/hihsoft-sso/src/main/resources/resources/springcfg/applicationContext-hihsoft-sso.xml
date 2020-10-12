@@ -1,0 +1,166 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:tool="http://www.springframework.org/schema/tool"
+	xmlns:context="http://www.springframework.org/schema/context"
+	default-autowire="byName" default-lazy-init="true"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+     http://www.springframework.org/schema/beans/spring-beans.xsd  
+     http://www.springframework.org/schema/tx  
+     http://www.springframework.org/schema/tx/spring-tx.xsd  
+     http://www.springframework.org/schema/aop  
+     http://www.springframework.org/schema/aop/spring-aop.xsd  
+     http://www.springframework.org/schema/jee  
+     http://www.springframework.org/schema/jee/spring-jee.xsd  
+     http://www.springframework.org/schema/context  
+     http://www.springframework.org/schema/context/spring-context.xsd  
+     http://www.springframework.org/schema/util  
+     http://www.springframework.org/schema/util/spring-util.xsd  
+     http://www.springframework.org/schema/tool  
+     http://www.springframework.org/schema/tool/spring-tool.xsd">
+	<!-- 扫描范围 -->
+	<context:component-scan base-package="com.hihsoft">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<!-- 获取bean工具注入 -->
+	<bean id="springContextHolder" class="com.hihframework.core.utils.SpringContextHolder"
+		lazy-init="false" />
+	<bean id="propertyConfigurerForProject_sso"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="order" value="1" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="location">
+			<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>
+	<!-- 数据源配置, 使用druid数据库连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${pool.minconn}" />
+		<property name="minIdle" value="3" />
+		<property name="maxActive" value="${pool.maxconn}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="filters" value="stat" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+	  <ref local="dataSource" />
+		</property>
+		<property name="eventListeners">
+			<map>
+				<entry key="post-update">
+					<ref local="historyListener" />
+				</entry>
+			</map>
+		</property>
+		<!-- 先建表结构的开发模式下使用false来优化启动，true则利用pojo对象来创建数据结构 -->
+		<property name="schemaUpdate">
+			<value>true</value>
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath*:/com/hihsoft/sso/sysmonitor/syslogs/model</value>
+				<value>classpath*:/com/hihsoft/sso/business/model</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.query.factory_class">
+					org.hibernate.hql.ast.ASTQueryTranslatorFactory
+				</prop>
+				<!-- prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop -->
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.HashtableCacheProvider
+				</prop>
+				<prop key="hibernate.statement_cache.size">25</prop>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.connection.pool_size">10</prop>
+				<prop key="hibernate.use_outer_join">true</prop>
+				<prop key="hibernate.max_fetch_depth">3</prop>
+				<prop key="hibernate.jdbc.fetch_size">100</prop>
+				<prop key="hibernate.jdbc.batch_size">30</prop>
+				<prop key="hibernate.default_batch_fetch_size">50</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.query.substitutions">
+					true 1, false 0, yes 'Y', no 'N'
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 开启AOP监听 只对当前配置文件有效 -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="execute*" propagation="REQUIRED"
+				read-only="true" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- AOP 配置 -->
+	<aop:config expose-proxy="true">
+		<!-- 事务 -->
+		<aop:pointcut id="txPointcut" expression="execution(* *.service*..*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+
+	<!--记录修改历史的PostUpdate事件侦听器 -->
+	<bean id="historyListener"
+		class="com.hihsoft.sso.sysmonitor.sysaudit.listener.HistoryEventListener" />
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为1MB -->
+		<property name="maxUploadSize">
+			<value>20971520</value>
+		</property>
+	</bean>
+	<context:annotation-config />
+	<bean id="druid-stat-interceptor"
+		class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+	</bean>
+	<!-- 加入druid方法执行监控配置 -->
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut"
+		scope="prototype">
+		<property name="patterns">
+			<list>
+				<value>com.hihsoft.sso.business.service.*</value>
+			</list>
+		</property>
+	</bean>
+	<aop:config>
+		<aop:advisor advice-ref="druid-stat-interceptor"
+			pointcut-ref="druid-stat-pointcut" />
+	</aop:config>
+</beans>

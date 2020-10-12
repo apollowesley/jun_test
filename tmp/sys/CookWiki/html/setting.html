@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-switch.min.css" />
+	<style>
+		body{
+			background-color:transparent;
+		}
+		ul{
+			margin:5px 0px;
+			background:#FFF;
+			border-top:#DEDFE0 1px solid;
+			border-bottom:#DEDFE0 1px solid;
+			overflow:hidden;
+		}
+		ul li{
+			font-size:16px;
+			padding:12px;
+			border-bottom:#DFDFE0 1px solid;
+		}
+		ul .last{
+			font-size:16px;
+			padding:12px;
+			border-bottom:none;
+		}
+		.active{
+			background:#F6F6F6;
+		}
+		.col-xs-4{
+	    	text-align:right;
+	    }
+	    .col-xs-4 span{
+	    	color:#C7C7C7;
+	    }
+	</style>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<ul>
+			<li>
+				<div class="row">
+					<div class="col-xs-8">
+						移动网络下列表显示图片
+					</div>
+					<div class="col-xs-4" id="showImgOn3GInput">
+					</div>
+				</div>
+			</li>
+			<li class="last">
+				<div class="row">
+					<div class="col-xs-8">
+						收藏后立即分享
+					</div>
+					<div class="col-xs-4" id="favShareInput">
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<ul>
+			<!--<li tapmode="active" ontouchend="bindQQ()">
+				<div class="row">
+					<div class="col-xs-8">
+						腾讯QQ
+					</div>
+					<div class="col-xs-4">
+						<span id="QQnum"></span>
+					</div>
+				</div>
+			</li>-->
+			<li class="last" tapmode="active" onclick="bindWB()">
+				<div class="row">
+					<div class="col-xs-8">
+						新浪微博
+					</div>
+					<div class="col-xs-4">
+						<span id="WBnum"></span>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<ul>
+			<li tapmode="active" onclick="openWin('privacy','privacy.html',null)">
+				<div class="row">
+					<div class="col-xs-8">
+						服务条款
+					</div>
+					<div class="col-xs-4">
+						<img src="../res/listArrow.png" width="9" height="16">
+					</div>
+				</div>
+			</li>
+			<li tapmode="active" onclick="openWin('about','about.html',null)">
+				<div class="row">
+					<div class="col-xs-8">
+						关于应用
+					</div>
+					<div class="col-xs-4">
+						<img src="../res/listArrow.png" width="9" height="16">
+					</div>
+				</div>
+			</li>
+			<li class="last">
+				<div class="row">
+					<div class="col-xs-8">
+						当前版本
+					</div>
+					<div class="col-xs-4">
+						<span id="verson"></span>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/bootstrap-switch.min.js"></script>
+<script type="text/javascript">
+
+apiready = function(){
+	
+	var showImgOn3GStatus = $api.getStorage('showImgOn3G');
+	var favShareStatus = $api.getStorage('favShare');
+	var showImgOn3GInput,favShareInput;
+	
+	if(showImgOn3GStatus == "true"){
+		showImgOn3GInput = "<input id='showImgOn3G' type='checkbox' onchange='changeSetting()' data-size='mini' data-on-color='warning' data-on-text='显示' data-off-text='隐藏' checked/>";
+	}
+	else{
+		showImgOn3GInput = "<input id='showImgOn3G' type='checkbox' onchange='changeSetting()' data-size='mini' data-on-color='warning' data-on-text='显示' data-off-text='隐藏'/>";
+	}
+	$api.html($api.byId("showImgOn3GInput"),showImgOn3GInput);
+	$("[id='showImgOn3G']").bootstrapSwitch();
+	
+	if(favShareStatus == "true"){
+		favShareInput = "<input id='favShare' type='checkbox' onchange='changeSetting()' data-size='mini' data-on-color='warning' data-on-text='是' data-off-text='否' checked/>";
+	}
+	else{
+		favShareInput = "<input id='favShare' type='checkbox' onchange='changeSetting()' data-size='mini' data-on-color='warning' data-on-text='是' data-off-text='否'/>";
+	}
+	$api.html($api.byId("favShareInput"),favShareInput);
+	$("[id='favShare']").bootstrapSwitch();
+	$api.html($api.byId("verson"),api.appVersion);
+	
+//	var shareQQ = $api.getStorage('shareQQ');
+//	if(shareQQ && shareQQ.status){
+//		$api.html($api.byId("QQnum"),"已绑定");
+//	}
+//	else{
+//		$api.html($api.byId("QQnum"),"未绑定");
+//	}
+	
+	var shareWB = $api.getStorage('shareWB');
+	if(shareWB && shareWB.status){
+		$api.html($api.byId("WBnum"),"已绑定");
+	}
+	else{
+		$api.html($api.byId("WBnum"),"未绑定");
+	}
+	
+};
+
+function changeSetting(){
+	var showImgOn3G = document.getElementById("showImgOn3G");
+	var favShare = document.getElementById("favShare");
+	
+	$api.setStorage('showImgOn3G',showImgOn3G.checked);
+	$api.setStorage('favShare',favShare.checked);
+
+	api.toast({
+	    msg: '设置已保存',
+	    duration:2000,
+	    location: 'bottom'
+	});
+}
+
+function bindQQ(){
+	var shareQQ = $api.getStorage('shareQQ');
+	
+	if(shareQQ && shareQQ.status){
+		logoutQQ();
+	}
+	else{
+		loginQQ();
+	}
+}
+
+function bindWB(){
+	var shareWB = $api.getStorage('shareWB');
+	
+	if(shareWB && shareWB.status){
+		logoutWB();
+	}
+	else{
+		loginWB();
+	}
+}
+</script>
+</html>

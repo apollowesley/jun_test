@@ -1,0 +1,2 @@
+{\"birthDay\":1282555532182,\"class\":\"com.tbc.soa.serialize.json.Person\",\"map\":{\"key\":\"value\"},\"user\":{\"class\":\"com.tbc.soa.serialize.json.User\",\"name\":\"myName\"}}
+{\"birthDay\":1282555532182,\"class\":\"com.tbc.soa.serialize.json.Person\",\"map\":{\"key\":\"value\"},\"phoneNumbers\":[\"abc\"],\"user\":{\"class\":\"com.tbc.soa.serialize.json.User\",\"name\":\"myName\"},\"users\":[{\"class\":\"com.tbc.soa.serialize.json.User\",\"name\":\"myName\"}]}

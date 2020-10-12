@@ -1,0 +1,71 @@
+{
+    "pages": [
+        "pages/login/login",
+        "pages/userLogin/userLogin",
+        "pages/my/bindUsers/bindUsers",
+         "pages/my/bindUserspass/bindUserspass",
+                
+        "pages/index/index",
+        "pages/news/news",
+        "pages/newsContent/newsContent",
+        "pages/my/person/person",
+        "pages/my/personData/personData",
+        "pages/my/myCount/myCount",
+        "pages/my/myFeedback/myFeedback",
+        "pages/kaidian/kaidian",
+        "pages/dianming/dianming",
+        "pages/dmList/dmList",
+        "pages/cxList/cxList",
+        "pages/dmHistoryList/dmHistoryList",
+        "pages/count/count",
+        "pages/countList/countList",
+        "pages/countListall/countListall",
+        "pages/petitionPhotos/petitionPhotos",
+        "pages/photoUpload/photoUpload",
+        "pages/videoUpload/videoUpload",
+        "pages/growthList/growthList",
+        "pages/giveGrowthList/giveGrowthList"
+    ],
+
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#FFFFFF",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#F3F3F3",
+        "enablePullDownRefresh": true
+    },
+
+    "tabBar": {
+        "color": "#7a7a7a",
+        "selectedColor": "#2f4b7a",
+        "backgroundColor": "#f9f9f9",
+        "borderStyle": "white",
+        "list": [
+        {
+            "iconPath": "images/icon/icon-home.png",
+            "selectedIconPath": "images/icon/icon-home-selected.png",
+            "pagePath": "pages/index/index",
+            "text": "首页"
+        },
+        {
+            "iconPath": "images/icon/icon-news.png",
+            "selectedIconPath": "images/icon/icon-news-selected.png",
+            "pagePath": "pages/news/news",
+            "text": "消息"
+        },
+        {
+            "iconPath": "images/icon/icon-my.png",
+            "selectedIconPath": "images/icon/icon-my-selected.png",
+            "pagePath": "pages/my/person/person",
+            "text": "我的"
+        }
+        ]
+    },
+
+    "sitemapLocation": "sitemap.json",
+    "permission": {
+        "scope.userLocation": {
+            "desc": "您的位置信息将用于小程序位置接口的效果展示"
+        }
+    }
+}

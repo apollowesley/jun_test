@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<style>
+			body {
+				background-color: transparent;
+			}
+			#personalCenter {
+				height: 100px;
+				width: 100%;
+			}
+			#personalCenter #noLogin {
+				padding-top: 40px;
+				margin: 0 auto;
+				width: 48px;
+				color: #888888;
+				font-weight: bold;
+			}
+			#personalCenter #accountPanel {
+				margin-top: 8px;
+				height: 80px;
+				padding: 5px;
+			}
+			#personalCenter #accountPanel img {
+				height: 80px;
+			}
+			#personalCenter #accountPanel .col-xs-12 {
+				font-size: 18px;
+				padding-top: 10px;
+				text-align: left;
+			}
+			ul {
+				margin: 5px 0px;
+				background: #FFF;
+				border-top: #DEDFE0 1px solid;
+				border-bottom: #DEDFE0 1px solid;
+				overflow: hidden;
+			}
+			ul li {
+				font-size: 16px;
+				padding: 12px;
+				border-bottom: #DFDFE0 1px solid;
+			}
+			ul .last {
+				font-size: 16px;
+				padding: 12px;
+				border-bottom: none;
+			}
+			.active {
+				background: #F6F6F6;
+			}
+			.col-xs-4 {
+				text-align: right;
+			}
+			.col-xs-4 span {
+				color: #C7C7C7;
+			}
+			.col-xs-8 span {
+				color: #B6B6B6;
+			}
+			#logOutPanel {
+				margin-top: 20px;
+			}
+			#logOutPanel .col-xs-12 {
+				text-align: center;
+				color: #FF0000;
+			}
+			#noLogin, #noLoginPanel, #accountPanel, #loginPanel, #logOutPanel {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="personalCenter" class="container-fluid">
+			<div id="noLogin" class="row">
+				未登录
+			</div>
+			<div id="accountPanel">
+				<div class="row">
+					<div class="col-xs-4">
+						<img src="../icon/icon150x150.png" class="img-responsive img-circle">
+					</div>
+					<div class="col-xs-8">
+						<div class="row">
+							<div class="col-xs-12" style="color:#3B3B3B;">
+								菜谱百科
+							</div>
+							<div class="col-xs-12" style="color:#AEAEAE;">
+								帐户：cookwiki
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row" id="noLoginPanel">
+				<ul>
+					<li tapmode="active" onclick="">
+						<div class="row">
+							<div class="col-xs-8">
+								<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;登录帐户
+							</div>
+							<div class="col-xs-4">
+								<img src="../res/listArrow.png" width="9" height="16">
+							</div>
+						</div>
+					</li>
+					<li class="last" tapmode="active" onclick="openWin('register','./register.html',null)">
+						<div class="row">
+							<div class="col-xs-8">
+								<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp;免费注册
+							</div>
+							<div class="col-xs-4">
+								<img src="../res/listArrow.png" width="9" height="16">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="row" id="loginPanel">
+				<ul>
+					<li class="last" tapmode="active" onclick="openWin('favorites','./favorites.html',null)">
+						<div class="row">
+							<div class="col-xs-8">
+								<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;帐户管理
+							</div>
+							<div class="col-xs-4">
+								<img src="../res/listArrow.png" width="9" height="16">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<ul>
+					<li tapmode="active" onclick="openWin('favorites','favorites.html',null)">
+						<div class="row">
+							<div class="col-xs-8">
+								<span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;我的收藏
+							</div>
+							<div class="col-xs-4">
+								<img src="../res/listArrow.png" width="9" height="16">
+							</div>
+						</div>
+					</li>
+					<li class="last" tapmode="active" onclick="api.toast({msg: '暂未上线',duration:2000,location: 'bottom'})">
+						<div class="row">
+							<div class="col-xs-8">
+								<span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;我的评论
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="row" id="logOutPanel">
+				<ul>
+					<li class="last" tapmode="active" onclick="openWin('favorites','favorites.html',null)">
+						<div class="row">
+							<div class="col-xs-12">
+								退出登录
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div style="height:50px;"></div>
+	</body>
+
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<script type="text/javascript" src="../script/laytpl.js"></script>
+	<script type="text/javascript" src="../script/DBapi.js"></script>
+	<script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			var loginState = $api.getStorage('loginInfo');
+
+			if (loginState) {
+				$("#noLogin").hide();
+				$("#noLoginPanel").hide();
+				$("#accountPanel").show();
+				$("#loginPanel").show();
+				$("#logOutPanel").show();
+			} else {
+				$("#noLogin").show();
+				$("#noLoginPanel").show();
+				$("#accountPanel").hide();
+				$("#loginPanel").hide();
+				$("#logOutPanel").hide();
+			}
+		};
+	</script>
+</html>

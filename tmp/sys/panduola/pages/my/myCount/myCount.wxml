@@ -1,0 +1,13 @@
+<view class="centerTop">
+    <view class='hd' style='background-image:url({{rawData.avatarUrl}})'></view>
+</view>
+
+<view class='report'>
+    <view class='tit'>我的统计</view>
+    <view class='count-box'>
+      <view class='item' wx:for="{{list}}" wx:key="{{id}}">
+        <view class='count-tit'>{{item.fxjx1}}</view>
+        <view class='count-info'>{{item.fxjx2}}</view>
+      </view>
+    </view>
+</view>

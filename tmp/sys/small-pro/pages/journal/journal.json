@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#62c9f8",
+  "navigationBarTitleText": "工作日志",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#eeeeee",
+  "onReachBottomDistance":50
+}

@@ -1,0 +1,66 @@
+<!DocType HTML>
+<html lang="zh-CN"><head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta charset="UTF-8" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico" />
+    <link rel="bookmark" type="image/x-icon" href="image/favicon.ico" />
+    <title>管理系统</title>
+
+    <link rel="stylesheet" href="css/EasyWebUI.css" />
+    <link rel="stylesheet" href="css/index.css" />
+
+    <link rel="console" href="console" />
+    <script src="javascript/EasyImport.js"></script>
+    <script src="javascript/index.js"></script>
+</head><body class="Grid-Row">
+    <ul id="Main_Nav" class="Grid-Column Column_1-6 No_Select">
+        <li class="Head" target="_self" href="#_About">管理系统</li>
+        <li target="_self" href="html/list.html" src="api/top/classify?callback=?">
+            新闻
+        </li>
+        <li target="_self" href="html/list.html" src="tnfs/api/classify?callback=?">
+            靓图
+        </li>
+        <li target="_self" href="html/list.html" src="api/lore/classify?callback=?">
+            乐活
+        </li>
+        <li target="_self" href="html/list.html" src="api/cook/classify?callback=?">
+            美食
+        </li>
+        <li target="_self" href="html/list.html" src="api/news/classify?callback=?">
+            农业
+        </li>
+    </ul>
+    <div class="Grid-Column">
+        <div id="User_Bar" class="Grid-Row CenterY No_Select">
+            <form class="Grid-Column CenterX"
+                  target="_self" action="/api/search?rows=10&callback=?" href="html/search.html">
+                <input type="text" name="keyword" placeholder="全文搜索" />
+            </form>
+            <div class="Grid-Column">
+                <div class="DropDown Head">
+                    <span name="user">test_32</span>
+                    <ul class="DropDown Body">
+                        <li>账号设置</li>
+                        <li class="Red">退出系统</li>
+                        <li class="Separator"></li>
+                        <li>帮助</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="Main_View">
+            <h1 class="CenterX">
+                欢迎使用由 EasyWebApp v2 驱动的管理系统！
+            </h1>
+        </div>
+        <div class="InnerPage" id="_About">
+            <h1 class="CenterX">
+                感谢 天狗云平台 为本演示程序提供的数据 API！
+            </h1>
+        </div>
+    </div>
+</body></html>

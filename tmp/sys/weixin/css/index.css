@@ -1,0 +1,12 @@
+.title {
+    width: 100%;
+    height: 55px;
+    background: #E8363E;
+}
+.title label {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-left: 15px;
+}

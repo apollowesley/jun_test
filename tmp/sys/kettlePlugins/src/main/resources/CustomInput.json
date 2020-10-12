@@ -1,0 +1,9 @@
+{
+    "inputType":"rest",
+	"url":"",
+	"method":"get",
+	"resultField":"result",
+	"outputFields":[
+		{"name":"result", "type": "String"}
+	]
+}

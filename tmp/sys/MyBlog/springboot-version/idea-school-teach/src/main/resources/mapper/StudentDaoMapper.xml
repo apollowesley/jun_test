@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sise.school.teach.bussiness.student.dao.StudentDao">
+    <resultMap id="BaseResultMap" type="com.sise.school.teach.bussiness.student.po.StudentPO">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="stu_code" property="stuCode" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="head_img" property="headImg" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+     id,stu_code,password,account,tel,head_img,email,type,salt
+    </sql>
+
+    <select id="selectOne" resultMap="BaseResultMap" resultType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM t_student
+        WHERE ${key}=#{value} limit 1
+    </select>
+
+    <insert id="insert" parameterType="com.sise.school.teach.bussiness.student.po.StudentPO">
+        insert into t_student (stu_code,password, account, tel,
+      email, type,salt, create_time, update_time
+      )
+    values (#{stuCode,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT},
+      #{salt,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+    </insert>
+
+    <update id="updateByCode" parameterType="java.util.Map">
+        UPDATE  t_student
+        <trim prefix="set" suffixOverrides=",">
+            <if test="account!=null">
+                account=#{account},
+            </if>
+            <if test="tel!=null">
+                tel=#{tel},
+            </if>
+            <if test="email!=null">
+                email=#{email},
+            </if>
+        </trim>
+        WHERE stu_code=#{stuCode}
+    </update>
+
+</mapper>

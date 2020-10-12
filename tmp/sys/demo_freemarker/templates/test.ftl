@@ -1,0 +1,3 @@
+first freemarker demo!
+
+${user}

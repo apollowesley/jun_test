@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="UserResource">
+
+  <resultMap id="UserResourceMap" type="cn.backflow.admin.entity.UserResource">
+    <result property="id" column="id"/>
+    <result property="userId" column="user_id"/>
+    <result property="resourceId" column="resource_id"/>
+    <result property="resourceType" column="resource_type"/>
+  </resultMap>
+
+  <!-- 用于select查询公用抽取的列 -->
+  <sql id="UserResource.columns">
+    id, user_id, resource_id, resource_type
+  </sql>
+
+  <!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_user_resource (
+    user_id,
+    resource_id,
+    resource_type
+    ) VALUES (
+    #{userId},
+    #{resourceId},
+    #{resourceType}
+    )
+  </insert>
+
+  <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_user_resource (
+    user_id,
+    resource_id,
+    resource_type
+    ) VALUES
+    <foreach collection="list" item="item" separator=",">
+      (
+      #{item.userId},
+      #{item.resourceId},
+      #{item.resourceType}
+      )
+    </foreach>
+
+  </insert>
+
+  <update id="update">
+    UPDATE t_user_resource SET
+    user_id = #{userId},
+    resource_id = #{resourceId},
+    resource_type = #{resourceType}
+    WHERE
+    id = #{id}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM t_user_resource
+    <include refid="UserResourceDynamicWhere"/>
+  </delete>
+
+  <delete id="deleteBatch">
+    DELETE FROM t_user_resource WHERE id IN
+    <foreach collection="collection" item="id" open="(" close=")" separator=",">#{id}</foreach>
+  </delete>
+
+  <select id="getById" resultMap="UserResourceMap">
+    SELECT
+    <include refid="UserResource.columns"/>
+    FROM t_user_resource WHERE id = #{id}
+  </select>
+
+  <select id="findAll" resultMap="UserResourceMap">
+    SELECT
+    <include refid="UserResource.columns"/>
+    FROM t_user_resource
+    <include refid="UserResourceDynamicWhere"/>
+  </select>
+
+  <select id="findByParameter" resultType="hashmap">
+    SELECT user_id, resource_id, resource_type, name, phone FROM t_user_resource ur
+    INNER JOIN t_user u ON u.id = user_id
+    <include refid="UserResourceDynamicWhere"/>
+  </select>
+
+  <sql id="UserResourceDynamicWhere">
+    <where>
+      <if test="id neq null">AND ur.id = #{id}</if>
+      <if test="userId neq null">AND user_id = #{userid}</if>
+      <if test="resourceId neq null">AND resource_id = #{resourceId}</if>
+      <if test="resourceType neq null">AND resource_type = #{resourceType}</if>
+    </where>
+  </sql>
+
+  <select id="pagingCount" resultType="long">
+    SELECT COUNT(id) FROM t_user_resource
+    <include refid="UserResourceDynamicWhere"/>
+  </select>
+
+  <select id="paging" resultMap="UserResourceMap">
+    SELECT
+    <include refid="UserResource.columns"/>
+    FROM t_user_resource
+    <include refid="UserResourceDynamicWhere"/>
+
+    <if test="_sort_ neq null">
+      ORDER BY ${_sort_}
+    </if>
+
+    <if test="_offset_ neq null">
+      LIMIT ${_offset_}, ${_limit_}
+    </if>
+  </select>
+</mapper>

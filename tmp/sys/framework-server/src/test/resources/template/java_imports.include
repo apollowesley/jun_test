@@ -1,0 +1,11 @@
+import cn.backflow.lib.util.*;
+import cn.backflow.admin.dao.base.*;
+import cn.backflow.admin.entity.base.*;
+import cn.backflow.admin.service.base.*;
+import cn.backflow.admin.controller.base.*;
+import cn.backflow.admin.common.pagination.*;
+import ${basepackage}.service.*;
+import ${basepackage}.entity.*;
+import ${basepackage}.dao.*;
+import java.util.*;
+import java.lang.*;

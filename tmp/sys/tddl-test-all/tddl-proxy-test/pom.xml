@@ -1,0 +1,234 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>tddl-test-all</artifactId>
+        <groupId>com.course</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>tddl-proxy-test</artifactId>
+    <packaging>war</packaging>
+    <name>tddl-proxy-test Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+
+        <!--<dependency>
+            <groupId>com.yam.trace</groupId>
+            <artifactId>easy-trace</artifactId>
+        </dependency>-->
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <!-- springframe start -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- springframe end -->
+
+        <!-- mybatis核心包 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
+        <!-- mybatis/spring包 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
+
+        <!-- oracle驱动包 -->
+        <!--<dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.1.0</version>
+        </dependency>-->
+
+
+
+
+        <!-- mysql驱动包 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!-- junit测试包 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+        <!-- json数据 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+        </dependency>
+
+        <!-- 阿里巴巴数据源 包 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+
+        <!-- 日志文件管理包 -->
+        <!-- log start -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <!-- log end -->
+
+        <!-- JSTL start -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <!-- <scope>provided</scope> -->
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <!-- <scope>provided</scope> -->
+            <artifactId>standard</artifactId>
+        </dependency>
+        <!-- JSTL end -->
+        <!-- servlet包 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.5-FINAL</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+        <!-- diamond-->
+        <dependency>
+            <groupId>com.taobao.diamond</groupId>
+            <artifactId>diamond-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.diamond</groupId>
+            <artifactId>diamond-utils</artifactId>
+        </dependency>
+        <!-- tddl-->
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-atom</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-config-diamond</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-executor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-group</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-matrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-monitor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-optimizer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-parser</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-repo-mysql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-rule</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao.tddl</groupId>
+            <artifactId>tddl-sequence</artifactId>
+        </dependency>
+        <!-- TDDL 依赖包-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.concurrentlinkedhashmap</groupId>
+            <artifactId>concurrentlinkedhashmap-lru</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.1.9</version>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <finalName>tddl-proxy-test</finalName>
+    </build>
+</project>

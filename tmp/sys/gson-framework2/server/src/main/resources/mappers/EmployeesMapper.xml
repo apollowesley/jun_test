@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.framework.model.mapper.EmployeesMapper">
+    <resultMap id="BaseResultMap" type="cn.gson.framework.model.pojo.Employees">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="county" jdbcType="VARCHAR" property="county"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="entry_date" jdbcType="DATE" property="entryDate"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="id_code" jdbcType="VARCHAR" property="idCode"/>
+        <result column="job_number" jdbcType="VARCHAR" property="jobNumber"/>
+        <result column="leave_date" jdbcType="DATE" property="leaveDate"/>
+        <result column="province" jdbcType="VARCHAR" property="province"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="company_id" jdbcType="BIGINT" property="companyId"/>
+        <result column="master_department_id" jdbcType="BIGINT" property="masterDepartmentId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, create_date, update_date, address, city, county, email, entry_date, gender, id_code,
+        job_number, leave_date, province, `status`, telephone, `type`, user_name, company_id,
+        master_department_id
+    </sql>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.gson.framework.model.pojo.Employees" useGeneratedKeys="true">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        insert into fw_employees
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            create_date,
+            update_date,
+            address,
+            city,
+            county,
+            email,
+            entry_date,
+            gender,
+            id_code,
+            job_number,
+            leave_date,
+            province,
+            `status`,
+            telephone,
+            `type`,
+            user_name,
+            company_id,
+            master_department_id,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            #{createDate,jdbcType=TIMESTAMP},
+            #{updateDate,jdbcType=TIMESTAMP},
+            #{address,jdbcType=VARCHAR},
+            #{city,jdbcType=VARCHAR},
+            #{county,jdbcType=VARCHAR},
+            #{email,jdbcType=VARCHAR},
+            #{entryDate,jdbcType=DATE},
+            #{gender,jdbcType=VARCHAR},
+            #{idCode,jdbcType=VARCHAR},
+            #{jobNumber,jdbcType=VARCHAR},
+            #{leaveDate,jdbcType=DATE},
+            #{province,jdbcType=VARCHAR},
+            #{status,jdbcType=VARCHAR},
+            #{telephone,jdbcType=VARCHAR},
+            #{type,jdbcType=VARCHAR},
+            #{userName,jdbcType=VARCHAR},
+            #{companyId,jdbcType=BIGINT},
+            #{masterDepartmentId,jdbcType=BIGINT},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            create_date = #{createDate,jdbcType=TIMESTAMP},
+            update_date = #{updateDate,jdbcType=TIMESTAMP},
+            address = #{address,jdbcType=VARCHAR},
+            city = #{city,jdbcType=VARCHAR},
+            county = #{county,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            entry_date = #{entryDate,jdbcType=DATE},
+            gender = #{gender,jdbcType=VARCHAR},
+            id_code = #{idCode,jdbcType=VARCHAR},
+            job_number = #{jobNumber,jdbcType=VARCHAR},
+            leave_date = #{leaveDate,jdbcType=DATE},
+            province = #{province,jdbcType=VARCHAR},
+            `status` = #{status,jdbcType=VARCHAR},
+            telephone = #{telephone,jdbcType=VARCHAR},
+            `type` = #{type,jdbcType=VARCHAR},
+            user_name = #{userName,jdbcType=VARCHAR},
+            company_id = #{companyId,jdbcType=BIGINT},
+            master_department_id = #{masterDepartmentId,jdbcType=BIGINT},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="cn.gson.framework.model.pojo.Employees" useGeneratedKeys="true">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        insert into fw_employees
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="county != null">
+                county,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="entryDate != null">
+                entry_date,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="idCode != null">
+                id_code,
+            </if>
+            <if test="jobNumber != null">
+                job_number,
+            </if>
+            <if test="leaveDate != null">
+                leave_date,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="telephone != null">
+                telephone,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="masterDepartmentId != null">
+                master_department_id,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="county != null">
+                #{county,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="entryDate != null">
+                #{entryDate,jdbcType=DATE},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="idCode != null">
+                #{idCode,jdbcType=VARCHAR},
+            </if>
+            <if test="jobNumber != null">
+                #{jobNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="leaveDate != null">
+                #{leaveDate,jdbcType=DATE},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyId != null">
+                #{companyId,jdbcType=BIGINT},
+            </if>
+            <if test="masterDepartmentId != null">
+                #{masterDepartmentId,jdbcType=BIGINT},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=BIGINT},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="county != null">
+                county = #{county,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="entryDate != null">
+                entry_date = #{entryDate,jdbcType=DATE},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="idCode != null">
+                id_code = #{idCode,jdbcType=VARCHAR},
+            </if>
+            <if test="jobNumber != null">
+                job_number = #{jobNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="leaveDate != null">
+                leave_date = #{leaveDate,jdbcType=DATE},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=BIGINT},
+            </if>
+            <if test="masterDepartmentId != null">
+                master_department_id = #{masterDepartmentId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectPageVo" resultMap="BaseResultMap">
+        select fe.*
+        from fw_employees fe
+                 left join fw_employees_departments fed on fe.id = fed.employees_id
+            ${ew.customSqlSegment}
+    </select>
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sise.school.teach.bussiness.course.dao.CourseDetailDao">
+    <resultMap id="BaseResultMap" type="com.sise.school.teach.bussiness.course.po.CourseDetailPO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="special_id" property="specialId" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="course_code" property="courseCode" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, special_id, title,content,course_code, create_time, update_time
+  </sql>
+
+    <insert id="insert" parameterType="com.sise.school.teach.bussiness.course.po.CourseDetailPO">
+    insert into t_course_detail (id, special_id,title,content,course_code,
+      create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER},#{specialId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+      #{content,jdbcType=VARCHAR}, #{courseCode,jdbcType=VARCHAR},
+       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+    </insert>
+
+    <select id="selectOneByTitle" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM t_course_detail WHERE title=#{title} AND status=3
+    </select>
+
+
+    <select id="selectNewCourseDetailByTitle" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM t_course_detail WHERE title=#{title}  AND status=3 limit 1
+    </select>
+
+    <delete id="deleteByCourseId" parameterType="java.lang.Integer">
+        DELETE FROM t_course_detail
+        WHERE course_id=#{courseId}
+    </delete>
+
+    <update id="update" parameterType="com.sise.school.teach.bussiness.course.po.CourseDetailPO">
+        UPDATE t_course_detail SET
+      title=#{title},content=#{content},update_time=#{updateTime} WHERE course_code=#{courseCode}
+    </update>
+
+    <select id="getFirstOneBySpecialId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM t_course_detail WHERE special_id=#{specialId} LIMIT 1;
+    </select>
+
+    <select id="selectCourseByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM t_course_detail WHERE course_code=#{courseCode};
+    </select>
+</mapper>

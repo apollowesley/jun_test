@@ -1,0 +1,21 @@
+{
+	"hadoopUserName":"hive",
+	"hdfsUrls":"192.168.100.11:8020;192.168.100.12:8020",
+	"hdfsFileName":"/tmp/hiveload/aaa.orc",
+	"hiveDriver":"org.apache.hive.jdbc.HiveDriver",
+	"hiveUrl":"jdbc:hive2://192.168.100.11:10000/default",
+	"hiveUser":"hive",
+	"hivePassword":"hive",
+	"createTable":"true",
+	"tableType":"orc",
+	"hiveTable":"xuwl_orc",
+	"partitionField":[
+		{"name":"dt", "type":"string"}
+	],
+	"partitionValue":[
+		{"name":"dt", "value":"2019-12-04"}
+	],
+	"overwrite":"true",
+	"fieldSeparator":"\t",
+	"lineSeparator":"\n"
+}

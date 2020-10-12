@@ -1,0 +1,33 @@
+html,body{width:100%;margin:0 auto;height:100%;overflow:auto;}
+/*头部 开始*/
+.admin_img{height:75px;width:150px;border:1px solid #ebebeb;position:absolute;top:14px;left:0px;}
+.nav_div{height:75px;width:80%;border:0px solid #ebebeb;line-height:75px;position:absolute;top:14px;left:150px;}
+.nav_div li{float:left;padding:0 7px;}
+
+.nav_tools{float:right;height:75px;line-height:75px;position:absolute;top:14px;right:50px;}
+/*头部 结束*/
+
+.user_cent{width:100%;margin:0 auto;height:;position:absolute;top:90px;}
+
+/*左导航 开始*/
+.user_cent_l{width:150px;float:left;padding:20px 0px;height:100%;border-right:#039 1px solid;}
+.user_cent_l ul li{line-height:27px;height:27px;font-size:14px;padding-left:35px;}
+.user_cent_l ul li:hover{background-color:#eee;}
+.user_cent_l ul li:hover a{text-decoration:none;color:#000;}
+.user_cent_l .tag_open{background-color:#888;}
+.user_cent_l .tag_open a{color:#fff;}
+
+
+/*左导航 结束*/
+
+/*右边内容页 开始*/
+.user_cent_r{float:left;padding:20px 25px;height:100%;}
+.right_content search_title{}
+.right_content table th,.right_content table td{min-width:60px;border:#069 1px solid;padding:2px;}
+.right_content table th{}
+.right_content table td{}
+.right_content table a{color:#2a5cff}
+.headermenu{cursor:pointer;}
+/*右边内容页 结束*/
+.ok{}
+.cancel{}

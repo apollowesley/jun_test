@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="shoticon" href="./favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+    <meta name="description" content="微信公众号文章在线编辑工具">
+    <title>码一码 - 微信公众号文章在线编辑工具</title>
+    <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="./themes/github-v2.css" id="codeThemeId"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" id="pageThemeId"/>
+    <style>
+        textarea, .convert-button, .copy-button, #output {
+            top: 108px;
+        }
+
+        #input, #output {
+            width: 50%;
+        }
+
+        #output {
+            left: unset;
+        }
+
+        .themes-config {
+            padding-top: 0;
+            width: 1000px;
+        }
+        .btn {
+            cursor: pointer;
+        }
+        .convert-button, .copy-button, .btn-save {
+            position: unset;
+            right: 0;
+            z-index: 0;
+            top: 0;
+            border-radius: 0;
+            background-color: #3a6586;
+            font-size: inherit;
+            padding: 0 20px;
+        }
+        .btn-save {
+            background-color: gray;
+        }
+        .gitee img{
+            position: relative;
+            top: 5px;
+        }
+        .msg-box {
+            color: #159957;
+            font-size: 14px;
+            font-weight: 700;
+        }
+      .recommend a {
+        font-weight: bold;
+      }
+      .recommend a i {
+        color: red!important;
+      }
+    </style>
+</head>
+<body>
+<div class="topheader">
+    <a href="http://md.barretlee.com"><h1>常用工具</h1></a>
+    <span>微信公众号文章在线编辑工具</span>
+    <ul>
+        <li class="forkbtn recommend"><a href="https://gitee.com/yadong.zhang/DBlog" target="_blank" title="OneBlog，一个简洁美观、功能强大并且自适应的Java博客"><i class="fa fa-fire fa-fw"></i>OneBlog</a></li>
+        <li class="forkbtn recommend"><a href="https://gitee.com/yadong.zhang/JustAuth" target="_blank" title="史上最全的整合第三方登录的工具,目前已支持Github、Gitee、微博、钉钉、百度、Coding、腾讯云开发者平台、OSChina、支付宝、QQ、微信、淘宝、Google、Facebook、抖音、领英、小米、微软和今日头条等第三方平台的授权登录。 Login, so easy!"><i class="fa fa-fire fa-fw"></i>JustAuth</a></li>
+        <li class="forkbtn recommend"><a href="https://gitee.com/yadong.zhang/blog-hunter" target="_blank" title="博客猎手，基于webMagic的博客爬取工具，支持慕课、csdn、iteye、cnblogs、掘金和V2EX等各大主流博客平台。博客千万篇，版权第一条。狩猎不规范，亲人两行泪。"><i class="fa fa-fire fa-fw"></i>Blog Hunter</a></li>
+        <li class="forkbtn"><a href="https://gitee.com/yadong.zhang/WXMarkdown" target="_blank">源码地址</a></li>
+        <li class="forkbtn"><a href="https://www.zhyd.me" target="_blank">我的博客</a></li>
+        <li>
+            <a class="gitee" href='https://gitee.com/yadong.zhang/WXMarkdown/stargazers'><img src='https://gitee.com/yadong.zhang/WXMarkdown/badge/star.svg?theme=white' alt='star'></img></a>
+        </li>
+    </ul>
+</div>
+<div class="themes-config">
+    <div class="theme-wrapper">
+        <label>页面主题：</label><select class="page-theme" title=""></select>
+    </div>
+    <div class="theme-wrapper">
+        <label>代码主题：</label><select class="code-theme" title=""></select>
+    </div>
+    <div class="theme-wrapper">
+        <button class="btn copy-button" style="" data-clipboard-action="cut" data-clipboard-target="#outputCtt">复制</button>
+        <button class="btn btn-save" style="" >保存草稿</button>
+        <input type="checkbox" id="autoSave" title="是否开启自动保存">
+        <span class="msg-box" style="display: none">√ 保存成功</span>
+    </div>
+</div>
+<div id="editor">
+    <textarea id="input" spellcheck="false" title=""></textarea>
+    <div id="output">
+        <div class="wrapper" id="outputCtt"></div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        let hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?92545eb6bef8a7ec644e7fd3a9a37220";
+        let s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+</html>

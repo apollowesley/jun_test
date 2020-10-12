@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.evil.pojo.assist">
+	<class name="QuestionTemplate" table="tb_questionTemplate">
+		<id name="id" column="id" type="string">
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="name" column="name" type="string" length="200" />
+		<property name="questionNum" formula="(select count(*) from tb_questions q where q.templateID=id and q.isDelete=1 )" />
+		<property name="introduce" column="introduce" type="string" length="2147483647" />
+		<property name="addTime" column="addTime" type="timestamp"
+			update="false" />
+
+		<!--与问题 一对多的关联关系 -->
+		<set name="questions" inverse="false" cascade="all" lazy="true">
+			<key>
+				<column name="templateID" length="32" not-null="false" />
+			</key>
+			<one-to-many class="com.evil.pojo.Questions" />
+		</set>
+
+		<!--与孩子模板 一对多的关联关系 -->
+		<set name="childrens" cascade="save-update" inverse="true" fetch="join">
+			<key>
+				<column name="parentID" length="32" not-null="false" />
+			</key>
+			<one-to-many class="QuestionTemplate" />
+		</set>
+
+		<!--与父亲模板 多对一关联关系 -->
+		<many-to-one name="parent" class="QuestionTemplate">
+			<column name="parentID" length="32" not-null="false" />
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

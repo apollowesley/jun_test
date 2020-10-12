@@ -1,0 +1,15 @@
+<view class='banner'>统计结果</view>
+
+<view class='wrap'>
+    <view class='top'>
+        <view class='top-l'>赠送者</view>
+        <view class='top-c'>成长值</view>
+        <view class='top-r'>时间</view>
+    </view>
+    <view class='item' wx:for="{{list}}" wx:key="id">
+        <view class='item-l'>{{item.giver}}</view>
+        <view class='item-c'>{{item.growthValue}}</view>
+        <view class='item-r'>{{item.timeDate}}</view>
+    </view>
+
+</view>

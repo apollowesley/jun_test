@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- import CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    </head>
+    <style>
+
+    </style>
+    <body style="background:#A9A9A9;">
+        <div id="app" style="width: 100vw; display: flex;justify-content: center;height: 100%;flex-direction: column;align-items: center;align-content: center;"
+            v-loading="loading">
+            <h1>{{title}}</h1>
+
+            <el-row :gutter="24" style="flex: 1;width: 1200px; ">
+                <el-col :span="12" style="text-align: center;">
+                    {{content}}
+                </el-col>
+                <el-col :span="12" style="display: flex;margin-bottom: 20px;">
+
+                    <el-button @click="clearPush" style="flex: 1;">清除发送记录</el-button>
+                    <el-button @click="clearData" style="flex: 1;">清除接收记录</el-button>
+                    <el-button @click="clearPush();clearData()" type="danger" style="flex: 1;">清除所有记录</el-button>
+                    <!-- </div> -->
+                </el-col>
+                <el-col :span="12">
+                    <el-input placeholder="请输入消息内容" v-model="server">
+                        <template slot="prepend">服务地址</template>
+                        <el-button slot="append" type="success" @click="onLine(isLine)">
+                            <span v-if="!isLine">未连接<span style="color:#F56C6C">▣</span></span>
+                            <span v-else>已连接<span style="color:#67C23A">▶</span></span>
+                        </el-button>
+                    </el-input>
+                    <el-input placeholder="循环发送内容" v-model="ping">
+                        <template slot="prepend">每隔毫秒发送<input placeholder="毫秒" v-model="pingTime" style="width: 50px;">
+                            </input>
+                        </template>
+
+                        <el-button slot="append" type="success" @click="toPing(isPing)">
+                            <span v-if="!isPing">循环发送<span style="color:#F56C6C">▣</span></span>
+                            <span v-else>循环发送<span style="color:#67C23A">▶</span></span>
+                        </el-button>
+                    </el-input>
+
+                    <el-input type="textarea" :rows="4" placeholder="请输入内容" v-model="text">
+                    </el-input>
+
+
+                    <el-button @click="send()" type="success" style="width: 100%;">发送消息</el-button>
+
+                    <template>
+                        <el-table :data="textAll" height="365" border style="margin-top: 20px;width: 100%;background: #F5F5F5;">
+                            <el-table-column type="index" width="50">
+                            </el-table-column>
+                            <el-table-column prop="data" style="background: #F5F5F5;" label="发送记录">
+                            </el-table-column>
+                            <el-table-column prop="num" width="50">
+                            </el-table-column>
+
+                        </el-table>
+
+                    </template>
+
+                </el-col>
+                <el-col :span="12">
+
+                    <template>
+
+                        <el-table :data="msg" height="600" border style="width: 100%">
+                            <el-table-column type="index" width="50">
+                            </el-table-column>
+                            <el-table-column prop="data" label="接收数据">
+                            </el-table-column>
+                            <el-table-column prop="num" width="50">
+                            </el-table-column>
+                        </el-table>
+
+                    </template>
+                </el-col>
+            </el-row>
+            <div style="line-height: 50px;">app技术交流qq群:714566447@qq.com</div>
+        </div>
+    </body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function() {
+                return {
+                    loading: false,
+                    width: 0,
+                    height: 0,
+                    // contentHeight: 0,
+                    msg: [],
+                    textAll: [], //发过的消息记录
+                    server: 'wss://www.01film.cn:9501?access_token= MTIzNDU2LjEyMzQ1Ni5hcHA=',
+                    text: '{"to_uid":"123456","type":"chat","content":{"type":"text","value":"新内容"}}',
+
+                    isOn: false, //连接状态
+                    isLine: false, //是否连接成功
+                    pingTime: 1000,
+                    ping: 'ping',
+                    isPing: false,
+                    title: 'websocket在线测试工具',
+                    content: '支持ws|wss两种协议,例如:wss://127.0.0.1',
+                    pingPush: '',
+                }
+            },
+            computed: {
+                contentHeight() {
+                    var he = this.height - 100;
+                    return he;
+                }
+            },
+            watch: {
+
+            },
+            methods: {
+                onload() {
+                    // this.title = 'ws在线测试工具'
+                },
+                onLine(isLine) {
+
+                    console.log(isLine)
+                    if (!isLine) {
+                        this.loading=true;
+                        var server = this.server || '';
+                        if (!server.indexOf("ws")) {
+                            var that = this;
+                            console.log(server)
+                            this.ws = new WebSocket(server);
+                            this.ws.onopen = function(e) {
+                                that.loading=false
+                                that.isLine = true;
+                                // Web Socket 已连接上，使用 send() 方法发送数据
+                                // this.ws.send("发送数据");
+                                that.$notify({
+                                    title: '连接成功',
+                                    // message: '连接成功'+JSON.stringify(e),
+                                    type: 'success'
+                                });
+                                // alert("数据发送中...");
+                            };
+                            this.ws.onerror = function(e) {
+                                that.loading=false;
+                                that.$notify.info({
+                                    type: 'info',
+                                    title: "连接失败"
+                                });
+                            }
+                            this.ws.onmessage = function(evt) {
+                                var received_msg = evt.data;
+                                var textAll = that.msg;
+                                var length = textAll.length - 1;
+                                if (length > -1 && textAll[length] && textAll[length]
+                                    .data == evt.data) {
+                                    textAll[length].num++;
+                                    that.$set(that.msg, length, textAll[length]);
+
+                                } else {
+                                    console.log(evt);
+                                    that.msg.push({
+                                        data: evt.data,
+                                        num: 1,
+                                    });
+                                }
+
+                                // alert("数据已接收...");
+                            };
+
+                            this.ws.onclose = function() {
+                                that.loading=false
+                                console.log("onclose")
+                                
+                                // that.isOn = false;
+                                that.isLine = false;
+                                that.$notify.info({
+                                    type: 'info',
+                                    title: "已断开连接"
+                                });
+                                that.toPing()
+                                // 关闭 websocket
+                                // alert("连接已关闭...");
+                            };
+                        } else {
+                            this.loading=false
+                            this.isLine = false;
+                            // this.isOn = false;
+                            this.$alert('ws连接不合法,仅支持ws，wss连接', '提示', {
+                                confirmButtonText: '确定',
+                                callback: action => {
+
+                                }
+                            });
+                        }
+                    } else {
+                        this.loading=false
+                        this.isLine = false;
+                        this.ws.close();
+
+                    }
+                    // this.isOn = !this.isOn;
+                },
+                toPing() {
+                    // this.isPing = !this.isPing;
+                    if (!this.isPing && this.isLine) {
+                        if (this.ping) {
+                            this.isPing = true;
+                            var that = this;
+
+                            this.pingPush = setInterval(function() {
+
+                                var textAll = that.textAll;
+
+                                var length = textAll.length - 1;
+                                if (length > -1 && textAll[length] && textAll[length]
+                                    .data == that.ping) {
+                                    textAll[length].num++;
+                                    that.$set(that.textAll, length, textAll[length]);
+
+                                } else {
+
+                                    that.textAll.push({
+                                        data: that.ping,
+                                        num: 1,
+                                    });
+                                }
+                                that.ws.send(that.ping);
+                            }, that.pingTime)
+                        } else {
+                            this.isPing = false;
+                            this.$alert('ping内容不能为空', '提示', {
+                                confirmButtonText: '确定',
+                                callback: action => {
+
+                                }
+                            });
+                        }
+                    } else if (typeof this.pingPush == 'number' && this.isPing) {
+                        clearInterval(this.pingPush)
+                        this.isPing = false;
+                    } else {
+                        this.$alert('服务器未连接或其他错误', '提示', {
+                            confirmButtonText: '确定',
+                            callback: action => {
+
+                            }
+                        });
+                    }
+
+                    // this.ws.send(this.ping);
+                },
+                send() {
+                    if (this.isLine) {
+                        if (this.text) {
+                            var that = this;
+                            var textAll = that.textAll;
+                            console.log(textAll.length)
+
+                            var length = textAll.length - 1;
+
+                            if (length > -1 && textAll[length] && textAll[length]
+                                .data == this.text) {
+                                textAll[length].num++;
+                                that.$set(that.textAll, length, textAll[length]);
+
+                            } else {
+                                that.textAll.push({
+                                    data: this.text,
+                                    num: 1,
+                                });
+                            }
+                            this.ws.send(this.text);
+
+                        } else {
+                            this.$alert('内容不能为空', '提示', {});
+                        }
+
+                    } else {
+                        this.$alert('ws未连接', '提示', {});
+                    }
+
+                },
+                clearPush() {
+                    this.textAll = [];
+                },
+                clearData() {
+                    this.msg = [];
+                },
+
+            },
+            mounted() {
+                var that = this;
+                // 监听窗口宽高变化
+                (function screenListener() {
+                    // 动态获取宽高
+                    function width() {
+                        return window.innerWidth || document.documentElement.clientWidth || document.body
+                            .clientWidth
+                    };
+
+                    function height() {
+                        return window.innerHeight || document.documentElement.clientHeight || document.body
+                            .clientHeight
+                    };
+
+
+                    that.height = height();
+
+                    that.width = width();
+                    window.addEventListener('resize', function() {
+                        that.width = width(),
+                            that.height = height()
+
+                    }, false);
+                })()
+                this.onload();
+            }
+        })
+    </script>
+</html>

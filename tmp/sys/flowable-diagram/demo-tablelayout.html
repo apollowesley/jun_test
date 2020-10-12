@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="snap.svg.js"></script>
+    <script src="diagram.js"></script>
+</head>
+<body>
+<style>
+    #svg {
+        border : 1px solid #000000;
+    }
+</style>
+<svg id="svg"></svg>
+<script>
+
+    (function(){
+
+        var data = {
+
+            "cellPadding" : 15,
+            "tableMargin" : 10,
+
+            "nodes": [
+                {
+                    "type": "start",
+                    "cell" : "0,0"
+                },
+                {
+                    "type" : "task",
+                    "cell" : "1,0",
+                    "id" : "manager",
+                    "name" : "直属上司审批"
+                },
+                {
+                    "type" : "decision",
+                    "id" : "decision",
+                    "name" : "请假天数是否大于3",
+                    "cell" : "2,0",
+                    "w" : 180
+                },
+                {
+                    "type" : "task",
+                    "cell" : "3,1",
+                    "id" : "director",
+                    "name" : "总监审批",
+                    "highlight" : true
+                },
+                {
+                    "type": "end",
+                    "cell" : "4,0"
+                }
+            ],
+            "lines": [
+                {
+                    "from": "start",
+                    "to": "manager"
+                },
+                {
+                    "from": "manager",
+                    "to": "decision"
+                },
+                {
+                    "from": "decision",
+                    "to": "director",
+                    "direction" : "x",
+                    "text" : "是"
+                },
+                {
+                    "from": "decision",
+                    "to": "end",
+                    "text" : "否"
+                },
+                {
+                    "from": "director",
+                    "to": "end",
+                    "direction" : "y"
+                }
+            ]
+        };
+
+        var flow = new Flow("svg", data);
+        flow.renderByTableLayout();
+
+    })();
+
+
+</script>
+</body>
+</html>

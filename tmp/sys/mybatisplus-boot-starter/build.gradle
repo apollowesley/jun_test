@@ -1,0 +1,122 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+ext {
+    configuration = [
+            javaVersion = JavaVersion.VERSION_1_7
+    ]
+
+    libraries = [
+            mybatisPlusVersion = '2.1.3',
+            springBootVersion = '1.5.7.RELEASE',
+    ]
+}
+
+group = 'com.baomidou'
+version = '1.0.5'
+
+description = "Mybatis 增强工具包 Spring-Boot-Starter - 只做增强不做改变，简化CRUD操作"
+
+sourceCompatibility = "${javaVersion}"
+targetCompatibility = "${javaVersion}"
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenLocal()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    jcenter()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}")
+
+    compileOnly("com.baomidou:mybatis-plus:${mybatisPlusVersion}")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        failOnError false
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+// gradle clean build uploadArchives -Dun=用户名 -Dps=密码 -x test
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            def userName = System.getProperty("un")
+            def passWord = System.getProperty("ps")
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: userName, password: passWord)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: userName, password: passWord)
+            }
+
+            pom.version = "$project.version"
+            pom.artifactId = "$project.name"
+            pom.groupId = "$project.group"
+            pom.project {
+                name 'mybatisplus-spring-boot-starter'
+                packaging 'jar'
+                description 'An enhanced toolkit of Mybatis to simplify development Spring-Boot-Starter.'
+                url 'https://github.com/baomidou/mybatisplus-boot-starter'
+
+                scm {
+                    connection 'scm:git@github.com:Codearte/gradle-nexus-staging-plugin.git'
+                    developerConnection 'scm:git@github.com:Codearte/gradle-nexus-staging-plugin.git'
+                    url 'https://github.com/baomidou/mybatisplus-boot-starter'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'baomidou'
+                        name 'hubin'
+                        email 'jobob@qq.com'
+                    }
+                }
+            }
+        }
+    }
+}

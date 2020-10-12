@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    one:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.1.206:3306/testOne?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+      username: root
+      password: 1234
+    two:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.1.206:3306/testTwo?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+      username: root
+      password: 1234
+debug: true
+#日志级别
+logging:
+  level:
+    com.xin.dream.one.dao: debug
+    com.xin.dream.two.dao: debug

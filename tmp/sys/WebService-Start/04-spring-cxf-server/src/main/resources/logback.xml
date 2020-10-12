@@ -1,0 +1,123 @@
+<!--输出>=Debug的日志（trace,debug,info,warn,error）-->
+<configuration>
+    <!--声明时间参数-->
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+    <timestamp key="byMonth" datePattern="yyyyMM"/>
+
+    <!--1.控制台日志-->
+    <appender name="console_appender" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!-- 过滤出大于${level}级别 -->
+            <level>debug</level>
+        </filter>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--2.普通文件日志-->
+    <appender name="file_appender" class="ch.qos.logback.core.FileAppender">
+        <!--每到一个新的月份就会进行重新生成新的日志文件-->
+        <file>logs/file/logFile_${byMonth}.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %thread %X{invokeNo} %logger{40} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--3.0 日志日期触发的日志滚动TimeBasedRollingPolicy-->
+    <appender name="roll_appender_0" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/roll/TimeBasedRollingPolicy/logFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>logs/roll/TimeBasedRollingPolicy/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days' worth of history capped at 3GB total size -->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--3.1 日期的大小和时间触发日志滚动SizeAndTimeBasedRollingPolicy-->
+    <appender name="roll_appender_1" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/roll/SizeAndTimeBasedRollingPolicy/logFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>logs/roll/SizeAndTimeBasedRollingPolicy/logFile-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- each file should be at most 10MB, keep 60 days worth of history, but at most 1GB -->
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--3.2 日志大小触发的固定窗口滚动-->
+    <appender name="roll_appender_2" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/roll/FixedWindowRollingPolicy/logFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>logs/roll/FixedWindowRollingPolicy/logFile-${byMonth}.%i.log.zip</fileNamePattern>
+            <!--设置滚动窗口大小，表示在index从1~12之间滚动，按照队列先进先出进行日志滚动输出-->
+            <minIndex>1</minIndex>
+            <maxIndex>12</maxIndex>
+        </rollingPolicy>
+        <!--日志滚动触发条件-->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>5MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--4.数据库日志-->
+<!--
+    <appender name="db_appender" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+            &lt;!&ndash;阿里数据源&ndash;&gt;
+             <dataSource class="com.alibaba.druid.pool.DruidDataSource">
+                 <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                 <url>jdbc:mysql://127.0.0.1:3306/logback?userUnicode=true&amp;characterEncoding=utf-8</url>
+                 <username>root</username>
+                 <password>liuburu</password>
+                 &lt;!&ndash;可以通过该节点配置其他数据源属性&ndash;&gt;
+             </dataSource>
+            &lt;!&ndash;c3p0数据源&ndash;&gt;
+&lt;!&ndash;            <dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <driverClass>com.mysql.jdbc.Driver</driverClass>
+                <jdbcUrl>jdbc:mysql://localhost:3306/logback?userUnicode=true&amp;characterEncoding=utf-8</jdbcUrl>
+             userNameuser>rouserNameuser>
+                <password>liuburu</password>
+            </dataSource>&ndash;&gt;
+            &lt;!&ndash;dbcp数据源&ndash;&gt;
+           &lt;!&ndash; <dataSource class="org.apache.commons.dbcp2.BasicDataSource">
+                <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                <url>jdbc:mysql://localhost:3306/logback</url>
+                <username>root</username>
+                <password>liuburu</password>
+            </dataSource>&ndash;&gt;
+            &lt;!&ndash;Spring自带数据源&ndash;&gt;
+           &lt;!&ndash; <dataSource class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+                <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                <url>jdbc:mysql://localhost:3306/logback</url>
+                <username>root</username>
+                <password>liuburu</password>
+            </dataSource>&ndash;&gt;
+        </connectionSource>
+    </appender>
+-->
+
+    <!--   <logger name="com.jxufe.utils" level="warn" additivity="true">
+           <appender-ref ref="console_appender"/>
+       </logger>-->
+
+    <root level="info">
+        <appender-ref ref="console_appender"/>
+    </root>
+</configuration>
+<!--***************************配置文件详解******************************-->
+ <!--
+官网地址：https://logback.qos.ch/manual/
+-->

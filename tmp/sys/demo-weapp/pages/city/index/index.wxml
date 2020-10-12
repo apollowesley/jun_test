@@ -1,0 +1,1 @@
+<navigator url="../list/list?currentCity={{cityName}}">{{cityName || '请选择'}}</navigator>

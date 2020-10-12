@@ -1,0 +1,59 @@
+一，聚合配置代码：
+
+<modules>
+  	<module>../Hello</module>  
+  	<module>../HelloFriend</module>		
+  	<module>../MakeFriends</module>
+</modules>
+
+其中module的路径为相对路径。
+
+
+二，继承配置代码：
+
+<parent>  
+      	<groupId>cn.itcast.maven</groupId>
+ 	<artifactId>Project</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+        <relativePath>../Project/pom.xml</relativePath>  
+</parent>
+
+三，继承代码过程中，可以定义属性
+
+<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>4.9</junit.version>
+    <maven.version>0.0.1-SNAPSHOT</maven.version>
+</properties>
+
+访问属性的方式为${junit.version}，例如：
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>	
+
+
+四，将父模块中将用dependencyManagement进行管理
+
+<dependencyManagement>
+    <dependencies>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>${junit.version}</version>
+		<scope>test</scope>
+	</dependency>	
+	<dependency>
+	    	<groupId>cn.itcast.maven</groupId>
+	    	<artifactId>HelloFriend</artifactId>
+	    	<version>${maven.version}</version>
+	    	<type>jar</type>
+	    	<scope>compile</scope>
+  	 </dependency>
+ 	  
+     </dependencies>
+  </dependencyManagement>
+
+这样的好处是子模块可以有选择行的继承，而不需要全部继承。

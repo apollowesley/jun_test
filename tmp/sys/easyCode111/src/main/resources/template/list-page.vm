@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Dexcoder - 敏捷的程序员！</title>
+    \#set($pageKeywords = "程序员,编程,错误解决,异常解决")
+    \#set($pageDescription = "小程序员是开发人员学习交流的平台,拥有各类实用的技术性参考资料文章，并提供在开发过程中遇到的各类异常错误解决方案，欢迎您的到来。")
+    \#parse("admin/common/top-share-code.vm")
+</head>
+<body>
+    \#parse("admin/common/page-header.vm")
+<div class="container">
+    <div class="page">
+
+        <form name="mainForm" action="list-${modelLineThroughClassName}.shtml" method="post">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-header">
+                        ${table.desc}列表
+                    </div>
+                    <div class="table-responsive">
+                        <div class="dataTables_wrapper">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" onclick="window.location.href='input-${modelLineThroughClassName}.shtml'">添加</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+#foreach($column in ${table.columns})
+                                    <th>${column.comment}</th>
+#end
+                            <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                \#foreach($item in ${pager.list})
+                                <tr>
+#set($var = "item")
+#set($id = "")
+#foreach($column in ${table.columns})
+    #if($column.isPrimaryKey)
+        #set($id = ${column.camelName})
+    #end
+                                    <td>$!{${var}.${column.camelName}}</td>
+#end
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-xs" onclick="window.location.href='input-${modelLineThroughClassName}.shtml?${modelFirstLowerGeneratedClassName}Id=$!{${var}.${id}}'">修改</button>
+                                            <button type="button" class="btn btn-danger btn-xs" onclick="window.location.href='delete-${modelLineThroughClassName}.shtml?${modelFirstLowerGeneratedClassName}Id=$!{${var}.${id}}'">删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                \#end
+                            </tbody>
+                        </table>
+                        #page($pager "${modelLineThroughClassName}")
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+    \#parse("admin/common/page-footer.vm")
+    \#parse("admin/common/bottom-share-code.vm")
+</body>
+</html>

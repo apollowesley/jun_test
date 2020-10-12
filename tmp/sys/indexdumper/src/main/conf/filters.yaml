@@ -1,0 +1,21 @@
+# defination of filters
+# written by Kevin@2015.7.28
+
+# type : text | int | double | a_double
+
+
+-  table    : tb_knowledges
+   idx_name : lore
+   doc_name : knowledge
+   id_field : knowledge_id
+   data_fields :
+       -  name  : issue
+          type  : text
+          name2 : issue 
+       -  name  : tags
+          type  : text
+          name2 : tags
+
+
+
+                           

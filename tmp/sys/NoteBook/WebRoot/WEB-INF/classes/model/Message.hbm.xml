@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" package="model">
+ <class name="Message">
+  <!-- 主键属性 -->
+  <id name="mesId" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <!-- 普通属性 -->
+  <property generated="never" lazy="true" name="content" type="java.lang.String">
+   <column length="2000" name="content"/>
+  </property>
+  <property generated="never" lazy="true" name="mesTime" type="java.util.Date">
+   <column name="mesTime"/>
+  </property>
+    <!-- 多对一映射 -->
+  <!-- 配置getter属性 -->
+  <many-to-one column="getter_id" name="getter"/>
+  <!-- 配置sendder -->
+  <many-to-one column="sender_id" name="sender"/>
+ </class>
+</hibernate-mapping>

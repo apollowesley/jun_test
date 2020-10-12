@@ -1,0 +1,27 @@
+<div class="card-body">
+  <%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
+    <div class="form-group">
+      <%= label f, :username, "用户名" %>
+      <%= text_input f, :username, class: "form-control #{error_class(f, :username)}" %>
+      <%= error_tag f, :username %>
+    </div>
+
+    <div class="form-group">
+      <%= label f, :password, "密码" %>
+      <%= password_input f, :password, class: "form-control #{error_class(f, :password)}" %>
+      <%= error_tag f, :password %>
+    </div>
+
+    <div class="form-group">
+      <%= label f, :password_confirmation, "确认密码" %>
+      <%= password_input f, :password_confirmation, class: "form-control #{error_class(f, :password_confirmation)}" %>
+      <%= error_tag f, :password_confirmation %>
+    </div>
+
+    <div class="form-group">
+      <%= link "已有账号, 去登录", to: Routes.session_path(@conn, :new) %>
+    </div>
+
+    <%= submit "注册", class: "btn btn-primary btn-lg btn-block" %>
+  <% end %>
+</div>

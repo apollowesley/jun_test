@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'iconfont';
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://at.alicdn.com/t/font_1207671_qpdlbz1a8ec.ttf') format('truetype');
+}
+.iconfont {
+    font-family: iconfont;
+}
+
+.yc-ul{
+    display: flex;
+    flex-direction: column;
+    background: #F3F3F3;
+}
+.yc-li{
+    padding: 2px 0;
+    box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   background: #F3F3F3; 
+}
+.yc-li-item{
+    padding: 0 10px;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    height: 3em;
+    background: #FFF; 
+    justify-content: space-between;
+}
+.yc-li-label{
+    width: 90px;
+}
+.active {
+    color: #0faeff;
+}
+
+.yc-tab-bar {
+    color: #ffffff;
+    background: #0faeff;
+}
+
+.yc-tab-bar .yc-tab-bar-title {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.yc-tab-bar .btn {
+    color: #FFFFFF;
+}
+
+.yc-tab-bar .text {
+    color: #FFFFFF;
+}
+
+.yc-tab-bar .iconfont {
+    color: #FFFFFF;
+}
+
+/* .yc-list{
+    padding: 2px 0;
+    box-sizing: border-box;
+}
+
+.yc-list-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom:1px solid #ddd;
+    padding: 7px;
+    background: #fff;
+}
+.yc-list-item:first-child{
+     border-top:1px solid #ddd;
+} */

@@ -1,0 +1,94 @@
+.banner{
+    height: 200rpx;
+    line-height: 200rpx;
+    background: #e7f3ff;
+    color: #3e92f4;
+    font-size: 45rpx;
+    text-align: center;
+    margin-bottom: 30rpx;
+}
+
+.wrap{
+
+}
+.item{
+    margin-bottom: 20rpx;
+}
+.item .top{
+    height: 50rpx;
+    line-height: 50rpx;
+    padding: 20rpx;
+    display: flex;
+    background: #FFF;
+    border-bottom: 1rpx solid #e7e7e7;
+}
+.item-l{
+    flex: 1;
+}
+.item-r view{
+    display: inline-block;
+    color: #898989;
+}
+.all{
+    margin-right: 20rpx;
+}
+.item-content{
+    background: #FFF;
+}
+.item-content checkbox-group{
+    padding: 20rpx 40rpx
+}
+.item-content.active{
+    display:block;
+}
+.item-content .checkbox{
+    display: block;
+    padding: 20rpx 0;
+    margin-bottom: 10rpx;
+    border-bottom: 1px solid #ededed;
+}
+
+.czz{
+    background: #FFF;
+}
+.czz-top{
+    height: 50rpx;
+    line-height: 50rpx;
+    padding: 20rpx;
+    display: flex;
+    background: #FFF;
+    border-bottom: 1rpx solid #e7e7e7;
+}
+.czz-bz{
+    padding: 20rpx;
+}
+.czz-bz textarea{
+    width: 100%;
+}
+.btn{
+    padding: 20rpx;
+}
+.btn view{
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    font-size: 32rpx;
+    border-radius: 35rpx;
+    margin-bottom: 20rpx;
+    color: #FFF;
+}
+.btn view.confirmBtn{
+    background: #54ba3a;
+}
+.btn view.zrBtn{
+    background: #fc7f3d;
+}
+
+.section{
+    height: 50rpx;
+    line-height: 50rpx;
+    padding: 20rpx;
+    background: #FFF;
+    margin-bottom: 20rpx;
+}

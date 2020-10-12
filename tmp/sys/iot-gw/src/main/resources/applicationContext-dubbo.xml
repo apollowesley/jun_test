@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <dubbo:application name="gateway" />
+
+    <dubbo:registry protocol="zookeeper" file="${dubbo.register.log.path}" address="${dubbo.register.address}"/>
+
+    <dubbo:consumer timeout="15000"/>
+
+    <dubbo:reference id="executionOpenService" interface="com.iotechn.iot.executor.api.ExecutionOpenService" version="${dubbo.env}" timeout="10000" />
+
+    <dubbo:reference id="executionService" interface="com.iotechn.iot.executor.api.ExecutionService" version="${dubbo.env}" timeout="10000" />
+
+    <dubbo:reference id="userOpenService" interface="com.iotechn.iot.user.api.UserOpenService" version="${dubbo.env}" timeout="10000"/>
+
+    <dubbo:reference id="deviceOpenService" interface="com.iotechn.iot.device.api.DeviceOpenService" version="${dubbo.env}" timeout="10000"/>
+
+
+
+</beans>

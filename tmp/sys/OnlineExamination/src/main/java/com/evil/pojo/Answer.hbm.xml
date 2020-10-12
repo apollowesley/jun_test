@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.evil.pojo">
+	<class name="Answer" table="tb_answers">
+		<id name="id" type="string">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="answers" column="answers" type="string"
+			length="100" />
+		<property name="userid" column="userid" type="string" length="32" />
+		<property name="answerTime" column="answertime" type="timestamp" />
+
+		<property name="questionId" column="questionid" type="string"
+			length="32" />
+		<property name="rights" column="rights" type="boolean" />
+
+		<property name="paperid" column="paperid" type="string"
+			length="32" />
+	</class>
+</hibernate-mapping>

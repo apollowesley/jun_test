@@ -1,0 +1,13 @@
+*.class
+
+# Package Files #
+*.war
+*.ear
+/target
+/.settings
+/.classpath
+/.project
+/keta_logs
+/uploads
+/bin
+/fensy_lucene/

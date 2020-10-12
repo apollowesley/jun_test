@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>fastForm</title>
+<link rel="stylesheet" href="css/main.css" type="text/css" charset="utf-8">
+<link href="http://fonts.googleapis.com/css?family=Inconsolata:regular&subset=latin" rel="stylesheet" type="text/css">
+<style type="text/css">
+
+    .main {
+        font-size:16px;
+        text-align:left;
+        margin-right:auto;
+        margin-left:auto;
+        padding:10px;
+        width:730px;
+        border:1px solid #ccc;
+    }
+
+    .button {
+        width:200px;
+        height:30px;
+        padding:5px;
+        margin:10px auto 0px auto;
+        border-right:1px solid #bbbbbb;
+        border-bottom:1px solid #bbbbbb;
+        border-top:1px solid #ccc;
+        border-left:1px solid #ccc;
+        -webkit-border-radius: 10px;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+    }
+    .button:hover {
+        color: HighlightText;
+        background-color: Highlight;
+        cursor: pointer;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#03a6ad));
+    }
+    .button * {
+        vertical-align:middle;
+        line-height:30px;
+    }
+    .desc {
+        padding:5px;
+        font-size:12px;
+        color:#333333;
+        margin-bottom:15px;
+    }
+    .desc div.title {
+        word-wrap: break-word;
+        cursor:pointer;
+        margin: 4px 0px 3px 0px;
+        padding-left:5px;
+        border-left:5px solid #e2eef7;
+    }
+    .desc div.title:hover {
+        color:#256ea3;
+        text-decoration:underline;
+        border-left:5px solid #256ea3;
+    }
+
+    .desc span {
+        color:red;
+        font-weight:bold;
+    }
+    .url {
+        margin-left:5px;
+        padding:5px;
+        border-left:5px solid #256ea3;
+        border-right:1px solid #256ea3;
+        border-bottom:1px solid #256ea3;
+        word-wrap: break-word;
+    }
+    .detail {
+        margin-left:10px;
+        cursor:pointer;
+        border-bottom:1px dashed #c6e0f2;
+        padding:5px;
+    }
+    .detail:hover {
+        background-color:#e2eef7;
+        text-decoration:underline;
+    }
+
+    .del {
+        float:right;
+        font-size:40px;
+        text-align:center;
+        width:200px;
+        margin-left:20px;
+    }
+    #form_data {
+        font-family: 'Inconsolata', arial, serif;
+        font-size:13px;
+    }
+    #form_data pre {
+        margin-left:15px;
+    }
+    #err {
+        display:none;
+        padding:10px;
+        margin-top:10px;
+        border:2px solid red;
+        color:red;
+        -webkit-border-radius: 10px;
+    }
+    #success {
+        display:none;
+        padding:10px;
+        margin-top:10px;
+        border:2px solid green;
+        color:green;
+        -webkit-border-radius: 10px;
+    }
+    br {
+        clear:both;
+    }
+</style>
+<script type="text/javascript" src="jquery.1.7.js"></script>
+<script type="text/javascript" src="options.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div style="float:left;width:400px">
+            <div class="label">ALL Recorded Form Data</div>
+            <div id="all_data" class="desc"></div>
+            <br>
+
+            <div class="label">ALL Delete Form Data</div>
+            <div id="addDelete" class="button">
+                <i class="icon-remove icon12"></i>
+                <span id="del_message" style="margin-left:40px">DELETE</span>
+            </div>
+            <br>
+            <div id="success"></div>
+            <div id="err"></div>
+        </div>
+        <div style="float:right;width:300px">
+            <div class="label">detail form data</div>
+            <div id="form_data"></div>
+        </div>
+        <br>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+package ${cfg.context.projectPackage}.dao;
+
+/**
+ *
+ *
+ */
+public interface ${table.entityName}Dao{
+
+}

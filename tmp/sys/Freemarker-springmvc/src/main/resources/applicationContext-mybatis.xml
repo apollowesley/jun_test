@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 配置线程池 -->
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="30" />
+	</bean>
+
+	<!-- ====================================================================================== -->
+	<!-- 启用基于注解（Annotation-based）的配置 -->
+	<!-- ====================================================================================== -->
+	<!-- 扫描basePackage下所有以@MyBatisRepository标识的 接口 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.uei.*" />
+		<property name="annotationClass" value="com.uei.base.MyBatisRepository" />
+	</bean>
+
+	<!-- ====================================================================================== -->
+	<!-- 加载属性文件 -->
+	<!-- ====================================================================================== -->
+
+	<context:property-placeholder location="classpath*:application.properties" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="${jdbc.pool.initSize}" />
+		<property name="maxActive" value="${jdbc.pool.maxActive}" />
+		<property name="maxIdle" value="${jdbc.pool.maxIdle}" />
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="validationQuery" value="select 1" />
+	</bean>
+	<!-- ====================================================================================== -->
+	<!-- 配置 SqlMapClient -->
+	<!-- ====================================================================================== -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="com.uei.*.model" />
+		<property name="mapperLocations" value="classpath*:/mybatis/*/*.xml" />
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- 定义事务通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- 定义方法的过滤规则 -->
+		<tx:attributes>
+			<!-- 所有方法都使用事务 -->
+			<tx:method name="*" propagation="REQUIRED" />
+			<!-- 定义所有get, select , query开头的方法都是只读的 -->
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="page*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="count*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="sitdbTxManager" />
+</beans>

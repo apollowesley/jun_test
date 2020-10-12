@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="placeholderProperties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:conf/config.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!--数据源 -->
+	<bean id="seqSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName">
+			<value>${jdbc_driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc_url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc_username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc_password}</value>
+		</property>
+		<!-- 连接池最大使用连接数 -->
+		<property name="maxActive">
+			<value>20</value>
+		</property>
+		<!-- 初始化连接大小 -->
+		<property name="initialSize">
+			<value>1</value>
+		</property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait">
+			<value>60000</value>
+		</property>
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle">
+			<value>20</value>
+		</property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle">
+			<value>3</value>
+		</property>
+		<!-- 自动清除无用连接 -->
+		<property name="removeAbandoned">
+			<value>true</value>
+		</property>
+		<!-- 清除无用连接的等待时间 -->
+		<property name="removeAbandonedTimeout">
+			<value>180</value>
+		</property>
+		<!-- 连接属性 -->
+		<property name="connectionProperties">
+			<value>clientEncoding=UTF-8</value>
+		</property>
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+	</bean>
+
+	<bean id="sequence" class="com.taobao.tddl.client.sequence.impl.DefaultSequence">
+	<property name="sequenceDao" ref="sequenceDao" />
+	<property name="name" value="studentId" />
+</bean>
+
+	<bean id="sequenceDao" class="com.taobao.tddl.client.sequence.impl.DefaultSequenceDao">
+		<property name="dataSource">
+			<ref bean="seqSource" />
+		</property>
+		<property name="gmtModifiedColumnName" value="gmt_modified" />
+		<property name="nameColumnName" value="name" />
+		<property name="tableName" value="sequence" />
+		<property name="valueColumnName" value="value" />
+		<property name="step" value="1" />
+	</bean>
+
+
+
+	<bean id="groupSequenceDao" class="com.taobao.tddl.client.sequence.impl.GroupSequenceDao"
+		  init-method="init">
+		<!--appName ,必填 -->
+		<property name="appName" value="drds" />
+		<!--数据源的个数 -->
+		<property name="dscount" value="1" />
+		<!--dbGroupKeys必填 -->
+		<property name="dbGroupKeys">
+			<list>
+				<value>drds_0</value>
+			</list>
+		</property>
+		<!--内步长 -->
+		<property name="innerStep" value="100" />
+		<!--是否开启自适应，默认是false -->
+		<property name="adjust" value="true" />
+		<property name="retryTimes" value="100" />
+
+		<property name="gmtModifiedColumnName" value="gmt_modified" />
+		<property name="nameColumnName" value="name" />
+		<property name="tableName" value="sequence" />
+		<property name="valueColumnName" value="value" />
+	</bean>
+
+	<bean id="groupSequence" class="com.taobao.tddl.client.sequence.impl.GroupSequence"
+		  init-method="init">
+		<property name="sequenceDao" ref="groupSequenceDao" />
+		<property name="name" value="ni" />
+	</bean>
+</beans>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.framework.model.mapper.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.framework.model.pojo.Department">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, create_date, update_date, address, `name`, company_id, parent_id
+  </sql>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.gson.framework.model.pojo.Department" useGeneratedKeys="true">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      create_date,
+      update_date,
+      address,
+      `name`,
+      company_id,
+      parent_id,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{createDate,jdbcType=TIMESTAMP},
+      #{updateDate,jdbcType=TIMESTAMP},
+      #{address,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{companyId,jdbcType=BIGINT},
+      #{parentId,jdbcType=BIGINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=BIGINT},
+      parent_id = #{parentId,jdbcType=BIGINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="cn.gson.framework.model.pojo.Department" useGeneratedKeys="true">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

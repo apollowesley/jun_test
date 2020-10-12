@@ -1,0 +1,247 @@
+@font-face {font-family: "iconfont";
+  src: url('../font/iconfont.eot?t=1489370743216'); /* IE9*/
+  src: url('../font/iconfont.eot?t=1489370743216#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/iconfont.woff?t=1489370743216') format('woff'), /* chrome, firefox */
+  url('../font/iconfont.ttf?t=1489370743216') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../font/iconfont.svg?t=1489370743216#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-call:before { content: "\e614"; }
+
+.icon-weixin:before { content: "\e63b"; }
+
+.icon-gongdan:before { content: "\e613"; }
+
+.icon-laidianqudian:before { content: "\e628"; }
+
+.icon-liubianxing4:before { content: "\e603"; }
+
+.icon-kmzhishiboshijiaoyu:before { content: "\e67f"; }
+
+.icon-liubianxing:before { content: "\e63e"; }
+
+.icon-zhishiku:before { content: "\e626"; }
+
+.icon-yonghuhuaxiang:before { content: "\e604"; }
+
+.icon-shujufenxi:before { content: "\e60a"; }
+
+.icon-jingzhuntoufang:before { content: "\e661"; }
+
+.icon-IM:before { content: "\e7c2"; }
+
+
+
+
+.sharp:before{   
+ content:"";　　//不需要展现文字等内容,所以设置为空字符   
+ width:0px;   
+ border-bottom:60px solid transparent;   
+ border-top:60px solid transparent;   
+ border-right:30px solid #147dff;   
+ position:absolute;   
+ left:-30px;   
+ top:0px;   
+}   
+.sharp{   
+ min-width:80px;   
+ height:120px;   
+ background:#147dff;   
+ display: inline-block;   
+ position: absolute;   
+ line-height: 160px;   
+ color:#FFFFFF;   
+ font-size: 20px;   
+ text-align: center;   
+ opacity: 0;
+}   
+.sharp:after{   
+ content:"";　　//不需要展现文字等内容,所以设置为空字符   
+ width:0px;   
+ border-bottom:60px solid transparent;   
+ border-top:60px solid transparent;   
+ border-left-width:30px;   
+ border-left-style: solid;   
+ border-left-color:#147dff;   
+ position:absolute;   
+ right:-30px;   
+ top:0px;   
+} 
+.hex-div:hover .sharp{
+	opacity: 1;
+	transition: opacity .6s;
+	-moz-transition: opacity .5s,-moz-transform .6s;
+	-webkit-transition: opacity .5s,-webkit-transform .6s;
+	-o-transition: opacity .6s,-o-transform .6s;
+}
+#sharpContainer{   
+	width:1200px;   
+	height: 360px;  
+	position: relative;
+	margin: 0 auto 0px 130px;
+}   
+#sharpContainer .center{ 
+	top:175px;   
+	left:500px;  
+} 
+#sharpContainer .center:before{   
+	border-right: 30px solid #2fe17a;
+ }
+ #sharpContainer .center:after{   
+	border-left-color: #2fe17a;
+ }
+ #sharpContainer .top{   
+	 top:45px;   
+	 left:260px;   
+ }   
+ #sharpContainer .top-left{   
+	 top:110px;   
+	 left:140px;   
+ }   
+ #sharpContainer .top-right{   
+	 top:110px;   
+	 left:380px;   
+ }   
+ #sharpContainer .bottom{   
+	 top: 175px;
+	 left: 740px;   
+ }   
+ 
+ #sharpContainer .bottom-left{   
+	 top: 241px;
+	 left: 620px;   
+ }   
+ 
+ #sharpContainer .bottom-right{   
+	 top:110px;   
+	 left:860px; 
+ }
+ 
+ #sharpContainer .right-top{   
+	 top:45px;   
+	 left:980px;
+ } 
+ 
+ #sharpContainer .right-right{   
+	 top:110px;   
+	 left:1100px; 
+ } 
+ #sharpContainer .gold{
+	background-color: #f7af3e;
+ }
+ #sharpContainer .gold:before{   
+	border-right: 30px solid #f7af3e;
+ }
+ #sharpContainer .gold:after{   
+	border-left-color: #f7af3e;
+ }
+
+ #sharpContainer .green{
+	background-color: #2fe17a;
+ }
+ #sharpContainer .green:before{   
+	border-right: 30px solid #2fe17a;
+ }
+ #sharpContainer .green:after{   
+	border-left-color: #2fe17a;
+ }
+ .hex-div{
+	position: absolute;
+ }
+ .greenfont{
+	color:#2fe17a;
+ }
+ .goldfont{
+	color:#f7af3e;
+ }
+ .bluefont{
+	color:#147dff;
+ }
+ .hex{
+	font-size: 140px;
+	position: absolute;
+	top: -7px;
+	left: -30px;
+	z-index: 1000;
+ }
+ .hex-div .content{
+	font-size:15px;
+	text-align:center;
+	position: absolute;
+    top: 20px;
+    width: 90px;
+	left: -4px;
+ }
+ .text{
+	position: absolute;
+	
+	padding-bottom: 5px;
+	font-size: 18px;
+ }
+ .channel{
+	top: 0px;
+	left: 265px;
+ }
+ .analyzer{
+	top: 0px;
+	left: 985px;
+ }
+ .business{
+	top: 150px;
+	left: 625px;
+ }
+ .greenborder{
+	color:#2fe17a;
+	border-bottom:1px solid #2fe17a;
+ }
+ .goldborder{
+	color:#f7af3e;
+	border-bottom:1px solid #f7af3e;
+ }
+ .blueborder{
+	color:#147dff;
+	border-bottom:1px solid #147dff;
+ }
+ .logo {
+    position: absolute;
+    left: 0;
+    top: 12px;
+}
+.logo img{
+   height:35px;
+}
+.layui-header{
+    background-color: #393D49;	
+    position: fixed;
+    z-index: 1000;
+    height: 60px;
+    width: 100%;
+}
+.header .layui-nav {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    background: none;
+}
+.layui-nav * {
+    font-size: 16px;
+}
+.content .iconfont{
+	font-size:30px;
+}
+.content div{
+	margin-top:15px;
+}
+.hex-div:hover .content{
+	color:#FFFFFF;
+}

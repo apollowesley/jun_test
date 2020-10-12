@@ -1,0 +1,53 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# ignore Maven generated target folders
+target/
+
+# Package Files #
+# Ant特殊项目，不过滤jar依赖包 #
+*.jar
+!lib/ebs-core-1.0.0-SNAPSHOT.jar
+!lib/maven-ant-tasks-2.1.3.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IntelliJ Idea generated folders and files
+.idea/
+/generate/
+out/
+*.ipr
+*.iws
+*.iml
+
+# Eclipse generated folders and files
+.classpath
+.project
+.settings/
+.metadata/
+
+# MyEclipse generated folders and files
+# the same with Eclipse
+# .classpath  
+# .project
+# .settings/ 
+# .metadata/
+
+.myeclipse/
+.mymetadata
+.myumldata

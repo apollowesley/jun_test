@@ -1,0 +1,10 @@
+version: '3'
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockfile
+    ports:
+      - "8088:8088"
+    volumes:
+      - "/tmp"

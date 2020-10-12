@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.evil.pojo">
+	<class name="Exam" table="tb_exam">
+		<id name="id" type="string">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="examName" column="examName" type="string" length="50" />
+		<property name="examTime" column="examTime" type="int" />
+		<property name="joinNumber" column="joinNumber" type="int" />
+		<property name="countdown" column="countdown" type="int" />
+		<property name="autoSave" column="autoSave" type="boolean" />
+		<property name="autoSavaeInterval" column="autoSavaeInterval" type="int" />
+		<property name="manualSave" column="manualSave" type="boolean" />
+		<property name="examParsing" column="examParsing" type="boolean" />
+		<property name="frontDeskShow" column="frontDeskShow" type="boolean" />
+		<property name="startTime" column="startTime" type="timestamp" not-null="true" />
+		<property name="endTime" column="endTime" type="timestamp" not-null="true" />
+		<property name="addTime" column="addTime" type="timestamp" update="false" />
+		<property name="showTeamInstruction" column="showTeamInstruction" type="boolean" />
+		<property name="TeamInstruction" column="TeamInstruction" type="string" length="2147483647" not-null="true"  />
+		
+		<!-- 映射WrongQuestion到Questions的多对一关联关系 -->
+	    <many-to-one name="paper" column="paperId" class="Paper" lazy="false" fetch="join"/>  
+	    <many-to-one name="examType" column="examTypeId" class="ExamType" lazy="false" fetch="join"/>  
+	</class>
+</hibernate-mapping>

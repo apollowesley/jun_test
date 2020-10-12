@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <!-- 告知Struts2运行时使用Spring来创建对象
+    <constant name="struts.objectFactory" value="spring" />
+    -->
+
+    <include file="strut-default.xml"/>
+    <package name="default" extends="struts-default">
+        <!--配置项目启动后的处理页面-->
+        <action name="" class="indexAction" method="index">
+            <result name="success">
+                /WEB-INF/views/register.jsp
+            </result>
+        </action>
+
+        <!--class里的userAction是别名，因为后面用到了Spring Ioc功能 -->
+        <!--本来class里应该写类的全部路径 -->
+        <action name="register" class="userAction" method="register">
+            <result name="input">/WEB-INF/views/register.jsp</result>
+            <result name="success">/WEB-INF/views/success.jsp</result>
+            <result name="error">/WEB-INF/views/fail.jsp</result>
+        </action>
+
+        <action name="login" class="userAction" >
+
+            <result name="success">/WEB-INF/views/success.jsp</result>
+            <result name="error">/WEB-INF/views/fail.jsp</result>
+        </action>
+    </package>
+</struts>

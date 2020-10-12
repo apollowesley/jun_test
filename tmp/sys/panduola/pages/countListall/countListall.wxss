@@ -1,0 +1,38 @@
+.banner{
+    height: 200rpx;
+    line-height: 200rpx;
+    background: #e7f3ff;
+    color: #3e92f4;
+    font-size: 45rpx;
+    text-align: center;
+    margin-bottom: 30rpx;
+}
+.item{
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 20rpx;
+    display: flex;
+    background: #FFF;
+    border-bottom: 1rpx solid #e7e7e7;
+}
+.item-l{
+    margin-right: 20rpx;
+}
+.name, .grade{
+    display: inline-block;
+}
+.grade{
+    color: #fda632
+}
+.name{
+    margin-right: 30rpx;
+    font-size: 40rpx;
+}
+.item-c{
+    flex: 1;
+}
+.item-r{
+    text-align: right;
+    color: #fda632;
+    font-size: 40rpx;
+}

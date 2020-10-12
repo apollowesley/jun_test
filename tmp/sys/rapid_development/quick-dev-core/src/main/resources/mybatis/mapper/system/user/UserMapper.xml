@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射Mapper-->
+<mapper namespace="pers.man.quickdevcore.system.persistence.user.UserMapper">
+    <!--映射结果集-->
+    <resultMap id="BaseResultMap" type="pers.man.quickdevcore.system.entity.user.User">
+        <result property="id" column="id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" javaType="java.time.LocalDateTime" jdbcType="DATE"/>
+        <result property="updateTime" column="update_time" javaType="java.time.LocalDateTime" jdbcType="DATE"/>
+        <result property="name" column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="account" column="account" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="password" column="password" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="profilePictureUrl" column="profile_picture_url" javaType="java.lang.String"
+                jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" javaType="java.time.LocalDate" jdbcType="DATE"/>
+        <result property="userState" column="user_state" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="lastLoginTime" column="last_login_time" javaType="java.time.LocalDateTime" jdbcType="DATE"/>
+        <result property="lastLoginIp" column="last_login_ip" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="address" column="address" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 表名-->
+    <sql id="Table">
+            system_user
+        </sql>
+
+    <!--基本语句-->
+    <sql id="BaseInsert">
+        INSERT INTO
+        <include refid="Table"/>
+    </sql>
+    <sql id="BaseDelete">
+        DELETE FROM
+        <include refid="Table"/>
+        WHERE 1 = 1
+    </sql>
+    <sql id="BaseUpdate">
+        UPDATE
+        <include refid="Table"/>
+    </sql>
+    <sql id="BaseSelect">
+        SELECT * FROM
+        <include refid="Table"/>
+        WHERE 1 = 1
+    </sql>
+
+    <!--根据id查询一个实体-->
+    <select id="getById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <include refid="BaseSelect"/>
+        AND id = #{id}
+    </select>
+
+    <!--查询所有实体-->
+    <select id="listAll" resultMap="BaseResultMap">
+        <include refid="BaseSelect"/>
+    </select>
+
+    <!--统计所有实体的数量-->
+    <select id="count" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM
+        <include refid="Table"/>
+    </select>
+
+    <!--保存一个实体-->
+    <insert id="save" parameterType="pers.man.quickdevcore.system.entity.user.User">
+        <include refid="BaseInsert"/>
+        (
+        <if test="id != null and id != ''">id</if>
+        <if test="createTime != null">,create_time</if>
+        <if test="updateTime != null">,update_time</if>
+        <if test="name != null and name != ''">,name</if>
+        <if test="account != null and account != ''">,account</if>
+        <if test="password != null and password != ''">,password</if>
+        <if test="profilePictureUrl != null and profilePictureUrl != ''">,profile_picture_url</if>
+        <if test="phone != null and phone != ''">,phone</if>
+        <if test="birthday != null">,birthday</if>
+        <if test="userState != null and userState != ''">,user_state</if>
+        <if test="lastLoginTime != null">,last_login_time</if>
+        <if test="lastLoginIp != null and lastLoginIp != ''">,last_login_ip</if>
+        <if test="address != null and address != ''">,address</if>
+        )VALUES(
+        <if test="id != null">#{id}</if>
+        <if test="createTime != null">,#{createTime}</if>
+        <if test="updateTime != null">,#{updateTime}</if>
+        <if test="name != null and name != ''">,#{name}</if>
+        <if test="account != null and account != ''">,#{account}</if>
+        <if test="password != null and password != ''">,#{password}</if>
+        <if test="profilePictureUrl != null and profilePictureUrl != ''">,#{profilePictureUrl}</if>
+        <if test="phone != null and phone != ''">,#{phone}</if>
+        <if test="birthday != null">,#{birthday}</if>
+        <if test="userState != null and userState != ''">,#{userState}</if>
+        <if test="lastLoginTime != null">,#{lastLoginTime}</if>
+        <if test="lastLoginIp != null and lastLoginIp != ''">,#{lastLoginIp}</if>
+        <if test="address != null and address != ''">,#{address}</if>
+        )
+    </insert>
+
+    <!--保存多个实体-->
+    <insert id="bathSave" parameterType="java.util.List">
+        <include refid="BaseInsert"/>
+        {
+        id
+        ,create_time
+        ,update_time
+        ,name
+        ,account
+        ,password
+        ,profile_picture_url
+        ,phone
+        ,birthday
+        ,user_state
+        ,last_login_time
+        ,last_login_ip
+        ,address
+        }
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id}
+            ,#{item.createTime}
+            ,#{item.updateTime}
+            ,#{item.name}
+            ,#{item.account}
+            ,#{item.password}
+            ,#{item.profilePictureUrl}
+            ,#{item.phone}
+            ,#{item.birthday}
+            ,#{item.userState}
+            ,#{item.lastLoginTime}
+            ,#{item.lastLoginIp}
+            ,#{item.address}
+            )
+        </foreach>
+    </insert>
+
+    <!--更新一个实体-->
+    <update id="update" parameterType="pers.man.quickdevcore.system.entity.user.User">
+        <include refid="BaseUpdate"/>
+        <set>
+            <if test="id != null and id != ''">id = #{id}</if>
+            <if test="createTime != null">,create_time = #{createTime}</if>
+            <if test="updateTime != null">,update_time = #{updateTime}</if>
+            <if test="name != null and name != ''">,name = #{name}</if>
+            <if test="account != null and account != ''">,account = #{account}</if>
+            <if test="password != null and password != ''">,password = #{password}</if>
+            <if test="profilePictureUrl != null and profilePictureUrl != ''">,profile_picture_url =
+                #{profilePictureUrl}
+            </if>
+            <if test="phone != null and phone != ''">,phone = #{phone}</if>
+            <if test="birthday != null">,birthday = #{birthday}</if>
+            <if test="userState != null and userState != ''">,user_state = #{userState}</if>
+            <if test="lastLoginTime != null">,last_login_time = #{lastLoginTime}</if>
+            <if test="lastLoginIp != null and lastLoginIp != ''">,last_login_ip = #{lastLoginIp}</if>
+            <if test="address != null and address != ''">,address = #{address}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--删除一个实体-->
+    <delete id="removeById" parameterType="java.lang.String">
+        <include refid="BaseDelete"/>
+        AND id = #{id}
+    </delete>
+
+    <!--批量删除-->
+    <delete id="bathRemoveByIds" parameterType="java.lang.String">
+        <include refid="BaseDelete"/>
+        and id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

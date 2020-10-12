@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title>文章管理</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/public.js"></script>
+<link href="/static/public/css/system.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/Alert.js"></script>
+<style>
+	.list-box .context{float:left;width:100%;height:80%;overflow-y:scroll;}
+	.pagination{float: left}
+	.list-box .nav_title{float:left;margin-top:20px;margin-left:20px;width:90%;}
+	.list-box .context{float:left;width:100%;}
+</style>
+<body>
+<div class="list-box">
+	<div class="nav_title"><p><span style="color: #2aabd2;font-weight: bold;width: 10px;background:#2aabd2;margin-right: 10px;">|</span>文章管理</p></div>
+	<div class="context table-responsive">
+		<div class="handle" >
+			<div class="input-group left" style="width:300px;">
+				<input type="text" class="form-control"  id="sval">
+				<span class="input-group-addon btn btn-default" id="search">搜索</span>
+			</div>
+			<button class="btn btn-success left" id="fileUpload" onclick="uploadFiles()">上传资源</button>
+			<button class="btn btn-danger left" id="delete">删除</button>
+		</div>
+		<table class="table">
+			<thead>
+			<tr>
+				<th>
+					<div class="checkbox">
+						<input type="checkbox" id="all">
+						<label for="all"></label>
+					</div>
+				</th>
+				<th class="name">文件名</th>
+				<th class="inuse">是否使用</th>
+				<th class="path">绝对路径</th>
+
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	<div class="paging">
+		<ul class="pagination">
+		</ul>
+	</div>
+</div>
+<script src="/static/common/resource/resource.js"></script>
+<script>
+	resource.loadPage(0,20);
+	resource.updatePage();
+	resource.delete();
+	function uploadFiles(){
+		resource.uploadFile("/tool/upload", "fileUpload", "images", function(res){
+			console.log(res)
+		}, function(err){
+			console.log(err)
+		});
+	}
+
+	// $(".pages").bind("click",function(){
+	// 	$(".pages").each(function(){
+	// 		$(this).removeClass("active");
+	// 	})
+	// 	$(this).addClass("active");
+	// 	var index=$(this).text()-1;
+	// 	resource.loadPage(index,20);
+	// })
+</script>
+</body>
+</html>

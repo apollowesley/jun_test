@@ -1,0 +1,10 @@
+build/
+*.iml
+.gradle/
+logs/
+.idea/
+target/
+*.out
+buildgenerated-src/
+!build.gradle
+

@@ -1,0 +1,15 @@
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pom.xml	(revision 21a60badf6ec7a565516bc1276c6f787b6b4610f)
++++ pom.xml	(date 1591670178744)
+@@ -17,6 +17,7 @@
+   <modules>
+     <module>boot-ms-admin</module>
+     <module>boot-ms-client</module>
++    <module>spring-test-jvm</module>
+   </modules>
+ 
+   <properties>

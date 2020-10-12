@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>用户管理</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css"/>
+<link href="/static/public/css/system.css" rel="stylesheet" type="text/css"/>
+<script src="/static/public/js/public.js"></script>
+<script src="/static/public/js/Alert.js"></script>
+<script src="/static/common/user/userinfo.js"></script>
+<script src="/static/public/js/Tool.js"></script>
+<style>
+    ul li {
+        float: left;
+        width: 33%
+    }
+</style>
+<body>
+<div class="list-box">
+    <div class="title"><p>用户管理增加</p></div>
+    <form role="form" id="userdata" action="javascript:void(0);">
+        <input type="hidden" class="form-control" th:value="${table}" name="table" id="table">
+         <ul>
+            <li>
+                <div class="input-group">
+                    <span class="input-group-addon">头像</span>
+                    <div id="upload"></div>
+                    <input type="text" class="form-control " name="avatar" id="avatar"
+                           placeholder="请输入头像地址">
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <span class="input-group-addon">登录账号</span>
+                    <input type="text" class="form-control required" maxlength="20" name="account" id="account"
+                           placeholder="请输入登录账号">
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <span class="input-group-addon">登录密码</span>
+                    <input type="password" class="form-control required" name="password" id="password"
+                           placeholder="请输入登录密码">
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <span class="input-group-addon">昵称</span>
+                    <input type="text" class="form-control " maxlength="10" name="username" id="username"
+                           placeholder="请输入昵称">
+                </div>
+            </li>
+            <!-- <li>
+                <div class="input-group">
+                    <span class="input-group-addon">角色</span>
+                    <input type="text" class="form-control " name="role" id="role"
+                           placeholder="请输入角色">
+                </div>
+            </li> -->
+           <!--  <li>
+                <div class="input-group">
+                    <span class="input-group-addon">部门</span>
+                    <input type="text" class="form-control " name="dept" id="dept"
+                           placeholder="请输入部门">
+                </div>
+            </li> -->
+        </ul>
+        <div style="width:100%;float: left;">
+            <button type="button" id="userAdd" class="btn btn-default">提交</button>
+            <button type="button" id="cancel" class="btn btn-default">取消</button>
+        </div>
+    </form>
+    <script>
+        Tool.uploadOverwrite("upload",null,"avatar");
+    </script>
+</div>
+</body>
+</html>

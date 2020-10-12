@@ -1,0 +1,31 @@
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const babel = require('gulp-babel');
+const del = require('del');
+const path = require('path');
+const moment = require('moment');
+
+const __reactPath = __dirname + '/src/main/webapp/js';
+const __targetJsPath = __dirname + '/src/main/webapp/js/dist';
+const __reactExtension = ".jsx";
+const __sourceScripts = [__reactPath + '/**/*' + __reactExtension];
+
+gulp.task('watch', function () {
+    gulp.watch(__sourceScripts, (event)=> {
+        console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+        var sourceScript = event.path;
+        var basename = path.basename(event.path, __reactExtension);
+        var dirname = path.dirname(event.path);
+        var targetScriptName = `${basename}.min.js`;
+        var targetScriptFile = __targetJsPath + '/' + targetScriptName;
+        console.log(`delete targetScriptFile of:${targetScriptFile}`);
+        del([targetScriptFile]);
+        // you should not handle error event here.
+        var babelResult = gulp.src([sourceScript]).pipe(babel()).on('end', (err)=> {
+            console.log(`babel pipe successed,time:${moment().format('YYYY-MM-DD HH:mm:ss')}`);
+        });
+        return babelResult.pipe(uglify()).pipe(concat(targetScriptName)).pipe(gulp.dest(__targetJsPath));
+    });
+});
+gulp.task('default', ['watch']);

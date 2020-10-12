@@ -1,0 +1,227 @@
+body{
+	background-color:#f0f0f0;
+}
+.wrapper{
+	margin:16px 16px 0;
+}
+.datalist{
+	display:none;
+}
+.flexigrid tbody a{
+	text-decoration:underline;
+}
+
+.fbutton span[disabled]{
+	color:#cccccc;
+}
+.refresh{
+	background:url(../images/icons/16x16/refresh.png) no-repeat left center;
+}
+/* VM */
+.vm-create{
+	background:url(../images/icons/16x16/vm-create.png) no-repeat left center;
+}
+.vm-edit{
+	background:url(../images/icons/16x16/vm-edit.png) no-repeat left center;
+}
+.vm-delete{
+	background:url(../images/icons/16x16/vm-delete.png) no-repeat left center;
+}
+.vm-start{
+	background:url(../images/icons/16x16/vm-start.png) no-repeat left center;
+}
+.vm-restart{
+	background:url(../images/icons/16x16/vm/restart.png) no-repeat left center;
+}
+.vm-shutdown{
+	background:url(../images/icons/16x16/vm/stop.png) no-repeat left center;
+}
+.vm-poweroff{
+	background:url(../images/icons/16x16/vm-poweroff.png) no-repeat left center;
+}
+.vm-refresh{
+	background:url(../images/icons/16x16/refresh.png) no-repeat left center;
+}
+.vm-rename{
+	background:url(../images/icons/16x16/host.png) no-repeat left center;
+}
+.vm-toimg{
+	background:url(../images/icons/16x16/cd-write.png) no-repeat left center;
+}
+.vm-console{
+	background:url(../images/icons/16x16/vm.png) no-repeat left center;
+}
+.vm-start[disabled]{
+	background:url(../images/icons/16x16/vm-start-disabled.png) no-repeat left center;
+	color:#999999;
+}
+.vm-edit[disabled]{
+	background:url(../images/icons/16x16/vm-edit-disabled.png) no-repeat left center;
+	color:#999999;
+}
+.iso-unmount{
+	background:url(../images/icons/16x16/cd-eject.png) no-repeat left center;
+}
+/* software */
+.soft_install{
+	background:url(../images/icons/16x16/vm-create.png) no-repeat left center;
+}
+.soft_install[disabled]{
+	background:url(../images/icons/16x16/vm-create-disabled.png) no-repeat left center;
+	color:#999999;
+}
+.soft_unstall{
+	background:url(../images/icons/16x16/vm-delete.png) no-repeat left center;
+}
+.soft_unstall[disabled]{
+	background:url(../images/icons/16x16/vm-delete-disabled.png) no-repeat left center;
+	color:#999999;
+}
+.soft_console{
+	background:url(../images/icons/16x16/vm.png) no-repeat left center;
+}
+.soft_console[disabled]{
+	background:url(../images/icons/16x16/vm-disabled.png) no-repeat left center;
+}
+.soft_management{
+	background:url(../images/icons/16x16/vm-edit.png) no-repeat left center;
+}
+.soft_management[disabled]{
+	background:url(../images/icons/16x16/vm-edit-disabled.png) no-repeat left center;
+}
+.was-start{
+	background:url(../images/icons/16x16/vm-start.png) no-repeat left center;
+}
+.was-start[disabled]{
+	background:url(../images/icons/16x16/vm-start-disabled.png) no-repeat left center;
+}
+.was-shutdown{
+	background:url(../images/icons/16x16/vm/stop.png) no-repeat left center;
+}
+.was-shutdown[disabled]{
+	background:url(../images/icons/16x16/vm/stop-disabled.png) no-repeat left center;
+}
+.app_inatall{
+	background:url(../images/icons/16x16/vm-create.png) no-repeat left center;
+}
+.app_inatall[disabled]{
+	background:url(../images/icons/16x16/vm-create-disabled.png) no-repeat left center;
+	color:#999999;
+}
+.app_unstall{
+	background:url(../images/icons/16x16/vm-delete.png) no-repeat left center;
+}
+.app_unstall[disabled]{
+	background:url(../images/icons/16x16/vm-delete-disabled.png) no-repeat left center;
+	color:#999999;
+}
+.app-start{
+	background:url(../images/icons/16x16/vm-start.png) no-repeat left center;
+}
+.app-start[disabled]{
+	background:url(../images/icons/16x16/vm-start-disabled.png) no-repeat left center;
+}
+.app-shutdown{
+	background:url(../images/icons/16x16/vm/stop.png) no-repeat left center;
+}
+.app-shutdown[disabled]{
+	background:url(../images/icons/16x16/vm/stop-disabled.png) no-repeat left center;
+}
+
+/* ssp */
+
+.ssp-register{
+	background:url(../images/icons/16x16/host-add.png) no-repeat left center;
+}
+.ssp-create{
+	background:url(../images/icons/16x16/vm-create.png) no-repeat left center;
+}
+.ssp-edit{
+	background:url(../images/icons/16x16/vm-edit.png) no-repeat left center;
+}
+.ssp-refresh{
+	background:url(../images/icons/16x16/vm.png) no-repeat left center;
+}
+.lu-create{
+	background:url(../images/icons/16x16/vm-create.png) no-repeat left center;
+}
+.lu-edit{
+	background:url(../images/icons/16x16/vm-edit.png) no-repeat left center;
+}
+.lu-del{
+	background:url(../images/icons/16x16/vm-delete.png) no-repeat left center;
+}
+/* vfc */
+.vfc_create{
+	background:url(../images/icons/16x16/vm-create.png) no-repeat left center;
+}
+.vfc_create[disabled]{
+	background:url(../images/icons/16x16/vm-create-disabled.png) no-repeat left center;
+}
+.vfc_del{
+	background:url(../images/icons/16x16/vm-delete.png) no-repeat left center;
+}
+.vfc_del[disabled]{
+	background:url(../images/icons/16x16/vm-delete-disabled.png) no-repeat left center;
+}
+/* platform */
+.platform-register{
+	background:url(../images/icons/16x16/host-add.png) no-repeat left center;
+}
+.platform-remove{
+	background:url(../images/icons/16x16/host-delete.png) no-repeat left center;
+}
+.platform-logoff{
+	
+}
+/* host */
+.host-register{
+	background:url(../images/icons/16x16/host-add.png) no-repeat left center;
+}
+.host-rename{
+	background:url(../images/icons/16x16/host.png) no-repeat left center;
+}
+.host-remove{
+	background:url(../images/icons/16x16/host-delete.png) no-repeat left center;
+}
+/* template */
+.iso-upload{
+	background:url(../images/icons/16x16/file-upload.png) no-repeat left center;
+}
+.iso-delete{
+	background:url(../images/icons/16x16/file-delete.png) no-repeat left center;
+}
+.iso-edit{
+	background:url(../images/icons/16x16/file-edit.png) no-repeat left center;
+}
+.template-upload{
+	background:url(../images/icons/16x16/file-upload.png) no-repeat left center;
+}
+.template-delete{
+	background:url(../images/icons/16x16/file-delete.png) no-repeat left center;
+}
+.template-edit{
+	background:url(../images/icons/16x16/file-edit.png) no-repeat left center;
+}
+/* user */
+.user-add{
+	background:url(../images/icons/16x16/user-add.png) no-repeat;
+}
+.user-edit{
+	background:url(../images/icons/16x16/user-edit.png) no-repeat;
+}
+.user-delete{
+	background:url(../images/icons/16x16/user-delete.png) no-repeat;
+}
+.volume-register {
+	background: url(../images/icons/16x16/storage-add.png) no-repeat;
+}
+.volume-create {
+	background: url(../images/icons/16x16/storage-add.png) no-repeat;
+}
+.volume-edit {
+	background: url(../images/icons/16x16/storage-add.png) no-repeat;
+}
+.volume-remove {
+	background: url(../images/icons/16x16/storage-remove.png) no-repeat;
+}

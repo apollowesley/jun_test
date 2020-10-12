@@ -1,0 +1,36 @@
+<!--index.wxml-->
+<import src="../../template/msglist/msglist.wxml" />
+<view class="container">
+<!-- <canvas  canvas-id="myCanvas" bindtouchend="touchend" bindtouchmove="touchmove" style="min-height:100vh"> -->
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form" bindtap="searchMation">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="搜索" />
+      </view>
+    </view>
+  </view>
+  <view class="my-message" bindtap="myAgent">
+    <view class="message-left">
+      <image src='../../images/icon_attendance.png'></image>
+    </view>
+    <view class="message-right">
+      <view class="message-right-top">我的代办</view>
+      <view class="message-right-bottom">
+        <block wx:for="{{agentList}}" wx:for-item="item" wx:for-index="idx">
+          <view class="message-item" catchtap="myAgentByType" data-type="{{item.type}}">
+            <text class="item-type-name">{{item.name}}</text>
+            <text class="item-type-num">({{item.num}})</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="msg-list">
+    <block wx:for="{{msglist}}" wx:for-index="idx" >
+      <template is="msgitem"  data="{{item:item,idx:idx}}"></template>
+    </block>
+  </view>
+<!-- </canvas> -->
+</view>
+

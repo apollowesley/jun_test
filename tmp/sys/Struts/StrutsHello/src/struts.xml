@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <!-- org.apache.struts2包中的default.properties配置文件中 -->
+    <constant name="struts.action.extension" value="action,do," />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.multipart.maxSize" value="10485760" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" /><!-- 支持动态方法调用,默认为false -->
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true" /><!-- ognl允许访问静态方法 -->
+    <constant name="struts.custom.i18n.resources" value="i18n" /><!-- 配置全局国际化资源文件的baseName -->
+
+    <!-- 每个package相当于一个独立的模块,不同的模块使用不同的全名空间,默认为/ -->
+    <package name="hello" extends="struts-default" namespace="/product">
+        <!-- 未指定class,则使用默认的com.opensymphony.xwork2.ActionSupport, 方法为execute -->
+        <action name="input">
+            <!-- result type默认为转发dispatcher, result name默认为success -->
+            <!-- redirectAction重定向到一个action,chain转发到一个action,stream下载文件 -->
+            <result>/WEB-INF/pages/input.jsp</result>
+        </action>
+
+        <!-- method指定某个方法,如果不指定某个方法,则是默认的execute方法 -->
+        <action name="save" class="com.gs.struts.ProductAction">
+            <result name="details">/WEB-INF/pages/details.jsp</result>
+        </action>
+    </package>
+
+    <package name="dynamic" extends="struts-default" namespace="/dynamic">
+        <!-- 动态方法调用中可以设置默认调用的方法 -->
+        <action name="dynamic" class="com.gs.struts.DynamicMethodInvocationAction" method="save">
+            <result>/WEB-INF/pages/dynamic.jsp</result>
+        </action>
+    </package>
+
+    <!-- 配置一个基础的package,里面可以配置一些global-exception-mappings -->
+    <package name="basePackage" extends="struts-default">
+        <global-results>
+            <result name="error">/WEB-INF/pages/exception.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.NullPointerException" result="error"></exception-mapping>
+        </global-exception-mappings>
+    </package>
+
+    <package name="exception" extends="basePackage" namespace="/exception">
+        <action name="exception" class="com.gs.struts.ExceptionAction">
+            <exception-mapping exception="java.lang.ArithmeticException" result="error"></exception-mapping>
+            <result name="error">/WEB-INF/pages/exception.jsp</result>
+        </action>
+        <action name="globalException" class="com.gs.struts.GlobalExceptionAction">
+        </action>
+    </package>
+    
+    <include file="struts-user.xml" />
+    <include file="struts-context.xml" />
+    <include file="struts-ognl.xml" />
+    <include file="struts-tag.xml" />
+    <include file="struts-form.xml" />
+    <include file="struts-model-prepare.xml" />
+    <include file="struts-convertion.xml" />
+    <include file="struts-i18n.xml" />
+
+</struts>

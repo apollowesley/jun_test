@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+    <!-- JNDI方式配置数据源 -->
+    <!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> <property name="jndiName" value="${jndiName}"></property> </bean> -->
+    <!-- 数据源 -->
+    <!--see https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_DruidDataSource%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="url" value="${connection.url}"/>
+        <property name="username" value="${connection.username}"/>
+        <property name="password" value="${connection.password}"/>
+
+        <!-- 初始化连接大小、连接池最小空闲、最大使用连接数量 -->
+        <property name="initialSize" value="${druid.initialSize}"/>
+        <property name="minIdle" value="${druid.minIdle}"/>
+        <property name="maxActive" value="${druid.maxActive}"/>
+        <!-- 获取连接等待超时的时间 -->
+        <property name="maxWait" value="${druid.maxWait}"/>
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。 -->
+        <property name="poolPreparedStatements" value="${druid.poolPreparedStatements}"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="${druid.maxPoolPreparedStatementPerConnectionSize}"/>
+
+        <!-- 检测连接是否有效sql，要求是一个查询语句，如果为null，则后三个参数无效。 -->
+        <property name="validationQuery" value="${druid.validationQuery}"/>
+        <!-- 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。 -->
+        <property name="testWhileIdle" value="${druid.testWhileIdle}"/>
+        <!-- 申请连接时执行 validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+        <property name="testOnBorrow" value="${druid.testOnBorrow}"/>
+        <!-- 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能 -->
+        <property name="testOnReturn" value="${druid.testOnReturn}"/>
+
+        <!-- 间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}"/>
+        <!-- 一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}"/>
+
+        <!-- 打开removeAbandoned功能 -->
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="1800"/>
+        <property name="logAbandoned" value="true"/>
+
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="${druid.filters}"/>
+
+        <!-- 慢查询sql打印 -->
+        <property name="connectionProperties" value="${druid.connectionProperties}"/>
+    </bean>
+
+
+    <!--3.配置SqlSessionFactory对象-->
+    <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property><!--依赖数据源-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <property name="mapperLocations" value="classpath:mappers/*.xml"></property><!--映射文件位置配置-->
+        <property name="typeAliasesPackage" value="com.liuburu.demo.domain"></property><!--实体Bean别名配置-->
+
+    </bean>
+    <!--4.配置扫描DAO接口包-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property><!--依赖SqlSessionFActory-->
+        <property name="basePackage" value="com.ylz.dao"></property><!--接口文件地址配置-->
+    </bean>
+</beans>

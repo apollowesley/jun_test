@@ -1,0 +1,119 @@
+/* pages/chat/chat.wxss */
+page{
+  background-color: rgb(238, 238, 238);
+}
+/* 输入框 */
+.chatInpWrapper{
+  width: 100%;
+  position: fixed;
+  top: auto;
+  bottom: 0;
+  height: 45px;
+  background-color: rgb(243, 243, 243);
+  z-index: 999;
+  padding:5px 0;
+}
+.chatInpWrapper .inputBar .button-sp-area .voiceBtn{
+  display: inline-block;
+  width: 12%;
+  text-align: center;
+  line-height: 55px;
+  height: 45px;
+}
+.voiceBtn .iconfont{
+  font-size: 25px;
+  height: 35px;
+  position: relative;
+  top: -6px;
+  padding: 5px
+}
+.chatInpWrapper .inputBar .button-sp-area .input_box{
+  display: inline-block;
+  padding: 5px 0;
+  height: 35px;
+  transition: width .3s ease;
+}
+.weui-search-bar__box {
+   padding: 0; 
+}
+.weui-search-bar__input{
+  background-color: #fff;
+  display: inline-block;
+  height: 35px;
+  border-radius:5px;
+  transition: width .3s ease;
+  /* 光标颜色真机无效果 */
+  caret-color: #62c9f8;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.chatInpWrapper .inputBar .button-sp-area .icon_part{
+  display: inline-block;
+  padding: 5px 0;
+  height: 35px;
+  transition: width .3s ease;
+  line-height: 55px;
+  position: relative;
+  margin-left: 5px;
+}
+.icon_part .emoji_box{
+  display: inline-block;
+  height: 35px;
+  line-height: 55px;
+  text-align: center;
+  padding: 0 10px;
+  position: relative;
+  width: 30%;
+}
+.icon_part .emoji_box .iconfont{
+  font-size: 25px;
+  display: inline;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.icon_part .add_send{
+  display: inline-block;
+  height: 35px;
+  position: relative;
+  width: 35%;
+}
+.icon_part .add_send .iconfont{
+  font-size: 25px;
+  position: absolute;
+   top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.clickVoice{
+  display: inline-block;
+  width: 60%;
+  height: 35px;
+  border-radius: 5px;
+  /* background-color: #fff; */
+  text-align: center;
+  line-height: 35px;
+  font-size: 14px;
+  position: relative;
+  top: -12px;
+}
+/* 聊天界面 */
+.chatContent{
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+.chatItem{
+  padding: 10px 0; 
+}
+.chat_scroll{
+    padding-bottom: 55px;
+}
+.weui-loading__wrp{
+  text-align:center;
+}
+
+@import '../../template/chatother/chatother.wxss';
+@import '../../template/chatself/chatself.wxss'

@@ -1,0 +1,31 @@
+#tomcat config
+server :
+  port : 8081
+  tomcat :
+    max-threads : 128
+    min-spare-threads : 5
+    uri-encoding : UTF-8
+spring :
+  http :
+    multipart :
+      maxRequestSize : 100MB
+      maxFileSize : 10MB
+  redis:
+      host: 192.168.0.200
+      database: 0
+      port: 6379
+  datasource :
+      driverClassName : com.mysql.jdbc.Driver
+      username : root
+      password : 123456
+      url : jdbc:mysql://192.168.0.200:3306/platform?useUnicode=true&amp;characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+      hikari:
+        maxLifetime: 1765000
+        maximumPoolSize: 15
+mybatis :
+  mapperLocations : classpath*:mybatis/*/*.xml
+  executor-type : reuse
+  type-aliases-package : com.*.model
+  configuration :
+    map-underscore-to-camel-case : true
+

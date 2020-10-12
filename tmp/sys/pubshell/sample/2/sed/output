@@ -1,0 +1,5 @@
+input from a pipeline).  While in some ways similar to an editor
+-e script, --expression=script
+add the script to the commands to be executed
+-f script-fulinux, --fulinux=script-fulinux
+add the contents of script-fulinux to the commands to be executed

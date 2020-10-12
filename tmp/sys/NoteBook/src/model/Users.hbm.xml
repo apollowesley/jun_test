@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="model">
+ <class lazy="true" name="Users" table="users">
+  <id name="userid" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="true" name="username" type="java.lang.String">
+   <column length="64" name="username" unique="true"/>
+  </property>
+  <property generated="never" lazy="true" name="password" type="java.lang.String">
+   <column length="64" name="password"/>
+  </property>
+  <!-- getMessages属性 <list name="sendMessages"> <list-index column=""/> <key 
+			column="getter_id" /> <one-to-many class="Message"/> </list> -->
+	<!-- 一对多 -->
+  <set lazy="extra" name="sendMessages" sort="unsorted">
+  <!-- 外键名 -->
+   <key column="sender_id"/>
+   <one-to-many class="Message"/>
+  </set>
+  <set fetch="select" lazy="extra" name="getMessages" sort="unsorted">
+   <key column="getter_id"/>
+   <one-to-many class="Message"/>
+  </set>
+ </class>
+</hibernate-mapping>

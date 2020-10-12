@@ -1,0 +1,81 @@
+package com.feiynn.{{modelPrefixLowercase}}.model;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+{{#need_transform}}
+import com.feiynn.common.base.annotations.Transform;
+import com.feiynn.common.base.annotations.TransformStrategy;
+{{/need_transform}}
+
+@Entity
+@Table(name = "{{tableName}}")
+public class {{modelUppercase}} {
+
+	@Id
+	@Column(name = "id", length = 36)
+	@javax.persistence.GeneratedValue(generator = "uuid2")
+	@org.hibernate.annotations.GenericGenerator(name = "uuid2",
+			strategy = "uuid2")
+	private String id;//表主键
+	
+	@Column(name = "CREATE_TIME", nullable = true)
+	private Date createTime = new Date();//创建时间
+	
+	@Column(name = "STATE", nullable = true, columnDefinition = "INT default 0")
+	private int state = 0;//状态，0为否，1为是
+	
+	{{#fields_list}}
+	@Column(name = "{{name}}", nullable = {{nullable}} {{#needLength}},length = {{length}}{{/needLength}} {{#needColumnDefinition}},columnDefinition = {{{columnDefinition}}}{{/needColumnDefinition}} )
+	private {{fieldType}} {{fieldName}} = {{{initValue}}};// {{{comment}}}
+	
+	{{/fields_list}}
+	
+	{{#need_transform}}
+	{{#transform_list}}
+	@Transient
+	@Transform(ref = "type", strategy = TransformStrategy.id2name, springBeanName = "sysDictMgrImpl")
+	private String {{fieldName}};
+	
+	{{/transform_list}}
+	{{/need_transform}}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+	
+	{{#fields_get_and_set_list}}
+	public {{fieldType}} get{{fieldNameUpperCamel}}() {
+		return {{fieldName}};
+	}
+
+	public void set{{fieldNameUpperCamel}}({{fieldType}} {{fieldName}}) {
+		this.{{fieldName}} = {{fieldName}};
+	}
+	
+	{{/fields_get_and_set_list}}
+}

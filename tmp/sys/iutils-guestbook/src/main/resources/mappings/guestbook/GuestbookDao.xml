@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iutils.guestbook.dao.GuestbookDao">
+
+    <sql id="GuestbookColumns">
+        a.id as "id",
+        a.channel as "channel",
+        a.type as "type",
+        a.content as "content",
+        a.name as "name",
+        a.email as "email",
+        a.phone as "phone",
+        a.report as "report",
+        a.ip as "ip",
+        a.create_date as "createDate",
+        a.update_by as "updateBy",
+        a.update_date as "updateDate",
+        a.re_content as "reContent",
+        a.status as "status"
+    </sql>
+
+    <sql id="GuestbookJoins">
+
+    </sql>
+
+    <select id="get" resultType="cn.iutils.guestbook.entity.Guestbook">
+        SELECT
+        <include refid="GuestbookColumns"/>
+        FROM plug_guestbook a
+        <include refid="GuestbookJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="cn.iutils.guestbook.entity.Guestbook">
+        SELECT
+        <include refid="GuestbookColumns"/>
+        FROM plug_guestbook a
+        <include refid="GuestbookJoins"/>
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(1) FROM plug_guestbook a
+        <where>
+          <if test="page.entity!=null and page.entity.channel!=null and page.entity.channel!=''">
+              and a.channel = #{page.entity.channel}
+          </if>
+        </where>
+    </select>
+
+    <select id="findPage" resultType="cn.iutils.guestbook.entity.Guestbook">
+        SELECT <include refid="GuestbookColumns"/>,up.upCount as "upCount",down.downCount as "downCount" FROM plug_guestbook a
+        left join (select content_id,a.hits as "downCount" from plug_down a where a.channel='guestbook') down on a.id=down.content_id
+        left join (select content_id,a.hits as "upCount" from plug_up a where a.channel='guestbook') up on a.id=up.content_id
+        <where>
+            <if test="page.entity!=null and page.entity.channel!=null and page.entity.channel!=''">
+                and a.channel = #{page.entity.channel}
+            </if>
+        </where>
+        <if test="page.orderBy!=''">
+            ORDER BY ${page.orderBy} LIMIT ${page.pageNo*page.pageSize},${page.pageSize}
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into plug_guestbook(
+                channel,type,content,name,email,phone,report,ip,create_date,status
+        )
+        values(
+                #{channel},#{type},#{content},#{name},#{email},#{phone},#{report},#{ip},#{createDate},#{status}
+        )
+    </insert>
+
+    <!-- 回复 -->
+    <update id="reply">
+      update plug_guestbook set
+                re_content=#{reContent},
+                update_by=#{updateBy},
+                update_date=#{updateDate}
+        where id=#{id}
+    </update>
+
+    <!-- 举报 -->
+    <update id="report">
+        update plug_guestbook set report=report+1 where id=#{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="delete">
+        delete from plug_guestbook where id=#{id}
+    </delete>
+</mapper>

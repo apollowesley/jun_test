@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射Mapper-->
+<mapper namespace="pers.man.quickdevcore.system.persistence.log.LoginLogMapper">
+
+<!--    &lt;!&ndash;映射结果集&ndash;&gt;-->
+<!--    <resultMap id="BaseResultMap" type="pers.man.quickdevcore.system.entity.log.LoginLog">-->
+<!--        <result property="id" column="id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+<!--        <result property="createTime" column="create_time" javaType="java.time.LocalDateTime" jdbcType="DATE"/>-->
+<!--        <result property="updateTime" column="update_time" javaType="java.time.LocalDateTime" jdbcType="DATE"/>-->
+<!--    </resultMap>-->
+<!--    &lt;!&ndash; 表名&ndash;&gt;-->
+<!--    <sql id="Table">-->
+<!--        system_log-->
+<!--    </sql>-->
+<!--    &lt;!&ndash;基本语句&ndash;&gt;-->
+<!--    <sql id="BaseInsert">-->
+<!--        INSERT INTO-->
+<!--        <include refid="Table"/>-->
+<!--    </sql>-->
+<!--    <sql id="BaseDelete">-->
+<!--        DELETE FROM-->
+<!--        <include refid="Table"/>-->
+<!--        WHERE 1 = 1-->
+<!--    </sql>-->
+<!--    <sql id="BaseUpdate">-->
+<!--        UPDATE-->
+<!--        <include refid="Table"/>-->
+<!--    </sql>-->
+<!--    <sql id="BaseSelect">-->
+<!--        SELECT * FROM-->
+<!--        <include refid="Table"/>-->
+<!--        WHERE 1 = 1-->
+<!--    </sql>-->
+
+<!--        &lt;!&ndash;根据id查询一个实体&ndash;&gt;-->
+<!--        <select id="getById" parameterType="java.lang.String" resultMap="BaseResultMap">-->
+<!--            <include refid="BaseSelect"/>-->
+<!--            AND id = #{id}-->
+<!--        </select>-->
+
+<!--        &lt;!&ndash;查询所有实体&ndash;&gt;-->
+<!--        <select id="listAll" resultMap="BaseResultMap">-->
+<!--            <include refid="BaseSelect"/>-->
+<!--        </select>-->
+
+<!--        &lt;!&ndash;统计所有实体的数量&ndash;&gt;-->
+<!--        <select id="count" resultType="java.lang.Long">-->
+<!--            SELECT COUNT(*) FROM <include refid="Table"/>-->
+<!--        </select>-->
+
+<!--    &lt;!&ndash;保存一个实体&ndash;&gt;-->
+<!--    <insert id="save" parameterType="pers.man.quickdevcore.system.entity.log.Log">-->
+<!--        <include refid="BaseInsert"/>-->
+<!--        (-->
+<!--        <if test="id != null">id</if>-->
+<!--        <if test="createTime != null">,create_time</if>-->
+<!--        <if test="updateTime != null">,update_time</if>-->
+<!--        )-->
+<!--        VALUES-->
+<!--        (-->
+<!--        <if test="id != null">#{id}</if>-->
+<!--        <if test="createTime != null">,#{createTime}</if>-->
+<!--        <if test="updateTime != null">,#{updateTime}</if>-->
+<!--        )-->
+<!--    </insert>-->
+
+    <!--    &lt;!&ndash;保存多个实体&ndash;&gt;-->
+    <!--    <insert id="bathSave" parameterType="java.util.List">-->
+    <!--        <include refid="BaseInsert"/>-->
+    <!--        <foreach collection="list" item="item" separator=",">-->
+    <!--            (#{属性名})-->
+    <!--        </foreach>-->
+    <!--    </insert>-->
+
+    <!--    &lt;!&ndash;更新一个实体&ndash;&gt;-->
+    <!--    <update id="update" parameterType="">-->
+    <!--        <include refid="BaseUpdate"/>-->
+    <!--        <set>-->
+    <!--            <if test="属性名 != null and 属性名 != '' ">#{属性名}</if>-->
+    <!--        </set>-->
+    <!--        WHERE id = #{id}-->
+    <!--    </update>-->
+
+    <!--    &lt;!&ndash;删除一个实体&ndash;&gt;-->
+    <!--    <delete id="removeById" parameterType="">-->
+    <!--        <include refid="BaseDelete"/>-->
+    <!--        AND id = #{id}-->
+    <!--    </delete>-->
+
+    <!--    &lt;!&ndash;批量删除&ndash;&gt;-->
+    <!--    <delete id="bathRemoveByIds" parameterType="">-->
+    <!--        <include refid="BaseDelete"/>-->
+    <!--        <foreach collection="array" item="item" open="(" separator="," close=")">-->
+    <!--            #{属性名}-->
+    <!--        </foreach>-->
+    <!--    </delete>-->
+</mapper>

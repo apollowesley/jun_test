@@ -1,0 +1,1 @@
+select cu.identifier as '编号',cu.name as '名称',cu.birthday as '出生日期' from CardUser cu

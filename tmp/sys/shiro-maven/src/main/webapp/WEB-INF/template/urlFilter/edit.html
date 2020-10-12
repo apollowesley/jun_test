@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="${request.contextPath}/static/css/css.css">
+    <link rel="stylesheet" href="${request.contextPath}/static/JQuery zTree v3.5.15/css/zTreeStyle/zTreeStyle.css">
+    <style>
+        ul.ztree {margin-top: 10px;border: 1px solid #617775;background: #f0f6e4;width:220px;height:200px;overflow-y:scroll;overflow-x:auto;}
+    </style>
+
+</head>
+<body>
+
+    <form method="post" action='${request.contextPath} ${((urlFilter.id)!?has_content)?string("update","create")}'>
+        <hidden path="id"/>
+
+        <div class="form-group">
+            <label path="name">名称：</label>
+            <input name="name" value="${urlFilter.name!}"/>
+        </div>
+
+        <div class="form-group">
+            <label path="url">URL：</label>
+            <input name="url" value="${urlFilter.url!}"/>
+        </div>
+
+        <div class="form-group">
+            <label path="roles">角色列表：</label>
+            <input name="roles" value="${urlFilter.roles!}"/>
+        </div>
+
+        <div class="form-group">
+            <label path="permissions">权限列表：</label>
+            <input name="permissions" value="${urlFilter.permissions!}"/>
+        </div>
+
+        <button>${op}</button>
+
+    </form>
+
+</body>
+</html>

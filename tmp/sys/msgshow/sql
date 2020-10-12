@@ -1,0 +1,97 @@
+/*
+SQLyog Enterprise v12.3.1 (64 bit)
+MySQL - 5.7.3-m13 : Database - javahome
+*********************************************************************
+*/
+
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`javahome` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `javahome`;
+
+/*Table structure for table `msgnote` */
+
+DROP TABLE IF EXISTS `msgnote`;
+
+CREATE TABLE `msgnote` (
+  `msguuid` varchar(255) NOT NULL,
+  `msgusername` varchar(255) DEFAULT NULL,
+  `msguserpicture` varchar(255) DEFAULT NULL,
+  `msgdate` varchar(255) DEFAULT NULL,
+  `msgcontent` varchar(4500) DEFAULT NULL,
+  `msgmainid` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`msguuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `msgnote` */
+
+insert  into `msgnote`(`msguuid`,`msgusername`,`msguserpicture`,`msgdate`,`msgcontent`,`msgmainid`) values 
+
+('03ed1c48-d11e-4f54-a879-d083ebd4a857','信辽孔煞狡','/static/images/tx.jpg','2019-03-31 17:20','<img src=\"/static/images/mb_thumb.gif\" title=\"[太开心]\">',''),
+
+('0a73daea-19bb-4dc2-9a98-72c448f72ea7','斥','/static/images/tx.jpg','2019-03-31 16:59','阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿',''),
+
+('0fca8224-e563-4dc2-8110-012f63a4c557','慑倪','/static/images/tx.jpg','2019-03-31 10:42','dddddddd ','1fdcd7a2-8acc-4a5a-8a53-41cf8f2b733a'),
+
+('1fdcd7a2-8acc-4a5a-8a53-41cf8f2b733a','辉寅支扫沾刨','/static/images/tx.jpg','2019-03-30 22:34','<img src=\"/static/images/tza_thumb.gif\" title=\"[可爱]\">',''),
+
+('4ed341f4-db7f-47e5-83b6-b97bfdb6c1d3','耀氨呸繁容','/static/images/tx.jpg','2019-03-31 15:47','热热热热热热热热热热热热热热热热热热热热热热热热热热','97067535-0ed7-4a6d-b998-8c88d7720bf0'),
+
+('69dd16cf-3d32-4980-948a-4b857307b730','杭妮帖燃撂','/static/images/tx.jpg','2019-03-31 17:00','啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦',''),
+
+('6a0190c6-4a96-4daa-9f67-0175f00ee373','颜绽主雄','/static/images/tx.jpg','2019-03-31 15:50','chennianchen','1fdcd7a2-8acc-4a5a-8a53-41cf8f2b733a'),
+
+('92ff15a4-c32a-488c-ab6e-3a304c12b6af','缉朵额被','/static/images/tx.jpg','2019-03-31 17:00','iiiiiiiiiiiiiiiiiiiiiiiiiiiiii',''),
+
+('97067535-0ed7-4a6d-b998-8c88d7720bf0','佳匈','/static/images/tx.jpg','2019-03-31 11:01','dddddddddddddddd<img src=\"/static/images/tza_thumb.gif\" title=\"[可爱]\">',''),
+
+('a4ab8611-d49a-4539-877c-f5c3d3f0b896','谁就屁扣媚男','/static/images/tx.jpg','2019-03-31 17:00','噢噢噢噢噢噢噢噢噢噢噢噢噢噢哦',''),
+
+('d2067e51-9534-4642-9ec8-e7e88604e79b','抽硅希益勘迸','/static/images/tx.jpg','2019-03-31 17:00','灌灌灌灌灌灌灌灌灌灌灌灌灌灌灌灌灌灌灌灌灌',''),
+
+('eaf70ac7-b9f8-42d7-aa1e-d33a43883b19','彻','/static/images/tx.jpg','2019-03-31 17:00','uuuuuuuuuuuu',''),
+
+('f386940c-06d2-4630-9f4a-6322d093d62b','邑痢鸦键灿调潞','/static/images/tx.jpg','2019-03-31 10:53','但地对地导弹地对地导弹','1fdcd7a2-8acc-4a5a-8a53-41cf8f2b733a');
+
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int(11) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  `user_password` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `user` */
+
+insert  into `user`(`id`,`user_name`,`user_password`) values 
+
+(1,'1','1'),
+
+(2,'2','2'),
+
+(4,'3','33'),
+
+(5,'5','5'),
+
+(6,'7','7'),
+
+(7,'7','7'),
+
+(88,'8','8'),
+
+(9,'9','9');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

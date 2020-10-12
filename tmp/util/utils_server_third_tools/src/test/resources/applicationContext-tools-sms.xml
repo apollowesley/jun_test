@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+           
+	<bean id="mengWang" class="com.zyguo.tools.sms.MengWangSMS">
+		<property name="url" value="http://61.145.229.29:9006/MWGate/wmgw.asmx/MongateCsSpSendSmsNew" />
+		<property name="userId" value="J01782" />
+		<property name="password" value="391328" />
+	</bean>
+
+	<bean id="yiMei" class="com.zyguo.tools.sms.YiMeiSMS">
+		<!-- 国内号 -->
+		<property name="url"
+			value="https://sdk999ws.eucp.b2m.cn/sdkproxy/sendsms.action" />
+		<property name="userId" value="9SDK-EMY-0999-JDQQR" />
+		<property name="password" value="252121" />
+		<!-- 国际号 -->
+		<property name="gjUrl"
+			value="https://sdk5intws.emay.cn/sdkproxy/sendsms.action" />
+		<property name="gjUserId" value="6INT-EMY-6600-JCYMQ" />
+		<property name="gjPassword" value="100739" />
+	</bean>
+	
+	<bean id="twilio" class="com.zyguo.tools.sms.TwilioSMS">
+		<property name="url" value="ACeaa2660987e01346fc0db37cc67830dc" />
+		<property name="password" value="56460154aa31570b9c990033ec514c9a" />
+		<property name="userId" value="+15085705424" />
+	</bean>
+	
+	<bean id="nexmo" class="com.zyguo.tools.sms.NexmoSMS">
+		<property name="key" value="a42ba1b6" />
+		<property name="secret" value="8a896831" />
+		<property name="company" value="Bilin" />
+		<property name="usa" value="15099551800" />
+		<property name="url" value="https://rest.nexmo.com/sms/json" />
+	</bean>
+</beans>

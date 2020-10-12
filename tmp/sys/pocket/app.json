@@ -1,0 +1,41 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/me/me",
+    "pages/index/login/login",
+    "pages/plus/plus",
+    "pages/edit/edit",
+    "pages/jump/jump"
+  ],
+  "window":{
+    "backgroundTextStyle":"#1296db",
+    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarTitleText": "喜尚记账",
+    "navigationBarTextStyle":"#fff"
+  },
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#1296db",
+    "borderStyle": "white",
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "text":"明细",
+          "iconPath": "icon/book-g.png",
+          "selectedIconPath": "icon/book-b.png"
+        },
+        {
+          "pagePath": "pages/jump/jump",
+          "iconPath": "icon/plus.png",
+          "text":"记账",
+          "selectedIconPath": "icon/plus.png"
+        },
+        {
+          "pagePath": "pages/me/me",
+          "text": "我的",
+          "iconPath": "icon/me-g.png",
+          "selectedIconPath": "icon/me-b.png"
+        }
+      ]
+  }
+}

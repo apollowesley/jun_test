@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.course.dao.StudentDao">
+	<resultMap id="BaseResultMap" type="com.course.model.Student">
+		<id column="sId" property="sId" jdbcType="BIGINT" />
+		<result column="sName" property="sName" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="DECIMAL" />
+		<result column="classId" property="classId" jdbcType="BIGINT" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="phoneNum" property="phoneNum" jdbcType="VARCHAR" />
+        <result column="bId" property="bId" jdbcType="BIGINT" />
+	</resultMap>
+	
+	<!-- 基础操作列-->
+	<sql id="Base_Column_List" >
+		sId, sName, gender, classId, email, phoneNum,bId
+	</sql>
+
+    <!-- 查询学生Model -->
+	<select id="getStudentBySId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from student
+		where sId = #{_parameter,jdbcType=BIGINT}
+	</select>
+
+    <!-- 插入学生Model -->
+    <insert id="insertStudent" parameterType="com.course.model.Student">
+        insert into student
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="sId != null" >
+                sId,
+            </if>
+            <if test="sName != null" >
+                sName,
+            </if>
+            <if test="gender != null" >
+                gender,
+            </if>
+            <if test="classId != null" >
+                classId,
+            </if>
+            <if test="email != null" >
+                email,
+            </if>
+            <if test="phoneNum != null" >
+                phoneNum,
+            </if>
+            <if test="bId != null" >
+                bId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="sId != null" >
+                #{sId,jdbcType=BIGINT},
+            </if>
+            <if test="sName != null" >
+                #{sName,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null" >
+                #{gender,jdbcType=DECIMAL},
+            </if>
+            <if test="classId != null" >
+                #{classId,jdbcType=BIGINT},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNum != null" >
+                #{phoneNum,jdbcType=VARCHAR},
+            </if>
+            <if test="bId != null" >
+                #{bId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新用户信息 -->
+    <update id="updateStudentById" parameterType="com.course.model.Student" >
+        update student
+        <set >
+            <if test="sName != null" >
+                sName = #{sName},
+            </if>
+            <if test="gender != null" >
+                gender = #{gender},
+            </if>
+            <if test="classId != null" >
+                classId = #{classId},
+            </if>
+            <if test="email != null" >
+                email = #{email},
+            </if>
+            <if test="phoneNum != null" >
+                phoneNum  = #{phoneNum},
+            </if>
+            <if test="bId != null" >
+                bId  = #{bId},
+            </if>
+
+        </set>
+        where sId = #{sId}
+    </update>
+
+    <!-- 根据id删除用户帐号 -->
+    <delete id="deleteStudent" parameterType="Long" >
+        delete from student
+        where sId in
+        <foreach collection="array" close=")" open="(" separator="," item="sId" >
+            #{sId,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+    <select id="orderTest" resultMap="BaseResultMap">
+        select
+        *
+        from student
+        where sId in (1,7,10,11) order by gender
+    </select>
+
+
+    <delete id="deleteAll"  >
+        delete from student
+    </delete>
+
+  
+</mapper>

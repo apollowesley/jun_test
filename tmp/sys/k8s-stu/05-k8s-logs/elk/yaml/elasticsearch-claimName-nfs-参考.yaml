@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: elasticsearch
+  name: elasticsearch
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: elasticsearch
+    spec:
+      containers:
+      - env:
+        - name: ES_JAVA_OPTS
+          value: -Xms512m -Xmx512m
+        - name: bootstrap.memory_lock
+          value: "false"
+        - name: cluster.name
+          value: docker-cluster
+        image: 10.10.31.205/k8s/elasticsearch:6.5.3
+        name: elasticsearch
+        ports:
+        - containerPort: 9200
+        resources: {}
+        volumeMounts:
+        - mountPath: /usr/share/elasticsearch/data
+          name: kompose-esdata1
+      restartPolicy: Always
+      volumes:
+      - name: kompose-esdata1
+        persistentVolumeClaim:
+          claimName: my-nfs 
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: elasticsearch
+  name: elasticsearch
+spec:
+  ports:
+  - name: "9200"
+    port: 9200
+    targetPort: 9200
+  selector:
+    io.kompose.service: elasticsearch
+status:
+  loadBalancer: {}

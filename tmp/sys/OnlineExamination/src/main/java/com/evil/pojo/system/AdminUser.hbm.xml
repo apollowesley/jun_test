@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="com.evil.pojo.system.AdminUser" table="tb_adminUsers">
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="name" column="name" type="string"
+			length="50" />
+		<property name="password" column="password" type="string"
+			length="50" />
+		<property name="regdate" column="regdate" type="timestamp"
+			update="false" />
+
+		<!-- 映射User到Role的多对多关联关系 -->
+		<set name="roles" table="tb_adminUsers_role" lazy="false">
+			<key column="adminUserid" />
+			<many-to-many column="roleid" class="com.evil.pojo.system.Role" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+server:
+  port: 8004
+spring:
+  redis:
+    host: 127.0.0.1
+    password: 123456
+    port: 6379
+  application:
+    name: jfast-web-zuul
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+zuul:
+  host:
+    connect-timeout-millis: 30000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 30000   #socket超时
+  routes:
+    jfast-web-auth:
+      path: /auth/**
+    jfast-web-api-admin:
+      path: /system/**
+  sensitive-headers: '*' #为空解决转发服务token丢失
+  ribbon:
+    eager-load: true
+# 注册中心配置
+eureka:
+  client:
+    # 是否将自己注册到注册中心
+    register-with-eureka: true
+    # 是否从注册中心获取注册信息
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+
+

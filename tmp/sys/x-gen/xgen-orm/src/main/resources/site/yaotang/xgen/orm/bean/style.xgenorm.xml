@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="site.yaotang.xgen.orm.bean.Style" table="txg_om_style">
+	<id name="styleId" column="fstyle_id" autoIncrement="true"/>
+	<property name="style" column="fstyle" defaultValue="freeStyle"/>
+	<oneToMany name="bookList" class="site.yaotang.xgen.orm.bean.Book">
+		<key field="styleId" column="fstyle_id" />
+	</oneToMany>
+</class>

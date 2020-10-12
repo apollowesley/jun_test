@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/context
+	 http://www.springframework.org/schema/context/spring-context.xsd
+	 http://www.springframework.org/schema/mvc
+	 http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--开启注解-->
+    <mvc:annotation-driven/>
+    <!--配置spring扫描根目录，扫到即转成Bean-->
+    <context:component-scan base-package="com.uei.web.controller" use-default-filters="false">
+        <!--扫描过滤条件，这里只扫描注解为 @Ctronller的类-->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--设置freeMarker配置文件路径-->
+    <bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:freemarker.properties"/>
+    </bean>
+    <!--freemarker 模板字符转义-->
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+    <!--配置freeMarker -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <!--设置配置参数-->
+        <property name="freemarkerSettings" ref="freemarkerConfiguration"/>
+        <!--设置模板路径,spring将从这个目录下寻找freemarker页面-->
+        <property name="templateLoaderPath" value="/WEB-INF/views/"/>
+        <!--freemarker 参数 可自定义freemarker方法-->
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml-escape" value-ref="fmXmlEscape"/>
+            </map>
+        </property>
+    </bean>
+    <!--配置视图解析器-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <!--视图解析类-->
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <!--视图名-->
+        <property name="viewNames" value="*.html"/>
+        <property name="contentType" value="text/html;charset=utf-8"/>
+        <property name="cache" value="true"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=""/>
+        <property name="order" value="0"/>
+        <!--将request请求内容绑定到freemarker内置变量request上-->
+        <property name="requestContextAttribute" value="request"/>
+    </bean>
+    <!-- 配置基于Session的处理,将提交上来的locale参数进行处理 -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
+    <!--静态资源配置，web.xml中配置spring会拦截一切请求，这里设置会对/static路径下资源请求放行-->
+    <mvc:resources mapping="/static/**" location="/static/*"/>
+</beans>

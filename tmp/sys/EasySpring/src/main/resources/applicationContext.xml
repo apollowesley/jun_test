@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置文件指定spring启动需要实例化的所有类，实例化之后同时注入相应的依赖关系，以及类的运行周期-->
+
+    <!-- 配置了component-scan此条可以注释 -->
+    <!--<context:annotation-config />-->
+
+    <!--<context:component-scan base-package="com.xxx, com.yyy"/>-->
+
+    <bean class="com.tinymood.bean.beanpostprocessor.MyBeanPostProcessor"></bean>
+    <!--我们先把BeanFactoryPostProcessor注释掉，不启用,然后查看测试输出结果-->
+    <bean class="com.tinymood.bean.beanpostprocessor.MyBeanFactoryPostProcessor"></bean>
+
+    <bean id="user" class="com.tinymood.bean.beanpostprocessor.User" >
+        <property name="username" value="test1"></property>
+        <property name="password" value="password1"></property>
+    </bean>
+
+</beans>

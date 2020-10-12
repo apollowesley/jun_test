@@ -1,0 +1,24 @@
+######---------------   系统配置   ----------------######
+tg:
+  system:
+    #templateName: tg-test # *必填*  模板名称 
+    #mappingsFileName: mappings-postgresql-java.xml # *必填* 类型映射配置文件名
+    defultFieldType: String # *必填* 默认字段类型，当找不到匹配类型的时候，使用默认类型
+    #showDetailLogs: false # 是否显示详细日志，默认false
+    projectName: tg-demo #  *必填*  项目名称
+    basePackage: com.turingoal.demo # *必填*  包名
+    datasourceUrl: jdbc:postgresql://localhost:5432/tg-test  ### *必填*  连接池url  postgresql ###
+    #datasourceUrl: jdbc:sqlite:D:data/tg-test  ### *必填*  连接池url  sqlite ###
+    #datasourceUrl: jdbc:mysql://localhost:3306/tg-test  ### *必填*  连接池url  mysql ###
+    #datasourceUrl: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=tg-test  ### *必填*  连接池url  sqlServer ###
+    #datasourceUrl: jdbc:oracle:thin:@localhost:1521:tg-test  ### *必填*  连接池url  oracle ###
+    datasourceUsername: user ###  连接池用户名  ###
+    datasourcePassword: 123456  ###  连接池密码    ### 
+    projectTitle: 图灵谷demo项目 # 项目标题
+    projectTitleShort: 图灵谷demo # 项目标题（短）
+    projectDesc: 图灵谷demo演示项目 # 项目描述
+    #prefixsNeedRemove: tg_c_,tg_m_ # 需要移除的前缀，英文逗号分隔
+    #ignoreTables: tg_c_file,tg_c_log # 需要忽略的表，英文逗号分隔
+    #schema: public # 数据库schema，默认为 public
+    #templateBaseDir: E:/templates/  # 模板目录，下面可能有多套模板。 默认为项目同级目录下的templates
+    #outputBaseDir: E:/output/ # 输出目录 。 默认为项目同级目录下的output

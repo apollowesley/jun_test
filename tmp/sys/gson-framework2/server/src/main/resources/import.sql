@@ -1,0 +1,12 @@
+INSERT INTO `fw_company`(`id`, `create_date`, `update_date`, `address`, `code`, `contact`, `email`, `legal`, `name`, `simple_name`, `telephone`) VALUES (1, '2019-01-25 20:50:53', '2019-01-25 20:50:55', '湖南省株洲市天元区', '91430211MA4PQLN530', '夏悸', 'wmails@126.com', '夏悸', '湖南嗨联信息科技有限公司', '嗨联科技', '18676675665');
+INSERT INTO `fw_department`(`id`, `create_date`, `update_date`, `address`, `name`, `company_id`, `parent_id`) VALUES (1, '2019-01-25 20:55:45', '2019-01-25 20:55:47', '希尔顿', 'It信息部', 1, NULL);
+INSERT INTO `fw_employees`(`id`, `create_date`, `update_date`, `address`, `city`, `county`, `email`, `entry_date`, `gender`, `id_code`, `job_number`, `leave_date`, `province`, `status`, `telephone`, `type`, `user_name`, `company_id`, `master_department_id`) VALUES (1, '2019-01-25 20:57:18', '2019-01-25 20:57:19', '天元区恒大华府1栋1709', '株洲市', '天元区', 'wmails@126.com', '2019-01-25', '男', '430281198909137896', 'it001', NULL, '湖南省', '正式', '18688886666', '全职', '夏悸', 1, 1);
+INSERT INTO `fw_employees_departments`(`employees_id`, `department_id`) VALUES (1, 1);
+INSERT INTO `fw_account`(`id`, `create_date`, `update_date`, `account`, `password`, `status`, `telephone`, `employees_id`) VALUES (1, '2019-01-25 21:00:46', '2019-01-25 21:00:48', 'admin', '$2a$10$edZtj2e3xV/6dNOmO3sNq.5Qr7GjXnYMgyVY.O9TMZ4sIHxyYofyy', '可用', '18688886666', 1);
+INSERT INTO `fw_position`(`id`, `create_date`, `update_date`, `name`, `rank`, `company_id`) VALUES (1, '2019-01-25 21:01:38', '2019-01-25 21:01:40', 'CTO', 0, 1);
+INSERT INTO `fw_employees_positions`(`employees_id`, `position_id`) VALUES (1, 1);
+INSERT INTO `fw_department_leaders`(`department_id`, `employees_id`) VALUES (1, 1);
+INSERT INTO `fw_role`(`id`, `create_date`, `update_date`, `name`, `rank`, `status`, `company_id`) VALUES (1, '2019-01-25 21:03:30', '2019-01-25 21:03:32', '部门经理', 0, '可用', 1);
+INSERT INTO `fw_account_roles`(`account_id`, `role_id`) VALUES (1, 1);
+INSERT INTO `fw_role_authority`(`role_id`, `authority`) VALUES (1, 'index');
+INSERT INTO `fw_role_authority`(`role_id`, `authority`) VALUES (1, 'user');

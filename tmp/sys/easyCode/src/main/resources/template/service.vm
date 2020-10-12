@@ -1,0 +1,53 @@
+package ${packageName};
+
+#foreach($im in ${importList})
+import ${im};
+#end
+import com.dexcoder.assistant.pager.Pager;
+
+/**
+ * ${table.desc}service接口
+ *
+ * User: ${constant_creator}
+ * Date: ${date}
+ */
+public interface  ${serviceGeneratedShotClassName} {
+
+    /**
+     * 新增记录
+     *
+     * @param ${modelVoFirstLowerGeneratedClassName}
+     */
+    public void insert(${modelVoGeneratedShotClassName} ${modelVoFirstLowerGeneratedClassName});
+
+    /**
+     * 获取记录
+     *
+     * @param id
+     * @return
+     */
+    public ${modelVoGeneratedShotClassName} get(Long id);
+
+    /**
+     * 更新
+     *
+     * @param ${modelVoFirstLowerGeneratedClassName}
+     */
+    public void update(${modelVoGeneratedShotClassName} ${modelVoFirstLowerGeneratedClassName});
+
+    /**
+     * 删除记录
+     *
+     * @param id
+     */
+    public void delete(Long id);
+
+    /**
+     * 查询列表
+     *
+     * @param ${modelVoFirstLowerGeneratedClassName}
+     * @return
+     */
+    public Pager queryList(${modelVoGeneratedShotClassName} ${modelVoFirstLowerGeneratedClassName});
+
+}

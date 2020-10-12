@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.1.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true"/>
+    <util:properties id="configProperties" location="classpath:config.properties" />
+
+    <context:component-scan base-package="com.cnit1818"/>
+
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJacksonHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--<bean class="com.wfj.mq.utils.InstantiationTracingBeanPostProcessor"/>-->
+<!--
+    <bean id="timeAspect" class="com.wfj.mq.aop.TimeAspect"/>
+    <aop:config>
+        <aop:aspect id="TestAspect" ref="timeAspect">
+            &lt;!&ndash;配置com.spring.service包下所有类或接口的所有方法&ndash;&gt;
+            <aop:pointcut id="businessService" expression="execution(* com.wfj.mq.service.*.*(..))" />
+            <aop:around pointcut-ref="businessService" method="doAround"/>
+        </aop:aspect>
+    </aop:config>
+-->
+
+</beans>

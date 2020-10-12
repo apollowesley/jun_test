@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:core="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+	<bean id="userAccounts" class="com.coldfeng.oauth.common.UserAccounts" />
+	<bean id="hellWorldWebService" class="com.coldfeng.webservice.HellWorldWebService"></bean>
+	<bean id="helloWord" class="com.coldfeng.service.HelloWorldService"></bean>
+	<bean id="jsonProvider"
+		class="org.apache.cxf.rs.security.oauth2.provider.OAuthJSONProvider" />
+	<bean id="securityContextFilter" class="com.coldfeng.oauth.manager.SecurityContextFilter">
+		<property name="users">
+			<map>
+				<entry key="laijun" value="123" />
+			</map>
+		</property>
+		<property name="realm" value="Reservations" />
+	</bean>
+
+
+	<bean id="oauthProvider" class="com.coldfeng.oauth.manager.OAuthManager" />
+	<bean id="accessTokenService"
+		class="org.apache.cxf.rs.security.oauth2.services.AccessTokenService">
+		<property name="dataProvider" ref="oauthProvider" />
+	</bean>
+	<bean id="thirdPartyRegService"
+		class="com.coldfeng.oauth.manager.ThirdPartyRegistrationService">
+		<property name="dataProvider" ref="oauthProvider" />
+	</bean>
+	<bean id="thirdPartyAccessService" class="com.coldfeng.oauth.manager.ThirdPartyAccessService">
+		<property name="accounts" ref="userAccounts" />
+	</bean>
+	<!-- <bean id="oAuthFilter" class="org.apache.cxf.rs.security.oauth2.filters.OAuthRequestFilter"> 
+		<property name="dataProvider" ref="oauthProvider" /> </bean> -->
+	<bean id="clientRegistrationConfirmView" class="org.apache.cxf.jaxrs.provider.RequestDispatcherProvider">
+		<property name="resourcePath" value="/forms/registerAppConfirm.jsp" />
+		<property name="logRedirects" value="true" />
+	</bean>
+	<jaxrs:server address="/oauth">
+		<jaxrs:serviceBeans>
+			<ref bean="thirdPartyAccessService" />
+			<ref bean="accessTokenService" />
+			<ref bean="thirdPartyRegService" />
+			<ref bean="hellWorldWebService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:inInterceptors>
+
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+		</jaxrs:inInterceptors>
+		<jaxrs:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+		</jaxrs:outInterceptors>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+			<entry key="xml" value="application/xml" />
+		</jaxrs:extensionMappings>
+		<jaxrs:languageMappings>
+			<entry key="en" value="en-gb" />
+		</jaxrs:languageMappings>
+		<jaxrs:providers>
+			<!-- <ref bean="oAuthFilter" /> -->
+			<ref bean="clientRegistrationConfirmView" />
+			<ref bean="securityContextFilter" />
+			<!-- <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"></bean> -->
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"></bean>
+			<bean
+				class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter">
+			</bean>
+		</jaxrs:providers>
+	</jaxrs:server>
+</beans>

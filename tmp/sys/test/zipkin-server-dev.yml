@@ -1,0 +1,9 @@
+zipkin:
+  storage:
+    type: elasticsearch
+    elasticsearch:
+      cluster: elasticsearch
+      hosts: http://10.5.2.194:9200
+      index: zipkin
+      index-shards: 5
+      index-replicas: 1

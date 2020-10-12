@@ -1,0 +1,32 @@
+<view class='borderbox'>
+    <view class='tbviewlist'>
+        <view class='items onafter heightauto'>
+            <view class='r'>
+                <view class='userhead' style='background-image:url({{rawData.avatarUrl}})'></view>
+            </view>
+            <view class='c'>头像</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>{{list.userKey}}</view>
+            <view class='c'>职位</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>{{list.currentDepart.departname}}</view>
+            <view class='c'>团队</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>{{list.mobilePhone}}</view>
+            <view class='c'>手机号</view>
+        </view>
+        <view class='items' bindtap='goBindUsers' data-userName="{{list.userName}}">
+            <view class='r'>绑定系统用户</view>
+            <view class='c'>系统用户</view>
+        </view>
+             <view class='items' bindtap='goBindUserspass' data-userName="{{list.userName}}">
+            <view class='r'>修改我的密码</view>
+            <view class='c'>修改密码</view>
+        </view>
+    </view>
+</view>
+
+<view class="loginOutBtn" bindtap='loginOutBtn'>退出</view>

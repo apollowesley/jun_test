@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.xinyuan.model.po">
+<!--
+	Created by the Middlegen Hibernate plugin 2.1
+	http://boss.bekk.no/boss/middlegen/
+	http://www.hibernate.org/
+-->
+
+<class
+	name="$!{table.name}"
+	table="$!{table.name}"
+>
+
+	<id
+		name="$!{table.primaryKeyColumn.name.toLowerCase()}"
+		type="$!{table.primaryKeyColumn.type}"
+		column="$!{table.primaryKeyColumn.name}"
+	>
+#if(${table.primaryKeyColumn.type.equals("string")})
+		<generator class="uuid.hex" />
+#else
+		<generator class="sequence">
+			<param name="sequence">$!{table.name}_SEQ</param>
+		</generator>
+#end
+	</id>
+
+#foreach ( $item In ${table.columns} )
+	<property
+		name="$item.name.toLowerCase()"
+		type="$item.type"
+		column="$item.name"
+#if($item.not_null.length()>0)
+		not-null="true"
+#end
+	/>
+#end
+
+	<!-- Associations -->
+
+#foreach ( $item In ${table.importedKeysList} )
+	<!-- bi-directional many-to-one association to $item.pktable_name -->
+	<many-to-one
+		name="$item.pktable_name"
+		class="$item.pktable_name"
+#if($item.not_null.length()>0)
+		not-null="true"
+#else
+		not-null="false"
+#end
+		column="$item.fkcolumn_name" >
+	</many-to-one>
+
+#end
+
+#foreach ( $item In ${table.exportedKeysList} )
+	<!-- bi-directional one-to-many association to ${item.fktable_name} -->
+	<set
+		name="Child${item.fktable_name}"
+		lazy="true"
+		inverse="true"
+		cascade="none"
+	>
+		<key column="${item.fkcolumn_name}" />
+		<one-to-many
+			class="${item.fktable_name}"
+		/>
+	</set>
+
+#end
+</class>
+</hibernate-mapping>

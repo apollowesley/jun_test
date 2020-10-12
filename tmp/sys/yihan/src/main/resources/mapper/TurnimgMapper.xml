@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TurnimgMapper">
+    <insert id="addTurnimg" parameterType="pojo.Turnimg">
+        insert into turnimg values(null,#{src},#{text},#{used},#{level},#{href})
+    </insert>
+    <update id="editTurnimg" parameterType="pojo.Turnimg">
+        update turnimg set src=#{src},text=#{text},used=#{used},level=#{level},href=#{href} where id=#{id}
+    </update>
+    <delete id="DelTurnimgById" parameterType="integer">
+        delete from turnimg where id=#{id}
+    </delete>
+    <select id="getAllImg" resultType="pojo.Turnimg">
+        select * from turnimg order by level
+    </select>
+    <select id="getTurnimgById" resultType="pojo.Turnimg" parameterType="integer">
+        select * from turnimg where id=#{id}
+    </select>
+</mapper>

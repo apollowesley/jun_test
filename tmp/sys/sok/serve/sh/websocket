@@ -1,0 +1,74 @@
+#!/bin/bash
+# # 启动地址路径根据swoole 启动脚本路径修改即可
+
+# $basedir 启动路径
+# 脚本有三个参数 第一个是执行方法 [start|stop|reset]  第2个是服务类型[websocket|http] 第3个是端口号[9501] 
+ 
+
+#basedir="/www/wwwroot/cs.01film.cn"
+basedir=$(dirname $(dirname $(cd "$(dirname "$0")";pwd)))
+echo $basedir
+
+# basedir=$(dirname $(dirname $0))
+# echo $0
+# echo $basedir
+port=${4-9501} #服务端口号 
+udpport=`expr $port + 100`; #udp端口号默认是 端口号+1
+mod=${2-Chat} #启动服务类型 websocket|http
+echo $1 $2
+serve=${3-websocket}
+action=${1-restart}
+echo $port
+check_port() {
+        echo "正在检测端口check_port...$1"
+        netstat -tulpn | grep "\b$1\b"
+}
+
+
+#杀死进程
+stop(){
+
+if check_port $1
+then
+    # pid=$(lsof -F p  -i:$1 | cut -b 2-) #获取进程id
+    kill -9 $(lsof -i:$1 -t) #杀死该端口所有进程
+
+    echo "端口存在is kill-$port OK $pid"
+    echo "端口死亡 no start "
+    DATE_N=`date "+%Y-%m%d %H:%M:%S"`
+    echo "时间：${DATE_N}" >check_port.log #记录死亡日志
+
+else
+if check_port $1
+then
+    stop $1
+fi
+fi
+}
+#开启服务
+start(){
+action=$basedir/serve/$serve/run/$mod.php;
+echo $action "action";
+    php $action;
+}
+goto(){
+case "$1" in
+        "start")
+            start 
+                ;;
+        "stop")
+             stop $port
+             stop $udpport
+                ;;
+        "restart")
+            stop $port
+            stop $udpport
+            start 
+                ;;
+        *)
+                #其它输入
+                echo "output error,please input 1/2/2"
+                ;;
+esac
+}
+goto $action

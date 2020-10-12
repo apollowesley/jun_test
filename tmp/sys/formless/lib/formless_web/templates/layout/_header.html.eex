@@ -1,0 +1,35 @@
+<header class="site-header navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <%= link "Formless", to: Routes.page_path(@conn, :index), class: "navbar-brand" %>
+
+    <div class="navbar-nav mr-auto">
+      <%= if @current_user do %>
+        <%= link "我的数据", to: Routes.table_path(@conn, :index), class: "nav-item nav-link" %>
+      <% end %>
+    </div>
+
+    <div class="navbar-nav">
+      <%= if @current_user do %>
+        <div class="nav-item dropdown">
+          <%= link @current_user.username,
+              to: "#",
+              class: "nav-link dropdown-toggle",
+              data: [toggle: "dropdown"] %>
+          <div class="dropdown-menu dropdown-menu-right">
+            <%= link "更改密码",
+                to: Routes.user_path(@conn, :reset_password),
+                class: "dropdown-item" %>
+            <%= link "退出",
+                to: Routes.session_path(@conn, :delete),
+                method: :delete,
+                class: "dropdown-item",
+                data: [confirm: "确定退出?"] %>
+          </div>
+        </div>
+      <% else %>
+        <%= link "登录", to: Routes.session_path(@conn, :new), class: "nav-item nav-link" %>
+        <%= link "注册", to: Routes.user_path(@conn, :new), class: "nav-item nav-link" %>
+      <% end %>
+    </div>
+  </div>
+</header>

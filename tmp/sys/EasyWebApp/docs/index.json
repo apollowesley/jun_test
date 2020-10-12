@@ -1,0 +1,33 @@
+{
+    "Title":          "EasyWebApp",
+    "Description":    "为<em>jQuery 程序猿</em>打造的<em>单页应用引擎</em>！~",
+    "Main_Nav":       [
+        {
+            "title":    "EasyWebApp"
+        },
+        {
+            "title":        "快速入门",
+            "href":         "ReadMe.md",
+            "autofocus":    true
+        },
+        {
+            "title":    "小试牛刀",
+            "href":     "docs/html/try.html?data=docs/html/try.json"
+        },
+        {
+            "title":     "API 文档",
+            "target":    "_blank",
+            "href":      "docs/API/"
+        },
+        {
+            "title":     "演示程序",
+            "target":    "_blank",
+            "href":      "https://techquery.github.io/GitHub"
+        },
+        {
+            "title":     "开源代码",
+            "target":    "_blank",
+            "href":      "http://git.oschina.net/Tech_Query/EasyWebApp/tree/MVVM/"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+    <head>
+        <meta charset="UTF-8">
+        <title>登录</title>
+        <script type="text/javascript" src="../js/framework/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/app/login.js"></script>
+        <link type="text/css" rel="stylesheet" href="../css/login.css">
+    </head>
+    <body>
+    <img id="loginImg" src="../img/login.jpg"/>
+    <div id="loginDiv">
+        <form id="loginForm" class="login-form" action="/home/doLogin" method="post">
+            <input id="account" type="text" name="account" placeholder="账户" required="required"/>
+            <input id="password" type="password" name="password" placeholder="密码" required="required"/>
+            <input id="kaptcha" maxlength="4" name="kaptcha" placeholder="输入您的图形验证码" required="required">
+            <img style="height: 31px;width: 100px;margin-top: 20px;position: absolute;right: 54px;" title="点击更换"
+                 src="/kaptcha/defaultKaptcha" onclick="this.src='/kaptcha/defaultKaptcha'" /></i>
+            <button id="login-btn" type="submit">登录</button>
+            <p style="color: red;text-align: center" data-th-text="${loginFail}"></p>
+        </form>
+    </div>
+    </body>
+</html>

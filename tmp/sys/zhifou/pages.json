@@ -1,0 +1,196 @@
+{
+    "pages": [ //pages数组中第一项表示应用启动页,
+        {
+            "path": "pages/main/main",
+            "style": {
+                "navigationBarTitleText": "新闻"
+                
+            }
+        },{
+            "path": "pages/news/user/list",
+            "style": {
+                "navigationBarTitleText": "我的新闻"
+                
+            }
+        },
+         {
+            "path": "pages/update/index",
+            "style": {
+                "navigationBarTitleText": "更新"
+            }
+        }, {
+            "path": "pages/news/detail",
+            "style": {
+                "navigationBarTitleText": "详情"
+            }
+        }, {
+            "path": "pages/news/publish",
+            "style": {
+                "navigationBarTitleText": "发布"
+            }
+        }, {
+            "path": "pages/friend/add",
+            "style": {
+                "navigationBarTitleText": "添加"
+            }
+        }, {
+            "path": "pages/friend/index",
+            "style": {
+                "navigationBarTitleText": "通讯录",
+                "app-plus": {
+                    "bounce": "none", //关闭窗口回弹效果
+                    "titleNView": {
+
+                        "buttons": [ //原生标题栏按钮配置,
+                            {
+                                "type": "none",
+                                "width": "35px",
+                                "fontSize": "16px",
+                                "fontSrc": "/static/font_1207671_hp3m9dzgf86.ttf",
+                                "text": "\ue657" //原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "path": "pages/user/address",
+            "style": {
+                "navigationBarTitleText": "地址"
+            }
+        }, {
+            "path": "pages/user/info",
+            "style": {
+                "navigationBarTitleText": "信息"
+            }
+        }, {
+            "path": "pages/user/update",
+            "style": {
+                "navigationBarTitleText": "修改"
+            }
+        }, {
+            "path": "pages/user/wode",
+            "style": {
+                "navigationBarTitleText": "我的"
+            }
+        }, {
+            "path": "pages/login/reg",
+            "style": {
+                "navigationBarTitleText": "注册"
+            }
+        }, {
+            "path": "pages/login/pwd",
+            "style": {
+                "navigationBarTitleText": "找回密码"
+            }
+        }, {
+            "path": "pages/login/login",
+            "style": {
+                "navigationBarTitleText": "登录"
+            }
+        }, {
+            "path": "pages/chat/chat",
+            "style": {
+                "navigationBarTitleText": "对话"
+            }
+        }, {
+            "path": "pages/chat/index",
+            "style": {
+                "navigationBarTitleText": "消息"
+            }
+        }, {
+            "path": "pages/chat/order",
+            "style": {
+                "navigationBarTitleText": "订单通知"
+            }
+        }, {
+            "path": "pages/order/detail",
+            "style": {
+                "navigationBarTitleText": "订单详情"
+            }
+        }
+        ,{
+            "path" : "pages/news/comment/comment",
+            "style" : {}
+        }
+    ],
+    "tabBar": {
+        "color": "#7a7e83",
+        "selectedColor": "#0faeff",
+        "backgroundColor": "#ffffff",
+        "list": [{
+            "pagePath": "pages/chat/index",
+            "text": "消息",
+            "iconPath": "static/img/xiaoxi.png",
+            "selectedIconPath": "static/img/xiaoxiHL.png"
+        }, {
+            "pagePath": "pages/friend/index",
+            "text": "通讯录",
+            "iconPath": "static/img/tongxunlu.png",
+            "selectedIconPath": "static/img/tongxunluHL.png"
+        },  {
+            "pagePath": "pages/main/main",
+            "text": "发现",
+            "iconPath": "static/img/faxian.png",
+            "selectedIconPath": "static/img/faxianHL.png"
+        },
+        // {
+        //     "pagePath": "pages/news/publish",
+        //     "text": "发布",
+        //     "iconPath": "static/img/fabu.png",
+        //     "selectedIconPath": "static/img/fabuHL.png"
+        // },
+        {
+            "pagePath": "pages/user/wode",
+            "text": "我的",
+            "iconPath": "static/img/user.png",
+            "selectedIconPath": "static/img/userHL.png"
+        }]
+    },
+    "globalStyle": {
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#0faeff",
+        "backgroundColor": "#fbf9fe"
+    },
+    "condition": { //模式配置，仅开发期间生效
+        "current": 0, //当前激活的模式(list 的索引项)
+        "list": [{
+            "path": "pages/main/main",
+            "name": "首页", //模式名称
+            "query": "id=1&name=挺好&num=10" //启动参数，在页面的onLoad函数里面得到
+        }, {
+            "path": "pages/user/address",
+            "name": "地址信息", //模式名称
+            "query": "id=1&name=挺好&num=10" //启动参数，在页面的onLoad函数里面得到
+        }, {
+            "path": "pages/user/wode",
+            "name": "我的", //模式名称
+            "query": "id=1&name=挺好&num=10" //启动参数，在页面的onLoad函数里面得到
+        }, {
+            "path": "pages/user/info",
+            "name": "个人信息", //模式名称
+            "query": "id=1&name=挺好&num=10" //启动参数，在页面的onLoad函数里面得到
+        }, {
+            "path": "pages/user/update",
+            "name": "个人信息修改", //模式名称
+            "query": "id=1&name=挺好&num=10" //启动参数，在页面的onLoad函数里面得到
+        }, {
+            "path": "pages/goods/collect",
+            "name": "收藏", //模式名称
+            "query": "id=1&name=挺好&num=10" //启动参数，在页面的onLoad函数里面得到
+        }, {
+            "path": "pages/login/login",
+            "name": "登陆", //模式名称
+            "query": "id=1&name=挺好&num=10" //启动参数，在页面的onLoad函数里面得到
+        }, {
+            "path": "pages/login/reg",
+            "name": "注册", //模式名称
+            "query": "id=1&name=挺好&num=10" //启动参数，在页面的onLoad函数里面得到
+        }, {
+            "path": "pages/login/pwd",
+            "name": "找回密码", //模式名称
+            "query": "id=1&name=挺好&num=10" //启动参数，在页面的onLoad函数里面得到
+        }]
+    }
+}

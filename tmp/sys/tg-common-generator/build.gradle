@@ -1,0 +1,74 @@
+// 这里首先执行，外面定义的变量这里取不到
+buildscript {
+    // 由于buildscript首先执行，所以要在这里使用，然后暴露给外面
+    apply from: 'config.gradle' // 引入config.gradle
+    // 定义
+    def configInfo = rootProject.ext.configInfo
+    def libVersions = rootProject.ext.libVersions
+    // 暴露给外面使用
+    ext.configInfo = configInfo
+    ext.libVersions = libVersions
+}
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+}
+[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
+group = configInfo.pomGroupId // group
+version = configInfo.version // 版本
+jar {
+    archiveBaseName = configInfo.baseName
+}
+// 编译级别
+sourceCompatibility = '1.8'
+// 仓库地址
+repositories {
+    mavenCentral()
+    jcenter()
+    // flatDir {
+    //     dirs "lib"
+    // }
+}
+// 解决打包没有dao层xml的问题
+processResources {
+    from('src/main/java') {
+        include '**/*.xml'
+    }
+}
+//解决idea下gradle构建的spring项目dao层xml不识别问题
+task mapperXmlCopy(type: Copy) {
+    copy {
+        from("src/main/java") {
+            include ("**/*Dao.xml")
+        }
+        into("${buildDir}/classes/main")
+    }
+    print "Copy Success\n"
+}
+// 配置
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+// 依赖。${}常变量的方式需要用双引号"不能用单引号'
+dependencies {
+    implementation fileTree(dir: "lib", include: ["*.jar"]) // 本地 
+    implementation("cn.hutool:hutool-all:${libVersions.hutoolVersion}") // hutool
+    compileOnly("org.projectlombok:lombok")  // lombok 简化代码
+    annotationProcessor("org.projectlombok:lombok")  // lombok 简化代码
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor") // 配置文件处理
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation("org.freemarker:freemarker:${libVersions.freemarkerVersion}")  // freemarker
+    runtimeOnly("org.postgresql:postgresql") // postgresql数据库
+    runtimeOnly("mysql:mysql-connector-java") // mysql数据库
+    runtimeOnly("com.microsoft.sqlserver:mssql-jdbc") // sqlserver数据库   
+    runtimeOnly("com.oracle.ojdbc:ojdbc8") // oracle数据库
+}

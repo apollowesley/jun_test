@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title th:text="${base.title}">清锋-不停的进步是我唯一的动力</title>
+		<meta name="keywords" th:content="${base.keywords}" content="个人博客" />
+		<meta name="description" th:content="${base.description}" content="清锋个人博客-不停的进步是我唯一的动力">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<script src="/static/public/js/jquery.js"></script>
+		<script src="/static/public/js/Alert.js"></script>
+		<script src="/static/public/js/public.js"></script>
+		<link rel="stylesheet" href="/view/css/public.css" />
+	</head>
+	<style>
+		.header{float: left;height: 16%;}
+		.header .title{text-align:left;font: 25px bolder;}
+		.header .title p{padding: 10px;align-items: center;justify-content:center;}
+		@media screen and (max-width: 800px) {
+			.header .title{text-align:left;font: 20px bolder;}
+			.header .nav{height: 40px;line-height:40px;margin-left: 120px;}
+		}
+		.header .nav{height: 40px;line-height:80px;margin-left: 120px;}
+		.contents{height: 80%;width:99%;border: 1px solid #fff;width: 98%;margin: 0 auto;}
+		.contents .content{width:60%;float:left;}
+		.leftcontent{float: left;width: 100%;height:100%;}
+		.leftcontent h3{text-align:center;}
+		.rightcontent{float: right;width: 30%;}
+		.brief li{width: 95%;margin: 0 auto;margin-top: 15px;}
+		.brief a{font-size: 14px;width: 100%;display: block;}
+		.brief span{float: right;margin-right: 20px;}
+		.brief .p{margin-top: 8px;font-size: 12px;height:20px;}
+		.brief strong{font-size: 16px;}
+	</style>
+	<body>
+		<div class="box">
+			<header class="header">
+				<div class="title">
+					<p>清锋个人博客-记录自己不断前进的痕迹</p>
+				</div>
+				<nav class="nav">
+					<a href="/index.html" title="Home">首页</a> |
+					<!--<a href="" title="Home">日志记录</a> |
+					<a href="" title="Home">个人案例</a> |-->
+					<a href="/symbiosis.html" title="Home">业务合作</a> |
+					<a href="/about.html" title="Home">关于我</a>
+				</nav>				
+			</header>
+			<hr />
+			<div class="contents">
+				<div class="leftcontent">
+					<h3 style="margin:20px;">${content.title}</h3>
+					<p>发布时间：${content.createtime}</p>
+					<div style="width: 90%;height:89%;overflow-x: scroll;margin: 0 auto;" title="${content.keywords}">
+						${content.content}
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Dexcoder - 敏捷的程序员！</title>
+    \#set($pageKeywords = "程序员,编程,错误解决,异常解决")
+    \#set($pageDescription = "小程序员是开发人员学习交流的平台,拥有各类实用的技术性参考资料文章，并提供在开发过程中遇到的各类异常错误解决方案，欢迎您的到来。")
+    \#parse("admin/common/top-share-code.vm")
+</head>
+<body>
+\#parse("admin/common/page-header.vm")
+<div class="container">
+    <div class="page">
+
+        <form name="mainForm" class="form-horizontal" action="save-${modelLineThroughClassName}.shtml" method="post">
+            <input type="hidden" name="${modelFirstLowerGeneratedClassName}Id" value="$!{${modelFirstLowerGeneratedClassName}.${modelFirstLowerGeneratedClassName}Id}">
+            <div class="row">
+                <div class="col-xs-12">
+#foreach($column in ${table.columns})
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="${column.camelName}">${column.comment}</label>
+                            <div class="col-sm-5">
+                                <input class="form-control" name="${column.camelName}" type="text" value="$!{${modelFirstLowerGeneratedClassName}.${column.camelName}}">
+                            </div>
+                        </div>
+#end
+                    <div>
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="icon-ok"></i>
+                                确 定
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn btn-default" type="reset">
+                                <i class="icon-undo"></i>
+                                重 置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+\#parse("admin/common/page-footer.vm")
+\#parse("admin/common/bottom-share-code.vm")
+</body>
+</html>

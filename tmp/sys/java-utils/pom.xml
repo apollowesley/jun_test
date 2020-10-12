@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.free.utils</groupId>
+  <artifactId>utils-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>utils-parent</name>
+  <description>utils parent - pom</description>
+  <modules>
+  	<module>utils-core</module>
+  	<module>utils-http</module>
+  	<module>utils-json</module>
+  	<module>utils-cache</module>
+  	<module>utils-db</module>
+  	<module>utils-io</module>
+  	<module>utils-aop</module>
+  </modules>
+</project>

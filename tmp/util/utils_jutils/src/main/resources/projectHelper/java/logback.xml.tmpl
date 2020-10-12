@@ -1,0 +1,50 @@
+<configuration scan="false" debug="false" scanPeriod="30 seconds">
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%d [%thread] %-5level %logger{5} - %msg%n</pattern>
+            <!-- <pattern>%-30(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{5} - %msg%n</pattern> -->
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="shortStdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{5} - %msg%n</pattern>
+            <immediateFlush>false</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="emptyAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%msg%n</pattern>
+            <immediateFlush>false</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender name="alfredAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%msg</pattern>
+        </encoder>
+    </appender>
+
+    <root level="trace">
+        <appender-ref ref="shortStdout"/>
+    </root>
+
+    <logger name="shortStdout" level="INFO">
+        <appender-ref ref="shortStdout"/>
+    </logger>
+    <logger name="alfredLogger" level="INFO" additivity="false">
+        <appender-ref ref="alfredAppender"/>
+    </logger>
+
+    <logger name="com.foo.common.base.utils.fuckTest" level="INFO">
+        <appender-ref ref="shortStdout"/>
+    </logger>
+
+    <logger name="empty" level="INFO" additivity="false">
+        <appender-ref ref="emptyAppender"/>
+    </logger>
+
+</configuration>

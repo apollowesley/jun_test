@@ -1,0 +1,9 @@
+{
+  "code": 0,
+  "msg": "Welcome",
+  "data": {
+    "username": "Mzh",
+    "sex": "Male",
+    "role": 1
+  }
+}

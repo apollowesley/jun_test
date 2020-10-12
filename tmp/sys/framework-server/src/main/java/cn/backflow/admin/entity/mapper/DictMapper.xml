@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用keyspace的话sql搜索定位会比较方便 -->
+<mapper namespace="Dict">
+
+  <resultMap id="DictMap" type="cn.backflow.admin.entity.Dict">
+    <result property="id" column="id"/>
+    <result property="code" column="code"/>
+    <result property="description" column="description"/>
+    <result property="key" column="key"/>
+    <result property="value" column="value"/>
+    <result property="comment" column="comment"/>
+    <result property="priority" column="priority"/>
+  </resultMap>
+
+  <!-- 用于select查询公用抽取的列 -->
+  <sql id="Dict.columns">
+    id, code, description, `key`, value, comment, priority
+  </sql>
+
+  <!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_dict (
+    code,
+    description,
+    `key`,
+    value,
+    comment,
+    priority
+    ) VALUES (
+    #{code},
+    #{description},
+    #{key},
+    #{value},
+    #{comment},
+    #{priority}
+    )
+  </insert>
+
+  <update id="update">
+    UPDATE t_dict SET
+      code = #{code},
+      description = #{description},
+      `key` = #{key},
+      value = #{value},
+      comment = #{comment},
+      priority = #{priority}
+    WHERE
+      id = #{id}
+  </update>
+
+  <insert id="insertBatch" useGeneratedKeys="true">
+    INSERT INTO t_dict ( code, description, `key`, value, comment, priority ) VALUES
+    <foreach collection="collection" item="dict" separator=",">
+      (
+      #{dict.code},
+      #{dict.description},
+      #{dict.key},
+      #{dict.value},
+      #{dict.comment},
+      #{dict.priority}
+      )
+    </foreach>
+  </insert>
+
+  <delete id="delete">
+    DELETE FROM t_dict WHERE id = #{id}
+  </delete>
+
+  <delete id="deleteByCode">
+    DELETE FROM t_dict WHERE code = #{code}
+  </delete>
+
+  <delete id="deleteBatch">
+    DELETE FROM t_dict WHERE id IN
+    <foreach collection="collection" item="id" open="(" close=")" separator=",">#{id}</foreach>
+  </delete>
+
+  <select id="getById" resultMap="DictMap">
+    SELECT
+    <include refid="Dict.columns"/>
+    FROM t_dict WHERE id = #{id}
+  </select>
+
+  <select id="findByCode" resultMap="DictMap">
+    SELECT
+    <include refid="Dict.columns"/>
+    FROM t_dict WHERE code = #{code} ORDER BY priority DESC
+  </select>
+
+  <select id="findAll" resultMap="DictMap">
+    SELECT
+    <include refid="Dict.columns"/>
+    FROM t_dict
+    <include refid="DictDynamicWhere"/>
+  </select>
+
+  <sql id="DictDynamicWhere">
+    <where>
+      <if test="code neq null">AND code LIKE CONCAT('%', #{code}, '%')</if>
+      <if test="key neq null">AND `key` LIKE CONCAT('%', #{key}, '%')</if>
+      <if test="description neq null">AND description LIKE CONCAT('%', #{description}, '%')</if>
+      <if test="priority neq null">AND priority = #{priority}</if>
+    </where>
+  </sql>
+
+  <select id="pagingCount" resultType="long">
+    SELECT COUNT(*) FROM (
+    SELECT COUNT(id) FROM t_dict
+    <include refid="DictDynamicWhere"/>
+    GROUP BY code
+    ) t
+  </select>
+
+  <select id="paging" resultMap="DictMap">
+    SELECT
+    <include refid="Dict.columns"/>
+    FROM t_dict
+    <include refid="DictDynamicWhere"/>
+    GROUP BY code
+    <if test="_sort_ neq null">
+      ORDER BY ${_sort_}
+    </if>
+    <if test="_offset_ neq null">
+      LIMIT ${_offset_}, ${_limit_}
+    </if>
+  </select>
+
+</mapper>

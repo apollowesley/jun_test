@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sise.school.teach.bussiness.teacher.dao.TeacherDao">
+
+    <resultMap id="BaseResultMap" type="com.sise.school.teach.bussiness.teacher.po.TeacherPO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="CHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="code" property="code" jdbcType="CHAR"/>
+        <result column="email" property="email" jdbcType="CHAR"/>
+        <result column="password" property="password" jdbcType="TINYINT"/>
+        <result column="picture" property="picture" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, name, type, code, email, password, picture, salt, create_time, update_time
+    </sql>
+
+    <insert id="insert" parameterType="com.sise.school.teach.bussiness.teacher.po.TeacherPO">
+    insert into t_teacher (id, name, type, code,
+      email, password,
+      picture,salt, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{type,jdbcType=INTEGER},#{code,jdbcType=INTEGER},
+      #{email,jdbcType=CHAR}, #{password,jdbcType=TINYINT},
+      #{picture,jdbcType=VARCHAR},  #{salt,jdbcType=CHAR},#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+    </insert>
+
+    <select id="login" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM t_teacher
+        WHERE code=#{code}
+    </select>
+</mapper>

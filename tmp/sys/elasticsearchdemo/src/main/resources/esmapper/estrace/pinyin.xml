@@ -1,0 +1,818 @@
+<!--es
+https://www.elastic.co/guide/en/elasticsearch/reference/5.5/query-dsl-term-query.html
+https://www.elastic.co/guide/en/elasticsearch/reference/5.5/query-dsl-range-query.html
+
+ik:
+https://github.com/medcl/elasticsearch-analysis-ik
+pinyin:
+https://github.com/medcl/elasticsearch-analysis-pinyin
+-->
+<properties>
+    <property name="demoTemplate">
+        <![CDATA[{
+            "template": "demo-*",
+            "settings": {
+                "number_of_shards": 6,
+                "index":{
+                     "refresh_interval": "5s",
+                     "analysis" : {
+                        "analyzer" : {
+                            "pinyin_analyzer" : {
+                                "tokenizer" : "my_pinyin"
+                                }
+                        },
+                        "tokenizer" : {
+                            "my_pinyin" : {
+                                "type" : "pinyin",
+                                "keep_separate_first_letter" : false,
+                                "keep_full_pinyin" : true,
+                                "keep_original" : true,
+                                "limit_first_letter_length" : 16,
+                                "lowercase" : true,
+                                "remove_duplicated_term" : true
+                            }
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "demo": {
+                    "properties": {
+                        "contentbody": {
+                            "type": "text",
+                            "term_vector": "with_positions_offsets",
+                            "analyzer": "ik_max_word",
+                            "search_analyzer": "ik_max_word",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "agentStarttime": {
+                            "type": "date",
+                            "format":"yyyy-MM-dd HH:mm:ss.SSS||yyyy-MM-dd'T'HH:mm:ss.SSS||yyyy-MM-dd HH:mm:ss||epoch_millis"
+                        },
+                        "applicationName": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "text",
+                            "fields": {
+                                "pinyin": {
+                                    "type": "text",
+                                    "store": false,
+                                    "term_vector": "with_offsets",
+                                    "analyzer": "pinyin_analyzer",
+                                    "boost": 10
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }]]>
+    </property>
+
+    <property name="createDemoIndice">
+        <![CDATA[{
+            "settings": {
+                "number_of_shards": 6,
+                "index.refresh_interval": "5s",
+                "analysis" : {
+                    "analyzer" : {
+                        "pinyin_analyzer" : {
+                            "tokenizer" : "my_pinyin"
+                            }
+                    },
+                    "tokenizer" : {
+                        "my_pinyin" : {
+                            "type" : "pinyin",
+                            "keep_separate_first_letter" : false,
+                            "keep_full_pinyin" : true,
+                            "keep_original" : true,
+                            "limit_first_letter_length" : 16,
+                            "lowercase" : true,
+                            "remove_duplicated_term" : true
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "demo": {
+                    "properties": {
+                        "contentbody": {
+                            "type": "text",
+                            "term_vector": "with_positions_offsets",
+                            "analyzer": "ik_max_word",
+                            "search_analyzer": "ik_max_word",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+
+                                }
+                            }
+                        },
+                        "agentStarttime": {
+                            "type": "date",
+                            "format":"yyyy-MM-dd HH:mm:ss.SSS||yyyy-MM-dd'T'HH:mm:ss.SSS||yyyy-MM-dd HH:mm:ss||epoch_millis"
+                        },
+                        "applicationName": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "text",
+                            "fields": {
+                                "pinyin": {
+                                    "type": "text",
+                                    "store": false,
+                                    "term_vector": "with_offsets",
+                                    "analyzer": "pinyin_analyzer",
+                                    "boost": 10
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }]]>
+    </property>
+
+    <property name="shopGoodUserPinyinTemplate">
+        <![CDATA[{
+            "index_patterns": "shop-good-user-*",
+            "settings": {
+                "number_of_shards": 6,
+                "index.refresh_interval": "5s",
+                "analysis" : {
+                    "analyzer" : {
+                        "pinyin_analyzer": {
+                            "type": "custom",
+                            "tokenizer": "standard",
+                            "filter": ["my_pinyin", "word_delimiter"]
+                        }
+                    },
+                    "filter" : {
+                        "my_pinyin" : {
+                            "type" : "pinyin",
+                            "keep_separate_first_letter" : false,
+                            "keep_full_pinyin" : true,
+                            "keep_original" : true,
+                            "limit_first_letter_length" : 16,
+                            "lowercase" : true,
+                            "remove_duplicated_term" : true
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "shop": {
+                    "properties": {
+                        "id": {
+                            "type": "long"
+                        },
+                        "name": {
+                            "type": "text",
+                            "term_vector": "with_offsets",
+                            "analyzer": "pinyin_analyzer",
+                            "boost": 10
+                        },
+                        "address": {
+                            "type": "text",
+                            "term_vector": "with_offsets",
+                            "analyzer": "pinyin_analyzer",
+                            "boost": 10
+                        },
+                        "city": {
+                            "type": "integer"
+                        },
+                        "country": {
+                            "type": "integer"
+                        },
+                        "location": {
+                            "type": "geo_point"
+                        },
+                        "star": {
+                            "type": "integer"
+                        },
+                        "sale": {
+                            "type": "long"
+                        },
+                        "favor": {
+                            "type": "long"
+                        },
+                        "desc": {
+                            "type": "keyword"
+                        },
+                        "logo": {
+                            "type": "keyword"
+                        },
+                        "status": {
+                            "type": "integer"
+                        },
+                        "cid": {
+                            "type": "long"
+                        },
+                        "typeId": {
+                            "type": "integer"
+                        },
+                        "shopBusiType": {
+                            "type": "keyword"
+                        },
+                        "time": {
+                            "type": "date",
+                            "format": "epoch_millis"
+                        }
+                    }
+                },
+                "good": {
+                    "_parent": {
+                        "type": "shop"
+                    },
+                    "_routing": {
+                        "required": false
+                    },
+                    "properties": {
+                        "id": {
+                            "type": "long"
+                        },
+                        "name": {
+                            "type": "text",
+                            "term_vector": "with_offsets",
+                            "analyzer": "pinyin_analyzer",
+                            "boost": 10
+                        },
+                        "desc": {
+                            "type": "keyword"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        },
+                        "goodCode": {
+                            "type": "keyword"
+                        },
+                        "chnlCode": {
+                            "type": "keyword"
+                        },
+                        "chnlName": {
+                            "type": "keyword"
+                        },
+                        "saleTime": {
+                            "type": "date",
+                            "format": "epoch_millis"
+                        },
+                        "minMarketPrice": {
+                            "type": "float"
+                        },
+                        "maxMarketPrice": {
+                            "type": "float"
+                        },
+                        "minSalePrice": {
+                            "type": "float"
+                        },
+                        "maxSalePrice": {
+                            "type": "float"
+                        },
+                        "totalSaleNum": {
+                            "type": "integer"
+                        },
+                        "logo": {
+                            "type": "keyword"
+                        },
+                        "onlyPhoneCount": {
+                            "type": "integer"
+                        },
+                        "agreementCount": {
+                            "type": "integer"
+                        },
+                        "smallPhoneCount": {
+                            "type": "integer"
+                        },
+                        "isSpecial": {
+                            "type": "integer"
+                        },
+                        "isRecommend": {
+                            "type": "integer"
+                        },
+                        "firstCateCode": {
+                            "type": "keyword"
+                        },
+                        "secondCateCode": {
+                            "type": "keyword"
+                        },
+                        "groundingType": {
+                            "type": "keyword"
+                        },
+                        "bookCitys": {
+                            "type": "keyword"
+                        },
+                        "shopId": {
+                            "type": "integer"
+                        },
+                        "location": {
+                            "type": "geo_point"
+                        },
+                        "menuId": {
+                            "type": "integer"
+                        },
+                        "stock": {
+                            "type": "integer"
+                        },
+                        "sourceId": {
+                            "type": "integer"
+                        },
+                        "time": {
+                            "type": "date",
+                            "format": "epoch_millis"
+                        }
+                    }
+                },
+                "huihgood": {
+                    "_parent": {
+                        "type": "shop"
+                    },
+                    "_routing": {
+                        "required": false
+                    },
+                    "properties": {
+                        "id": {
+                            "type": "long"
+                        },
+                        "name": {
+                            "type": "text",
+                            "term_vector": "with_offsets",
+                            "analyzer": "pinyin_analyzer",
+                            "boost": 10
+                        },
+                        "desc": {
+                            "type": "keyword"
+                        },
+                        "keyword": {
+                            "type": "keyword"
+                        },
+                        "goodCode": {
+                            "type": "keyword"
+                        },
+                        "chnlCode": {
+                            "type": "keyword"
+                        },
+                        "chnlName": {
+                            "type": "keyword"
+                        },
+                        "saleTime": {
+                            "type": "date",
+                            "format": "epoch_millis"
+                        },
+                        "minMarketPrice": {
+                            "type": "float"
+                        },
+                        "maxMarketPrice": {
+                            "type": "float"
+                        },
+                        "minSalePrice": {
+                            "type": "float"
+                        },
+                        "maxSalePrice": {
+                            "type": "float"
+                        },
+                        "totalSaleNum": {
+                            "type": "integer"
+                        },
+                        "logo": {
+                            "type": "keyword"
+                        },
+                        "onlyPhoneCount": {
+                            "type": "integer"
+                        },
+                        "agreementCount": {
+                            "type": "integer"
+                        },
+                        "smallPhoneCount": {
+                            "type": "integer"
+                        },
+                        "isSpecial": {
+                            "type": "integer"
+                        },
+                        "isRecommend": {
+                            "type": "integer"
+                        },
+                        "firstCateCode": {
+                            "type": "keyword"
+                        },
+                        "secondCateCode": {
+                            "type": "keyword"
+                        },
+                        "groundingType": {
+                            "type": "keyword"
+                        },
+                        "bookCitys": {
+                            "type": "keyword"
+                        },
+                        "shopId": {
+                            "type": "integer"
+                        },
+                        "location": {
+                            "type": "geo_point"
+                        },
+                        "menuId": {
+                            "type": "integer"
+                        },
+                        "stock": {
+                            "type": "integer"
+                        },
+                        "sourceId": {
+                            "type": "integer"
+                        },
+                        "time": {
+                            "type": "date",
+                            "format": "epoch_millis"
+                        }
+                    }
+                },
+                "good_menu": {
+                    "_parent": {
+                        "type": "good"
+                    },
+                    "_routing": {
+                        "required": false
+                    },
+                    "properties": {
+                        "id": {
+                            "type": "long"
+                        },
+                        "goodsId": {
+                            "type": "integer"
+                        },
+                        "shopId": {
+                            "type": "integer"
+                        },
+                        "menuId": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+
+        }]]>
+    </property>
+
+    <property name="pboosMapAdressPinyinTemplate">
+        <![CDATA[{
+            "index_patterns": "pboos-map-adress-*",
+            "settings": {
+                "number_of_shards": 6,
+                "index.refresh_interval": "5s",
+                "analysis" : {
+                    "analyzer" : {
+                        "pinyin_analyzer": {
+                            "type": "custom",
+                            "tokenizer": "ik_smart",
+                            "filter": ["my_pinyin", "word_delimiter"]
+                        }
+                    },
+                    "filter" : {
+                        "my_pinyin" : {
+                            "type" : "pinyin",
+                            "keep_separate_first_letter" : false,
+                            "keep_full_pinyin" : true,
+                            "keep_original" : true,
+                            "limit_first_letter_length" : 16,
+                            "lowercase" : true,
+                            "remove_duplicated_term" : true
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "boosmap": {
+                    "properties": {
+                        "standardAddrId":{
+                            "type":"keyword"
+                        },
+                        "detailName": {
+                            "type": "text",
+                            "analyzer": "pinyin_analyzer",
+                            "boost": 10,
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "cityName":{
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "countyName":{
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "location":{
+                            "type": "geo_point"
+                        }
+
+                    }
+                }
+            }
+        }]]>
+    </property>
+
+    <property name="pboosMapAdressTemplate">
+        <![CDATA[{
+            "index_patterns": "pboos-map-adress-*",
+            "settings": {
+                "number_of_shards": 6,
+                "index.refresh_interval": "5s",
+                "analysis" : {
+                    "analyzer" : {
+                        "pinyin_analyzer" : {
+                            "tokenizer" : "my_pinyin"
+                        }
+                    },
+                    "tokenizer" : {
+                        "my_pinyin" : {
+                            "type" : "pinyin",
+                            "keep_separate_first_letter" : false,
+                            "keep_full_pinyin" : true,
+                            "keep_original" : true,
+                            "limit_first_letter_length" : 16,
+                            "lowercase" : true,
+                            "remove_duplicated_term" : true
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "boosmap": {
+                    "properties": {
+                        "standardAddrId":{
+                            "type":"keyword"
+                        },
+                        "detailName": {
+                            "type": "text",
+                            "term_vector": "with_positions_offsets",
+                            "analyzer": "ik_max_word",
+                            "search_analyzer": "ik_max_word",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "cityName":{
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "countyName":{
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "location":{
+                            "type": "geo_point"
+                        }
+
+                    }
+                }
+            }
+        }]]>
+    </property>
+    <property name="userShop"><![CDATA[{
+        "index_patterns": "user-shop-*",
+        "settings": {
+            "number_of_shards": 6,
+            "index.refresh_interval": "5s"
+        },
+        "mappings": {
+            "user_shop": {
+                "properties": {
+                    "uid": {
+                        "type": "long"
+                    },
+                    "sid": {
+                        "type": "long"
+                    },
+                    "act": {
+                        "type": "integer"
+                    },
+                    "time": {
+                        "type": "date",
+                        "format": "epoch_millis"
+                    }
+                }
+            }
+        }
+    }]]></property>
+
+    <property name="updateDocument"><![CDATA[
+        {
+			"doc" : {"cityName": #[cityName], "standardAddrId": #[standardAddrId], "detailName": #[detailName], "location": #[location], "countyName": #[countyName]}
+		}
+    ]]></property>
+
+    <property name="searchPinyin"><![CDATA[{
+        "size": 100,
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                         "match_phrase" : {
+                            "detailName" : "陈春福"
+                        }
+
+                    }
+                ]
+            }
+        }
+    }]]></property>
+
+    <property name="searchPinyinDemo"><![CDATA[{
+        "size": 100,
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                          "match_phrase_prefix" : {
+                                "name" : {
+                                    "query" : #[name],
+                                    "max_expansions" : 10
+                                }
+                            }
+
+                    }
+                ]
+            }
+        }
+    }]]></property>
+    <property name="searchPinyinmatch_phrase_prefix"><![CDATA[{
+        "size": 100,
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                          "match_phrase_prefix" : {
+                                "detailName" : {
+                                    "query" : #[detailName],
+                                    "max_expansions" : 10
+                                }
+                            }
+
+                    },
+                    {
+                        "geo_distance": {
+                            "distance": #[distance],
+                            "location": {
+                                "lon": #[lon],
+                                "lat": #[lat]
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }]]></property>
+
+
+    <property name="searchPinyin_query_string"><![CDATA[{
+        "size": 100,
+        "query": {
+            "bool": {
+                "must": [
+                 {
+                    "query_string": {
+                        "query": #[detailName],
+                        "analyze_wildcard": true,
+                        "fields": ["detailName"]
+                    }
+                 }
+                ]
+            }
+        }
+    }]]></property>
+    <property name="searchShopGoodUser"><![CDATA[{
+      "size": 100,
+      "sort": [
+            {
+                "_geo_distance": { ##按离指定地理坐标对应的地理位置远近距离升序排序
+                    "unit": "km",
+                    "order": "asc",
+                    "location": { ##按离指定地理坐标
+                        "lon": #[lon],
+                        "lat": #[lat]
+                    }
+                }
+            },
+            {
+                "totalSaleNum": {
+                    "order": "desc"
+                }
+            }
+        ],
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "match_phrase_prefix": {
+                "name": {
+                  "query": #[name],
+                  "max_expansions": 10
+                }
+              }
+            },
+            {
+              "geo_distance": {
+                "distance": #[distance],
+                "location": {
+                  "lon": #[lon],
+                  "lat": #[lat]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }]]></property>
+
+ <property name="goodParentSearch"><![CDATA[{
+        "sort": [
+            {
+                "_score": {
+                    "order": "desc"
+                }
+            },
+            {
+                "_geo_distance": {
+                    "unit": "km",
+                    "order": "asc",
+                    "location": {
+                        "lon": "115.89352755",
+                        "lat": "28.689578"
+                    }
+                }
+            },
+            {
+                "totalSaleNum": {
+                    "order": "desc"
+                }
+            }
+        ],
+        "query": {
+            "bool": {
+                "should": [
+                    {
+                        "terms": {
+                            "goodsId": [
+                                "50857",
+                                "50858"
+                            ],
+                            "boost": 6
+                        }
+                    }
+                ],
+                "must": [
+                    {
+                        "term": {
+                            "chnlCode": "EB010"
+                        }
+                    },
+                    {
+                        "has_parent": {
+                            "query": {
+                                "term": {
+                                    "status": 3
+                                }
+                            },
+                            "inner_hits": {},
+                            "type": "shop"
+                        }
+                    }
+                ]
+            }
+        }
+    }]]></property>
+</properties>

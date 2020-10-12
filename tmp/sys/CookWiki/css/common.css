@@ -1,0 +1,97 @@
+html,body{
+	height: 100%;
+	width:100%;
+	background-color:transparent;
+}
+#wrap{
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-flex-flow: column;
+           flex-flow: column;
+}
+#header{
+    text-align: center; 
+    background-color: #F29D00; 
+    color: #fff;
+    width: 100%;
+}
+#header h1{
+    font-size: 20px; height: 44px; line-height: 44px; margin: 0em; color: #fff;
+}
+#nav{
+    display:-webkit-box;
+    height:44px;
+}
+#left {
+    width:80px;
+    color:#fff;
+    -webkit-background-size:12px 20px;
+    text-align:left;
+}
+#left>span {
+    margin-top:13px;
+    margin-left:10px;
+    font-size:18px;
+    height:18px;
+    line-height:18px;
+    color:#FFF;
+}
+#middle {
+    -webkit-box-flex:1;
+    width:100%;
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+#title {
+    font-size:18px;
+    text-align:center;
+    color:#fff;
+}
+#right {
+    width:80px;
+}
+#right>span {
+    margin-top:13px;
+    margin-left:36px;
+    font-size:18px;
+    height:18px;
+    line-height:18px;
+    color:#FFF;
+}
+section {
+    -webkit-box-flex:1;
+}
+.leftBtnActive {
+    background:url(../image/navbtn_back_hov.png) no-repeat 14px 12px!important;
+    -webkit-background-size:12px 20px!important;
+    color:rgb(94,153,186)!important;
+}
+.rightBtnActive {
+}
+#main{
+    -webkit-box-flex: 1; 
+    -webkit-flex: 1;
+    flex: 1;
+    padding: 2em;
+}
+#footer{
+    height: 30px; line-height: 30px;
+    background-color: #81a9c3; 
+    width: 100%;
+    text-align: center;
+}
+#footer h5{
+    color: white;
+}
+.con{font-size: 28px; text-align: center;}
+input{
+	outline:none;
+}
+input:focus{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-user-modify:read-write-plaintext-only;
+}

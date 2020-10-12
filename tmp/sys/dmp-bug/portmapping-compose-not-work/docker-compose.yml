@@ -1,0 +1,4 @@
+version: "2.4"
+services:
+  tomcat:
+    image: tomcat:8.5-alpine

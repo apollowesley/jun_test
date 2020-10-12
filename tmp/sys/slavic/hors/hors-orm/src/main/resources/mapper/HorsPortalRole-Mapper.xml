@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slavic.hors.orm.mapper.HorsPortalRoleMapper">
+
+    <resultMap type="com.slavic.hors.orm.entity.HorsPortalRole" id="HorsPortalRoleMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+        <result property="roleDesc" column="role_desc" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="horsVersion" column="hors_version" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HorsPortalRoleMap">
+        select
+          id, role_name, role_desc, create_time, update_time, hors_version
+        from api_starter.hors_portal_role
+        where id = #{id}
+    </select>
+    
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="HorsPortalRoleMap">
+        select
+          id, role_name, role_desc, create_time, update_time, hors_version
+        from api_starter.hors_portal_role
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="roleName != null and roleName != ''">
+                and role_name = #{roleName}
+            </if>
+            <if test="roleDesc != null and roleDesc != ''">
+                and role_desc = #{roleDesc}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="horsVersion != null">
+                and hors_version = #{horsVersion}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into api_starter.hors_portal_role(role_name, role_desc, create_time, update_time, hors_version)
+        values (#{roleName}, #{roleDesc}, #{createTime}, #{updateTime}, #{horsVersion})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="updateById">
+        update api_starter.hors_portal_role
+        <set>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName},
+            </if>
+            <if test="roleDesc != null and roleDesc != ''">
+                role_desc = #{roleDesc},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="horsVersion != null">
+                hors_version = #{horsVersion},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from api_starter.hors_portal_role where id = #{id}
+    </delete>
+
+    <select id="listByIds" resultMap="HorsPortalRoleMap">
+        select id, role_name, role_desc, create_time, update_time, hors_version
+        from api_starter.hors_portal_role
+        where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

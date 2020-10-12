@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="snap.svg.js"></script>
+    <script src="diagram.js"></script>
+</head>
+<body>
+<style>
+    #svg {
+        width : 490px;
+        height : 290px;
+        border : 1px solid #000000;
+    }
+</style>
+<svg id="svg"></svg>
+<script>
+
+    var cx = 100;
+
+    var data = {
+
+        "nodes": [
+            {
+                "type": "start",
+                "cx": cx,
+                "y": 20
+            },
+            {
+                "type" : "decision",
+                "id" : "d1",
+                "name" : "请假天数是否大于3",
+                "cx" : cx,
+                "y" : 80,
+                "w" : 180
+            },
+            {
+                "type": "task",
+                "id": "task1",
+                "name": "运维人员审批",
+                "highlight": true,
+                "cx": cx,
+                "y": 170,
+                "w": 140
+            },
+            {
+                "type": "task",
+                "id": "devtask",
+                "name": "开发人员审批",
+                "cx": cx + 200,
+                "y": 170,
+                "w": 140
+            },
+            {
+                "type": "end",
+                "cx": cx,
+                "y": 220
+            }
+
+        ],
+        "lines": [
+            {
+                "from": "start",
+                "to": "d1"
+            },
+            {
+                "from": "d1",
+                "to": "task1",
+                "text" : "是"
+            },
+            {
+                "from": "task1",
+                "to": "end"
+            },
+            {
+                "from": "d1",
+                "to": "devtask",
+                "text" : "否",
+                "direction" : "x"
+            },
+            {
+                "from": "devtask",
+                "to": "end",
+                "direction" : "y"
+            }
+        ]
+    };
+
+    var flow = new Flow("svg", data);
+    flow.render();
+
+</script>
+</body>
+</html>

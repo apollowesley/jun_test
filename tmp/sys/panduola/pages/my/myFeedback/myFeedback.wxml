@@ -1,0 +1,20 @@
+<view class="feedback">
+    <view class='selectTopic'>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="weui-input">{{array[index]}}</view>
+        </picker>
+    </view>
+    <view class='items'>
+        <view class='title'>姓名</view>
+        <input type='text' placeholder-class="placeholder" value='{{cusName}}' bindinput='cusNameInput'></input>
+    </view>
+    <view class='items'>
+        <view class='title'>电话</view>
+        <input type='number' placeholder-class="placeholder" value='{{cusMobile}}' bindinput='cusMobileInput'></input>
+    </view>
+    <view class='items'>
+        <view class='title'>请填写具体内容</view>
+        <textarea placeholder-class="placeholder" value="{{msgcontent}}" bindinput='msgcontentInput'/>
+    </view>
+    <view class="submitBtn" bindtap='submitBtn'>提交</view>
+</view>

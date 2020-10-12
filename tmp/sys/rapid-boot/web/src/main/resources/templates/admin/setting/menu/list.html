@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>菜单管理</title>
+    <link rel="stylesheet" href="/lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="/css/public.css" media="all">
+    <style>
+        .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
+            height: 34px;
+            line-height: 34px;
+            padding: 0 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <div>
+            <div class="layui-btn-group">
+                <button class="layui-btn" id="btn-expand">全部展开</button>
+                <button class="layui-btn" id="btn-fold">全部折叠</button>
+            </div>
+            <table id="munu-table" class="layui-table" lay-filter="munu-table"></table>
+        </div>
+    </div>
+</div>
+
+<script src="/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script src="/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    layui.use(['table', 'treetable'], function () {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var treetable = layui.treetable;
+
+        // 渲染表格
+        layer.load(2);
+        treetable.render({
+            treeColIndex: 1,
+            treeSpid: 0,
+            treeIdName: 'id',
+            treePidName: 'superId',
+            elem: '#munu-table',
+            url: '/api/admin/setting/menu/list',
+            treeDefaultClose: true,
+            treeLinkage: false,
+            page: false,
+            cols: [
+                [
+                    {type: 'numbers'},
+                    {field: 'title', title: '菜单名称'},
+                    {field: 'id', title: 'Id', align: 'center', hide: true},
+                    {field: 'ordinal', title: '排序号', align: 'center'},
+                    {
+                        field: 'icon', align: 'center', templet: function (d) {
+                        var icon = d.icon;
+                        return '<i class="'+icon+'"></i>';
+                    }, title: '图标'
+                    },
+                    {field: 'href', title: '菜单url', align: 'center'},
+                    {field: 'ordinal', title: '排序号', align: 'center'},
+                    {
+                        field: 'category', align: 'center', templet: function (d) {
+                        if (d.category == 1) {
+                            return '<span class="layui-badge layui-bg-gray">目录</span>';
+                        } else if (d.category == 2) {
+                            return '<span class="layui-badge layui-bg-blue">菜单</span>';
+                        } else if (d.category == 3) {
+                            return '<span class="layui-badge-rim">按钮</span>';
+                        }
+                    }, title: '类型'
+                    }
+                ]
+            ],
+            done: function () {
+                layer.closeAll('loading');
+            }
+        });
+
+        $('#btn-expand').click(function () {
+            treetable.expandAll('#munu-table');
+        });
+
+        $('#btn-fold').click(function () {
+            treetable.foldAll('#munu-table');
+        });
+
+    });
+    /*]]>*/
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+bin
+.DS_Store
+.settings
+dependency-reduced-pom.xml
+target
+*.iml
+.idea
+.project
+.classpath
+j2chain.json

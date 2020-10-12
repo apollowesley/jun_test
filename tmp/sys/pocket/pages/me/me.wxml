@@ -1,0 +1,39 @@
+<!--pages/me/me.wxml-->
+<view>
+    <view class="userinfo">
+      <image wx:if="{{!hasUserInfo}}" bindtap="bindViewTap" class="userinfo-avatar" src="../images/avatar.jpeg" mode="cover"></image>
+      <image wx:else bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view class='username'>{{userInfo.nickName==null?'null':userInfo.nickName}}</view>
+      <image class='mone' src='../images/more.png'/>
+    </view>
+
+    <view class='me-nav'>
+      <view class='hr'></view>
+        <view class='zsr'>
+            <text>0</text>
+            <view>总记账天数</view>
+        </view> 
+        <view class='zzc'>
+            <text>0</text>
+            <view>总记账笔数</view>
+        </view>
+    </view>
+</view>
+
+<view class='nav'>
+  <view class='basis'>
+     <wux-cell  thumb="../../images/zdcx.png" title="   月度账单"><image class='nav-mone' src='../images/more.png'/></wux-cell>
+     <view class='nav-hr'></view>
+     <wux-cell thumb="../../images/lbsz.png" title="   类别设置"><image class='nav-mone' src='../images/more.png'/></wux-cell>
+  </view>
+
+  <view class='other'>
+     <wux-cell thumb="../../images/fk.png" title="   喜尚记账意见反馈"><image class='nav-mone' src='../images/more.png'/></wux-cell>
+     <view class='nav-hr'></view>
+     <wux-cell bind:click='share' thumb="../../images/fx.png" title="   推荐喜尚记账给好友"><image class='nav-mone' src='../images/more.png'/></wux-cell>
+     <view class='nav-hr'></view>
+     <wux-cell  thumb="../../images/gz.png" title="   关注喜尚公众号，开启每日提醒"><image class='nav-mone' src='../images/more.png'/></wux-cell>
+     <view class='nav-hr'></view>
+     <wux-cell thumb="../../images/gy.png" title="   关于喜尚记账"><image class='nav-mone' src='../images/more.png'/></wux-cell>
+  </view>
+</view>

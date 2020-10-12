@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.wkclz.parent</groupId>
+        <artifactId>lz-parent</artifactId>
+        <version>3.1.0-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.wkclz.gen</groupId>
+    <artifactId>lz-gen-plugin</artifactId>
+    <version>3.1.0-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
+
+    <name>lz-gen-plugin</name>
+    <description>lz-gen-plugin</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.wkclz.core</groupId>
+            <artifactId>lz-core</artifactId>
+            <version>3.1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.6.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- 默认版本有 bug, 需要自己定义 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.6.0</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>wkclz-public</id>
+            <url>http://mvn.wkclz.com/repository/wkclz-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>wkclz-release</id>
+            <name>wkclz-release</name>
+            <url>http://mvn.wkclz.com/repository/wkclz-release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>wkclz-snapshot</id>
+            <name>wkclz-snapshot</name>
+            <url>http://mvn.wkclz.com/repository/wkclz-snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+</project>

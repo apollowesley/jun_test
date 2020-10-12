@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel='stylesheet' type='text/css' href='fullcalender/fullcalendar.css' />
+		<link rel='stylesheet' type='text/css' href='jquery-ui/jquery-ui-1.10.3.custom.min.css' />
+		<script type='text/javascript' src='jquery/jquery-2.0.3.min.js'></script>
+		<script type='text/javascript' src='jquery-ui/jquery-ui-1.10.3.custom.min.js'></script>
+		<script type='text/javascript' src='fullcalender/fullcalendar.min.js'></script>
+		<title>New Web Project</title>
+	</head>
+	<body>
+		<button id="opener">
+			open the dialog
+		</button>
+		<div id="dialog" title="Dialog Title">
+			I'm a dialog
+		</div>
+		<a href="javascript:;" onclick="printAllEvents();">在console中打印所有的事件</a>
+		<div id="calendar"></div>
+		<script type="text/javascript">
+			$(function() {
+				var calendar = $('#calendar');
+				calendar.fullCalendar({
+					header : {
+						left : 'prev,next today',
+						center : 'title',
+						right : 'month,agendaWeek,agendaDay'
+					},
+					selectable : true,
+					select : function(startDate, endDate, allDay, jsEvent, view) {
+						var title = prompt('请输入事件:');
+						if (title) {
+							calendar.fullCalendar('renderEvent', {
+								title : title,
+								start : startDate,
+								end : endDate,
+								allDay : allDay
+							}, true // make the event "stick"
+							);
+						}
+						calendar.fullCalendar('unselect');
+					},
+
+					year : 2013,
+					monthNames : ['一月', '二月', 'March', 'April', 'May', 'June', 'July', 'August', 'September', '十月', 'November', 'December'],
+					monthNamesShort : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					dayClick : function() {
+
+					},
+					eventClick : function(event) {// 定义了点击日历项的动作，这里将会调用jQueryUi的dialog显示日历项的内容
+						console.log(event);
+					},
+					eventRender : function(event, element) {
+						var html = '';
+						html += ('事件：' + event.title); 
+						if(event.desc){
+							html += '<br/>描述：' + event.desc;
+						}
+						
+						//event.color='yellow';
+						element.html(html);
+						
+					},
+					dayNames : ['星期天', '星期一', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+					dayNamesShort : ['日', '一', '二', 'Wed', 'Thu', 'Fri', 'Sat'],
+					editable : true,
+					eventDragStop : function(event, jsEvent, ui, view) {
+						//console.log(event.source);
+					},
+					eventDrop : function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+						// event是移动后的
+						alert(event.title + " was moved " + dayDelta + " days and " + minuteDelta + " minutes.");
+
+						if (allDay) {
+							alert("Event is now all-day");
+						} else {
+							alert("Event has a time-of-day");
+						}
+
+						if (!confirm("Are you sure about this change?")) {
+							revertFunc();
+						}
+
+					},
+					eventResize : function(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view) {
+						alert("The end date of " + event.title + "has been moved " + dayDelta + " days and " + minuteDelta + " minutes.");
+						if (!confirm("is this okay?")) {
+							revertFunc();
+						}
+					},
+					eventSources : [{
+						events : [// put the array in the `events` property
+						{
+							title : 'event1',
+							start : '2013-10-01'
+						}, {
+							title : 'event2',
+							start : '2013-10-05',
+							end : '2013-10-07'
+						}, {
+							title : 'event3',
+							start : '2013-10-09 12:30:00',
+						}],
+						color : 'black', // an option!
+						textColor : 'yellow' // an option!
+					}]
+
+				});
+
+				calendar.fullCalendar('addEventSource', [{
+					id : 2,
+					color : 'gray',
+					title : "重复事件",
+					start : new Date(2013, 9, 7, 14, 0)
+				}, {
+					id : 2,
+					color : 'gray',
+					title : "重复事件",
+					desc:'测试使用自定义属性',
+					start : new Date(2013, 9, 7 + 3, 14, 0),
+				}]);
+
+				$("#dialog").dialog({
+					autoOpen : false
+				});
+
+			});
+
+			function printAllEvents() {
+				var events = $('#calendar').fullCalendar('clientEvents');
+				console.log(events);
+				/*
+				 .fullCalendar( 'clientEvents' [, idOrFilter ] ) -> Array
+				 idOrFilter 可以是id，或者一个function(event){return true;}*/
+			}
+
+		</script>
+	</body>
+</html>

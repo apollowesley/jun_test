@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<context:component-scan
+		base-package="com.evil.dao.Impl,com.evil.service.Impl,com.evil.struts2,com.evil.listener" />
+	<!-- 分散配置 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<!-- 配置数据源 -->
+	<bean id="dataSource" destroy-method="close"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="initialPoolSize" value="${jdbc.initialPoolSize}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+	</bean>
+
+	<!-- 配置Session工厂 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!-- class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置Hiberbate的映射的Model类 -->
+		<!-- <property name="mappingLocations" value="classpath:com/evil/pojo/*.hbm.xml"></property> -->
+		<property name="packagesToScan">
+			<list>
+				<value>com.evil.pojo</value>
+			</list>
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/evil/pojo</value>
+			</list>
+		</property>
+		<!-- hibernate的一系列属性配置 -->
+		<property name="configLocations" value="classpath:hibernate.cfg.xml" />
+
+	</bean>
+
+	<!-- 配置Spring的声明式事务 -->
+	<!--1. 配置Hibernate的事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 2.配置事务属性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 写操作 -->
+			<tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="batch*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="move*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="toggle*" propagation="REQUIRED" isolation="DEFAULT" />
+
+			<!-- 读操作 -->
+			<tx:method name="load*" propagation="REQUIRED" isolation="DEFAULT"
+				read-only="true" />
+			<tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT"
+				read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" isolation="DEFAULT"
+				read-only="true" />
+			<tx:method name="statistical*" propagation="REQUIRED"
+				isolation="DEFAULT" read-only="true" />
+
+			<tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 缓存管理器 -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="cacheManagerFactoryBean"></property>
+	</bean>
+	<!-- 缓存管理器工厂Bean -->
+	<bean id="cacheManagerFactoryBean"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml"></property>
+	</bean>
+	<!-- 自定义缓存Key生成器 -->
+	<bean id="OnlineExaminationKeyGenerator" class="com.evil.cache.OnlineExaminationKeyGenerator" />
+
+	<!-- 日志记录仪 -->
+	<bean id="logger" class="com.evil.advice.Logger" />
+
+	<!-- 缓存通知 -->
+	<cache:advice id="caheAdvice" cache-manager="cacheManager"
+		key-generator="OnlineExaminationKeyGenerator">
+		<cache:caching cache="OnlineExaminationCache">
+			<!-- 那些方法保存缓存 -->
+			<cache:cacheable method="get*" />
+			<cache:cacheable method="load*" />
+			<cache:cacheable method="find*" />
+			<cache:cacheable method="statistical*" />
+			<!-- 那些方法清除缓存 -->
+			<cache:cache-evict method="save*" all-entries="true" />
+			<cache:cache-evict method="inest*" all-entries="true" />
+			<cache:cache-evict method="update*" all-entries="true" />
+			<cache:cache-evict method="delete*" all-entries="true" />
+			<cache:cache-evict method="clear*" all-entries="true" />
+			<cache:cache-evict method="toggle*" all-entries="true" />
+			<cache:cache-evict method="batch*" all-entries="true" />
+			<cache:cache-evict method="execute*" all-entries="true" />
+			<cache:cache-evict method="move*" all-entries="true" />
+			<cache:cache-evict method="add*" all-entries="true" />
+			<cache:cache-evict method="Import*" all-entries="true" />
+			<cache:cache-evict method="alter*" all-entries="true" />
+		</cache:caching>
+	</cache:advice>
+
+	<!-- 3.配置事务切入点，再把事务属性和事务切入点关联起来 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.evil.service.*.*(..))"
+			id="txPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"
+			order="2" />
+		<!-- 缓存区切入点 -->
+		<aop:advisor advice-ref="caheAdvice"
+			pointcut="execution(* com.evil.service.*.*(..))" order="0" />
+
+		<!-- 日志记录仪切面 -->
+		<aop:aspect id="loggerAspect" ref="logger" order="1">
+			<aop:around method="record"
+				pointcut="(execution(* com.edu.cdtu.service.*.save*(..))
+											   or execution(* com.evil.service.*.delete*(..))
+											   or execution(* com.evil.service.*.batch*(..))
+											   or execution(* com.evil.service.*.update*(..))
+											   or execution(* com.evil.service.*.clear*(..))
+											   or execution(* com.evil.service.*.save*(..))
+											   or execution(* com.evil.service.*.executeSQL(..))
+											   or execution(* com.evil.service.*.alter*(..))
+											   or execution(* com.evil.service.*.inest*(..))
+											   or execution(* com.evil.service.*.move*(..))
+											   or execution(* com.evil.service.*.add*(..))
+											   or execution(* com.evil.service.*.Import*(..))
+											   or execution(* com.evil.service.*.toggle*(..))) 
+											   and !bean(logService)" />
+		</aop:aspect>
+	</aop:config>
+</beans>

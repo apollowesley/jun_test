@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="vtabroot" class="com.taobao.tddl.rule.VirtualTableRoot"
+          init-method="init">
+        <property name="dbType" value="MYSQL"/>
+        <property name="lazyInit" value="false"/>
+        <property name="tableRules">
+            <map>
+                <entry key="student" value-ref="student"/>
+                <entry key="course" value-ref="course"/>
+                <entry key="sClass" value-ref="sClass"/>
+                <entry key="studentCourse" value-ref="studentCourse"/>
+                <entry key="broadcast" value-ref="broadcast" />
+            </map>
+        </property>
+
+        <!--  <property name="dbIndexMap">
+              <map>
+                  <entry key="sequence" value="sequenceDb"/>
+              </map>
+          </property>-->
+
+    </bean>
+
+    <bean id="student" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true"/>
+        <property name="dbNamePattern" value="drds_{0}"/>
+        <property name="tbNamePattern" value="student{00}"></property>
+        <property name="dbRuleArray">
+            <value>Math.abs(Long.valueOf(#sId,1,8#)  %8).intdiv(4)</value>
+        </property>
+        <property name="tbRules">
+            <value>Math.abs(Long.valueOf(#sId,1,8#))% 8 </value>
+        </property>
+
+    </bean>
+
+    <bean id="student._sName" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true"/>
+        <property name="dbNamePattern" value="drds_{0}"/>
+        <property name="tbNamePattern" value="student{00}"></property>
+        <property name="dbRuleArray">
+            <value>Math.abs(Long.valueOf(#sId,1,8#)  %8).intdiv(4)</value>
+        </property>
+        <property name="tbRules">
+            <value>Math.abs(Long.valueOf(#sName,1,8#))% 8 </value>
+        </property>
+
+    </bean>
+
+    <bean id="course" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true"/>
+        <property name="dbNamePattern" value="drds_{0}"/>
+        <property name="tbNamePattern" value="course{00}"></property>
+        <property name="dbRuleArray">
+            <value>Math.abs(Long.valueOf(#cId,1,8#)  %8).intdiv(4)</value>
+        </property>
+        <property name="tbRules">
+            <value>Math.abs(Long.valueOf(#cId,1,8#))% 8 </value>
+        </property>
+
+    </bean>
+
+    <bean id="sClass" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true"/>
+        <property name="dbNamePattern" value="drds_{0}"/>
+        <property name="tbNamePattern" value="sClass{00}"></property>
+        <property name="dbRuleArray">
+            <value>Math.abs(Long.valueOf(#classId,1,8#)  %8).intdiv(4)</value>
+        </property>
+        <property name="tbRules">
+            <value>Math.abs(Long.valueOf(#classId,1,8#))% 8 </value>
+        </property>
+
+    </bean>
+
+    <bean id="studentCourse" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true"/>
+        <property name="dbNamePattern" value="drds_{0}"/>
+        <property name="tbNamePattern" value="studentCourse{00}"></property>
+        <property name="dbRuleArray">
+            <value>Math.abs(Long.valueOf(#scId,1,8#)  %8).intdiv(4)</value>
+        </property>
+        <property name="tbRules">
+            <value>Math.abs(Long.valueOf(#scId,1,8#))% 8 </value>
+        </property>
+    </bean>
+
+    <bean id="broadcast" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true" />
+        <property name="dbNamePattern" value="drds_0" />
+        <property name="tbNamePattern" value="broadcast" />
+        <property name="broadcast" value="true" />
+    </bean>
+
+
+
+</beans>

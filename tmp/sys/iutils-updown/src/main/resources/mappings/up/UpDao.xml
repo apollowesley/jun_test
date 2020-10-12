@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iutils.up.dao.UpDao">
+
+    <sql id="UpColumns">
+        a.id as "id",
+        a.channel as "channel",
+        a.content_id as "contentId",
+        a.hits as "hits",
+        a.operator as "operator",
+        a.create_date as "createDate",
+        a.status as "status"
+    </sql>
+
+    <sql id="UpJoins">
+
+    </sql>
+
+    <select id="get" resultType="cn.iutils.up.entity.Up">
+        SELECT
+        <include refid="UpColumns"/>
+        FROM plug_up a
+        <where>
+            <if test="id!=null and id!=''">
+                and a.id=#{id}
+            </if>
+            <if test="channel!=null and channel!=''">
+                and a.channel=#{channel}
+            </if>
+            <if test="contentId!=null and contentId!=''">
+                and a.content_id=#{contentId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert">
+        insert into plug_up(
+                channel,
+                content_id,
+                hits,
+                operator,
+                create_date,
+                status
+        )
+        values(
+                #{channel},
+                #{contentId},
+                #{hits},
+                #{operator},
+                #{createDate},
+                #{status}
+        )
+    </insert>
+
+    <update id="update">
+        update plug_up set
+                hits=#{hits},
+                operator=#{operator},
+                create_date=#{createDate},
+                status=#{status}
+        where id=#{id}
+    </update>
+
+</mapper>

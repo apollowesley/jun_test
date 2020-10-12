@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>data.js tests</title>
+  <link rel="stylesheet" href="libs/qunit-2.1.1.css">
+</head>
+<body>
+<!-- queryName、queryNameAll 测试中用到 -->
+<input id="userName" data-name="user.name" type="text" />
+<input id="userAge" data-name="user.age" type="text" />
+
+<div id="qunit"></div>
+<div id="qunit-fixture">
+  <!-- 性别 -->
+  <select id="sex" data-name="sex">
+    <option value="">--请选择--</option>
+    <option value="male">男</option>
+    <option value="female">女</option>
+  </select>
+
+  <!-- 兴趣 -->
+  <select id="hobby" data-name="hobby" multiple="multiple">
+    <option value="football">足球</option>
+    <option value="basketball">篮球</option>
+    <option value="tennisball">羽毛球</option>
+  </select>
+
+  <!-- 是否单身 -->
+  <input id="single" data-name="single" type="checkbox"/>
+
+  <!-- 简介 -->
+  <textarea id="description" data-name="description"></textarea>
+</div>
+<script src="libs/jquery-1.12.4.js"></script>
+<script src="libs/qunit-2.1.1.js"></script>
+<script src="../data.js"></script>
+<script src="data.test.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script type="text/javascript" src="../lib/vue-2.6.10.js"></script>
+</head>
+<body>
+<div id="app" style="text-align: center">
+    <h4>学生信息:</h4>
+    <p>学号：{{id}}</p>
+    <p>姓名：{{name}}</p>
+    <p>邮箱：{{email}}</p>
+    <div><label>通过改变js变量改变姓名：</label>
+        <button @click="jsBtnClick">修改js变量</button>
+    </div>
+    <div><label>通过改变vue实例改变姓名：</label>
+        <button @click="vueBtnClick">修改js变量</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var stu = {
+        id: "0133846",
+        name: "kiwipeach",
+        email: "liuburu@qq.com"
+    };
+    //必须在vue实例化之前就对其进行冻结操作才能生效
+    Object.freeze(stu);
+
+    var app = new Vue({
+        el: '#app',
+        data: stu,
+        methods: {
+            jsBtnClick: function () {
+                //通过js变量改变属性
+                stu.name = "sunwukong";
+            },
+            vueBtnClick: function () {
+                //通过vue实例改变变量属性，以下两种写法等价
+                // this.name = 'kakaluote';
+                app.name = "6666"
+            }
+        }
+    });
+
+
+    //调用app的其他实例方法
+    app.$watch('name', function (newValue, oldValue) {
+        // 这个回调将在 `vm.a` 改变后调用
+        console.log('改变前：%s,改变后:%s', oldValue, newValue);
+    })
+</script>
+</html>

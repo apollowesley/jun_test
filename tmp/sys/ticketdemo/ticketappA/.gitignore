@@ -1,0 +1,8 @@
+/build/
+/bin/
+/.settings/
+/.classpath
+/.project
+/build.gradle.bak
+/ticketserver.log
+/out/

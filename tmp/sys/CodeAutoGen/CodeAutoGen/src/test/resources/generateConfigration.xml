@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GenerateConfiguration>
+	<dbConfiguration>
+		<driverClass>com.mysql.jdbc.Driver</driverClass>
+		<url>jdbc:mysql://localhost:3306/shop</url>
+		<username>root</username>
+		<password>root</password>
+		<catalog></catalog>
+		<schema>root</schema>
+	</dbConfiguration>
+	<srcBase>e:/javabean</srcBase>
+	<pojoPackageName>com.yonge.test.entity</pojoPackageName>
+	<daoPackageName>com.yonge.test.dao</daoPackageName>
+	<servicePackageName>com.yonge.test.service</servicePackageName>
+	<sqlmapPackageName>com.yonge.test.dal.sqlmap</sqlmapPackageName>
+	<sqlmapConfigPackageName>resource</sqlmapConfigPackageName>
+	<springConfigPackageName>resource</springConfigPackageName>
+</GenerateConfiguration>

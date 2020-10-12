@@ -1,0 +1,28 @@
+基于Rapid-genereate代码生成框架开发的一个自动代码生成器插件
+用法：
+将src中的文件夹AutoGenerateCode拷贝到C盘根目录或linux下根目录，如果想拷贝到其他的目录在插件运行时指定位置即可：
+-DconfigLocation=文件夹位置
+
+关于配置文件中需要进行配置的内容：
+outRoot：代码生成的文件夹位置
+templateDirs：代码模版，可以多个，多个逗号隔开
+tableNames：需要生成代码的表名称可以有多个逗号隔开
+tableRemovePrefixes：需要忽略的表前缀，多个逗号隔开
+其他的看配置文件说明
+
+pom配置：
+       <plugin>
+            <groupId>com.dd.plugin</groupId>
+            <artifactId>plugin-code-auto-generate</artifactId>
+            <version>1.0</version>
+            <configuration>
+                <configLocation>C:/AutoGenerateCode</configLocation>
+            </configuration>
+        </plugin>
+IDE运行命令：
+1、code-auto-generate:codeAutoGene
+2、com.dd.plugin:plugin-code-auto-generate:1.0:codeAutoGene
+
+注意：需要主要配置的就是代码模版，熟悉freemarker之后在修改模版
+代码生成器框架参考：
+http://code.google.com/p/rapid-framework

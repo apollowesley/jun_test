@@ -1,0 +1,114 @@
+server:
+  port: ${service.server.port:8515}
+
+spring:
+  application:
+    name: mybatisplus-sharding-jdbc
+  devtools:
+    restart:
+      enabled: false
+  aop:
+#    proxy-target-class: false
+  redis:
+    host: 10.10.10.10
+    port: 6379
+    pool:
+      maxWait: 1500
+      maxActive: 2048
+      minIdle: 20
+      maxIdle: 200
+
+sharding.jdbc:
+  datasource:
+    names: ds_master_0,ds_master_1,ds_master_0_slave_0,ds_master_0_slave_1,ds_master_1_slave_0,ds_master_1_slave_1
+    ds_master_0:
+      type: org.apache.commons.dbcp.BasicDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://10.10.10.10:3306/sharding?useSSL=false
+      username: root
+      password: 
+      maxActive: 20
+    ds_master_0_slave_0:
+      type: org.apache.commons.dbcp.BasicDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://10.10.10.10:3307/sharding?useSSL=false
+      username: root
+      password: 
+      maxActive: 20
+    ds_master_0_slave_1:
+      type: org.apache.commons.dbcp.BasicDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://10.10.10.10:3308/sharding?useSSL=false
+      username: root
+      password: 
+      maxActive: 20
+    ds_master_1:
+      type: org.apache.commons.dbcp.BasicDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://10.10.10.10:3306/sharding1?useSSL=false
+      username: root
+      password: 
+      maxActive: 20
+    ds_master_1_slave_0:
+      type: org.apache.commons.dbcp.BasicDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://10.10.10.10:3307/sharding1?useSSL=false
+      username: root
+      password: 
+      maxActive: 20
+    ds_master_1_slave_1:
+      type: org.apache.commons.dbcp.BasicDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://10.10.10.10:3308/sharding1?useSSL=false
+      username: root
+      password: 
+      maxActive: 20
+  config:
+    sharding:
+      master-slave-rules:
+        ds_0:
+          masterDataSourceName: ds_master_0
+          slaveDataSourceNames: ds_master_0_slave_0,ds_master_0_slave_1
+        ds_1:
+          masterDataSourceName: ds_master_1
+          slaveDataSourceNames: ds_master_1_slave_0, ds_master_1_slave_1
+      default-database-strategy:
+        inline:
+          sharding-column: ID
+          algorithm-inline-expression: 'ds_${Long.parseLong(ID.toString()) % 2}'
+      tables:
+        t_user:
+          actualDataNodes: 'ds_${0..1}.t_user_${0..1}'
+          tableStrategy:
+            inline:
+              shardingColumn: ID
+              algorithmInlineExpression: 't_user_${Long.parseLong(ID.toString()) % 2}'
+          keyGeneratorColumnName: ID
+    
+mybatis-plus:
+  mapper-locations: 'classpath:/mapper/*Mapper.xml'
+#实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.baomidou.springboot.model
+#主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+  global-config:
+    id-type: 1
+#字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+#驼峰下划线转换
+    db-column-underline: true
+#刷新mapper 调试神器
+    refresh-mapper: true
+#数据库大写下划线转换
+    capital-mode: true
+#序列接口实现类配置
+#   key-generator: com.baomidou.springboot.xxx
+#逻辑删除配置
+#   logic-delete-value: 0
+#   logic-not-delete-value: 1
+#自定义填充策略接口实现
+#   meta-object-handler: com.baomidou.springboot.xxx
+#自定义SQL注入器
+# global-config.sql-injector: com.baomidou.springboot.xxx
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false

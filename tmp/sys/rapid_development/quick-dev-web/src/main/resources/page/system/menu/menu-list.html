@@ -1,0 +1,28 @@
+<title>菜单列表</title>
+<div id="menu-list">
+    <!-- 文件域 -->
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>菜单列表</legend>
+    </fieldset>
+
+    <!-- 列表：表格 -->
+    <table id="menu-table" lay-filter="menu-table" class="layui-hide"></table>
+
+</div>
+<!-- 工具栏 -->
+<script id="T-tools" type="text/html">
+    <button lay-event="menu-add" class="layui-btn layui-btn-normal">新增</button>
+
+    <button lay-event="menu-delete" class="layui-btn layui-btn-danger">删除</button>
+
+    <button lay-event="menu-search" class="layui-btn layui-btn-primary">查询</button>
+</script>
+
+<!-- 操作栏 -->
+<script id="operating" style="visibility: hidden;" type="text/html">
+    <a lay-event="menu-edit" class="layui-btn layui-btn-xs">编辑</a>
+
+    <a lay-event="menu-remove" class="layui-btn layui-btn-xs layui-btn-normal">删除</a>
+</script>
+
+<script src="/js/system/menu/menu-list.js" type="text/javascript"></script>

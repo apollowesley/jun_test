@@ -1,0 +1,22 @@
+package ${packageName};
+
+#foreach($im in ${importList})
+import ${im};
+#end
+
+/**
+ * ${table.desc}mapper接口
+ *
+ * User: ${constant_creator}
+ * Date: ${date}
+ */
+public interface ${javaMapperGeneratedShotClassName} {
+
+    /**
+     * 新增记录
+     *
+     * @param ${modelFirstLowerGeneratedClassName}
+     */
+    public void insert(${modelGeneratedShotClassName} ${modelFirstLowerGeneratedClassName});
+
+}

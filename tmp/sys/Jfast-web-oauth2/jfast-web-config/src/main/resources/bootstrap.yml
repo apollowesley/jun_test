@@ -1,0 +1,25 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: jfast-web-config
+  profiles:
+    active: native
+  # 配置中心
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config/
+endpoints:
+  refresh:
+    enabled: true
+# 注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+

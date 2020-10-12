@@ -1,0 +1,19 @@
+package $aoPackageName;
+
+import java.util.List;
+
+import $importClassName;
+
+public interface $entityNameAO {
+	public void save($entityName $lowerEntityName);
+	
+	public $entityName edit($type $primaryKey);
+
+	public void update($entityName $lowerEntityName);
+
+	public $entityName detail($type $primaryKey);
+
+	public void delete($type $primaryKey);
+	
+	public List<$entityName> queryAll();
+}

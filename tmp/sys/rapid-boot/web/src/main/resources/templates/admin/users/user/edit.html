@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>基本资料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/public.css" media="all">
+    <style>
+        .layui-form-item .layui-input-company {
+            width: auto;
+            padding-right: 10px;
+            line-height: 38px;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <fieldset class="layui-elem-field layuimini-search">
+        <legend>
+             <span class="layui-breadcrumb" lay-separator=">">
+                  <a href="/admin/users/user/list">平台用户</a>
+                  <a><cite>编辑</cite></a>
+            </span>
+        </legend>
+        <div style="margin: 10px 10px 10px 10px">
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="float: right">
+                        <a href="/admin/users/user/list" class="layui-btn">返回</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layuimini-main">
+                <div class="layui-form layuimini-form">
+                    <input th:value="${sysAccount.id}" hidden="hidden" name="id">
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">账号</div>
+                        <div class="layui-col-xs10" th:text="${sysAccount.code}"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">头像(点击上传→)</div>
+                        <div class="layui-upload-list layui-upload layui-col-xs10">
+                            <img class="layui-upload-img" id="logo"
+                                 th:attr="src=${sysAccount.logo != null ? sysAccount.logo : '/images/logo.png'}"
+                                 style="width: 100px;height: 100px;">
+                            <input name="logo" style="display: none;"
+                                   th:value="${sysAccount.logo != null ? sysAccount.logo : '/images/logo.png'}">
+                            <span id="logoText"></span>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="required layui-col-xs2">昵称</div>
+                        <div class="layui-input-inline layui-col-xs10">
+                            <input th:value="${sysAccount.name}"
+                                   type="tel" name="name" lay-verify="required|name" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">性别</div>
+                        <div class="layui-col-xs10" th:if="${sysAccount.sex != null}">
+                            <input type="radio" name="sex" value="true" title="男" th:checked="${sysAccount.sex}">
+                            <input type="radio" name="sex" value="false" title="女" th:checked="${!sysAccount.sex}">
+                        </div>
+                        <div class="layui-col-xs10" th:if="${sysAccount.sex == null}">
+                            <input type="radio" name="sex" value="true" title="男">
+                            <input type="radio" name="sex" value="false" title="女">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">出生日期</div>
+                        <div class="layui-input-inline layui-col-xs10">
+                            <input th:value="${sysAccount.birthData != null ? #dates.format(sysAccount.birthData,'yyyy-MM-dd') : ''}"
+                                   type="text" name="birthData" id="birthData" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">邮箱</div>
+                        <div class="layui-input-inline layui-col-xs10">
+                            <input th:value="${sysAccount.email}"
+                                   type="email" name="email" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <div class="layui-col-xs2">简介</div>
+                        <div class="layui-col-xs10">
+                            <textarea th:text="${sysAccount.note}" name="note" placeholder="请输入简介"
+                                      class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">角色</div>
+                        <div class="layui-col-xs10">
+                            <input name="roles" type="checkbox"
+                                   th:checked="${role.isChecked}"
+                                   th:each="role:${roles}" th:title="${role.name}" th:value="${role.id}">
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6 layui-col-md-offset4">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="saveBtn">确认保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'laydate', 'upload', 'element'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            laydate = layui.laydate,
+            element = layui.element,
+            upload = layui.upload;
+        //日期
+        laydate.render({
+            elem: '#birthData'
+        });
+        //监听提交
+        form.on('submit(saveBtn)', function (param) {
+            //获取checkbox[name='roles']的值
+            var arr = new Array();
+            $("input:checkbox[name='roles']:checked").each(function (i) {
+                arr[i] = $(this).val();
+            });
+            //将数组合并成字符串
+            param.field.roles = arr.join(",");
+            $.ajax({
+                url: "/api/admin/users/user/confirm/edit",
+                type: "PUT",
+                data: param.field,
+                success: function (rst) {
+                    layer.msg(rst.msg);
+                    if (rst.code == 1) {
+                        setTimeout(function () {
+                            location.href = "/admin/users/user/list";
+                        }, 2000);
+                    }
+                }
+            });
+            return false;
+        });
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#logo'
+            , url: '/api/entry/file/upload'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#logo').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (rst) {
+                //如果上传失败
+                if (rst.code > 0) {
+                    var urls = rst.data;
+                    $('[name=logo]').val(urls[0]);
+                } else {
+                    return layer.msg('上传失败');
+                }
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var logoText = $('#logoText');
+                logoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                logoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

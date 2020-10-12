@@ -1,0 +1,1 @@
+package com.jfast.api;import org.springframework.stereotype.Service;/** * @author zengjintao * @create 2019/4/12 15:08 * @since 1.0 **/@Servicepublic class ApiService {}

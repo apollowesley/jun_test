@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sise.school.teach.bussiness.admin.dao.AdminDao" >
+  <resultMap id="BaseResultMap" type="com.sise.school.teach.bussiness.admin.po.AdminPO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="tel" property="tel" jdbcType="BIGINT" />
+    <result column="salt" property="salt" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, password, tel, salt, status, create_time, update_time
+  </sql>
+  <insert id="insert" parameterType="com.sise.school.teach.bussiness.admin.po.AdminPO" >
+    insert into t_admin (id, name, password, 
+      tel, salt, status, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{tel,jdbcType=BIGINT}, #{salt,jdbcType=CHAR}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <select id="selectOneByUsernameAndStatus" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM t_admin
+    WHERE name=#{name}
+    <if test="status=='0'.toString()">
+      AND status=0
+    </if>
+    <if test="status=='1'.toString()">
+      AND status=1
+    </if>
+
+  </select>
+
+
+
+</mapper>

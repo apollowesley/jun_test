@@ -1,0 +1,157 @@
+1.在本地mysql新建两个库drds_0和drds_1，导入脚本
+2.用Maven打包diamond，把war包丢到tomcat里，启动tomcat
+3.浏览器里访问http://localhost:8080/diamond-server/ 用户名abc，密码123
+依次添加如下配置（group全部都是DEFAULT_GROUP）：
+dataId：com.taobao.corona.drds
+content:drds
+
+dataId:com.taobao.corona.drds.drds.passwd
+content:drds
+
+dataId:com.taobao.tddl.rule.le.drds.v_2.4.1
+content:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="vtabroot" class="com.taobao.tddl.rule.VirtualTableRoot"
+          init-method="init">
+        <property name="dbType" value="MYSQL"/>
+        <property name="lazyInit" value="false"/>
+        <property name="tableRules">
+            <map>
+                <entry key="student" value-ref="student"/>
+                <entry key="course" value-ref="course"/>
+                <entry key="sClass" value-ref="sClass"/>
+                <entry key="studentCourse" value-ref="studentCourse"/>
+                <entry key="broadcast" value-ref="broadcast" />
+            </map>
+        </property>
+
+
+    </bean>
+
+    <bean id="student" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true"/>
+        <property name="dbNamePattern" value="drds_{0}"/>
+        <property name="tbNamePattern" value="student{00}"></property>
+        <property name="dbRuleArray">
+            <value>Math.abs(Long.valueOf(#sId,1,8#)  %8).intdiv(4)</value>
+        </property>
+        <property name="tbRules">
+            <value>Math.abs(Long.valueOf(#sId,1,8#))% 8 </value>
+        </property>
+
+    </bean>
+
+
+
+    <bean id="course" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true"/>
+        <property name="dbNamePattern" value="drds_{0}"/>
+        <property name="tbNamePattern" value="course{00}"></property>
+        <property name="dbRuleArray">
+            <value>Math.abs(Long.valueOf(#cId,1,8#)  %8).intdiv(4)</value>
+        </property>
+        <property name="tbRules">
+            <value>Math.abs(Long.valueOf(#cId,1,8#))% 8 </value>
+        </property>
+
+    </bean>
+
+    <bean id="sClass" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true"/>
+        <property name="dbNamePattern" value="drds_{0}"/>
+        <property name="tbNamePattern" value="sClass{00}"></property>
+        <property name="dbRuleArray">
+            <value>Math.abs(Long.valueOf(#classId,1,8#)  %8).intdiv(4)</value>
+        </property>
+        <property name="tbRules">
+            <value>Math.abs(Long.valueOf(#classId,1,8#))% 8 </value>
+        </property>
+
+    </bean>
+
+    <bean id="studentCourse" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true"/>
+        <property name="dbNamePattern" value="drds_{0}"/>
+        <property name="tbNamePattern" value="studentCourse{00}"></property>
+        <property name="dbRuleArray">
+            <value>Math.abs(Long.valueOf(#scId,1,8#)  %8).intdiv(4)</value>
+        </property>
+        <property name="tbRules">
+            <value>Math.abs(Long.valueOf(#scId,1,8#))% 8 </value>
+        </property>
+    </bean>
+
+    <bean id="broadcast" class="com.taobao.tddl.rule.TableRule">
+        <property name="allowFullTableScan" value="true" />
+        <property name="dbNamePattern" value="drds_0" />
+        <property name="tbNamePattern" value="broadcast" />
+        <property name="broadcast" value="true" />
+    </bean>
+</beans>
+
+
+dataId:com.taobao.tddl.rule.le.drds.versions
+content:v_2.4.1
+
+dataId:com.taobao.tddl.v1_drds_dbgroups
+content:drds_0,drds_1
+
+dataId:com.taobao.tddl.atom.app.drds.drds_0
+content:
+userName=root
+initPoolSize=5
+minPoolSize=10
+maxPoolSize=50
+idleTimeout=60000
+blockingTimeout=60000
+preparedStatementCacheSize=20
+connectionProperties=characterEncoding=utf-8
+
+
+dataId:com.taobao.tddl.atom.app.drds.drds_1
+content:
+userName=root
+initPoolSize=5
+minPoolSize=10
+maxPoolSize=50
+idleTimeout=60000
+blockingTimeout=60000
+preparedStatementCacheSize=20
+connectionProperties=characterEncoding=utf-8
+
+dataId:com.taobao.tddl.atom.global.drds_0
+content:
+ip=localhost
+port=3306
+dbName=drds_0
+dbType=mysql
+dbStatus=RW
+
+dataId:com.taobao.tddl.atom.global.drds_1
+content:
+ip=localhost
+port=3306
+dbName=drds_1
+dbType=mysql
+dbStatus=RW
+
+(本人的mysql用户名密码都是root,如果您的不同，dataId最后一截是用户名，content是密码，改成对应的)
+dataId:com.taobao.tddl.atom.passwd.drds_0.mysql.root
+content:root
+
+dataId:com.taobao.tddl.atom.passwd.drds_1.mysql.root
+content:root
+
+dataId:com.taobao.tddl.jdbc.group_V2.4.1_drds_0
+content:drds_0:r10w10
+
+dataId:com.taobao.tddl.jdbc.group_V2.4.1_drds_1
+content:drds_1:r10w10
+
+4.在intellij idea里直接运行com.taobao.tddl.server.TddlLauncher
+
+5.navicat里连接localhost 端口8507 数据库名drds 用户名密码drds
+注意1：navicat最高支持到10，不支持11及以上版本
+注意2：工具->选项->外观->数据&网络 显示主键警告的选项去掉，否则打开表会误报使用虚拟主键更新表

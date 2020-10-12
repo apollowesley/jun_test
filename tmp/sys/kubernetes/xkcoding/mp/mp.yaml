@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mp
+  namespace: xkcoding
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mp
+  template:
+    metadata:
+      labels:
+        app: mp
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.7.9
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: web
+          volumeMounts:
+            - name: www
+              subPath: mp.xkcoding.com
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: www
+          persistentVolumeClaim:
+            claimName: xkcoding-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mp
+  namespace: xkcoding
+  labels:
+    app: mp
+spec:
+  ports:
+    - port: 80
+      name: web
+  selector:
+    app: mp
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-https
+  namespace: xkcoding
+spec:
+  redirectScheme:
+    scheme: https
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: mp-http
+  namespace: xkcoding
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`mp.xkcoding.com`)
+      kind: Rule
+      services:
+        - name: mp
+          port: 80
+      middlewares: # 使用跳转的中间件，强制 https
+        - name: redirect-https
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: mp-https
+  namespace: xkcoding
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: xkcoding-tls
+    # certResolver: default
+  routes:
+    - match: Host(`mp.xkcoding.com`)
+      kind: Rule
+      services:
+        - name: mp
+          port: 80

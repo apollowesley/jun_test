@@ -1,0 +1,18 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="form-group">
+    <%= label f, :name, "数据表名称" %>
+    <%= text_input f, :name, class: "form-control #{error_class(f, :name)}" %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :desc, "描述" %>
+    <%= textarea f, :desc, class: "form-control #{error_class(f, :desc)}", rows: 5 %>
+    <%= error_tag f, :desc %>
+  </div>
+
+  <div>
+    <%= submit "保存", class: "btn btn-primary mr-2" %>
+    <%= link "取消", to: Routes.table_path(@conn, :index), class: "btn btn-secondary" %>
+  </div>
+<% end %>

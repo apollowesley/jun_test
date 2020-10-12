@@ -1,0 +1,39 @@
+{
+  "pages":[     
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/list/list"
+  ],                                            
+  "window":{
+    "backgroundTextStyle":"dark",              
+    "navigationBarBackgroundColor": "#48adfd", 
+    "navigationBarTitleText": "青春喂了狗", 
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh":true,
+    "onReachBottomDistance":50
+  },
+    "tabBar": {
+      "backgroundColor":"#fff",   
+      "selectedColor":"#48adfd",
+      "borderStyle":"black",  
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "text": "首页",
+          "iconPath":"pages/images/home.png",              
+          "selectedIconPath":"pages/images/home_s.png"     
+        },
+        {
+          "pagePath": "pages/logs/logs",
+          "text": "日志",
+          "iconPath": "pages/images/sz.png",
+          "selectedIconPath": "pages/images/sz_s.png"
+        }
+      ]
+    },
+    "networkTimeout": {
+      "request": 10000,
+      "downloadFile": 10000
+    },
+    "debug": false
+}

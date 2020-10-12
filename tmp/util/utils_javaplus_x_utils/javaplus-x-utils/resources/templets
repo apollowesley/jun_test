@@ -1,0 +1,320 @@
+TempletName:MYSQL_GEN
+package PACKAGE_NAME;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import cn.xgame.system.SystemCfg;
+
+import x.javaplus.collections.Lists;
+import x.javaplus.mysql.db.DBObject;
+import x.javaplus.mysql.db.SqlDao;
+import x.javaplus.mysql.db.SqlDto;
+
+public class CLASS_NAME {
+	
+	/**
+	 * Mysql操作类 <br>
+	 * <br>
+	 * 列子 <br>
+	 * <br>
+	 * =====获取数据===== <br>
+	 * XXXDao dao = SqlUtil.getXXXDao(); <br>
+	 * XXXDto dto = dao.get( "101" );// 获取单个数据  默认根据id查找 <br>
+	 * List.XXXDto dto = dao.getAll( "101" );// 获取多个数据  默认根据id查找 <br>
+	 * List.XXXDto dto = dao.getByExact( "id="+101 );// 获取多个数据  根据自定义sql语句查找 可以用Condition类方便的生成语句;<br>
+	 * dao.commit(); // 最后提交 每个操作后 都要调用 commit<br>
+	 * dao.commit( dto ); // 提交并保存dto  只能保存单个数据<br>
+	 * <br>
+	 * =====创建数据===== <br>
+	 * XXXDao dao = SqlUtil.getXXXDao();<br>
+	 * RoleDto dto = dao.create();// 表示创建开始 <br>
+	 * dto.setId( "101" );<br>
+	 * dto.setName( "大峰哥" );<br>
+	 * dto.setLevel( 99 );<br>
+	 * dao.commit( dto );// 提交并保存dto <br>
+	 * <br>
+	 * =====保存数据===== <br>
+	 * XXXDao dao = SqlUtil.getXXXDao();<br>
+	 * XXXDto dto = dao.update();// 保存单个数据 默认根据id来保存 <br>
+	 * XXXDto dto = dao.update( "id="+101 ); // 保存多个数据  根据自定义语句来保存   这种模式必须设置id<br>
+	 * dto.setId( "101" );<br>
+	 * dto.setName( "大峰哥" );<br>
+	 * dto.setLevel( 99 );<br>
+	 * dao.commit( dto );// 提交并保存dto 默认根据id保存 <br>
+	 * <br>
+	 * =====删除数据===== <br>
+	 * RoleDao dao = SqlUtil.getRoleDao(); <br>
+	 * dao.delete( "101" );<br>
+     * dao.deleteByExact( "id="+101 );<br>
+     * dao.commit();<br>
+	 *<br>
+	 *<br>
+	 * @author deng
+	 *
+	 */
+	public static final class SqlUtil {
+		
+		/**
+		 * 获取数据库某张表的最大id
+		 * @param tableName
+		 * @param col
+		 * @param criteria 条件
+		 * @return
+		 * @throws SQLException
+		 */
+		public static int getMaxId( String tableName, String col, String criteria ) {
+			DBObject db = DBObject.create();
+			try {
+				db.prepareStatement( "select max(" + col + ") from `" + SystemCfg.getDatabaseName()+"`." + tableName + " where " + criteria );
+				db.executeQuery();
+				if ( db.next())
+					return db.getInt( 1 );
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				db.close();
+			}
+			return 0;
+		}
+		
+		/**
+		 * 获取某张表的数据总数
+		 * @param tableName
+		 * @return
+		 */
+		public static long getCount( String tableName ) {
+			DBObject db = DBObject.create();
+			try {
+				db.prepareStatement( "select COUNT(*) from `" + SystemCfg.getDatabaseName()+"`." + tableName );
+				db.executeQuery();
+				if ( db.next() )
+					return db.getLong( 1 );
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				db.close();
+			}
+			return 0;
+		}
+		
+		@SuppressWarnings("rawtypes")
+		public static String getClassName( Class clzss ) {
+			return clzss.getSimpleName().replaceAll("Dto", "").toLowerCase();
+		}
+APPEND GET_DAO
+	}
+	
+APPEND DAO
+APPEND DTO
+}
+------------------------------------------------------------
+TempletName:DTO
+	public static class CLASS_NAMEDto implements SqlDto{
+
+APPEND FIELDS_PRIVATE
+
+		public CLASS_NAMEDto() {
+		}
+		
+		/**
+		 * Copy new one
+		 */
+		public CLASS_NAMEDto(CLASS_NAMEDto src) {
+APPEND COPY_FS
+		}
+APPEND GETTER
+APPEND SETTER
+APPEND CHANGE_SQL
+		@Override
+		public void fromDBObject(DBObject o) {
+APPEND FROM_DBOBJECT
+		}
+		
+		@Override
+		public String toString() {
+			return TOSTRING;
+		}
+	}
+------------------------------------------------------------
+TempletName:DAO
+	public static class CLASS_NAMEDao extends SqlDao{
+		
+		public CLASS_NAMEDao( String tableName ) {
+			super( tableName );
+		}
+		
+		public CLASS_NAMEDto get( VARID_TYPE id ) {
+			super.select( VARID_NAME, true );
+			if( next() ){
+				CLASS_NAMEDto x = new CLASS_NAMEDto();
+				x.fromDBObject( getObject() );
+				return x;
+			}
+			return null;
+		}
+		
+		public List<CLASS_NAMEDto> getAll( VARID_TYPE id ) {
+			super.select( VARID_NAME, false );
+			return getLs();
+		}
+
+		public List<CLASS_NAMEDto> getByExact( String arg ) {
+			super.selectByExact( arg );
+			return getLs();
+		}
+		
+		private List<CLASS_NAMEDto> getLs() {
+			List<CLASS_NAMEDto> ls = Lists.newArrayList();
+			while( next() ){
+				CLASS_NAMEDto x = new CLASS_NAMEDto();
+				x.fromDBObject( getObject() ) ;
+				ls.add( x );
+			}
+			return ls;
+		}
+		
+		public CLASS_NAMEDto update(){
+			_update( );
+			return new CLASS_NAMEDto();
+		}
+		public CLASS_NAMEDto updateByExact( String arg ){
+			_updateByExact( arg );
+			return new CLASS_NAMEDto();
+		}
+		
+		public CLASS_NAMEDto create() {
+			insert();
+			return new CLASS_NAMEDto();
+		}
+		
+		public void delete( VARID_TYPE id ){
+			super.delete( VARID_NAME );
+		}
+		public void deleteByExact( String arg ){
+			super.deleteByExact( arg );
+		}
+		
+		public void commit(){
+			super.commit( false );
+		}
+		
+		public void commit( CLASS_NAMEDto dto ) {
+APPEND SETOBJECT
+			super.commit( true );
+		}
+	}
+------------------------------------------------------------
+TempletName:GET_DAO
+		public static CLASS_NAMEDao getCLASS_NAMEDao() {
+			return new CLASS_NAMEDao( "`"+SystemCfg.getDatabaseName()+"`.DB_NAME" );
+		}
+------------------------------------------------------------
+TempletName:FIELDS_PRIVATE
+		private VARIATE_TYPE VARIATE_NAME = null;
+------------------------------------------------------------
+TempletName:FIELDS_PUBLIC
+		public VARIATE_TYPE VARIATE_NAME;
+------------------------------------------------------------
+TempletName:FIELDS_PROTECTED
+		protected VARIATE_TYPE VARIATE_NAME;
+------------------------------------------------------------
+TempletName:COPY_FS
+			this.VARIATE_NAME = src.VARIATE_NAME;
+------------------------------------------------------------
+TempletName:GETTER
+		/** COMMENT */
+		public VARIATE_TYPE getFUN_NAME(){
+			return this.VARIATE_NAME;
+		}
+------------------------------------------------------------
+TempletName:SETTER
+		/** COMMENT */
+		public void setFUN_NAME( VARIATE_TYPE VARIATE_NAME ){
+			this.VARIATE_NAME = VARIATE_NAME;
+		}
+------------------------------------------------------------
+TempletName:FROM_DBOBJECT
+			VARIATE_NAME = o.getTYPE_NAME( "VARIATE_NAME" );
+------------------------------------------------------------
+TempletName:CHANGE_SQL
+		public static String VARIATE_NAMEChangeSql( VARIATE_TYPE x ) {
+			return "VARIATE_NAME=" + VALUE;
+		}
+------------------------------------------------------------
+TempletName:SETOBJECT
+			setObject( "VARIATE_NAME", dto.getFUN_NAME() );
+------------------------------------------------------------
+TempletName:CSV_GEN
+package PACKAGE_NAME;
+
+import java.util.List;
+import java.util.Map;
+
+import x.javaplus.collections.Lists;
+import x.javaplus.csv.util.Csv;
+
+import cn.xgame.system.SystemCfg;
+APPEND IMPORT
+public class CLASS_NAME {
+APPEND PRIVATE_FINAL
+	public static void load(){
+APPEND CSV_LOADFUN_TO
+	}
+APPEND CSV_LOADFUN
+APPEND CSV_GET
+}
+------------------------------------------------------------
+TempletName:IMPORT
+import PACKAGE_NAME;
+------------------------------------------------------------
+TempletName:PRIVATE_FINAL
+	public static final List<CLASS_NAME> VAR_NAME = Lists.newArrayList();
+------------------------------------------------------------
+TempletName:CSV_LOADFUN_TO
+		loadCLASS_NAME( "FILE_NAME" );
+------------------------------------------------------------
+TempletName:CSV_LOADFUN
+	private static void loadCLASS_NAME( String file ){
+		
+		Csv csv = new Csv( SystemCfg.FILE_NAME + "configs/" + file );
+		
+		for( Map<String, String> data : csv.getValues() ){
+			CLASS_NAME o = new CLASS_NAME(data);
+			VAR_NAME.add( o );
+		}
+	}
+------------------------------------------------------------
+TempletName:CSV_GET
+	public static CLASS_NAME getCLASS_NAME( VAR_TYPE x ){
+		for( CLASS_NAME o : VAR_NAME ){
+			if( o.DATA_NAME == x )
+				return o;
+		}
+		return null;
+	}
+------------------------------------------------------------
+TempletName:CSV_OBJECT
+package PACKAGE_NAME;
+
+import java.util.Map;
+import x.javaplus.string.StringUtil;
+
+public class CLASS_NAME {
+APPEND FIELDS_PUBLIC_FINAL
+	public CLASS_NAME( CLASS_NAME clone ){
+APPEND SET_CLONE
+	}
+	public CLASS_NAME( Map<String, String> data ){
+APPEND SET_VAR
+	}
+}
+------------------------------------------------------------
+TempletName:FIELDS_PUBLIC_FINAL
+	public final TYPE NAME;
+------------------------------------------------------------
+TempletName:SET_VAR
+		NAME = TYPE_PARSE;
+------------------------------------------------------------
+TempletName:SET_CLONE
+		this.NAME = clone.NAME;

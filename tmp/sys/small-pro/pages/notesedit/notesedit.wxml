@@ -1,0 +1,36 @@
+<!--pages/notesedit/notesedit.wxml-->
+<view class="container">
+<!-- 头部操作按钮 -->
+<view class="navOperate">
+  <view class="operateIcon">
+    <view class="operate operate_save" hover-class="click" catchtap="saveNotes"><span class="icon iconfont icon-finish"></span></view>
+    <view class="operate operate_cancel" hover-class="click" catchtap="undo"><span class="icon iconfont icon-shangyibu"></span></view>
+    <view class="operate operate_redo" hover-class="click" catchtap="redo"><span class="icon iconfont icon-xiayibu"></span></view>
+    <view class="operate operate_save" hover-class="click" catchtap="insertImg"><span class="icon iconfont icon-tupian1"></span></view>
+    <view class="operate operate_save" hover-class="click" catchtap="setInfo"><span class="icon iconfont icon-biaoti"></span></view>
+    <view class="operate operate_save" hover-class="click"><span class="icon iconfont icon-gengduo"></span></view>
+  </view>
+</view>
+
+
+
+<!-- 新建笔记信息（标题，标签） -->
+<view class="notesInfo" style="height:{{infoHeight}}">
+<view class="notes_title">
+<input type="text" value="{{notesName}}" bindfocus="infoSet" bindblur="infocancel"  focus='{true}' bindinput="notesName" class="input_title" placeholder="新建笔记.md"></input></view>
+<view class="notes_tag">
+   <view class="notes_icon"><span class="icon iconfont icon-Notes"></span></view>
+   <view class="notes_path">个人笔记：/我的笔记/</view>
+   <view class="tag_icon"><span class="icon iconfont icon-tag"></span></view>
+</view>
+</view>
+
+<!-- 笔记内容 -->
+<view class="notesContent">
+<editor id="editor" 
+  bindinput="getContent"
+  bindready="onEditorReady" 
+  ></editor>           
+</view>
+</view>
+

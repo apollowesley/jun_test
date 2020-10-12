@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="${request.contextPath}/static/css/css.css">
+</head>
+<body>
+
+[#if msg??]
+    <div class="message">${msg!}</div>
+[/#if]
+
+[@shiro.hasPermission name="user:create"]
+    <a href="${request.contextPath}/user/create">用户新增</a><br/>
+[/@shiro.hasPermission]
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>用户名</th>
+            <th>所属组织</th>
+            <th>角色列表</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+       [#list userList as user]
+            <tr>
+                <td>${(user.username)!}</td>
+                <td>${(organization().organizationName(user.organizationId))!}</td>
+                <td>${(organization().roleNames(user.roleIds))!}</td> 
+                
+                <td>
+                    [@shiro.hasPermission name="user:update"]
+                        <a href="${request.contextPath}/user/${user.id}/update">修改</a>
+                   [/@shiro.hasPermission]
+                   
+                    [@shiro.hasPermission name="user:delete"]
+                        <a href="${request.contextPath}/user/${user.id}/delete">删除</a>
+                    [/@shiro.hasPermission]
+
+                    [@shiro.hasPermission name="user:update"]
+                        <a href="${request.contextPath}/user/${user.id}/changePassword">改密</a>
+                    [/@shiro.hasPermission]
+                </td>
+            </tr>
+       [/#list]
+    </tbody>
+</table>
+
+</body>
+</html>

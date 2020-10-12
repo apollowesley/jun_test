@@ -1,0 +1,21 @@
+group 'cn.gson'
+version '0.1'
+
+task copyStatic(type: Copy) {
+    group = 'build'
+    description = '复制编译后的静态文件到 server 的 resource 目录'
+    from 'front-end/dist'
+    into 'server/build/resources/main/static'
+}
+
+copyStatic.mustRunAfter('front:build')
+
+task mergeBuild(dependsOn: ['front:build', ':copyStatic', 'server:bootJar']) {
+    group = 'build'
+    description = '合并编译输出'
+}
+
+task independentBuild(dependsOn: ['front:build', 'server:bootJar']) {
+    group = 'build'
+    description = '独立编译输出'
+}

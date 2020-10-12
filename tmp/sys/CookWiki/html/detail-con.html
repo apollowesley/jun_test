@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="../css/api.css" />
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/docs.min.css" />
+<style>
+	body{
+		padding:5px;
+		background-color:transparent;
+		overflow:hidden;
+	}
+	.mainCont{
+		padding:5px;
+		border:#DDDDDD 0.1em solid;
+		-moz-border-radius: 5px;      /* Gecko browsers */
+	    -webkit-border-radius: 5px;   /* Webkit browsers */
+	    border-radius:5px;            /* W3C syntax */
+	   	margin-bottom:10px;
+	   	background:#FFF;
+	   	overflow:hidden;
+	}
+	hr{
+    	border:0;
+    	background-color:#F0F0E1;
+    	height:1px;
+    	margin-bottom:20px;
+    }
+    .step{
+    	padding:10px 0px;
+    	border-bottom:#F0F0E1 1px dotted;
+    	overflow:hidden;
+    }
+    .step .col-xs-5{
+    	padding:0;
+    }
+    .step .col-xs-7{
+    	font-size:16px;
+    }
+</style>
+</head>
+
+<body>
+<div id="detailCont" class="container-fluid"></div>
+</body>
+
+<script id="pageTpl" type="text/html">
+<div class="row mainCont">
+	<h3 class="text-success">{{ d.title }}</h3>
+	<hr />
+	<p>
+		<span class="label label-default">Tags</span> {{ d.tags }}
+	</p>
+	<p>
+		<span class="label label-danger">原料</span> {{ d.ingredients }}
+	</p>
+	<p>
+		<span class="label label-warning">配料</span> {{ d.burden }}
+	</p>
+	<p>
+		<img src="../res/loadPic.png" data-echo="{{ d.albums }}" class="img-responsive">
+	</p>
+	<p>
+		<h3><span class="label label-info">步骤</span></h3>
+	</p>
+	{{# for(var i = 0, len = d.steps.length; i < len; i++){ }}
+	<div class="row step">
+		<div class="col-xs-12">
+			<div class="col-xs-5"><img src="../res/loadPic.png" data-echo="{{ d.steps[i].img }}" class="img-responsive"></div>
+			<div class="col-xs-7">{{ d.steps[i].step }}</div>
+		</div>
+	</div>
+	{{# } }}
+	
+</div>
+</script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript" src="../script/laytpl.js"></script>
+<script type="text/javascript" src="../script/DBapi.js"></script>
+<script type="text/javascript" src="../script/zepto.min.js"></script>
+<script type="text/javascript" src="../script/echo.min.js"></script>
+<script>
+
+apiready = function() {
+
+	var id = api.pageParam.id;
+	
+	loadDetail(id);
+}
+
+</script>
+</html>

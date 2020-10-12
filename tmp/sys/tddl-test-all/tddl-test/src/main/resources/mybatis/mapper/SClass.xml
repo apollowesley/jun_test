@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.course.dao.SClassDao">
+	<resultMap id="BaseResultMap" type="com.course.model.SClass">
+		<id column="classId" property="classId" jdbcType="BIGINT" />
+		<result column="className" property="className" jdbcType="VARCHAR" />
+		<result column="header" property="header" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 基础操作列-->
+	<sql id="Base_Column_List" >
+		classId, className, header
+	</sql>
+
+    <!-- 查询学生Model -->
+	<select id="getSClassBySId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from sclass
+		where classId = #{_parameter,jdbcType=BIGINT}
+	</select>
+
+    <!-- 插入学生Model -->
+    <insert id="insertSClass" parameterType="com.course.model.SClass">
+        insert into SClass
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="classId != null" >
+                classId,
+            </if>
+            <if test="className != null" >
+                className,
+            </if>
+            <if test="header != null" >
+                header,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="classId != null" >
+                #{classId,jdbcType=BIGINT},
+            </if>
+            <if test="className != null" >
+                #{className,jdbcType=VARCHAR},
+            </if>
+            <if test="header != null" >
+                #{header,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新用户信息 -->
+    <update id="updateSClassById" parameterType="com.course.model.SClass" >
+        update SClass
+        <set >
+            <if test="className != null" >
+                className = #{className},
+            </if>
+            <if test="header != null" >
+                header = #{header},
+            </if>
+        </set>
+        where classId = #{classId}
+    </update>
+
+    <!-- 根据id删除用户帐号 -->
+    <delete id="deleteSClass" parameterType="Long" >
+        delete from SClass
+        where classId in
+        <foreach collection="array" close=")" open="(" separator="," item="classId" >
+            #{classId,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+    <!-- 查询学生Model -->
+    <select id="getUnionResult" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from SClass
+        where classId = 2
+        union ALL
+        select
+        <include refid="Base_Column_List" />
+        from sclass
+        where classId = 3
+    </select>
+
+    <delete id="deleteAll"  >
+        delete from sclass
+    </delete>
+
+  
+</mapper>

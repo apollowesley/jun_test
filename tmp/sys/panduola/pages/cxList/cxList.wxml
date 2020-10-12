@@ -1,0 +1,36 @@
+<view class='search-item'>
+  <view class='search-item1'>
+    <view class='search-txt'>
+    <input type='text' placeholder='输入班级' bindinput='className'></input>
+    </view>
+  </view>
+  <view class='search-item2'>
+    <view class='search-txt'>
+    <input type='text' placeholder='输入学生姓名' bindinput='studentName'></input>
+    </view>
+  </view>
+  <!-- <view class='search-item3'>
+    <view class='search-txt'>
+    <input type='text' placeholder='输入学生编号' bindinput='studentNo'></input>
+    </view>
+  </view> -->
+  <view class='search' bindtap='getSearch'>查询</view>
+</view>
+
+
+
+<view class='orderList'>
+  <view class='items' wx:for="{{list}}" wx:key="id">
+    <view class='hd'>
+      <view class='r' wx:if="{{item.updateDate}}">{{item.updateDate}}</view>
+      <view class='r' wx:else>{{item.classNumber}}</view>
+      <view class='l'>{{item.stutentName}}</view>
+    </view>
+    <view class="bd">
+      <view class='t'>
+        <view class='l'>总课时：{{item.totalLesson}}</view>
+        <view class='c'>剩余课时：{{item.restLesson}}</view>
+      </view>
+    </view>
+  </view>
+</view>

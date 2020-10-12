@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <jdbc name="dialect" value="mysql"/>
+    <jdbc name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <jdbc name="url" value="jdbc:mysql://192.168.0.248:3306/tbss_user_center?useUnicode=true&amp;characterEncoding=utf-8"/>
+    <jdbc name="username" value="root"/>
+    <jdbc name="password" value=""/>
+
+    <constant name="encoding" value="UTF-8"/>
+    <constant name="templateDir" value="template"/>
+    <constant name="targetDir" value="D:"/>
+    <constant name="creator" value="liyingdan"/>
+
+    <convert fromType="" toType=""/>
+
+    <include file="tableConfig.xml"/>
+
+</config>

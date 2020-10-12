@@ -1,0 +1,1 @@
+mvn install:install-file -DgroupId=cn.kiwipeach -DartifactId=qq-sdk4j -Dversion=1.0.0 -Dpackaging=jar -Dfile=Sdk4J.jar

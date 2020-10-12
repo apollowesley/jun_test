@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${javaMapperGeneratedLongClassName}">
+
+    <sql id="fullColumns">
+        #foreach($column in ${table.columns})
+            ${column.name}#if($velocityCount < ${table.columns.size()}),#end
+
+        #end
+    </sql>
+
+    <insert id="insert" parameterType="${modelGeneratedLongClassName}">
+        insert into ${table.name}(
+        #foreach($column in ${table.columns})
+            ${column.name}#if($velocityCount < ${table.columns.size()}),#end
+
+        #end
+        ) values (
+        #foreach($column in ${table.columns})
+            #{${column.camelName},jdbcType=${column.jdbcType}}#if($velocityCount < ${table.columns.size()}),#end
+
+        #end
+        )
+    </insert>
+
+    <resultMap type="${modelGeneratedLongClassName}" id="${modelFirstLowerGeneratedClassName}Map">
+        #foreach($column in ${table.columns})
+            #if(${column.isPrimaryKey})
+                <id property="${column.camelName}" column="${column.name}"/>
+            #else
+                <result property="${column.camelName}" column="${column.name}"/>
+            #end
+        #end
+    </resultMap>
+</mapper>

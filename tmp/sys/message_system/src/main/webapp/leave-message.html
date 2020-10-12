@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>留言板</title>
+</head>
+<body>
+	<br />
+	<form action="/leave/leavemessage" method="post">
+		<table>
+			<tr>
+			
+<!-- 				<td class="tds">留言人：</td>
+				<td><input type="text" name="username" /></td> -->
+				<td class="tds">留言主题：</td>
+				<td><input type="text" name="topic" /></td>
+				<td class="tds">留言内容：</td>
+				<td><input type="text" name="message" /></td>
+				<td class="sub_td" colspan="2" class="tds"><input type="submit"
+					value="留言" /></td>
+				<td class="sub_td" colspan="2" class="tds"><input type="reset"
+					value="重置" /></td>
+			</tr>
+		</table>
+	</form>
+	
+	<br />
+	<div>
+		<a href="http://localhost:8080/message.html">查看留言</a>
+		<a href="http://localhost:8080/user/logout">退出登陆</a>
+	</div>
+</body>
+</html>

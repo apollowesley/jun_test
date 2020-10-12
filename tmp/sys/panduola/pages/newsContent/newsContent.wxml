@@ -1,0 +1,6 @@
+<import src="../../wxParse/wxParse.wxml"/>
+
+<view class='notice-wrap'>
+    <!-- <view class='notice-tit'>{{noticeTitle}}</view> -->
+   <template is="wxParse" data="{{wxParseData:noticecontent.nodes}}"/>
+</view>

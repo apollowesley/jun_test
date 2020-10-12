@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slavic.hors.orm.mapper.HorsPortalUserMapper">
+
+    <resultMap type="com.slavic.hors.orm.entity.HorsPortalUser" id="HorsPortalUserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="realName" column="real_name" jdbcType="VARCHAR"/>
+        <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+        <result property="userPhone" column="user_phone" jdbcType="VARCHAR"/>
+        <result property="avatarUrl" column="avatar_url" jdbcType="VARCHAR"/>
+        <result property="userEmail" column="user_email" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="userStatus" column="user_status" jdbcType="OTHER"/>
+        <result property="horsVersion" column="hors_version" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HorsPortalUserMap">
+        select
+          id, username, password, real_name, nick_name, user_phone, avatar_url, user_email, create_time, update_time, user_status, hors_version
+        from api_starter.hors_portal_user
+        where id = #{id}
+    </select>
+    
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="HorsPortalUserMap">
+        select
+          id, username, password, real_name, nick_name, user_phone, avatar_url, user_email, create_time, update_time, user_status, hors_version
+        from api_starter.hors_portal_user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="realName != null and realName != ''">
+                and real_name = #{realName}
+            </if>
+            <if test="nickName != null and nickName != ''">
+                and nick_name = #{nickName}
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                and user_phone = #{userPhone}
+            </if>
+            <if test="avatarUrl != null and avatarUrl != ''">
+                and avatar_url = #{avatarUrl}
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                and user_email = #{userEmail}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="userStatus != null">
+                and user_status = #{userStatus}
+            </if>
+            <if test="horsVersion != null">
+                and hors_version = #{horsVersion}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into api_starter.hors_portal_user(username, password, real_name, nick_name, user_phone, avatar_url, user_email, create_time, update_time, user_status, hors_version)
+        values (#{username}, #{password}, #{realName}, #{nickName}, #{userPhone}, #{avatarUrl}, #{userEmail}, #{createTime}, #{updateTime}, #{userStatus}, #{horsVersion})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="updateById">
+        update api_starter.hors_portal_user
+        <set>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="nickName != null and nickName != ''">
+                nick_name = #{nickName},
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                user_phone = #{userPhone},
+            </if>
+            <if test="avatarUrl != null">
+                avatar_url = #{avatarUrl},
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                user_email = #{userEmail},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="userStatus != null">
+                user_status = #{userStatus},
+            </if>
+            update_time = now(),
+            hors_version = hors_version + 1,
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from api_starter.hors_portal_user where id = #{id}
+    </delete>
+
+    <select id="listByIds" resultMap="HorsPortalUserMap">
+        select
+        id, username, password, real_name, nick_name, user_phone, avatar_url, user_email, create_time, update_time, user_status, hors_version
+        from api_starter.hors_portal_user
+        where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

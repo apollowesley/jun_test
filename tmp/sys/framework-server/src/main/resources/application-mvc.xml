@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+       default-lazy-init="true">
+
+  <description>Spring MVC Configuration</description>
+
+  <import resource="application-context.xml"/>
+
+  <context:property-placeholder location="classpath*:configuration.properties"/>
+
+  <mvc:default-servlet-handler default-servlet-name="default"/>
+
+  <!-- 静态资源映射
+  <mvc:resources mapping="/css/**" location="/css/"/>
+  <mvc:resources mapping="/img/**" location="/img/"/>
+  -->
+
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="defaultEncoding" value="utf-8"/>
+    <property name="maxUploadSize" value="${max_upload_size}"/><!-- 设置上传文件大小的参数 -->
+  </bean>
+
+  <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+        p:basename="classpath*:i18n/messages"/>
+
+  <!-- JSR303 Bean Validator -->
+  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"
+        p:validationMessageSource-ref="messageSource"/>
+
+  <!-- 只扫描@Controller注解的Bean -->
+  <context:component-scan base-package="cn.backflow.admin">
+    <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+  </context:component-scan>
+
+  <bean name="objectMapper" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean"
+        p:simpleDateFormat="yyyy-MM-dd HH:mm:ss"
+        p:serializationInclusion="NON_NULL"
+        p:indentOutput="true"/>
+
+  <!--<bean name="xmlMapper" parent="objectMapper" p:createXmlMapper="true" p:indentOutput="false"/>-->
+
+  <bean name="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+    <property name="ignoreAcceptHeader" value="true"/>
+    <property name="favorParameter" value="true"/>
+    <property name="mediaTypes">
+      <value>
+        json=application/json
+        xml=application/xml
+      </value>
+    </property>
+  </bean>
+
+  <!-- 激活注解配置SpringMVC 的 Controller -->
+  <mvc:annotation-driven
+      content-negotiation-manager="contentNegotiationManager"
+      enable-matrix-variables="true"
+      validator="validator">
+    <mvc:message-converters>
+      <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+          <list>
+            <value>text/html;charset=utf-8</value>
+            <value>text/plain;charset=utf-8</value>
+            <value>application/json;charset=utf-8</value>
+          </list>
+        </property>
+      </bean>
+      <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" p:objectMapper-ref="objectMapper"/>
+      <!--<bean class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter" p:objectMapper-ref="xmlMapper"/>-->
+    </mvc:message-converters>
+  </mvc:annotation-driven>
+
+  <mvc:view-resolvers>
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+    <mvc:content-negotiation>
+      <mvc:default-views>
+        <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" p:objectMapper-ref="objectMapper"/>
+        <!--<bean class="org.springframework.web.servlet.view.xml.MappingJackson2XmlView" p:objectMapper-ref="xmlMapper"/>-->
+      </mvc:default-views>
+    </mvc:content-negotiation>
+  </mvc:view-resolvers>
+
+
+  <mvc:interceptors>
+
+    <mvc:interceptor>
+      <mvc:mapping path="/**" />
+      <mvc:exclude-mapping path="/login"/>
+      <mvc:exclude-mapping path="/logout"/>
+      <bean class="cn.backflow.admin.common.secure.PermissionInterceptor">
+        <constructor-arg ref="redisTemplate"/>
+      </bean>
+    </mvc:interceptor>
+
+  </mvc:interceptors>
+
+  <!-- 异常映射定义, web.xml中已定义过通用异常, 这里可以捕捉更详细的自定义异常 -->
+  <bean class="cn.backflow.admin.common.secure.GlobalExceptionHandler"/>
+
+</beans>

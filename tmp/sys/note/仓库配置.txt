@@ -1,0 +1,31 @@
+增加一个仓库，在项目Pom.xml中添加如下：	
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>Maven Repository Switchboard</name>
+      <url>http://repo1.maven.org/maven2</url>
+      <layout>default</layout>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+如果仓库改为maven私服地址的话，需要在项目根目录下面添加
+
+  		<repositories>
+			 <repository>
+				 <id>central</id>
+				 <url>http://localhost:8000/nexus/content/groups/public</url>
+				 <releases><enabled>true</enabled></releases>
+			 	 <snapshots><enabled>true</enabled></snapshots>
+			 </repository>
+		 </repositories>
+		 <pluginRepositories>
+			 <pluginRepository>
+				 <id>central</id>
+				 <url>http://localhost:8000/nexus/content/groups/public</url>
+				 <releases><enabled>true</enabled></releases>
+				 <snapshots><enabled>true</enabled></snapshots>
+			 </pluginRepository>
+		 </pluginRepositories>

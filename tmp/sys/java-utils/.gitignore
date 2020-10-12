@@ -1,0 +1,9 @@
+.git
+.classpath
+.project
+.externalToolBuilders
+.settings
+target
+bin
+*.class
+*.jar

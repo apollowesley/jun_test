@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.evil.pojo.system.Log" table="tb_log" catalog="onlineexamination">
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="operator" type="java.lang.String">
+			<column name="operator" length="200" />
+		</property>
+		<property name="operName" type="string">
+			<column name="operName" length="200" />
+		</property>
+		<property name="operParams" type="java.lang.String">
+			<column name="operParams" length="2147483647" />
+		</property>
+		<property name="content" type="java.lang.String">
+			<column name="content" length="2147483647" />
+		</property>
+		<property name="operResult" type="java.lang.String">
+			<column name="operResult" length="10" />
+		</property>
+		<property name="resultMsg" column="resultMsg" type="string"
+			length="200" />
+		<!-- 添加时间不能改变 -->
+		<property name="operTime" column="operTime" type="timestamp"
+			update="false" />
+	</class>
+
+
+</hibernate-mapping>

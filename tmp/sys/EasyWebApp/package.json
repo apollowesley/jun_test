@@ -1,0 +1,43 @@
+{
+  "name": "easywebapp-js",
+  "version": "4.0.0",
+  "description": "SPA Engine based on jQuery API",
+  "main": "EasyWebApp.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "engines": {
+    "node": "^5.0.0"
+  },
+  "scripts": {
+    "bundle": "cd source  &&  amd-bundle ../EasyWebApp.js -e jquery,jQueryKit",
+    "compress": "uglifyjs EasyWebApp.js -o build/EasyWebApp.min.js --config-file build/compress.json",
+    "document": "jsdoc ./source/ -c ./build/document.json",
+    "clean": "reduce-blank ./docs/API/",
+    "build": "npm run bundle  &&  npm run compress  &&  npm run document  &&  npm run clean",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.oschina.net/Tech_Query/EasyWebApp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TechQuery/EasyWebApp.js/issues"
+  },
+  "homepage": "https://tech_query.oschina.io/easywebapp/",
+  "keywords": [
+    "spa",
+    "mvvm",
+    "amd",
+    "jquery"
+  ],
+  "author": "shiy007@qq.com",
+  "license": "GPL-2.0",
+  "devDependencies": {
+    "amd-bundle": "^0.4.2",
+    "docdash": "^0.4.0",
+    "jsdoc": "^3.5.5",
+    "reduce-blank": "^0.2.0",
+    "uglify-js": "^3.0.24"
+  }
+}

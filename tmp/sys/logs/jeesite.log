@@ -1,0 +1,2 @@
+2018-04-16 15:08:18,178 [main] WARN  [org.apache.commons.httpclient.HttpMethodBase] - Cookie rejected: "$Version="1"; BAIDUID="B0F8125D8A35DF934622C1C6F079ACAF:FG=1"; $Path="/"; $Domain=".baidu.com"". Illegal domain attribute ".baidu.com". Domain of origin: "dwz.cn"
+2018-04-16 15:08:18,320 [main] WARN  [org.apache.commons.httpclient.HttpMethodBase] - Cookie rejected: "$Version="1"; BAIDUID="B0F8125D8A35DF93F0C2C5FE54D0D3CC:FG=1"; $Path="/"; $Domain=".baidu.com"". Illegal domain attribute ".baidu.com". Domain of origin: "dwz.cn"

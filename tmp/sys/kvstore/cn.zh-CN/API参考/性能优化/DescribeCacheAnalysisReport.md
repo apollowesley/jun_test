@@ -1,0 +1,742 @@
+# DescribeCacheAnalysisReport {#doc_api_R-kvstore_DescribeCacheAnalysisReport .reference}
+
+调用DescribeCacheAnalysisReport查看Redis实例在指定日期中的缓存分析报告。
+
+ **前提条件** 
+
+-   Redis实例的引擎版本为4.0或以上；
+-   Redis实例的小版本为最新，小版本是否需要升级请参见[如何确认Redis实例的小版本是不是最新版](~~129203~~)。
+
+ **功能说明** 
+
+云数据库Redis版的缓存分析功能在每日全量备份数据时对缓存结构进行分析，找出每个数据节点中占用空间最大的80个Key，保存分析结果供您查看。
+
+除了每天的自动分析，您还可以发起实时的缓存分析任务，可供选择的发起方法如下：
+
+-   调用CreateCacheAnalysisTask创建缓存分析任务。
+-   在Redis控制台发起实时分析，操作步骤请参见[缓存分析](~~102093~~)。
+
+**说明：** 
+
+-   云数据库Redis版只会保存每天最新的一条分析结果，如您先通过手动操作进行了分析，当日稍晚时间系统进行了自动分析，系统会保留系统自动分析的结果，删除之前手动发起分析任务获得的结果。
+-   系统自动进行缓存分析的时间由数据全量备份的时间决定，您可以在控制台的[备份与恢复](~~43886~~)页修改该时间。
+
+## 调试 {#api_explorer .section}
+
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=R-kvstore&api=DescribeCacheAnalysisReport&type=RPC&version=2015-01-01)
+
+## 请求参数 {#parameters .section}
+
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|DescribeCacheAnalysisReport|系统规定参数，取值：DescribeCacheAnalysisReport。
+
+ |
+|InstanceId|String|是|r-bp1xxxxxxxxxxxxx|实例ID。
+
+ |
+|Date|String|是|2019-08-05Z|需要查询的日期，每次可查询一天的缓存分析结果，格式：`2019-08-05Z`。
+
+ |
+|AnalysisType|String|是|BigKey|分析类型，当前唯一值：`BigKey`。
+
+ |
+|PageSize|Integer|否|30|每页返回的记录数，可选值：
+
+ -   30
+-   50
+-   100
+
+ 默认值：30。
+
+ |
+|PageNumbers|Integer|否|1|需要返回的页码。
+
+ **说明：** 如果该值大于返回结果的最大页数，则返回的大key结果为空。
+
+ |
+|NodeId|String|否|r-bp1xxxxxxxxxxxxx-db-0|集群版Redis实例的子节点ID。
+
+ **说明：** 如果不设置将返回所有子节点的分析结果。
+
+ |
+|AccessKeyId|String|否|Lxxxxxxxxxxxxxxw|阿里云颁发给用户的访问服务所用的密钥ID。
+
+ |
+
+## 返回数据 {#resultMapping .section}
+
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|RequestId|String|A057C066-C3F5-4CC9-9FE4-A8D8B0DCBF19|请求ID。
+
+ |
+|BigKeys|String|\[\{"db": "0", "qps": 0, "keyType": "list", "isExpired": "no", "analysisType": "BIGKEY", "key": "mylist", "memory": 1005377, "size": 200000\}\]|大key列表。
+
+ |
+|HotKeys|String|\[\]|热点key列表。
+
+ **说明：** 暂不支持热点key分析，无返回值。
+
+ |
+|PageRecordCount|Integer|30|当前页显示的记录数。
+
+ |
+|PageSize|Integer|30|每页显示的最大记录数。
+
+ |
+|PageNumber|Integer|1|当前页的页码。
+
+ |
+|TotalRecordCount|Integer|160|所有页的记录总数。
+
+ |
+
+## 示例 {#demo .section}
+
+请求示例
+
+``` {#request_demo}
+
+https://r-kvstore.aliyuncs.com/
+?Action=DescribeCacheAnalysisReport
+&InstanceId=r-bp1xxxxxxxxxxxxx
+&Date=2019-08-05Z
+&AnalysisType=BigKey
+&<公共请求参数>
+
+```
+
+正常返回示例
+
+`XML` 格式
+
+``` {#xml_return_success_demo}
+<DescribeCacheAnalysisReportResponse>
+      <PageNumber>1</PageNumber>
+	  <TotalRecordCount>160</TotalRecordCount>
+	  <PageSize>30</PageSize>
+	  <RequestId>A057C066-C3F5-4CC9-9FE4-A8D8B0DCBF19</RequestId>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>list</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>mylist</key>
+		    <memory>1005377</memory>
+		    <size>200000</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:23124</key>
+		    <memory>970</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:167541</key>
+		    <memory>967</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:152015</key>
+		    <memory>958</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:30883</key>
+		    <memory>955</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:81031</key>
+		    <memory>953</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:152007</key>
+		    <memory>952</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:161880</key>
+		    <memory>951</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:194610</key>
+		    <memory>949</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:53620</key>
+		    <memory>948</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:23525</key>
+		    <memory>946</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:89333</key>
+		    <memory>946</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:23687</key>
+		    <memory>945</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:32653</key>
+		    <memory>945</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:72166</key>
+		    <memory>945</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:195881</key>
+		    <memory>944</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:160121</key>
+		    <memory>944</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:93626</key>
+		    <memory>944</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:138451</key>
+		    <memory>944</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:183732</key>
+		    <memory>943</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:143393</key>
+		    <memory>943</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:109289</key>
+		    <memory>943</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:153637</key>
+		    <memory>942</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:171049</key>
+		    <memory>942</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:53013</key>
+		    <memory>941</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:103664</key>
+		    <memory>941</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:180733</key>
+		    <memory>941</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:69766</key>
+		    <memory>941</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:125910</key>
+		    <memory>940</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <BigKeys>
+		    <db>0</db>
+		    <qps>0</qps>
+		    <keyType>hash</keyType>
+		    <isExpired>no</isExpired>
+		    <analysisType>BIGKEY</analysisType>
+		    <key>customer:10653</key>
+		    <memory>940</memory>
+		    <size>11</size>
+	  </BigKeys>
+	  <PageRecordCount>30</PageRecordCount>
+</DescribeCacheAnalysisReportResponse>
+```
+
+`JSON` 格式
+
+``` {#json_return_success_demo}
+{
+	"TotalRecordCount":160,
+	"PageNumber":1,
+	"HotKeys":[],
+	"PageSize":30,
+	"RequestId":"A057C066-C3F5-4CC9-9FE4-A8D8B0DCBF19",
+	"BigKeys":[
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"list",
+			"analysisType":"BIGKEY",
+			"memory":1005377,
+			"key":"mylist",
+			"size":200000
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":970,
+			"key":"customer:23124",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":967,
+			"key":"customer:167541",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":958,
+			"key":"customer:152015",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":955,
+			"key":"customer:30883",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":953,
+			"key":"customer:81031",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":952,
+			"key":"customer:152007",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":951,
+			"key":"customer:161880",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":949,
+			"key":"customer:194610",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":948,
+			"key":"customer:53620",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":946,
+			"key":"customer:23525",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":946,
+			"key":"customer:89333",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":945,
+			"key":"customer:23687",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":945,
+			"key":"customer:32653",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":945,
+			"key":"customer:72166",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":944,
+			"key":"customer:195881",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":944,
+			"key":"customer:160121",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":944,
+			"key":"customer:93626",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":944,
+			"key":"customer:138451",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":943,
+			"key":"customer:183732",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":943,
+			"key":"customer:143393",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":943,
+			"key":"customer:109289",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":942,
+			"key":"customer:153637",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":942,
+			"key":"customer:171049",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":941,
+			"key":"customer:53013",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":941,
+			"key":"customer:103664",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":941,
+			"key":"customer:180733",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":941,
+			"key":"customer:69766",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":940,
+			"key":"customer:125910",
+			"size":11
+		},
+		{
+			"qps":0,
+			"db":"0",
+			"isExpired":"no",
+			"keyType":"hash",
+			"analysisType":"BIGKEY",
+			"memory":940,
+			"key":"customer:10653",
+			"size":11
+		}
+	],
+	"PageRecordCount":30
+}
+```
+
+## 错误码 { .section}
+
+访问[错误中心](https://error-center.aliyun.com/status/product/R-kvstore)查看更多错误码。
+

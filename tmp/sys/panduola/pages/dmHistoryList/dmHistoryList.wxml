@@ -1,0 +1,31 @@
+<view hidden='{{pageHidden}}'>
+    <view class='orderList'>
+        <view class='items' wx:for="{{list}}" wx:key="id">
+            <view class='hd'>
+                <view class='r'>  {{item.createDate}} {{item.operating}}</view>
+                <view class='l'>{{item.studentName}}  </view>
+            </view>
+            <!-- <view class="bd">
+                <view class='t'>
+                    <view class='l'>总课时：{{item.totalLesson}}</view>
+                    <view class='c'>剩余课时：{{item.restLesson}}</view>
+                </view>
+                <view class='b'>
+                    <view class='btn' bindtap='goQd' data-orderNo="{{item.id}}">签到</view>
+                </view>
+            </view> -->
+        </view>
+    </view>
+
+    <view class='tips-upwarp' hidden="{{!loading}}">
+        <view class='upwarp-progress tips-rotate'></view>
+        <text class='upwarp-tip'>加载中..</text>
+    </view>
+    <view class='tips-upwarp' hidden="{{!loadingComplete}}">
+        <view class='noData' wx:if="{{list.length == 0}}">
+            <image src='../../images/mescroll-empty.png'></image>
+            <view class='text'>暂无数据</view>
+        </view>
+        <text class='upwarp-tip' wx:else>我是有底线的</text>
+    </view>
+</view>

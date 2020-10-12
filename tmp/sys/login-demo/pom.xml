@@ -1,0 +1,165 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.scau.mystudio</groupId>
+  <artifactId>login</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>login Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+      <!--依赖包版本(lib version)-->
+      <struts2.version>2.3.30</struts2.version>
+      <struts2.spring.plugin.version>2.3.30</struts2.spring.plugin.version>
+      <hibernate.version>4.2.2.Final</hibernate.version>
+      <spring.version>4.2.4.RELEASE</spring.version>
+      <mysql.connector.version>5.1.30</mysql.connector.version>
+      <c3p0.version>0.9.1.2</c3p0.version>
+      <log4j.version>1.2.12</log4j.version>
+      <slf4j.version>1.6.6</slf4j.version>
+      <cglib.version>2.1_3</cglib.version>
+      <servlet.api.version>2.4</servlet.api.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+      <!--添加SSH依赖-->
+      <!--Struts2-->
+      <dependency>
+          <groupId>org.apache.struts</groupId>
+          <artifactId>struts2-core</artifactId>
+          <version>${struts2.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.struts</groupId>
+          <artifactId>struts2-spring-plugin</artifactId>
+          <version>${struts2.spring.plugin.version}</version>
+      </dependency>
+      <!--Struts2依赖结束-->
+      <!--Hibernate-->
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
+          <version>${hibernate.version}</version>
+      </dependency>
+      <!--Hibernate依赖结束-->
+      <!--Spring-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-core</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <!-- 包含了大量注解@Autowired等。 -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-beans</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+
+      <!-- 包含SessionFactory org.springframework.orm.hibernate4.LocalSessionFactoryBean -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-orm</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+
+      <!-- 包含ContextLoaderListener 监听器 -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+
+      <!--  ApplicationContextInitializer -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <!--Spring依赖结束-->
+      <!--SSH依赖结束-->
+
+      <!--添加mysql驱动-->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>${mysql.connector.version}</version>
+      </dependency>
+      <!--mysql驱动添加结束-->
+
+      <!--添加c3p0数据源-->
+      <dependency>
+          <groupId>c3p0</groupId>
+          <artifactId>c3p0</artifactId>
+          <version>${c3p0.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>commons-dbcp</groupId>
+          <artifactId>commons-dbcp</artifactId>
+          <version>1.4</version>
+      </dependency>
+      <!--c3p0数据源添加结束-->
+
+      <!-- 添加Log4J依赖 -->
+      <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-nop</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+      <!-- Log4J依赖结束 -->
+
+      <dependency>
+          <groupId>cglib</groupId>
+          <artifactId>cglib</artifactId>
+          <version>${cglib.version}</version>
+      </dependency>
+      <!-- servlet接口 -->
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>servlet-api</artifactId>
+          <version>${servlet.api.version}</version>
+          <scope>provided</scope>
+      </dependency>
+
+      <!-- 添加javassist -->
+      <dependency>
+          <groupId>javassist</groupId>
+          <artifactId>javassist</artifactId>
+          <version>3.11.0.GA</version>
+      </dependency>
+      <!-- javassist结束 -->
+  </dependencies>
+
+  <build>
+    <finalName>login</finalName>
+      <!--添加maven插件支持jdk7-->
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>1.7</source>
+                  <target>1.7</target>
+              </configuration>
+          </plugin>
+      </plugins>
+  </build>
+</project>

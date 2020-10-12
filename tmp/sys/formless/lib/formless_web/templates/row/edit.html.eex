@@ -1,0 +1,6 @@
+<div class="card">
+  <div class="card-header"><%= @table.name %> 编辑数据</div>
+  <div class="card-body">
+    <%= render "form.html", Map.put(assigns, :action, Routes.table_row_path(@conn, :update, @table, @row)) %>
+  </div>
+</div>

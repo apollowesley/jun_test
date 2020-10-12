@@ -1,0 +1,63 @@
+<view class='pos-detail'>
+  <view class='detail-top'>
+    <view class='detail-name'>{{detailInfo.posName}}</view>
+    <view class='detail-btn' data-orderNo="{{detailInfo.id}}" data-posName="{{detailInfo.posName}}" bindtap='goPetitionPhotos'>
+        <view class='icon'><image src='../../images/icon/icon-home-19.png'></image></view>
+        <view class='txt'>评估</view>
+    </view>
+  </view>
+  <view class='detail-item'>
+    <view class='icon'><image src='../../images/icon/icon-home-18.png'></image></view>
+    <view class='txt'>营业时间：09:00-22:00</view>
+  </view>
+  <view class='detail-item'>
+    <view class='icon'><image src='../../images/icon/icon-home-05.png'></image></view>
+    <view class='txt'>负责人:{{detailInfo.posConcract}}</view>
+  </view>
+  <view class='detail-item'>
+    <view class='detail-name'>
+        <view class='icon'><image src='../../images/icon/icon-home-07.png'></image></view>
+        <view class='txt'> 联系电话：{{detailInfo.posMobile}}</view>
+    </view>
+    <view class='detail-btn' data-phoneNumber="{{detailInfo.posMobile}}" bindtap='callPhone'>
+        <view class='icon'><image src='../../images/icon/icon-home-20.png'></image></view>
+        <view class='txt'>电话</view>
+    </view>
+  </view>
+  <view class='detail-item'>
+    <view class='detail-name'>
+        <view class='icon'><image src='../../images/icon/icon-home-06.png'></image></view>
+        <view class='txt'>地址：{{detailInfo.posAddr}}</view>
+    </view>
+    <!-- <view class='detail-btn' bindtap='mapNavigation' data-posWeidu="{{detailInfo.posWeidu}}" data-posJingdu="{{detailInfo.posJingdu}}">
+        <view class='icon'><image src='../../images/icon/icon-08.png'></image></view>
+        <view class='txt'>导航</view>
+    </view> -->
+  </view>
+</view>
+
+<view class='shop-pic'>
+  <view class='tit'>门店照片</view>
+  <view class='pic-item'>
+    <view class='pic-box' data-img-idx="0" data-list-idx="4" bindtap="previewImage">
+      <image src="{{detailInfo.shPic1}}"></image>
+    </view>
+    <view class='pic-box' data-img-idx="1" data-list-idx="4" bindtap="previewImage">
+      <image src="{{detailInfo.shPic2}}"></image>
+    </view>
+  </view>
+</view>
+
+<view class='shop-pic'>
+  <view class='tit'>商户资料</view>
+  <view class='pic-item'>
+    <view class='pic-box' data-img-idx="2" data-list-idx="4" bindtap="previewImage">
+      <view class='pic0'>营业执照</view>
+      <image  src="{{detailInfo.shYyzz}}"></image>
+    </view>
+    <view class='pic-box'  data-img-idx="3" data-list-idx="4" bindtap="previewImage">
+      <view class='pic0'>商户协议</view>
+      <image src='{{detailInfo.shShxy}}'></image>
+    </view>
+  </view>
+</view>

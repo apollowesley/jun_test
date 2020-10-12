@@ -1,0 +1,9 @@
+{
+	"driver": "org.apache.hive.jdbc.HiveDriver",
+	"url": "jdbc:hive2://master:10000/;principal=hive/master@ABC.COM",
+	"sqlField": "sql",
+	"useKerberos": true,
+	"krb5Path": "/etc/krb5.conf",
+	"keytabPath": "/etc/user1.keytab",
+	"user": "user1@ABC.COM"
+}

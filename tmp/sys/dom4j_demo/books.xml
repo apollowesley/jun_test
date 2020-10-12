@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<books> 
+  <book id="b001"> 
+    <title>qbcd</title>  
+    <price>23</price> 
+  </book>  
+  <book id="b002">
+    <title>xxxxx</title>
+    <price>yyyy</price>
+  </book>
+</books>

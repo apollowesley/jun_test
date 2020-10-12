@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.neuedu.fly.mapper.ReplyMapper">
+  <resultMap id="BaseResultMap" type="org.neuedu.fly.entity.Reply">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="post_id" jdbcType="INTEGER" property="postId" />
+    <result column="replay_context" jdbcType="VARCHAR" property="replayContext" />
+    <result column="praise_count" jdbcType="INTEGER" property="praiseCount" />
+    <result column="replay_status" jdbcType="INTEGER" property="replayStatus" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, post_id, replay_context, praise_count, replay_status, user_id, create_time
+  </sql>
+</mapper>

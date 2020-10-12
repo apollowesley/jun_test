@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+	<display-name></display-name>
+
+
+	<filter>
+		<filter-name>setCharacterEncodingFilter</filter-name>
+		<filter-class>com.filter.SetCharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>setCharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- 这个过滤器，只是在测试时使用的，正式请去掉 start -->
+	<filter>
+		<filter-name>accessUrlFilter</filter-name>
+		<filter-class>com.filter.AccessUrlFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>accessUrlFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	<!-- 这个过滤器，只是在测试时使用的，正式请去掉 end -->
+
+
+	<filter>
+		<filter-name>exceptionFilter</filter-name>
+		<filter-class>com.filter.ExceptionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>exceptionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.filter.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>com.listener.SessionListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.listener.Configure</listener-class>
+	</listener>
+
+
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Testdatebase</servlet-name>
+		<servlet-class>com.javasrc.Testdatebase</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.javasrc.Login</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Register</servlet-name>
+		<servlet-class>com.javasrc.Register</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Bills</servlet-name>
+		<servlet-class>com.javasrc.Bills</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>RegLegalAjax</servlet-name>
+		<servlet-class>com.javasrc.RegLegalAjax</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Usercenter</servlet-name>
+		<servlet-class>com.javasrc.Usercenter</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>changePwandEmail</servlet-name>
+		<servlet-class>com.javasrc.changePwandEmail</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>ForgetPassword</servlet-name>
+		<servlet-class>com.javasrc.ForgetPassword</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Statistics</servlet-name>
+		<servlet-class>com.javasrc.Statistics</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Records</servlet-name>
+		<servlet-class>com.javasrc.Records</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Feedback</servlet-name>
+		<servlet-class>com.feedbacks.Feedback</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Admin</servlet-name>
+		<servlet-class>com.admin.Admin</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Bills_mobile</servlet-name>
+		<servlet-class>com.mobile.Bills</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Login_mobile</servlet-name>
+		<servlet-class>com.mobile.Login</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Statistics_mobile</servlet-name>
+		<servlet-class>com.mobile.Statistics</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Usercenter_mobile</servlet-name>
+		<servlet-class>com.mobile.Usercenter</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>PageTab</servlet-name>
+		<servlet-class>com.mobile.PageTab</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>seeworld</servlet-name>
+		<servlet-class>com.javasrc.seeworld</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>JoinUs</servlet-name>
+		<servlet-class>com.javasrc.JoinUs</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>friends</servlet-name>
+		<servlet-class>com.javasrc.Friends</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>message</servlet-name>
+		<servlet-class>com.javasrc.Message</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Portal</servlet-name>
+		<servlet-class>com.api.Portal</servlet-class>
+	</servlet>
+
+
+
+
+
+
+
+
+
+
+	<servlet-mapping>
+		<servlet-name>Testdatebase</servlet-name>
+		<url-pattern>/Testdatebase.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Register</servlet-name>
+		<url-pattern>/Register.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Bills</servlet-name>
+		<url-pattern>/Bills.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegLegalAjax</servlet-name>
+		<url-pattern>/RegLegalAjax.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Usercenter</servlet-name>
+		<url-pattern>/Usercenter.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>changePwandEmail</servlet-name>
+		<url-pattern>/changePwandEmail.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ForgetPassword</servlet-name>
+		<url-pattern>/ForgetPassword.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Statistics</servlet-name>
+		<url-pattern>/Statistics.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Records</servlet-name>
+		<url-pattern>/Records.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Feedback</servlet-name>
+		<url-pattern>/Feedback.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Admin</servlet-name>
+		<url-pattern>/Admin.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Bills_mobile</servlet-name>
+		<url-pattern>/mobile/Bills.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Login_mobile</servlet-name>
+		<url-pattern>/mobile/Login.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Statistics_mobile</servlet-name>
+		<url-pattern>/mobile/Statistics.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Usercenter_mobile</servlet-name>
+		<url-pattern>/mobile/Usercenter.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PageTab</servlet-name>
+		<url-pattern>/mobile/PageTab.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>seeworld</servlet-name>
+		<url-pattern>/seeworld.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JoinUs</servlet-name>
+		<url-pattern>/JoinUs.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>friends</servlet-name>
+		<url-pattern>/Friends.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>message</servlet-name>
+		<url-pattern>/Message.yy</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Portal</servlet-name>
+		<url-pattern>*.api</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+	</welcome-file-list>
+
+</web-app>

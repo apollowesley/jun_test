@@ -1,0 +1,2 @@
+GII下载下来的项目如果无法发现jar包需要运行
+mvn clean package

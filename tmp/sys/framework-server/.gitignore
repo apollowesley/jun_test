@@ -1,0 +1,12 @@
+.idea/
+.settings/
+.classpath
+.project
+*.mymetadata
+**/**/.git/
+**/**/.idea/
+**/classes/
+target/
+rebel.xml
+*.iml
+

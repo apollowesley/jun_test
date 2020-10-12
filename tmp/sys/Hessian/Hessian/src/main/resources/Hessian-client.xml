@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 客户端的配置文件 -->
+	<bean id="testHessianService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl" value="http://localhost:8888/hessianService" />					<!-- 服务的地址 -->
+		<property name="serviceInterface" value="com.school.hessian.service.HessianService" />		<!-- 指定业务类实现哪个接口。Spring推荐采用面向接口编程，因此，Hessian服务建议通过接口暴露。  -->
+	</bean>
+				
+
+
+</beans>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<parent>
+        <artifactId>bi</artifactId>
+        <groupId>kld-kshop</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>bi-api</artifactId>
+    <packaging>jar</packaging>
+    <name>bi-api</name>
+    <version>${bi-api-version}</version>
+    <url>http://maven.apache.org</url>
+
+    <!--jar包依赖-->
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kld-kshop</groupId>
+            <artifactId>kld-common</artifactId>
+            <version>${common-api-version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <!-- 请修改此处  -->
+    <distributionManagement>
+        <repository>
+            <id>yijie-release</id>
+            <name>nexus repository</name>
+            <url>http://123.57.78.118:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>yijie-snapshots</id>
+            <name>Snapshots</name>
+            <url>http://123.57.78.118:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

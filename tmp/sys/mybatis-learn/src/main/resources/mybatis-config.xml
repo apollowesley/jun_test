@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+  <settings>
+    <setting name="mapUnderscoreToCamelCase" value="true"/>
+    <setting name="logImpl" value="SLF4J"/>
+    <setting name="jdbcTypeForNull" value="NULL"/>
+    <!--<setting name="lazyLoadingEnabled" value="true" />-->
+    <!-- see
+      http://www.cnblogs.com/zemliu/p/3241025.html
+      http://stackoverflow.com/questions/24013855/lazy-loading-using-mybatis-3-with-java
+    -->
+    <setting name="aggressiveLazyLoading" value="false"/>
+    <!--<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />-->
+  </settings>
+
+</configuration>
+

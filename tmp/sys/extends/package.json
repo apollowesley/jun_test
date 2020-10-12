@@ -1,0 +1,24 @@
+{
+  "name": "layui-extends",
+  "version": "0.0.1",
+  "description": "The third party extended components of layui",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/layui/extends.git"
+  },
+  "author": [
+    "sentsin <xu@sentsin.com>"
+  ],
+  "homepage": "https://www.layui.com/extend/",
+  "bugs": {
+    "url": "https://github.com/layui/extends/issues"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "keywords": [
+    "layui",
+    "layui extends",
+    "layui component"
+  ]
+}

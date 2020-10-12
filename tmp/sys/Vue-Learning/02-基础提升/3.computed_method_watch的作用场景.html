@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script type="text/javascript" src="../lib/vue-2.6.10.js"></script>
+</head>
+<body>
+<div id="app" style="text-align: center">
+    <h4>computed,method,watch直接的区分:</h4>
+    <p>现在时间（因为vue有属性缓存，所以时间在当前页面渲染后不会再刷新，除非触发变量update了）：{{now}}</p>
+    <p>直接获取：{{name+'('+email+')'}}</p>
+    <p>computed方式获取：{{userInfo}}</p>
+    <p>metdhod方式获取：{{getUserInfo()}}</p>
+    <p>watch方式获取：{{watchInfo}}</p>
+</div>
+</body>
+<script type="text/javascript">
+    var stu = {
+        id: "0133846",
+        name: "kiwipeach",
+        email: "liuburu@qq.com",
+        watchInfo: ''
+    };
+
+    var app = new Vue({
+        el: '#app',
+        data: stu,
+        computed: {
+            userInfo: function () {
+                return this.name + "(" + this.email + ")";
+            },
+            //因为被缓存，所以页面渲染后就不会再实时更新了。
+            now: function () {
+                return Date.now().toLocaleString();
+            }
+        },
+        methods: {
+            //没有缓存，每次调用都返回新的值
+            getUserInfo: function () {
+                return this.name + this.email + Date.now().toLocaleString();
+            }
+        }
+    });
+
+
+    //调用app的其他实例方法
+    app.$watch('watchInfo', function (newValue, oldValue) {
+        this.watchInfo = this.name + "(" + this.email + ")";
+    });
+</script>
+</html>

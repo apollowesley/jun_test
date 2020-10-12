@@ -1,0 +1,28 @@
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+spring.application.name: gateway
+
+server:
+  port: 9000
+  tomcat.uri-encoding: UTF-8
+  tomcat:
+    accesslog:
+      enabled: true
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: api
+        uri: http://127.0.0.1:9011 #转发代理服务
+        predicates:
+        - Path=/api/v1/user/findOne
+        filters:
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 1
+            redis-rate-limiter.burstCapacity: 1
+            key-resolver: "#{@customKeyResolver}" #SPEL表达式去的对应的bean
+  # redis config
+  redis:
+    host: 127.0.0.1
+    port: 6379

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{ message }}
+</div>
+<div id="app1">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+<script>
+    Vue.config.debug=true;
+    var dom = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js!'
+        }
+    });
+    console.log(dom);
+    var dom1 = new Vue({
+        el: '#app1',
+        data: {
+            message: 'Hello Vue.js!'
+        }
+    })
+</script>
+</body>
+</html>

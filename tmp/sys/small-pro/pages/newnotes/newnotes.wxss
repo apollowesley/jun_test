@@ -1,0 +1,118 @@
+/* pages/newnotes/newnotes.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.container{
+  height: 100%;
+  width: 100%;
+}
+.container .navOperate{
+  width: 100%;
+  height: 50px;
+}
+.container .navOperate .operateIcon{
+  width: 100%;
+  height: 50px;
+  background-color:#62c9f8;
+}
+.container .navOperate .operateIcon .operate{
+  width: 16.66%;
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+  line-height: 50px;
+  color: #fff; 
+}
+.container .navOperate .operateIcon .operate .icon{
+  font-size: 22px;
+}
+.container .notesInfo{
+  width: 100%;
+  background-color: #eee;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 10px;
+  transition: height .5s ease
+}
+.container .notesInfo .notes_title input{
+  font-size: 16px;
+  height: 25px;
+}
+.container .notesInfo .notes_title{
+  padding:10px 0;
+}
+.container .notesInfo .notes_tag{
+   padding-bottom: 10px;
+}
+.container .notesInfo .notes_tag .notes_icon{
+  display: inline-block;
+  width: 10%;
+}
+.container .notesInfo .notes_tag .notes_icon .icon{
+  color: #62c9f8;
+  font-size: 20px;
+}
+.container  .notesInfo  .notes_tag .notes_path{
+  display: inline-block;
+  width: 80%;
+  color: #62c9f8;
+  font-size: 26rpx;
+}
+.container .notesInfo .notes_tag .tag_icon{
+  display: inline-block;
+  width: 10%;
+  text-align: right;
+  float: right;
+}
+.container .notesInfo .notes_tag .tag_icon .icon{
+  color: #62c9f8;
+  font-size: 20px;
+}
+.container .notesContent{
+  width: 100%;
+  height:calc( 100vh - 50px );
+}
+.container .notesContent editor{
+  box-sizing: border-box;
+  padding: 10px;
+  min-height:100%;
+  font-size: 16px;
+}
+.container .quickSymbol{
+  position: fixed;
+  width: 100%;
+  height: 45px;
+  top: auto;
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 9999;
+}
+.container .quickSymbol .symbolIcon .symbol{
+  display: inline-block;
+  width: 20%;
+  line-height: 45px;
+  text-align: center;
+  position: relative;
+  font-size: 40rpx;
+}
+.container .quickSymbol .symbolIcon .symbol.check_box{
+  position: absolute;
+  height: 45px;
+}
+.container .quickSymbol .symbolIcon .symbol cover-image{
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.container .quickSymbol .symbolIcon .symbol.symbol.check_box cover-image{
+  width: 20px;
+  height: 20px;
+}
+.click{
+ background-color: rgba(255, 255, 255,.3);
+}
+

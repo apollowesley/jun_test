@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.iutils</groupId>
+    <artifactId>fast-iutils-demo</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>fast-iutils-demo Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <!-- 引入iutils库 -->
+        <dependency>
+            <groupId>cn.iutils</groupId>
+            <artifactId>iutils-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.iutils</groupId>
+            <artifactId>iutils-admin</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <classifier>lib</classifier>
+        </dependency>
+        <dependency>
+            <groupId>cn.iutils</groupId>
+            <artifactId>iutils-admin</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+
+    </dependencies>
+
+    <!-- 从远程仓库上下载 -->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>Team Maven Repository</name>
+            <url>http://iutils.cn:8081/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <build>
+        <finalName>fast-iutils-demo</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

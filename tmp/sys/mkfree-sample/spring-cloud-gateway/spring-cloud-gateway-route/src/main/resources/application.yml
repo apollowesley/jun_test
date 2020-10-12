@@ -1,0 +1,71 @@
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+spring.application.name: gateway
+
+server:
+  port: 9000
+  tomcat.uri-encoding: UTF-8
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: after
+          uri: http://127.0.0.1:9011
+          predicates:
+          - After=2018-08-06T11:42:39.482858+08:00[Asia/Shanghai]
+          - Path=/api/v2/user/findOneRouteAfter
+        - id: before
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Before=2018-12-30T11:42:39.482858+08:00[Asia/Shanghai]
+          - Path=/api/v2/user/findOneRouteBefore
+        - id: between
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Between=2018-01-01T00:00:00.000000+08:00[Asia/Shanghai],2018-12-30T00:00:00.000000+08:00[Asia/Shanghai]
+          - Path=/api/v2/user/findOneRouteBetween
+        - id: cookie
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Cookie=accessToken,123456
+          - Path=/api/v2/user/findOneRouteCookie
+        - id: header
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Header=accessToken,123456
+          - Path=/api/v2/user/findOneRouteHeader
+        - id: host
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Host=**127.0.0.1**
+          - Path=/api/v2/user/findOneRouteHost
+        - id: methodGet
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Method=GET
+          - Path=/api/v2/user/findOneRouteMethodGet
+        - id: methodPost
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Method=POST
+          - Path=/api/v2/user/findOneRouteMethodPost
+        - id: query1 #包含参数accessToken就可以访问
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Query=accessToken
+          - Path=/api/v2/user/findOneRouteQuery
+        - id: query2 #包含参数accessToken value:123456 就可以访问
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Query=accessToken,123456
+          - Path=/api/v2/user/findOneRouteQuery
+        - id: query3 #包含参数accessToken value:123/12345/12333 匹配前缀，都可以访问
+          uri: http://127.0.0.1:9011
+          predicates:
+          - Query=accessToken,123.
+          - Path=/api/v2/user/findOneRouteQuery
+        - id: RemoteAddr
+          uri: http://127.0.0.1:9011
+          predicates:
+          - RemoteAddr=192.168.1.1/24
+          - Path=/api/v2/user/findOneRouteRemoteAddr

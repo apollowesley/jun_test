@@ -1,0 +1,1 @@
+maven + spring boot + spring data jpa + thymeleaf(freemaker)

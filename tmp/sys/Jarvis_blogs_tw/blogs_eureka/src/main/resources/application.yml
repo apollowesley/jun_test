@@ -1,0 +1,17 @@
+server:
+  port: 8671
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #    表示是否将自己注册eurekaServer
+    register-with-eureka: false
+    #    表示是否从eurekaServer获取注册信息
+    fetch-registry: false
+    service-url:
+      defaultZone: http://xiaokai:xiaokai123456@${eureka.instance.hostname}:${server.port}/eureka/
+spring:
+  security:
+    user:
+      name: xiaokai
+      password: xiaokai123456

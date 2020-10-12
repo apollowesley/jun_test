@@ -1,0 +1,7 @@
+.DS_Store
+.idea
+*.iml
+Makefile
+/target
+/build
+node_modules

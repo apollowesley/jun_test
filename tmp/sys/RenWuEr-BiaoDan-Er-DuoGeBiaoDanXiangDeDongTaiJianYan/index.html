@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>任务二：表单（二）多个表单项的动态校验</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		} 
+
+		.login{
+			width: 300px;
+			margin: 0 auto;
+		}
+
+		.item{
+			display: block;
+			width: 300px;
+			height: 64px;
+			margin-bottom: 30px;
+		}
+
+	    .item_field{
+			display: inline-block;
+			margin-bottom: 6px;
+			font-size: 16px;
+		}
+
+		.input{
+			width: 200px;
+			height: 30px;
+			padding: 2px 10px;
+			border:1px solid #ccc;
+			border-radius: 5px;
+			outline:none;
+			line-height: 24px;
+			font-size:14px; 
+		}
+
+		.tip{
+			display:block;
+			margin-top: 10px;
+			color: #666;
+			font-size: 10px;
+		}
+
+		.tip--hidden{
+			display: none;
+		}
+		
+		.input--error {
+			border-color: red;
+		}
+		.input--success {
+			border-color: green;
+		}
+	
+		.tip--error {
+			color: red;
+		}
+		.tip--success {
+			color: green;
+		}
+		.item_btn {
+			width: 60px;
+			height: 30px;
+			padding: 0 10px;
+			line-height: 28px;
+			border: 1px solid #6a8fb9;
+			border-radius: 5px;
+			outline:none;
+			color: #fff;
+			background-color: #4379b5;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="login" class="login">
+		<label for="name_input" class="item">
+			<span class="item_field">名称</span>
+			<div class="item_input">
+				<input id="name_input" type="text" class="input">
+				<span id="name_tip" class="tip tip--hidden">必填，长度为 4 ~ 10 个字符</span>
+			</div>
+		</label>
+		<label for="password_input" class="item">
+			<span class="item_field">密码</span>
+			<div class="item_input">
+				<input id="password_input" type="text" class="input">
+				<span id="password_tip" class="tip tip--hidden">必填，长度为 4 ~ 10 个字符</span>
+			</div>
+		</label>
+		<label for="returnPassword_input" class="item">
+			<span class="item_field">确认密码</span>
+			<div class="item_input">
+				<input id="returnPassword_input" type="text" class="input">
+				<span id="returnPassword_tip" class="tip tip--hidden">必填，长度为 4 ~ 10 个字符</span>
+			</div>
+		</label>
+		<label for="email_input" class="item">
+			<span class="item_field">邮箱</span>
+			<div class="item_input">
+				<input id="email_input" type="text" class="input">
+				<span id="email_tip" class="tip tip--hidden">必填</span>
+			</div>
+		</label>
+		<label for="phone_input" class="item">
+			<span class="item_field">手机</span>
+			<div class="item_input">
+				<input id="phone_input" type="text" class="input">
+				<span id="phone_tip" class="tip tip--hidden">必填</span>
+			</div>
+		</label>
+		<button id="check" class="item_btn">提交</button>
+	</div>
+	<script>
+		function $ (s) {
+			return document.querySelector(s)      //普通函数，返回querySelector(),完成类似jquery对DOM的操作
+		}
+		/* 添加类名
+		 * @param <String> className
+		 */
+		function addClass (node,className) {     
+			node.className += ' ' + className;
+		}
+		/* 移除类名
+		 */
+		// function removeClass (node, className) {
+		// 	let classList = node.className.split(' ').filter(_className => {
+		// 		return _className !== className
+		// 	})
+		// 	node.className = classList.join(' ')
+		// 	//console.log(node.className)
+		// }
+
+		function removeClass (node,className) {      //node为name_input或者name_tip    ;    className为class     removeClass(input,'input--error')
+            var classList = node.className.split(' ').filter( function(item,index,arr) {
+            	return item!==className;
+            }) ;            
+            node.className = classList.join(' ');                         //目的是什么？  为了先把各种颜色和提示清除掉，就是把各个node的属性类去除掉；
+		}
+
+		 //验证是否为空
+		function isEmpty(input) {
+			var value = input.value;
+			if( !value.trim() ) {
+				return true;
+			}
+			return false;
+		}
+
+		 //获取一个字符串的长度
+		function getLength (value) {
+			var len = 0;
+			for(var s of value) {
+				if(s.charCodeAt(0) <= 0xFF){
+					len += 1;
+				}else{
+					len += 2
+				}
+			} //console.log(len);
+			return len;
+		}
+
+		// 验证长度是否在规定范围内
+		//参数都是可以变的，主要清楚你现在操作的对象是谁，你需要实现的功能是什么？
+		function validateLong (min,max,value) {
+			var len = getLength(value);
+			if( len < min || len > max ){
+				return false;
+			}else{
+				return true;
+			}
+		}
+
+		//再次确认密码是否相同
+		function returncheck(inputone,inputtwo) {
+			if( inputone.value === inputtwo.value ) {
+				return true;
+			}else{
+				return false;
+			}
+		}
+		//验证邮箱
+		function validateEmail(value) {
+			var regexp = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
+			if( regexp.exec(value) ){
+				return true;
+			}
+			return false;
+		}
+		//验证手机号码
+		function validatephone(value) {
+			var regexp = /^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\d{8}$/
+			if( regexp.exec(value) ) {
+				return true;
+			}
+			return false;
+		}
+		 //渲染提示内容以及输入框边框颜色
+		function renderTip (input,tip,content,state) {    //给予建议 ；内容，情况
+			// removeClass(tip,'tip--hidden');
+			addClass(input,'input--' + state);
+			addClass(tip,'tip--' + state);
+			tip.innerText = content;
+		}
+		/* 重置表单
+		 */
+		function reset (input,tip) {
+			removeClass(input,'input--error')
+			removeClass(tip,'tip--error')
+			removeClass(input,'input--success')
+			removeClass(tip,'tip--success')
+		}
+
+		document.body.onload = function() {
+			//表单获取焦点事件
+			var inputs = Array.from(document.querySelectorAll('.input'));//将类数组对象转化为数组;
+			inputs.forEach( function(item){                       //为每一个input绑定获取焦点函数
+				return item.onfocus = function(event) {
+					var tips = event.target.nextElementSibling;  //
+					console.log(tips)
+					//event.target返回目标节点,也就是input元素;
+					removeClass(tips,'tip--hidden')
+				};
+			})
+
+				
+
+			// 总体检查提交
+			var checkBtn = document.getElementById("check");
+			checkBtn.onclick = function() {   //判断了所有的输入框的状态，最后总体检查;
+				var flage = false;
+				if( checkName() ) {
+					return flage = true;
+				}
+				if( checkPassword() ) {
+					return flage = true;
+				}
+				if( checkreturnPassword() ) {
+					return flage = true;
+				}
+				if( checkEmail() ) {
+					return flage = true;
+				}
+				if( checkPhone() ) {
+					return flage = true;
+				}
+
+				if( flage === true){
+					alert('校验成功')
+				}else{
+					alert('校验失败')
+				}
+			}
+
+			// 检查名称
+			function checkName() {
+				var nameInput = document.getElementById("name_input");
+				var nameTip = document.getElementById("name_tip");
+				reset(nameInput,nameTip)
+				// 判断是否为空
+				if( isEmpty(nameInput) ){
+					renderTip(nameInput,nameTip,'姓名不能为空','error')   //给予建议提示
+					return false
+				};
+				// 判断输入是否合格
+				if ( !validateLong(4,16,nameInput.value) ) {           //不合格
+					renderTip(nameInput,nameTip,'请检查输入的字符长度','error')
+					return false;
+				}else{                                                //合格的话
+					renderTip(nameInput,nameTip,'校验成功','success');
+					return true;
+				}
+			};
+				$('#name_input').onblur = checkName;   //函数的调用还是不太熟悉,什么时候加括号；
+
+			// 检查密码
+			function checkPassword() {
+				var passwordInput = document.getElementById("password_input");
+				var passwordTip = document.getElementById("password_tip");
+				reset(passwordInput,passwordTip)
+				if( isEmpty(passwordInput) ){
+					renderTip(passwordInput,passwordTip,'姓名不能为空','error')   //给予建议提示
+					return
+				};
+				if ( !validateLong(4,16,passwordInput.value) ) {           //不合格
+					renderTip(passwordInput,passwordTip,'请检查输入的字符长度','error')
+					//return
+				}else{                                                //合格的话
+					renderTip(passwordInput,passwordTip,'校验成功','success');
+				}
+			}	
+			$('#password_input').onblur = checkPassword;
+
+			// 检查确认密码
+			function checkreturnPassword() {
+				var returnPasswordInput = $('#returnPassword_input');
+				var returnPasswordTip = $('#returnPassword_tip');
+				reset(returnPasswordInput,returnPasswordTip)
+				if( isEmpty(returnPasswordInput) ){
+					renderTip(returnPasswordInput,returnPasswordTip,'姓名不能为空','error')   //给予建议提示
+					return
+				};
+
+				if ( !validateLong( 4,16,returnPasswordInput.value ) ) {           //不合格
+					renderTip(returnPasswordInput,returnPasswordTip,'请检查输入的字符长度','error')
+					return ;
+				}
+				if (!returncheck( $('#password_input'),returnPasswordInput) ) { 
+					renderTip(returnPasswordInput,returnPasswordTip,'必须和密码一致','error');
+					return ;
+				}
+				if (returncheck( $('#password_input'),returnPasswordInput) ) { 
+					renderTip(returnPasswordInput,returnPasswordTip,'校验成功','success');
+					return;
+				}
+			}
+			$('#returnPassword_input').onblur = checkreturnPassword;
+			// 检查邮箱
+			function checkEmail() {
+				var emailInput = document.getElementById('email_input');
+				var emailTip = document.getElementById('email_tip');
+				reset(emailInput,emailTip)
+				if( isEmpty(emailInput) ){
+					renderTip(emailInput,emailTip,'姓名不能为空','error')   //给予建议提示
+					return
+				};
+				if( validateEmail(emailInput.value) ) {
+					renderTip(emailInput,emailTip,'校验成功','success')
+					return
+				}else{
+				renderTip(emailInput,emailTip,'邮箱格式不正确','error');
+				}
+			}
+			$('#email_input').onblur = checkEmail;
+			// 检查手机
+			function checkPhone() {
+				var phoneInput = document.getElementById('phone_input');
+				var phoneTip = document.getElementById('phone_tip');
+				reset(phoneInput,phoneTip)
+				if( isEmpty( phoneInput) ){
+					renderTip(phoneInput,phoneTip,'姓名不能为空','error')   //给予建议提示
+					return false;
+				};
+				if( validatephone( phoneInput.value ) ) {
+					renderTip(phoneInput,phoneTip,'校验成功','success')   //给予建议提示
+					return true;
+				}
+				renderTip(phoneInput,phoneTip,'手机格式不正确','error')
+			}
+			$('#phone_input').onblur = checkPhone;     //为什么调用函数不加圆括号
+		}
+	</script>
+</body>
+</html>

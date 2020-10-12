@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title th:text="${base.title}">清锋-不停的进步是我唯一的动力</title>
+		<meta name="keywords" th:content="${base.keywords}" content="个人博客" />
+		<meta name="description" th:content="${base.description}" content="清锋个人博客-不停的进步是我唯一的动力">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<script type="text/javascript" src="/view/js/Alert.js" ></script>
+		<script type="text/javascript" src="/view/js/public.js" ></script>
+		<link rel="stylesheet" href="/view/css/public.css" />
+	</head>
+	<style>
+		.header{float: left;height: 16%;}
+		.header .title{text-align:left;font: 25px bolder;}
+		.header .title p{padding: 10px;align-items: center;justify-content:center;}
+		@media screen and (max-width: 800px) {
+			.header .title{text-align:left;font: 20px bolder;}
+			.header .nav{height: 40px;line-height:40px;0px;margin-left: 120px;}
+		}
+		.header .nav{height: 40px;line-height:80px;margin-left: 120px;}
+		.content{height: 80%;width:99%;border: 1px solid #fff;width: 98%;margin: 0 auto;}
+		.contents{margin:15px;}
+		.leftcontent{float: left;width: 60%;}
+		.rightcontent{float: right;width: 39%;}
+		.brief li{width: 95%;margin: 0 auto;margin-top: 15px;}
+		.brief a{font-size: 14px;width: 100%;display: block;}
+		.brief span{float: right;margin-right: 20px;}
+		.brief p{margin-top: 8px;font-size: 12px;}
+		.brief strong{font-size: 16px;}
+	</style>
+	<body>
+		<div class="box">
+			<header class="header">
+				<div class="title">
+					<p>清锋个人博客-记录自己不断前进的痕迹</p>
+				</div>
+				<nav class="nav">
+					<a href="index.html" title="首页">首页</a> |
+					<!--<a href="" title="Home">日志记录</a> |
+					<a href="" title="Home">个人案例</a> |-->
+					<a href="symbiosis.html" title="业务合作">业务合作</a> |
+					<a href="about.html" title="关于我">关于我</a>
+				</nav>				
+			</header>
+			<hr />
+			<div class="content">
+				<div class="leftcontent">
+					<div class="contents">
+						<p th:text="${content.content}">自我介绍</p>
+					</div>
+				</div>
+				<div class="rightcontent">
+					<h3>博主推荐</h3>
+					<ul class="stick brief" id="stick">
+						<li th:each="data,item:${sticks}">
+							<a th:href="'/files/article/'+${data.id}+'.html'" th:title="${data.keywords}">
+								<text th:text="${data.title}">博主推荐的</text>
+								<span  th:text="${data.createtime}">2019-08-23 22:17:55</span>
+							</a>
+						</li>
+					</ul>
+					<hr />
+					<h3>常用要点</h3>
+					<ul class="newest brief" id="newest">
+						<li th:each="data,item:${homes}">
+							<a th:href="'/files/article/'+${data.id}+'.html'" th:title="${data.keywords}">
+								<text th:text="${data.title}">博主推荐的</text>
+								<span  th:text="${data.createtime}">2019-08-23 22:17:55</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script>
+		</script>
+	</body>
+</html>

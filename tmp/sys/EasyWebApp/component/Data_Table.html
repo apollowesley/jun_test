@@ -1,0 +1,68 @@
+<style disabled>
+    .Grid-Row > * {
+        padding:    1em;
+    }
+    .Grid-Row > *:first-child {
+        text-align:    left;
+    }
+    .Grid-Row > *:last-child {
+        text-align:    right;
+    }
+	.Foot {
+		border-top:    1px  solid  lightgray;
+        text-align:    center;
+	}
+    .Foot .NavBar > li {
+        border-top:       1px  solid;
+        border-bottom:    1px  solid;
+        padding:          0.5em  1em;
+    }
+</style>
+<script src="Data_Table.js"></script>
+
+<div class="Grid-Row Head">
+    <label>
+        显示
+        <select name="rows" value="${view.rows}" onchange="${view.pageChange}">
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+        </select>
+        行
+    </label>
+    <slot name="toolbar"></slot>
+</div>
+<slot name="table"></slot>
+
+<div class="Grid-Row CenterY Foot">
+    <span>共 ${view.total} 行</span>
+    <label>
+        跳转到
+        <input type="number" name="page" value="${view.page}"
+               min="1" max="${view.pageSum}" onchange="${view.pageChange}" />
+        页
+    </label>
+    <ul class="NavBar Border-Column" onclick="${view.pageChange}">
+        <li style="display: ${(view.page < 3) ? 'none' : ''}">
+            1
+        </li>
+        <li style="display: ${(view.pageSum < 7) || (view.page < 4) ? 'none' : ''}">
+            …
+        </li>
+        <li style="display: ${(view.page < 2) ? 'none' : ''}">
+            ${view.page - 1}
+        </li>
+        <li class="active">
+            ${view.page}
+        </li>
+        <li style="display: ${(+view.page + 1 > view.pageSum) ? 'none' : ''}">
+            ${+view.page + 1}
+        </li>
+        <li style="display: ${(view.pageSum < 6) || (+view.page + 3 > view.pageSum) ? 'none' : ''}">
+            …
+        </li>
+        <li style="display: ${(+view.page + 2 > view.pageSum) ? 'none' : ''}">
+            ${view.pageSum}
+        </li>
+    </ul>
+</div>

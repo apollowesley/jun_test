@@ -1,0 +1,65 @@
+package $actionPackageName;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import $aoName;
+import $importClassName;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+@RequestMapping("/$lowerEntityName")
+public class $entityNameAction {
+
+	@Autowired
+	private $entityNameAO $lowerEntityNameAO;
+	
+	@RequestMapping(value="/list")
+	public ModelAndView list(HttpServletRequest request) {
+		return new ModelAndView("$lowerEntityName/list", "$lowerEntityNames", $lowerEntityNameAO.queryAll());
+	}
+
+	@RequestMapping(value="/add")
+	public ModelAndView add(HttpServletRequest request) {
+		return new ModelAndView("$lowerEntityName/add");
+	}
+
+	@RequestMapping(value="/save", method=RequestMethod.POST)
+	public ModelAndView save(HttpServletRequest request, $entityName $lowerEntityName) {
+		$lowerEntityNameAO.save($lowerEntityName);
+		Map<String, Object> resultMap = new HashMap<String, Object>(2);
+		resultMap.put("message", "恭喜，新增操作执行成功！！");
+		resultMap.put("refererURL", "/$lowerEntityName/list.ms");
+		return new ModelAndView("message", "map", resultMap);
+	}
+
+	@RequestMapping(value="/edit")
+	public ModelAndView edit(HttpServletRequest request, $type $primaryKey) {
+		return new ModelAndView("$lowerEntityName/edit", "map", $lowerEntityNameAO.edit($primaryKey));
+	}
+
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public ModelAndView update(HttpServletRequest request, $entityName $lowerEntityName) {
+		$lowerEntityNameAO.update($lowerEntityName);
+		Map<String, Object> resultMap = new HashMap<String, Object>(2);
+		resultMap.put("message", "恭喜，修改操作执行成功！！");
+		resultMap.put("refererURL", "/$lowerEntityName/list.ms");
+		return new ModelAndView("message", "map", resultMap);
+	}
+
+	@RequestMapping(value="/delete")
+	public ModelAndView delete(HttpServletRequest request, $type $primaryKey) {	
+		$lowerEntityNameAO.delete($primaryKey);
+		Map<String, Object> resultMap = new HashMap<String, Object>(2);
+		resultMap.put("message", "恭喜，删除操作执行成功！！");
+		resultMap.put("refererURL", "/$lowerEntityName/list.ms");
+		return new ModelAndView("message", "map", resultMap);
+	}
+}

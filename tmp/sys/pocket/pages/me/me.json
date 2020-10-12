@@ -1,0 +1,12 @@
+{
+  "window": {
+    "backgroundTextStyle": "#1296db",
+    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarTitleText": "我的",
+    "navigationBarTextStyle": "#fff"
+  },
+  "usingComponents": {
+    "wux-cell-group": "../dist/cell-group/index",
+    "wux-cell": "../dist/cell/index"
+  }
+}

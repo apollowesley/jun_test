@@ -1,0 +1,22 @@
+{
+  "name": "npm-demo",
+  "version": "1.0.0",
+  "description": "测试创建模块",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "www.baidu.com"
+  },
+  "keywords": [
+    "jj"
+  ],
+  "author": "jj",
+  "license": "ISC"
+}

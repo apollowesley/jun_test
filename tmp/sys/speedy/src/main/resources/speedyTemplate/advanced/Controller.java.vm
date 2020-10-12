@@ -1,0 +1,135 @@
+package ${package.Controller};
+
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.luoqy.speedy.data.MySqldbUtil;
+import com.luoqy.speedy.util.Result;
+/**
+ *
+ * ${context.bizName}
+ * @author ${context.author}
+ * @time ${cfg.date}
+ */
+@Controller
+@RequestMapping("${cfg.context.requestPath}")
+public class ${table.entityName}Controller{
+	private String PREFIX = "WEB-INF${cfg.context.requestPath}/";
+	
+	/**
+	 * @return
+	 */
+	@RequestMapping("")
+	public String index(){
+		return PREFIX+"${table.name.split("_")[1]}";
+	}
+	@RequestMapping("/addPage")
+	public String addPage(){
+		return PREFIX+"${table.name.split("_")[1]}Add";
+	}
+	@RequestMapping("/updatePage")
+	public String updatePage(Model model,String id){
+		Object ${table.name.split("_")[1]}=MySqldbUtil.mysqlSelect("select * from ${table.name} where id="+id, "none",null);
+		model.addAttribute("${table.name.split("_")[1]}", ${table.name.split("_")[1]});
+		return PREFIX+"${table.name.split("_")[1]}Update";
+	}
+	
+	@RequestMapping("/loadPage")
+	@ResponseBody
+	public Result loadPage(String page,String pageSize){
+		Result result=new Result();
+		int pages=0;
+		int pageSizes=20;
+		if(null!=pageSize){
+			pageSizes=Integer.parseInt(pageSize);
+		}
+		if(page!=null&&pageSize!=null&&!"".equals(page)&&!"".equals(pageSize)){
+			pages=Integer.valueOf(page);
+			pageSizes=Integer.valueOf(pageSize);
+			pages=pages*pageSizes;
+		}
+		Object menu=MySqldbUtil.mysqlSelect("select * from ${table.name} limit "+pages+","+pageSize, "list",null);
+		result.setData(menu);
+		result.setMessage("数据加载成功");
+		result.setState(1);
+		return result;
+	}
+	
+	@RequestMapping("/update")
+	@ResponseBody
+	public Result update(HttpServletRequest req,String id){
+		Result result=new Result();
+		Enumeration<String> parames=req.getParameterNames();
+		String set=" set ";
+		while(parames.hasMoreElements()){
+			String name = (String)parames.nextElement();//调用nextElement方法获得元素
+			String value=req.getParameter(name);
+			if(!"id".equals(name)){
+				if(null!=value&&!"".equals(value)){
+					set+=name+"='"+value+"',";
+				}
+			}
+		}
+		if("set".equals(set.trim())){
+			result.setData(null);
+			result.setMessage("请传入需要更新的参数");
+			result.setState(0);
+		}else{
+			set=set.substring(0, set.length()-1);
+			int call=MySqldbUtil.mysqlExecute("update ${table.name}"+set+" where id="+id,null);
+			if(call>0){
+				result.setData(null);
+				result.setMessage("更新成功");
+				result.setState(1);
+			}else{
+				result.setData(null);
+				result.setMessage("更新失败");
+				result.setState(0);
+			}
+			
+		}
+		return result;
+	}
+	
+	@RequestMapping("/add")
+	@ResponseBody
+	public Result add(HttpServletRequest req){
+		Result result=new Result();
+		Enumeration<String> parames=req.getParameterNames();
+		String set=" set ";
+		while(parames.hasMoreElements()){
+			String name = (String)parames.nextElement();//调用nextElement方法获得元素
+			String value=req.getParameter(name);
+			if(!"id".equals(name)){
+				if(null!=value&&!"".equals(value)){
+					set+=name+"='"+value+"',";
+				}
+			}
+		}
+		if("set".equals(set.trim())){
+			result.setData(null);
+			result.setMessage("请传入需要保存的参数");
+			result.setState(0);
+		}else{
+			set=set.substring(0, set.length()-1);
+			int call=MySqldbUtil.mysqlExecute("insert into ${table.name}"+set,null);
+			if(call>0){
+				result.setData(null);
+				result.setMessage("保存成功");
+				result.setState(1);
+			}else{
+				result.setData(null);
+				result.setMessage("保存失败");
+				result.setState(0);
+			}
+			
+		}
+		return result;
+	}
+}

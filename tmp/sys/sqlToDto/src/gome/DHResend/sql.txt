@@ -1,0 +1,2 @@
+ insert into tnt_pending(order_num,buid,status_code,reason_code,source_code,status_date,trigger_date)  select '1976741395',8270,'DHAL','OF','HQSAP',sysdate,sysdate-1 from dual ;
+ UPDATE tnt_status_restrict tt SET tt.next_allow_status= tt.next_allow_status || ',DHAL' WHERE tt.order_num in ( '1976741395'  ) ;

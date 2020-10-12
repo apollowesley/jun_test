@@ -1,0 +1,17 @@
+.inline-block {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.padding-right-default {
+  padding-right: 10px;
+}
+
+.color-highlight {
+  background-color: blue;
+  color: white;
+}
+
+#getterExpression, #setterExpression {
+  width: 400px;
+}

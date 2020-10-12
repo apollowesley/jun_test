@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- mybatis generator 示例配置 -->
+<generatorConfiguration>
+    <properties resource="generator/config.properties"/>
+    <context id="Mysql" targetRuntime="MyBatis3"
+             defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="daoSuffix" value="Mapper"/>
+        <property name="OptName" value="true"/>
+
+
+        <!-- 不生成注释 -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="${jdbc_driver}"
+                        connectionURL="${jdbc_url}"
+                        userId="${jdbc_user}"
+                        password="${jdbc_password}">
+        </jdbcConnection>
+
+        <!-- generate Model -->
+        <javaModelGenerator targetPackage="com.dx.messageboard.vo"
+                            targetProject="${targetProject}/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- generate xml -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="${targetProject}/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- generate Mapper -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.dx.messageboard.mapper"
+                             targetProject="${targetProject}/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--<table tableName="mk_copyright_case" domainObjectName="Case">-->
+        <!--排除某个字段的自定义数据类型时加此属性-->
+        <!--<property name="excludeColumns" value="is_extra_urgent"/>-->
+        <!--</table>-->
+        <table tableName="user" domainObjectName="User">
+            <!--生成createGuid时加此属性-->
+            <property name="generateGuid" value="true"/>
+            <!--<generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+            <!--<columnOverride column="test" javaType="java.lang.Boolean" />-->
+        </table>
+        <table tableName="message" domainObjectName="Message">
+            <!--生成createGuid时加此属性-->
+            <property name="generateGuid" value="true"/>
+            <!--<generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+            <!--<columnOverride column="test" javaType="java.lang.Boolean" />-->
+        </table>
+
+    </context>
+</generatorConfiguration>

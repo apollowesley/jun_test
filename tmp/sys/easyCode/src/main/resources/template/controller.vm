@@ -1,0 +1,117 @@
+package ${packageName};
+
+#foreach($im in ${importList})
+import ${im};
+#end
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+
+import com.dexcoder.assistant.pager.Pager;
+import com.dexcoder.assistant.result.RunBinder;
+
+/**
+ * ${table.desc}
+ *
+ * User: ${constant_creator}
+ * Date: ${date}
+ */
+@Controller
+@RequestMapping("admin")
+public class ${controllerGeneratedShotClassName} {
+
+    /** ${table.desc}service */
+    @Autowired
+    private ${serviceGeneratedShotClassName} ${serviceFirstLowerGeneratedClassName};
+
+    /**
+     * ${table.desc}列表
+     *
+     * @param ${modelVoFirstLowerGeneratedClassName}
+     * @param modelMap the model map
+     * @return string
+     */
+    @RequestMapping(value = "list-${modelLineThroughClassName}", method = RequestMethod.GET)
+    public String list${modelGeneratedShotClassName}(${modelVoGeneratedShotClassName} ${modelVoFirstLowerGeneratedClassName}, ModelMap modelMap) {
+
+        Pager pager = ${serviceFirstLowerGeneratedClassName}.queryList(${modelVoFirstLowerGeneratedClassName});
+        if (RunBinder.hasErrors()) {
+
+            modelMap.put("resultMsg", RunBinder.getStrErrors());
+        }
+        modelMap.put("pager", pager);
+
+        return "admin/content/list-${modelLineThroughClassName}";
+    }
+
+    /**
+     * ${table.desc}页面
+     *
+     * @param ${modelFirstLowerGeneratedClassName}Id
+     * @param modelMap the model map
+     * @return string
+     */
+    @RequestMapping(value = "input-${modelLineThroughClassName}", method = RequestMethod.GET)
+    public String input${modelGeneratedShotClassName}(Long ${modelFirstLowerGeneratedClassName}Id, ModelMap modelMap) {
+
+        if (${modelFirstLowerGeneratedClassName}Id != null) {
+            ${modelVoGeneratedShotClassName} ${modelVoFirstLowerGeneratedClassName} = ${serviceFirstLowerGeneratedClassName}.get(${modelFirstLowerGeneratedClassName}Id);
+            if (RunBinder.hasErrors()) {
+                modelMap.put("resultMsg", RunBinder.getStrErrors());
+            }
+            modelMap.put("${modelFirstLowerGeneratedClassName}", ${modelVoFirstLowerGeneratedClassName});
+        }
+
+        return "admin/content/input-${modelLineThroughClassName}";
+    }
+
+    /**
+     * ${table.desc}保存
+     *
+     * @param ${modelVoFirstLowerGeneratedClassName}
+     * @param modelMap the model map
+     * @param redirectModelMap the redirect model map
+     * @return string
+     */
+    @RequestMapping(value = "save-${modelLineThroughClassName}", method = RequestMethod.POST)
+    public String save${modelGeneratedShotClassName}(${modelVoGeneratedShotClassName} ${modelVoFirstLowerGeneratedClassName}, ModelMap modelMap,
+                                      RedirectAttributesModelMap redirectModelMap) {
+
+        if (${modelVoFirstLowerGeneratedClassName}.get${modelGeneratedShotClassName}Id() != null) {
+            ${serviceFirstLowerGeneratedClassName}.update(${modelVoFirstLowerGeneratedClassName});
+        } else {
+            ${serviceFirstLowerGeneratedClassName}.insert(${modelVoFirstLowerGeneratedClassName});
+        }
+
+        if (RunBinder.hasErrors()) {
+            modelMap.put("resultMsg", RunBinder.getStrErrors());
+            return "admin/content/input-${modelLineThroughClassName}";
+        }
+        redirectModelMap.addFlashAttribute("resultMsg", "${table.desc}保存成功");
+        return "redirect:list-${modelLineThroughClassName}.shtml";
+    }
+
+    /**
+     * ${table.desc}删除
+     *
+     * @param ${modelFirstLowerGeneratedClassName}Id
+     * @param redirectModelMap the redirect model map
+     * @return string
+     */
+    @RequestMapping(value = "delete-${modelLineThroughClassName}", method = RequestMethod.GET)
+    public String delete${modelGeneratedShotClassName}(Long ${modelFirstLowerGeneratedClassName}Id,
+                                        RedirectAttributesModelMap redirectModelMap) {
+
+        ${serviceFirstLowerGeneratedClassName}.delete(${modelFirstLowerGeneratedClassName}Id);
+        if (RunBinder.hasErrors()) {
+            redirectModelMap.addFlashAttribute("resultMsg", RunBinder.getStrErrors());
+        } else {
+            redirectModelMap.addFlashAttribute("resultMsg", "删除成功");
+        }
+        return "redirect:list-${modelLineThroughClassName}.shtml";
+    }
+
+}

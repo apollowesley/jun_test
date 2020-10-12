@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget id="A6960480793365" version="0.0.1">
+  <name>菜谱百科</name>
+  <description>菜谱百科是一款涵盖家常菜、快手菜、创意菜、素菜、凉菜、面食、粥、汤、自制调味料等类型菜谱制作大全为一体的APP应用。</description>
+  <author email="mail@lianghongbo.com" href="http://www.lianghongbo.com">梁红博</author>
+  <content src="index.html"/>
+  <preference name="pageBounce" value="false"/>
+  <preference name="appBackground" value="#F2EEE9"/>
+  <preference name="windowBackground" value="#F2EEE9"/>
+  <preference name="frameBackgroundColor" value="#F2EEE9"/>
+  <preference name="hScrollBarEnabled" value="false"/>
+  <preference name="vScrollBarEnabled" value="false"/>
+  <preference name="autoLaunch" value="true"/>
+  <preference name="fullScreen" value="false"/>
+  <preference name="autoUpdate" value="true"/>
+  <preference name="smartUpdate" value="false"/>
+  <preference name="debug" value="false"/>
+  <preference name="iOS7StatusBarAppearance" value="true"/>
+  <preference name="softInputMode" value="pan"/>
+  <permission name="readPhoneState"/>
+  <permission name="record"/>
+  <permission name="internet"/>
+  <permission name="bootCompleted"/>
+  <permission name="hardware"/>
+  <permission name="fileSystem"/>
+  <access origin="*"/>
+  <feature name="tabBar"/>
+  <feature name="speechRecognizer"/>
+  <feature name="searchBar"/>
+  <feature name="push"/>
+  <feature name="mcm"/>
+  <feature name="mam"/>
+  <feature name="qq">
+    <param name="urlScheme" value="tencent1103529328"/>
+    <param name="apiKey" value="1103529328"/>
+  </feature>
+  <feature name="sinaWeiBo">
+    <param name="urlScheme" value="wb3905592711"/>
+    <param name="apiKey" value="3905592711"/>
+    <param name="rgistUrl" value="http://www.apicloud.com"/>
+  </feature>
+  <feature name="weiXin">
+    <param name="urlScheme" value="wxd5b6f317d1c63aa3"/>
+    <param name="apiKey" value="wxd5b6f317d1c63aa3"/>
+  </feature>
+  <feature name="actionButton"/>
+  <feature name="adsMogo"/>
+</widget>

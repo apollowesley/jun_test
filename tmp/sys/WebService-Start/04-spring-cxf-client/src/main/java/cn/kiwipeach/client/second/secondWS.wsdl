@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.api.ws.kiwipeach.cn/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http//:www.kiwipeach.cn/secondService" name="SecondWSImplService" targetNamespace="http://impl.api.ws.kiwipeach.cn/">
+  <wsdl:import location="http://192.168.1.107:8080/secondWS?wsdl=SecondPortType.wsdl" namespace="http//:www.kiwipeach.cn/secondService">
+    </wsdl:import>
+  <wsdl:binding name="SecondWSImplServiceSoapBinding" type="ns1:SecondPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="echoMsgMethod">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="echoMsgMethod">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="echoMsgMethodResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SecondWSImplService">
+    <wsdl:port binding="tns:SecondWSImplServiceSoapBinding" name="SecondWSImplPort">
+      <soap:address location="http://192.168.1.107:8080/secondWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

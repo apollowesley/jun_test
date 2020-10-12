@@ -1,0 +1,115 @@
+page {
+    background-color: #FFFFFF;
+}
+
+.topBar {
+    width: 100%;
+    padding:20rpx 20rpx 20rpx 84rpx;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.topBar::before {
+    content: '';
+    width:22rpx;
+    height:22rpx;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #248ffb;
+    left:20rpx;
+    top:41rpx;
+}
+.topBar .title {
+    font-size: 36rpx;
+    line-height: 64rpx;
+}
+.topBar .p {
+    color: #999999;
+}
+
+.uploadimg {
+    width:100%;
+    padding: 40rpx 0 0 50rpx;
+    box-sizing: border-box;
+}
+
+.uploadimg::after {
+    content: "\200B";
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+.uploadimg .items {
+    width: 130rpx;
+    height: 130rpx;
+    box-sizing: border-box;
+    border: 2rpx solid #eee;
+    float: left;
+    margin:0 0 40rpx 34rpx;
+    text-align: center;
+    position: relative;
+    border-radius: 12rpx;
+}
+
+.uploadimg .items::before {
+    font-family: iconfont;
+    font-size: 60rpx;
+    content: '\e633';
+    color: #ccc;
+    line-height: 126rpx;
+}
+
+.uploadimg .items .pic {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:126rpx;
+    height:126rpx;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.uploadimg .items .pic image {
+    width:126rpx;
+    height:126rpx;
+    display: block;
+    border-radius: 12rpx;
+}
+
+.uploadimg .items .delete {
+    position: absolute;
+    top: -20rpx;
+    right: -16rpx;
+    width: 52rpx;
+    height: 52rpx;
+    background: #999;
+    border-radius: 50%;
+    border: 2rpx solid #fff;
+    display: block;
+    color: #fff;
+    z-index: 10;
+    text-align: center;
+    line-height:48rpx;
+}
+
+.uploadimg .items .delete::after {
+    content: '\e62f';
+    font-size: 44rpx;
+    font-family: iconfont;
+    color: #fff;
+    line-height:48rpx;
+}
+
+.submitBtn {
+    width:490rpx;
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    color: #fff;
+    margin:42rpx auto;
+    background-color: #3c8cf0;
+    border-radius: 20rpx;
+    font-size: 36rpx;
+}

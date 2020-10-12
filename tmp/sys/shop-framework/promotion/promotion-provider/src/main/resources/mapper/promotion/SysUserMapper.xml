@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kld.promotion.dto.SysUser" >
+
+  <resultMap id="SysUserResultMap" type="com.kld.promotion.dto.SysUser" >
+    <id column="sys_user_id" property="sysUserId" jdbcType="BIGINT" />
+    <result column="sys_merchant_id" property="sysMerchantId" jdbcType="BIGINT" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="QQ_code" property="qqCode" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="no" property="no" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="head_url" property="headUrl" jdbcType="VARCHAR" />
+    <result column="skin" property="skin" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    sys_user_id, sys_merchant_id, login_name, account_name, gender, mobile, phone, update_date, 
+    create_date, del_flag, remarks, email, QQ_code, password, no, create_by, head_url,skin,ip
+  </sql>
+
+
+
+  <!--分页查询用户信息-->
+  <select id="selectListPage" parameterType="com.kld.common.framework.page.PageBean" resultMap="SysUserResultMap" useCache="false">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sys_user WHERE 1=1
+    <if test="parameter.loginName != null and parameter.loginName !=''" >
+      AND login_name LIKE CONCAT(CONCAT('%', #{parameter.loginName}),'%')
+    </if>
+    <if test="parameter.mobile != null and parameter.mobile !=''" >
+      AND mobile = #{parameter.mobile}
+    </if>
+    <if test="parameter.no != null and parameter.no !=''" >
+      AND no = #{parameter.no}
+    </if>
+    <if test="parameter.startTime != null and parameter.startTime !=''" >
+      AND create_date &gt;= #{parameter.startTime}
+    </if>
+    <if test="parameter.endTime != null and parameter.endTime !=''" >
+      AND create_date &lt;= #{parameter.endTime}
+    </if>
+    AND del_flag = 1
+    ORDER BY create_date DESC
+  </select>
+
+
+
+
+
+
+  <select id="getById" resultType="com.kld.promotion.dto.SysUser" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where sys_user_id = #{sysUserId,jdbcType=BIGINT} AND del_flag = 1
+  </select>
+
+
+  <delete id="delete" parameterType="java.lang.Integer">
+      DELETE FROM sys_user WHERE sys_user_id = #{sysUserId,jdbcType=BIGINT}
+  </delete>
+
+
+
+
+
+</mapper>

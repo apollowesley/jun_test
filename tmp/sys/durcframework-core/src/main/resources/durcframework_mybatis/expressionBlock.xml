@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="expressionBlock">
+	<sql id="where">
+		<if test="joinExprList.size>0">
+			<foreach collection="joinExprList" item="joinExprListItem">
+				${joinExprListItem.exprString}
+			</foreach>
+		</if>
+		<where>
+ 			<if test="valueExprList.size>0">
+				<foreach collection="valueExprList" item="valueExprListItem">
+					<if test="valueExprListItem.value != null">
+						${valueExprListItem.joint}
+						${valueExprListItem.column}
+						${valueExprListItem.equal}
+						#{valueExprListItem.value}
+					</if>
+				</foreach>
+			</if>
+			<if test="listExprList.size>0">
+				<foreach collection="listExprList" item="listExprListItem">
+					<if test="listExprListItem.value.size>0">
+						${listExprListItem.joint}
+						${listExprListItem.column}
+						${listExprListItem.equal}
+						<foreach collection="listExprListItem.value" item="value" open="("
+							separator="," close=")">
+							#{value}
+						</foreach>
+					</if>
+				</foreach>
+			</if>
+			<if test="sqlExpreList.size>0">
+				<foreach collection="sqlExpreList" item="sqlExpreListItem">
+					${sqlExpreListItem.joint} 
+					(${sqlExpreListItem.sql})
+				</foreach>
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="updateWhere">
+		<if test="query.joinExprList.size>0">
+			<foreach collection="query.joinExprList" item="joinExprListItem">
+				${joinExprListItem.exprString}
+			</foreach>
+		</if>
+		<where>
+			<if test="query.valueExprList.size>0">
+				<foreach collection="query.valueExprList" item="valueExprListItem">
+					<if test="valueExprListItem.value != null">
+						${valueExprListItem.joint}
+						${valueExprListItem.column}
+						${valueExprListItem.equal}
+						#{valueExprListItem.value}
+					</if>
+				</foreach>
+			</if>
+			<if test="query.listExprList.size>0">
+				<foreach collection="query.listExprList" item="listExprListItem">
+					<if test="listExprListItem.value.size>0">
+						${listExprListItem.joint}
+						${listExprListItem.column}
+						${listExprListItem.equal}
+						<foreach collection="listExprListItem.value" item="value"
+							open="(" separator="," close=")">
+							#{value}
+						</foreach>
+					</if>
+				</foreach>
+			</if>
+			<if test="query.sqlExpreList.size>0">
+				<foreach collection="query.sqlExpreList" item="sqlExpreListItem">
+					${sqlExpreListItem.joint}
+					(${sqlExpreListItem.sql})
+				</foreach>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 聚合查询 -->
+	<sql id="projectionColumn">
+		<foreach collection="projectionList.projections" item="projection" separator=",">
+			${projection.sql}
+		</foreach>
+	</sql>
+	
+	<sql id="groupBy">
+		<if test="groupByList.projections.size>0">
+			GROUP BY 
+			<foreach collection="groupByList.projections" item="projection"
+				separator="," >
+				${projection.sql}
+			</foreach>
+		</if>
+	</sql>
+	
+	<sql id="having">
+		<trim prefix="HAVING" prefixOverrides="AND|OR">
+			<if test="valueHavingExprList.size>0">
+				<foreach collection="valueHavingExprList" item="valueExprListItem">
+					<if test="valueExprListItem.value != null">
+						${valueExprListItem.joint}
+						${valueExprListItem.column}
+						${valueExprListItem.equal}
+						#{valueExprListItem.value}
+					</if>
+				</foreach>
+			</if>
+			<if test="listHavingExprList.size>0">
+				<foreach collection="listHavingExprList" item="listExprListItem">
+					<if test="listExprListItem.value.size>0">
+						${listExprListItem.joint}
+						${listExprListItem.column}
+						${listExprListItem.equal}
+						<foreach collection="listExprListItem.value" item="value" open="("
+							separator="," close=")">
+							#{value}
+						</foreach>
+					</if>
+				</foreach>
+			</if>
+			<if test="sqlHavingExpreList.size>0">
+				<foreach collection="sqlHavingExpreList" item="sqlExpreListItem">
+					${sqlExpreListItem.joint} 
+					(${sqlExpreListItem.sql})
+				</foreach>
+			</if>
+		</trim>
+	</sql>
+	
+</mapper>

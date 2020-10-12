@@ -1,0 +1,17 @@
+package ${packageName};
+
+#foreach($im in ${importList})
+import ${im};
+#end
+import com.mincoder.kit.persistence.BaseDaoImpl;
+
+/**
+ * ${table.desc}dao实现
+ *
+ * User: ${constant_creator}
+ * Date: ${date}
+ */
+@Repository
+public class ${daoImplGeneratedShotClassName} extends BaseDaoImpl<${modelGeneratedShotClassName}> implements ${daoGeneratedShotClassName} {
+
+}

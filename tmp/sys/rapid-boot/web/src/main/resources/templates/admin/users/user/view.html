@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>基本资料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/public.css" media="all">
+    <style>
+        .layui-form-item .layui-input-company {
+            width: auto;
+            padding-right: 10px;
+            line-height: 38px;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <fieldset class="layui-elem-field layuimini-search">
+        <legend>
+             <span class="layui-breadcrumb" lay-separator=">">
+                  <a href="/admin/users/user/list">平台用户</a>
+                  <a><cite>详情</cite></a>
+            </span>
+        </legend>
+        <div style="margin: 10px 10px 10px 10px">
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="float: right">
+                        <a href="/admin/users/user/list" class="layui-btn">返回</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+    <div class="layuimini-main">
+        <div class="layui-form layuimini-form">
+            <div class="layui-container">
+                <div class="layui-row">
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">账号</div>
+                        <div class="layui-col-xs10" th:text="${sysAccount.code}"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">头像</div>
+                        <div class="layui-col-xs10 layui-upload-list layui-upload">
+                            <img class="layui-upload-img" id="logo"
+                                 th:attr="src=${sysAccount.logo != null ? sysAccount.logo : '/images/logo.png'}"
+                                 style="width: 100px;height: 100px;">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">昵称</div>
+                        <div class="layui-col-xs10" th:text="${sysAccount.name}"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">性别</div>
+                        <div class="layui-col-xs8" th:if="${sysAccount.sex != null}" th:text="${sysAccount.sex ? '男' :'女'}"></div>
+                        <div class="layui-col-xs10" th:if="${sysAccount.sex == null}"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">出生日期</div>
+                        <div class="layui-col-xs10" th:text="${sysAccount.birthData != null ? #dates.format(sysAccount.birthData,'yyyy-MM-dd') : ''}"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2">邮箱</div>
+                        <div class="layui-col-xs10" th:text="${sysAccount.email}"></div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <div class="layui-col-xs2">简介</div>
+                        <div class="layui-col-xs10" th:text="${sysAccount.note}"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-col-xs2">角色</label>
+                        <div class="layui-col-xs10">
+                            <input name="roles" type="checkbox"
+                                   th:checked="${role.isChecked}"
+                                   th:each="role:${roles}" th:title="${role.name}" th:value="${role.id}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'element'], function () {
+        var element = layui.element,
+            form = layui.form;
+    });
+</script>
+</body>
+</html>

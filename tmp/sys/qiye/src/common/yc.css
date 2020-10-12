@@ -1,0 +1,42 @@
+.router-link-active {
+  text-decoration: none;
+}
+a{
+  text-decoration: none;
+}
+.yc{
+    align-items: center;
+	/* height: 100%; */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.yc-body{
+    margin: 0;
+    padding: 0;
+	/* height: 100vh; */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+[mode='cover']{
+	object-fit: cover;
+}
+[mode='fill']{
+	object-fit: fill;
+}
+.yc-flex{
+		display: -webkit-flex;/*新版本语法：chrome 21+*/
+		display: -webkit-box;/*老版本语法：Safari,iOS,Android browser,old Webkit browser*/
+		display: -moz-box;/*老版本语法：Firefox(buggy)*/
+		display: -ms-flexbox;/*混合版本语法：IE 10*/
+		display: flex;/*新版本语法:opera 12.1,Firefox 22+*/
+	}
+.yc-flex-item{
+	-webkit-flex:1;/*Chrome*/
+	-ms-flex:1;/*IE 10*/
+	flex: 1;/* NEW ,Spec - Opera 12.1,Firefox 20+*/
+	-webkit-box-flex:1;/*OLD -iOS 6-,Safari 3.1-6*/
+	-moz-box-flex:1;/*OLD - Firefox 19-*/
+}

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rapid-Boot系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/lib/layui-v2.5.4/css/layui.css" media="all">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden
+        }
+
+        body {
+            background: #009688;
+        }
+
+        body:after {
+            content: '';
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-filter: blur(3px);
+            -moz-filter: blur(3px);
+            -o-filter: blur(3px);
+            -ms-filter: blur(3px);
+            filter: blur(3px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .layui-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden
+        }
+
+        .admin-login-background {
+            width: 360px;
+            height: 300px;
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            margin-left: -180px;
+            margin-top: -100px;
+        }
+
+        .logo-title {
+            text-align: center;
+            letter-spacing: 2px;
+            padding: 14px 0;
+        }
+
+        .logo-title h1 {
+            color: #009688;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .login-form {
+            background-color: #fff;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            padding: 14px 20px;
+            box-shadow: 0 0 8px #eeeeee;
+        }
+
+        .login-form .layui-form-item {
+            position: relative;
+        }
+
+        .login-form .layui-form-item label {
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 38px;
+            line-height: 36px;
+            text-align: center;
+            color: #d2d2d2;
+        }
+
+        .login-form .layui-form-item input {
+            padding-left: 36px;
+        }
+
+        .captcha {
+            width: 60%;
+            display: inline-block;
+        }
+
+        .captcha-img {
+            display: inline-block;
+            width: 34%;
+            float: right;
+        }
+
+        .captcha-img img {
+            height: 34px;
+            border: 1px solid #e6e6e6;
+            height: 36px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-container">
+    <div class="admin-login-background">
+        <div class="login-form">
+            <div class="logo-title">
+                <h1>Rapid-Boot</h1>
+            </div>
+            <div class="layui-tab layui-tab-card">
+                <ul class="layui-tab-title">
+                    <li class="layui-col-xs4 layui-this">密码登录</li>
+                    <li class="layui-col-xs4">验证码登录</li>
+                    <li class="layui-col-xs4">注册</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-icon layui-icon-username"></label>
+                                <input type="text" name="username" placeholder="请输入您的手机号"
+                                       lay-verify="required|phone" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-icon layui-icon-password"></label>
+                                <input type="password" name="password" placeholder="请输入您的密码" class="layui-input"
+                                       lay-verify="required|pass" autocomplete="off">
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">密码登入</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="layui-tab-item">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-icon layui-icon-username"></label>
+                                <input type="text" name="captchaLoginUsername" placeholder="请输入您的手机号"
+                                       lay-verify="required|phone" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-icon layui-icon-vercode"></label>
+                                <input type="text" name="captcha" placeholder="请输入短信验证码"
+                                       class="layui-input verification captcha" autocomplete="off">
+                                <div class="captcha-img">
+                                    <button type="button" id="btn-captchaLogin-getCode"
+                                            class="layui-btn layui-btn-normal">获取验证码
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="captchaLogin">
+                                    验证码登入
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="layui-tab-item">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-icon layui-icon-username"></label>
+                                <input type="text" name="registerUsername" placeholder="请输入您的手机号"
+                                       lay-verify="required|phone" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-icon layui-icon-password"></label>
+                                <input type="password" name="password" placeholder="请输入6-12位密码" class="layui-input"
+                                       lay-verify="required|pass" autocomplete="off">
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-icon layui-icon-vercode"></label>
+                                <input type="text" name="captcha" placeholder="请输入短信验证码"
+                                       class="layui-input verification captcha" autocomplete="off">
+                                <div class="captcha-img">
+                                    <button type="button" id="btn-register-getCode" class="layui-btn layui-btn-normal">
+                                        获取验证码
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="register">注 册
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script src="/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'element', 'jquery'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            layer = layui.layer,
+            element = layui.element;
+
+        // 登录过期的时候，跳出ifram框架
+        if (top.location != self.location) top.location = self.location;
+
+        // 粒子线条背景
+        $(document).ready(function () {
+            $('.layui-container').particleground({
+                dotColor: '#5cbdaa',
+                lineColor: '#5cbdaa'
+            });
+        });
+        //自定义验证规则
+        form.verify({
+            pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+        });
+
+        // 密码登录
+        form.on('submit(login)', function (data) {
+            $.getJSON("/api/entry/entry/login", data.field, function (rst) {
+                layer.msg(rst.msg);
+                if (rst.code == 1) {
+                    window.location = rst.data;
+                }
+            }).fail(function () {
+                layer.msg('登录接口有误');
+            });
+            return false;
+        });
+        // 验证码登录
+        form.on('submit(captchaLogin)', function (data) {
+            $.getJSON("/api/entry/entry/captchaLogin", data.field, function (rst) {
+                layer.msg(rst.msg);
+                if (rst.code == 1) {
+                    window.location = rst.data;
+                }
+            }).fail(function () {
+                layer.msg('验证码登录接口有误');
+            });
+            return false;
+        });
+        // 注册
+        form.on('submit(register)', function (data) {
+            $.ajax({
+                url: "/api/entry/entry/register",
+                type: "post",
+                data: data.field,
+                success: function (rst) {
+                    layer.msg(rst.msg);
+                    if (rst.code == 1) {
+                        window.location = rst.data;
+                    }
+                }
+            });
+            return false;
+        });
+        // 获取注册短信验证码
+        $('#btn-register-getCode').click(function () {
+            var registerUsername = $('input[name=registerUsername]').val();
+            if (registerUsername.length <= 0) {
+                layer.msg("请输入您的注册手机号");
+                return;
+            }
+            if (registerUsername.length !== 11) {
+                layer.msg("请输入合法的手机号");
+                return;
+            }
+            var $btn = $('#btn-register-getCode');
+            setTime($btn);
+            $.ajax({
+                url: "/api/entry/entry/send/register",
+                type: "post",
+                data: {
+                    "mobile": registerUsername
+                },
+                success: function (rst) {
+                    layer.msg(rst.msg);
+                }
+            });
+        });
+        //  获取登录短信验证码
+        $('#btn-captchaLogin-getCode').click(function () {
+            var captchaLoginUsername = $('input[name=captchaLoginUsername]').val();
+            if (captchaLoginUsername.length <= 0) {
+                layer.msg("请输入您的登录手机号");
+                return;
+            }
+            if (captchaLoginUsername.length !== 11) {
+                layer.msg("请输入合法的手机号");
+                return;
+            }
+            var $btn = $('#btn-captchaLogin-getCode');
+            setTime($btn);
+            $.ajax({
+                url: "/api/entry/entry/send/captcha",
+                type: "post",
+                data: {
+                    "mobile": captchaLoginUsername
+                },
+                success: function (rst) {
+                    layer.msg(rst.msg);
+                }
+            });
+        });
+
+        // 倒计时
+        var countdown = 60;
+
+        function setTime(obj) {
+            if (countdown == 0) {
+                obj.addClass("layui-btn-normal");
+                obj.removeClass("layui-btn-disabled");
+                obj.attr("disabled", false);
+                obj.text('获取验证码');
+                countdown = 60;
+                return;
+            } else {
+                obj.removeClass("layui-btn-normal");
+                obj.addClass("layui-btn-disabled");
+                obj.attr("disabled", true);
+                obj.text('重新发送(' + countdown + ')');
+                countdown--;
+            }
+            setTimeout(function () {
+                setTime(obj)
+            }, 1000)
+        }
+    });
+</script>
+</body>
+</html>

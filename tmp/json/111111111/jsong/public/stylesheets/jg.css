@@ -1,0 +1,31 @@
+.page{
+	margin:0 25% 0 25%;
+	padding: 10px 10px;
+	border-style:dashed;
+	/*height:500px;*/
+	/*over-flow:atuo;*/
+}
+.top
+{
+	margin: 0 atuo;
+	height: 100px;
+	border-style:dashed;
+	text-align:center;
+	over-flow:atuo;
+}
+.left
+{
+	margin: 10px 0;
+	border-style:dashed;
+	height :50%;
+	width:45%;
+	float:left;
+}
+.right
+{
+	margin: 10px 0;
+	border-style:dashed;
+	height :50%;
+	width:45%;
+	float:right;
+}

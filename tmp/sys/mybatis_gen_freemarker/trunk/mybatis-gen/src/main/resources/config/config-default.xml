@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!-- 实体配置 -->
+    <modelConfig targetPackage="${package.name}.domain.${module.name}" targetProject=".\src\test\java">
+    </modelConfig>
+
+    <!-- Mapper配置 -->
+    <mapperConfig targetPackage="${package.name}.dao.${module.name}" targetProject=".\src\test\java">
+    </mapperConfig>
+
+    <!-- XML配置 -->
+    <xmlConfig targetPackage="${package.name}.dao.${module.name}" targetProject=".\src\main\resources">
+    </xmlConfig>
+
+</config>

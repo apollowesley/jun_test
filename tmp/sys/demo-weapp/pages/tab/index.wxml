@@ -1,0 +1,26 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabBar.list}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item" bindtap="tabClick" style="background-color: {{activeIndex == index ? tabBar.selectedBackgroundColor : tabBar.backgroundColor}}">
+                        <image src="{{activeIndex == index ? item.selectedIconPath : item.iconPath}}" />
+                        <view class="weui-navbar__title" style="color: {{activeIndex == index ? tabBar.selectedColor : tabBar.normalColor}}">{{item.text}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px); background-color: {{tabBar.selectedColor}}"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                    <ad unit-id="adunit-e406b44681194b7e"></ad>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                    <ad unit-id="adunit-e406b44681194b7e"></ad>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+                    <ad unit-id="adunit-e406b44681194b7e"></ad>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

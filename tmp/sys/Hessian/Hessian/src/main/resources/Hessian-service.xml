@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 业务类 -->
+	<bean id="hessianService" class="com.school.hessian.service.impl.HessianServiceImpl" />
+
+	<!-- 远程服务  只能一个对应一个
+	spring mvc 也只是通过拦截路径为/hessianService
+	-->
+	<bean name="/hessianService" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="hessianService" />				<!-- 指定服务对应的业务类 -->
+		<property name="serviceInterface">								<!-- 指定业务类实现哪个接口。Spring推荐采用面向接口编程，因此，Hessian服务建议通过接口暴露。  -->
+			<value>com.school.hessian.service.HessianService</value>
+		</property>
+	</bean>
+</beans>

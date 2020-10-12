@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<indexer table="t_order">
+    <field name="ID" value="b:ID" type="string"/>
+    <field name="customerId" value="b:customerId" type="long"/>
+    <field name="customerMobile" value="b:customerMobile" type="string"/>
+    <field name="payTotalPrice" value="b:payTotalPrice" type="double"/>
+    <param name="update_version_l" value="true"/>
+</indexer>

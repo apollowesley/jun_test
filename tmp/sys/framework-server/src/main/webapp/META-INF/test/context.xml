@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+
+    <!-- 测试库 -->
+    <Resource name="jdbc/xuehu_admin" auth="Container" type="javax.sql.DataSource"
+              maxTotal="100" maxIdle="10" maxWaitMillis="10000"
+              username="root" password="root" driverClassName="com.mysql.jdbc.Driver"
+              url="/admin?autoReconnect=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"/>
+
+</Context>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfast.web.api.admin.mapper.SystemAdminRoleMapper">
+
+    <select id="findByName" resultType="map">
+       select * from system_menu from
+    </select>
+</mapper>

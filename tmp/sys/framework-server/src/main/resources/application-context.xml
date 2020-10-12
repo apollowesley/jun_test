@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+       default-lazy-init="true">
+
+  <context:property-placeholder location="classpath*:configuration.properties"/>
+
+  <!-- 扫描初始化标注过@Component, @RestController, @Service, @Repository的类并纳入容器管理 -->
+  <!-- 无需再配置<context:annotation-config /> -->
+  <context:component-scan base-package="cn.backflow.admin.dao, cn.backflow.admin.service">
+    <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+  </context:component-scan>
+
+  <!-- redis template definition  -->
+  <bean name="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+        p:hostName="127.0.0.1" p:port="6379"/>
+
+  <bean name="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+        p:connectionFactory-ref="jedisConnectionFactory"/>
+
+  <bean name="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+    <constructor-arg name="redisOperations" ref="redisTemplate"/>
+  </bean>
+
+  <!-- EhCache library setup
+  <bean name="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+        p:cacheManager-ref="ehcacheManager"
+        p:transactionAware="true"/>
+
+  <bean name="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+        p:configLocation="classpath:/ehcache.xml"
+        p:shared="true"/>
+  -->
+
+  <!-- 多数据源配置, 采用tomcat内置数据库, 应用级别的数据源配置放在 `/META-INF/context.xml` 下 -->
+  <!-- xuehu_admin 数据库 -->
+  <bean name="dataSourceAdmin" class="org.springframework.jndi.JndiObjectFactoryBean"
+        p:jndiName="java:comp/env/jdbc/xuehu_admin"/>
+
+  <!-- xuehu_server 数据库
+  <bean name="dataSourceServer" class="org.springframework.jndi.JndiObjectFactoryBean"
+             p:jndiName="java:comp/env/jdbc/xuehu_server"/>
+  -->
+
+  <!-- DAO类中需要用到哪个sessionFactory, 请通过 @Autowired("名称") 进行限定 -->
+  <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="mapperLocations" value="classpath*:cn/backflow/admin/entity/mapper/*Mapper.xml"/>
+    <property name="typeAliasesPackage" value="cn.backflow.admin.entity"/>
+    <property name="dataSource" ref="dataSourceAdmin"/>
+  </bean>
+
+  <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+        p:dataSource-ref="dataSourceAdmin"/>
+
+  <bean class="cn.backflow.lib.util.SpringContextUtil" lazy-init="false"/>
+
+  <!-- 注解式的事务控制 -->
+  <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+  <cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true"/>
+
+  <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+  <!--<bean name="operationLogAspect" class="cn.backflow.admin.common.interceptor.OperationLogAspect"/>-->
+
+  <!--
+  <bean name="requestLoggingFilter" claRequestLoggingFilterlter"
+        lazy-init="false"/>
+  -->
+
+  <!--
+      log4jdbc可以将数据源执行的sql将占位符?替换成字符,并以日志打印出来.
+      log4j配置: log4j.logger.jdbc.sqltiming=INFO 日志信息如果全部为off,
+      log4jdbc将不会生效,因此对性能没有任何影响
+   -->
+  <bean name="log4jdbcInterceptor" class="net.sf.log4jdbc.DataSourceSpyInterceptor"/>
+
+  <bean name="log4jdbcAutoProxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+    <property name="interceptorNames" value="log4jdbcInterceptor"/>
+    <property name="beanNames">
+      <array>
+        <value>dataSourceAdmin</value>
+        <value>dataSourceServer</value>
+      </array>
+    </property>
+  </bean>
+
+</beans>

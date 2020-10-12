@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+  <title>Document</title>
+  <script type="text/javascript">
+$(function(){
+	var xml = [
+		 '<xml>'
+		,'<ToUserName>jim</ToUserName>'
+		,'<FromUserName>zhangsan</FromUserName>'
+		 ,'<CreateTime>1348831860</CreateTime>'
+		 ,'<MsgType>text</MsgType>'
+		 ,'<Content>this is a test</Content>'
+		 ,'<MsgId>1234567890123456</MsgId>'
+		 ,'</xml>'
+	].join('')
+
+	$.ajax({
+	   type: "POST",
+	   dataType:"xml",
+	   url: "service.do",
+	   data: xml,
+	   success: function(msg){
+		 console.log( msg );
+	   }
+	   ,error:function(e){
+		console.log(e)
+	   }
+	});
+})
+  </script>
+ </head>
+ <body>
+
+</form>
+ </body>
+</html>

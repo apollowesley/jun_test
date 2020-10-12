@@ -1,0 +1,6 @@
+/target/
+/device-api/target/
+/device-entity/target/
+/device-service/target/
+/.idea
+*.iml

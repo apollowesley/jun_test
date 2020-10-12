@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.evil.pojo.User" table="tb_user" catalog="onlineexamination">
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="userName" type="java.lang.String">
+			<column name="userName" length="100" />
+		</property>
+		<property name="userType" type="string">
+			<column name="userType" length="1" />
+		</property>
+		<property name="password" type="java.lang.String">
+			<column name="password" length="50" />
+		</property>
+		<property name="userAge" type="java.lang.Integer">
+			<column name="userAge" />
+		</property>
+		<property name="userUnit" type="java.lang.String">
+			<column name="userUnit" length="100" />
+		</property>
+		<property name="emailAddress" type="java.lang.String">
+			<column name="emailAddress" length="30" not-null="true" />
+		</property>
+
+		<property name="isDelete" column="isDelete" type="string"
+			length="1" />
+		<property name="isEnabled" column="isEnabled" type="boolean" />
+
+		<!-- 注册时间不能改变 -->
+		<property name="regdate" column="regdate" type="timestamp"
+			update="false" />
+			
+		<!-- 映射User到Role的多对多关联关系 -->
+	<!-- 	<set name="roles" table="tb_user_role_link" lazy="false">
+			<key column="userid" />
+			<many-to-many column="roleid" class="com.evil.pojo.system.Role" />
+		</set>	 -->
+	</class>
+
+
+</hibernate-mapping>

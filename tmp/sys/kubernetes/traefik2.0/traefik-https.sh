@@ -1,0 +1,1 @@
+kubectl create secret tls xkcoding-tls --key=/data/https/xkcoding.com.key --cert=/data/https/xkcoding.com.pem -n kube-system

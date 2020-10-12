@@ -1,0 +1,76 @@
+package ${packageName};
+
+#foreach($im in ${importList})
+import ${im};
+#end
+import com.dexcoder.assistant.pager.Pager;
+import com.dexcoder.assistant.persistence.SuperDao;
+import com.dexcoder.assistant.interceptor.PageControl;
+
+/**
+ * ${table.desc}service实现
+ *
+ * User: ${constant_creator}
+ * Date: ${date}
+ */
+@Component
+public class ${serviceImplGeneratedShotClassName} implements ${serviceGeneratedShotClassName} {
+
+    /** ${table.desc}dao */
+    @Autowired
+    private SuperDao superDao;
+
+    /**
+     * 新增记录
+     *
+     * @param ${modelVoFirstLowerGeneratedClassName}
+     */
+    @Override
+    public void insert(${modelVoGeneratedShotClassName} ${modelVoFirstLowerGeneratedClassName}) {
+        superDao.insert(${modelVoFirstLowerGeneratedClassName}.getTargetObject(${modelGeneratedShotClassName}.class));
+    }
+
+
+    /**
+     * 获取记录
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public ${modelVoGeneratedShotClassName} get(Long id) {
+        ${modelGeneratedShotClassName} ${modelFirstLowerGeneratedClassName} = superDao.getById(${modelGeneratedShotClassName}.class,id);
+        return ${modelFirstLowerGeneratedClassName}.getTargetObject(${modelVoGeneratedShotClassName}.class);
+    }
+
+    @Override
+    public void update(${modelVoGeneratedShotClassName} ${modelVoFirstLowerGeneratedClassName}) {
+        superDao.update(${modelVoFirstLowerGeneratedClassName}.getTargetObject(${modelGeneratedShotClassName}.class));
+    }
+
+    /**
+     * 删除记录
+     *
+     * @param id
+     */
+    @Override
+    public void delete(Long id) {
+        superDao.deleteById(${modelGeneratedShotClassName}.class,id);
+    }
+
+    /**
+     * 查询列表
+     *
+     * @param ${modelVoFirstLowerGeneratedClassName}
+     * @return
+     */
+    @Override
+    public Pager queryList(${modelVoGeneratedShotClassName} ${modelVoFirstLowerGeneratedClassName}) {
+        ${modelGeneratedShotClassName} ${modelFirstLowerGeneratedClassName} = ${modelVoFirstLowerGeneratedClassName}.getTargetObject(${modelGeneratedShotClassName}.class);
+        PageControl.performPage(${modelFirstLowerGeneratedClassName});
+        superDao.queryList(${modelFirstLowerGeneratedClassName});
+        Pager pager = PageControl.getPager();
+        pager.setList(pager.getList(${modelVoGeneratedShotClassName}.class));
+        return pager;
+    }
+}

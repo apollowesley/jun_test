@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h5 class="card-title m-0">数据表列表</h5>
+    <%= link "新建数据表", to: Routes.table_path(@conn, :new), class: "btn btn-primary" %>
+  </div>
+  <div class="card-body">
+    <%= if Enum.empty?(@tables.list) do %>
+      <div class="text-muted text-center">无数据, 请先创建</div>
+    <% else %>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>名称</th>
+            <th>描述</th>
+            <th width="200">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for table <- @tables.list do %>
+            <tr>
+              <td><%= table.name %></td>
+              <td><%= table.desc %></td>
+              <td>
+                <%= link "详情",
+                  to: Routes.table_path(@conn, :show, table),
+                  class: "btn btn-primary btn-sm mr-2" %>
+                <%= link "编辑",
+                    to: Routes.table_path(@conn, :edit, table),
+                    class: "btn btn-info btn-sm mr-2" %>
+                <%= link "删除",
+                    to: Routes.table_path(@conn, :delete, table),
+                    class: "btn btn-danger btn-sm",
+                    method: :delete,
+                    data: [confirm: "确定数据表删除?"] %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= pagination_tag(@conn, @tables) %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Actions>
+
+	<Action type="DELETE" url="/lore">
+	</Action>
+	
+	<Action type="POST" url="/lore">
+		<![CDATA[
+{
+   "settings" : {
+      "number_of_shards" : 2,
+      "number_of_replicas" : 1,
+      "analysis" : {
+         "analyzer": {
+            "my_analyzer": {
+                "type": "custom",
+                "tokenizer": "ik_max_word"
+            }
+         }
+      }
+   }
+}
+		]]>
+	</Action>
+	
+	<Action type="POST" url="/lore/_mapping/knowledge">
+		<![CDATA[
+{
+    "properties": {
+        "issue": {
+            "type":      "string",
+            "analyzer":  "my_analyzer"
+        },
+        "tags": {
+            "type":      "string",
+            "analyzer":  "my_analyzer"
+        }
+    }
+}
+		]]>
+	</Action>
+	
+</Actions>

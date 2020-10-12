@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd  
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+	<util:properties id="p_db" location="classpath:/config/jdbc.properties" />
+
+	<!-- 主数据源，使用alibaba druid连接池 -->
+	<bean id="masterDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName" value="#{p_db['master.driverClassName']}" />
+		<property name="url" value="#{p_db['master.url']}" />
+		<property name="username" value="#{p_db['master.username']}" />
+		<property name="password" value="#{p_db['master.password']}" />
+		<property name="initialSize" value="#{p_db['master.initialSize']}" />
+		<property name="maxActive" value="#{p_db['master.maxActive']}" />
+		<property name="minIdle" value="#{p_db['master.minIdle']}" />
+		<property name="maxWait" value="#{p_db['master.maxWait']}" />
+		<property name="useUnfairLock" value="#{p_db['master.useUnfairLock']}" />
+		<property name="validationQuery" value="#{p_db['master.validationQuery']}" />
+		<property name="testOnBorrow" value="#{p_db['master.testOnBorrow']}" />
+		<property name="testOnReturn" value="#{p_db['master.testOnReturn']}" />
+		<property name="testWhileIdle" value="#{p_db['master.testWhileIdle']}" />
+		<property name="timeBetweenEvictionRunsMillis" value="#{p_db['master.timeBetweenEvictionRunsMillis']}" />
+		<property name="minEvictableIdleTimeMillis" value="#{p_db['master.minEvictableIdleTimeMillis']}" />
+		<property name="filters" value="#{p_db['master.filters']}" />
+	</bean>
+
+	<!-- 总数据源 -->
+	<bean id="dataSource" class="com.site.framework.datasource.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="master" value-ref="masterDataSource" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="masterDataSource" />
+	</bean>
+
+	<!-- 数据源Aspect -->
+	<bean id="dataSourceAspect" class="com.site.framework.datasource.DataSourceAspect" />
+
+	<!-- 数据源AOP -->
+	<aop:config>
+		<aop:aspect order="1" ref="dataSourceAspect">
+			<aop:pointcut id="dsPointCut" expression="execution(* com.site..*Service.*(..))" />
+			<aop:before pointcut-ref="dsPointCut" method="before" />
+		</aop:aspect>
+	</aop:config>
+
+	<!-- 配置druid监控spring jdbc -->
+	<!-- Spring和Jdbc的关联监控 ， 方法名正则匹配拦截配置 -->
+	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor" />
+
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+		<property name="patterns">
+			<list>
+				<value>com.site.*</value>
+			</list>
+		</property>
+	</bean>
+
+	<aop:config>
+		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
+	</aop:config>
+
+</beans>    

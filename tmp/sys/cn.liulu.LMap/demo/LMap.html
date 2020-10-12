@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>template</title>
+    <style>
+      .leftpane{
+        position: fixed;
+        overflow: auto;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 200px;
+        background-color: #ddd;
+      }
+      .rightpane{
+        padding-left:205px;
+      }
+      .menu{
+        padding: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: '微软雅黑';
+      }
+      .menu:hover{
+        background-color: #999;
+        color: white;
+      }
+      
+    </style>
+  </head>
+  <body style="padding:0px;margin:0px;background-color: #eee;">
+    <div id="menu" class="leftpane"></div>
+    <div class="rightpane">
+      <div style="text-align:center;font-size:48px;">LMap类测试</div>
+      <div id="mapDiv" style="height:600px;width:800px;margin:auto;"></div>
+      <button onclick="document.getElementById('code').style.display='block'" style="margin:10px;">查看源码</button>
+      <button onclick="document.getElementById('code').style.display='none'" style="margin:10px;">关闭源码</button>
+      <pre id="code" style="display:none;">
+      var map = new LMap.Map('mapDiv');
+      map.centerAndZoom(new LMap.Point(116.404, 39.915),15);
+      </pre>
+    </div>
+    <script src="./menu.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=0WF4D7OmWBQ0CGIdVXS8rmpk" type="text/javascript"></script>
+    <script src="../js/raphael.js"></script>
+    <script src="../js/LMap.js"></script>
+    <script>
+    var buf = '';
+    for(var i=0;i<menu.length;i++){
+      var name = menu[i].name;
+      var link = menu[i].link;
+      buf+='<div class="menu" onclick="window.location=\'.\/'+link+'\'">'+name+'</div>';
+    }
+    document.getElementById('menu').innerHTML = buf;
+      
+      
+    
+    var map = new LMap.Map('mapDiv');
+    map.centerAndZoom(new LMap.Point(116.404, 39.915),15);
+    
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+# project Files
+.idea/
+target/
+gen-jfinal.iml
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear

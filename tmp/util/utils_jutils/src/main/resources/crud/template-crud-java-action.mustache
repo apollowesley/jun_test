@@ -1,0 +1,142 @@
+package com.feiynn.{{modelPrefixLowercase}}.action;
+
+import java.io.IOException;
+import java.util.Date;
+import java.util.Map;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.feiynn.common.base.action.BaseGenericAction;
+import com.feiynn.common.base.utils.CommonUtils;
+import com.feiynn.{{modelPrefixLowercase}}.mgr.{{modelUppercase}}Mgr;
+import com.feiynn.{{modelPrefixLowercase}}.model.{{modelUppercase}};
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+{{#need_transform}}
+import com.feiynn.sys.mgr.SysDictMgr;
+{{/need_transform}}
+
+@ParentPackage("{{modelPrefixLowercase}}")
+public class {{modelUppercase}}Action extends BaseGenericAction {
+	private static final long serialVersionUID = 1L;
+	private final org.slf4j.Logger logger = org.slf4j.LoggerFactory
+			.getLogger({{modelUppercase}}Action.class);
+
+	@Autowired
+	{{modelUppercase}}Mgr {{modelLowercase}}Mgr;
+	
+	{{#need_transform}}
+	@Autowired
+	SysDictMgr sysDictMgr;
+	{{/need_transform}}
+
+	@Action(value = "{{actionPath}}/forwadList", results = { @Result( name = "success", location = "/WEB-INF/pages{{actionPath}}/{{jspFileName}}_list.jsp") })
+	public String forwadList() {
+		return "success";
+	}
+	
+	@Action(value = "{{actionPath}}/forwardDetail", results = { @Result(name = "success", location = "/WEB-INF/pages{{actionPath}}/{{jspFileName}}_detail.jsp") })
+	public String forwardDetail() {
+		String {{modelLowercase}}Id = Strings
+				.nullToEmpty(request.getParameter("id"));
+		{{modelUppercase}} {{modelLowercase}} = baseGenericService
+				.get({{modelUppercase}}.class, {{modelLowercase}}Id);
+		if ({{modelLowercase}} != null) {
+			request.setAttribute("id", {{modelLowercase}}.getId());
+		} else {
+			request.setAttribute("id", "");
+		}
+		{{#need_transform}}
+		{{#transform_list}}
+		request.setAttribute("{{fieldName}}SelectHtml",sysDictMgr.dict2SelectHtml("{{initDictId}}"));
+		{{/transform_list}}
+		{{/need_transform}}
+		return "success";
+	}
+	
+	@Action("{{actionPath}}/uploadImg")
+	public void uploadImgFor{{modelUppercase}}() throws IOException {
+		uploadImg("your_img_path_here");
+	}
+	
+	@Action("{{actionPath}}/list{{modelUppercase}}")
+	public void list{{modelUppercase}}() {
+		String whereCondition = "";
+		String orderByCondition = " order by createTime desc ";
+		Map<String, Object> bean = Maps.newHashMap();
+		String startTime = Strings
+				.nullToEmpty(request.getParameter("startTime"));
+		String endTime = Strings.nullToEmpty(request.getParameter("endTime"));
+		if (!startTime.equals("")) {
+			bean.put("startTime", CommonUtils.toDateFromYear2Second(startTime));
+			whereCondition += " and  createTime >=:startTime ";
+		}
+		if (!endTime.equals("")) {
+			bean.put("endTime", CommonUtils.toDateFromYear2Second(endTime));
+			whereCondition += " and  createTime <=:endTime ";
+		}
+		String queryHql = "from {{modelUppercase}} where 1=1 " + whereCondition
+				+ orderByCondition;
+		Map<String, Object> myMap = pageQuery(queryHql, bean, true);
+		CommonUtils.printJsonFromMap(response, myMap);
+
+	}
+
+	@Action("{{actionPath}}/saveOrUpdate{{modelUppercase}}")
+	public void saveOrUpdate{{modelUppercase}}() {
+		{{modelUppercase}} {{modelLowercase}} = null;
+		String id = Strings.nullToEmpty(request.getParameter("id"));
+		String type = "save";
+		
+		{{#get_fileds_from_request_list}}
+		{{fieldType}} {{fieldName}} = {{{fieldValueAssignStatement}}}
+		{{/get_fileds_from_request_list}}
+		
+		if (id.equals("")) {
+			{{modelLowercase}} = new {{modelUppercase}}();
+			id = CommonUtils.generateUUID();
+			{{modelLowercase}}.setId(id);
+		} else {
+			{{modelLowercase}} = baseGenericService.get({{modelUppercase}}.class, id);
+			id = {{modelLowercase}}.getId();
+			type = "update";
+		}
+
+		// Get and set,Start
+		{{modelLowercase}}.setCreateTime(new Date());
+		{{#set_fileds_from_request_list}}
+		{{modelLowercase}}.set{{fieldNameUpperCamel}}({{fieldName}});
+		{{/set_fileds_from_request_list}}
+		// Get and set,End
+
+		{{modelLowercase}}Mgr.saveOrUpdate{{modelUppercase}}({{modelLowercase}}, type);
+
+		CommonUtils.printSuccessJson(response);
+	}
+
+	@Action("{{actionPath}}/detail{{modelUppercase}}")
+	public void detail{{modelUppercase}}() {
+
+		String {{modelLowercase}}Id = Strings
+				.nullToEmpty(request.getParameter("id"));
+		{{modelUppercase}} {{modelLowercase}} = baseGenericService
+				.get({{modelUppercase}}.class, {{modelLowercase}}Id);
+
+		Map<String, Object> myMap = Maps.newHashMap();
+		myMap.put("model", {{modelLowercase}});
+
+		CommonUtils.printJsonFromMap(response, myMap);
+
+	}
+
+	@Action("{{actionPath}}/delete{{modelUppercase}}")
+	public void delete{{modelUppercase}}() {
+		logger.warn("delete{{modelUppercase}}.");
+		{{modelLowercase}}Mgr.delete{{modelUppercase}}(
+				Lists.newArrayList(request.getParameterMap().get("myIds")));
+		CommonUtils.printSuccessJson(response);
+	}
+
+}

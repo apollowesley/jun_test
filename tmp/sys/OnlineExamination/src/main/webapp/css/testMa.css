@@ -1,0 +1,43 @@
+.a_content{
+	height:494px;
+	margin:20px;
+}
+.a_content_other{
+	margin:20px;
+}
+/***  tab-content  ***/
+.tab-content .btn1 a{
+	margin-right:5px;
+}
+	
+/***  change_page  ***/
+.change_page{
+	height:48px;
+}
+.page_sum h4{
+	font-size:16px;
+	color:#3a3a3a;
+	font-weight:normal;
+}
+.page_nav a{
+	float: right;
+	height: 22px;
+	line-height: 22px;
+	margin-left: 8px;
+	color:#3a3a3a;
+	font-size:16px;
+	border: 1px solid #CBCBCB;
+	padding:5px 8px;
+}
+.autoCut{						/*----  题目超出部分自动省略  -----*/
+	width:300px;
+	margin:0 auto;				/*---  td  div居中 --*/
+    overflow:hidden;  
+    white-space:nowrap;  
+    text-overflow:ellipsis;  
+    -o-text-overflow:ellipsis;  
+    -icab-text-overflow: ellipsis;  
+    -khtml-text-overflow: ellipsis;  
+    -moz-text-overflow: ellipsis;  
+    -webkit-text-overflow: ellipsis; 
+}

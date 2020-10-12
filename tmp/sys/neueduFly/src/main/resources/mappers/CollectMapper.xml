@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.neuedu.fly.mapper.CollectMapper">
+
+  <!--数据库字段和java实体属性映射-->
+  <resultMap id="BaseResultMap" type="org.neuedu.fly.entity.Collect">
+    <id column="id" property="id" />
+    <result column="user_id" property="userId" />
+    <result column="post_id" property="postId" />
+    <result column="create_time" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, user_id, post_id, create_time
+  </sql>
+
+
+
+</mapper>

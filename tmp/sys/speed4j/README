@@ -1,0 +1,209 @@
+
+This is Speed4j, a very simple (but fast) Java performance analysis library. It is
+designed using Perf4j as a model, but hopefully avoiding the pitfalls inherent
+in Perf4j's design.  Also, Perf4j does not seem to be seeing a lot of development
+these days...
+
+Speed4j has a dependency on SLF4J (see http://slf4j.org), which it uses to log
+its workings, but no other dependencies.
+
+INSTALLING
+==========
+
+Speed4j is available in Maven Central.  You can download the artifacts directly
+from
+
+http://repo2.maven.org/maven2/com/ecyrd/speed4j/speed4j/
+
+Or, you can put this into your pom.xml:
+
+<dependency>
+    <groupId>com.ecyrd.speed4j</groupId>
+    <artifactId>speed4j</artifactId>
+    <version>0.3</version>
+</dependency>
+
+Or, if you like Apache Ivy more, use this:
+
+<dependency org="com.ecyrd.speed4j" name="speed4j" rev="0.3"/>
+
+
+
+SIMPLEST POSSIBLE USAGE
+=======================
+
+public void myBusyMethod()
+{
+	StopWatch sw = new StopWatch();
+	
+	// Do the busy thing
+	
+	sw.stop();
+	System.out.println(sw);
+}
+
+This would simply print out how fast the block was.  Very useful for quick performance
+testing.  Also, you could do
+
+GETTING ITERATIONS TOO
+======================
+
+public void myBusyMethod()
+{
+	StopWatch sw = new StopWatch();
+	
+	int iterations = 1000;
+	
+	for( int i = 0; i < iterations; i++ ) {
+		// Do the busy thing
+	}
+	
+	sw.stop();
+	
+	System.out.println(sw.toString(iterations));
+}
+
+This would print out how fast the block was, *and* how many times the iterated
+block would execute per second.
+
+However, speed4j is designed to be a part of your application.  So we could
+also do the following:
+
+A COMPLEX EXAMPLE
+=================
+
+public void myBusyMethod2()
+{
+	StopWatch sw = myStopWatchFactory.getStopWatch();
+	
+	try
+	{
+		// Do the busy thing
+
+		// Notice that sw.stop() automatically logs if the Factory is configured so		
+		sw.stop("busyThing:success");
+	}
+	finally
+	{
+		sw.stop("busything:failure");
+	}
+}
+
+Wait, where did the "myStopWatchFactory" come from?  Well, you initialized it somewhere
+in your app or class with
+
+StopWatchFactory myStopWatchFactory = StopWatchFactory.getInstance("loggingFactory");
+
+This is where it gets interesting.  Speed4j will read the configuration for the factory
+named in the call (in this case, "loggingFactory") from a file called "speed4j.properties"
+from your class path.  Let's see how a sample file would look like:
+
+SPEED4J.PROPERTIES
+=================
+
+   speed4j.loggingFactory=com.ecyrd.speed4j.log.Slf4jLog
+   speed4j.loggingFactory.slf4jLogname=com.example.mylog
+
+So, this defines a Log called "loggingFactory" which uses the "com.ecyrd.speed4j.log.Slf4jLog"
+instance to do the logging.  This particular class would connect to the given SLF4J logger
+and log using the info() method to it.  So depending your setup, this would then go to the
+log4j or console or wherever.
+
+
+PERIODICAL LOGGING
+==================
+
+If you are tired of manually looking at your log to figure out how fast something is, then
+PeriodicalLog is your friend.
+
+speed4j.loggingFactory=com.ecyrd.speed4j.log.PeriodicalLog
+speed4j.loggingFactory.period=60
+speed4j.loggingFactory.jmx=busything:success,busything:failure
+speed4j.loggingFactory.slf4jLogname=com.example.myperiodicalllog
+
+OK, lots of goodies happening here.  First you can set the period during which the stats
+are collected, in this case 60 seconds.
+
+Second, if the "jmx" attribute is set for a PeriodicalLog, it will expose a JMX management
+bean which will list the average, standard deviation, count, min and max values for the given
+tags.
+
+Finally, it will also output a collected string to the given SLF4J logger, resulting into
+something that looks like this:
+
+19400 [Thread-3] INFO foo - Statistics from Tue Apr 19 23:11:15 EEST 2011 to Tue Apr 19 23:11:20 EEST 2011
+19400 [Thread-3] INFO foo - Tag                                       Avg(ms)      Min      Max  Std Dev     95th   Count
+19401 [Thread-3] INFO foo - iteration:9                                 19.18    19.07    19.88     0.14    19.60      28
+19401 [Thread-3] INFO foo - iteration:8                                 18.17    18.09    18.33     0.06    18.32      26
+19402 [Thread-3] INFO foo - iteration:7                                 17.19    17.07    17.48     0.08    17.43      26
+19402 [Thread-3] INFO foo - iteration:6                                 16.17    16.07    16.26     0.05    16.25      23
+19402 [Thread-3] INFO foo - iteration:5                                 15.18    15.08    15.31     0.06    15.29      27
+19403 [Thread-3] INFO foo - iteration:4                                 14.16    14.08    14.28     0.06    14.28      21
+19403 [Thread-3] INFO foo - iteration:3                                 13.17    13.08    13.26     0.05    13.26      21
+19404 [Thread-3] INFO foo - iteration:2                                 12.17    12.08    12.25     0.05    12.25      32
+19404 [Thread-3] INFO foo - iteration:1                                 11.16    11.07    11.30     0.06    11.30      16
+19405 [Thread-3] INFO foo - iteration:0                                 10.16    10.08    10.27     0.05    10.26      24
+
+(The 95th means the 95th percentile, i.e. 95% of all calls stayed under this limit.  This is very useful
+for figuring out which methods have wildy varying performance.)
+
+PROGRAMMATIC CONFIGURATION
+==========================
+
+So property files ain't good for you?  You can also try the following:
+
+public void myTest()
+{
+	PeriodicalLog myLog = new PeriodicalLog();
+	myLog.setName("loggingFactory");
+	myLog.setPeriod("60");
+	myLog.setJmx("busything:success,busything:failure");
+	myLog.setSlf4jLogname("com.example.myperiodicallog");
+	
+	StopWatchFactory swf = StopWatchFactory.getInstance(myLog);
+	
+	StopWatch sw = swf.getStopWatch();
+	...
+}
+
+The properties are directly accessible also via the appropriate setters.  In fact,
+all the speed4j configuration module does is that it just simply calls the appropriate
+setter module - so if a property is called "speed4j.myLog.period=50" it will call
+setPeriod(50) on myLog.
+ 
+TRICKS AND TIPS
+===============
+
+Q: I want to see just the JMX data, not the logging.
+
+A: Set the slf4jLogname to an empty string. For example 
+   speed4j.loggingFactory.slf4jLogname=
+
+
+Q: It seems that there are a lot of StopWatches in memory! Memory leak! Waaaa!
+
+A: The StopWatches are collected in a separate Thread.  In a high-CPU usage scenario
+   it's possible that the Thread is starved, and it just can't keep up.  For such
+   cases the StopWatch queue has a maximum size which you can set with e.g.
+   
+   speed4j.loggingFactory.maxQueueSize = 10000 # It can now hold up to 10,000 items.
+
+   The default size is 100,000 items, which should be plenty.
+	
+   You can monitor the queue size with JMX, as well as the number of dropped
+   StopWatches (when the queue flows over).
+
+LICENSE INFORMATION
+===================
+
+Speed4j is distributed under the Apache Software License, version 2.0 (see LICENSE).
+
+Speed4j contains code (C) The Apache Software Foundation, 2003-2004.
+
+
+SOURCE CODE AND SUPPORT
+=======================
+
+Speed4j is available on GitHub, http://github.com/jalkanen/speed4j
+
+There is a support email group at http://groups.google.com/group/speed4j-users

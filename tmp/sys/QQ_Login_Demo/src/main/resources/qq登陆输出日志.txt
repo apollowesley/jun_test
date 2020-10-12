@@ -1,0 +1,103 @@
+第一步:请求QQ登陆地址:
+https://graph.qq.com/oauth2.0/authorize?
+client_id=101465199
+&redirect_uri=http://localhost:8080/afterlogin.do
+&response_type=code
+&state=cc86ad8159bf700ef45570777dc038ab
+&scope=get_user_info,add_topic,add_one_blog,add_album,upload_pic,list_album,add_share,check_page_fans,add_t,add_pic_t,del_t,get_repost_list,get_info,get_other_info,get_fanslist,get_idollist,add_idol,del_ido,get_tenpay_addr
+
+第二步:用户在客户端(PC端，手机端)点击授权按钮
+
+
+第三步:腾讯统一用户认证中心，会去请求我们申请的回调地址:
+http://localhost:8080/afterlogin.do?
+code=9A5F************************06AF
+&state=test
+
+第四步：使用client_id,client_secret..等去请求认证中心，认证中心返回access_token和refresh_token
+2018-08-12 22:26:29,224 [http-apr-8080-exec-10] DEBUG [org.springframework.web.servlet.DispatcherServlet] - Last-Modified value for [/afterlogin.do] is: -1
+2018-08-12 22:26:54,065 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "POST /oauth2.0/token HTTP/1.1[\r][\n]"
+2018-08-12 22:26:54,272 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "User-Agent: Jakarta Commons-HttpClient/3.1[\r][\n]"
+2018-08-12 22:26:54,273 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "Host: graph.qq.com[\r][\n]"
+2018-08-12 22:26:54,274 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "Content-Length: 193[\r][\n]"
+2018-08-12 22:26:54,276 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "Content-Type: application/x-www-form-urlencoded[\r][\n]"
+2018-08-12 22:26:54,277 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "[\r][\n]"
+2018-08-12 22:26:54,279 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - >> "client_id=xxxx&client_secret=yyyyyyy&grant_type=authorization_code&code=5A568FBE8CCCFB694A4D7E993C10136D&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fafterlogin.do"
+2018-08-12 22:26:54,650 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "HTTP/1.1 200 OK[\r][\n]"
+2018-08-12 22:26:54,651 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "HTTP/1.1 200 OK[\r][\n]"
+2018-08-12 22:26:54,666 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Server: tws[\r][\n]"
+2018-08-12 22:26:54,667 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Date: Sun, 12 Aug 2018 14:26:54 GMT[\r][\n]"
+2018-08-12 22:26:54,668 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Content-Type: text/html[\r][\n]"
+2018-08-12 22:26:54,669 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Content-Length: 111[\r][\n]"
+2018-08-12 22:26:54,670 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Connection: keep-alive[\r][\n]"
+2018-08-12 22:26:54,671 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Keep-Alive: timeout=50[\r][\n]"
+2018-08-12 22:26:54,672 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Cache-Control: no-cache[\r][\n]"
+2018-08-12 22:26:54,672 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "[\r][\n]"
+2018-08-12 22:26:54,726 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "access_token=EEE22E0E9B58F0DE37F2EF357FA929E9&expires_in=7776000&refresh_token=80A3B27CC7BD4A677847FBFF4E9F43D2"
+
+第五部：将上一步认证中心返回的access_token和refresh_token，再次请求请求认证中心，返回openid
+2018-08-12 22:27:25,509 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "GET /oauth2.0/me?access_token=EEE22E0E9B58F0DE37F2EF357FA929E9 HTTP/1.1[\r][\n]"
+2018-08-12 22:27:25,512 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "User-Agent: Jakarta Commons-HttpClient/3.1[\r][\n]"
+2018-08-12 22:27:25,514 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "Host: graph.qq.com[\r][\n]"
+2018-08-12 22:27:25,515 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "[\r][\n]"
+2018-08-12 22:27:26,277 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "HTTP/1.1 200 OK[\r][\n]"
+2018-08-12 22:27:26,278 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "HTTP/1.1 200 OK[\r][\n]"
+2018-08-12 22:27:26,279 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Server: tws[\r][\n]"
+2018-08-12 22:27:26,281 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Date: Sun, 12 Aug 2018 14:27:26 GMT[\r][\n]"
+2018-08-12 22:27:26,283 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Content-Type: text/html[\r][\n]"
+2018-08-12 22:27:26,284 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Content-Length: 83[\r][\n]"
+2018-08-12 22:27:26,285 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Connection: keep-alive[\r][\n]"
+2018-08-12 22:27:26,286 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Keep-Alive: timeout=50[\r][\n]"
+2018-08-12 22:27:26,287 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Cache-Control: no-cache[\r][\n]"
+2018-08-12 22:27:26,288 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "[\r][\n]"
+2018-08-12 22:27:26,291 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "callback( {"client_id":"101465199","openid":"003BBF74E531E193401A0C42B4015605"} );[\n]"
+
+
+第六步:将第五步的openid和第四部的access_token再去请求用户信息接口，腾讯将返回用户信息给用户，此时已经QQ认证完毕，目的达成了。
+2018-08-12 22:27:31,888 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "GET /user/get_user_info?openid=003BBF74E531E193401A0C42B4015605&oauth_consumer_key=101465199&access_token=EEE22E0E9B58F0DE37F2EF357FA929E9&format=json HTTP/1.1[\r][\n]"
+2018-08-12 22:27:31,888 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "User-Agent: Jakarta Commons-HttpClient/3.1[\r][\n]"
+2018-08-12 22:27:31,888 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "Host: graph.qq.com[\r][\n]"
+2018-08-12 22:27:31,888 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - >> "[\r][\n]"
+2018-08-12 22:27:32,264 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "HTTP/1.1 200 OK[\r][\n]"
+2018-08-12 22:27:32,264 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "HTTP/1.1 200 OK[\r][\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Server: tws[\r][\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Date: Sun, 12 Aug 2018 14:27:32 GMT[\r][\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Content-Type: text/html; charset=utf-8[\r][\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Content-Length: 832[\r][\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Connection: keep-alive[\r][\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "Keep-Alive: timeout=50[\r][\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.header] - << "[\r][\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "{[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "ret": 0,[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "msg": "",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "is_lost":0,[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "nickname": "kiwipeach",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "gender": "[0xe7][0x94][0xb7]",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "province": "[0xe6][0xb1][0x9f][0xe8][0xa5][0xbf]",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "city": "[0xe8][0xb5][0xa3][0xe5][0xb7][0x9e]",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "year": "1994",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "constellation": "",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "figureurl": "http:\/\/qzapp.qlogo.cn\/qzapp\/101465199\/003BBF74E531E193401A0C42B4015605\/30",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "figureurl_1": "http:\/\/qzapp.qlogo.cn\/qzapp\/101465199\/003BBF74E531E193401A0C42B4015605\/50",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "figureurl_2": "http:\/\/qzapp.qlogo.cn\/qzapp\/101465199\/003BBF74E531E193401A0C42B4015605\/100",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "figureurl_qq_1": "http:\/\/thirdqq.qlogo.cn\/qqapp\/101465199\/003BBF74E531E193401A0C42B4015605\/40",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "figureurl_qq_2": "http:\/\/thirdqq.qlogo.cn\/qqapp\/101465199\/003BBF74E531E193401A0C42B4015605\/100",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "is_yellow_vip": "0",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "vip": "0",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "yellow_vip_level": "0",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "level": "0",[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "    "is_yellow_year_vip": "0"[\n]"
+2018-08-12 22:27:32,265 [http-apr-8080-exec-10] DEBUG [httpclient.wire.content] - << "}[\n]"
+2018-08-12 22:27:32,294 [http-apr-8080-exec-10] DEBUG [org.springframework.beans.factory.support.DefaultListableBeanFactory] - Invoking afterPropertiesSet() on bean with name 'success'
+2018-08-12 22:27:32,294 [http-apr-8080-exec-10] DEBUG [org.springframework.beans.factory.support.DefaultListableBeanFactory] - Returning cached instance of singleton bean 'environment'
+2018-08-12 22:27:32,296 [http-apr-8080-exec-10] DEBUG [org.springframework.web.servlet.DispatcherServlet] - Rendering view [org.springframework.web.servlet.view.JstlView: name 'success'; URL [/WEB-INF/views/success.jsp]] in DispatcherServlet with name 'dispatcherServlet'
+2018-08-12 22:27:32,296 [http-apr-8080-exec-10] DEBUG [org.springframework.web.servlet.view.JstlView] - Added model object 'userInfoBean' of type [com.qq.connect.javabeans.qzone.UserInfoBean] to request in view with name 'success'
+2018-08-12 22:27:32,296 [http-apr-8080-exec-10] DEBUG [org.springframework.web.servlet.view.JstlView] - Added model object 'org.springframework.validation.BindingResult.userInfoBean' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'success'
+2018-08-12 22:27:32,299 [http-apr-8080-exec-10] DEBUG [org.springframework.beans.factory.support.DefaultListableBeanFactory] - Returning cached instance of singleton bean 'environment'
+2018-08-12 22:27:32,305 [http-apr-8080-exec-10] DEBUG [org.springframework.web.servlet.view.JstlView] - Forwarding to resource [/WEB-INF/views/success.jsp] in InternalResourceView 'success'
+2018-08-12 22:27:32,693 [http-apr-8080-exec-10] DEBUG [org.springframework.web.servlet.DispatcherServlet] - Successfully completed request
+
+FAQ：
+1.每次获取的access token会不会一样呢？
+
+

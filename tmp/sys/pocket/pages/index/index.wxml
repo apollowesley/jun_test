@@ -1,0 +1,38 @@
+<!--index.wxml-->
+ <wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" distance="30"> 
+  <view class='top'>
+   <picker class='top-nav' mode="multiSelector" value="{{multiIndex}}" range="{{multiArray}}" bindchange="changeMultiPicker">
+      <view>
+        <text class='top-nav-year'>{{multiArray[0][multiIndex[0]]}}年</text>
+        <view class='top-nav-view' style='letter-spacing:0px;margin-left:-18px;'><text class='top-nav-month'>{{multiArray[1][multiIndex[1]]}}</text>月<image src='../images/xl.png'></image></view>
+      </view>
+  </picker> 
+      <view class='top-nav'>
+        <text class='top-nav-text'>收入(元)</text>
+        <view class='top-nav-view'>{{income}}</view>
+      </view>
+      <view class='top-nav'>
+        <text class='top-nav-text'>支出(元)</text>
+        <view class='top-nav-view'>{{outlay}}</view>
+      </view>
+      <view class='top-nav'>
+        <text class='top-nav-text'>结余(元)</text>
+        <view class='top-nav-view'>{{balance}}</view>
+      </view>
+      <view class='hr'></view>
+  </view>
+
+  <view class='content' wx:key="{{pocket.id}}" wx:for="{{pockets}}" wx:for-index="pindex" wx:for-item="pocket">
+    <view class='day'>
+      <text>{{pocket.day}}日</text> <text style='margin-left:8px;'>{{pocket.weekDay}}</text> <text class='day-right'><text wx:if='{{pocket.outlay!=0}}' style='display: inline-block;margin-right:4px;'>{{'支出：'+pocket.outlay}}</text><text wx:if='{{pocket.income!=0}}' style='display: inline-block;margin-right:4px;'>{{'收入：'+pocket.income}}</text></text>
+    </view>
+    <view class='detail' wx:key="{{detail.id}}"  wx:for="{{pocket.pocketDetails}}" wx:for-index="index" wx:for-item="detail">
+        <wux-cell bind:click="edit" bindlongpress="delete"  data-index="{{index+'-'+pindex+'-'+detail.id+'-'+detail.pocketType}}" thumb="../../images/xf.png" label="{{detail.house}}" title="   {{detail.type}}{{detail.remark != ''?' - '+detail.remark:''}}" extra="{{detail.pocketType == '支出'?'-'+detail.money:'+'+detail.money}}"></wux-cell> 
+       <view  class='nav-hr'></view>
+    </view>
+  </view>
+
+  <view wx:if="{{pockets.length == 0}}" class='prompt'>
+      当月暂无账单，快去记账吧
+  </view>
+ </wux-refresher> 

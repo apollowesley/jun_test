@@ -1,0 +1,20 @@
+server:
+    port: 9999
+    tomcat:
+        uri-encoding: utf-8
+
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8
+        username: root
+        password: 999999
+    jpa:
+        hibernate:
+          ddl-auto: update
+        show-sql: true
+    mvc:
+      view:
+        prefix: classpath:/templates/
+        suffix: .html
+      static-path-pattern: /static/**

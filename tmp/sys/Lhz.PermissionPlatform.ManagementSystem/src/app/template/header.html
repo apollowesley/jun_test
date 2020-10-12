@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand">权限平台管理系统</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li [class.active]="_router.isRouteActive(_router.generate(['Desktop/ApplicationManagement']))"><a [routerLink]="['Desktop/ApplicationManagement']">应用管理</a></li>
+                <li [class.active]="_router.isRouteActive(_router.generate(['Desktop/RegionManagement']))"><a [routerLink]="['Desktop/RegionManagement']">行政区管理</a></li>
+                <li [class.active]="_router.isRouteActive(_router.generate(['Desktop/OrganizationManagement']))"><a [routerLink]="['Desktop/OrganizationManagement']">组织机构管理</a></li>
+                <li [class.active]="_router.isRouteActive(_router.generate(['Desktop/RoleManagement']))"><a [routerLink]="['Desktop/RoleManagement']">角色管理</a></li>
+                <li [class.active]="_router.isRouteActive(_router.generate(['Desktop/UserManagement']))"><a [routerLink]="['Desktop/UserManagement']">用户管理</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="javascript:void(0)" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> {{loginUser.Name}} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">修改密码</a></li>
+                        <li class="divider" role="separator"></li>
+                        <li><a href="javascript:void(0)" (click)="logout()">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

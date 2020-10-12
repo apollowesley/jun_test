@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>文章管理</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css"/>
+<link href="/static/public/css/system.css" rel="stylesheet" type="text/css"/>
+<script src="/static/public/js/public.js"></script>
+<script src="/static/public/js/Alert.js"></script>
+<script src="/static/public/editor/js/editor.js"></script>
+<script src="/static/common/article/articleinfo.js"></script>
+<style>
+    ul li {
+        float: left;
+        width: 33%
+    }
+</style>
+<body>
+<div class="list-box">
+    <div class="title"><p>文章管理更新</p></div>
+    <form role="form" id="articledata" action="javascript:void(0);">
+        <input type="hidden" class="form-control" th:value="${table}" name="table" id="table">
+        <ul>
+            <li>
+                <div class="input-group">
+                    <label class="input-group-addon">标题</label>
+                    <input type="hidden" class="form-control required" th:value="${article.id}"
+                           id="id" name="id" placeholder="请输入">
+                    <input type="text" class="form-control " th:value="${article.title}"
+                           id="title" name="title" placeholder="请输入标题">
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <label class="input-group-addon">副标题</label>
+                    <input type="text" class="form-control " name="subhead" th:value="${article.subhead}"
+                           id="subhead" placeholder="请输入副标题">
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <span class="input-group-addon">标签(单页填写)</span>
+                    <input type="text" class="form-control " name="tag" id="tag" th:value="${article.tag}"
+                           placeholder="请输入标签">
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <label class="input-group-addon">类型</label>
+                    <select type="text" class="form-control " th:value="${article.type}"
+                           id="type" name="type" placeholder="请输入类型（是否列表）">
+                        <option th:selected="${article.type=='0'}"value="0">单页</option>
+                        <option th:selected="${article.type=='1'}"value="1">列表</option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <label class="input-group-addon">推荐</label>
+                    <select type="text" class="form-control " th:value="${article.stick}"
+                           id="stick" name="stick" placeholder="请输入推荐">
+                        <option th:selected="${article.stick=='0'}"value="0">否</option>
+                        <option th:selected="${article.stick=='1'}"value="1">是</option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <label class="input-group-addon">栏目类型（自定义）</label>
+                    <input type="text" class="form-control " th:value="${article.columntype}"
+                           id="columntype" name="columntype"  placeholder="请输入栏目类型（自定义）" value="1" readonly>
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <label class="input-group-addon">首页显示</label>
+                    <select type="text" class="form-control " th:value="${article.home}"
+                           name="home"    id="home" placeholder="请输入首页显示">
+                        <option th:selected="${article.home=='0'}"value="0">否</option>
+                        <option th:selected="${article.home=='1'}"value="1">是</option>
+                    </select>
+                </div>
+            </li>
+        </ul>
+        <div style="width: 100%;float: left;">
+            <label>内容</label>
+            <div id="context" style="width: 100%;">
+            </div>
+            <input type="hidden" class="form-control " th:value="${article.content}"
+                   id="contentText" placeholder="请输入内容">
+        </div>
+        <div style="width:100%;float: left;">
+            <button type="button" id="articleUpdate" class="btn btn-default">提交</button>
+        	<button type="button" id="cancel" class="btn btn-default">取消</button>
+        </div>
+    </form>
+</div>
+<script>
+    context.init("context");
+    context.set($("#contentText").val());
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "video/list/list",
+    "pages/index",
+    "pages/transfer/list/list",
+    "video/detail/detail",
+    "pages/scrolltop/index/index",
+    "pages/calendar/index/index",
+    "pages/city/index/index",
+    "pages/city/list/list",
+    "pages/timeline/index",
+    "pages/tab/index",
+    "pages/cart/index",
+    "pages/chat/index",
+    "pages/alert/index",
+    "pages/radiogroup/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Mina组件库",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#48c23d",
+    "list": [
+      {
+        "pagePath": "video/list/list",
+        "iconPath": "images/icon_home.png",
+        "selectedIconPath": "images/icon_home_selected.png",
+        "text": "视频"
+      },
+      {
+        "pagePath": "pages/index",
+        "iconPath": "images/icon_cate.png",
+        "selectedIconPath": "images/icon_cate_selected.png",
+        "text": "实例"
+      }
+    ]
+  }
+}

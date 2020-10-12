@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+.bodycontent{width:950px;margin:12px auto 0 auto;}
+.bodycontentl{width:650px;}
+.feedbackc{ width:598px;line-height:19px;border:1px solid #ddd;color:#666;font-size:12px;margin:0;overflow-x:hidden;overflow-y:auto;font-family:Tahoma, 宋体; padding:5px; height:50px;}
+.indexBtn{ width:80px; height:30px;cursor:pointer;border-radius: 3px;font-size: 16px; font-family:"微软雅黑";color: white;text-shadow: #1FABE7 0px 0px 2px; overflow:hidden; border-top:1px solid #5abcee;border-bottom:1px solid #0d96cf;background:#149cdb;background:-webkit-gradient(linear,0% 0,0% 100%,from(#1ba2e8),to(#0d96d0));background:-webkit-linear-gradient(top,#1ba2e8,#0d96d0);background:-moz-linear-gradient(top,#1ba2e8,#0d96d0);background:-ms-linear-gradient(top,#1ba2e8,#0d96d0);background:-o-linear-gradient(top,#1ba2e8,#0d96d0);cursor:pointer; float:right;box-shadow:none;margin-right:52px;margin-top:12px;}
+.feedcs{width:650px;float:left;margin:7px auto;}
+.feedl{float:left;width:90px;}
+.feedl p{color:#888;}
+.feedr{float:left;width:543px;border-left:1px dotted #339999;padding:3px;}
+.feedcontent{border-bottom:1px dotted #339999}
+.feedcontent p{color:#888;}
+.feedcontent span{font-size:14px;}
+.feedrecontent span{font-size:14px;color:#d66;}
+.feedrecontent p{color:#888;}
+
+.ui_recent_footer{text-align:right;float:left;width:650px;}
+.ui_recent_footer a{color:#08e;}

@@ -1,0 +1,4 @@
+*.agdai
+.idea/
+*.iml
+.DS_Store

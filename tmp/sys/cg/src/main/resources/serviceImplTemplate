@@ -1,0 +1,47 @@
+package $servicePackageName;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+import $daoName;
+import $importClassName;
+
+@Service("$lowerEntityNameService")
+public class $entityNameServiceImpl implements $entityNameService {
+
+	@Autowired
+	private $entityNameDao $lowerEntityNameDao;
+
+	@Override
+	public $entityName save$entityName($entityName $lowerEntityName) {
+		Assert.notNull($lowerEntityName, "");
+		$lowerEntityNameDao.save($lowerEntityName);
+		return $lowerEntityName;
+	}
+
+	@Override
+	public $entityName update$entityName($entityName $lowerEntityName) {
+		Assert.notNull($lowerEntityName, "");
+		$lowerEntityNameDao.update($lowerEntityName);
+		return $lowerEntityName;
+	}
+
+	@Override
+	public void delete$entityName($type $primaryKey) {
+		$lowerEntityNameDao.delete($primaryKey);
+	}
+
+	@Override
+	public $entityName get$entityName($type $primaryKey) {
+		$entityName $lowerEntityName = $lowerEntityNameDao.get($primaryKey);
+		return $lowerEntityName;
+	}
+
+	@Override
+	public List<$entityName> queryAll() {
+		return $lowerEntityNameDao.queryAll();
+	}
+}

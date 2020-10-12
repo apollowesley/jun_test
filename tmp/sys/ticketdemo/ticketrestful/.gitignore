@@ -1,0 +1,8 @@
+/build/
+/bin/
+/.settings/
+/.classpath
+/.project
+/bbossmvcdemo.log
+/build.gradle.bak
+/out/

@@ -1,0 +1,12 @@
+logging:
+    level:
+        root: INFO
+        #org.hibernate: DEBUG
+        #org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+        #org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+swagger:
+    basepackage: ${basepackage}
+    service:
+        name: ${microserver}
+        description: 提供XXX微服技术支持
+        developer: 作者名

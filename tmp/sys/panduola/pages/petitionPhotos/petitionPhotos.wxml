@@ -1,0 +1,24 @@
+<view class="annexMain">
+    <view class='items' bindtap='goPhotoUpload'>
+        <view class='title'>拍照</view>
+        <view class='p'>教室/上课环境</view>
+    </view>
+    <view class='items' bindtap='goVideoUpload'>
+        <view class='title'>录像</view>
+        <view class='p'>教室/上课环境</view>
+    </view>
+
+  
+</view>
+   <!-- <view class="feedback">
+   
+    <view class='items'>
+        <view class='title'>请填写反馈内容</view>
+        <textarea placeholder-class="placeholder" value="{{msgcontent}}" bindinput='msgcontentInput'/>
+    </view>
+
+</view>
+<view class='btnBar'>
+    <view class='btn'   bindtap='saveBtn'>不同意</view>
+    <view class='btn blue'   bindtap='submitBtn'>同意</view>
+</view> -->

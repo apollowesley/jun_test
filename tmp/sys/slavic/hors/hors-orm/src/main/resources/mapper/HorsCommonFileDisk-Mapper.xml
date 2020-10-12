@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slavic.hors.orm.mapper.HorsCommonFileDiskMapper">
+
+    <resultMap type="com.slavic.hors.orm.entity.HorsCommonFileDisk" id="HorsCommonFileDiskMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="fileType" column="file_type" jdbcType="VARCHAR"/>
+        <result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+        <result property="fileContent" column="file_content" jdbcType="VARCHAR"/>
+        <result property="fileStatus" column="file_status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HorsCommonFileDiskMap">
+        select
+          id, file_type, file_name, file_content, file_status, create_time
+        from api_starter.hors_common_file_disk
+        where id = #{id}
+    </select>
+    
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="HorsCommonFileDiskMap">
+        select
+          id, file_type, file_name, file_content, file_status, create_time
+        from api_starter.hors_common_file_disk
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="fileType != null and fileType != ''">
+                and file_type = #{fileType}
+            </if>
+            <if test="fileName != null and fileName != ''">
+                and file_name = #{fileName}
+            </if>
+            <if test="fileContent != null and fileContent != ''">
+                and file_content = #{fileContent}
+            </if>
+            <if test="fileStatus != null">
+                and file_status = #{fileStatus}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into api_starter.hors_common_file_disk(file_type, file_name, file_content, file_status, create_time)
+        values (#{fileType}, #{fileName}, #{fileContent}, #{fileStatus}, #{createTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="updateById">
+        update api_starter.hors_common_file_disk
+        <set>
+            <if test="fileType != null and fileType != ''">
+                file_type = #{fileType},
+            </if>
+            <if test="fileName != null and fileName != ''">
+                file_name = #{fileName},
+            </if>
+            <if test="fileContent != null and fileContent != ''">
+                file_content = #{fileContent},
+            </if>
+            <if test="fileStatus != null">
+                file_status = #{fileStatus},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from api_starter.hors_common_file_disk where id = #{id}
+    </delete>
+
+</mapper>

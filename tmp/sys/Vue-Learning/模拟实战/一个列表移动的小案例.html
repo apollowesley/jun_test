@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>上面的列表选中并点击移动后将数据添加到下面的列表中</title>
+    <script type="text/javascript" src="../lib/vue-2.6.10.js"></script>
+</head>
+<style type="text/css">
+    .activeCla {
+        background: antiquewhite;
+    }
+</style>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in items" v-bind:data="item.id" @click="selectClick(item,$event)"
+            v-bind:class="isInCheck(item.id)?'activeCla':''">
+            {{item}}
+        </li>
+    </ul>
+    <button @click="moveItemClick">移动</button>
+    <button @click="revertClick">恢复</button>
+    <ul>
+        <div v-if="targetItems.length==0">
+            暂无数据
+        </div>
+        <li v-else v-for="item in targetItems">
+            {{item}}
+        </li>
+    </ul>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            activeItems: [],
+            items: [
+                {id: 100, name: '刘德华'},
+                {id: 101, name: '郭富城'},
+                {id: 102, name: '黎明'},
+                {id: 103, name: '张学友'},
+                {id: 104, name: '罗志祥'}
+            ],
+            targetItems: []
+        },
+        methods: {
+            /*选择变色操作*/
+            selectClick: function (row, event) {
+                //不要重复添加
+                for (i in this.activeItems) {
+                    if (row.id == this.activeItems[i].id) {
+                        return;
+                    }
+                }
+                this.activeItems.push(row);
+            },
+            /*移动操作*/
+            moveItemClick: function () {
+                var guid = this.getGuId();
+                for (j in this.activeItems) {
+                    for (i in this.items) {
+                        //原来的移除，并且添加到新的目标数组
+                        if (this.activeItems[j].id == this.items[i].id) {
+                            var removeItems = this.items.splice(i, 1);
+                            for (index in removeItems) {
+                                var pushItem = removeItems[index];
+                                pushItem.rvertId = guid;
+                                this.targetItems.push(pushItem);
+                            }
+                            break;
+                        }
+                    }
+
+                }
+                this.activeItems = [];
+            },
+            /*判断是否被选中过*/
+            isInCheck: function (rowId) {
+                for (i in this.activeItems) {
+                    if (rowId == this.activeItems[i].id) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+            /*返回上一步*/
+            revertClick: function () {
+                if (this.targetItems.length == 0) {
+                    return;
+                }
+                var rvertId = this.targetItems[this.targetItems.length-1].rvertId;
+                var popItem={};
+                while ((popItem=this.targetItems.pop()).rvertId===rvertId){
+                    this.items.push(popItem);
+                }
+            },
+            /*获取uuid*/
+            getGuId: function guid() {
+                function S4() {
+                    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+                }
+                return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+            }
+        }
+    })
+</script>
+</body>
+</html>

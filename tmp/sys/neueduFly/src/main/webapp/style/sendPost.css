@@ -1,0 +1,21 @@
+.lay-tabs{
+    background-color: white;
+    margin:15px 0px 10px 0px; 
+    padding: 10px 20px;
+    border-radius: 2px;
+}
+.title-width{
+	width: 680px !important;
+}
+.browser-width{
+	width: 370px !important;
+}
+
+.tip{
+	margin-left: 15px;
+	color: red;
+	font-weight: bold;
+}
+.code{
+	position: absolute;
+}

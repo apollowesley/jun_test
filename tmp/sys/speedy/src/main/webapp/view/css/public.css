@@ -1,0 +1,46 @@
+/*完成主要色调的设置*/
+*{
+	margin: 0;padding: 0;color: #dedddd;
+}
+body{
+	background: #252525;
+}
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+	cursor:pointer
+}
+ul{
+	list-style: none;
+}
+hr{
+	width: 98%;
+	margin: 10px auto;
+	color: #dedddd;
+	border: none;
+	border-bottom:1px solid  #dedddd;
+	
+}
+.box{/*overflow: scroll;*/}
+
+@media screen and (max-width: 800px) {
+	
+}
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+	width: 1px;
+	/*  background-color: aqua; */
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	/*background: black;*/
+}

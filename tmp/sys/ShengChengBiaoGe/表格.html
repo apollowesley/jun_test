@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery.js"></script>
+    <!--<script src="node_modules/vue/dist/vue.js"></script>-->
+    <title>表格</title>
+</head>
+<style>
+    td {
+        border: 1px solid black;
+        width: 20px;
+        height: 20px;
+    }
+    
+    table {
+        margin-left: 30px;
+        margin-top: 20px;
+    }
+</style>
+
+<body>
+    <div id="tab">
+        行数:<input type="text" class="across"></input>
+        列数:<input type="text" class="vertical"></input>
+        <button class="add">生成</button>
+    </div>
+    <table>
+    </table>
+</body>
+<script>
+    $(function() {
+        var xList = [];
+        var yList = [];
+        var xTd = "";
+        var html = "";
+        $(".add").on("click", function(e) {
+            var x = $(".across").val();
+            var y = $(".vertical").val();
+            console.log(x + "," + y);
+            for (var i = 0; i < x; i++) {
+                xList.push("<td></td>");
+                xTd += xList[i];
+            }
+            var htmlX = "<tr>" + xTd + "</tr>";
+            for (var a = 0; a < y; a++) {
+                yList.push(htmlX);
+                html += yList[a];
+            }
+            $("table").prepend($(html));
+        })
+
+    })
+</script>
+
+</html>

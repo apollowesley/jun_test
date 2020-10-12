@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="FileMapping">
+
+  <resultMap id="FileMappingMap" type="cn.backflow.admin.entity.FileMapping">
+    <id property="id" column="id"/>
+    <result property="key" column="key"/>
+    <result property="url" column="url"/>
+    <result property="ext" column="ext"/>
+    <result property="mime" column="mime"/>
+    <result property="hash" column="hash"/>
+    <result property="size" column="size"/>
+    <result property="name" column="name"/>
+    <result property="parent" column="parent"/>
+    <result property="folder" column="folder"/>
+    <result property="duration" column="duration"/>
+    <result property="ancestors" column="ancestors"/>
+    <result property="downloads" column="downloads"/>
+    <result property="creator" column="creator"/>
+    <result property="creater" column="creater"/>
+    <result property="uploaded" column="uploaded"/>
+    <result property="updated" column="updated"/>
+  </resultMap>
+
+  <!-- 用于select查询公用抽取的列 -->
+  <sql id="FileMapping.columns">
+    id, `key`, url, ext, mime, hash, size, name, parent, folder, duration, ancestors, downloads, creator, uploaded, updated
+  </sql>
+
+  <sql id="FileMapping.fullcolumns">
+    id, `key`, url, ext, mime, hash, size, name, parent, folder, duration, ancestors, downloads, creator, creater, uploaded, updated
+  </sql>
+
+  <!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_file_mapping (
+      `key`,
+      url,
+      ext,
+      mime,
+      hash,
+      size,
+      name,
+      parent,
+      folder,
+      duration,
+      ancestors,
+      downloads,
+      creator,
+      uploaded,
+      updated
+    ) VALUES (
+      #{key},
+      #{url},
+      #{ext},
+      #{mime},
+      #{hash},
+      #{size},
+      #{name},
+      #{parent},
+      #{folder},
+      #{duration},
+      #{ancestors},
+      #{downloads},
+      #{creator},
+      #{uploaded},
+      #{updated}
+    )
+  </insert>
+
+  <insert id="insertBatch" useGeneratedKeys="true">
+    INSERT INTO t_file_mapping (
+      `key`,
+      url,
+      ext,
+      mime,
+      hash,
+      size,
+      name,
+      parent,
+      folder,
+      duration,
+      ancestors,
+      downloads,
+      creator,
+      uploaded,
+      updated
+    ) VALUES
+    <foreach collection="list" item="item" separator=",">
+      (
+      #{item.key},
+      #{item.url},
+      #{item.ext},
+      #{item.mime},
+      #{item.hash},
+      #{item.size},
+      #{item.name},
+      #{item.parent},
+      #{item.folder},
+      #{item.duration},
+      #{item.ancestors},
+      #{item.downloads},
+      #{item.creator},
+      #{item.uploaded},
+      #{item.updated}
+      )
+    </foreach>
+  </insert>
+
+  <update id="update">
+    UPDATE t_file_mapping SET
+      `key` = #{key},
+      url = #{url},
+      ext = #{ext},
+      mime = #{mime},
+      hash = #{hash},
+      size = #{size},
+      name = #{name},
+      parent = #{parent},
+      folder = #{folder},
+      duration = #{duration},
+      ancestors = #{ancestors},
+      downloads = #{downloads},
+      updated = NOW()
+    WHERE
+      id = #{id}
+  </update>
+
+  <update id="updateSelective">
+    UPDATE t_file_mapping
+    <set>
+      <if test="key neq null">`key` = #{key},</if>
+      <if test="url neq null">url = #{url},</if>
+      <if test="ext neq null">ext = #{ext},</if>
+      <if test="mime neq null">mime = #{mime},</if>
+      <if test="hash neq null">hash = #{hash},</if>
+      <if test="size neq null">size = #{size},</if>
+      <if test="name neq null">name = #{name},</if>
+      <if test="parent neq null">parent = #{parent},</if>
+      <if test="folder neq null">folder = #{folder},</if>
+      <if test="duration neq null">duration = #{duration},</if>
+      <if test="ancestors neq null">ancestors = #{ancestors},</if>
+      <if test="downloads neq null">downloads = #{downloads},</if>
+      updated = NOW()
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM t_file_mapping WHERE id = #{id}
+  </delete>
+
+  <delete id="deleteBatch">
+    DELETE FROM t_file_mapping WHERE id IN
+    <foreach collection="collection" item="id" open="(" close=")" separator=",">#{id}</foreach>
+  </delete>
+
+  <delete id="deleteByKeys">
+    DELETE FROM t_file_mapping WHERE `key` IN
+    <foreach collection="array" item="key" open="(" close=")" separator=",">#{key}</foreach>
+  </delete>
+
+  <select id="getById" resultMap="FileMappingMap">
+    SELECT
+    <include refid="FileMapping.columns"/>
+    FROM t_file_mapping WHERE id = #{id}
+  </select>
+
+  <select id="findKeyByIds" resultType="string">
+    SELECT `key` FROM t_file_mapping WHERE folder = 0 AND id IN
+    <foreach collection="collection" item="id" open="(" close=")" separator=",">#{id}</foreach>
+  </select>
+
+  <select id="findByKeys" resultMap="FileMappingMap">
+    SELECT
+    <include refid="FileMapping.columns"/>
+    FROM t_file_mapping WHERE `key` IN
+    <foreach collection="list" item="key" open="(" close=")" separator=",">#{key}</foreach>
+  </select>
+
+  <select id="findByIds" resultMap="FileMappingMap">
+    SELECT
+    <include refid="FileMapping.columns"/>
+    FROM t_file_mapping WHERE id IN
+    <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>
+  </select>
+
+  <select id="findAll" resultMap="FileMappingMap">
+    SELECT
+    <include refid="FileMapping.columns"/>
+    FROM t_file_mapping
+    <include refid="FileMappingDynamicWhere"/>
+  </select>
+
+  <sql id="FileMappingDynamicWhere">
+    <where>
+      <if test="id neq null">AND id = #{id}</if>
+      <if test="key neq null">AND `key` = #{key}</if>
+      <if test="url neq null">AND url = #{url}</if>
+      <if test="ext neq null">AND ext = #{ext}</if>
+      <if test="mime neq null">AND mime LIKE CONCAT(#{mime}, '%')</if>
+      <if test="hash neq null">AND hash = #{hash}</if>
+      <if test="size neq null">AND size = #{size}</if>
+      <if test="name neq null">AND name = #{name}</if>
+      <if test="folder neq null">AND folder = #{folder}</if>
+      <if test="parent neq null">AND parent = #{parent}</if>
+      <if test="ancestors neq null">AND ancestors = #{ancestors}</if>
+      <if test="uploadedBegin neq null">AND uploaded >= #{uploadedBegin}</if>
+      <if test="uploadedEnd neq null">AND uploaded &lt;= #{uploadedEnd}</if>
+    </where>
+  </sql>
+
+  <select id="pagingCount" resultType="long">
+    SELECT COUNT(id) FROM t_file_mapping
+    <include refid="FileMappingDynamicWhere"/>
+  </select>
+
+  <select id="paging" resultMap="FileMappingMap">
+    SELECT
+    <include refid="FileMapping.columns"/>
+    FROM t_file_mapping
+    <include refid="FileMappingDynamicWhere"/>
+
+    <if test="_sort_ neq null">
+      ORDER BY ${_sort_}
+    </if>
+
+    <if test="_offset_ neq null">
+      LIMIT ${_offset_}, ${_limit_}
+    </if>
+  </select>
+</mapper>

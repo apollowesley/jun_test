@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/canteen_prod?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2b8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password:
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: none
+  data:
+    hbase:
+      quorum: hb-proxy-pub-wz95d8474e452itz6-master1-001.hbase.rds.aliyuncs.com:2181,hb-proxy-pub-wz95d8474e452itz6-master2-001.hbase.rds.aliyuncs.com:2181,hb-proxy-pub-wz95d8474e452itz6-master3-001.hbase.rds.aliyuncs.com:2181
+

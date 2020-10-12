@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:postgresql://10.8.18.247:5432/ILvYou_LXB</property>
+    <property name="connection.driver_class">org.postgresql.Driver</property>
+      <mapping class="com.ilvyou.data.lxb.ApplyAccountEntity"/>
+      <mapping class="com.ilvyou.data.lxb.ApplyAuditEntity"/>
+      <mapping class="com.ilvyou.data.lxb.ApplyFuserEntity"/>
+      <mapping class="com.ilvyou.data.lxb.ApplyPersonEntity"/>
+      <mapping class="com.ilvyou.data.lxb.ApplyRuleEntity"/>
+      <mapping class="com.ilvyou.data.lxb.BaseCategoryEntity"/>
+      <mapping class="com.ilvyou.data.lxb.BaseDicdataEntity"/>
+      <mapping class="com.ilvyou.data.lxb.BaseSequenceEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditAccountEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditAconfig1Entity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditAdailyEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditAdataEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditAdjustEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditAlogEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditOrderEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditPconfig1Entity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditPeriodEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditPextEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditPlogEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditPvogEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditTpayEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditTrefundEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditTrefund1Entity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditTrefund2Entity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditTrepayEntity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditTrepay1Entity"/>
+      <mapping class="com.ilvyou.data.lxb.CreditTrepay2Entity"/>
+      <mapping class="com.ilvyou.data.lxb.OperatAruleEntity"/>
+      <mapping class="com.ilvyou.data.lxb.OperatConfigEntity"/>
+      <mapping class="com.ilvyou.data.lxb.PlatBudgetEntity"/>
+      <mapping class="com.ilvyou.data.lxb.PlatValogEntity"/>
+      <mapping class="com.ilvyou.data.lxb.PlatVirtualEntity"/>
+      <mapping class="com.ilvyou.data.lxb.PlatVrlogEntity"/>
+      <mapping class="com.ilvyou.data.lxb.SecurityApplyEntity"/>
+      <mapping class="com.ilvyou.data.lxb.SecurityFuserEntity"/>
+      <mapping class="com.ilvyou.data.lxb.WatchDamountEntity"/>
+      <mapping class="com.ilvyou.data.risk.CustomerPverifyEntity"/>
+      <mapping class="com.ilvyou.data.lhf.AlipayCpayEntity"/>
+      <mapping class="com.ilvyou.data.lhf.AlipayCreceiveEntity"/>
+      <mapping class="com.ilvyou.data.lxb.SysLoginhistorEntity"/>
+      <mapping class="com.ilvyou.data.lxb.SysLoginipEntity"/>
+      <mapping class="com.ilvyou.data.lxb.SysOptlogEntity"/>
+      <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

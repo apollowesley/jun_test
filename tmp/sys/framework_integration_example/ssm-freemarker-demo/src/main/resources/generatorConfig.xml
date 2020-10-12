@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>  
+  
+    <context id="mbgtest">  
+      
+        <!-- java文件编码 -->
+        <property name="javaFileEncoding" value="utf-8" />
+        
+        <!-- 存在时是否进行合并 默认为false -->
+        <property name="mergable" value="true"/>
+        
+        <!-- 分页插件 -->
+        <plugin type="org.mybatis.generator.plugins.AddLimitOffsetPlugin" />
+    
+        <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+        <commentGenerator type="org.mybatis.generator.plugins.MyMBGCommentGenerator">
+            <property name="suppressAllComments" value="false" />
+            <property name="suppressDate" value="false" />
+        </commentGenerator> 
+  
+        <!-- 配置数据库链接URL、用户名、密码 -->  
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"  
+            connectionURL="jdbc:mysql://localhost:3306/test" userId="root"  
+            password="999999" />  
+        <!-- 配置生成模型的包名和位置 -->  
+        <javaModelGenerator targetPackage="com.xieke.test.model"  
+            targetProject="src/main/java" />  
+        <!-- 配置生成映射文件的包名和位置 -->  
+        <sqlMapGenerator targetPackage="sqlmap"  
+            targetProject="src/main/resources" />  
+        <!-- 配置生成DAO的包名和位置 -->  
+        <javaClientGenerator targetPackage="com.xieke.test.mapper"  
+            targetProject="src/main/java" type="XMLMAPPER" />  
+  
+        <!-- 配置需要生成的表 -->  
+        <table schema="test" tableName="user" domainObjectName="User">  
+            <!-- 指定自动生成主键 -->  
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+       
+    </context>  
+  
+</generatorConfiguration>  

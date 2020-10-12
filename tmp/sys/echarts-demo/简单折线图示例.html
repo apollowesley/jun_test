@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-cn">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>ECharts入门-简单折线图示例</title>
+ </head>
+ <body>
+	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="myChart" style="height:400px"></div>
+	<!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+	<script type="text/javascript">
+		// 基于准备好的dom，初始化echarts图表
+		var myChart=echarts.init(document.getElementById('myChart'));
+		var option = {
+				title: {
+					text: '播放次数【按日期分类TOP10】'
+				 },
+				toolbox: {
+					show : true,
+					feature : {
+					   saveAsImage : {show: true}
+					}
+				},
+				tooltip : {
+					trigger: 'axis',
+					formatter: "{b} 播放量 : {c} 次"
+				},
+				xAxis : [
+					{
+						type : 'category',	            
+						boundaryGap : false,
+						data : ["2018-10-01","2018-10-02","2018-10-03","2018-10-04","2018-10-05","2018-10-06","2018-10-07","2018-10-08","2018-10-09","2018-10-10"]
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name:'',
+						type:'line',
+						smooth:true,
+						itemStyle: {
+							normal: {
+								lineStyle: {
+									shadowColor : 'rgba(0,0,0,0.4)'
+								}
+							}
+						},
+						data: [15,1,10,5,3,87,10,8,12,5]
+					}
+				]
+			};
+		// 为echarts对象加载数据 
+        myChart.setOption(option);
+    </script>
+ </body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="$daoName">
+
+	<insert id="save" parameterType="$entityName">
+		INSERT INTO $tableName
+			($addFields)
+		VALUES
+			($addSql)
+	</insert>
+	
+	<update id="update" parameterType="$entityName">
+		UPDATE
+			$tableName
+		SET
+			$updateFieldsSql
+		WHERE 
+			$idSql
+	</update>
+
+	<delete id="delete" parameterType="$type">
+		DELETE FROM $tableName WHERE $idSql
+	</delete>
+	
+	<select id="get" resultType="$entityName" parameterType="$type">
+		SELECT * FROM $tableName WHERE $idSql
+	</select>
+
+	<select id="queryAll" resultType="$entityName" >
+		SELECT * FROM $tableName
+	</select>
+
+</mapper>

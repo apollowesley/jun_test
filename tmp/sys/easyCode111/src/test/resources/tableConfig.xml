@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+
+    <table name="user_info" desc="用户信息">
+        <columns>
+            <column name="user_id" type="integer" comment="用户id" javaClass=""/>
+            <column name="user_name" type="string" comment="用户姓名"/>
+            <column name="user_age" type="int" comment="用户年龄"/>
+        </columns>
+        <tasks>
+            <task name="model"/>
+            <task name="model"/>
+            <task name="model"/>
+        </tasks>
+
+    </table>
+
+    <tasks>
+        <task name="model" class="com.grayrabbit.slacker.gengerate.EntityGenerate">
+            <property name="encoding" value="${encoding}"/>
+            <property name="template" value="template/entity.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value=""/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="tbss-core-model"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="com.yolema.tbss.core.model.entity"/>
+        </task>
+
+        <task name="gen-dao"
+              class="com.grayrabbit.slacker.gengerate.DaoGenerate">
+            <property name="template" value="template/dao-interface.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Dao"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="tbss-core-dao"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="com.yolema.tbss.core.dao"/>
+        </task>
+
+        <task name="gen-mybatis-xml"
+              class="com.grayrabbit.slacker.gengerate.MybatisXmlGenerate">
+            <property name="template" value="template/mybatis-xml.vm">
+                <arg name="resultMapIdTemplate" value="template/resultMap-id.vm"/>
+                <arg name="resultMapResultTemplate" value="template/resultMap-result.vm"/>
+            </property>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Dao"/>
+            <property name="suffix" value=".xml"/>
+            <property name="moduledir" value="tbss-core-dao"/>
+            <property name="srcdir" value="src/main/resources"/>
+            <property name="package" value="com.yolema.tbss.core.dao"/>
+        </task>
+
+        <task name="gen-service"
+              class="com.grayrabbit.slacker.gengerate.ServiceGenerate">
+            <property name="template" value="template/service.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Service"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="tbss-core-service"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="com.yolema.tbss.core.service"/>
+        </task>
+
+        <task name="gen-service-impl"
+              class="com.grayrabbit.slacker.gengerate.ServiceImplGenerate">
+            <property name="template" value="template/service-impl.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="ServiceImpl"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="tbss-core-service"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="com.yolema.tbss.core.service.impl"/>
+        </task>
+
+        <task name="gen-manager"
+              class="com.grayrabbit.slacker.gengerate.ManagerGenerate">
+            <property name="template" value="template/manager.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Manager"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="tbss-core-biz"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="com.yolema.tbss.core.biz.manager"/>
+        </task>
+
+        <task name="gen-manager-impl"
+              class="com.grayrabbit.slacker.gengerate.ManagerImplGenerate">
+            <property name="template" value="template/manager-impl.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="ManagerImpl"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="tbss-core-biz"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="com.yolema.tbss.core.biz.manager.impl"/>
+        </task>
+
+        <task name="gen-action"
+              class="com.grayrabbit.slacker.gengerate.ActionGenerate">
+            <property name="template" value="template/action.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Action"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="tbss-core-action"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="com.yolema.tbss.core.action"/>
+        </task>
+
+        <task name="gen-action-validation-xml"
+              class="com.grayrabbit.slacker.gengerate.ActionValidationXmlGenerate">
+            <property name="template" value="template/action-validation-xml.vm">
+                <arg name="validationFieldTemplate" value="template/action-validation-field.vm"/>
+            </property>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="_save-validation"/>
+            <property name="suffix" value=".xml"/>
+            <property name="moduledir" value="tbss-core-action"/>
+            <property name="srcdir" value="src/main/resources"/>
+            <property name="package" value="com.yolema.tbss.core.action"/>
+        </task>
+
+        <task name="gen-list-page"
+              class="com.grayrabbit.slacker.gengerate.ViewPageListGenerate">
+            <property name="template" value="template/page-list.vm">
+                <arg name="titleTemplate" value="template/table-title.vm"/>
+                <arg name="valueTemplate" value="template/table-value.vm"/>
+            </property>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="-list"/>
+            <property name="suffix" value=".vm"/>
+            <property name="moduledir" value="tbss-webapp"/>
+            <property name="srcdir" value="src/main/webapp/WEB-INF/templates"/>
+            <property name="package" value=""/>
+        </task>
+
+        <task name="gen-input-page"
+              class="com.grayrabbit.slacker.gengerate.ViewPageInputGenerate">
+            <property name="template" value="template/page-input.vm">
+                <arg name="fieldTemplate" value="template/input-field.vm"/>
+            </property>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="-input"/>
+            <property name="suffix" value=".vm"/>
+            <property name="moduledir" value="tbss-webapp"/>
+            <property name="srcdir" value="src/main/webapp/WEB-INF/templates"/>
+            <property name="package" value=""/>
+        </task>
+
+        <task name="gen-manager-unit-test"
+              class="com.grayrabbit.slacker.gengerate.ManagerUnitTestGenerate">
+            <property name="template" value="template/manager-unit-test.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="ManagerTest"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="tbss-core-biz"/>
+            <property name="srcdir" value="src/test/java"/>
+            <property name="package" value="com.yolema.tbss.core.biz.manager.log.impl"/>
+        </task>
+
+        <task name="gen-service-unit-test"
+              class="com.grayrabbit.slacker.gengerate.ServiceUnitTestGenerate">
+            <property name="template" value="template/service-unit-test.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="ServiceTest"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="tbss-core-service"/>
+            <property name="srcdir" value="src/test/java"/>
+            <property name="package" value="com.yolema.tbss.core.service"/>
+        </task>
+    </tasks>
+</config>
+

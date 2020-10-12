@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>上传demo</title>
+		<script src="js/editor.js"></script>
+	</head>
+	<body>
+		<div id="context">
+		</div>
+		<button id="set">设置</button>
+		<button id="get">获取</button>
+		<script>
+			context.init("context");
+			document.getElementById("set").onclick=function(){
+				context.set("<p>contexts</p>");
+			}
+			document.getElementById("get").onclick=function(){
+				console.log(context.get());
+			}
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+v1.0.6 版本更新功能
+1、ProjectConfigHelper中加载配置默认配置项目（defaultProject）由原来的强制加载改成只有被继承引用了才加载【2016.3.14】
+2、修复项目配置信息ProjectConfig无法深度克隆的问题【2016.4.6】
+
+v1.0.5 版本更新功能
+1、针对mysql数据库增加元数据提供者MysqlProvider
+2、增加构建配置处理器BuildConfigHandler，可以在配置信息初始化、获取数据模型前后、获取输出模型前后时进行定制处理
+3、DbProvider增加属性splitorForLabelFromComment，用来设置从表（列）注释中提取表（列）标签所用的分隔符，默认值为一个空格符
+4、OutputModel增加属性disabled属性（默认false），对应的配置节点output增加disabled属性，用以控制禁用的输出模型不作生成输出
+
+v1.0.4 版本更新功能
+1、去掉对一些针对web应用的依赖，譬如ServletContext，让codgen在j2se环境下也能很好地使用。
+2、修正ProjectConfigHelper的refreshConfig的方法空指针异常bug。
+3、配置文件中，template节点的属性为“text”的情况下，模板内容只有在输出的时候才解析，防止出现转义符失效的问题。
+4、新增一个默认的数据库信息提供者DefaultProvider，该类主要使用JDBC的方式来尝试获得列注释和表注释，而对于那些在JDBC驱动里没有提供列注释和表注释的DBMS，则需要另外扩展DbProvider来实现自定义获取列注释和表注释
+5、ColumnModel新增fieldName属性，用于存储对应数据库表字段名称，一般不可更改，而columnName一般和字段名称相同，但为了增加可读性，列名称可以不同于字段名
+6、BUG修复：不能正确输出项目配置编码格式的文件，如配置文件中设置的outputEncoding为UTF-8编码，但是输出的仍然是ANSI编码格式的文件
+7、DbProvider类中增加一个属性：tableNamePatterns，用来筛选匹配的表，而不需要返回所有表的元数据
+
+v1.0.3 版本更新功能
+1、项目配置文件中增加isEnabled属性。
+2、系统不会加载已禁用的项目配置（isEnabled='false'）。
+3、禁用的项目配置不允许被其他项目所继承。
+4、增加固定 名称为“outputDirectory(输出目录)”的数据模型，默认值为System.getProperty("user.dir")。
+5、当输出模型的类型为file，且指定的路径非绝对路径时，则认为是相对“outputDirectory(输出目录)”而言的。
+6、数据库信息提供者基类中增加表元数据信息TableMetaData。
+7、表模型增加tableType(表类型)字段信息。
+
+v1.0.2 版本更新功能
+1、增加一个简单而强大的列模型处理接口ColumnHandler，这些接口在生成表模型并设置好列模型的数据后被调用作后期处理。譬如：
+	1）实现基于不同编程语言的数据列的类型转换需求。
+	2）如果项目使用的是Oracle数据库，则可以增加一个额外的列模型处理器，处理Oracle的大写列名以增强列名称的可读性
+2、去掉原来的数据类型转换接口DataTypeConverter，实现该接口的统一改为实现列模型处理接口ColumnHandler
+3、修改DataTypeConverterForCS类，统一实现列模型处理接口ColumnHandler，完成从JDBC数据类型到C#编程语言的类型转换
+4、修改DataTypeConverterForJava类，统一实现列模型处理接口ColumnHandler，完成从JDBC数据类型到Java编程语言的类型转换
+5、列模型中增加对所归属的TableModel的引用属性。
+
+v1.0.1 版本主要功能
+1、采用freemarker的构建公式：数据模型+模板=输出，默认使用freeMarker模板引擎来生成代码，但可以通过Builder接口实现其他构建方式。
+2、核心数据模型TableModel基于JDBC实现表元数据及其所有字段列的相关元数据信息的封装。
+3、数据模型TableModel基于JDBC实现，可以取得大部分元数据信息，个别信息的取得与具体数据库方言有关，可以通过扩展DbProvider来实现。
+4、通过实现接口DataTypeConverter，可以完成JDBC数据类型到各种编程语言的类型转换操作。
+5、通过配置可以动态增加或重定义数据模型，并可以被后面的数据模型通过模板语言引用或组装。
+6、构建时指定的模板可以是一段文本字符串，也可以是一个文件路径，并且它们的内容里都可以引用已定义的数据模型。
+7、构建时指定的输出类型可以是文本，也可以是文件，指定的文件输出路径也可以引用数据模型变量。
+8、项目配置引入继承机制，这样就可以引用在父类配置中已定义的数据模型，以及其他配置信息。
+9、项目配置信息可以分开多个配置文件存放，codgen一次性加载到缓存里，这样可以提高配置信息的访问效率。
+
+
+

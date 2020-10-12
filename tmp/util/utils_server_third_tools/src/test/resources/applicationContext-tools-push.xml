@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+           
+	<bean id="xiaoMiPush" class="com.zyguo.tools.push.XiaoMiPush">
+		<property name="appKey" value="3aIfN4ILnQV8mDMUyE24fw==" />
+		<property name="packageName" value="com.bilin.huijiao.activity" />
+	</bean>
+	
+	
+	<bean id="huaweiPush" class="com.zyguo.tools.push.HuaweiPush">
+		<!-- appId,  appKey, jksFile, jksPassword -->
+		<constructor-arg index="0" value="10015572" />
+		<constructor-arg index="1" value="k1ph1dmxdq7z5y4xkb1sko6wcnh6gwfs" />
+		<constructor-arg index="2" value="mykeystorebj.jks" />
+		<constructor-arg index="3" value="123456789" />
+	</bean>
+	
+	<bean id="umengPush" class="com.zyguo.tools.push.UmengPush">
+		<property name="appKey" value="51ed095b56240b45f5004b89" />
+		<property name="masterSecret" value="igqrt0yhoioiqlonyaqojnzgcx0tfb0h" />
+	</bean>
+</beans>

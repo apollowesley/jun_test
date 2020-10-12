@@ -1,0 +1,6 @@
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+spring.application.name: api
+
+server:
+  port: 9011
+  tomcat.uri-encoding: UTF-8

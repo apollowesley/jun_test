@@ -1,0 +1,14 @@
+*.class
+*.war
+*.ear
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+.idea/
+.gradle/
+build/
+out/
+*.iml

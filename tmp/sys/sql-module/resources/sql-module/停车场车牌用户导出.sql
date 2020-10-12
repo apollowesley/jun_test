@@ -1,0 +1,1 @@
+select cu.identifier as '编号',cu.name as '姓名',c.carCode as '车牌',cu.address as '住址' ,'普通' as '用户类型',CONVERT(varchar, cmu.overdueTime, 120 ) as '有效期',1 as '车位',park.sn as '停车场编码',park.name as '停车场名称','' as '备注','' as '处理状态' from CarparkMonthlyUser cmu left join Car c on cmu.car_id = c.id left join CardUser cu on cmu.cardUser = cu.id left join Carpark park on cmu.carpark = park.id

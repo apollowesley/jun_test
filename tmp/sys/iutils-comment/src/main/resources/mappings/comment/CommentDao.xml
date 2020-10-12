@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iutils.comment.dao.CommentDao">
+
+    <sql id="CommentColumns">
+        a.id as "id",
+        a.parent_id as "parentId",
+        a.parent_ids as "parentIds",
+        a.channel as "channel",
+        a.content_id as "contentId",
+        a.content as "content",
+        a.report as "report",
+        a.ip as "ip",
+        a.create_by as "createBy",
+        a.create_date as "createDate",
+        a.status as "status",
+        b.id as "user.id",
+        b.username as "user.username",
+        b.name as "user.name",
+        b.photo as "user.photo"
+    </sql>
+
+    <sql id="CommentJoins">
+        LEFT JOIN sys_user b ON b.id=a.create_by
+    </sql>
+
+    <select id="get" resultType="cn.iutils.comment.entity.Comment">
+        SELECT
+        <include refid="CommentColumns"/>
+        FROM plug_comment a
+        <include refid="CommentJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="cn.iutils.comment.entity.Comment">
+        SELECT
+        <include refid="CommentColumns"/>
+        FROM plug_comment a
+        <include refid="CommentJoins"/>
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(1) FROM plug_comment a
+        <where>
+            <if test="page.entity!=null and page.entity.channel!=null and page.entity.channel!=''">
+                and a.channel = #{page.entity.channel}
+            </if>
+            <if test="page.entity!=null and page.entity.contentId!=null and page.entity.contentId!=''">
+                and a.content_id = #{page.entity.contentId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findPage" resultType="cn.iutils.comment.entity.Comment">
+        SELECT <include refid="CommentColumns"/>,up.upCount as "upCount",down.downCount as "downCount"
+        FROM plug_comment a
+        <include refid="CommentJoins"/>
+        left join (select content_id,a.hits as "downCount" from plug_down a
+        <where>
+            <if test="page.entity!=null and page.entity.channel!=null and page.entity.channel!=''">
+                and a.channel = #{page.entity.channel}
+            </if>
+        </where>
+        ) down on a.id=down.content_id
+        left join (select content_id,a.hits as "upCount" from plug_up a
+        <where>
+            <if test="page.entity!=null and page.entity.channel!=null and page.entity.channel!=''">
+                and a.channel = #{page.entity.channel}
+            </if>
+        </where>
+        ) up on a.id=up.content_id
+        <where>
+            <if test="page.entity!=null and page.entity.channel!=null and page.entity.channel!=''">
+                and a.channel = #{page.entity.channel}
+            </if>
+            <if test="page.entity!=null and page.entity.contentId!=null and page.entity.contentId!=''">
+                and a.content_id = #{page.entity.contentId}
+            </if>
+        </where>
+        <if test="page.orderBy!=''">
+            ORDER BY ${page.orderBy} LIMIT ${page.pageNo*page.pageSize},${page.pageSize}
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into plug_comment(
+                parent_id,
+                parent_ids,
+                channel,
+                content_id,
+                content,
+                report,
+                ip,
+                create_by,
+                create_date,
+                status
+        )
+        values(
+                #{parentId},
+                #{parentIds},
+                #{channel},
+                #{contentId},
+                #{content},
+                #{report},
+                #{ip},
+                #{createBy},
+                #{createDate},
+                #{status}
+        )
+    </insert>
+
+    <update id="update">
+        update plug_comment set
+                content=#{content},
+                report=#{report},
+                ip=#{ip},
+                create_by=#{createBy},
+                create_date=#{createDate},
+                status=#{status}
+        where id=#{id}
+    </update>
+
+    <!-- 举报 -->
+    <update id="report">
+        update plug_comment set report=report+1 where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from plug_comment where id=#{id}
+    </delete>
+</mapper>

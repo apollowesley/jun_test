@@ -1,0 +1,32 @@
+{{#isWebsite}}
+<Context path=""
+         docBase="/Users/Steve/tools/myGit/{{artifact}}/src/main/webapp"
+         privileged="true" reloadable="false">
+    <Resources className="org.apache.catalina.webresources.StandardRoot">
+        <PreResources
+                base="/Users/Steve/tools/myGit/industry-platform/target/dependency"
+                className="org.apache.catalina.webresources.DirResourceSet"
+                internalPath="/" webAppMount="/WEB-INF/lib" readOnly="true" />
+    </Resources>
+    <JarScanner scanAllDirectories="false" scanAllFiles="false"
+                scanBootstrapClassPath="false" scanClassPath="false" />
+    <Loader loaderClass="org.apache.catalina.loader.WebappClassLoader" />
+</Context>
+        {{/isWebsite}}{{^isWebsite}}
+<Context path=""
+         docBase="/Users/Steve/tools/myGit/{{artifact}}/src/main/webapp"
+         privileged="true" reloadable="false">
+<Resources className="org.apache.catalina.webresources.StandardRoot">
+    <PreResources base="/Users/Steve/tools/myGit/{{artifact}}/target/classes"
+                  className="org.apache.catalina.webresources.DirResourceSet"
+                  internalPath="/" webAppMount="/WEB-INF/classes" readOnly="false" />
+    <PreResources
+            base="/Users/Steve/tools/myGit/{{artifact}}/target/dependency"
+            className="org.apache.catalina.webresources.DirResourceSet"
+            internalPath="/" webAppMount="/WEB-INF/lib" readOnly="true" />
+</Resources>
+<JarScanner scanAllDirectories="false" scanAllFiles="false"
+            scanBootstrapClassPath="false" scanClassPath="false" />
+<Loader loaderClass="org.apache.catalina.loader.WebappClassLoader" />
+</Context>
+        {{/isWebsite}}

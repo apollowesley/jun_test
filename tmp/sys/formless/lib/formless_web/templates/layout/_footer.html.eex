@@ -1,0 +1,8 @@
+<footer class="site-footer text-muted mt-auto">
+  <div class="container py-3">
+    <div class="d-flex justify-content-between">
+      <div>© Gasper <%= Date.utc_today.year %></div>
+      <div>code with love by <strong>duanpengyuan@qq.com</strong></div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="dynamicform" name="动态表单" isExecutable="true">
+    <documentation>动态表单</documentation>
+    <startEvent id="startEvent1">
+      <extensionElements>
+        <flowable:formProperty id="start_time" name="开始时间" type="date" datePattern="yyyy-MM-dd" required="true"></flowable:formProperty>
+        <flowable:formProperty id="end_time" name="结束时间" type="date" datePattern="yyyy-MM-dd" required="true"></flowable:formProperty>
+        <flowable:formProperty id="reason" name="原因" type="string"></flowable:formProperty>
+        <flowable:formProperty id="days" name="请假天数" type="long" required="true"></flowable:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="sid-80B05B66-F042-42CF-BFB8-8003FA08BA27" name="请假审批">
+      <extensionElements>
+        <flowable:formProperty id="start_time" name="开始时间" type="date" datePattern="yyyy-MM-dd"></flowable:formProperty>
+        <flowable:formProperty id="end_time" name="结束时间" type="date" datePattern="yyyy-MM-dd"></flowable:formProperty>
+        <flowable:formProperty id="days" name="请假天数" type="long"></flowable:formProperty>
+        <flowable:formProperty id="reason" name="原因" type="string"></flowable:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-8B2998D6-66A7-4A5C-98D9-A7F187E741F8" sourceRef="startEvent1" targetRef="sid-80B05B66-F042-42CF-BFB8-8003FA08BA27"></sequenceFlow>
+    <userTask id="sid-2B3189C9-0E70-4CCB-94FF-23C26610055E" name="经理审批"></userTask>
+    <sequenceFlow id="sid-30E2A2CB-E3C3-4559-B1B1-35F60847BD5E" sourceRef="sid-80B05B66-F042-42CF-BFB8-8003FA08BA27" targetRef="sid-2B3189C9-0E70-4CCB-94FF-23C26610055E"></sequenceFlow>
+    <endEvent id="sid-14E7F711-36FF-43B2-B228-3BC93042BBF6"></endEvent>
+    <sequenceFlow id="sid-E0D3914B-2055-47E5-AD40-FB0DEA2CF62B" sourceRef="sid-2B3189C9-0E70-4CCB-94FF-23C26610055E" targetRef="sid-14E7F711-36FF-43B2-B228-3BC93042BBF6"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_dynamicform">
+    <bpmndi:BPMNPlane bpmnElement="dynamicform" id="BPMNPlane_dynamicform">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="75.0" y="145.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-80B05B66-F042-42CF-BFB8-8003FA08BA27" id="BPMNShape_sid-80B05B66-F042-42CF-BFB8-8003FA08BA27">
+        <omgdc:Bounds height="80.0" width="100.0" x="165.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-2B3189C9-0E70-4CCB-94FF-23C26610055E" id="BPMNShape_sid-2B3189C9-0E70-4CCB-94FF-23C26610055E">
+        <omgdc:Bounds height="80.0" width="100.0" x="310.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-14E7F711-36FF-43B2-B228-3BC93042BBF6" id="BPMNShape_sid-14E7F711-36FF-43B2-B228-3BC93042BBF6">
+        <omgdc:Bounds height="28.0" width="28.0" x="455.0" y="146.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-E0D3914B-2055-47E5-AD40-FB0DEA2CF62B" id="BPMNEdge_sid-E0D3914B-2055-47E5-AD40-FB0DEA2CF62B">
+        <omgdi:waypoint x="409.949999999996" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="455.0" y="160.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-8B2998D6-66A7-4A5C-98D9-A7F187E741F8" id="BPMNEdge_sid-8B2998D6-66A7-4A5C-98D9-A7F187E741F8">
+        <omgdi:waypoint x="104.94999883049303" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="165.0" y="160.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-30E2A2CB-E3C3-4559-B1B1-35F60847BD5E" id="BPMNEdge_sid-30E2A2CB-E3C3-4559-B1B1-35F60847BD5E">
+        <omgdi:waypoint x="264.9499999999907" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="309.9999999999807" y="160.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

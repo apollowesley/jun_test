@@ -1,0 +1,40 @@
+<properties>
+    <!--
+    POST test/_doc/1/_update
+         {
+             "doc" : {
+             "name" : "new_name"
+             }
+         }
+    -->
+    <property name="scrollQuery">
+        <![CDATA[
+         {
+
+            "size":$size,
+            "query": {
+                "term" : {
+                    "gc.jvmGcOldCount" : 3
+                }
+            }
+        }
+        ]]>
+    </property>
+
+    <property name="scrollSliceQuery">
+        <![CDATA[
+         {
+           "slice": {
+                "id": #[id],
+                "max": #[max]
+            },
+            "size":#[size],
+            "query": {
+                "term" : {
+                    "gc.jvmGcOldCount" : 3
+                }
+            }
+        }
+        ]]>
+    </property>
+</properties>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+{{#isEmpty}}
+<items>
+	<item uid="1" arg="" valid="no" type="default">
+		<title>no method exist.</title>
+		<subtitle>search from token is empty,try again.</subtitle>
+	</item>
+</items>
+{{/isEmpty}}
+{{^isEmpty}}
+<items>
+	{{#items}}
+	<item uid="{{uid}}" arg="{{arg}}" valid="{{valid}}" autocomplete="{{arg}}"
+		type="default">
+		<title>{{arg}}</title>
+		<subtitle>{{arg}}</subtitle>
+	</item>
+	{{/items}}
+</items>
+{{/isEmpty}}

@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>maven_one</artifactId>
+  <packaging>jar</packaging>
+
+  <name>maven_one</name>
+  
+  <!-- 配置继承项目（父项目）信息 -->
+  <parent>
+  	<groupId>com.xieke.maven</groupId>
+  	<artifactId>maven_parent</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<!-- 父项目pom.xml文件的相对路径 -->
+  	<relativePath>../maven_parent/pom.xml</relativePath>
+  </parent>
+  
+  <dependencies> 
+	<dependency> 
+	  <groupId>junit</groupId> 
+	  <artifactId>junit</artifactId> 
+	  <scope>test</scope>
+	</dependency>
+  </dependencies> 
+  
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-source-plugin</artifactId>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+  		</plugin>
+  	</plugins>
+  </build>
+</project>

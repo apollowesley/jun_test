@@ -1,0 +1,37 @@
+<!--输出>=Debug的日志（trace,debug,info,warn,error）-->
+<configuration>
+    <!--1.控制台日志-->
+    <appender name="console_appender" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--
+    Slf4jLogFilter.java中有提示：
+    protected String          dataSourceLoggerName                 = "druid.sql.DataSource";
+    protected String          connectionLoggerName                 = "druid.sql.Connection";
+    protected String          statementLoggerName                  = "druid.sql.Statement";
+    protected String          resultSetLoggerName                  = "druid.sql.ResultSet";
+    -->
+    <!--阿里数据源日志输出配置:https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_LogFilter-->
+    <logger name="druid.sql.DataSource" level="INFO" additivity="false">
+        <appender-ref ref="console_appender"/>
+    </logger>
+    <logger name="druid.sql.Statement" level="DEBUG" additivity="false">
+        <appender-ref ref="console_appender"/>
+    </logger>
+    <logger name="druid.sql.Connection" level="INFO" additivity="false">
+        <appender-ref ref="console_appender"/>
+    </logger>
+    <logger name="druid.sql.ResultSet" level="DEBUG" additivity="false">
+        <appender-ref ref="console_appender"/>
+    </logger>
+
+    <root>
+        <appender-ref ref="console_appender"/>
+    </root>
+</configuration>

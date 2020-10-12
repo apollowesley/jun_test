@@ -1,0 +1,1 @@
+https://andrewpqc.github.io/2018/04/11/something-about-SQL/

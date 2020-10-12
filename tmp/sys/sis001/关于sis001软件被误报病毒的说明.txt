@@ -1,0 +1,10 @@
+SIS001.COM郑重声明
+
+sis001提供的发布器可能被360等杀毒软件误报为木马：HEUR/Malware.QVM03.gen 是360杀毒软件的误报！
+其他杀毒软件情况类似，多是是因为举报而被加入杀毒软件的黑名单。
+
+大家可以通过搜索引擎查看关于360误报此木马的情况：
+http://www.baidu.com/s?wd=HEUR%2FMalware.QVM03.gen&rsv_bp=0&rsv_spt=3&n=2&inputT=679
+http://www.google.com.hk/search?gcx=w&sourceid=chrome&ie=UTF-8&q=HEUR%2FMalware.QVM03.gen
+
+请大家在使用软件时，直接将本软件设置“添加信任”即可，或者是“允许此程序执行”。

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script type="text/javascript" src="../lib/vue-2.6.10.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+
+</head>
+
+<body>
+<div id="forExample">
+    <h4>1.循环遍历数组</h4>
+    <ul>
+        <li v-for="(item, index) in items1">
+            {{ prefixInfo }} - {{ index }} - {{ item.message }}
+        </li>
+    </ul>
+    <h4>2.循环遍历对象属性</h4>
+    <ul>
+        <li v-for="(value,key,index) of student">
+            {{ prefixInfo }} - {{index}}- {{ key }} - {{value}}
+        </li>
+    </ul>
+    <h4>3.循环列表打乱顺序
+        <button @click="popItem">pop</button>
+        <button @click="pushItem">push</button>
+        <button @click="topLastItem">指定最后一个元素</button>
+    </h4>
+    <ul>
+        <li v-for="(item, index) in items2" v-bind:key="item.weight">
+            {{ prefixInfo }} - {{ index }} - {{ item.message }}
+        </li>
+    </ul>
+    <h4>4.将js变量动态添加为响应式属性【比如这里我想给学生类附加：website和sex属性】</h4>
+    <button @click="addJsVariable2Vue">添加js变量到响应式属性中</button>
+
+</div>
+</body>
+
+<script>
+    var moreStuInfo = {
+        sex: '男',
+        website: 'www.kiwipeach.cn'
+    };
+    var app = new Vue({
+        el: '#forExample',
+        data: {
+            removeItems: [],
+            prefixInfo: "列表项",
+            items1: [
+                {weight: 100, message: '刘德华'},
+                {weight: 101, message: '郭富城'},
+                {weight: 102, message: '黎明'},
+                {weight: 103, message: '张学友'},
+                {weight: 104, message: '罗志祥'}
+            ],
+            items2: [
+                {weight: 100, message: '刘德华'},
+                {weight: 101, message: '郭富城'},
+                {weight: 102, message: '黎明'},
+                {weight: 103, message: '张学友'},
+                {weight: 104, message: '罗志祥'}
+            ],
+            student: {
+                id: "0133846",
+                name: "kiwipeach",
+                email: "liuburu@qq.com"
+            }
+        },
+        computed: {
+            // computeItems2:function () {
+            //     debugger
+            //     return this.items2;
+            // }
+        },
+        watch: {},
+        methods: {
+            popItem: function () {
+                var pItem = this.items2.pop();
+                if (!pItem) {
+                    alert('no items can ben poped in,please click push btn to push item.');
+                    return;
+                }
+                this.removeItems.push(pItem);
+            },
+            pushItem: function () {
+                var pItem = this.removeItems.pop();
+                if (!pItem) {
+                    alert('no items can push in,please click pop btn first.');
+                    return;
+                }
+                this.items2.push(pItem);
+            },
+            topLastItem: function () {
+                //特别注意：由于 JavaScript 的限制，Vue 不能检测以下数组的变动
+                var len = this.items2.length;
+                var datas = this.items2;
+                if (len > 0) {
+                    // Vue.set(app.items2, 0, {weight: 99, message: '刘卜铷'});
+                    //方式一：使用Vue.set方式，推荐方式
+                    var t = datas[0];
+                    Vue.set(datas, 0, datas[len - 1]);
+                    Vue.set(datas, len - 1, t);
+
+                    //方式二：使用方法this.$forceUpdate()，只能影响自身和子组件，不能影响周边组件的值，有局限性。
+                    // var t = datas[0];
+                    // datas[0] = datas[len - 1];
+                    // datas[len - 1] = t;
+                    // arr.splice(2,1,"William")
+                    // this.items2 = datas;
+                    //this.$forceUpdate();
+                }
+
+            },
+            addJsVariable2Vue: function () {
+                //使用 Object.assign() 或 _.extend() 赋值属性
+                // app.student = Object.assign({}, this.student, moreStuInfo);
+                app.student =  _.extend({}, this.student, moreStuInfo);
+            }
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.liuburu.demo</groupId>
+        <artifactId>maven-modal-webapp</artifactId>
+        <version>${maven.project.version}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>maven-modal-api</artifactId>
+
+    <properties>
+        <!--Maven参数依赖-->
+        <jdk.version>1.8</jdk.version><!--jdk版本-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!--编译字符集-->
+        <repository.releases.url>http://192.168.56.114:8081/nexus/content/repositories/releases/</repository.releases.url>
+        <repository.snapshot.url>http://192.168.56.114:8081/nexus/content/repositories/snapshots/</repository.snapshot.url>
+        <!--Maven插件版本依赖-->
+        <clean.plugin.verson>3.0.0</clean.plugin.verson>
+        <source.plugin.verson>3.0.1</source.plugin.verson>
+        <compiler.plugin.verson>3.5.1</compiler.plugin.verson>
+        <surefire.plugin.version>2.18.1</surefire.plugin.version>
+        <install.plugin.verson>2.5.2</install.plugin.verson>
+    </properties>
+
+    <dependencies>
+        <!--api的模块依赖-->
+        <dependency>
+            <groupId>com.liuburu.demo</groupId>
+            <artifactId>service01-modal-logical</artifactId>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>buruliu的正式库</name>
+            <url>${repository.releases.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>buruliu的快照库</name>
+            <url>${repository.snapshot.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!--开发环境-->
+    <profiles>
+        <!-- 本地开发环境(development) -->
+        <profile>
+            <id>development</id>
+            <properties>
+                <profiles.active>development</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!-- 正式生产环境(production) -->
+        <profile>
+            <id>production</id>
+            <properties>
+                <profiles.active>production</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>profiles/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/profiles/${profiles.active}</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${clean.plugin.verson}</version>                <!--编译插件-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${source.plugin.verson}</version>               <!--resource资源打包插件-->
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.plugin.verson}</version>                <!--编译插件-->
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.plugin.version}</version>               <!--测试代码编译插件-->
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${install.plugin.verson}</version>                 <!--安装插件-->
+            </plugin>
+        </plugins>
+    </build>
+
+    <developers>
+        <developer>
+            <name>liuburu</name>
+            <email>liuburu@outlook.com</email>
+            <timezone>8</timezone>
+        </developer>
+    </developers>
+    <description>
+        此模块的有如下几种功能
+        1.统筹所有的模块的Jar包依赖和Plugin插件依赖
+        2.统一所有资源输出路径，Maven的各种开发环境
+    </description>
+
+
+</project>

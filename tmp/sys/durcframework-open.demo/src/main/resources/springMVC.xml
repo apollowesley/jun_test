@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-3.2.xsd
+						http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	
+	<mvc:annotation-driven>
+	    <!-- 强化参数接收 -->
+		<mvc:argument-resolvers>
+			<bean class="org.durcframework.core.form.FormModelMethodArgumentResolver" />
+		</mvc:argument-resolvers>
+		 
+        <mvc:message-converters>  
+            <ref bean="marshallingHttpMessageConverter" />  
+            <ref bean="fastJsonHttpMessageConverter" />  
+			<ref bean="stringHttpMessageConverter" />   
+        </mvc:message-converters> 
+	</mvc:annotation-driven>
+	
+	<!-- 导入durcframework配置 -->
+	<import resource="classpath*:/durcframework_spring/*.xml"/>
+	<!-- open -->
+	<import resource="classpath*:/api.xml"/>
+
+	<!-- 扫描controller 
+		use-default-filters="false"只扫描@Controller
+	-->
+	<context:component-scan base-package="durcframework.test"
+		use-default-filters="false">
+		<context:include-filter expression="org.springframework.stereotype.Controller"
+			type="annotation" />
+	</context:component-scan>
+	
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀,在requestmapping输入的地址后自动调用该类进行视图解析 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="stringHttpMessageConverter"  
+        class="org.springframework.http.converter.StringHttpMessageConverter">  
+        <constructor-arg value="UTF-8" index="0"></constructor-arg><!-- 避免出现乱码 -->  
+        <property name="supportedMediaTypes">  
+            <list>  
+                <value>text/plain;charset=UTF-8</value>
+            </list>  
+        </property>  
+    </bean>  
+    
+    <bean id="fastJsonHttpMessageConverter"  
+        class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">  
+  
+        <property name="supportedMediaTypes">  
+            <list>  
+                <value>application/json;charset=UTF-8</value>  
+                <value>text/html;charset=UTF-8</value><!-- 避免IE出现下载JSON文件的情况 -->  
+            </list>  
+        </property>  
+        <property name="features">
+        	<list>
+                <!-- <value>WriteMapNullValue</value> -->  
+                <value>QuoteFieldNames</value>  
+                <value>WriteDateUseDateFormat</value>  
+        	</list>  
+        </property>  
+    </bean>  
+      
+    <bean id="marshallingHttpMessageConverter"  
+        class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">  
+        <property name="marshaller" ref="marshaller" />  
+        <property name="unmarshaller" ref="marshaller" />  
+        <property name="supportedMediaTypes">  
+            <list>  
+                <value>text/xml;charset=UTF-8</value>  
+                <value>application/xml;charset=UTF-8</value>  
+            </list>  
+        </property>  
+    </bean>  
+	
+	<bean id="marshaller" class="org.springframework.oxm.xstream.XStreamMarshaller"> 
+		<!-- 开启pojo中的注解功能 -->
+		<property name="autodetectAnnotations" value="true"/>
+        <property name="streamDriver"> 
+            <bean class="com.thoughtworks.xstream.io.xml.XppDriver">
+                <constructor-arg> 
+                	<!-- 去除下划线 -->
+                    <bean class="com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer"> 
+                        <constructor-arg index="0" value="_-"/> 
+                        <constructor-arg index="1" value="_"/> 
+                    </bean> 
+                </constructor-arg> 
+            </bean> 
+        </property> 
+    </bean> 
+	
+</beans>

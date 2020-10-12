@@ -1,0 +1,92 @@
+nature.base_package=com.demo
+nature.page_path=/WEB-INF/view
+#增加框架拦截地址排除配置，多个以,隔开
+nature.excludes_pattern=/druid/*
+##default false
+nature.i18n=true
+##上传文件大小，默认1024M
+#nature.multipart_maxsize=1073741824
+
+##上传文件格式正则匹配，默认允许除jsp文件外其他文件
+#nature.allow_file_regex=.*[^(?!(jsp)(x?)(f?))]
+
+##default false
+db.table_auto_create=true
+db.cache_manager=ehcache
+
+#翻页相关
+nature.pagesize=5
+nature.pagination=com.system.MyPage
+
+#增加调度分布式支持，依赖于redis缓存
+nature.quartz_cluster=true
+#每次增加的存活周期单位秒
+quartz.live_cycle_seconds=10
+#每次存活的检测单位秒，必须小于存活周期
+quartz.live_test_seconds=8
+
+#reids配置，主机多个请用“,”号分开
+redis.host=192.168.2.129:6379 root
+redis.maxidle=30
+redis.minidle=10
+redis.maxtotal=1000
+redis.maxwaitmillis=10000
+
+#数据库ssh连接配置
+
+
+#数据库配置
+db.jdbc=db1,db2
+db1.jdbc.ssh.host=
+db1.jdbc.ssh.user=
+db1.jdbc.ssh.password=
+db1.jdbc.ssh.port=22
+db1.jdbc.ssh.remote_host=www.example.com
+db1.jdbc.ssh.remote_port=3306
+db1.jdbc.ssh.local_port=3306
+db1.jdbc.ssh.timeout=5000
+db1.jdbc.driver=com.mysql.jdbc.Driver
+db1.jdbc.url=jdbc:mysql://localhost:3306/nature
+db1.jdbc.username=root
+db1.jdbc.password=root
+
+db2.jdbc.ssh.host=
+db2.jdbc.ssh.user=
+db2.jdbc.ssh.password=
+db2.jdbc.ssh.port=22
+db2.jdbc.ssh.remote_host=www.example.com
+db2.jdbc.ssh.remote_port=3306
+db2.jdbc.ssh.local_port=3306
+db2.jdbc.ssh.timeout=5000
+db2.jdbc.driver=net.sourceforge.jtds.jdbc.Driver
+db2.jdbc.url=jdbc:jtds:sqlserver://192.168.1.95:1433/nature
+db2.jdbc.username=sa
+db2.jdbc.password=server
+
+#数据源配置：c3p0 druid ，下面的配置为框架默认配置
+jdbc.datasource=druid
+#TRANSACTION_NONE=0,TRANSACTION_READ_UNCOMMITTED=1,TRANSACTION_READ_COMMITTED=2,TRANSACTION_REPEATABLE_READ=4,TRANSACTION_SERIALIZABLE=8
+jdbc.default_transaction_isolation=2
+jdbc.initial_size=5
+jdbc.minidle=1
+jdbc.maxactive=20
+jdbc.maxwait=60000
+jdbc.time_between_eviction_runs_millis=300000
+jdbc.pool_prepared_statements=true
+jdbc.maxpool_prepared_statement_per_connection_size=20
+jdbc.filters=stat
+
+#权限设置
+nature.auth=true
+#使用缓存减少数据库查询，开发阶段可以不用
+auth.cache_name=auth_cache
+auth.query_password_sql=select password from tb_user where username = ?
+auth.query_userinfo_sql=select * from tb_user where username = ?
+auth.query_prems_sql=SELECT p.premname FROM tb_prem p,tb_role r,tb_role_prem rp,tb_user u WHERE p.id=rp.prem_id AND r.id = rp.role_id AND u.username=?
+auth.query_all_prems_sql=SELECT premname FROM tb_prem
+#未登陆转发地址
+auth.no_login_url=/
+#无权限转发地址
+auth.no_prem_url=/
+
+

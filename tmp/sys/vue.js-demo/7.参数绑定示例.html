@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Generator" content="EditPlus®">
+		<meta name="Author" content="">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<title>Vue.js入门-参数绑定示例</title>
+		<link rel="stylesheet" href="css/demo.css" />
+	</head>
+	<body>
+		<div id="app">
+			<ul class="pagination">
+				<li v-for="n in pageCount">
+					<a href="javascripit:void(0)" v-bind:class="activeNumber === n ? 'active' : ''">{{ n }}</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				activeNumber: 1,
+				pageCount: 10
+			}
+		})
+	</script>
+</html>

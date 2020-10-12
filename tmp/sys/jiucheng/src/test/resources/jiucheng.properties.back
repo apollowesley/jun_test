@@ -1,0 +1,39 @@
+jiucheng.scanner.package=in.wenwen
+    
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://127.0.0.1:3306/wenwen?useUnicode=true&characterEncoding=utf8
+jdbc.username=root
+jdbc.password=root
+    
+jdbc.filters=stat
+jdbc.initialSize=1
+jdbc.minIdle=1
+jdbc.maxActive=3
+jdbc.maxWait=60000
+    
+jdbc.timeBetweenEvictionRunsMillis=30000
+jdbc.minEvictableIdleTimeMillis=300000
+    
+jdbc.validationQuery=SELECT 1
+jdbc.testWhileIdle=true
+jdbc.testOnBorrow=false
+jdbc.testOnReturn=false
+jdbc.poolPreparedStatements=false
+jdbc.maxPoolPreparedStatementPerConnectionSize=200
+    
+jdbc.removeAbandoned=true
+jdbc.removeAbandonedTimeoutMillis=1800000
+    
+context=/
+suffix=.jsp
+    
+smtp.host=smtp.qq.com
+smtp.port=25
+smtp.username=916673309@qq.com
+smtp.password=QQ\u5BC6\u7801
+smtp.charset=UTF-8
+smtp.fr=kf@jiucheng.org
+smtp.nick=\u65E7\u57CE\u535A\u5BA2
+
+hello= \u5F20\u4E09\u674E\u56DB
+isUried = F

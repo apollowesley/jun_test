@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="jquery.1.7.js"></script>
+<script type='text/javascript' src="popup.js"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css" charset="utf-8">
+<style type="text/css">
+body {
+    background-color: #FFFFFF;
+    font-size: 12px;
+    color: #333;
+    width:250px;
+}
+</style>
+
+</head>
+
+<body>
+    <div class="label">Fill Form</div>
+    <div class="ml10">
+        <input type="button" value="Name" id="name" class="fill">
+       
+        <input type="button" value="Number" id="number" class="fill">
+        <br>
+        <input type="button" value="Characters" id="char" class="fill">
+        
+        <input type="button" value="Clear" id="clear">
+    </div>
+    <div id="add_area">
+        <div class="label">Record Form</div>
+        <div class="ml10 mb10">
+            Title: <input type="text" id="pageName" value=""><span id="saveForm"  style="float:right">
+              <i class="icon-plus icon12"></i>
+            </span>
+            <div id="new_err" class="err"></div>
+            <br>
+        </div>
+    </div>
+    <div class="label">Recorded Title</div>
+    <div id="data" class="ml10"></div>
+    <div class="links">
+        <a href="http://weibo.com/1652387583/profile?topnav=1&wvr=5&user=1" target="_blank"> <i class="icon-user  icon12"></i></a>
+        <a href="#" id="moveOption"> <i class="icon-cog icon12"></i></a>
+    </div>
+</body>
+</html>
+

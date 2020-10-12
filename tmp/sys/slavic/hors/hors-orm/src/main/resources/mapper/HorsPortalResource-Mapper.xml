@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slavic.hors.orm.mapper.HorsPortalResourceMapper">
+
+    <resultMap type="com.slavic.hors.orm.entity.HorsPortalResource" id="HorsPortalResourceMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="resourceType" column="resource_type" jdbcType="VARCHAR"/>
+        <result property="resourceName" column="resource_name" jdbcType="VARCHAR"/>
+        <result property="resourceDesc" column="resource_desc" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HorsPortalResourceMap">
+        select
+          id, resource_type, resource_name, resource_desc, parent_id, create_time, update_time
+        from api_starter.hors_portal_resource
+        where id = #{id}
+    </select>
+    
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="HorsPortalResourceMap">
+        select
+          id, resource_type, resource_name, resource_desc, parent_id, create_time, update_time
+        from api_starter.hors_portal_resource
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="resourceType != null and resourceType != ''">
+                and resource_type = #{resourceType}
+            </if>
+            <if test="resourceName != null and resourceName != ''">
+                and resource_name = #{resourceName}
+            </if>
+            <if test="resourceDesc != null and resourceDesc != ''">
+                and resource_desc = #{resourceDesc}
+            </if>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into api_starter.hors_portal_resource(resource_type, resource_name, resource_desc, parent_id, create_time, update_time)
+        values (#{resourceType}, #{resourceName}, #{resourceDesc}, #{parentId}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="updateById">
+        update api_starter.hors_portal_resource
+        <set>
+            <if test="resourceType != null and resourceType != ''">
+                resource_type = #{resourceType},
+            </if>
+            <if test="resourceName != null and resourceName != ''">
+                resource_name = #{resourceName},
+            </if>
+            <if test="resourceDesc != null and resourceDesc != ''">
+                resource_desc = #{resourceDesc},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from api_starter.hors_portal_resource where id = #{id}
+    </delete>
+
+    <select id="listByIds" resultMap="HorsPortalResourceMap">
+        select
+          id, resource_type, resource_name, resource_desc, parent_id, create_time, update_time
+        from api_starter.hors_portal_resource
+        where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

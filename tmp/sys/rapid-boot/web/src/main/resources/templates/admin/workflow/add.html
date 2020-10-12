@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>发起流程</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <div class="layui-form layuimini-form">
+            <div class="layui-container">
+                <div class="layui-row">
+                    <input hidden="hidden" name="approveId">
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2 required">开始日期</div>
+                        <div class="layui-col-xs10 layui-input-inline">
+                            <input type="text" name="startTime" id="startTime" class="layui-input"
+                                   lay-verify="required">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2 required">结束日期</div>
+                        <div class="layui-col-xs10 layui-input-inline">
+                            <input type="text" name="endTime" id="endTime" class="layui-input" lay-verify="required">
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <div class="layui-col-xs2">描述</div>
+                        <div class="layui-col-xs10">
+                            <textarea name="note" placeholder="请输入简介" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-col-xs2 required">审批人</div>
+                        <div class="layui-col-xs10 layui-input-inline">
+                            <select lay-verify="required" lay-search="" lay-filter="approve">
+                                <option value="">直接选择或搜索选择</option>
+                                <option th:each="user:${userList}"
+                                        th:text="${user.name}" th:value="${user.id}">layer
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6 layui-col-md-offset4">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="saveBtn">确认保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    layui.use(['form', 'laydate'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#startTime'
+        });
+        laydate.render({
+            elem: '#endTime'
+        });
+        //监听提交
+        form.on('submit(saveBtn)', function (param) {
+            $.ajax({
+                url: "/api/admin/workflow/confirm/add",
+                type: "post",
+                data: param.field,
+                success: function (rst) {
+                    layer.msg(rst.msg);
+                    if (rst.code == 1) {
+                        setTimeout(function () {
+                            location.href = "/admin/workflow/add";
+                        }, 2000);
+                    }
+                }
+            });
+            return false;
+        });
+        //监听下拉框
+        form.on('select(approve)', function (data) {
+            $("[name=approveId]").val(data.value);
+        });
+    });
+    /*]]>*/
+</script>
+</html>

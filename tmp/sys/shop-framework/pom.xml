@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<modelVersion>4.0.0</modelVersion>
+
+    <!--parent pom settings-->
+    <groupId>kld-kshop</groupId>
+    <artifactId>kshop-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+    <name>kld-kshop</name>
+    <url>http://maven.apache.org</url>
+
+    <!--子pom引入，一起加载编译-->
+    <modules>
+        <module>kld-common</module>
+        <module>sys</module>
+        <module>product</module>
+        <module>cms</module>
+        <module>promotion</module>
+        <module>order</module>
+        <module>bi</module>
+        <module>task</module>
+        <module>shop-web</module>
+    </modules>
+
+    <!--公共属性配置-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>4.11</junit.version>
+        <mysql.connector.version>5.1.34</mysql.connector.version>
+        <springcore.version>3.2.9.RELEASE</springcore.version>
+        <springwebmvc.version>3.2.9.RELEASE</springwebmvc.version>
+        <springtest.version>3.2.9.RELEASE</springtest.version>
+        <springjdbc.version>3.2.9.RELEASE</springjdbc.version>
+        <javax.servletapi.version>2.5</javax.servletapi.version>
+        <jacksonmapperasl.version>1.9.13</jacksonmapperasl.version>
+        <commonsfileupload.version>1.3.1</commonsfileupload.version>
+        <mybatis.version>3.2.8</mybatis.version>
+        <c3p0.version>0.9.1.2</c3p0.version>
+        <mybatis-spring.version>1.2.2</mybatis-spring.version>
+        <log4j.version>1.2.17</log4j.version>
+        <commonslang3.version>3.2.2</commonslang3.version>
+        <hessian.version>4.0.7</hessian.version>
+        <spring.asm>3.1.4.RELEASE</spring.asm>
+        <springsecurity.version>3.2.9.RELEASE</springsecurity.version>
+        <spring.version>3.2.9.RELEASE</spring.version>
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <commons-httpclient.version>3.1</commons-httpclient.version>
+        <javassist.version>3.20.0-GA</javassist.version>
+        <dubbo.version>2.5.3</dubbo.version>
+        <zookeeper.version>3.4.6</zookeeper.version>
+        <netty.version>3.2.5.Final</netty.version>
+        <zkclient.version>0.1</zkclient.version>
+        <springcas.version>3.1.0.RELEASE</springcas.version>
+        <aliyun.version>2.0.6</aliyun.version>
+        <poi.version>3.9</poi.version>
+        <fastjson.version>1.1.39</fastjson.version>
+        <redis.version>2.7.2</redis.version>
+        <redis.spring.version>1.4.2.RELEASE</redis.spring.version>
+        <druid.version>1.0.17</druid.version>
+        <fastdfs.version>1.24.1</fastdfs.version>
+        <slf4j.version>1.7.5</slf4j.version>
+        <log4j.version>1.2.13</log4j.version>
+        <commons-logging.version>1.1</commons-logging.version>
+        <!--client port settings-->
+
+
+        <sys-api-version>1.0.0-SNAPSHOT</sys-api-version>
+        <common-api-version>1.0.0-SNAPSHOT</common-api-version>
+        <product-api-version>1.0.0-SNAPSHOT</product-api-version>
+        <order-api-version>1.0.0-SNAPSHOT</order-api-version>
+        <cms-api-version>1.0.0-SNAPSHOT</cms-api-version>
+        <promotion-api-version>1.0.0-SNAPSHOT</promotion-api-version>
+        <bi-api-version>1.0.0-SNAPSHOT</bi-api-version>
+        <task-api-version>1.0.0-SNAPSHOT</task-api-version>
+
+
+        <!--dubbo protocol port settings-->
+        <dubbo.protocol.sys.port>20880</dubbo.protocol.sys.port>
+        <dubbo.protocol.order.port>20881</dubbo.protocol.order.port>
+        <dubbo.protocol.product.port>20882</dubbo.protocol.product.port>
+        <dubbo.protocol.cms.port>20883</dubbo.protocol.cms.port>
+        <dubbo.protocol.promotion.port>20885</dubbo.protocol.promotion.port>
+        <dubbo.protocol.BI.port>20886</dubbo.protocol.BI.port>
+        <dubbo.protocol.task.port>20887</dubbo.protocol.task.port>
+        <dubbo.protocol>zookeeper</dubbo.protocol>
+        <dubbo.zookeeper.protocol.name>dubbo</dubbo.zookeeper.protocol.name>
+        <dev.dubbo.zookeeper.port>2181</dev.dubbo.zookeeper.port>
+        <!--<bi.web.port>8090</bi.web.port>-->
+        <!--<task.web.port>8091</task.web.port>-->
+        <!--<kshop.web.port>8092</kshop.web.port>-->
+
+
+        <!-- dev 开发环境  settings-->
+        <dev.master.db.host>localhost</dev.master.db.host>
+        <dev.master.db.dbname>xscr-user-admin</dev.master.db.dbname>
+        <dev.master.db.username>root</dev.master.db.username>
+        <dev.master.db.pwd>root</dev.master.db.pwd>
+        <dev.master.db.driver>com.mysql.jdbc.Driver</dev.master.db.driver>
+        <dev.master.db.port>3306</dev.master.db.port>
+        <dev.dubbo.zookeeper.host>127.0.0.1</dev.dubbo.zookeeper.host>
+        <dev.master.db.druid.initialSize>5</dev.master.db.druid.initialSize>
+        <dev.master.db.druid.minIdle>1</dev.master.db.druid.minIdle>
+        <dev.master.db.druid.maxActive>10</dev.master.db.druid.maxActive>
+        <dev.master.db.druid.maxWait>60000</dev.master.db.druid.maxWait>
+        <!--slave 从库-->
+        <dev.slave.db.host>localhost</dev.slave.db.host>
+        <dev.slave.db.dbname>xscr-user-admin</dev.slave.db.dbname>
+        <dev.slave.db.username>root</dev.slave.db.username>
+        <dev.slave.db.pwd>root</dev.slave.db.pwd>
+        <dev.slave.db.driver>com.mysql.jdbc.Driver</dev.slave.db.driver>
+        <dev.slave.db.port>3306</dev.slave.db.port>
+        <dev.slave.db.druid.initialSize>5</dev.slave.db.druid.initialSize>
+        <dev.slave.db.druid.minIdle>1</dev.slave.db.druid.minIdle>
+        <dev.slave.db.druid.maxActive>10</dev.slave.db.druid.maxActive>
+        <dev.slave.db.druid.maxWait>60000</dev.slave.db.druid.maxWait>
+
+
+        <!--qatest 持续集成环境  setting-->
+        <qatest.db.host>localhost</qatest.db.host>
+        <qatest.db.dbname>kshop-sys</qatest.db.dbname>
+        <qatest.db.username>root</qatest.db.username>
+        <qatest.db.pwd>root</qatest.db.pwd>
+        <qatest.db.driver>com.mysql.jdbc.Driver</qatest.db.driver>
+        <qatest.db.port>3306</qatest.db.port>
+        <qatest.dubbo.zookeeper.host>127.0.0.1</qatest.dubbo.zookeeper.host>
+        <qatest.dubbo.zookeeper.port>2182</qatest.dubbo.zookeeper.port>
+
+
+
+        <!--online 生产环境  setting-->
+        <online.db.host>localhost</online.db.host>
+        <online.db.dbname>kshop-sys</online.db.dbname>
+        <online.db.username>root</online.db.username>
+        <online.db.pwd>root</online.db.pwd>
+        <online.db.driver>com.mysql.jdbc.Driver</online.db.driver>
+        <online.db.port>3306</online.db.port>
+        <online.dubbo.zookeeper.host>127.0.0.1</online.dubbo.zookeeper.host>
+        <online.dubbo.zookeeper.port>2183</online.dubbo.zookeeper.port>
+
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.17</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.4</version>
+                    <configuration>
+                        <attach>true</attach>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>default</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <includeEmptyDirs>true</includeEmptyDirs>
+                        <encoding>UTF-8</encoding>
+                        <!-- 配置 Maven resources 插件不对xls和csv等文件进行转码 -->
+                        <nonFilteredFileExtensions>
+                            <nonFilteredFileExtension>exe</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>zip</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>vbs</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>sh</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>xls</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>csv</nonFilteredFileExtension>
+                        </nonFilteredFileExtensions>
+                    </configuration>
+                </plugin>
+
+                <!-- 测试插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <!-- true:跳过测试 -->
+                        <skip>true</skip>
+                        <!-- 解决测试乱码问题 -->
+                        <forkMode>once</forkMode>
+                        <argLine>-Dfile.encoding=UTF-8</argLine>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+
+
+</project>

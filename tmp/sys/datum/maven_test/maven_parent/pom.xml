@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.xieke.maven</groupId>
+  <artifactId>maven_parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <!-- 聚合: 实现项目各模块的统一管理和操作   -->
+  <modules>
+      <module>../maven_one</module>  
+   	  <module>../maven_two</module>
+  </modules>
+  
+  <!-- 定义依赖的关系，让其它项目继承这些jar包，不用写版本，实现jar包的统一管理以及版本的统一控制    -->
+  <dependencyManagement>
+  	<dependencies>
+  	
+  		<dependency> 
+		  <groupId>junit</groupId> 
+		  <artifactId>junit</artifactId> 
+		  <version>4.10</version> 
+		  <scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+  </dependencyManagement>
+  
+  <!-- 以下是公共部分  -->
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <!-- 把项目发布到nexus中 -->
+  <!-- <distributionManagement>
+  	<repository>
+  		<id>maven-test-releases</id>
+  		<name>maven test releases</name>
+  		<url>http://localhost:8081/nexus/content/repositories/maven-test-releases/</url>
+  	</repository>
+  	<snapshotRepository>
+  		<id>maven-test-snapshots</id>
+  		<name>maven test snapshots</name>
+  		<url>http://localhost:8081/nexus/content/repositories/maven-test-snapshots/</url>
+  	</snapshotRepository>
+  </distributionManagement> -->
+  
+  <build>
+  	<!-- 定义插件的关系，让其它项目继承这些插件，不用写版本，实现插件的统一管理以及版本的统一控制   -->
+  	<pluginManagement>
+  		<plugins>
+  			<!-- 配置插件 -->
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-source-plugin</artifactId>
+	        <version>2.4</version>
+	        <executions>
+	        	<!-- 配置目标 -->
+	        	<execution>
+	        		<!-- 配置目标在那个阶段后执行  -->
+	        		<phase>compile</phase>
+	        		<goals>
+	        			<!-- 配置执行的目标 -->
+	        			<goal>jar-no-fork</goal>
+	        			<goal>test-jar-no-fork</goal>
+	        		</goals>
+	        	</execution>
+	        </executions>
+	      </plugin>
+	      
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.2</version>
+	        <!-- 配置jdk版本 -->
+	        <configuration>
+	          <source>1.6</source>
+	          <target>1.6</target>
+	        </configuration>
+	      </plugin>
+  		</plugins>
+  	</pluginManagement>
+  </build>
+  
+</project>

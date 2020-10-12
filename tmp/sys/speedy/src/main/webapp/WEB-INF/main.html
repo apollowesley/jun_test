@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>speedy管理系统-做专业快速的开发管理平台</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<script src="/static/public/js/public.js"></script>
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<style>
+	.top_nav{width:85%;right:0px;border-bottom:1px solid #e1e1e1;background:#fff;padding-bottom:5px;}
+	.main{height:94%;width:95%;}
+	.text_top{margin-top:10px;margin-left:10px;}
+	.top_nav .message_top{width: 100%;height: 100%}
+	.top_nav .message_top .person .img{width: 30px;height: 30px;border-radius: 50px;border: 1px solid #e1e1e1;overflow:hidden;}
+	.top_nav .message_top .person{width: 43%;margin-left: 58px;}
+	.top_nav .message_top .person span{line-height: 30px;margin-left: 5px;}
+	.top_nav .message_top .person .nickname{margin-left: 5px;}
+	.top_nav .message_top .listico{line-height: 30px;}
+	.top_nav .message_top .list{
+		border:1px solid #e1e1e1;box-shadow: 5px 5px 5px #e1e1e1;background: #ffffff;position: fixed;width:120px;
+		right: 3%;
+		top: 39px;
+		height: 120px;
+		text-align: center;
+		display:none;
+	
+	}
+	.top_nav .message_top .list ul{
+		height: 100%;
+	}
+	.top_nav .message_top .list ul li{
+		line-height: 40px;
+		height: 30%;
+	}
+	.top_nav .message_top .person:hover .list{
+		display: block;
+	}
+	.left_nav{background:#24262f;height:100%;color: #ffffff;width:215px;}
+	.left_nav .item_title{display: block;background: #000000;font-size: 20px;font-weight: bold;text-align: center;
+		line-height: 55px;}
+	.left_nav ul{font-size:16px;}
+	.left_nav ul li{text-align: center;}
+	.left_nav ul li a{display:block;color:#e1e1e1;width:100%;height:40px;line-height:40px;text-decoration:none;}
+	.left_nav ul li .nav_bean{text-align: left;text-indent:3em;}
+		.left_nav .nav_list{margin-top: 10px}
+	.left_nav ul li .navs{background:#1d1e26;display:none;}
+	.right_nav{height: 100%;width:200px;background: red;position: fixed;right:0px;top:6%;display: none}
+</style>
+<body>
+<div class="box">
+	<div id="right_nav" class="right_nav right">
+
+	</div>
+	<!--顶部开始-->
+	<div class="top_nav right">
+		<div class="text_top left">
+			<span>speedy管理系统-做专业快速的开发管理平台</span>
+		</div>
+		<div class="message_top">
+			
+			<div class="right" style="width:165px;margin-top: 10px">
+				<div class="person left">
+					<div class="img left">
+						<img width="100%" height="100%" th:src="${session.user.avatar}" src="http://b-ssl.duitang.com/uploads/item/201410/20/20141020224133_Ur54c.jpeg" />
+					</div>
+					<span class="nickname left" id="nickname" th:text="${session.user.username}">春风春动你</span>
+					<span class="mouse glyphicon glyphicon-chevron-down left"></span>
+					<div class="list" id="list">
+						<ul>
+							<li><a th:href="'/common/user/updatePage?id='+${session.user.id}" href="/common/user/updatePage?id=" target="page">个人中心</a></li>
+							<li><a href="/common/main/toPage?page=updatePassword" target="page">修改密码</a></li>
+							<li><a href="/common/login/loginexit">退出</a></li>
+						</ul>
+					</div>
+				</div>
+				<div id="styleBtn" class="left glyphicon glyphicon-th-list listico">
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="left_nav left">
+		<div class="item_title">
+			<p>speedy管理平台</p>
+		</div>
+		<!--<hr />-->
+		<ul class="nav_list" id="menu_list">
+			<li><a class="nav_bean">内容1</a>
+				<ul class="navs">
+					<li><a href="/system/login/main" target="page">内容2</a></li>
+				</ul>
+			</li>
+			<li><a class="nav_bean">内容11</a>
+				<ul class="navs">
+					<li><a href="/system/login/" target="page">内容22</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="main right">
+		<iframe id="page" name="page" frameborder="0" src="/common/main/toPage?page=home" height="100%" width="100%">
+		</iframe>
+	</div>
+</div>
+<script>
+$(window).resize(function () {
+	$(".top_nav").width($(".box").width()-($(".left_nav").width()+1))
+	$(".main").width($(".box").width()-($(".left_nav").width()+5));
+});
+$(document).ready(function(){
+	$(".top_nav").width($(".box").width()-($(".left_nav").width()+1))
+	$(".main").width($(".box").width()-($(".left_nav").width()+5));
+	$("#styleBtn").bind("click",function(){
+		$("#right_nav").toggle(300);
+	})
+	
+	//加载列表
+	$.ajax({
+		url:"/common/main/loadMenu",
+		data:{},
+		dataType:"json",
+		async:false,
+		type:"post",
+		success:function(res){
+			console.log(res);
+			if(res.state==1){
+				var data=res.data;
+				$("#menu_list").html("<li><a class='nav_bean' href='/common/main/toPage?page=home' target='page'>首页</a></li>");
+				for(var i=0;i<data.length;i++){
+					var parentHtml='<li id="'+data[i].id+'"><a class="nav_bean" href="'+data[i].path+'"  target="page">'+data[i].name+'</a></li>';
+					if(null==data[i].path||"null"==data[i].path||""==data[i].path){
+						parentHtml='<li id="'+data[i].id+'"><a class="nav_bean" href="javascript:void(0);">'+data[i].name+'</a></li>';
+					}
+					$("#menu_list").append(parentHtml);
+					var sonList=data[i].menuSon;
+					var menuSon="";
+					$("#"+data[i].id).append('<ul class="navs"></ul>');
+					for(var s=0;s<sonList.length;s++){
+						$("#"+sonList[s].parent).find(".navs").append('<li id="'+sonList[s].id+'"><a href="'+sonList[s].path+'" target="page">'+sonList[s].name+'</a></li>');
+					}
+				}
+			}
+			
+		},error:function(error){
+			console.log(error);
+		}
+	})
+	
+	$(".nav_list").find(".nav_bean").bind("click",function(){
+		//这里校验一下是否还在登录中
+		$(this).parent().find(".navs").slideToggle(300);
+
+	})
+	$(".person").mousemove(function(){
+		var className=$(this).find(".mouse").prop("class");
+		if(className.indexOf("glyphicon-chevron-down")>-1){
+			$(this).find(".mouse").removeClass("glyphicon-chevron-down");
+			$(this).find(".mouse").addClass("glyphicon-chevron-up");
+		}
+
+	})
+	$(".person,.list").mouseleave(function(){
+		var className=$(".mouse").prop("class");
+		if(className.indexOf("glyphicon-chevron-up")>-1){
+			$(this).find(".mouse").removeClass("glyphicon-chevron-up");
+			$(this).find(".mouse").addClass("glyphicon-chevron-down");
+		}
+	})
+})
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+server:
+  port: 8080
+  max-http-header-size: 0
+  tomcat:
+    uri-encoding: UTF-8
+    remote-ip-header: x-forwarded-for
+  use-forward-headers: true
+  servlet:
+    context-path: /mail
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mail?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: HikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  aop:
+      proxy-target-class: true
+      auto: true
+  mvc:
+      date-format: yyyy-MM-dd HH:mm:ss
+  jackson:
+      joda-date-time-format: yyyy-MM-dd HH:mm:ss
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,\
+                  classpath:/static/,classpath:/public/,classpath:/webapp/
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: false
+
+logging:
+  level:
+    com.fbmail.check.mapper : info
+
+#swagger 接口是否开放
+swagger:
+ show: true
+ packagePath: com.quick.develop.controller
+ title: quickDevelop
+ description: quickDevelop
+ version: 1.0

@@ -1,0 +1,25 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: web
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8085/eureka/
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 60000
+        readTimeout: 60000
+
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+#  eureka:
+#    enabled: true

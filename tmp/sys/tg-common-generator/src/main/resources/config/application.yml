@@ -1,0 +1,52 @@
+######---------------   系统自定义配置   ----------------######
+tg:
+  system: 
+    appVerson: 2020051801 ### 系统版本  ###
+    #templateName: tg-test # *必填*  模板名称 
+    mappingsFileName: mappings-postgresql-java.xml # *必填* 类型映射配置文件名
+    defultFieldType: String # *必填* 默认字段类型，当找不到匹配类型的时候，使用默认类型
+    #showDetailLogs: false # 是否显示详细日志，默认false
+    #projectName: tg-demo #  *必填*  项目名称
+    #basePackage: com.turingoal.demo # *必填*  包名
+    #datasourceUrl: jdbc:postgresql://localhost:5432/tg-test  ### *必填*  连接池url  postgresql ###
+    #datasourceUrl: jdbc:sqlite:D:data/tg-test  ### *必填*  连接池url  sqlite ###
+    #datasourceUrl: jdbc:mysql://localhost:3306/tg-test  ### *必填*  连接池url  mysql ###
+    #datasourceUrl: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=tg-test  ### *必填*  连接池url  sqlServer ###
+    #datasourceUrl: jdbc:oracle:thin:@localhost:1521:tg-test  ### *必填*  连接池url  oracle ###
+    #datasourceUsername: user ### *必填*  连接池用户名  ###
+    #datasourcePassword: 123456  ### *必填*  连接池密码    ### 
+    #projectTitle: 图灵谷demo项目 # 项目标题
+    #projectTitleShort: 图灵谷demo # 项目标题（短）
+    #projectDesc: 图灵谷demo演示项目 # 项目描述
+    #prefixsNeedRemove: tg_c_,tg_m_ # 需要移除的前缀，英文逗号分隔
+    #ignoreTables: tg_c_user,tg_c_role # 需要忽略的表，英文逗号分隔
+    schema: public # 数据库schema 默认为 public
+    #templateBaseDir: E:/templates/  # 模板目录，下面可能有多套模板。 默认为项目同级目录下的templates
+    #outputBaseDir: E:/output/ # 输出目录 。 默认为项目同级目录下的output
+######----------------    spring配置     ----------------######
+spring:
+  application:
+    name: tg-common-generator ### 系统名称 ###
+  main:
+    banner-mode: CONSOLE ### 是否显示banner CONSOLE, LOG, OFF###
+  datasource: 
+    url: ${tg.system.datasourceUrl}  ### 连接池url  ###
+    username: ${tg.system.datasourceUsername} ### 连接池用户名  ###
+    password: ${tg.system.datasourcePassword}   ### 连接池密码    ### 
+    type: com.zaxxer.hikari.HikariDataSource ### 连接池类型 ###
+    ### 下面为连接池的补充设置，应用到上面所有数据源中 ###
+    hikari: 
+      maximum-pool-size: 5 ### 连接池中允许的最大连接数，缺省值：10。常见的错误是设置一个太大的值，连接数多反而性能下降。推荐的公式：((core_count * 2) + effective_spindle_count)  ###
+      max-lifetime: 1800000 ### 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省：30分钟。强烈建议设置比数据库超时时长少30秒。 ###
+      connection-test-query: SELECT 1 ### 校验语句 ###
+######----------------    logging 配置     ----------------######
+logging:
+  level: 
+    root: WARN ### 日志级别  ###
+    com.turingoal.generator: INFO 
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %msg%n" ### 定义输出到控制台的格式 ###
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %msg%n"   ### 定义输出到文件的格式 ###
+  file:
+    name: ./logs/ouput.log ###  日志文件名称  ###  
+    clean-history-on-start: true 

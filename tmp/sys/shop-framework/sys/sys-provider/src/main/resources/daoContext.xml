@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+       default-lazy-init="true">
+
+    <description>dataSource Configuration</description>
+
+    <!-- 加载配置属性文件 -->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:/jdbc.properties"/>
+
+    <!-- 数据库读写分离数据源配置 -->
+    <bean id="dataSource" class="com.kld.common.framework.datasource.DynamicDataSource">
+        <property name="master" ref="master"/>
+        <property name="slaves">
+            <list>
+                <ref bean="slave01"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- define the SqlSessionFactory -->
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        &lt;!&ndash; 请修改此处：修改为实际的数据对象包路径 &ndash;&gt;
+        <property name="typeAliasesPackage" value="com.kld.sys.po"/>
+        &lt;!&ndash; 请修改此处： 请修改为实际的mybatis环境配置文件位置 &ndash;&gt;
+        <property name="configLocation" value="classpath:/mapper/mybatis-conf.xml"/>
+        <property name="mapperLocations" value="classpath:/mapper/**/*Mapper.xml"/>
+    </bean>-->
+
+    <!-- mapper扫描配置 -->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        &lt;!&ndash; 请修改此处： 请修改为实际的mapper接口包路径 &ndash;&gt;
+        <property name="basePackage" value="com.kld.sys.mapper"/>
+    </bean>-->
+
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:/mapper/mybatis-conf.xml" />
+        <property name="mapperLocations" value="classpath:/mapper/**/*Mapper.xml"/>
+    </bean>
+
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+        <constructor-arg index="1" value="REUSE"/>
+    </bean>
+
+    <bean id="dynamicSqlSessionTemplate" class="com.kld.common.framework.datasource.DynamicSqlSessionTemplate"
+          scope="prototype">
+        <constructor-arg index="0" ref="sqlSessionTemplate"/>
+    </bean>
+
+
+
+    <!--     事务管理 Begin     -->
+    <!-- 定义单个jdbc数据源的事务管理器 -->
+    <bean id="transactionManager" class="com.kld.common.framework.datasource.DynamicDataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 以 @Transactional 标注来定义事务  -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+    <!-- 配置事务的传播特性 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="add*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="create*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="insert*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="del*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="modify*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="merge*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="remove*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="batch*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="proc*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+            <tx:method name="select*" read-only="true"/>
+            <tx:method name="query*" read-only="true"/>
+            <tx:method name="use*" read-only="true"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="count*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="list*" read-only="true"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 那些类的哪些方法参与事务 -->
+    <aop:config>
+        <aop:pointcut id="allManagerMethod" expression="execution(* com.kld..service..*.*(..))"/>
+        <aop:advisor pointcut-ref="allManagerMethod" advice-ref="txAdvice"/>
+    </aop:config>
+    <!--   事务管理   End     -->
+
+
+
+    <bean id="master" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName">
+            <value>${sys.master.mysql.jdbc.driver}</value>
+        </property>
+        <property name="url">
+            <value>${sys.master.mysql.jdbc.url}</value>
+        </property>
+        <property name="username">
+            <value>${sys.master.mysql.jdbc.user}</value>
+        </property>
+        <property name="password">
+            <value>${sys.master.mysql.jdbc.pwd}</value>
+        </property>
+        <property name="initialSize" value="${sys.master.mysql.druid.initialSize}"/>
+        <property name="minIdle" value="${sys.master.mysql.druid.minIdle}"/>
+        <property name="maxActive" value="${sys.master.mysql.druid.maxActive}"/>
+        <property name="maxWait" value="${sys.master.mysql.druid.maxWait}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="filters" value="stat"/>
+    </bean>
+
+    <bean id="slave01" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName">
+            <value>${sys.slave.mysql.jdbc.driver}</value>
+        </property>
+        <property name="url">
+            <value>${sys.slave.mysql.jdbc.url}</value>
+        </property>
+        <property name="username">
+            <value>${sys.slave.mysql.jdbc.user}</value>
+        </property>
+        <property name="password">
+            <value>${sys.slave.mysql.jdbc.pwd}</value>
+        </property>
+        <property name="initialSize" value="${sys.slave.mysql.druid.initialSize}"/>
+        <property name="minIdle" value="${sys.slave.mysql.druid.minIdle}"/>
+        <property name="maxActive" value="${sys.slave.mysql.druid.maxActive}"/>
+        <property name="maxWait" value="${sys.slave.mysql.druid.maxWait}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="filters" value="stat"/>
+    </bean>
+
+
+</beans>

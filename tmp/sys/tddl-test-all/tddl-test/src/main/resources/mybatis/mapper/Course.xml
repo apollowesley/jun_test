@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.course.dao.CourseDao">
+	<resultMap id="BaseResultMap" type="com.course.model.Course">
+		<id column="cId" property="cId" jdbcType="BIGINT" />
+		<result column="cName" property="cName" jdbcType="VARCHAR" />
+		<result column="teacher" property="teacher" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 基础操作列-->
+	<sql id="Base_Column_List" >
+		cId, cName, teacher
+	</sql>
+
+    <!-- 查询学生Model -->
+	<select id="getCourseBySId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from course
+		where cId = #{_parameter,jdbcType=BIGINT}
+	</select>
+
+    <!-- 插入学生Model -->
+    <insert id="insertCourse" parameterType="com.course.model.Course">
+        insert into course
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="cId != null" >
+                cId,
+            </if>
+            <if test="cName != null" >
+                cName,
+            </if>
+            <if test="teacher != null" >
+                teacher,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="cId != null" >
+                #{cId,jdbcType=BIGINT},
+            </if>
+            <if test="cName != null" >
+                #{cName,jdbcType=VARCHAR},
+            </if>
+            <if test="teacher != null" >
+                #{teacher,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新用户信息 -->
+    <update id="updateCourseById" parameterType="com.course.model.Course" >
+        update course
+        <set >
+            <if test="cName != null" >
+                cName = #{cName},
+            </if>
+            <if test="teacher != null" >
+                teacher = #{teacher},
+            </if>
+        </set>
+        where cId = #{cId}
+    </update>
+
+    <!-- 根据id删除用户帐号 -->
+    <delete id="deleteCourse" parameterType="Long" >
+        delete from course
+        where cId in
+        <foreach collection="array" close=")" open="(" separator="," item="cId" >
+            #{cId,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+    <delete id="deleteAll"  >
+        delete from course
+    </delete>
+
+  
+</mapper>

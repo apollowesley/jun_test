@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tables xmlns="https://github.com/tddl/tddl/schema/table" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://github.com/tddl/tddl/schema/table https://raw.github.com/tddl/tddl/master/tddl-common/src/main/resources/META-INF/table.xsd">
+
+
+    <table name="student">
+        <columns>
+            <column name="sId" type="long"/>
+            <column name="sName" type="string"/>
+            <column name="gender" type="int"/>
+            <column name="classId" type="long"/>
+            <column name="email" type="string"/>
+            <column name="phoneNum" type="string"/>
+            <column name="bId" type="long"/>
+        </columns>
+        <primaryKey>sId</primaryKey>
+ <!--       <secondaryIndexes>
+            <indexMeta name="second_idx" type="btree" strongConsistent="false">
+                <keys>sName</keys>
+                <values>sId</values>
+            </indexMeta>
+        </secondaryIndexes>-->
+    </table>
+
+    <table name="course">
+        <columns>
+            <column name="cId" type="long"/>
+            <column name="cName" type="string"/>
+            <column name="teacher" type="string"/>
+        </columns>
+        <primaryKey>cId</primaryKey>
+    </table>
+
+    <table name="sClass">
+        <columns>
+            <column name="classId" type="long"/>
+            <column name="className" type="string"/>
+            <column name="header" type="string"/>
+        </columns>
+        <primaryKey>classId</primaryKey>
+    </table>
+
+    <table name="studentCourse">
+        <columns>
+            <column name="scId" type="long"/>
+            <column name="cId" type="long"/>
+            <column name="sId" type="long"/>
+            <column name="score" type="double"/>
+            <column name="examDate" type="timestamp"/>
+        </columns>
+        <primaryKey>scId</primaryKey>
+    </table>
+
+    <table name="broadcast">
+        <columns>
+            <column name="id" type="long" />
+            <column name="bname" type="string" />
+            <column name="school" type="string" />
+        </columns>
+        <primaryKey>id</primaryKey>
+    </table>
+
+
+</tables>

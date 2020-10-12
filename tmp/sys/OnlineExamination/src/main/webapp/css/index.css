@@ -1,0 +1,211 @@
+
+body {
+	background: url(../images/body-bg.png) repeat 0 0;
+}
+.head_content{
+	width:940px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.navbar-fixed-top{
+	position:fixed;
+}	
+.content_body {
+	width: 960px;
+	margin: 61px auto 20px auto;
+	border: hidden;		
+}
+.content_left {
+	width:160px;
+	height:570px;
+	margin-right:20px;
+	background-color:#fff;
+}
+.content_right {
+	width:780px;
+	height:570px;
+	background-color:#fff;
+}
+.a_content{
+	height:494px;
+	margin:20px;
+}
+/*-----------------  container > l-extra     ------------------*/
+
+#l-extra {
+	height:30px;
+	line-height:30px;
+	text-align: center;
+	display:block;
+	background-color:#0088CC;
+	position:fixed;
+	bottom:0;
+	width:100%;
+}
+
+#l-extra p {
+	font-size: 12px;
+	color: #fff;
+}
+
+/*------------------------------------------------------------------
+[5. Max Width: 480px]
+*/
+
+@media (max-width: 480px) {
+	#container {
+		width: 100%;
+		margin: 40px auto 0;
+	}
+}
+/*------------------------ ��������������ɫ -----------------------------------*/
+.backcolor {
+		background: #0088CC;
+		position:fixed;
+		width:100%;
+}
+h1{
+	font-family:"STKaiti";
+}
+.head_logo {
+	margin-top:5px;
+	float:left;
+}
+.title {
+	float:left;
+	margin-left:15em;
+}
+
+/*------------------------ ��ӭ �˳� -----------------------------------*/
+.name,.out  {
+	float:left;
+	font-size:13px;
+	line-height:13px;
+	margin-top:20px;
+}
+.name a,.out a {
+	color:#FFF;
+}
+/*-----------------  content_body > content_left > menu ------------*/
+#menu ul {
+	width:160px;
+}
+#menu ul li{
+	width:160px;
+	font-size:14px;
+	line-height:40px;
+	text-align:center;
+}
+#menu ul li span{
+	display:block;
+	color:#333333;
+	background-color:#0088CC;
+	position:relative	
+}
+#menu ul li span {
+	color:#FFF;
+}
+#menu ul li span img{
+	position:absolute;
+	left:26px;
+	top:15px;
+}
+.triangle-down {
+	width:0;
+	height:0;
+	position:absolute;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fff;
+	right:15px;
+	top:20px;
+}
+/****  �˵�mune active����  ****/
+#menu ul li.active{
+	background:url("../images/active.png") no-repeat scroll left center transparent !important;
+}
+#menu ul li.active a{
+	color:#0088CC;
+}
+/****** content_body > content_right  > breadcrumb ****/
+.breadcrumb{
+	background-color:#0088CC;
+	color:#fff;
+	font-size:12px;
+}
+.breadcrumb span{
+	margin:0 10px;
+}
+.breadcrumb a{
+	color:#fff;
+	text-decoration:underline;
+}
+/****** content_body > content_right  > a_content ****/
+.text_content{
+	width:740px;
+	height:400px;
+	padding:20px 0;	
+}
+.text_content ul{
+	width:740px;
+	height:120px;
+	margin-bottom:40px;
+}
+.text_content ul li {
+	float:left;
+	width:124px;
+	text-align:center;
+}
+.text_content div{
+	width:124px;
+	height:80px;
+	line-height:80px;
+	background-color:#0088CC;
+	color:#FFF;
+	margin-bottom:10px;
+	border-radius:5px ;
+	text-align:center;
+}
+.mar_l{
+	margin-left:30px;
+}
+.start{
+	width:80px;
+	height:30px;
+	background-color:#00A500;
+	border:none;
+	border-bottom:2px solid #008B00;
+	border-radius:5px;
+	 -webkit-border-radius: 5px;
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+}	
+/***  content_body > content_right  > change_page  ***/
+.change_page{
+	height:48px;
+}
+.page_sum h4{
+	font-size:16px;
+	color:#3a3a3a;
+	font-weight:normal;
+}
+.page_nav a{
+	float: right;
+	height: 22px;
+	line-height: 22px;
+	margin-left: 8px;
+	color:#3a3a3a;
+	font-size:16px;
+	border: 1px solid #CBCBCB;
+	padding:5px 8px;
+}
+#currentPage,#pageNumShown{
+padding:0 5px;
+font-size:14px;
+font-weight:bold;
+}
+
+
+
+

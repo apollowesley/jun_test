@@ -1,0 +1,257 @@
+#macro ( property $name $type )
+    private $type $name;
+    private boolean isset_${name};
+#end
+#macro ( access $name $type )
+    public #javatype(${type}) get#ucf($name)() {
+        return this.$name;
+    }
+
+    public void set#ucf($name)(#javatype(${type}) ${name}) {
+        this.${name} = ${name};
+        this.isset_${name} = true;
+    }
+
+    public boolean isEmpty#ucf($name)() {
+#if (${type} == "string")
+        return this.${name} == null || this.${name}.length() == 0;
+#else
+        return this.${name} == null;
+#end
+    }
+#end
+#macro ( lower $value )${value.toLowerCase()}#end
+#macro ( upper $value )${value.toUpperCase()}#end
+#macro ( lcf $name )${stringUtils.toLowerCaseFirst($name)}#end
+#macro ( ucf $name )${stringUtils.toUpperCaseFirst($name)}#end
+#macro ( lucf $value )${stringUtils.toUpperCaseFirst(${value.toLowerCase()})}#end
+#macro ( javatype $type )${stringUtils.getJavaType($type)}#end
+#############################################################################################
+package com.xbd.ebs.model.po;
+
+import com.xbd.ebs.core.dao.exception.PersistenceException;
+import com.xbd.ebs.core.model.po.BasePo;
+import com.xbd.ebs.core.model.po.SqlAndParameters;
+import com.xbd.ebs.core.model.po.sqlbuilder.builder.DeleteBuilder;
+import com.xbd.ebs.core.model.po.sqlbuilder.builder.InsertBuilder;
+import com.xbd.ebs.core.model.po.sqlbuilder.builder.SelectBuilder;
+import com.xbd.ebs.core.model.po.sqlbuilder.builder.UpdateBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Map;
+
+public class #lucf(${table.name}) extends BasePo {
+    public static final RowMapper<#lucf(${table.name})> ROW_MAPPER = new BeanPropertyRowMapper<>(#lucf(${table.name}).class);
+
+## 主键
+    // 主键
+    private #javatype(${table.primaryKeyColumn.type}) ${table.primaryKeyColumn.name} = null;
+    private boolean isset_${table.primaryKeyColumn.name} = false;
+
+## 属性
+#foreach ($property in $table.properties)
+    #if (${stringUtils.isNotEmpty(${property.comment})})
+    // ${property.comment}
+    #end
+private #javatype($property.type) ${property.name} = null;
+    private boolean isset_${property.name} = false;
+#end
+
+    public #lucf(${table.name})() {
+    }
+
+    public #lucf(${table.name})(#javatype(${table.primaryKeyColumn.type}) ${table.primaryKeyColumn.name}) {
+        this.set#ucf(${table.primaryKeyColumn.name})(${table.primaryKeyColumn.name});
+    }
+
+#access(${table.primaryKeyColumn.name} ${table.primaryKeyColumn.type})
+
+##属性setter getter isEmpty
+#foreach ($property in $table.properties)
+#access(${property.name} ${property.type})
+
+#end
+
+    /**
+     * 获取表名
+     */
+    @Override
+    public String getTableName_() {
+        return "${table.name}";
+    }
+
+    /**
+     * 获取主键名称
+     */
+    @Override
+    public String getPkName_() {
+        return "${table.primaryKeyColumn.name}";
+    }
+
+    /**
+     * 获取主键值
+     */
+    @Override
+    public Object getPkValue_() {
+        return this.${table.primaryKeyColumn.name};
+    }
+
+    /**
+     * 设置主键值
+     */
+    @Override
+    public void setPkValue(Object value) {
+        this.set#ucf(${table.primaryKeyColumn.name})((#javatype(${table.primaryKeyColumn.type})) value);
+    }
+
+    /**
+     * 获取插入语句和参数
+     */
+    @Override
+    public SqlAndParameters<Map<String, Object>> getInsertSql_() {
+        InsertBuilder ib = new InsertBuilder(this.getTableName_());
+        ib.set("${table.primaryKeyColumn.name}", this.${table.primaryKeyColumn.name});
+#foreach ($property in ${table.properties})
+        ib.set("${property.name}", this.${property.name}, this.isset_${property.name});
+#end
+        return ib.genMapSql();
+    }
+
+    /**
+     * 获取更新语句和参数
+     */
+    @Override
+    public SqlAndParameters<Map<String, Object>> getUpdateSql_() {
+        UpdateBuilder ub = new UpdateBuilder(this.getTableName_());
+#foreach ($property in ${table.properties})
+        ub.set("${property.name}", this.${property.name}, this.isset_${property.name});
+#end
+        ub.where(this.getPkName_(), this.getPkValue_());
+        return ub.genMapSql();
+    }
+
+    /**
+     * 获取更新语句和参数
+     */
+    @Override
+    public SqlAndParameters<Map<String, Object>> getUpdateSql_(String where, Map<String, Object> parameters) {
+        UpdateBuilder ub = new UpdateBuilder(this.getTableName_());
+#foreach ($property in ${table.properties})
+        ub.set("${property.name}", this.${property.name}, this.isset_${property.name});
+#end
+
+        return ub.genMapSql(where, parameters);
+    }
+
+    /**
+     * 获取更新语句和参数
+     */
+    @Override
+    public SqlAndParameters<Object[]> getUpdateSql_(String where, Object[] parameters) {
+        UpdateBuilder ub = new UpdateBuilder(this.getTableName_());
+#foreach ($property in ${table.properties})
+        ub.set("${property.name}", this.${property.name}, this.isset_${property.name});
+#end
+
+        return ub.genArraySql(where, parameters);
+    }
+
+    /**
+     * 获取删除语句和参数
+     */
+    @Override
+    public SqlAndParameters<Map<String, Object>> getDeleteSql_() {
+        DeleteBuilder db = new DeleteBuilder(this.getTableName_());
+        db.where(this.getPkName_(), this.getPkValue_());
+        return db.genMapSql();
+    }
+
+    /**
+     * 获取删除语句和参数
+     */
+    @Override
+    public SqlAndParameters<Map<String, Object>> getDeleteSql_(String where, Map<String, Object> parameters) {
+        DeleteBuilder db = new DeleteBuilder(this.getTableName_());
+        return db.genMapSql(where, parameters);
+    }
+
+    /**
+     * 获取删除语句和参数
+     */
+    @Override
+    public SqlAndParameters<Object[]> getDeleteSql_(String where, Object[] parameters) {
+        DeleteBuilder db = new DeleteBuilder(this.getTableName_());
+        return db.genArraySql(where, parameters);
+    }
+
+    /**
+     * 获取单行查询语句和参数
+     */
+    @Override
+    public SqlAndParameters<Map<String, Object>> getSingleSql_() {
+        SelectBuilder sb = new SelectBuilder(this.getTableName_());
+        sb.where(this.getPkName_(), this.getPkValue_());
+        return sb.genMapSql();
+    }
+
+#set($fields="${table.primaryKeyColumn.name}")
+#foreach ($property in $table.properties)
+  #set($fields = $fields.concat(", ").concat(${property.name}))
+#end
+
+    /**
+     * 获取查询语句和参数
+     */
+    @Override
+    public SqlAndParameters<Map<String, Object>> getSelectSql_(String where, Map<String, Object> parameters) {
+        return new SqlAndParameters<>("select $fields from " + this.getTableName_() + " " + where, parameters);
+    }
+
+    /**
+     * 获取查询语句和参数
+     */
+    @Override
+    public SqlAndParameters<Object[]> getSelectSql_(String where, Object[] parameters) {
+        return new SqlAndParameters<>("select $fields from " + this.getTableName_() + " " + where, parameters);
+    }
+
+    /**
+     * 重写 toString() 方法
+     */
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("${table.primaryKeyColumn.name}", this.${table.primaryKeyColumn.name})
+#foreach ($property in $table.properties)
+                .append("${property.name}", this.${property.name})
+#end
+                .toString();
+    }
+
+    /**
+     * 克隆
+     */
+    @Override
+    public #lucf($table.name) clone() {
+        try {
+            #lucf($table.name) #lower($table.name) = (#lucf(${table.name})) super.clone();
+            //主键
+            if (this.isset_${table.primaryKeyColumn.name}) {
+                #lower($table.name).set#ucf(${table.primaryKeyColumn.name})(this.get#ucf(${table.primaryKeyColumn.name})());
+            }
+            //普通属性
+#foreach ($property in $table.properties)
+            if (this.isset_${property.name}) {
+                #lower($table.name).set#ucf($property.name)(this.get#ucf($property.name)());
+            }
+#end
+            return #lower($table.name);
+        } catch (Exception e) {
+            throw new PersistenceException(e);
+        }
+    }
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tienon.mapper.LeaveMapper">
+
+	<!-- <resultMap type="com.tienon.entity.User" id="listtype"> <id column="id" 
+		property="id"/> <result column="data" property="username"/> </resultMap> -->
+
+	<!-- 注意增删改的标签,使用select标签可以操作数据库,但是没有返回值;传参数时,使用序列传参,名称匹配传参失败 -->
+	<insert id="regist" parameterType="java.lang.String">
+		insert into
+		user(username,password) value(#{0},#{1});
+	</insert>
+
+	<select id="login" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select count(*) from user where username=#{0} and
+		password=#{1};
+	</select>
+	<!-- 注意增删改的标签,使用select标签可以操作数据库,但是没有返回值;传参数时,使用序列传参,名称匹配传参失败 -->
+	<!-- <select id="selectAll" resultMap="listtype"> select * from (select 
+		* from echarts order by id desc limit 30) e1 order by id ; </select> -->
+
+	<insert id="leave" parameterType="java.lang.String">
+		insert into
+		message(uid,username,topic,content) value((select id from user where
+		username=#{0}),#{0},#{1},#{2});
+	</insert>
+
+	<select id="check" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select count(*) from user where username=#{0};
+	</select>
+
+	<resultMap type="com.tienon.pojo.Message" id="listtype">
+		<id column="id" property="id" />
+		<result column="uid" property="uid" />
+		<result column="username" property="username" />
+		<result column="topic" property="topic" />
+		<result column="content" property="content" />
+	</resultMap>
+
+	<!-- <select id="selectAll" resultMap="listtype"> select * from (select 
+		* from echarts order by id desc limit 30) e1 order by id ; </select> -->
+
+	<select id="queryAll" parameterType="java.lang.Integer"
+		resultMap="listtype">
+		select * from message limit #{0},10;
+	</select>
+
+	<select id="queryCountAll" resultType="java.lang.Integer">
+		select count(*) from message ;
+	</select>
+	
+	<insert id="copy" parameterType="java.lang.String">
+		insert into message_del(uid,username,topic,content) select uid,username,topic,content from message where id=#{0};
+	</insert>
+	
+	<delete id="del">
+		delete from message where id=#{0};
+	</delete>
+
+</mapper> 

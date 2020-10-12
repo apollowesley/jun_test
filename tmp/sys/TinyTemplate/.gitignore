@@ -1,0 +1,15 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/org.tinygroup.templateweb/*.iml
+gen
+/org.tinygroup.templateengine/org.tinygroup.compiler.iml
+/org.tinygroup.templateengine/org.tinygroup.template.iml
+/org.tinygroup.templateengine/org.tinygroup.templateengine.iml
+/org.tinygroup.templateengine/org.tinygroup.webservice.iml
+/org.tinygroup.templateengine/.classpath
+/org.tinygroup.templateengine/.project
+/org.tinygroup.templateengine/org.tinygroup.codegen.iml

@@ -1,0 +1,206 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.konghao.user</groupId>
+  <artifactId>user-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <modules>
+  	<module>../user-core</module>
+  	<module>../user-dao</module>
+  	<module>../user-log</module>
+  	<module>../user-service</module>
+  </modules>
+  
+  <url>http://maven.apache.org</url>
+  
+  <distributionManagement>
+  
+  	<snapshotRepository>
+  		<id>user-snapshots</id>
+  		<name>User Project SNAPSHOTS</name>
+  		<url>http://192.168.0.199:8081/nexus/content/repositories/MyUserReposSnapshots/</url>
+  	</snapshotRepository>
+  	
+  	<repository>
+  		<id>user-releases</id>
+  		<name>User Project Release</name>
+  		<url>http://192.168.0.199:8081/nexus/content/repositories/MyUserReposRelease/</url>
+  	</repository>
+  	
+  </distributionManagement>
+  
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>4.10</junit.version>
+    <mysql.driver>com.mysql.jdbc.Driver</mysql.driver>
+    <mysql.url>jdbc:mysql://localhost:3306/mysql</mysql.url>
+    <mysql.username>root</mysql.username>
+    <mysql.password>123456</mysql.password>
+  </properties>
+  
+  
+  <dependencyManagement>
+  	<dependencies>
+	  	<dependency>
+	  		<groupId>junit</groupId>
+	  		<artifactId>junit</artifactId>
+	  		<version>${junit.version}</version>
+	  		<scope>test</scope>
+	  	</dependency>
+	  
+	    <dependency>
+	    	<groupId>${project.groupId}</groupId>
+	    	<artifactId>user-core</artifactId>
+	    	<version>${project.version}</version>
+	    </dependency>
+	    
+	    <dependency>
+	    	<groupId>${project.groupId}</groupId>
+	    	<artifactId>user-dao</artifactId>
+	    	<version>${project.version}</version>
+	    	<type>jar</type>
+	    	<scope>compile</scope>
+	    </dependency>
+	    
+	    <dependency>
+	    	<groupId>${project.groupId}</groupId>
+	    	<artifactId>user-log</artifactId>
+	    	<version>${project.version}</version>
+	    	<type>jar</type>
+	    	<scope>compile</scope>
+	    	<exclusions>
+	    		<exclusion>
+	    			<groupId>log4j</groupId>
+	    			<artifactId>log4j</artifactId>
+	    		</exclusion>
+	    	</exclusions>
+    	</dependency>
+    
+	     <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.6.10.Final</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.18</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.ow2.orchestra.eclipse.birt</groupId>
+			<artifactId>org.ow2.orchestra.eclipse.birt.chart.engine</artifactId>
+			<version>3.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>maven</groupId>
+			<artifactId>maven-abbot-plugin</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mockobjects</groupId>
+			<artifactId>alt-jdk1.3</artifactId>
+			<version>0.07</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-web</artifactId>
+		  <version>3.1.1.RELEASE</version>
+		</dependency>
+		            
+		            
+		
+  	</dependencies>
+  </dependencyManagement>
+  
+  <build>
+  	<pluginManagement>
+  		<plugins>
+  			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+	        	<artifactId>maven-source-plugin</artifactId>
+	       	    <version>2.1.2</version>
+	       	    <executions>
+	       	    	<execution>
+	       	    		<phase>package</phase>
+	       	    		<goals><goal>jar-no-fork</goal></goals>
+	       	    	</execution>
+	       	    </executions>
+  			</plugin>
+  			
+  			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-rar-plugin</artifactId>
+        		<version>2.2</version>
+        		<executions>
+        			<execution>
+        				<phase>package</phase>
+        				<goals><goal>rar</goal></goals>
+        			</execution>
+        		</executions>
+  			</plugin>
+  			
+  			<plugin>
+  				<groupId>org.codehaus.mojo</groupId>
+        		<artifactId>sql-maven-plugin</artifactId>
+       			<version>1.5</version>
+       			<dependencies>
+       				<dependency>
+       					<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.18</version>
+       				</dependency>
+       			</dependencies>
+       			<configuration>
+       				  <driver>${mysql.driver}</driver>
+			          <url>${mysql.url}</url>
+			          <username>${mysql.username}</username>
+			          <password>${mysql.password}</password>
+			          <sqlCommand>
+			          	create database IF NOT EXISTS maven_test
+			          </sqlCommand>
+       			</configuration>
+       			
+       			<executions>
+       				<execution>
+       					<phase>package</phase>
+       					<goals>
+       						<goal>execute</goal>
+       					</goals>
+       				</execution>
+       			</executions>
+  			</plugin>
+  		</plugins>
+  	</pluginManagement>
+  </build>
+</project>

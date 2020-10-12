@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.framework.model.mapper.AccountRolesMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.framework.model.pojo.AccountRoles">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="account_id" jdbcType="BIGINT" property="accountId" />
+    <id column="role_id" jdbcType="BIGINT" property="roleId" />
+  </resultMap>
+  <insert id="insertOrUpdate" parameterType="cn.gson.framework.model.pojo.AccountRoles">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_account_roles
+    (account_id, role_id)
+    values
+    (#{accountId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT})
+    on duplicate key update 
+    account_id = #{accountId,jdbcType=BIGINT}, 
+    role_id = #{roleId,jdbcType=BIGINT}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="cn.gson.framework.model.pojo.AccountRoles">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_account_roles
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

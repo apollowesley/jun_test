@@ -1,0 +1,1 @@
+sharding-jdbc-mybatis-plus-spring-boot-starter 请移步 https://gitee.com/dianyun/sharding-jdbc-mybatis-plus-spring-boot-starter

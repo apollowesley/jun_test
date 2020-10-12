@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<project name="modelGenerator" default="newpo-mysql" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+	<!-- 参数 -->
+	<property name="excludeTables" value="" />
+	<property name ="build.lib.dir" location ="./lib" />
+    <property name="project.src.encoding" value="UTF-8"/>
+	<property name="packageName" value="com/xbd/ebs/model/" />
+	<property name="hbmPath" value="/generate/hbm/" />
+	<property name="poPath" value="/generate/src/" />
+	<property name="toPath" value="/generate/src-to/" />
+
+    <path id="maven-ant-tasks.classpath" path="lib/maven-ant-tasks-2.1.3.jar" />
+    <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" classpathref="maven-ant-tasks.classpath" />
+    <artifact:pom id="maven.project" file="pom.xml"/>
+    <artifact:dependencies filesetId="deps.fileset.compile" useScope="compile">
+        <localRepository path="E:\app\maven\repository" />
+        <pom refid="maven.project" />
+    </artifact:dependencies>
+
+    <path id="compile.classpath">
+        <fileset dir="${build.lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init-lib">
+        <copy todir="${build.lib.dir}">
+            <fileset refid="deps.fileset.compile"></fileset>
+            <mapper type="flatten"></mapper>
+        </copy>
+    </target>
+
+	<!-- Set up the class path for compilation and execution -->
+	<path id="project.classpath">
+		<!-- Include our own classes, of course -->
+		<pathelement path="target/classes" />
+		<!-- Include jars in the project library directory -->
+		<fileset dir="${build.lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<!-- Create our runtime subdirectories and copy resources into them -->
+	<target name="prepare" depends="init-lib" description="Sets up build structures">
+		<delete dir="generate" />
+		<mkdir dir="generate/hbm" />
+		<mkdir dir="generate/src" />
+		<mkdir dir="generate/src-to" />
+		<mkdir dir="generate/classes" />
+		<mkdir dir="generate/classes-to" />
+		<mkdir dir="generate/dest" />
+	</target>
+
+
+
+	<!-- Generate the java code for all mapping files in our source tree -->
+	<target name="newpo-oracle" depends="prepare" description="Generate Java source from the O/R mapping files">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@193.193.193.157:1521/itcdb" />
+		<!-- property name="url" value="jdbc:oracle:thin:@localhost:1521/orcl"> -->
+		<property name="username" value="ebs" />
+		<property name="password" value="ebs" />
+
+
+		<!-- Teach Ant how to use Hibernate's code generation tool -->
+		<taskdef name="GenHbm" classname="com.xbd.generator.ant.HbmGeneratorTask" classpathref="project.classpath" />
+		<!--<taskdef name="Hbm2Po" classname="com.xbd.generate.ant.Hbm2PoTask" classpathref="project.classpath" />
+		<taskdef name="Hbm2To" classname="com.xbd.generate.ant.Hbm2ToTask" classpathref="project.classpath" />-->
+		<GenHbm driverClassName="${driverClassName}" url="${url}" username="${username}" password="${password}" excludetables="${excludeTables}" dest_hbm="${hbmPath}" />
+		<!--<Hbm2Po packageName="${packageName}" dest="${poPath}" source="${hbmPath}" />
+		<Hbm2To packageName="${packageName}" dest="${toPath}" source="${hbmPath}" />-->
+
+		<javac srcdir="./${poPath}" destdir="generate/classes" debug="on" optimize="off" deprecation="on" target="1.7" source="1.7">
+			<compilerarg value="-Xlint:unchecked" />
+			<compilerarg line="-encoding UTF-8 " />
+			<classpath refid="project.classpath" />
+		</javac>
+		<jar basedir="generate/classes" destfile="generate/dest/com.xbd.eps-po-1.0.jar" />
+		
+		<javac srcdir="./${toPath}" destdir="generate/classes-to" debug="on" optimize="off" deprecation="on" target="1.7" source="1.7">
+			<compilerarg value="-Xlint:unchecked" />
+			<compilerarg line="-encoding UTF-8 " />
+			<classpath refid="project.classpath" />
+		</javac>
+		<jar basedir="generate/classes-to" destfile="generate/dest/com.xbd.eps-to-1.0.jar" />
+
+	</target>
+
+	<!-- Generate the java code for all mapping files in our source tree -->
+	<target name="newpo-mysql" depends="prepare" description="Generate Java source from the O/R mapping files">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/ebs?useUnicode=true&amp;characterEncoding=UTF8" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+
+		<!-- Teach Ant how to use Hibernate's code generation tool -->
+		<taskdef name="GenHbm" classname="com.xbd.generator.ant.HbmGeneratorTask" classpathref="project.classpath" />
+		<!--<taskdef name="Hbm2Po" classname="com.xbd.generate.ant.Hbm2PoTask" classpathref="project.classpath" />
+		<taskdef name="Hbm2To" classname="com.xbd.generate.ant.Hbm2ToTask" classpathref="project.classpath" />-->
+		<GenHbm driverClassName="${driverClassName}" url="${url}" username="${username}" password="${password}" excludetables="${excludeTables}" dest_hbm="${hbmPath}" packageName="${packageName}" dest_src="${poPath}" source="${hbmPath}" />
+		<!--<Hbm2Po packageName="${packageName}" dest="${poPath}" source="${hbmPath}" />
+		<Hbm2To packageName="${packageName}" dest="${toPath}" source="${hbmPath}" />-->
+
+		<javac srcdir="./${poPath}" destdir="generate/classes" debug="on" optimize="off" deprecation="on" target="1.8" source="1.8">
+			<compilerarg value="-Xlint:unchecked" />
+			<compilerarg line="-encoding UTF-8 " />
+			<classpath refid="project.classpath" />
+		</javac>
+		<jar basedir="generate/classes" destfile="generate/dest/com.xbd.eps-po-1.0.jar" />
+		
+		<javac srcdir="./${toPath}" destdir="generate/classes-to" debug="on" optimize="off" deprecation="on" target="1.8" source="1.8">
+			<compilerarg value="-Xlint:unchecked" />
+			<compilerarg line="-encoding UTF-8 " />
+			<classpath refid="project.classpath" />
+		</javac>
+		<jar basedir="generate/classes-to" destfile="generate/dest/com.xbd.eps-to-1.0.jar" />
+
+	</target>
+</project>

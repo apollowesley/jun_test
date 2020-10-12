@@ -1,0 +1,19 @@
+package com.hibernate.voDao;
+
+import org.hibernate.Session;
+
+import com.hibernate.sessionfactory.HibernateSessionFactory;
+
+/**
+ * Data access object (DAO) for domain model
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+public class BaseHibernateDAO implements IBaseHibernateDAO {
+
+	@Override
+	public Session getSession() {
+		return HibernateSessionFactory.getSession();
+	}
+
+}

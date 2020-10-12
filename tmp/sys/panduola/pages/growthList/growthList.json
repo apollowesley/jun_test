@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "我获得的成长值",
+    "backgroundColor": "#FFFFFF",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
+}

@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>maven_two</artifactId>
+  <packaging>jar</packaging>
+
+  <name>maven_two</name>
+  
+  <parent>
+  	<groupId>com.xieke.maven</groupId>
+  	<artifactId>maven_parent</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<relativePath>../maven_parent/pom.xml</relativePath>
+  </parent>
+
+  <dependencies>
+  	<!-- 引入maven_one-0.0.1-SNAPSHOT.jar 注：如果maven_one中junit4的scope=compile，下面就不用引入junit4 jar，原因：依赖的传递性 -->
+    <dependency> 
+		 <groupId>com.xieke.maven</groupId>
+		 <artifactId>maven_one</artifactId>
+		 <version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	
+	<dependency> 
+	  <groupId>junit</groupId> 
+	  <artifactId>junit</artifactId> 
+	  <scope>test</scope>
+	</dependency>
+  </dependencies>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-source-plugin</artifactId>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+  		</plugin>
+  	</plugins>
+  </build>
+</project>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  日志文件存放路径默认情况下与项目部署目录同级  -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.out</target>
+    <encoder>
+      <pattern>[%level][%date{ISO8601}][%logger] - %msg %rootException %n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.springframework" level="WARN"/>
+  <logger name="jdbc.connection" level="OFF"/>
+  <logger name="jdbc.resultset" level="OFF"/>
+  <logger name="jdbc.audit" level="OFF"/>
+  <logger name="jdbc.sqlonly" level="OFF"/>
+  <logger name="jdbc.resultsettable" level="OFF"/>
+  <logger name="jdbc.sqltiming" level="INFO"/>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+  </root>
+
+</configuration>

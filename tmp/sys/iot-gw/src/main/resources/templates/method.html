@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>iotechn网关文档 方法详情</title>
+    <link href="https://iotechn.oss-cn-hangzhou.aliyuncs.com/open/style/commons.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://iotechn.oss-cn-hangzhou.aliyuncs.com/open/stylesheets/commons.css">
+    <link rel="stylesheet" type="text/css" href="https://iotechn.oss-cn-hangzhou.aliyuncs.com/open/stylesheets/index-news.css">
+    <script src="https://iotechn.oss-cn-hangzhou.aliyuncs.com/open/js/jquery-lastest.js"></script>
+</head><body>
+<div class="open-header clearfix">
+    <div class="pm">
+        <div class="open-header-c1 fl">
+            <!-- logo -->
+            <a href="/"><span class='open-header-icon '></span></a>
+        </div>
+    </div>
+</div>
+<div class="open-nav">
+    <div class="pm">
+        <ul class="openapi-nav">
+            <li class="openapi-nav-apis" type=""><a href="/info/group/${gp}">API</a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    function setLang(lang){
+        $.post("/lang",{lang:lang},function(result){
+            window.location.reload(true);
+        });
+    }
+    var selected="index";
+    var locationPath=window.location.pathname.toLowerCase();
+    if(locationPath.indexOf("apis")>0||locationPath.indexOf("testapi")>0){
+        selected="apis";
+    }else if(locationPath.indexOf("docs")>0){
+        selected="docs";
+    }else if(locationPath.indexOf("enter")>0){
+        selected="enter";
+    }
+    $(".openapi-nav li").removeClass("active");
+    $(".openapi-nav-"+selected).addClass("active");
+</script>  <div class="pm">
+    <nav class="open-breadcrumbs">
+        <a href="#" >API</a>/<a href="/info/group/${gp}">${gp}</a>/${model.name}
+    </nav>
+    <div class="clearfix">
+        <div class="open-grid-c1">
+            <aside class="open-sideber">
+                <ul class="open-sideber-list1">
+                    <li>
+                        <a href="javascript:void(0);" onclick="return false;" class="groupName ">${gp}开放接口</a>
+                        <ul class="open-sideber-list2">
+                            <#list methods as method>
+                                <li data-name="${method.name}">
+                                    <a href="/info/api/${gp}/${method.name}">
+                                        ${method.description}
+                                        <br>${gp}.${method.name}
+                                    </a>
+                                </li>
+                             </#list>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <div class="open-grid-c2">
+            <section class="open-detail">
+                <h1>${model.name}</h1>
+                <section>
+                    <h2>API 描述</h2>
+                    <p>${model.description}</p>
+                </section>
+                <section>
+                    <h2>参数列表</h2>
+                    <section>
+                        <h3>系统级别参数</h3>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>必要性</th>
+                                <th>参数名</th>
+                                <th>类型</th>
+                                <th>描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>必填</td>
+                                <td>_gp</td>
+                                <td><a href="javascript:void(0);">string</a></td>
+                                <td>method,所在分组 ${gp}</td>
+                            </tr>
+
+                            <tr>
+                                <td>必填</td>
+                                <td>_mt</td>
+                                <td><a href="javascript:void(0);">string</a></td>
+                                <td>method,请求的方法名 ${model.name}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h3>应用级别参数</h3>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>必要性</th>
+                                <th>参数名</th>
+                                <th>class类型</th>
+                                <th>方式类型</th>
+                                <th>描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <#list model.parameters as param>
+                                <tr>
+                                    <td>
+                                        <#if param.required>
+                                            必填
+                                        <#else>
+                                            可空
+                                        </#if>
+                                    </td>
+                                    <td>${param.name}</td>
+                                    <td>${param.paramType}</td>
+                                    <td>${param.type}</td>
+                                    <td>${param.description}</td>
+                                </tr>
+                            </#list>
+
+                            </tbody>
+                        </table>
+                    </section>
+                </section>
+                <section>
+                    <h2>返回值</h2>
+                    <section>
+                        <h3>返回类型 </h3>
+                        <p>${model.retType} </p>
+                        <p>注:所有的DO对象都有Long id , Date gmtUpdate , Date gmtCreate 三个属性</p>
+
+                        <#if model.retObj??>
+                            <hr>
+                            <h3>类型定义</h3>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>属性名</th>
+                                    <th>类型</th>
+                                    <th>描述</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <#list model.retObj as field>
+                                        <tr>
+                                            <td>${field.name}</td>
+                                            <td>${field.type}</td>
+                                            <td>暂无描述</td>
+                                        </tr>
+                                    </#list>
+                                </tbody>
+                            </table>
+                        </#if>
+                    </section>
+
+                </section>
+                <section>
+                    <h2>异常返回值</h2>
+                    <section>
+                        <h3>系统级别错误码</h3>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>异常返回值</th>
+                                <th>描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>10002</td>
+                                <td>访问方法不存在</td>
+                            </tr>
+                            <tr>
+                                <td>10004</td>
+                                <td>参数校验失败</td>
+                            </tr>
+                            <tr>
+                                <td>10006</td>
+                                <td>未登录，或权限校验失败</td>
+                            </tr>
+                            <tr>
+                                <td>10005</td>
+                                <td>未知错误</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--<hr>-->
+                        <!--<h3>应用级别错误码</h3>-->
+                        <!--<table>-->
+                            <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<th>异常返回值</th>-->
+                                <!--<th>描述</th>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
+                            <!--<tr>-->
+                                <!--<td>2007016</td>-->
+                                <!--<td>供应链系统维护中，请稍后再试</td>-->
+                            <!--</tr>-->
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    </section>
+                </section>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="open-footer">
+    <ul>
+        <li><a href="#">硬件接入</a>|</li>
+    </ul>
+    <p>备案</p>
+</div>
+<script src="http://open.fengqu.com/js/md5.min.js"></script>
+<script type="text/javascript">
+    var path = location.pathname.split("/");
+    var len = path.length;
+    if(len > 2){
+        var groupElement = $("." + path[len-2]);
+        groupElement.addClass("active");
+        groupElement.parent().parent().find("ul").css("display", "block");
+        $("[data-name='" + decodeURI(path[len-1]) + "']").addClass("active");
+    }
+    $(".groupName").click(function(){
+        if($(this).parent().parent().find("ul").css("display") == "block"){
+            $(this).removeClass('active');
+            $($(this).parent().parent().find("ul")).css("display", "none");
+        }
+        else{
+            $(this).addClass('active');
+            $($(this).parent().parent().find("ul")).css("display", "block");
+        }
+    });
+    function setLang(lang){
+        $.post("/lang",{lang:lang},function(result){
+            window.location.reload(true);
+        });
+    }
+</script></body>
+</html>

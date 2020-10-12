@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sise.school.teach.bussiness.student.dao.SignDao" >
+    <resultMap id="BaseResultMap" type="com.sise.school.teach.bussiness.student.po.SignPO" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="stu_no" property="stuNo" jdbcType="VARCHAR" />
+        <result column="course_no" property="courseNo" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, stu_no, course_no, create_time, update_time
+    </sql>
+
+    <insert id="insert" parameterType="com.sise.school.teach.bussiness.student.po.SignPO" >
+    insert into t_sign ( id, stu_no, course_no,
+     create_time, update_time)
+    values (#{id,jdbcType=INTEGER},#{stuNo,jdbcType=INTEGER}, #{courseNo,jdbcType=VARCHAR},
+     #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+    </insert>
+
+    <select id="selectAllByNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM t_sign
+        WHERE stu_no=#{stuNo}
+    </select>
+
+</mapper>

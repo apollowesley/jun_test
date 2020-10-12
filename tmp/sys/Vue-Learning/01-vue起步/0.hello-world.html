@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <!--vue的开发版本cdn-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <!--vue的生产版本cdn-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <!--离线版本-->
+    <script type="text/javascript" src="../lib/vue-2.6.10.js"></script>
+</head>
+<body>
+<div id="app">
+    {{ message }}<a v-bind:title="message" href="#">鼠标悬停提示</a>
+</div>
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '现在是本地时间： ' + new Date().toLocaleString()
+        }
+    })
+    /*
+    * 这里可能初学者会有问题：问什么日期时间变量会动态变量，为什么界面上的message不会动态显示呢？
+    *  （因为vue有属性缓存，所以时间在当前页面渲染后不会再刷新，除非触发变量update了）
+    * */
+</script>
+</html>

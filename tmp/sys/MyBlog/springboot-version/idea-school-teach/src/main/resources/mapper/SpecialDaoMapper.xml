@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sise.school.teach.bussiness.course.dao.SpecialDao" >
+    <resultMap id="BaseResultMap" type="com.sise.school.teach.bussiness.course.po.SpecialPO" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="special_name" property="specialName" jdbcType="VARCHAR" />
+        <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="TINYINT" />
+        <result column="des" property="des" jdbcType="VARCHAR"/>
+        <result column="visit_count" property="visitCount" jdbcType="INTEGER"/>
+        <result column="imageUrl" property="imageUrl" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, special_name, teacher_name, des,visit_count,imageUrl,status, create_time, update_time
+  </sql>
+    <select id="selectAllInPage" resultMap="BaseResultMap" parameterType="com.sise.school.teach.bussiness.course.po.SpecialPO" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_special
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="specialName != null" >
+               and  special_name=#{specialName}
+            </if>
+            <if test="teacherName != null" >
+               and teacher_name=#{teacherName}
+            </if>
+            <if test="status != null" >
+                and status=#{status}
+            </if>
+        </trim>
+    </select>
+
+    <select id="selectOneById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_special  WHERE
+        id=#{value}
+    </select>
+
+    <insert id="insert" parameterType="com.sise.school.teach.bussiness.course.po.SpecialPO" >
+    insert into t_special (id, special_name, teacher_name,des,imageUrl,
+      status, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{specialName,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR},#{des,jdbcType=VARCHAR},#{imageUrl,jdbcType=VARCHAR},
+      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <select id="selectNewSpecial" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_special  WHERE status=3 ORDER BY create_time DESC LIMIT 5
+    </select>
+
+    <update id="updateVideoVisitCount">
+    UPDATE t_special SET visit_count=visit_count+1
+    WHERE id=#{id}
+  </update>
+
+
+    <update id="updateStatusByName" >
+        UPDATE t_special SET status=#{status}
+        WHERE special_name=#{specialName}
+    </update>
+
+</mapper>

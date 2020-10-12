@@ -1,0 +1,56 @@
+@charset "utf-8";
+.test .icon-dropdown{
+background-image:url(../img/bg.png);
+background-position: 0 -12px;
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	margin-right: 4px;
+	background-position: 0 -12px;
+}
+.test .icon-dropdown2{
+background-image:url(../img/bg.png);
+background-position: 0 -12px;
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	margin-right: 4px;
+	background-position: 0 0px;
+}
+.operate{width:100%;}
+.test{display:inline-block;margin:0;padding:0;width:20px;
+position:absolute;right:17px;top:5px;}
+.test a{margin:0;padding:0;text-decoration: none;color:#08e}
+.test ul{display:none;margin:0;padding:0;width:30px;}
+.test ul li{margin:2 0;padding:0;text-align:left;}
+.test ul li a{text-decoration: none;}
+.test ul li a:hover {
+	color: #ff6600;
+	background-color: #ffffff;
+}
+.test:hover ul{
+	display:block;/*一旦鼠标放到上面它就出现了*/
+	list-style:none;margin:0;padding:0;
+	position:absolute;/*绝对定位，用于精确控制出现方位*/
+	white-space:nowrap;/*不允许提示框里的内容换行*/
+	right: 1px;
+	top: -1px;
+	padding-top: 0px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	padding-right: 0px;
+	border: 1px solid #ccc;
+	background-color: #ffffff;
+	color:#fff;
+	font:500 12px/2em;
+	cursor:text;
+	z-index:999;
+}
+.test:hover .icon-dropdown{
+	background-position: 0 0px;
+}
+.test:hover{
+      /*position:relative;/*设置包含块*/
+    }
+    
+.opbo{float:right;padding-right:8px;}

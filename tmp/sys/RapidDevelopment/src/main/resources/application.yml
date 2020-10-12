@@ -1,0 +1,12 @@
+server:
+  port: 8090
+spring:
+  profiles:
+    #dev代表开发、prod代表生产，下方dev代表具体激活的配置文件
+    active: dev
+
+#日志配置
+logging:
+  level:
+    root: debug
+  config: classpath:log/logback-spring.xml

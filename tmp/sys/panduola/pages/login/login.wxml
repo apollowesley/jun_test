@@ -1,0 +1,6 @@
+<view class="logo">
+    <image src='../../images/logo-1.png'></image>
+</view>
+<!-- <view class='name'>课程助手</view> -->
+<button wx:if="{{canIUse}}" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信一键登录</button>
+<view wx:else class='tips'>请升级微信版本</view>

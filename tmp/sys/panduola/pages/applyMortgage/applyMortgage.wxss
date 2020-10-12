@@ -1,0 +1,106 @@
+.pos-detail, .shop-pic{
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+}
+
+.detail-top, .detail-item{
+  height: 50rpx;
+  line-height: 50rpx;
+  display: flex;
+  margin: 10rpx 0;
+}
+.detail-name{
+  flex: 1;
+  font-size: 28rpx;
+}
+.detail-btn{
+  padding: 0 10rpx;
+  background-color: #006bdb;
+  color: #fff;
+  font-size: 22rpx;
+  text-align: center;
+  border-radius: 5rpx;
+}
+.detail-item{
+  color: #bcc3c9;
+}
+
+.pic-item{
+  display: flex;
+}
+.pic-box{
+  flex: 1;
+  overflow: hidden;
+  margin: 0 10rpx;
+}
+.pic-box image{
+  width: 100%;
+  height: 200rpx;
+}
+
+
+
+
+.detail-top{
+    height: 100rpx;
+    border-bottom: 1px solid #ededed;
+    display: flex;
+}
+.detail-top .detail-name{
+    flex: 1;
+    line-height: 100rpx;
+    font-size: 36rpx;
+}
+.detail-top .detail-btn{
+    padding: 0 20rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    background: rgb(124,173,252);
+    text-align: center;
+    border-radius: 8rpx;
+    margin-top: 25rpx;
+    color: #fff;
+    font-size: 30rpx;
+}
+.detail-btn{
+    display: flex;
+}
+
+
+.detail-item{
+    height: 60rpx;
+    line-height: 60rpx;
+    display: flex;
+    color: rgb(188,195,200);
+}
+.detail-item .detail-name{
+    flex: 1;
+    line-height: 60rpx;
+    color: rgb(188,195,200);
+    display: flex;
+}
+.detail-item .detail-btn{
+    padding:0 20rpx;
+    height:60rpx;
+    line-height:60rpx;
+    background:rgb(124,173,252);
+    text-align:center;
+    border-radius:8rpx;
+    color:#fff;
+    font-size:30rpx;
+}
+
+.icon{
+    width: 30rpx;
+    height: 30rpx;
+    margin-top: 5rpx;
+    margin-right: 15rpx;
+}
+.icon image{
+    width: 100%;
+    height: 100%;
+}
+.txt{
+    flex: 1;
+}

@@ -1,0 +1,94 @@
+@charset "utf-8";
+.test .icon-dropdown{
+background-image:url(../img/bg.png);
+background-position: 0 -12px;
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	margin-right: 4px;
+	background-position: 0 -12px;
+}
+.test .icon-dropdown2{
+background-image:url(../img/bg.png);
+background-position: 0 -12px;
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	margin-right: 4px;
+	background-position: 0 0px;
+}
+.operate{width:100%;}
+.test{display:inline-block;margin:0;padding:0;width:20px;
+position:absolute;right:17px;top:5px;}
+.test a{margin:0;padding:0;text-decoration: none;color:#08e}
+.test ul{display:none;margin:0;padding:0;width:30px;}
+.test ul li{margin:2 0;padding:0;text-align:left;}
+.test ul li a{text-decoration: none;}
+.test ul li a:hover {
+	color: #ff6600;
+	background-color: #ffffff;
+}
+.test:hover ul{
+	display:block;/*一旦鼠标放到上面它就出现了*/
+	list-style:none;margin:0;padding:0;
+	position:absolute;/*绝对定位，用于精确控制出现方位*/
+	white-space:nowrap;/*不允许提示框里的内容换行*/
+	right: 1px;
+	top: -1px;
+	padding-top: 0px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	padding-right: 0px;
+	border: 1px solid #ccc;
+	background-color: #ffffff;
+	color:#fff;
+	font:500 12px/2em;
+	cursor:text;
+	z-index:999;
+}
+.test:hover .icon-dropdown{
+	background-position: 0 0px;
+}
+.test:hover{
+      /*position:relative;/*设置包含块*/
+    }
+    
+.opbo{float:right;padding-right:8px;}
+
+.operate{position:relative;width:100%;}
+
+/*评论模块--开始*/
+.r_rp{padding-left:70px;width:80%;}
+.r_top{color:#999}
+.left{float:left;}
+.inputtxt{width:100%;min-height:50px;margin:auto 3px;overflow:hidden;}
+/*确定按钮--开始*/
+.btn{text-align:right;padding:0;}
+.btn_a{color:#fff;overflow:hidden;vertical-align:middle;border:1px solid #ff9b01;cursor:pointer;display:inline-block; border-radius:2px;background-color:#ffa00a}
+.btn_a:havor{color:#fff;overflow:hidden;vertical-align:middle;border:1px solid #ffce82;cursor:pointer;display:inline-block; border-radius:2px;background-color:transparent}
+.f14{font-size:14px;}
+.btn_30px{height:26px;line-height:26px;padding:0 15px;display:inline-block;}
+/*确定按钮--结束*/
+.insertFun{float:left;}
+.sendList{width:px;height:16px;margin-right:6px;min-width:16px;}
+/*评论模块--结束*/
+/*评论模块下的显示别人的评论--开始*/
+.wb_r_r{padding-left:50px;}
+.author_r{width:32px; height:32px;}
+.user_info_r .p_u_r{ font-weight:bold; color:#000; font-size:12px;}
+.user_info_r .p_t_r{ color:#F90; font-size:12px;}
+.from_r{ color:#333; margin-top:8px; font-size:12px; overflow:hidden; clear:both; margin-top:10px;}
+.r_rp_r{padding-left:70px;width:467px;}
+.inputtxt_r{width:460px;min-height:50px;margin:auto 3px;overflow:hidden;}
+/*评论模块下的显示别人的评论--结束*/
+/*alertbox弹出框的--开始*/
+.alertbox{position:absolute;left:0px;top:0px;border:3px solid #bbb;width:360px;padding:0;margin:0;z-index:2}
+.boxtitle{background-color:#ddd;padding:7px;font-weight:bold; vertical-align:middle;}
+.boxcontent{padding:17px;background-color:#fefefe;}
+.btn{text-align:right;padding:0;}
+.btn_a{color:#fff;overflow:hidden;vertical-align:middle;border:1px solid #ff9b01;cursor:pointer;display:inline-block; border-radius:2px;background-color:#ffa00a}
+.btn_a:havor{color:#fff;overflow:hidden;vertical-align:middle;border:1px solid #ffce82;cursor:pointer;display:inline-block; border-radius:2px;background-color:transparent}
+/*alertbox弹出框的--结束*/
+.f14{font-size:14px;}
+.btn_30px{height:26px;line-height:26px;padding:0 15px;display:inline-block;}
+.boxmask{position:fixed;left:0px;top:0px;height:100%;width:100%;background-color:#eee;display:block;background-attachment:fixed;filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opacity: 0.8;opacity: 0.8;z-index:1}

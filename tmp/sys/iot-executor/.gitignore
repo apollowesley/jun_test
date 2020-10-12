@@ -1,0 +1,5 @@
+/executor-api/target/
+/executor-entity/target/
+/executor-service/target/
+/.idea
+*.iml

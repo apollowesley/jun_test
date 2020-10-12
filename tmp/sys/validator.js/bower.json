@@ -1,0 +1,31 @@
+{
+  "name": "validate-framework",
+  "description": "轻量、强大、无依赖的 JavaScript 验证组件",
+  "main": "dist/Validator.js",
+  "authors": [
+    "LMY"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "validate-framework",
+    "validator",
+    "validator.js",
+    "validation",
+    "validate",
+    "validate.js",
+    "validate-form",
+    "formValidate",
+    "form"
+  ],
+  "homepage": "https://github.com/MinJieLiu/validate-framework",
+  "moduleType": [
+    "umd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

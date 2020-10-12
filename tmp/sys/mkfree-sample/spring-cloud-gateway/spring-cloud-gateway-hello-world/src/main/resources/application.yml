@@ -1,0 +1,15 @@
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+spring.application.name: gateway
+
+server:
+  port: 9000
+  tomcat.uri-encoding: UTF-8
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api
+          uri: http://127.0.0.1:9011 #转发代理服务
+          predicates:
+          - Path=/api/v1/** #以 /api/v1 前缀

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+	<style>
+	body{
+		padding:5px;
+		background-color:transparent;
+	}
+	.row{
+		margin:10px 0px;
+	}
+	.col-xs-12{
+		text-align:center;
+	}
+	.col-xs-12 img{
+		background:#554A1C;
+	}
+	.col-xs-6:hover{
+    	background:#F6F6F6;
+    }
+	</style>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<img src = "../res/category_top.png" class="img-responsive">
+	</div>
+</body>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript" src="../script/DBapi.js"></script>
+<script type="text/javascript" src="../script/zepto.min.js"></script>
+<script type="text/javascript">
+
+
+apiready=function(){
+	openMenu();
+}
+
+function openMenu(){
+
+	var categoryMenu = api.require('actionButton');
+	categoryMenu.open({
+	     items:[{bgColor:'#CCF000',title:'家常菜',image:'widget://res/category_01.png'},
+	        {bgColor:'#6B9FFF',title:'快手菜',image:'widget://res/category_02.png'},
+	        {bgColor:'#00F024',title:'创意菜',image:'widget://res/category_03.png'},
+	        {bgColor:'#F02400',title:'素菜',image:'widget://res/category_04.png'},
+	        {bgColor:'#2400F0',title:'凉菜',image:'widget://res/category_05.png'},
+	        {bgColor:'#F000CC',title:'面食',image:'widget://res/category_06.png'},
+	        {bgColor:'#A31800',title:'粥',image:'widget://res/category_07.png'},
+	        {bgColor:'#0039A3',title:'汤',image:'widget://res/category_08.png'},
+	        {bgColor:'#701100',title:'自制调味料',image:'widget://res/category_09.png'}],
+	    topHeight:api.frameHeight / 2 - 55,
+	    pageControl:{activeColor:'#F29D00',inactiveColor:'#CCCCCC'},
+	    fixedOn:'category'
+	},function(ret,err){
+		openList(ret.index + 1);
+	});
+}
+</script>
+</html>

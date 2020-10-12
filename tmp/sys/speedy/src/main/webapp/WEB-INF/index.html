@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>数据库链接信息设置</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/Alert.js"></script>
+<style>
+    p{text-indent: 2em;margin-top: 10px}
+body{font-size:16px;background: #e1e1e1}
+ul{list-style:none;}
+ul li{width:45%;float:left;margin-left: 10px;margin-top: 10px;}
+ul li span{font-siz:16px;}
+.btns{width: 96%;float: left;}
+.btns .btn{display: flex;margin-left: 120px;}
+hr{width: 100%;float: left}
+</style>
+<body>
+    <p th:text="${message}"></p>
+ <form id="data" name="data" action="javascript:void(0);" method="post">
+ 	<p>请随意配置一个已经存在的数据库或创建一个数据库名为speedy，以便于我们进行初始化</p>
+     <hr/>
+ <ul>
+ 	<li th:each="mapS :${data}">
+        <div class="input-group">
+            <span class="input-group-addon" th:text="${mapS.key}">类型</span>
+            <input type="text" class="form-control" onmouseover="this.title=this.value" name="" th:name="${mapS.key}" value="" id="" th:id="${mapS.key}" th:value="${mapS.value}" />
+        </div>
+    </li>
+ </ul>
+     <hr/>
+     <div class="btns">
+        <button id="submit" class="btn btn-default">现在进行初始化</button>
+     </div>
+ </form>
+ <script type="text/javascript">
+ $(document).ready(function(){
+	 $("#submit").on("click",function(){
+	 		var data=$("#data").serialize();
+	 		 $.ajax({
+	 			url:"/first/updateDataBase",
+	 			data:data,
+	 			dataType:"json",
+	 			type:"post",
+	 			success:function(result){
+	 				if(result.state==1){
+	 					Alert.hint(result.message);
+	 					setTimeout(function(){
+	 						window.location.href="/common/login";
+	 					},2000)
+	 					
+	 				}
+	 			},error:function(){
+	 				console.log("错误")
+	 			}
+	 		}) 
+	 	})
+ })
+ 	
+ </script>
+</body>
+</html>

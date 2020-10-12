@@ -1,0 +1,5 @@
+dependencies {
+    api "${lib.'jobs-spring-boot-starter'}"
+    api "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+
+}

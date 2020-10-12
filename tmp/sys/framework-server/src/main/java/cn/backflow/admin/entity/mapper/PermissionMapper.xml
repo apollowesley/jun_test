@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="Permission">
+
+  <resultMap id="PermissionMap" type="cn.backflow.admin.entity.Permission">
+    <id property="id" column="id"/>
+    <result property="code" column="code"/>
+    <result property="name" column="name"/>
+    <result property="description" column="description"/>
+    <result property="icon" column="icon"/>
+    <result property="parent" column="parent"/>
+    <result property="ancestors" column="ancestors"/>
+    <result property="level" column="level"/>
+    <result property="priority" column="priority"/>
+  </resultMap>
+
+  <!-- 用于select查询公用抽取的列 -->
+  <sql id="Permission.columns">
+    id, code, name, description, icon, parent, ancestors, level, priority
+  </sql>
+
+  <!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_permission (
+      code,
+      name,
+      description,
+      icon,
+      parent,
+      ancestors,
+      level,
+      priority
+    ) VALUES (
+      #{code},
+      #{name},
+      #{description},
+      #{icon},
+      #{parent},
+      #{ancestors},
+      #{level},
+      #{priority}
+    )
+  </insert>
+
+  <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_permission (
+      code,
+      name,
+      description,
+      icon,
+      parent,
+      ancestors,
+      level,
+      priority
+    ) VALUES
+    <foreach collection="list" item="item" separator=",">
+    (
+      #{item.code},
+      #{item.name},
+      #{item.description},
+      #{item.icon},
+      #{item.parent},
+      #{item.ancestors},
+      #{item.level},
+      #{item.priority}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update">
+    UPDATE t_permission SET
+      code = #{code},
+      name = #{name},
+      description = #{description},
+      icon = #{icon},
+      parent = #{parent},
+      ancestors = #{ancestors},
+      level = #{level},
+      priority = #{priority}
+    WHERE
+      id = #{id}
+  </update>
+
+  <update id="updateSelective">
+    UPDATE t_permission SET
+    <if test="code neq null">code = #{code},</if>
+    <if test="name neq null">name = #{name},</if>
+    <if test="description neq null">description = #{description},</if>
+    <if test="icon neq null">icon = #{icon},</if>
+    <if test="parent neq null">parent = #{parent},</if>
+    <if test="ancestors neq null">ancestors = #{ancestors},</if>
+    <if test="level neq null">level = #{level},</if>
+    <if test="priority neq null">priority = #{priority}</if>
+    WHERE
+    id = #{id}
+  </update>
+
+  <update id="updateChildrenAncestors">
+    UPDATE t_permission SET
+      ancestors = CONCAT(#{ancestors}, ',', id),
+      level = #{level} + 1
+    WHERE
+      parent = #{id}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM t_permission WHERE id = #{id}
+  </delete>
+
+  <delete id="deleteBatch">
+    DELETE FROM t_permission WHERE id IN
+    <foreach collection="array" item="id" open="(" close=")" separator=",">#{id}</foreach>
+  </delete>
+
+  <select id="getById" resultMap="PermissionMap">
+    SELECT
+    <include refid="Permission.columns"/>
+    FROM t_permission WHERE id = #{id}
+  </select>
+
+  <select id="findAll" resultMap="PermissionMap">
+    SELECT
+    <include refid="Permission.columns"/>
+    FROM t_permission
+    <include refid="PermissionDynamicWhere"/>
+    <choose>
+      <when test="_sort_ neq null">
+        ORDER BY ${_sort_}
+      </when>
+      <otherwise>
+        ORDER BY priority
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="findSiblings" resultMap="PermissionMap">
+    SELECT
+    <include refid="Permission.columns"/>
+    FROM t_permission
+    WHERE parent = (
+      SELECT parent FROM t_permission WHERE id = #{id}
+    )
+    <if test="excludeCurrent">
+      AND id != #{id}
+    </if>
+    <choose>
+      <when test="_sort_ neq null">
+        ORDER BY ${_sort_}
+      </when>
+      <otherwise>
+        ORDER BY priority
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="findCode" resultType="java.lang.String">
+    SELECT code FROM t_permission
+    <include refid="PermissionDynamicWhere"/>
+  </select>
+
+  <sql id="PermissionDynamicWhere">
+    <where>
+      <if test="code neq null">AND name like CONCAT('%', #{code}, '%')</if>
+      <if test="name neq null">AND title like CONCAT('%', #{name}, '%')</if>
+      <if test="description neq null">AND description like CONCAT('%', #{description}, '%')</if>
+      <if test="parent neq null">
+        <choose>
+          <when test="direct">AND parent = #{parent}</when>
+          <otherwise>AND ancestors LIKE CONCAT((SELECT ancestors FROM t_permission WHERE id = #{parent}), '%')</otherwise>
+        </choose>
+      </if>
+      <if test="level neq null">AND level = #{level}</if>
+      <if test="roleId != null">AND id IN ( SELECT perm_id FROM t_role_permission WHERE role_id = #{roleId} )</if>
+      <if test="userId != null">AND id IN ( SELECT perm_id FROM t_role_permission WHERE role_id IN (
+            SELECT role_id FROM t_user_role WHERE user_id = #{userId}
+          )
+        )
+      </if>
+      <if test="ids != null">
+        AND id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">#{id}</foreach>
+      </if>
+    </where>
+  </sql>
+
+  <select id="pagingCount" resultType="long">
+    SELECT COUNT(id) FROM t_permission
+    <include refid="PermissionDynamicWhere"/>
+  </select>
+
+  <select id="paging" resultMap="PermissionMap">
+    SELECT
+    <include refid="Permission.columns"/>
+    FROM t_permission
+    <include refid="PermissionDynamicWhere"/>
+    <choose>
+      <when test="_sort_ neq null">
+        ORDER BY ${_sort_}
+      </when>
+      <otherwise>
+        ORDER BY priority
+      </otherwise>
+    </choose>
+    <if test="_offset_ neq null">
+      LIMIT ${_offset_}, ${_limit_}
+    </if>
+  </select>
+</mapper>

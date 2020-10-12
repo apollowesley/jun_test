@@ -1,0 +1,357 @@
+    <div id="results" class="results">
+     <div class="result c-result" srcid="www_normal_1428538832" order="1" tpl="www_normal" data-log="{'fm':'','ensrcid':'www_normal','order':'1','mu':'http://www.baidu.com/'}">
+      <div class="c-container">
+       <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=1&amp;vit=osres&amp;tj=www_normal_1_0_10_title&amp;waput=7&amp;waplogo=1&amp;cltj=normal_title&amp;dict=-1&amp;nt=wnor&amp;title=%E7%99%BE%E5%BA%A6%E4%B8%80%E4%B8%8B%2C%E4%BD%A0%E5%B0%B1%E7%9F%A5%E9%81%93&amp;sec=12782&amp;di=fb2720bf8c2fd168&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IEQGG_yxZ_zqb95qshbWxBa"><h3 class="c-title c-gap-top-small"><em>百度</em>一下,你就知道<i class="c-text c-text-public c-gap-left">官网</i></h3></a>
+       <div class="c-row c-abstract c-gap-top-small">
+        <div class="c-span12">
+         <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=1&amp;vit=osres&amp;tj=www_normal_1_0_10_title&amp;waput=7&amp;waplogo=1&amp;cltj=normal_title&amp;dict=-1&amp;nt=wnor&amp;title=%E7%99%BE%E5%BA%A6%E4%B8%80%E4%B8%8B%2C%E4%BD%A0%E5%B0%B1%E7%9F%A5%E9%81%93&amp;sec=12782&amp;di=fb2720bf8c2fd168&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IEQGG_yxZ_zqb95qshbWxBa"><p class="c-line-clamp3 c-color">全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。<em>百度</em>超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果。</p></a>
+         <div class="c-showurl c-line-clamp1">
+          <span>www.baidu.com</span>
+          <span class="koubei-entrance c-gap-left"><a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=1&amp;fm=alop&amp;dict=-1&amp;tj=www_normal_1_0_10_l1&amp;sec=12782&amp;di=f6b8bd2e1b31399d&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IHRmINylRLDivpEmixP4kHREsRCCqAp7FFF_8xm3HhNoPcyf73mNUmAV1mLcVtH9m9miL9OmBhgDwLA2geK" class="koubei-a"><span class="c-gray">6249条评价</span></a></span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="result c-result" srcid="wise_app" new_srcid="2052" order="2" tpl="wise_app" data-log="{'fm':'alas','ensrcid':'wise_app','order':'2','laid':'282775','mu':''}" appid="282775">
+      <div class="c-container">
+       <a href="javascript:void(0)" class="c-blocka wa-wise-app-downhook wa-wise-app-title" data-tj="1@3@百度@title" data-clk="h_l1" data-pkg="com.baidu.searchbox" data-pid="393768490"><h3 class="c-title c-gap-top-small wa-wise-app-js" data-pumark="usm@3,sz@1320_1001,ta@iphone_2_4.1_3_534" data-stdcls="1" data-stddem="3" data-mainpkg="com.baidu.searchbox"><em>手机百度</em>_官方软件免费下载_百度手机助手</h3></a>
+       <style data-merge scoped>.wa-wise-app-info-metabar {-webkit-box-align: center;align-items: center;}.wa-wise-app-info-metabar .star {background: url(//m.baidu.com/static/search/appAla/allstar.png) no-repeat;background-size: 66px 132px;height: 12px;width: 65px;}</style>
+       <a class="wa-wise-app-info-metabar c-row c-blocka wa-wise-app-downhook c-gap-top-small c-gap-bottom-small" href="javascript:void(0)" data-tj="1@3@百度@button" data-clk="a1_l1" data-pkg="com.baidu.searchbox" data-pid="393768490">
+        <div class="c-span2">
+         <img class="c-img c-gap-right-large" src="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;sec=1465137560&amp;di=d60b64dac849005170dd5af65aa98e4c&amp;size=w192&amp;quality=95&amp;src=http%3A%2F%2Fa.hiphotos.bdimg.com%2Fwisegame%2Fpic%2Fitem%2F6f338744ebf81a4c99c2c473d22a6059242da69c.jpg" alt="">
+        </div>
+        <div class="c-span7">
+         <div class="c-abstract c-line-clamp1">
+          手机百度
+          <i class="c-text-box c-text-box-green c-gap-left-small">官方版</i>
+         </div>
+         <div class="star" style="background-position:0px -24px;"></div>
+         <div class="c-gray c-line-clamp1">
+          34.8M&nbsp;&nbsp;|&nbsp;&nbsp;14.8亿下载
+         </div>
+        </div>
+        <div class="c-span3">
+         <button class="c-btn" type="button">下载</button>
+        </div></a>
+       <div class="c-abstract c-line-clamp2 c-gap-top c-gap-bottom-large wa-wise-app-desc">
+        <span class="c-text-info">[应用介绍] </span>
+        <span class="wa-wise-app-desc-text">6亿用户选择的手机搜索客户端 </span>
+       </div>
+       <div class="c-row">
+        <div class="c-span6">
+         <span class="c-color-gray">百度手机助手</span>
+         <span class="c-foot-icon c-foot-icon-16 c-foot-icon-16-aladdin c-gap-left-small"></span>
+        </div>
+        <a class="c-span6 c-moreinfo wa-wise-app-searchhook" href="javascript:void(0)" data-query="百度" data-tj="1@3@百度@more" data-clk="f_l1"><i class="c-icon c-gap-left-small"></i></a>
+       </div>
+      </div>
+     </div>
+     <div class="result c-result" srcid="11028" new_srcid="11028" order="3" tpl="sigma_celebrity_rela" data-log="{'fm':'alop','ensrcid':'3OK','order':'3','waplogo':1,'mu':''}">
+      <div class="c-container">
+       <div class="c-blocka">
+        <h3 class="c-title c-gap-top-small"> <em>百度</em>_相关财报</h3>
+       </div>
+       <style data-merge>.wa-sigma-celebrity-rela-scroller{white-space:nowrap;}.wa-sigma-celebrity-rela-entity{display:inline-block;vertical-align:top;}.wa-sigma-celebrity-rela-entity:first-child{padding-left:0px;}.wa-sigma-celebrity-rela-name{color:#00a; text-align:center;line-height: 22px; white-space:pre-line;word-break: normal; word-wrap: normal;}.wa-sigma-celebrity-rela-reason {text-align: center; white-space:pre-line; word-break: normal; word-wrap: normal;}.wa-sigma-celebrity-rela-comment {position:relative; height: 21px;margin:0 auto; width: 60px;}.wa-sigma-celebrity-rela-comment .c-icon {display: inline-block; width: 12px; text-align: center;}.wa-sigma-celebrity-rela-comment-graystar {position: absolute; color: #eee;}.wa-sigma-celebrity-rela-comment-redstar {position: absolute; color: #ff0000; white-space: nowrap;overflow: hidden;}.wa-sigma-celebrity-rela-nowrap {white-space:nowrap;}@media screen and (max-width: 335px) {.wa-sigma-celebrity-rela-comment {width: 50px;}.wa-sigma-celebrity-rela-comment .c-icon {width: 10px;}}</style>
+       <div class="c-row-tile c-scroll-wrapper wa-sigma-cere-wrapper-3 c-gap-top-small">
+        <div class="wa-sigma-celebrity-rela-scroller c-scroll-parent-gap" style="width:            261.16352201258%">
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l1&amp;sec=12782&amp;di=6951d692d411e38f&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_h6sW-RamjbcPW2dhO0KBs1fQYZQhOUHUE0l0qbaKAvdt2tRMEzAGEK8rS6otFbu1_ibMYf74qDdH37nPmQYoTv15aCm7bnB6wFSX_cDtaZvODphCx7STOfNwfhTkPVbDcaU8M7u_Te7uVCQMSDmS9j_AK7FPNRYVyFNykRW_vrSde86wDT1pVYmCZnOi5Q5HaYhO_HI8VNWhm3zfozIPqFIRv3I-yBK1UWqgXeCQskDLf0vtgCKVpmh89UYpgH" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s" style="background:none">
+            <img src="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=8ce98a9d5ec45336c72990439eb28c02&amp;src=http%3A%2F%2Ft10.baidu.com%2Fit%2Fu%3D4218381543%2C290485026%26fm%3D58">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">亚马逊财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l2&amp;sec=12782&amp;di=84774991f75b8334&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_R6sW9naWjbcMr6dhO0KBI1fQZhDhOUHXk0l0qbaK1vdt1DQMEzAFpd8rS6ottbu10M71Yf74qIdH3-aqqQYzWjDnDD69yvQ82YX8vcXayMtQL2by-8STPxAtOqJJC_riMEU8dvabvd7eVEONGFmHdzK2nuVNRM2V7YNStPHfOqXNqOkxLXZp-EmCUn3XV4-XDmhO_IIGpKXcHB7PhEF1_EExXDFTfqOqtSqbTbCQcl" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s" style="background:none">
+            <img src="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=a30a1702a586352130e9ce01e46fbec5&amp;src=http%3A%2F%2Ft12.baidu.com%2Fit%2Fu%3D3980222426%2C241054131%26fm%3D58">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">苹果财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l3&amp;sec=12782&amp;di=56ea5b1d61c812e1&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_l6sW-Rb7jbcPXtdhO0KBI1fQZhQxOUHXlrl0qbaK1vdt1DQMEzAFpd8rS6ottbu10M71Yf74qIdH3-aqqQYzWjDnDD69yvQ82YX8vcXayMtQL2by-8STPxAtOqJJC_riMEU8dvabvd7eVEONGFmHhzK2nuVNRM2V7YNStPHfOqXNqOkxLXZp-EmCUn3XV4-XDmhO_IIGpKXcHB7PhEF1_EExXDFTfqOqtSqbTbCQcl" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s" style="background:none">
+            <img src="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=80c161c7eb3a9d076df129d61817e378&amp;src=http%3A%2F%2Ft11.baidu.com%2Fit%2Fu%3D4264180297%2C269224947%26fm%3D58">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">网易财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l4&amp;sec=12782&amp;di=f650010f8098e8d3&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSjsEMe49rfDAq7XiQb3nqhaO_CBYMzg26OQPnHmVqp0TPyKkf-22oRtByNH-cfe0ciRgnbRaF6gBskRbTwyj8cND0FV7m4VqFnlnaB6wFX7LvZPfC-MmmrXkbGJjrBs_qGlj0vXE6EDNcbsmekrFZOeWGnHxmMdqlEMFNYFeFLisKX_bhXNvg7tTJZSJYryU5An6Rd5z-6uSZMU-B_Ri" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s" style="background:none">
+            <img src="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=e8c34755fe8591f7d9ecb6d7aefe5a69&amp;src=http%3A%2F%2Ft10.baidu.com%2Fit%2Fu%3D3457612416%2C3699365841%26fm%3D58">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">facebook财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l5&amp;sec=12782&amp;di=f49dafbd0485f2d2&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_p6sW9m8WjbcMrsdhO0KBI1fQYWPhOUHUE2l0qbaK1vdt1DQMEzAFpd8rS6ottbu10M71Yf74qIdH3-aqqQYzWjDnDD69yvQ82YX8vcXayMtQL2by-8STPxAtOqJJC_riMEU8dvabvd7eVEONGFmHtzK2nuVNRM2V7YNStPHfOqXNqOkxLXZp-EmCUn3XV4-XDmhO_IIGpKXcHB7PhEF1_EExXDFTfqOqtSqbTbCQcl" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s" style="background:none">
+            <img src="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=c0e6f7ec5a6560596a2cbe5a3f52e0fa&amp;src=http%3A%2F%2Ft11.baidu.com%2Fit%2Fu%3D4256820346%2C347854825%26fm%3D58">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">新浪财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l6&amp;sec=12782&amp;di=eb436f7a9df088ba&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_N6sW9m97jbcMq3dhO0KBs1fQZgPBOUHXo0l0qbaKwvdt1DQcEzAFdf8rS6ot-bu1_ibcYf747JdH37nPOQYoSJZkaCm7bkB6wCPyWcDef292aoqEoeDZbqQQKhHzHQhF5GWHU8u_SwjrkZ_x4M7zI2_AbvZu-KYFyDLz9PWPebCgTvlqHWZpZFmiApA8RR-8uxwPSDN8-BWhj3jKJkF4TzIRvBIIG3LB6ZvQORH01lHrHGqP6-OjAih55ZYpwGMvavNoLmGSBIIN_GrBii" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s">
+            <img data-imagedelaysrc="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=44cffdb730e72d404791ad6bbbc51033&amp;src=http%3A%2F%2Ft10.baidu.com%2Fit%2Fu%3D3497216307%2C3903290321%26fm%3D58" data-imageinvisible="1">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">阿里巴巴财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l7&amp;sec=12782&amp;di=729ee59cc1123469&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_p6sW9m77jbcPW0dhO0KBE1fQZgCROUHXlsl0qbaK1vdt1DQMEzAFpd8rS6ottbu10M71Yf74qIdH3-aqqQYzWjDnDD69yvQ82YX8vcXayMtQL2by-8STPxAtOqJJC_riMEU8dvabvd7eVEONGFmHxzK2nuVNRM2V7YNStPHfOqXNqOkxLXZp-EmCUn3XV4-XDmhO_IIGpKXcHB7PhEF1_EExXDFTfqOqtSqbTbCQcl" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s">
+            <img data-imagedelaysrc="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=d95970e99fc32f539ff3dc932a9fe45a&amp;src=http%3A%2F%2Ft12.baidu.com%2Fit%2Fu%3D4017986744%2C152341516%26fm%3D58" data-imageinvisible="1">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">搜狐财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l8&amp;sec=12782&amp;di=df404183003bf2be&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_R6sW9n8mjbcMqBdhO0KBw1fQYZDhOUHUE3l0qbaK1vdt1DQMEzAFpd8rS6ottbu10M71Yf74qIdH3-aqqQYzWjDnDD69yvQ82YX8vcXayMtQL2by-8STPxAtOqJJC_riMEU8dvabvd7eVEONGFmHFzK2nuVNRM2V7YNStPHfOqXNqOkxLXZp-EmCUn3XV4-XDmhO_IIGpKXcHB7PhEF1_EExXDFTfqOqtSqbTbCQcl" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s">
+            <img data-imagedelaysrc="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=feec8ebb08c225ed7cce0adabf8b4b8d&amp;src=http%3A%2F%2Ft11.baidu.com%2Fit%2Fu%3D3712239580%2C3993051246%26fm%3D58" data-imageinvisible="1">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">腾讯财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l9&amp;sec=12782&amp;di=6dbc0dc2a5ca2261&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_R6sW-R77jbcMrvdhO0KBI1fQYZDxOUHXo0l0qbaK1vdt1DQMEzAFpd8rS6ottbu10M71Yf74qIdH3-aqqQYzWjDnDD69yvQ82YX8vcXayMtQL2by-8STPxAtOqJJC_riMEU8dvabvd7eVEONGFmHJzK2nuVNRM2V7YNStPHfOqXNqOkxLXZp-EmCUn3XV4-XDmhO_IIGpKXcHB7PhEF1_EExXDFTfqOqtSqbTbCQcl" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s">
+            <img data-imagedelaysrc="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=407943bacbd03f725f92566c56d23cdc&amp;src=http%3A%2F%2Ft11.baidu.com%2Fit%2Fu%3D4239069817%2C314485162%26fm%3D58" data-imageinvisible="1">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">谷歌财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l10&amp;sec=12782&amp;di=85ee8a2d6e64c068&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_R6sW9n7mjbcPXwdhO0KBI1fQZgOBOUHUBrl0qbaK1vdt1DQMEzAFpd8rS6ottbu10M71Yf74qIdH3-aqqQYzWjDnDD69yvQ82YX8vcXayMtQL2by-8STPxAtOqJJC_riMEU8dvabvd7eVEONGFp8lzK2nuVNRM2V7YNStPHfOqXNqOkxLXZp-EmCUn3XV4-XDmhO_IIGpKXcHB7PhEF1_EExXDFTfqOqtSqbTbCQcl" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s">
+            <img data-imagedelaysrc="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=6f38a611cd07833dcfad82ed1ca408f7&amp;src=http%3A%2F%2Ft12.baidu.com%2Fit%2Fu%3D4098128903%2C199311685%26fm%3D58" data-imageinvisible="1">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">联想财报</p></a>
+         </div>
+         <div class="wa-sigma-celebrity-rela-entity c-scroll-element-gap" style="width:9.0909090909091%">
+          <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=3&amp;fm=alop&amp;tj=3OK_3_0_10_l11&amp;sec=12782&amp;di=e73f0676d0c0d2c8&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiTNCVUB8SxokDyqRLdEddnJ7DL3CvCIYCb9nH0sadGbzLv3mNSzBB3m_N6sW9m9mjbcPS0dhO0KBs1fQZhQhOUHXo0l0qbaK1vdt1DQMEzAFpd8rS6ottbu10M71Yf74qIdH3-aqqQYzWjDnDD69yvQ82YX8vcXayMtQL2by-8STPxAtOqJJC_riMEU8dvabvd7eVEONGFp8pzK2nuVNRM2V7YNStPHfOqXNqOkxLXZp-EmCUn3XV4-XDmhO_IIGpKXcHB7PhEF1_EExXDFTfqOqtSqbTbCQcl" class="c-blocka wa-sigma-celebrity-rela-link">
+           <div class="c-img c-img-s">
+            <img data-imagedelaysrc="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=100&amp;sec=1465137560&amp;di=05d3b6cf56e0ff597f6d43858c5bc4d2&amp;src=http%3A%2F%2Ft10.baidu.com%2Fit%2Fu%3D3562656345%2C3832608803%26fm%3D58" data-imageinvisible="1">
+           </div><p class="wa-sigma-celebrity-rela-name c-line-clamp2">陌陌财报</p></a>
+         </div>
+        </div>
+       </div>
+       <div class="c-row">
+        <div class="c-span6">
+         <div class="c-line-clamp1"></div>
+        </div>
+        <div class="c-span6">
+         <div class="c-blocka c-moreinfo"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="result c-result c-clk-recommend" srcid="www_normal_1666620700" order="4" tpl="www_normal" data-log="{'fm':'','ensrcid':'www_normal','order':'4','mu':'http://mobile.baidu.com/'}">
+      <div class="c-container">
+       <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=4&amp;vit=osres&amp;tj=www_normal_4_0_10_title&amp;waput=7&amp;waplogo=1&amp;cltj=normal_title&amp;dict=-1&amp;nt=wnor&amp;title=%E7%99%BE%E5%BA%A6%E6%89%8B%E6%9C%BA%E5%8A%A9%E6%89%8B&amp;sec=12782&amp;di=f99b5a2e047e6da1&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGxmTLCJVLDivpEmixP4kHREsR_"><h3 class="c-title c-gap-top-small"><em>百度</em>手机助手</h3></a>
+       <div class="c-row c-abstract c-gap-top-small">
+        <div class="c-span12">
+         <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=4&amp;vit=osres&amp;tj=www_normal_4_0_10_title&amp;waput=7&amp;waplogo=1&amp;cltj=normal_title&amp;dict=-1&amp;nt=wnor&amp;title=%E7%99%BE%E5%BA%A6%E6%89%8B%E6%9C%BA%E5%8A%A9%E6%89%8B&amp;sec=12782&amp;di=f99b5a2e047e6da1&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGxmTLCJVLDivpEmixP4kHREsR_"><p class="c-line-clamp3 c-color"><em>百度</em>手机助手提供海量免费优质安卓Android手机应用下载,汇集好玩的安卓游戏、实用的安卓软件、劲爆推荐榜单,时下...</p></a>
+         <div class="c-showurl c-line-clamp1">
+          <span>mobile.baidu.com</span>
+          <span class="koubei-entrance c-gap-left"><a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=4&amp;fm=alop&amp;dict=-1&amp;tj=www_normal_4_0_10_l1&amp;sec=12782&amp;di=807786ce1d08eae9&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IHRmINylRLDivpEmixP4kHREsRCCqAp7LHEP5uGPEgs-MdDG-PDdrzB1xb0dnp8-K8GjkbOm_6gDrGA2fzhYZPK" class="koubei-a"><span class="c-gray">61条评价</span></a></span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="c-container c-recomm-wrap" style="display: none;">
+       <div class="c-recomm-cnt c-gray">
+        <span class="c-gap-right"><i class="c-icon"></i>为您推荐：</span>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99&amp;sa=cr_re_dl_cr_0&amp;ms=1&amp;rqid=7370812722170967343">万能钥匙</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E7%99%BE%E5%BA%A6%E6%89%8B%E6%9C%BA%E5%8A%A9%E6%89%8B&amp;sa=cr_re_dl_cr_0&amp;ms=1&amp;rqid=7370812722170967343">百度手机助手</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=4399%E6%B8%B8%E6%88%8F%E7%9B%92&amp;sa=cr_re_dl_cr_0&amp;ms=1&amp;rqid=7370812722170967343">4399游戏盒</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E8%BF%85%E9%9B%B77+2015%E6%AD%A3%E5%BC%8F%E7%89%88%E5%AE%98%E6%96%B9&amp;sa=cr_re_dl_cr_0&amp;ms=1&amp;rqid=7370812722170967343">迅雷7 2015正式版官方</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E9%83%91%E5%A4%9A%E7%87%95%E5%87%8F%E8%82%A5%E5%85%A8%E9%9B%86&amp;sa=cr_re_dl_cr_0&amp;ms=1&amp;rqid=7370812722170967343">郑多燕减肥全集</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E5%9C%B0%E9%93%81%E9%85%B7%E8%B7%91%E7%A0%B4%E8%A7%A3%E7%89%88%E4%B8%8B%E8%BD%BD&amp;sa=cr_re_dl_cr_0&amp;ms=1&amp;rqid=7370812722170967343">地铁酷跑破解版下载</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C%E4%B8%AD%E6%96%87%E7%89%88&amp;sa=cr_re_dl_cr_0&amp;ms=1&amp;rqid=7370812722170967343">我的世界中文版</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E5%8D%95%E6%9C%BA%E6%B8%B8%E6%88%8F&amp;sa=cr_re_dl_cr_0&amp;ms=1&amp;rqid=7370812722170967343">单机游戏</a>
+       </div>
+      </div>
+     </div>
+     <div class="result c-result" srcid="www_normal_2041369437" order="5" tpl="www_normal" data-log="{'fm':'','ensrcid':'www_normal','order':'5','mu':'https://www.hao123.com/'}">
+      <div class="c-container">
+       <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;url_mf_score=4&amp;order=5&amp;vit=osres&amp;tj=www_normal_5_0_10_title&amp;m=8&amp;cltj=cloud_title&amp;dict=32&amp;nt=wnor&amp;title=hao123_%E4%B8%8A%E7%BD%91%E4%BB%8E%E8%BF%99%E9%87%8C%E5%BC%80%E5%A7%8B&amp;sec=12782&amp;di=08da1138d6481df7&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxCGZb8c3JV3T5AAGGQmBQ1zXfz-rte4viZQRA"><h3 class="c-title c-gap-top-small">hao123_上网从这里开始</h3></a>
+       <div class="c-row c-abstract c-gap-top-small">
+        <div class="c-span12">
+         <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;url_mf_score=4&amp;order=5&amp;vit=osres&amp;tj=www_normal_5_0_10_title&amp;m=8&amp;cltj=cloud_title&amp;dict=32&amp;nt=wnor&amp;title=hao123_%E4%B8%8A%E7%BD%91%E4%BB%8E%E8%BF%99%E9%87%8C%E5%BC%80%E5%A7%8B&amp;sec=12782&amp;di=08da1138d6481df7&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxCGZb8c3JV3T5AAGGQmBQ1zXfz-rte4viZQRA"><p class="c-line-clamp3 c-color">hao123是最具权威的中文上网导航,汇集最优秀的网站及资源。及时收录影视、音乐、小说、游戏等分类的网址和...</p></a>
+         <div class="c-showurl c-line-clamp1">
+          <span>www.hao123.com</span>
+          <span class="koubei-entrance c-gap-left"><a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=5&amp;fm=alop&amp;dict=32&amp;tj=www_normal_5_0_10_l1&amp;sec=12782&amp;di=7ee2cbfd5d813773&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IHRmINylRLDivpEmixP4kHREsRCCqAp7FFF_8vG3FsBsCriP9QnEpbtFOrhh6pmwq9nTw-cnh6hCLLqM1zgK" class="koubei-a"><span class="c-gray">854条评价</span></a></span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="result c-result c-clk-recommend" srcid="91" new_srcid="91" order="6" tpl="bk_polysemy" data-log="{'fm':'albk','ensrcid':'Xv','order':'6','mu':'http://baike.baidu.com/view/262.htm?fr=aladdin'}">
+      <div class="c-container">
+       <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=6&amp;waplogo=1&amp;fm=albk&amp;tj=Xv_6_0_10_title&amp;sec=12782&amp;di=5dd2679dfdbac179&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IJBOMLikK1De8mVjte4viZQRAVDbqRzrIBZOfdiyGdMIYw50xLXEpbMEXf4g5ejK" class="c-blocka"><h3 class="c-title c-gap-top-small"> <em>百度</em>_<em>百度</em>百科</h3></a>
+       <style data-merge>.wa-bk-polysemy-hide {display: none;}.wa-bk-polysemy-greeting {height: 38px;border: solid 1px #ddd;border-bottom-width: 0;overflow: hidden;-webkit-user-select: none;user-select: none;}.wa-bk-polysemy-greeting audio {display: none;height: 0;}.wa-bk-polysemy-greeting p {display: none;text-align: center;line-height: 2.7;height: 38px;}.wa-bk-polysemy-greeting p img {position: relative;top: 1px;width: 11px;height: 14px;}.wa-bk-polysemy-greeting p i {display: inline-block;position: relative;top: 2px;width: 11px;height: 14px;}.wa-bk-polysemy-progress-bar {height: 2px;background-color: #ddd;}.wa-bk-polysemy-progress-bar-occupied {width: 0;height: 100%;background-color: #008bf8;}.transition-linear {-webkit-transition: width .25s linear;transition: width .25s linear;}.wa-bk-polysemy-speaker-play {background: url(//m.baidu.com/se/static/aladdin/bk_polysemy/loudspeaker_51cd437.png) no-repeat;background-size: 44px 14px;-webkit-animation-name: speaker;-webkit-animation-duration: 1.2s;-webkit-animation-timing-function: steps(3);-webkit-animation-iteration-count: infinite;animation-name: speaker;animation-duration: 1.2s;animation-timing-function: steps(3);animation-iteration-count: infinite;}.wa-bk-polysemy-speaker-default {background: url(//m.baidu.com/se/static/aladdin/bk_polysemy/loudspeaker_04_4729721.png) no-repeat;background-size: 11px 14px;}@-webkit-keyframes speaker {0% {background-position: 0 0;}42% {background-position: -33px 0;}100% {background-position: 0 0;}}@keyframes speaker {0% {background-position: 0 0;}42% {background-position: -33px 0;}100% {background-position: 0 0;}}.wa-bk-polysemy-clamp {max-height: 88px;line-height: 22px;}</style>
+       <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=6&amp;waplogo=1&amp;fm=albk&amp;tj=Xv_6_0_10_l1&amp;sec=12782&amp;di=5dd2679dfdbac179&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IJBOMLikK1De8mVjte4viZQRAVDbqRzrIBZOfdiyGdMIYw50xLXEpbMEXf4g5ejK" class="c-blocka">
+        <div class="c-row c-gap-top-small">
+         <div class="c-span3">
+          <div class="c-img c-img-s">
+           <img data-imagedelaysrc="http://cdn01.baidu-img.cn/timg?wisealaddin&amp;size=8&amp;quality=60&amp;sec=1465137560&amp;di=b10ffb7e9cc24793e57fc7e05d915536&amp;src=http%3A%2F%2Ft12.baidu.com%2Fit%2Fu%3D2681420630%2C1709570383%26fm%3D58">
+          </div>
+         </div>
+         <div class="c-span9 c-color">
+          <p class="wa-bk-polysemy-clamp c-line-clamp4">简介：<em>百度</em>（Nasdaq：BIDU）是全球最大的中文搜索引擎、最大的中文网站。2000年1月由李彦宏创立于北京中关村，致力于向人们提供“简单，可依赖”的信息获取方式。“<em>百度</em>”二字源于中国宋朝词人辛弃疾的《青玉案·元夕》词句“众里寻他千<em>百度</em>”，象征着<em>百度</em>对中文信息检索技术的执著追求。2015年1月24日，<em>百度</em>创始人、董事长兼CEO李彦宏在<em>百度</em>2014年会暨十五周年庆典上发表的主题演讲中表示，十五年来，<em>百度</em>坚持相信技术的力量，始终把简单可依赖的文化和人才成长机制当成最宝贵的财富，他号召<em>百度</em>全体员工，向连接人与服务的战略目标发起进攻。2015年11月18日，<em>百度</em>与中信银行发起设立百信银行。名称LOGO由来 “<em>百度</em>”这一公司名称便来自宋词“众里寻他千<em>百度</em>”。 （<em>百度</em>公司会议室名为青玉案，即是这首词的词牌）。而“熊掌”图标的想法来源于“猎人巡迹熊爪”的刺激，与李彦宏博士的“分析搜索技术”非常相似，从而构<br></p>
+         </div>
+        </div></a>
+       <div class="c-slink">
+        <div class="c-blocka"></div>
+       </div>
+       <div class="c-slink">
+        <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=6&amp;waplogo=1&amp;fm=albk&amp;tj=Xv_6_0_10_l2&amp;sec=12782&amp;di=0405f64d0bfdd548&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IJBOMLikK1De8mVjte4viZQRAVDbqRzrIBZOfdiyGdMIYw50xLXEpbMEXf4g5ejMq7Xesuaukr2OLHaAQag2nOa" class="c-blocka">发展简史</a>
+        <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=6&amp;waplogo=1&amp;fm=albk&amp;tj=Xv_6_0_10_l3&amp;sec=12782&amp;di=87fb9b412e036807&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IJBOMLikK1De8mVjte4viZQRAVDbqRzrIBZOfdiyGdMIYw50xLXEpbMEXf4g5ejMq7Xesuaukr2OLHaAPag2nOK" class="c-blocka">百度产品</a>
+        <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=6&amp;waplogo=1&amp;fm=albk&amp;tj=Xv_6_0_10_l4&amp;sec=12782&amp;di=ed732095806d02b3&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IJBOMLikK1De8mVjte4viZQRAVDbqRzrIBZOfdiyGdMIYw50xLXEpbMEXf4g5ejMq7Xesuaukr2OLHaAOag2nO_" class="c-blocka">公司理念</a>
+        <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=6&amp;waplogo=1&amp;fm=albk&amp;tj=Xv_6_0_10_l5&amp;sec=12782&amp;di=839f34c96c2bc0a2&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IJBOMLikK1De8mVjte4viZQRAVDbqRzrIBZOfdiyGdMIYw50xLXEpbMEXf4g5ejMq7Xesuaukr2OLHaANag2nPq" class="c-blocka">多语言化</a>
+       </div>
+       <div class="c-gap-top c-gap-bottom wa-bk-polysemy-hide">
+        <div class="wa-bk-polysemy-greeting">
+         <audio></audio>
+         <p class="c-color-gray"><i class="c-gap-right-small wa-bk-polysemy-speaker-default"></i>百度向你问好</p>
+        </div>
+        <div class="wa-bk-polysemy-progress-bar">
+         <div class="wa-bk-polysemy-progress-bar-occupied transition-linear"></div>
+        </div>
+       </div>
+       <div class="c-row">
+        <div class="c-span6">
+         <div class="c-line-clamp1">
+          <span class="c-color-gray">百度百科</span>
+          <span class="c-foot-icon c-foot-icon-16 c-foot-icon-16-aladdin c-gap-left-small"></span>
+         </div>
+        </div>
+        <div class="c-span6">
+         <div class="c-blocka c-moreinfo"></div>
+        </div>
+       </div>
+      </div>
+      <div class="c-container c-recomm-wrap" style="display: none;">
+       <div class="c-recomm-cnt c-gray">
+        <span class="c-gap-right"><i class="c-icon"></i>为您推荐：</span>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E9%A9%AC%E5%8C%96%E8%85%BE&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">马化腾</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E6%B7%98%E5%AE%9D&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">淘宝</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E6%90%9C%E7%8B%90&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">搜狐</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E6%96%B0%E6%B5%AA&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">新浪</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E7%99%BE%E5%BA%A6%E6%89%8B%E6%9C%BA&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">百度手机</a>
+       </div>
+      </div>
+     </div>
+     <div class="result c-result" srcid="h5_mobile" order="7" tpl="h5_mobile" data-log="{'fm':'alhm','ensrcid':'h5_mobile','order':'7','mu':'http://m.hao123.com/?vit=h123&amp;from=3w123'}">
+      <div class="c-container">
+       <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=7&amp;fm=alhm&amp;dict=2078&amp;tj=h5_mobile_7_0_10_title&amp;sec=12782&amp;di=0d78c8982b56aef0&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiNNC1JQGn5nk_qva02ZQNAVDbb2SiyG-SbdyPQtsdDbymu0FIpnhF2ra"><h3 class="c-title c-gap-top-small">hao123导航-上网从这里开始</h3></a>
+       <div class="c-row c-abstract c-gap-top-small">
+        <div class="c-span12">
+         <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=7&amp;fm=alhm&amp;dict=2078&amp;tj=h5_mobile_7_0_10_title&amp;sec=12782&amp;di=0d78c8982b56aef0&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IGtiNNC1JQGn5nk_qva02ZQNAVDbb2SiyG-SbdyPQtsdDbymu0FIpnhF2ra"><p class="c-line-clamp3 c-color">搜狐视频 看天下事 hao到家 天涯社区 <em>百度</em>视频 汽车之家 NBA 双色球 1号店 东方财富 易车 安居客 热门...</p></a>
+         <div class="c-showurl c-line-clamp1">
+          m.hao123.com
+          <span class="koubei-entrance c-gap-left"><a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=7&amp;fm=alhm&amp;dict=2078&amp;tj=h5_mobile_7_0_10_l1&amp;sec=12782&amp;di=90699eaef797484e&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IHRmINylRLDivpEmixP4kHREsRCCqAp7LXU8suz4Qsg2Sbymu0FBnzB1vuBdjxmImzkuQgMnxdaPvC_ML" class="koubei-a"><span class="c-gray">评价</span></a></span>
+         </div>
+        </div>
+       </div>
+       <div class="c-row">
+        <div class="c-span6">
+         <div class="c-line-clamp1"></div>
+        </div>
+        <div class="c-span6">
+         <div class="c-blocka c-moreinfo"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="result c-result" srcid="www_normal_493072857" order="8" tpl="www_normal" data-log="{'fm':'','ensrcid':'www_normal','order':'8','mu':'http://site.baidu.com/'}">
+      <div class="c-container">
+       <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=8&amp;vit=osres&amp;tj=www_normal_8_0_10_title&amp;waput=7&amp;waplogo=1&amp;cltj=normal_title&amp;dict=-1&amp;nt=wnor&amp;title=%E7%99%BE%E5%BA%A6%E7%BD%91%E5%9D%80%E5%A4%A7%E5%85%A8&amp;sec=12782&amp;di=fa23e47c80f983c9&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IFRuJMGBW1z3qiI39h47aUb3"><h3 class="c-title c-gap-top-small"><em>百度</em>网址大全</h3></a>
+       <div class="c-row c-abstract c-gap-top-small">
+        <div class="c-span12">
+         <a class="c-blocka" href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=8&amp;vit=osres&amp;tj=www_normal_8_0_10_title&amp;waput=7&amp;waplogo=1&amp;cltj=normal_title&amp;dict=-1&amp;nt=wnor&amp;title=%E7%99%BE%E5%BA%A6%E7%BD%91%E5%9D%80%E5%A4%A7%E5%85%A8&amp;sec=12782&amp;di=fa23e47c80f983c9&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IFRuJMGBW1z3qiI39h47aUb3"><p class="c-line-clamp3 c-color"><em>百度</em>网址大全 -- 简单可依赖的上网导航... 视频更多&gt;&gt;爱奇艺高清乐视视频优酷网<em>百度</em>视频搜狐视频影视大全 影视...</p></a>
+         <div class="c-showurl c-line-clamp1">
+          <span>site.baidu.com</span>
+          <span class="koubei-entrance c-gap-left"><a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=8&amp;fm=alop&amp;dict=-1&amp;tj=www_normal_8_0_10_l1&amp;sec=12782&amp;di=8e8313a3ade425b6&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IHRmINylRLDivpEmixP4kHREsRCCqAp7JGlHwemC4e1lIriP9QnEpbtFOrhh6pmwq9nTw-cnh6hCLLqM1zgK" class="koubei-a"><span class="c-gray">65条评价</span></a></span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="result c-result" srcid="15279" new_srcid="15279" order="9" tpl="kefu_table" data-log="{'fm':'alop','ensrcid':'4Ut','order':'9','mu':'http://help.baidu.com/'}">
+      <div class="c-container">
+       <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=9&amp;fm=alop&amp;tj=4Ut_9_0_10_title&amp;sec=12782&amp;di=1da16a473064b435&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IHh3RRWBW1z3qiI39h47aUb3" class="c-blocka"><h3 class="c-title c-gap-top-small"> <em>百度</em>客服电话</h3></a>
+       <style data-merge>.wa-kefutable-icon{color:#fff;font-size:20px;position:relative;top:8px;}.wa-kefutable-wt{font-size:35px;background-color:#04a3ff;color:#fff;text-align:center;line-height:44px;}.wa-kefutable-bgwt{background-color:#fff;}.wa-kefutable-by{text-align:center;}.wa-kefutable-btn{text-align:left;}.wa-kefutable-btn .c-icon{font-size:16px}.wa-kefutable-btn span{text-align:left;display:inline-block;}.wa-kefutable-p2{position:relative;font-size:16px;top:-1px;float:right;line-height:37px;overflow:hidden;}.wa-kefutable-p3{float:right;line-height:37px;margin-right:6px;overflow:hidden;}.wa-kefutable-c333{color:#333333;}.wa-kefutable-nobd{border:none;}.wa-kefutable-fxbd{border-color:#f1f1f1;}</style>
+       <div class="c-row c-gap-top">
+        <div class="c-span2">
+         <div class="wa-kefutable-wt">
+          <span class="c-icon"></span>
+         </div>
+        </div>
+        <div class="c-span10 c-line-clamp1 c-color-gray-a">
+         <p>官方客服提示:</p>
+         <p>本条结果已通过百度安全认证</p>
+        </div>
+       </div>
+       <div class="c-row c-gap-top-large">
+        <div class="c-span12">
+         <a href="javascript:void(0)" data-tel="tel:4008008888" class="c-btn wa-kefutable-fxbd WA_LOG_BTN  wa-kefutable-btna  WA_LOG_BTN wa-kefutable-btn"><span> <span class="wa-kefutable-c333"> </span> <span class="c-gap-left wa-kefutable-c333">4008008888</span> </span><span class="c-icon wa-kefutable-p2 c-color-gray-a"></span></a>
+        </div>
+       </div>
+       <div class="c-row c-gap-top-large">
+        <div class="c-span12">
+         <a href="javascript:void(0)" data-tel="tel:10100066" class="c-btn wa-kefutable-fxbd WA_LOG_BTN  wa-kefutable-btna  WA_LOG_BTN wa-kefutable-btn"><span> <span class="wa-kefutable-c333"> </span> <span class="c-gap-left wa-kefutable-c333">10100066</span> </span><span class="c-icon wa-kefutable-p2 c-color-gray-a"></span></a>
+        </div>
+       </div>
+       <div class="c-row c-gap-top-large">
+        <div class="c-span12">
+         <a href="javascript:void(0)" data-tel="tel:4000998998" class="c-btn wa-kefutable-fxbd WA_LOG_BTN  wa-kefutable-btna  WA_LOG_BTN wa-kefutable-btn"><span> <span class="wa-kefutable-c333"> </span> <span class="c-gap-left wa-kefutable-c333">4000998998</span> </span><span class="c-icon wa-kefutable-p2 c-color-gray-a"></span></a>
+        </div>
+       </div>
+       <div class="c-row c-gap-top-large">
+        <div class="c-span12">
+         <a href="javascript:void(0)" data-tel="tel:01059059119" class="c-btn wa-kefutable-fxbd WA_LOG_BTN  wa-kefutable-btna  WA_LOG_BTN wa-kefutable-btn"><span> <span class="wa-kefutable-c333"> </span> <span class="c-gap-left wa-kefutable-c333">01059059119</span> </span><span class="c-icon wa-kefutable-p2 c-color-gray-a"></span></a>
+        </div>
+       </div>
+       <div class="c-row c-gap-top-large">
+        <div class="c-span12">
+         <a href="javascript:void(0)" data-tel="tel:01059928888" class="c-btn wa-kefutable-fxbd WA_LOG_BTN  wa-kefutable-btna  WA_LOG_BTN wa-kefutable-btn"><span> <span class="wa-kefutable-c333"> </span> <span class="c-gap-left wa-kefutable-c333">01059928888</span> </span><span class="c-icon wa-kefutable-p2 c-color-gray-a"></span></a>
+        </div>
+       </div>
+       <div class="c-row c-gap-top">
+        <div class="c-span6">
+         <div class="c-line-clamp1">
+          <span class="c-color-gray">百度超级电话</span>
+          <span class="c-foot-icon c-foot-icon-16 c-foot-icon-16-aladdin c-gap-left-small"></span>
+         </div>
+        </div>
+        <div class="c-span6">
+         <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=9&amp;fm=alop&amp;tj=4Ut_9_0_10_l1&amp;sec=12782&amp;di=1da16a473064b435&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IHh3RRWBW1z3qiI39h47aUb3" class="c-blocka c-moreinfo"><i class="c-icon c-gap-left-small"></i></a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="result c-result c-clk-recommend" srcid="16311" new_srcid="16311" order="10" tpl="stockdynamic" data-log="{'fm':'alop','ensrcid':'4lX','order':'10','mu':'http://stock.finance.sina.com.cn/usstock/quotes/BIDU.html'}">
+      <div class="c-container">
+       <style data-merge>.wa-stockdynamic-paragraph1 {position: relative; font-size: 36px; line-height: 36px;}.wa-stockdynamic-paragraph2 {font-size: 12px; line-height: 12px; color: #262626;}.wa-stockdynamic-arrow-up {display: inline-block; width: 20px; height: 20px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAoCAYAAAEUO+PFAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Mzk4ODI4NkY5MzRDMTFFNUJBNURBQjMyOTVFMzU2QzUiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Mzk4ODI4NkU5MzRDMTFFNUJBNURBQjMyOTVFMzU2QzUiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkE0M0E2RDZGNTg2MjExRTVCMzcxQjk2NDhGOTI1QzdDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkE0M0E2RDcwNTg2MjExRTVCMzcxQjk2NDhGOTI1QzdDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+FX7+CwAAAkZJREFUeNpi1JqrxYAMriZdBdNMSGL/oRhFAi6gPU/7P7IEI5JRjOhGoQCAAGJEstwRiPeDLEc2fx8Qb4ep/I+m+x8LkmUgSUZk7SgAIIAY0X2J5P4GIG6E+Rqvz6GK/wM9/AQmwIJsC3rIwNyEzWSCgCTFAAGEzYMEoxWXJ7Eq/I+DjRFcuMIZM+GgA1hCYkELTxD9D8mQ//g8Q1lYUl8hQAARjBm0UEkA4oXYYo4U29FjdAGUP5scL/3HF2dAkAKVP0+M9/8zkAe+AIOBF91Qcg3DljsY0VMdhk+QUiF6sP0nN6LIAiPcUIAAIjZH2QDxEXxlISmuBFVPh4lNcoQMdIZWbURnCnwGugPxHhzZlpFUA72AeAcey/6hVXl4DfQD4q1EBNdvIGYnZGAAEG8kIZX8ANYm/LgMDALi9WQkvQ9AQ2XQDQwH4rUUpOfHQEN1YAk7Ekgvo1JG8QDF1HIoxlfnYCvqyM4pA1tAjBo4aiAZACDAiK1TiAF2QHwQyg4E4g1EtkDo4msnaLY/iCS2HiqWP9BR4wp1yF48aiZA1fTgq95o4Uh3qMW7SNBTDK0yV5FjJykafKCO20FB6IcC8V8gPgrErNR0pB/UcZupmGGtgPgXEN8CVp7clOTuIAprb1LAGyDWAub018Q6MhSadgYCgEJXE+jYe7iiOxIarQPlQBBgA+K7oHEDILZADkkQp4MMA5mhHQdiwRFopiEVlIDaZieA2IGc2gpHVxRfjfR/oGocmoNRR446ctSRo44cdSR+AACVEKJU4z49/wAAAABJRU5ErkJggg==) no-repeat; background-size: 100%;}.wa-stockdynamic-arrow-down {display: inline-block; width: 20px; height: 20px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAoCAYAAAEUO+PFAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Njk4MzdCQUY5MzRDMTFFNUI0NzU4M0VENTFDMEM0N0MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Njk4MzdCQUU5MzRDMTFFNUI0NzU4M0VENTFDMEM0N0MiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkE0M0E2RDczNTg2MjExRTVCMzcxQjk2NDhGOTI1QzdDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkE0M0E2RDc0NTg2MjExRTVCMzcxQjk2NDhGOTI1QzdDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+yq64OQAAAlJJREFUeNpi/K+pyQAF/8HktWuMIIqJAQcgKPEfLqKl9R9ZghEuAbUDIIAY0SxnBEpgNx+nYDiShf+BFqqwABkrgfgzEG8FYmagmf8AAgjZIgYMZ0ItJuhBbABknSUQt+OQPwB0E4xdguyMACBej0UDD9ApX9GdsQEaei5IIckIUwgCAAGE7kGQgn9I/vkP8yDRnhtAhSzgcEMAZiT2ISD+CwtTmK//4zUOmNgwUyAWRehuxKaYEZdnGHFpBAggbEkPV0yhhxYsQ5IflKSAEW4oLKIigXgZFcyzBEbcCfTYDwLitWQYJgY07DVy/kAG66DJyAeINxNhGBvQsN/EhukWqOFueOICJP+bnIjaDdXsiFKuEcjQAAFEKEf9x5PTGLDlKKZBnz5HDRw1kAyAXpESCw4gteCwZr3/VHEeURUzceAXsRU4MeAN0DB2Yip6YsBdoGGihGKZWEOPAbEKscmGkKGrgdia1HSIy9AJQByGLx0SagMhJ6kCIJ5IKGEzEGloEI6GNgoACDBCdQo5LTh82fw/lswwMM2eIdE2G3XkqCNHHTnqyGHkSFiNEwPEiweh+zyANdJO9GoRNNq2YoAdBqpqjYCOu0io7g4F4lV0dtwXINYEOu4JqQ2MQGg/npbgKRBrAx33kdyMsx7a2vGngeMuATEn0HEy+BxISu7eBHWsLxUctwOIWYFYH4h/0KIIgo2yeJDhuPlQ+zyB+A89ysmdDPiHhJBBA1RtErm9RkoLc9gQkxMWuQSoXCM1OtrUAPuhDrJjAI3SMTDsoWYOAwBX7I7qld96XQAAAABJRU5ErkJggg==) no-repeat; background-size: 100%;}.wa-stockdynamic-percent {position: relative; font-size: 12px; vertical-align: super;}.wa-stockdynamic-percent span {position: absolute; left: 0; width: 65px; height: 12px; line-height: 12px;}.wa-stockdynamic-add {text-align: center;}.wa-stockdynamic-add span {display: inline-block; width: 12px; height: 12px; line-height: 12px; border-radius: 7px; border: 1px solid #666;}.wa-stockdynamic-table td {border: 1px solid #f1f1f1; text-align: center; padding: 4px 0;}</style>
+       <a href="http://m.baidu.com/from=844b/bd_page_type=1/ssid=0/uid=0/pu=usm%403%2Csz%401320_1001%2Cta%40iphone_2_4.1_3_534/baiduid=9F3C2DF0BFBF21190D0B28391AC1C154/w=0_10_%E7%99%BE%E5%BA%A6/t=iphone/l=1/tc?ref=www_iphone&amp;lid=7370812722170967343&amp;order=10&amp;fm=alop&amp;tj=4lX_10_0_10_title&amp;sec=12782&amp;di=26c15521f1ecdbe0&amp;bdenc=1&amp;nsrc=IlPT2AEptyoA_yixCFOxXnANedT62v3IFQ_ONiNHLCm8o5zte4qaUbBvUXKhVjrJBV4hgTGatQoDxiP9OzEz7aYtpBgF" class="c-blocka" data-xse="1"><h3 class="c-title c-gap-top-small"> <em>百度</em>[BIDU]_美股</h3></a>
+       <p class="wa-stockdynamic-paragraph1"><span class="c-gap-right-small" style="color: #f54545;">173.74</span><i class="c-gap-right wa-stockdynamic-arrow-down"></i><span class="wa-stockdynamic-percent" style="color: #f54545;"><span style="top: 0;">-1.90 </span><span style="top: 16px;">-1.08%</span></span></p>
+       <p class="wa-stockdynamic-paragraph2 c-gap-top-small"><span class="c-gap-right">06月03日 16:00</span><span>已收盘</span><span>(美东时间)</span></p>
+       <div class="c-gap-top-large wa-stockdynamic-add"></div>
+       <div></div>
+       <div class="c-row">
+        <div class="c-span6">
+         <div class="c-line-clamp1">
+          <span class="c-color-gray">新浪财经</span>
+          <span class="c-foot-icon c-foot-icon-16 c-foot-icon-16-aladdin c-gap-left-small"></span>
+         </div>
+        </div>
+        <div class="c-span6">
+         <div class="c-blocka c-moreinfo"></div>
+        </div>
+       </div>
+      </div>
+      <div class="c-container c-recomm-wrap" style="display: none;">
+       <div class="c-recomm-cnt c-gray">
+        <span class="c-gap-right"><i class="c-icon"></i>为您推荐：</span>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E8%B4%A2%E6%8A%A5&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">阿里巴巴财报</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=facebook%E8%B4%A2%E6%8A%A5&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">facebook财报</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E5%B8%82%E5%80%BC&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">阿里巴巴市值</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E6%9D%8E%E5%BD%A6%E5%AE%8F&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">李彦宏</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E9%A9%AC%E4%BA%91&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">马云</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E7%BD%91%E6%98%93%E8%B4%A2%E6%8A%A5&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">网易财报</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E4%BA%9A%E9%A9%AC%E9%80%8A%E8%B4%A2%E6%8A%A5&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">亚马逊财报</a>
+        <a class="c-gap-right" href="http://m.baidu.com/from=844b/s?word=%E7%99%BE%E5%BA%A6%E8%82%A1%E4%BB%B7&amp;sa=cr_re_dl_cr_7&amp;ms=1&amp;rqid=7370812722170967343">百度股价</a>
+       </div>
+      </div>
+     </div>
+     <style type="text/css" id="ec_ls_css">/*<![CDATA[*/.ec-font-small{font-size:13px}.ec_url{clear:both;white-space:nowrap}.ec_ad_results{position:relative}.ec_resitem{position:relative}.ec_xiaobao{height:28px;padding:1px 0;position:absolute;top:0;right:-7px;z-index:20}.ec_xiaobao a{display:inline-block;width:24px;height:24px;padding:4px 6px 0 0}.ec_urlbtn{display:inline;position:relative;float:right}.ec_tgsk,.ec_tgsk .ec_urlbtn{background:#F5F5F5}.ec_urlline{overflow:hidden;white-space:nowrap}.ec_urlline_blank{width:100%;display:inline-block;padding:2px 0;margin:-2px 0;-webkit-tap-highlight-color:rgba(0,0,0,0)}.c-container.ec_resitem_card{margin:0;background-color:#fffcf8}.ec_guess{padding-bottom:8px;margin-top:-4px;margin-bottom:-4px}.c-container.ec_resitem_rs{color:#666;padding-top:14px}.ec_resitem_rs_keyword{color:#333}.ec_resitem_card.ec_adv_last .c-line-bottom{border:0;padding-bottom:4px}.ec_ad_results .c-line-clamp2,.ec_ad_results .c-line-clamp3{margin-bottom:0}.c-text.ec-bgcolor-yellow{background:#f2ab36}.ec-link-blue{color:#00c}.ec-align-center{text-align:center}.ec_title .c-title{word-break:break-all}@media (min-width:375px){.ec_title .c-title{-webkit-line-clamp:3}}.ec_fright{float:right}.ec_hide{display:none}.ec_gap_left_6{margin-left:6px}.ec_wise_ad_card{margin:.06rem 0}@font-face {font-family: "ecomicons";src: url("//m.baidu.com/static/ecom/iphone_icons/iconfont_eb200eff.eot");src: url("//m.baidu.com/static/ecom/iphone_icons/iconfont_eb200eff.eot#iefix") format("embedded-opentype"),url("//m.baidu.com/static/ecom/iphone_icons/iconfont_eb200eff.woff") format("woff"),url("//m.baidu.com/static/ecom/iphone_icons/iconfont_eb200eff.ttf") format("truetype"),url("//m.baidu.com/static/ecom/iphone_icons/iconfont_eb200eff.svg?#iconfont") format("svg");}@font-face {font-family: "ecomiconsadd";src: url(//m.baidu.com/static/ecom/iphone_icons/font_icons/iconfont_add_20160225.eot);src: url(//m.baidu.com/static/ecom/iphone_icons/font_icons/iconfont_add_20160225.woff) format("woff"),url(//m.baidu.com/static/ecom/iphone_icons/font_icons/iconfont_add_20160225.ttf) format("truetype"),url(//m.baidu.com/static/ecom/iphone_icons/font_icons/iconfont_add_20160225.svg) format("svg");}/*]]>*/</style>
+    </div>

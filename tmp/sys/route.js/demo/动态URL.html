@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>route demo</title>
+	<style>
+		* {
+			padding: 0px;
+			margin:0;
+		}
+		body{
+			font-family: "\5FAE\8F6F\96C5\9ED1", Tahoma, Verdana, sans-serif, STHeiTi;
+			background: #99CCFF;
+		}
+		.header{
+			background: #66CCCC;
+			box-shadow: 0px 1px 7px;
+			margin-bottom: 2px;
+
+		}
+		.header .item{
+			float: left;
+			border-right: 1px solid #6DD;
+			padding: 0 20px;
+			cursor: pointer;
+		}
+		.header .item:hover{
+			background: #6dd;
+		}
+		.header .item a{
+			text-decoration: none;
+			color:#fff;
+		}
+		.w990 .cer{
+			width: 990px;
+			margin: auto;
+			
+		}
+		.header .cer{
+			line-height: 50px;
+			color: #fff;
+			font-size: 25px;
+			font-weight: bold;
+			overflow: hidden;
+		}
+		.body{
+			color: #fff;
+			font-size: 20px;
+			line-height: 40px;
+			padding: 10px;
+		}
+
+
+
+		.btn{
+			display: inline-block;
+			padding: 6px 12px;
+			margin-bottom: 0;
+			text-decoration: none;
+			font-weight: 400;
+			line-height: 1.42857143;
+			text-align: center;
+			white-space: nowrap;
+			vertical-align: middle;
+			-ms-touch-action: manipulation;
+			touch-action: manipulation;
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			background-image: none;
+			border: 1px solid transparent;
+			border-radius: 2px;
+		}
+		.btn.btn-w83{
+			width:83px;
+		}
+
+		.btn:hover,.btn:focus{
+			text-decoration: none;
+		}
+		.btn.btn-primary{
+			color: #fff;
+			background-color: #e3101e;
+			border-color: #e3101e;
+		}
+		.btn.btn-primary:hover,.btn.btn-primary:focus{
+			background: #ff5757;
+			border-color:#ff5757;
+		}
+		.btn.btn-default{
+			color: #333;
+			background-color: #fff;
+			border-color: #ddd;
+		}
+		.btn.btn-default:hover,.btn.btn-default:focus{
+			background: #fff;
+			border-color:#ccc;
+		}
+		.cer.box{
+			  padding: 10px;
+			  border: #fff solid 1px;
+			  margin-top: 20px;
+			  padding-top: 0px;
+		}
+		.box h3{
+			  border-bottom: 1px #fff solid;
+			  line-height: 40px;
+			  font-size: 20px;
+
+		}
+	</style>
+</head>
+<body class="w990">
+	<div class="header">
+		<div class="cer">
+			<div class="item">
+				<a href="#">route.js模块例子</a>
+			</div>
+			<div class="item">
+				<a href="#/REPL">REPL</a>
+			</div>
+		</div>
+	</div>
+	<div class="body">
+		
+	</div>
+	<script id="index-tpl" type="text/tpl">
+		<div class="cer">
+			i am index 
+			<a class="btn btn-primary btn-large"
+			   href="#/HI" >HI</a>
+			<a class="btn btn-primary btn-large"
+			   href="#/hello" r-hash> hello</a>
+		</div>
+		<div class="cer box">
+			<h3>LOG:</h3>
+			<div id="cont-log">
+				0
+			</div>
+		</div>
+	</script>
+	<script id="repl-tpl" type="text/tpl">
+		<div class="cer">
+			i am repl 
+			<a class="btn btn-primary btn-large"
+			   href="#/REPL/HI" >REPL-HI</a>
+			<a class="btn btn-primary btn-large"
+			   href="#/REPL/hello" >REPL-HELLO</a>
+		</div>
+		<div class="cer box">
+			<h3>LOG:</h3>
+			<div id="cont-log">
+				0
+			</div>
+		</div>
+	</script>
+	<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+	<script src="../lib/ramda.min.js"></script>
+	<script src="../lib/jueji.js"></script>
+	<script src="../js/route.js"></script>
+	<script>
+		function indexDiv(){
+			return $(".body").attr("module") == "index" ? route.nextp
+			: $(".body").attr("module","index")
+		}
+		function renderIndex(div){
+			div.html($("#index-tpl").html());
+		}
+		function hellohandler(a){
+			$("#cont-log").html(a);
+		}
+		//REPL单独模块
+		function REPLModule(url,ctx){
+			function repldiv(url){
+				return $(".body").attr("module") == "repl" ? route.nextp
+				: $(".body").attr("module","repl")
+			}
+			function renderREPL(div,ctx){
+				div.html($("#repl-tpl").html());
+			}
+			var fn=route.route([
+				s(repldiv,J.debug("repldiv"),renderREPL,route.nextp)
+				,s(route.nameP("/"),hellohandler)
+				,s(route.nameP("/hello"),hellohandler)
+				,s(route.nameP("/HI"),hellohandler)
+			]);
+			return fn(url,ctx);
+		}
+		var s=J.stream;
+		var ds=J.dostream;
+		var dofn = route.route([
+			s(route.startP("/REPL"),REPLModule)
+			,s(indexDiv,J.debug("indexDiv"),renderIndex,route.nextp)
+			,s(route.nameP("/hello"),hellohandler)
+			,s(route.nameP("/HI"),hellohandler)
+		]);
+		//监控hash变化 获取URL执行dofn
+		ds(null,route.hashMilldam,dofn);
+
+		
+	</script>
+	
+</body>
+</html>

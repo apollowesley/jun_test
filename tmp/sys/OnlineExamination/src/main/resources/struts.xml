@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 开发者模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 允许Struts2的ognl表达式可以调用静态方法 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.multipart.maxSize" value="9999999999999999"></constant>
+	<constant name="struts.multipart.saveDir" value="WebAppRoot/temp" />
+
+	<package name="frontend" namespace="/"
+		extends="struts-default,json-default">
+		<interceptors>
+			<!-- 配置拦截器 -->
+			<interceptor name="authority" class="FrontendUserInterceptor" />
+			<!-- 定义拦截器栈 -->
+			<interceptor-stack name="authorityStack">
+				<interceptor-ref name="defaultStack">
+					<!-- 启用模型更新后刷新模板 -->
+					<param name="modelDriven.refreshModelBeforeResult">true</param>
+				</interceptor-ref>
+				<interceptor-ref name="authority"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- 设置默认的拦截器栈 -->
+		<default-interceptor-ref name="authorityStack"></default-interceptor-ref>
+
+		<!-- 定义全局的返回结果 -->
+		<global-results>
+			<result name="login">/frontend/login.jsp</result>
+		</global-results>
+
+		<!-- 注册Action -->
+		<action name="RegAction_*" class="regAction" method="{1}">
+			<result name="regPage">/frontend/register.jsp</result>
+			<result name="input">/frontend/register.jsp</result>
+			<result name="success">/frontend/login.jsp</result>
+		</action>
+		<!-- 登陆Action -->
+		<action name="FrontendLoginAction_*" class="FrontendLoginAction"
+			method="{1}">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">FrontendPaperAction_toPaperPage</param>
+			</result>
+			<result name="loginPage">/frontend/login.jsp</result>
+			<result name="input">/frontend/login.jsp</result>
+		</action>
+		<!-- 正式考试登陆Action -->
+		<action name="FormalTestLoginAction_*" class="FormalTestLoginAction"
+			method="{1}">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">FrontendFormalTestAction_toFrontendFormalTestPage</param>
+			</result>
+			<result name="loginPage">/frontend/formalTestLogin.jsp</result>
+			<result name="input">/frontend/formalTestLogin.jsp</result>
+		</action>
+		<!-- 前台试卷Action -->
+		<action name="FrontendPaperAction_*" class="FrontendPaperAction"
+			method="{1}">
+			<result name="questionPage">/frontend/engagePaper.jsp</result>
+			<result name="paperPage">/frontend/paperList.jsp</result>
+			<result name="showPageTypePage">/frontend/queryResults.jsp</result>
+		</action>
+		<!-- 正式考试Action -->
+		<action name="FrontendFormalTestAction_*" class="FrontendFormalTestAction"
+			method="{1}">
+			<result name="frontendFormalTestPage">/frontend/formalTestPaper.jsp</result>
+		</action>
+		<!-- EngagePaperAction页面处理action -->
+		<action name="EngagePaperAction_*" class="EngagePaperAction"
+			method="{1}">
+			<result name="input">/frontend/login.jsp</result>
+			<result name="engagePaperAcation" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">FrontendPaperAction_toPaperPage</param>
+			</result>
+		</action>
+		<!-- 前台成绩处理action -->
+		<action name="FrontendGradeAction_*" class="FrontendGradeAction"
+			method="{1}">
+			<result name="queryGragePage">/frontend/finalResults.jsp</result>
+			<result name="gradeDetailsPage">/frontend/detailView.jsp</result>
+		</action>
+		<!-- WrongQuestionActio出题处理action -->
+		<action name="WrongQuestionAction_*" class="WrongQuestionAction"
+			method="{1}">
+			<result name="myWrongQuestionsPage">/frontend/errorQues.jsp</result>
+		</action>
+		<!-- WrongQuestionActio出题处理action -->
+		<action name="FrontendUserAction_*" class="FrontendUserAction"
+			method="{1}">
+			<result name="changepassPage">/frontend/changepass.jsp</result>
+			<result name="userinfoPage">/frontend/userinfo.jsp</result>
+		</action>
+
+
+	</package>
+
+	<package name="latar" namespace="/" extends="struts-default,json-default">
+		<interceptors>
+			<!-- 配置拦截器 -->
+			<interceptor name="rightFilterInterceptor" class="RightFilterInterceptor" />
+			<!--配置 URL拦截器 -->
+			<interceptor name="CatchUrlInterceptor"
+				class="com.evil.struts2.interceptor.CatchUrlInterceptor" />
+			<!--配置 URL拦截器 -->
+			<interceptor name="AdminUserLoginInterceptor"
+				class="com.evil.struts2.interceptor.AdminUserLoginInterceptor" />
+			<!-- 定义拦截器栈 -->
+			<interceptor-stack name="LatarStack">
+				<interceptor-ref name="defaultStack">
+					<!-- 启用模型更新后刷新模板 -->
+					<param name="modelDriven.refreshModelBeforeResult">true</param>
+					<!-- 试题文件上传是进行限制 -->
+					<!-- 文件后缀名 -->
+					<param name="fileUpload.allowedExtensions">.xls</param>
+					<!-- 文件类型 -->
+					<!-- <param name="fileUpload.allowedTypes">application/excel,application/vnd.ms-excel</param> -->
+				</interceptor-ref>
+				<interceptor-ref name="CatchUrlInterceptor"></interceptor-ref>
+				<interceptor-ref name="AdminUserLoginInterceptor"></interceptor-ref>
+				<interceptor-ref name="rightFilterInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- 设置默认的拦截器栈 -->
+		<default-interceptor-ref name="LatarStack"></default-interceptor-ref>
+
+		<!-- 定义全局的返回结果 -->
+		<global-results>
+			<result name="login">/latar/login.jsp</result>
+		</global-results>
+
+		<!-- 管理员登录Action -->
+		<action name="LoginAction_*" class="loginAction" method="{1}">
+			<result name="LatarLoginPage">/latar/login.jsp</result>
+			<result name="latarInput">/latar/login.jsp</result>
+			<result name="latarSuccess">/latar/index.jsp</result>
+		</action>
+
+		<!-- PaperAction页面处理action -->
+		<action name="PaperAction_*" class="PaperAction" method="{1}">
+
+			<result name="showPapersPage">/latar/allPapers.jsp</result>
+			<result name="toalerPaperPage">/latar/editPaperDiog.jsp</result>
+			<result name="previewPage">/latar/previewPaper.jsp</result>
+			<result name="designPaperPage">/latar/designPaper.jsp</result>
+			<result name="QuestionsTypePage">/latar/quesTab.jsp</result>
+			<result name="editPaperHeadingPage">/latar/editPaperTitle.jsp</result>
+			<result name="addQuestionPage">/latar/addPaperQuestion.jsp</result>
+			<result name="papersByNamePage" type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+
+		<!-- QuestionAction 问题处理Action -->
+		<action name="QuestionAction_*" class="QuestionBnakAction"
+			method="{1}">
+			<result name="questionsContentPage">/latar/questions.jsp</result>
+			<result name="typeQuestionsListPage">/latar/questionsList.jsp</result>
+			<result name="editQuestionPage">/latar/editQuestion.jsp</result>
+			<result name="showQuestionPage">/latar/showQuestions.jsp</result>
+			<result name="questionStatisticsPage">/latar/questionStatistics.jsp</result>
+			<result name="questionIndexPage">/latar/questionsIndex.jsp</result>
+			<result name="moveQuestionPage">/latar/moveQuestions.jsp</result>
+			<result name="questionsTablePage">/latar/questionsTable.jsp</result>
+		</action>
+
+		<!-- UserAction 用户处理action -->
+		<action name="UserAction_*" class="UserAction" method="{1}">
+			<result name="usersPage">/latar/userContent.jsp</result>
+			<result name="editUserPage">/latar/editUserDiog.jsp</result>
+			<result name="addUserPage">/latar/editUserDiog.jsp</result>
+		</action>
+
+		<!-- GradeAction成绩处理action -->
+		<action name="GradeAction_*" class="GradeAction" method="{1}">
+			<result name="gradePage">/latar/gradeContent.jsp</result>
+			<result name="latarGradeDetailsPage">/latar/gradeDetails.jsp</result>
+			<result name="ansWerAnalyzePage">/latar/answerAnalyze.jsp</result>
+		</action>
+
+		<!--DictionaryAction处理字典的action -->
+		<action name="DictionaryAction_*" class="DictionaryAction"
+			method="{1}">
+			<result name="classifyTagPage">/latar/classify.jsp</result>
+			<result name="editClassifyPage">/latar/editClassify.jsp</result>
+		</action>
+		<!--IntelligentPaperAction处理智能试卷的action -->
+		<action name="IntelligentPaperAction_*" class="IntelligentPaperAction"
+			method="{1}">
+			<result name="intelligentAddPage">/latar/IntelligentAddPaper.jsp</result>
+			<result name="intelligentAddPaperQuestionPage">/latar/IntelligenceAddPaperQuestion.jsp</result>
+		</action>
+		<!--QuestionTemplateAction处理智能试卷的action -->
+		<action name="QuestionTemplateAction_*" class="QuestionTemplateAction"
+			method="{1}">
+			<result name="questionTemplatePage">/latar/questionTemplate.jsp</result>
+			<result name="editQuestionTemplatePage">/latar/editQuestionTemplate.jsp</result>
+		</action>
+		<!--QestionsExcelAction处里试题导入导出的action -->
+		<action name="QestionsExcelAction_*" class="QestionsExcelAction"
+			method="{1}">
+			<result name="importeExportPage">/latar/questionsImporteExport.jsp</result>
+			<result name="input">/latar/questionsImporteExport.jsp</result>
+			<result name="input">/latar/questionsImporteExport.jsp</result>
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="${questionsExcelFileName}"</param>
+				<param name="inputName">questionsExcelFile</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<!--AnalyzeAction处理分析成绩的action -->
+		<action name="AnalyzeAction_*" class="AnalyzeAction" method="{1}">
+			<result name="ansWerAnalyzePage">/latar/gradeAnalyzStatistics.jsp</result>
+			<result name="answerCasePage">/latar/showAnswerCase.jsp</result>
+			<result name="gradeStatisticsPage">/latar/showGradeStatistics.jsp</result>
+		</action>
+		<!--管理员处理的action -->
+		<action name="AdminUserAction_*" class="AdminUserAction"
+			method="{1}">
+			<result name="adminUserManagePage">/latar/adminUserManage.jsp</result>
+			<result name="addAdminUserPage">/latar/editAdminUserDiog.jsp</result>
+			<result name="alterAdminUserPage">/latar/editAdminUserDiog.jsp</result>
+			<result name="assignRolesPage">/latar/assignRoles.jsp</result>
+		</action>
+		<!--角色处理的action -->
+		<action name="RoleAction_*" class="RoleAction" method="{1}">
+			<result name="roleManagePage">/latar/roleManage.jsp</result>
+			<result name="addRolePage">/latar/editRole.jsp</result>
+			<result name="alterRolePage">/latar/editRole.jsp</result>
+		</action>
+		<!--权限处理的action -->
+		<action name="RightAction_*" class="RightAction" method="{1}">
+			<result name="rightManagePage">/latar/rightManage.jsp</result>
+			<result name="updateRightPage">/latar/editRight.jsp</result>
+			<result name="addRightPage">/latar/editRight.jsp</result>
+		</action>
+		<!--系统日志处理的action -->
+		<action name="LogAction_*" class="LogAction" method="{1}">
+			<result name="logManagePage">/latar/SystemLogManage.jsp</result>
+		</action>
+		<!--考试类型处理的action -->
+		<action name="ExamTypeAction_*" class="ExamTypeAction" method="{1}">
+			<result name="examTypeManagePage">/latar/examTypeManage.jsp</result>
+			<result name="addExamTypePage">/latar/editExamType.jsp</result>
+			<result name="editExamTypePage">/latar/editExamType.jsp</result>
+		</action>
+		<!--考试处理的action -->
+		<action name="ExamAction_*" class="ExamAction" method="{1}">
+			<result name="examManagePage">/latar/examManage.jsp</result>
+			<result name="AddExamPage">/latar/editExam.jsp</result>
+			<result name="updateExamPage">/latar/editExam.jsp</result>
+		</action>
+		<!--考试处理的action -->
+		<action name="FormalTestAction_*" class="FormalTestAction"
+			method="{1}">
+			<result name="formalTestManangePage">/latar/formalTestPaper.jsp</result>
+			<result name="editFormalTestPage">/latar/editFormalTest.jsp</result>
+		</action>
+
+	</package>
+		<package name="SecurityCode" namespace="/" extends="struts-default">
+			<!--SecurityCodeImageAction 验证码 -->
+			<action name="SecurityCodeImageAction_*" class="SecurityCodeImageAction"
+				method="{1}">
+				<result name="success" type="stream">
+					<param name="contentType">image/jpeg</param>
+					<param name="inputName">imageStream</param>
+					<param name="bufferSize">2048</param>
+				</result>
+			</action>
+		</package>
+
+</struts>

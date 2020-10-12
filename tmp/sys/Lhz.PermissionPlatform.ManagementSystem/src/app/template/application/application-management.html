@@ -1,0 +1,28 @@
+<table class="table table-hover table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>
+                <a href="javascript:void(0)" (click)="ai.show(null)"><span class="glyphicon glyphicon-plus text-primary"></span></a>
+            </th>
+            <th>
+                名称
+            </th>
+            <th>
+                上级系统
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="#entity of entities">
+            <td>
+                <a href="javascript:void(0)" (click)="ai.show(entity.Guid)"><span class="glyphicon glyphicon-pencil text-success"></span></a>
+                <a href="javascript:void(0)" (click)="remove(entity.Guid)"><span class="glyphicon glyphicon-remove text-danger"></span></a>
+            </td>
+            <td>{{entity.Name}}</td>
+            <td>{{entity.Parent?.Name}}</td>
+        </tr>
+    </tbody>
+</table>
+<pagination class="pagination-sm" [totalItems]="total" [(ngModel)]="pageIndex" [itemsPerPage]="pageSize" [maxSize]="pageNumberSize"
+[boundaryLinks]="true" [rotate]="false" (pageChanged)="query($event.page)"></pagination>
+<application-information #ai (saveCompleted)="query()"></application-information>

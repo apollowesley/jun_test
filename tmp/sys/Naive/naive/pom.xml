@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.duomn</groupId>
+  <artifactId>naive</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>naive</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <org.springframework.version>3.2.2.RELEASE</org.springframework.version>
+  </properties>
+
+  <dependencies>
+    <!-- 供所有子项目用的测试的例子 -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${org.springframework.version}</version>
+    </dependency>
+  </dependencies>
+
+  <!-- 所有子项目上传的库 -->
+  <distributionManagement>
+    <repository>   
+      <id>nexus-releases</id>   
+      <name>Nexus Release Repository</name>   
+      <url>http://127.0.0.1:9081/nexus/content/repositories/releases/</url>   
+    </repository>   
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <name>nexus distribution snapshot repository</name>
+      <url>http://127.0.0.1:9081/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <modules>
+    <module>../naive-common</module>
+    <module>../naive-service</module>
+    <module>../naive-web</module>
+    <module>../naive-cxf</module>
+    <module>../naive-cxf-client</module>
+    <module>../naive-cxf-model</module>
+  </modules>
+  
+ <build>
+    <finalName>naive</finalName>
+    <pluginManagement>
+      <plugins>
+        <!-- 不执行测试集的插件 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.10</version>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+        <!-- 处理resouces资源文件的插件 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.6</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+        <!-- 编译使用的插件 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.5.1</version>
+        </plugin>
+        <!-- 让eclipse可以下载jar的源码 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-eclipse-plugin</artifactId>
+          <version>2.8</version>
+          <configuration>
+            <downloadSources>true</downloadSources>
+          </configuration>
+        </plugin>
+
+        <!-- install和deploy时，自动打包源码，必须置于特定的项目中，不能在父项目或依赖的项目中 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.1.2</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <!-- 设置编译的选项 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <encoding>UTF8</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.framework.model.mapper.DepartmentChildrenMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.framework.model.pojo.DepartmentChildren">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="department_id" jdbcType="BIGINT" property="departmentId" />
+    <result column="children_id" jdbcType="BIGINT" property="childrenId" />
+  </resultMap>
+  <insert id="insertOrUpdate" parameterType="cn.gson.framework.model.pojo.DepartmentChildren">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_department_children
+    (department_id, children_id)
+    values
+    (#{departmentId,jdbcType=BIGINT}, #{childrenId,jdbcType=BIGINT})
+    on duplicate key update 
+    department_id = #{departmentId,jdbcType=BIGINT}, 
+    children_id = #{childrenId,jdbcType=BIGINT}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="cn.gson.framework.model.pojo.DepartmentChildren">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_department_children
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="departmentId != null">
+        department_id,
+      </if>
+      <if test="childrenId != null">
+        children_id,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=BIGINT},
+      </if>
+      <if test="childrenId != null">
+        #{childrenId,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="departmentId != null">
+        department_id = #{departmentId,jdbcType=BIGINT},
+      </if>
+      <if test="childrenId != null">
+        children_id = #{childrenId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

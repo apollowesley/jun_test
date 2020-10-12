@@ -1,0 +1,5 @@
+
+
+
+## testing
+bin/logstash -e 'input { stdin { } } output { stdout {} }'

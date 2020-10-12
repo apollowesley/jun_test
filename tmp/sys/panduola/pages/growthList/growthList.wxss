@@ -1,0 +1,55 @@
+.banner{
+    height: 200rpx;
+    line-height: 200rpx;
+    background: #e7f3ff;
+    color: #3e92f4;
+    font-size: 45rpx;
+    text-align: center;
+}
+.top{
+    height: 50rpx;
+    line-height: 50rpx;
+    padding: 20rpx;
+    display: flex;
+    background: #FFF;
+    border-bottom: 1rpx solid #e7e7e7;
+    overflow: hidden;
+}
+.top-l, .top-c, .top-r{
+    float: left;
+}
+.top-l{
+    width: 20%;
+}
+.top-c{
+    width: 20%;
+    text-align: center;
+}
+.top-r{
+    width: 60%;
+    text-align: right;
+}
+
+.item{
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 20rpx;
+    display: flex;
+    background: #FFF;
+    border-bottom: 1rpx solid #e7e7e7;
+    overflow: hidden;
+}
+.item-l, .item-c, .item-r{
+    float: left;
+}
+.item-l{
+    width: 20%;
+}
+.item-c{
+    width: 20%;
+    text-align: center;
+}
+.item-r{
+    width: 60%;
+    text-align: right;
+}

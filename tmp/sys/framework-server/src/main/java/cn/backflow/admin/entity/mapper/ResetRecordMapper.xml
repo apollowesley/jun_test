@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="ResetRecord">
+
+  <resultMap id="ResetRecordMap" type="cn.backflow.admin.entity.ResetRecord">
+    <result property="id" column="id"/>
+    <result property="email" column="email"/>
+    <result property="resetKey" column="reset_key"/>
+    <result property="valid" column="valid"/>
+    <result property="requestTime" column="request_time"/>
+    <result property="expirationTime" column="expiration_time"/>
+  </resultMap>
+
+  <!-- 用于select查询公用抽取的列 -->
+  <sql id="ResetRecord.columns">
+    id, email, reset_key, valid, request_time, expiration_time
+  </sql>
+
+  <!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_reset_record (
+    email,
+    reset_key,
+    valid,
+    request_time,
+    expiration_time
+    ) VALUES (
+    #{email},
+    #{resetKey},
+    #{valid},
+    #{requestTime},
+    #{expirationTime}
+    )
+  </insert>
+
+  <update id="update">
+    UPDATE t_reset_record SET
+    email = #{email},
+    reset_key = #{resetKey},
+    valid = #{valid},
+    request_time = #{requestTime},
+    expiration_time = #{expirationTime}
+    WHERE
+    id = #{id}
+  </update>
+
+  <update id="updateValidState">
+    UPDATE t_reset_record SET valid = #{valid}
+    <where>
+      <if test="email neq null">email = #{email}</if>
+      <if test="resetKey neq null">reset_key = #{resetKey}</if>
+    </where>
+  </update>
+
+  <delete id="delete">
+    DELETE FROM t_reset_record WHERE id = #{id}
+  </delete>
+
+  <delete id="deleteBatch">
+    DELETE FROM t_reset_record WHERE id IN
+    <foreach collection="collection" item="id" open="(" close=")" separator=",">#{id}</foreach>
+  </delete>
+
+  <select id="getById" resultMap="ResetRecordMap">
+    SELECT
+    <include refid="ResetRecord.columns"/>
+    FROM t_reset_record WHERE id = #{id}
+  </select>
+
+  <select id="getNewestByEmail" resultMap="ResetRecordMap">
+    SELECT
+    <include refid="ResetRecord.columns"/>
+    FROM t_reset_record WHERE email = #{email} ORDER BY request_time DESC LIMIT 0, 1
+  </select>
+
+  <select id="findAll" resultMap="ResetRecordMap">
+    SELECT
+    <include refid="ResetRecord.columns"/>
+    FROM t_reset_record
+  </select>
+
+  <sql id="ResetRecordDynamicWhere">
+    <where>
+      <if test="id neq null">AND id = #{id}</if>
+      <if test="email neq null">AND email = #{email}</if>
+      <if test="resetKey neq null">AND reset_key = #{resetKey}</if>
+      <if test="valid neq valid">AND valid = #{valid}</if>
+      <if test="requestTimeBegin neq null">AND request_time >= #{requestTimeBegin}</if>
+      <if test="requestTimeEnd neq null">AND request_time &lt;= #{requestTimeEnd}</if>
+      <if test="expirationTimeBegin neq null">AND expiration_time >= #{expirationTimeBegin}</if>
+      <if test="expirationTimeEnd neq null">AND expiration_time &lt;= #{expirationTimeEnd}</if>
+    </where>
+  </sql>
+
+  <select id="pagingCount" resultType="long">
+    SELECT COUNT(id) FROM t_reset_record
+    <include refid="ResetRecordDynamicWhere"/>
+  </select>
+
+  <select id="paging" resultMap="ResetRecordMap">
+    SELECT
+    <include refid="ResetRecord.columns"/>
+    FROM t_reset_record
+    <include refid="ResetRecordDynamicWhere"/>
+
+    <if test="_sort_ neq null">
+      ORDER BY ${_sort_}
+    </if>
+
+    <if test="_offset_ neq null">
+      LIMIT ${_offset_}, ${_limit_}
+    </if>
+  </select>
+
+</mapper>

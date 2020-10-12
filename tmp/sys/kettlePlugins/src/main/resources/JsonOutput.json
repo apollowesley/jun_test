@@ -1,0 +1,6 @@
+{
+    "outputType":"array",
+	"fileName":"your-json-filename.json",
+	"fieldName":"data",
+	"batchSize": 1000
+}

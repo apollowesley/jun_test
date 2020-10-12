@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.evil.pojo.UserPaper" table="tb_user_paper"
+		catalog="onlineexamination">
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+
+		<!-- 映射UserPaper到Paper的多对一关联关系 -->
+		<many-to-one name="paper" class="com.evil.pojo.Paper"
+			fetch="join" lazy="false">
+			<column name="paperID" length="32" not-null="true" />
+		</many-to-one>
+
+		<!-- 映射Userpaper到User的多对一关联关系 -->
+		<many-to-one name="user" class="com.evil.pojo.User" fetch="join"
+			lazy="false">
+			<column name="userID" length="32" not-null="true" />
+		</many-to-one>
+
+		<property name="finishTime" column="finishTime" type="timestamp"
+			update="false" />
+		<property name="startTime" column="startTime" type="timestamp"
+			update="false" />
+		<property name="score" type="string">
+			<column name="score" />
+		</property>
+		<property name="allscore" type="int">
+			<column name="allscore" />
+		</property>
+		<property name="accuracy" type="java.lang.Double">
+			<column name="accuracy" precision="22" scale="0" />
+		</property>
+		<property name="isDelete" type="java.lang.String">
+			<column name="isDelete" length="1" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

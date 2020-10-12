@@ -1,0 +1,50 @@
+<view class='banner'>批量赠送成长值</view>
+
+<view class='wrap'>
+    <view class='item' wx:for="{{list}}" wx:key="id">
+        <view class='top'>
+            <view class='item-l'  
+                data-index="{{index}}" 
+                data-departmentName="{{item.departmentName}}" 
+                data-departmentNumber="{{item.departmentNumber}}"
+                data-id='{{item.id}}'
+                bindtap='toggleList'>
+                    {{item.departmentName}}
+            </view>
+            <!-- <view class='item-r'>
+                <view class='all'>全选</view>
+                <view class='fanxu'>反选</view>
+            </view> -->
+        </view>
+        <view class="item-content" wx:if="{{showIndex == index}}">
+            <checkbox-group bindchange="checkboxChange">
+                <label class="checkbox" wx:for="{{arrList}}"  wx:key="id">
+                    <checkbox value="{{item.name}}" checked="" />{{item.name}}
+                </label>
+            </checkbox-group>
+        </view>
+    </view>
+    
+</view>
+
+<view class="section">
+    <picker bindchange="bindPickerChange" value="{{arr[index].growthValue}}" data-growthValue="{{arr[index].growthValue}}" data-name="{{arr[index].name}}" range="{{arr}}" range-key="name">
+        <view class="picker">
+        请选择：{{arr[index].name}}
+        </view>
+    </picker>
+</view>
+
+<view class='czz'>
+    <view class='czz-top'>
+        <view style='margin-right:20rpx;'>成长值</view>
+        <input disabled='true' placeholder='请输入成长值' value='{{growthValue}}' bindinput='growthValueInput'></input>
+    </view>
+    <view class='czz-bz'>
+        <textarea  disabled='false' placeholder='请输入送成长值说明' value='{{description}}' bindinput='descriptionInput'></textarea>
+    </view> 
+</view>
+
+<view class='btn'>
+    <view class='confirmBtn' bindtap='confirmBtn'>开点</view>
+</view>

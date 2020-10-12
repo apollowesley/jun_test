@@ -1,0 +1,350 @@
+<%@ page pageEncoding="utf-8"%>
+<style type="text/css">
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+#container1 {
+	width: 285px;
+	height: 210px;
+	margin: 8px auto;
+}
+
+#container2 {
+	width: 285px;
+	height: 210px;
+	margin: 8px auto;
+}
+
+.statisticstitle {
+	font-wight: 700;
+	font-size: 18px;
+	text-align: center;
+}
+
+.statisticsvalue{}
+.statisticstime{margin:12px auto 12px 12px;}
+.statisticstime span{margin:auto 2px;}
+.statisticstime input{width:98px;height:21px;font-weight:700;font-size:14px;padding-left:7px;}
+</style>
+<script type="text/javascript" src="${templatePath}/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="${templatePath}/js/Calendar3.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var starttime = "", endtime = "";
+		if (/msie/.test(navigator.userAgent.toLowerCase())) // IE浏览器
+		{
+			$("#starttime").get(0).onpropertychange = getStatistics;
+			$("#endtime").get(0).onpropertychange = getStatistics;
+		} else // 其他浏览器
+		{
+			var intervalName; // 定时器句柄
+			// 获得焦点时，启动定时器
+			$("#starttime").focus(function() {
+				starttime = $("#starttime").val();
+				intervalName = setInterval(starttimecf, 1000);
+			});
+			$("#endtime").focus(function() {
+				endtime = $("#endtime").val();
+				intervalName = setInterval(endtimecf, 1000);
+			});
+
+			// 失去焦点时，清除定时器
+			/*$("#starttime").blur(function()
+			{
+			    clearInterval(intervalName);
+			});*/
+		}
+		// input的值改变时执行的函数
+		function starttimecf() {
+			if ($("#starttime").val() != starttime) {
+				starttime = $("#starttime").val();
+				clearInterval(intervalName);
+				getStatistics();
+			}
+		}
+		function endtimecf() {
+			if ($("#endtime").val() != endtime) {
+				endtime = $("#endtime").val();
+				clearInterval(intervalName);
+				getStatistics();
+			}
+		}
+	});
+</script>
+<div class="statisticstime">
+	<ul>
+		<li><span>起止日期：</span></li>
+		<li><span>从</span><input name="control_date" type="text"
+				id="starttime" size="10" maxlength="10"
+				onclick="new Calendar().show(this);" readonly="readonly" /><span>至</span><input name="control_date2" type="text"
+				id="endtime" size="10" maxlength="10"
+				onclick="new Calendar().show(this);" readonly="readonly" /></li>
+	</ul>
+</div>
+<div class="statisticstitle">近一月支出情况</div>
+<div id="container1"></div>
+<div class="statisticstitle">近一月收入情况</div>
+<div id="container2"></div>
+<div class="statisticsvalue" id="statisticsvalue"></div>
+<script type="text/javascript" src="${templatePath}/flotr2/ftime.js"></script>
+<script type="text/javascript" src="${templatePath}/flotr2/flotr2.min.js"></script>
+<script type="text/javascript">
+/** 计算上一个月的今天 */
+function lastMonthDay(currentdatems1) {
+	/* 先计算年份和月份 */
+	startDate =  (((currentdatems1.substring(5, 7))*1 - 1) != 0 ? (currentdatems1
+					.substring(0, 5) + (((currentdatems1
+					.substring(5, 7))*1 - 1)<10?("0"+((currentdatems1
+							.substring(5, 7))*1 - 1)):((currentdatems1
+									.substring(5, 7))*1 - 1))) : (((currentdatems1.substring(0, 4)) - 1)*1 + "-12"));
+	/* 再计算日期,按月份不同 */
+	switch ((startDate.substring(5))*1) {
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		startDate += currentdatems1.substring(7);
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		if (currentdatems1.substring(7)=="-31") {
+			startDate += "-30";
+		} else {
+			startDate += currentdatems1.substring(7);
+		}
+		break;
+	case 2:
+		var year = (startDate.substring(0, 4)*1);
+		if ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)))/* 闰年29天 */
+		{
+			if ((currentdatems1.substring(8))*1 > 29) {
+				startDate += "-29";
+			} else {
+				startDate += currentdatems1.substring(7);
+			}
+		} else {
+			if ((currentdatems1.substring(8))*1 > 28) {
+				startDate += "-28";
+			} else {
+				startDate += currentdatems1.substring(7);
+			}
+		}
+		break;
+	}
+	return startDate;
+}
+	var xt = document.getElementById('endtime').value = getSmpFormatNowDate(false);
+
+	document.getElementById('starttime').value =lastMonthDay(xt);
+	var req1, req2;
+	var url1, url2;
+	var amount1, amount2;
+	function getStatistics() {
+		amount1 = 0, amount2 = 0;
+		var starttime = document.getElementById('starttime').value;
+		starttime = starttime.substring(0, 4) + starttime.substring(5, 7)
+				+ starttime.substring(8);
+		var endtime = document.getElementById('endtime').value;
+		endtime = endtime.substring(0, 4) + endtime.substring(5, 7)
+				+ endtime.substring(8)
+		var nowdate = getSmpFormatNowDate(true);
+		if (window.XMLHttpRequest) {
+			req1 = new XMLHttpRequest();
+			req2 = new XMLHttpRequest();
+			url1 = "Statistics.yy?startDate=" + starttime
+					+ "000000&endDate=" + endtime + "235959&bio=1";
+			url2 = "Statistics.yy?startDate=" + starttime
+					+ "000000&endDate=" + endtime + "235959&bio=2";
+		} else if (window.ActiveXObject) {
+			req1 = new ActiveXObject("Microsoft.XMLHTTP");
+			req2 = new ActiveXObject("Microsoft.XMLHTTP");
+			url1 = "Statistics.yy?startDate=" + starttime
+					+ "000000&endDate=" + endtime + "235959&bio=1";
+			url2 = "Statistics.yy?startDate=" + starttime
+					+ "000000&endDate=" + endtime + "235959&bio=2";
+		}
+		if (req1) {
+			req1.open("GET", url1, true);
+			req1.setRequestHeader("Content-Type", "text/html;charset=UTF-8");
+			// 这里如果不设定头部则会导致 firfox 发送数据错误，servlet接受到的参数为乱码，在IE中正常
+			req1.onreadystatechange = basic;
+			req1.send(null);
+			// req.setRequestHeader("Content-Type", "text/xml; charset=UTF-8");
+		}
+		if (req2) {
+			req2.open("GET", url2, true);
+			req2.setRequestHeader("Content-Type", "text/html;charset=UTF-8");
+			// 这里如果不设定头部则会导致 firfox 发送数据错误，servlet接受到的参数为乱码，在IE中正常
+			req2.onreadystatechange = basic2;
+			req2.send(null);
+			// req.setRequestHeader("Content-Type", "text/xml; charset=UTF-8");
+		}
+	}
+	//将字符串转化成dom对象;string转换为xml
+	function stringToXml(xmlString) {
+		var xmlDoc;
+		if (typeof xmlString == "string") {
+			//FF
+			if (document.implementation.createDocument) {
+				var parser = new DOMParser();
+				xmlDoc = parser.parseFromString(xmlString, "text/xml");
+			} else if (window.ActiveXObject) {
+				xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+				xmlDoc.async = false;
+				xmlDoc.loadXML(xmlString);
+			}
+		}
+		else {
+			xmlDoc = xmlString;
+		}
+		return xmlDoc;
+	}
+
+	//xml转换为string
+	function xmlToString(xmlDoc) {
+		if (window.ActiveXObject) {
+			return xmlDoc.xml;  //IE
+		} else {
+			return (new XMLSerializer()).serializeToString(xmlDoc);  //FF
+		}
+	}
+	function basic() {
+		if (req1.readyState == 4) {
+			if (req1.status == 200) {
+				var txtDoc1 = req1.responseText;
+				var xmlDoc1=stringToXml(txtDoc1);
+				var NodeName = xmlDoc1.getElementsByTagName("name");
+				var NodeValue = xmlDoc1.getElementsByTagName("value");
+				var arr = new Array();
+				var str, str2;
+				for ( var i = 0; i < NodeName.length; i++) {
+					str = NodeName[i];
+					str2 = NodeValue[i];
+					var arr2 = new Array();
+					arr2[0] = str.childNodes[0].nodeValue * 1;
+					arr2[1] = str2.childNodes[0].nodeValue * 1;
+					arr[i] = arr2;
+					amount1 += arr2[1];
+				}
+				var container1 = document.getElementById("container1");
+				var d1 = arr,
+				// First data series
+				i, graph, graph2;
+
+				// Draw Graph
+				graph = Flotr.draw(container1, [ {
+					data : d1,
+					label : '消费',
+					lines : {
+						show : true
+					},
+					points : {
+						show : true
+					}
+				} ], {
+					colors : [ '#dd0000' ],
+					HtmlText : false,
+					subtitle : '按天支出详细',
+					xaxis : {
+						//ticks : [ 1, 5, 10, 15, 20, 25, 30 ]
+						labelsAngle : 45,
+						mode : "time",
+						timeMode : 'local',
+						timeUnit : 'millisecond',
+						noTicks : 8,
+					},
+					yaxis : {},
+					grid : {
+						verticalLines : false,
+						backgroundColor : {
+							colors : [ [ 0, '#FFf' ], [ 1, '#ccc' ] ],
+							start : 'top',
+							end : 'bottom'
+						}
+					},
+					mouse : {
+						track : true, // => true to track the mouse, no tracking otherwise
+						trackAll : true,
+						relative : true, // => next to the mouse cursor
+						trackDecimals : 2, // => decimals for the track values
+					}
+				});
+		document.getElementById("statisticsvalue").innerHTML = "总支出：" + amount1.toFixed(2);
+			}
+		}
+	}
+
+	function basic2() {
+		if (req2.readyState == 4) {
+			if (req2.status == 200) {
+				var txtDoc1 = req2.responseText;
+				var xmlDoc1=stringToXml(txtDoc1);
+				var NodeName = xmlDoc1.getElementsByTagName("name");
+				var NodeValue = xmlDoc1.getElementsByTagName("value");
+				var arr = [];
+				var str, str2;
+				for ( var i = 0; i < NodeName.length; i++) {
+					str = NodeName[i];
+					str2 = NodeValue[i];
+					arr.push([ str.childNodes[0].nodeValue * 1,
+							str2.childNodes[0].nodeValue * 1 ]);
+					amount2 += str2.childNodes[0].nodeValue * 1;
+				}
+
+				var container2 = document.getElementById("container2");
+				// First data series
+				var d2 = arr,
+				// Second data series
+				i, graph, graph2;
+
+				// Draw Graph
+				graph = Flotr.draw(container2, [ {
+					data : d2,
+					label : '收入',
+					lines : {
+						show : true
+					},
+					points : {
+						show : true
+					}
+				} ], {
+					colors : [ '#00A8F0' ],
+					HtmlText : false,
+					subtitle : '按天收入详细',
+					xaxis : {
+						//ticks : [ 1, 5, 10, 15, 20, 25, 30 ]
+						labelsAngle : 45,
+						mode : "time",
+						timeMode : 'local',
+						timeUnit : 'millisecond',
+						noTicks : 8,
+					},
+					yaxis : {},
+					grid : {
+						verticalLines : false,
+						backgroundColor : {
+							colors : [ [ 0, '#FFf' ], [ 1, '#ccc' ] ],
+							start : 'top',
+							end : 'bottom'
+						}
+					},
+					mouse : {
+						track : true, // => true to track the mouse, no tracking otherwise
+						trackAll : true,
+						relative : true, // => next to the mouse cursor
+						trackDecimals : 2, // => decimals for the track values
+					}
+				});
+				document.getElementById("statisticsvalue").innerHTML += " 总收入：" + amount2.toFixed(2);
+			}
+		}
+	}
+	getStatistics();
+</script>

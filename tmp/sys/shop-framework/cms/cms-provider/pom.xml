@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <parent>
+        <artifactId>cms</artifactId>
+        <groupId>kld-kshop</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>cms-provider</artifactId>
+    <packaging>jar</packaging>
+    <name>cms-provider</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <filters>
+            <filter>${project.basedir}/src/main/resources/jdbc.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+
+    <!--jar引用-->
+    <dependencies>
+
+        <!--内部包的引用-->
+       <dependency>
+            <groupId>kld-kshop</groupId>
+            <artifactId>cms-api</artifactId>
+            <version>${cms-api-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kld-kshop</groupId>
+            <artifactId>kld-common</artifactId>
+            <version>${common-api-version}</version>
+        </dependency>
+
+
+
+
+        <!--spring 引用-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${springcore.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${springwebmvc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${springtest.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>3.2.9.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-asm</artifactId>
+            <version>${spring.asm}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis-spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons-httpclient.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging-api</artifactId>
+            <version>${commons-logging.version}</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kld-kshop</groupId>
+            <artifactId>kld-fastdfs-client</artifactId>
+            <version>${fastdfs.version}</version>
+        </dependency>
+
+        <!--缓存依赖-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${redis.spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.version}</version>
+        </dependency>
+
+
+        <!-- dubbo 服务注册方式 start -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.jboss.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${javassist.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>${zookeeper.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.sgroschupf</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>${zkclient.version}</version>
+        </dependency>
+        <!-- dubbo 服务注册方式 end -->
+
+
+
+    </dependencies>
+
+
+
+
+    <profiles>
+        <!-- 开发环境  -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <dev.db.ip>${dev.master.db.host}</dev.db.ip>
+                <dev.db.dbname>${dev.master.db.dbname}</dev.db.dbname>
+                <dev.db.username>${dev.master.db.username}</dev.db.username>
+                <dev.db.pwd>${dev.master.db.pwd}</dev.db.pwd>
+                <dev.db.port>${dev.master.db.port}</dev.db.port>
+                <dubbo.zookeeper.address>zookeeper://${dev.dubbo.zookeeper.host}:${dev.dubbo.zookeeper.port}</dubbo.zookeeper.address>
+                <dubbo.zookeeper.protocol>${dubbo.protocol}</dubbo.zookeeper.protocol>
+                <dubbo.protocol.name>${dubbo.zookeeper.protocol.name}</dubbo.protocol.name>
+                <dubbo.protocol.port>${dubbo.protocol.cms.port}</dubbo.protocol.port>
+            </properties>
+        </profile>
+
+        <!-- 持续集成环境  -->
+        <profile>
+            <id>qatest</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <qatest.db.ip>${qatest.db.host}</qatest.db.ip>
+                <qatest.db.dbname>${qatest.db.dbname}</qatest.db.dbname>
+                <qatest.db.username>${qatest.db.username}</qatest.db.username>
+                <qatest.db.pwd>${qatest.db.pwd}</qatest.db.pwd>
+                <qatest.db.port>${qatest.db.port}</qatest.db.port>
+                <dubbo.zookeeper.address>zookeeper://${qatest.dubbo.zookeeper.host}:${qatest.dubbo.zookeeper.port}</dubbo.zookeeper.address>
+                <dubbo.zookeeper.protocol>${dubbo.protocol}</dubbo.zookeeper.protocol>
+                <dubbo.protocol.name>${dubbo.zookeeper.protocol.name}</dubbo.protocol.name>
+                <dubbo.protocol.port>${dubbo.protocol.cms.port}</dubbo.protocol.port>
+            </properties>
+        </profile>
+
+        <!-- 生产环境  -->
+        <profile>
+            <id>online</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <online.db.ip>${qatest.db.host}</online.db.ip>
+                <online.db.dbname>${qatest.db.dbname}</online.db.dbname>
+                <online.db.username>${qatest.db.username}</online.db.username>
+                <online.db.pwd>${qatest.db.pwd}</online.db.pwd>
+                <online.db.port>${qatest.db.port}</online.db.port>
+                <dubbo.zookeeper.address>zookeeper://${online.dubbo.zookeeper.host}:${online.dubbo.zookeeper.port}</dubbo.zookeeper.address>
+                <dubbo.zookeeper.protocol>${dubbo.protocol}</dubbo.zookeeper.protocol>
+                <dubbo.protocol.name>${dubbo.zookeeper.protocol.name}</dubbo.protocol.name>
+                <dubbo.protocol.port>${dubbo.protocol.cms.port}</dubbo.protocol.port>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

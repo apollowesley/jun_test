@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.framework.model.mapper.CompanyMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.framework.model.pojo.Company">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="legal" jdbcType="VARCHAR" property="legal" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="simple_name" jdbcType="VARCHAR" property="simpleName" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, create_date, update_date, address, code, contact, email, legal, `name`, simple_name, 
+    telephone
+  </sql>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.gson.framework.model.pojo.Company" useGeneratedKeys="true">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      create_date,
+      update_date,
+      address,
+      code,
+      contact,
+      email,
+      legal,
+      `name`,
+      simple_name,
+      telephone,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{createDate,jdbcType=TIMESTAMP},
+      #{updateDate,jdbcType=TIMESTAMP},
+      #{address,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR},
+      #{contact,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR},
+      #{legal,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{simpleName,jdbcType=VARCHAR},
+      #{telephone,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      legal = #{legal,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      simple_name = #{simpleName,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="cn.gson.framework.model.pojo.Company" useGeneratedKeys="true">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="legal != null">
+        legal,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="simpleName != null">
+        simple_name,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="legal != null">
+        #{legal,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="simpleName != null">
+        #{simpleName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="legal != null">
+        legal = #{legal,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="simpleName != null">
+        simple_name = #{simpleName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

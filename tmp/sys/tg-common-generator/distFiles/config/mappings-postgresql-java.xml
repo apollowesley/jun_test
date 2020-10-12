@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 修改以下映射的sqlType和对应的值。可以在打印的日志里看到对应字段的sqlType -->
+<mappings>
+    <mapping sqlType="varchar">String</mapping>
+    <mapping sqlType="bpchar">String</mapping>
+    <mapping sqlType="int2">Integer</mapping>
+    <mapping sqlType="int4">Integer</mapping>
+    <mapping sqlType="int8">Long</mapping>
+    <mapping sqlType="float4">Float</mapping>
+    <mapping sqlType="float8">Double</mapping>
+    <mapping sqlType="numeric">BigDecimal</mapping>
+    <mapping sqlType="bool">Boolean</mapping>
+    <mapping sqlType="timestamp with time zone">LocalDateTime</mapping>
+    <mapping sqlType="timestamp without time zone">LocalDateTime</mapping>
+    <mapping sqlType="date">LocalDate</mapping>
+    <mapping sqlType="time without time zone">LocalTime</mapping>
+    <mapping sqlType="time without time zone">LocalTime</mapping>
+    <mapping sqlType="bytea">byte[]</mapping>
+</mappings>

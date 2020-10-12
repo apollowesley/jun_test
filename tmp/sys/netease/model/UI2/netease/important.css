@@ -1,0 +1,29 @@
+h5{ font-size:16px; color:#000;}
+.text-danger{ color:#ea413c;}
+.text-white{ color:#fff;}
+
+.x-titlebar{ background-color:rgba(0, 0, 0, 0.3);}
+.x-cards{ padding-top:0;}
+
+.o-img1{ width:100%; height:150px;}
+.o-imgNew{ width:100px; height:70px;}
+.o-imgLogo{ width:60px; height:60px;}
+
+.o-nomargintop{ margin-top:0;}
+
+.top-trans .x-panel-top {
+	z-index : 100;
+}
+.top-trans.x-panel >.x-panel-content{
+	top:0 !important;
+}
+.top-trans.x-panel .no-iosstatusbar  >.x-panel-content{
+	top:-20px!important;
+}
+
+/*大图*/
+.o-relative{ position:relative;}
+.o-relative div[xid='logo']{ width:100%; position:absolute; bottom:30px;}
+
+.o-relative .x-bubble{ position:absolute; top:0; left:0; width:20px; height:20px; background-color:#ea413c; color:#fff; border-radius:0 0 35px 0;}
+

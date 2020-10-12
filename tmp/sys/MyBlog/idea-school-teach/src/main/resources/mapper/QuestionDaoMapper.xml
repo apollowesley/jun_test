@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sise.school.teach.bussiness.question.dao.QuestionDao" >
+    <resultMap id="BaseResultMap" type="com.sise.school.teach.bussiness.question.po.QuestionPO" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="no" property="no" jdbcType="VARCHAR" />
+        <result column="question_content" property="questionContent" jdbcType="VARCHAR" />
+        <result column="course_id" property="courseId" jdbcType="INTEGER" />
+        <result column="course_detail_id" property="courseDetailId" jdbcType="INTEGER" />
+        <result column="good_nums" property="goodNums" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, no, question_content, course_id, course_detail_id, good_nums, create_time,
+    update_time
+  </sql>
+
+    <insert id="insert" parameterType="com.sise.school.teach.bussiness.question.po.QuestionPO" >
+    insert into t_question (id, no, question_content, course_id, course_detail_id, good_nums, create_time,
+    update_time)
+    values (#{id,jdbcType=INTEGER},#{no,jdbcType=VARCHAR},  #{questionContent,jdbcType=VARCHAR},
+      #{courseId,jdbcType=INTEGER}, #{courseDetailId,jdbcType=INTEGER}, #{goodNums,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+    </insert>
+
+    <select id="selectOneByCourseDetailId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM t_question
+        WHERE course_detail_id=#{detailId}
+    </select>
+</mapper>

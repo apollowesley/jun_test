@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: fm-zuul
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+
+server:
+  port: 8001
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+
+zuul:
+  # 饥饿加载
+  ribbon:
+    eager-load:
+      enabled: true
+  ignored-services: '*'
+  # 服务路由
+  routes:
+    fm-user: /user/**
+    fm-order: /order/**
+
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 10000

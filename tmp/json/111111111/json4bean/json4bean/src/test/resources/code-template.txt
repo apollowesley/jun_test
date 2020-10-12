@@ -1,0 +1,20 @@
+#copyright
+/*
+ * Copyright 2016-2016 Javaear Group Holding Ltd.
+ */
+#copyright
+#class
+/**
+ * @author aooer
+ */
+#class
+#getter
+/**
+ * @return ${field_name}
+ */
+#getter
+#setter
+/**
+ * @param ${field_name} ${field_name}
+ */
+#setter

@@ -1,0 +1,1 @@
+package com.jfast.common.utils;/** * 文件操作工具类 * @author zengjintao * @create 2019/3/25 13:26 * @since 1.0 **/public class FileUtils {}

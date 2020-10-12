@@ -1,0 +1,14 @@
+package com.feiynn.{{modelPrefixLowercase}}.mgr;
+
+import java.util.List;
+{{#id2bean}}
+import com.feiynn.common.base.service.Id2BeanService;
+{{/id2bean}}
+import com.feiynn.{{modelPrefixLowercase}}.model.{{modelUppercase}};
+
+public interface {{modelUppercase}}Mgr {{#id2bean}}extends Id2BeanService{{/id2bean}} {
+
+	void delete{{modelUppercase}}(List<String> ids);
+
+	void saveOrUpdate{{modelUppercase}}({{modelUppercase}} model,String type);
+}

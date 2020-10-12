@@ -1,0 +1,18 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= for group <- Enum.chunk_every(@columns, 2) do %>
+    <div class="form-row">
+      <%= for column <- group do %>
+        <div class="form-group col-6">
+          <%= column_label f, column %>
+          <%= column_input f, column %>
+          <small class="form-text text-muted"><%= column.desc %></small>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= submit "保存", class: "btn btn-primary mr-2" %>
+    <%= link "取消", to: Routes.table_path(@conn, :show, @table), class: "btn btn-secondary" %>
+  </div>
+<% end %>

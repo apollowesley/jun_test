@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/naive/naive.iml" filepath="$PROJECT_DIR$/naive/naive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/naive-common/naive-common.iml" filepath="$PROJECT_DIR$/naive-common/naive-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/naive-cxf/naive-cxf.iml" filepath="$PROJECT_DIR$/naive-cxf/naive-cxf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/naive-cxf-client/naive-cxf-client.iml" filepath="$PROJECT_DIR$/naive-cxf-client/naive-cxf-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/naive-cxf-model/naive-cxf-model.iml" filepath="$PROJECT_DIR$/naive-cxf-model/naive-cxf-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/naive-service/naive-service.iml" filepath="$PROJECT_DIR$/naive-service/naive-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/naive-web/naive-web.iml" filepath="$PROJECT_DIR$/naive-web/naive-web.iml" />
+    </modules>
+  </component>
+</project>
+

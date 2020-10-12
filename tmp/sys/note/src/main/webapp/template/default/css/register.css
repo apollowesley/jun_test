@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+html,body{margin:0;padding:0;font:12px/1.5 tahoma,arial,\5b8b\4f53}
+.contenter{margin:0 auto;padding:0;width:960px;}
+.header{height:30px;line-height:30px;}
+.navigate{height:30px;line-height:30px;}
+.pagebody{height:320px;line-height:30px;}
+.footer{}
+.reg_img1{float:right;}
+.register_div{float:left;width:500px;border:1px solid #CCC; padding:10px 0;margin:10px auto;}
+.register_form_nm,.register_form_pwd,.register_form_pwd2,.register_form_em{
+	margin:auto;
+	width: 500px;
+	list-style: none;
+	padding:10px 0;
+}
+.register_form_nm  input,.register_form_pwd input,.register_form_pwd2 input,.register_form_em input{
+	height:20px;
+	line-height:16px;
+	border:#CCC 1px solid;
+	width: 180px;
+	padding: 0;
+}
+.reg_label{
+font-weight:500;width: 100px;text-align:right;display:inline-block;
+}
+.msg_con{display:inline;}
+.msg_weak i{display:inline-block; background:url(../img/register.png) no-repeat scroll 0px -160px transparent;width:16px;height:16px;}
+.msg_err i{background-position:0px 0px}
+.msg_ok i{background-position:0px -200px}
+
+.forget_pwd{position:relative;left:130px;}
+.register input{height:26px;line-height:26px;width: 220px;border:#CCC 1px solid; cursor:pointer;font-weight:700;}
+
+.register {margin:auto;text-align:center;line-height:20px;}

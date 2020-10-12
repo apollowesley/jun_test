@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ developer spirit_demon  @ 2015.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.lookup.dynamic"/>
+
+    <bean id="baskTask" class="com.lookup.dynamic.task.BaseTask" abstract="true"></bean>
+
+    <bean id="mutiPageTask" class=" com.lookup.dynamic.task.MutiPageTask" parent="baskTask" abstract="true"/>
+
+    <bean id="singleTask" class=" com.lookup.dynamic.task.SingleTask" parent="baskTask" abstract="true"/>
+
+    <bean id="proxy" class="com.lookup.dynamic.task.imp.ProxyTask" parent="singleTask">
+        <property name="taskName" value="快代理"></property>
+        <property name="requestMeta">
+            <bean class="com.lookup.dynamic.request.TaskRequestMeta">
+                <property name="encoding" value="UTF-8"></property>
+                <property name="url"
+                          value="http://www.kuaidaili.com/free/intr/"/>
+                <property name="method" value="get"/>
+                <property name="isDynamicUA" value="true"/>
+                <property name="endMark" value="/html"/>
+                <property name="successTag" value="/html>"></property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="wikiTask" class="com.lookup.dynamic.task.imp.WikiTask" parent="singleTask">
+        <property name="taskName" value="wikiTask"></property>
+        <property name="requestMeta">
+            <bean class="com.lookup.dynamic.request.TaskRequestMeta">
+                <property name="encoding" value="UTF-8"></property>
+                <property name="url"
+                          value="https://en.wikipedia.org/wiki/List_of_airports_by_IATA_code:"/>
+                <property name="method" value="get"/>
+                <property name="isDynamicUA" value="true"/>
+                <property name="endMark" value="/html"/>
+                <property name="successTag" value="/html>"></property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

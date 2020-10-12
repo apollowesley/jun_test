@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.site.auth.mapper.PermissionMapper">
+
+	<resultMap id="permissionMap" type="com.site.auth.model.Permission">
+		<result property="id" column="ID" />
+		<result property="menuName" column="MENU_NAME" />
+		<result property="menuCode" column="MENU_CODE" />
+		<result property="url" column="URL" />
+		<result property="lev" column="LEV" />
+		<result property="sort" column="SORT" />
+		<result property="parentId" column="PARENT_ID" />
+		<result property="remark" column="REMARK" />
+		<result property="isDel" column="IS_DEL" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="updateTime" column="UPDATE_TIME" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.site.auth.model.Permission">
+		insert into t_auth_permission(id , menu_name , menu_code , url, lev , sort , parent_id , is_del , create_time , update_time) values(#{id} , #{menuName} , #{menuCode} , #{url} , #{lev} , #{sort} , #{parentId},
+		#{isDel} , #{createTime} , #{updateTime} )
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+	    	select id , menu_name , menu_code , url, lev , sort , parent_id , is_del , create_time , update_time
+	    ]]>
+	</sql>
+
+	<sql id="find_AS_R">
+	    <![CDATA[
+	    	select p.id , p.menu_name , p.menu_code , p.url , p.lev , p.sort , p.parent_id , p.is_del , p.create_time , p.update_time
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM t_auth_permission
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findAllByFilter" parameterType="java.util.Map" resultMap="permissionMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+	</select>
+
+	<select id="findById" parameterType="string" resultMap="permissionMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE ID=#{id}
+	</select>
+
+	<select id="findPermissionByUserId" parameterType="string" resultMap="permissionMap">
+		<include refid="find_AS_R" />
+		 <![CDATA[
+			from t_auth_permission p , t_auth_user_role ur , t_auth_role_permission rp where rp.permission_id=p.id and rp.role_id=ur.role_id and ur.user_id=#{userId} order by p.parent_id asc , p.sort asc
+		 ]]>
+	</select>
+
+	<select id="findPermissionByParentId" parameterType="string" resultMap="permissionMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		 <![CDATA[
+			where parent_id=#{parentId}
+		 ]]>
+	</select>
+
+	<select id="findListPage">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<update id="update" parameterType="com.site.auth.model.Permission">
+		UPDATE t_auth_permission
+		<set>
+			<if test="menuName != null and menuName!=''">
+				MENU_NAME = #{menuName},
+			</if>
+			<if test="menuCode != null and menuCode!=''">
+				MENU_CODE = #{menuCode},
+			</if>
+			<if test="url != null and url!=''">
+				URL = #{url}
+			</if>
+			<if test="lev != null">
+				LEV = #{lev},
+			</if>
+			<if test="sort != null">
+				SORT = #{sort},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				PARENT_ID = #{parentId},
+			</if>
+			<if test="isDel != null">
+				IS_DEL = #{isDel},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				CREATE_TIME = #{createTime},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				UPDATE_TIME = #{updateTime},
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<delete id="delete" parameterType="Map">
+		DELETE FROM t_auth_permission WHERE ID IN
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

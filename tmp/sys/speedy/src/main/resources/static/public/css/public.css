@@ -1,0 +1,69 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #f2f2f2;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer
+}
+
+.hover {
+    cursor: pointer
+}
+
+.box {
+    width: 100%;
+    background: #f2f2f2;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.myhide {
+    display: none;
+}
+
+.myshow {
+    display: block;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 12px;
+    /*  background-color: aqua; */
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: black;
+}
+.list-box{margin:0 auto;background:#fff;width:98%;margin-top:10px;}

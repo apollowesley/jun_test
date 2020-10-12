@@ -1,0 +1,15 @@
+.notice-wrap{
+    
+}
+.wxParse-p{
+    width: 96%;
+    margin: 20rpx 2%;
+    background: #fff;
+}
+.WxEmojiView{
+    text-indent: 50rpx;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    color: #707070;
+    padding: 20rpx;
+}

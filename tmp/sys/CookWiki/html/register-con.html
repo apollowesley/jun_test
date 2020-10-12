@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/checkbox/flat/blue.css" />
+		<style>
+			body {
+				background-color: transparent;
+			}
+			ul {
+				margin: 5px 0px;
+				background: #FFF;
+				border-top: #DEDFE0 1px solid;
+				border-bottom: #DEDFE0 1px solid;
+				overflow: hidden;
+			}
+			ul li {
+				font-size: 16px;
+				padding: 12px;
+				border-bottom: #DFDFE0 1px solid;
+			}
+			ul .last {
+				font-size: 16px;
+				padding: 12px;
+				border-bottom: none;
+			}
+			.col-xs-3 {
+				text-align: center;
+			}
+			.active {
+				background: #F6F6F6;
+			}
+			#submit {
+				margin-top: 20px;
+			}
+			#submit .col-xs-12 {
+				text-align: center;
+				color: #FF0000;
+			}
+			#isArgeeClauseBox{
+				font-size:110%;
+			}
+			#isArgeeClauseBox a{
+				text-decoration:none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<ul>
+					<li>
+						<div class="row">
+							<div class="col-xs-3">
+								帐号
+							</div>
+							<div class="col-xs-9">
+								<input id="username" type="text" placeholder="15位以内字母、数字组合">
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="row">
+							<div class="col-xs-3">
+								密码
+							</div>
+							<div class="col-xs-9">
+								<input id="password" type="password" placeholder="6-12位字母、数字组合">
+							</div>
+						</div>
+					</li>
+					<li class="last">
+						<div class="row">
+							<div class="col-xs-3">
+								邮箱
+							</div>
+							<div class="col-xs-9">
+								<input id="email" type="email" placeholder="留下邮箱便于找回密码">
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="col-xs-12" id="isArgeeClauseBox">
+					<input type="checkbox" checked id="isArgeeClause"> 我同意<a href="" onclick="">《菜谱百科服务条款》</a>
+				</div>
+			</div>
+			<div class="row" id="submit">
+				<ul>
+					<li class="last" tapmode="active" onclick="">
+						<div class="row">
+							<div class="col-xs-12">
+								立即注册
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div style="height:50px;"></div>
+	</body>
+
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<script type="text/javascript" src="../script/laytpl.js"></script>
+	<script type="text/javascript" src="../script/DBapi.js"></script>
+	<script type="text/javascript" src="../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/icheck.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	  $('input').iCheck({
+	    checkboxClass: 'icheckbox_flat-blue'
+	  });
+	});
+	</script>
+	<script type="text/javascript">
+		apiready = function() {
+		
+		};
+	</script>
+</html>

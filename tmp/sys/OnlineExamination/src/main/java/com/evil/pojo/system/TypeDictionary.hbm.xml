@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.evil.pojo.system.TypeDictionary" table="tb_typeDictionary">
+		<id name="id" column="id" type="string">
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="type" column="type" type="integer" />
+		<property name="value" column="value" type="integer"/>
+		<property name="name" column="name" type="string"	length="200" />
+		
+		<property name="addTime" column="addTime" type="timestamp"
+			update="false" />
+		<property name="typeDescribe" column="typeDescribe" type="string" length="2147483647" />
+
+	</class>
+</hibernate-mapping>

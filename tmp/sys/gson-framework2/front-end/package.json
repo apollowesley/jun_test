@@ -1,0 +1,47 @@
+{
+  "name": "gson-framework",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "echarts": "^4.2.1",
+    "font-awesome": "^4.7.0",
+    "hey-global": "^1.0.0",
+    "heyui": "^1.22.0",
+    "js-model": "^1.6.2",
+    "json-form-data": "^1.4.1",
+    "lodash.debounce": "^4.0.8",
+    "moment": "^2.24.0",
+    "qs": "^6.7.0",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
+    "vuex": "^3.1.1",
+    "wangeditor": "^3.1.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "css-loader": "^2.1.1",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "style-resources-loader": "^1.2.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script type="text/javascript" src="../lib/vue-2.6.10.js"></script>
+</head>
+
+<body>
+<div id="ifExample">
+    <h4>1.判断是否存在awesome：</h4>
+    <p v-if="awesome">Vue is awesome!</p>
+    <p v-else>Oh no 😢</p>
+    <h4>2.if-else随机数判断</h4>
+    <div v-if="Math.random() > 0.5">
+        Now you see me
+    </div>
+    <div v-else>
+        Now you don't
+    </div>
+    <h4>3.v-else-if多条件判断</h4>
+    <div v-if="type === 'A'">
+        A
+    </div>
+    <div v-else-if="type === 'B'">
+        B
+    </div>
+    <div v-else-if="type === 'C'">
+        C
+    </div>
+    <div v-else>
+        Not A/B/C
+    </div>
+    <h4>4.判断登录类型</h4>
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address">
+    </template>
+    <button @click="exchangeLoginType">切换登录方式</button>
+
+</div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#ifExample',
+        data: {
+            type: 'B',
+            awesome: 'really cool.',
+            loginType: 'username'
+        },
+        watch: {
+            awesome: function (newVal, oldVal) {
+                debugger
+            }
+        },
+        methods: {
+            exchangeLoginType: function () {
+                if ('username' === this.loginType) {
+                    this.loginType = 'email';
+                } else {
+                    this.loginType = 'username';
+                }
+            }
+        }
+    });
+</script>
+</html>

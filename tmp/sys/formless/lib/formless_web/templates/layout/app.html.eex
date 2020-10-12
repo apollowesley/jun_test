@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh_CN" class="h-100">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
+
+  <title>Formless</title>
+</head>
+<body class="d-flex flex-column h-100">
+  <%= render "_header.html", assigns %>
+
+  <main class="site-body flex-shrink-0">
+    <div class="container py-3">
+      <%= flash_messages @conn %>
+      <%= render @view_module, @view_template, assigns %>
+    </div>
+  </main>
+
+  <%= render "_footer.html", assigns %>
+
+  <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+</body>
+</html>

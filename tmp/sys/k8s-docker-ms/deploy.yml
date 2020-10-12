@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: boot-ms-admin
+  namespace: ns-boot-ms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: boot-ms-admin
+  template:
+    metadata:
+      labels:
+        app: boot-ms-admin
+    spec:
+      containers:
+        - image: reg.jdy.com/sentinel/docker_boot-ms-admin:V1.0
+          imagePullPolicy: Always
+          name: boot-ms-admin
+          ports:
+            - containerPort: 8769
+      imagePullSecrets:
+        - name: registry-harbor
+status:
+  replicas: 1
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: boot-ms-client
+  namespace: ns-boot-ms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: boot-ms-client
+  template:
+    metadata:
+      labels:
+        app: boot-ms-client
+    spec:
+      containers:
+        - image: reg.jdy.com/sentinel/docker_boot-ms-client:V1.0
+          imagePullPolicy: Always
+          name: boot-ms-client
+          ports:
+            - containerPort: 8768
+      imagePullSecrets:
+        - name: registry-harbor
+status:
+  replicas: 1
+
+#  kubectl create secret docker-registry registry-harbor --namespace=ns-boot-ms --docker-server=reg.jdy.com --docker-username=admin --docker-password=Harbor12345
+
+#  kubectl get secrets -n ns-boot-ms

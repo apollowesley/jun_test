@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+/**Bootstrap css begin**/
+.jumbotron {
+	padding: 0;	
+	background-color: #0A64A4;
+}
+
+blockquote {
+	border-left: 5px solid #5cb85c;	
+}
+
+.page-header {
+	border-bottom: 1px solid #5cb85c;	
+}
+
+.thumbnail {
+	border: none;
+	background-color:transparent;
+}
+/**Bootstrap css end**/
+
+.site.text-white {
+	color: #FFF;	
+}
+
+.site.top {
+	width: 800px;
+	height: 200px;
+}
+
+.site.top-title {
+ 	font-size:36px;	
+}
+
+.site.sub-top-title {
+ 	font-size:18px;	
+}
+
+#scrollUp {
+    background-color: #777;
+    color: #eee;
+    font-size: 40px;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    bottom: 20px;
+    right: 5px;
+    overflow: hidden;
+    width: 46px;
+    height: 46px;
+    border: none;
+    opacity: .8
+}
+
+#scrollUp:hover {
+    background-color: #333
+}
+
+@media screen and (min-width:992px) {
+    #scrollUp {
+		right: 10px;
+        bottom: 100px;
+    }
+}
+
+#page-back {
+	background-color: #777;
+	color: #eee;
+	font-size: 40px;
+	line-height: 1;
+	text-align: center;
+	text-decoration: none;
+	left: 5px;
+	bottom: 20px;
+	overflow: hidden;
+	width: 46px;
+	height: 46px;
+	border: none;
+	opacity: .8;
+}
+
+@media screen and (min-width:992px) {
+    #page-back {
+		left: 10px;
+        bottom: 100px;
+    }
+}
+
+#page-back:hover {
+	background-color: #333;
+	cursor: pointer;
+}
+
+.site.footer {
+    color: #777;
+    padding: 30px 0;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 50px
+}
+
+.site.footer a {
+    color: #777
+}
+
+.site.footer-top .about>div {
+    
+    margin-bottom: 10px
+}
+
+.site.footer-top .about>div h4 {
+    font-size: 16px
+}
+
+.site.footer-bottom {
+    font-size: 13px;
+}
+
+ul {
+	padding: 0px;
+}
+
+.site.footer-bottom ul li {
+    padding: 10px 0px;
+	list-style: none;
+}
+
+.site.pointer-cursor {
+	cursor: pointer;
+}
+
+.site.a a:hover,a:focus {
+	text-decoration: none;
+}
+
+.site.section {
+	padding-top:50px;
+	padding-bottom:30px;	
+}
+
+.site.section:nth-child(even){
+  background:#e6f1fa;
+}
+
+.site.image {
+	width: 113px;
+	height: 100px;
+}

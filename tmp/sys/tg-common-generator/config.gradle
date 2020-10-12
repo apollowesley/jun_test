@@ -1,0 +1,15 @@
+// 定义变量
+ext {
+    // 基本配置
+    configInfo = [
+        // 基本信息
+        baseName : "tg-common-generator", // jar baseName
+        version : "2020071101", // 版本号
+        package : "com.turingoal.generator" // package
+    ]
+    // 依赖jar包版本
+    libVersions = [
+        freemarkerVersion : "2.3.30", // freemarker 版本
+        hutoolVersion : "5.3.9" // hutool 版本
+    ]
+}

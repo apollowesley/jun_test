@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="model" extends="struts-default" namespace="/tag">
+        <interceptors>
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="paramsPrepareParamsStack">
+                    <!-- 把alwaysInvokePrepare设置为false,不需要跑该方法,因为已经为每个save, edit等定制了相关的prepare方法 -->
+                    <param name="prepare.alwaysInvokePrepare">false</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="myStack"></default-interceptor-ref>
+        <action name="user-*" class="com.gs.struts.ModelDrivenAndPrepareAction" method="{1}">
+            <result name="{1}">/WEB-INF/pages/user-{1}.jsp</result>
+        </action>
+    </package>
+</struts>

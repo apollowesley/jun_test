@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<items>
+	<item uid="1" arg="generateUUID" valid="YES" autocomplete="generateUUID"
+		type="default">
+		<title>generateUUID</title>
+		<subtitle>36 based uuid</subtitle>
+	</item>
+	<item uid="2" arg="{{arg}}" type="default"></item>
+</items>

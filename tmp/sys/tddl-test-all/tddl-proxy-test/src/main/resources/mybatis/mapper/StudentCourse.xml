@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.course.dao.StudentCourseDao">
+	<resultMap id="BaseResultMap" type="com.course.model.StudentCourse">
+		<id column="scId" property="scId" jdbcType="BIGINT" />
+		<result column="cId" property="cId" jdbcType="BIGINT" />
+		<result column="sId" property="sId" jdbcType="BIGINT" />
+		<result column="score" property="score" jdbcType="DOUBLE" />
+		<result column="examDate" property="examDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+    <resultMap id="Join" type="com.course.model.JoinResult">
+        <id column="sId" property="sId" jdbcType="BIGINT" />
+        <result column="sName" property="sName" jdbcType="VARCHAR" />
+        <result column="cName" property="cName" jdbcType="VARCHAR" />
+        <result column="className" property="className" jdbcType="VARCHAR" />
+        <result column="score" property="score" jdbcType="DOUBLE" />
+        <result column="examDate" property="examDate" jdbcType="TIMESTAMP" />
+        <result column="cName" property="cName" jdbcType="VARCHAR" />
+    </resultMap>
+	
+	<!-- 基础操作列-->
+	<sql id="Base_Column_List" >
+		scId, cId, sId, score, examDate
+	</sql>
+
+    <!-- 查询学生Model -->
+	<select id="getStudentCourseBySId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from studentCourse
+		where scId = #{_parameter,jdbcType=BIGINT}
+	</select>
+
+    <!-- 插入学生Model -->
+    <insert id="insertStudentCourse" parameterType="com.course.model.StudentCourse">
+        insert into studentCourse
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="scId != null" >
+                scId,
+            </if>
+            <if test="cId != null" >
+                cId,
+            </if>
+            <if test="sId != null" >
+                sId,
+            </if>
+            <if test="score != null" >
+                score,
+            </if>
+            <if test="examDate != null" >
+                examDate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="scId != null" >
+                #{scId,jdbcType=BIGINT},
+            </if>
+            <if test="cId != null" >
+                #{cId,jdbcType=BIGINT},
+            </if>
+            <if test="sId != null" >
+                #{sId,jdbcType=BIGINT},
+            </if>
+            <if test="score != null" >
+                #{score,jdbcType=DOUBLE},
+            </if>
+            <if test="examDate != null" >
+                #{examDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新用户信息 -->
+    <update id="updateStudentCourseById" parameterType="com.course.model.StudentCourse" >
+        update studentCourse
+        <set >
+            <if test="scId != null" >
+                scId = #{scId},
+            </if>
+            <if test="cId != null" >
+                cId = #{cId},
+            </if>
+            <if test="sId != null" >
+                sId = #{sId},
+            </if>
+            <if test="score != null" >
+                score = #{score},
+            </if>
+            <if test="examDate != null" >
+                examDate  = #{examDate},
+            </if>
+
+        </set>
+        where scId = #{scId}
+    </update>
+
+    <!-- 根据id删除用户帐号 -->
+    <delete id="deleteStudentCourse" parameterType="Long" >
+        delete from studentCourse
+        where scId in
+        <foreach collection="array" close=")" open="(" separator="," item="scId" >
+            #{scId,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+    <select id="getStudentAndStudentCourseInfo" parameterType="Long" resultMap="Join">
+     select s.sId,s.sName,sc.className from student s
+    join sclass sc on s.classId = sc.classId
+
+    where s.sId  =#{_parameter,jdbcType=BIGINT}
+    </select>
+
+    <select id="joinTest2" parameterType="Long"  resultMap="Join">
+        select s.sName,cs.cName,sc.scId,
+       sc.sId,sc.score from student s
+         join studentcourse sc on s.sId=sc.sId
+          join course cs on cs.cId = sc.cId
+          where  s.sId = #{_parameter,jdbcType=BIGINT}
+    </select>
+
+    <select id="joinTest3" parameterType="Long"  resultType="pd">
+        select s.sName,cs.cName,sc.scId,
+        sc.sId,sc.score from student s
+        join studentcourse sc on s.sId=sc.sId
+        join course cs on cs.cId = sc.cId
+        where  s.sId = #{_parameter,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteAll"  >
+        delete from studentCourse
+    </delete>
+
+</mapper>

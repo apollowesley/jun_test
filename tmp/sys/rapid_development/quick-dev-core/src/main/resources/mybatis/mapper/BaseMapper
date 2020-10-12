@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此配置文件仅用作粘贴复制-->
+<!--映射Mapper-->
+<mapper namespace="pers.man.quickdevcore.system.persistence.BaseMapper">
+
+    <!--映射结果集-->
+    <resultMap id="BaseResultMap" type="">
+        <result property="id" column="id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" javaType="java.time.LocalDateTime" jdbcType="DATE"/>
+        <result property="updateTime" column="update_time" javaType="java.time.LocalDateTime" jdbcType="DATE"/>
+    </resultMap>
+
+    <!-- 表名-->
+    <sql id="Table">
+            system_menu
+        </sql>
+
+    <!--基本语句-->
+    <sql id="BaseInsert">
+        INSERT INTO
+        <include refid="Table"/>
+    </sql>
+    <sql id="BaseDelete">
+        DELETE FROM
+        <include refid="Table"/>
+        WHERE 1 = 1
+    </sql>
+    <sql id="BaseUpdate">
+        UPDATE
+        <include refid="Table"/>
+    </sql>
+    <sql id="BaseSelect">
+        SELECT * FROM
+        <include refid="Table"/>
+        WHERE 1 = 1
+    </sql>
+
+    <!--根据id查询一个实体-->
+    <select id="getById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <include refid="BaseSelect"/>
+        AND id = #{id}
+    </select>
+
+    <!--查询所有实体-->
+    <select id="listAll" resultMap="BaseResultMap">
+        <include refid="BaseSelect"/>
+    </select>
+
+    <!--统计所有实体的数量-->
+    <select id="count" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM
+        <include refid="Table"/>
+    </select>
+
+    <!--保存一个实体-->
+    <insert id="save" parameterType="">
+        <include refid="BaseInsert"/>
+        (
+        <if test="id != null and id != ''">id</if>
+        <if test="createTime != null">,create_time</if>
+        <if test="updateTime != null">,update_time</if>
+        )VALUES(
+        <if test="id != null and id != ''">#{id}</if>
+        <if test="createTime != null">,#{createTime}</if>
+        <if test="updateTime != null">,#{updateTime}</if>
+        )
+    </insert>
+
+    <!--保存多个实体-->
+    <insert id="bathSave" parameterType="java.util.List">
+        <include refid="BaseInsert"/>
+        {
+        id
+        ,create_time
+        ,update_time
+        }
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id}
+            ,#{item.createTime}
+            ,#{item.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <!--更新一个实体-->
+    <update id="update" parameterType="">
+        <include refid="BaseUpdate"/>
+        <set>
+            <if test="id != null and id != ''">id = #{id}</if>
+            <if test="createTime != null">,create_time = #{createTime}</if>
+            <if test="updateTime != null">,update_time = #{updateTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--删除一个实体-->
+    <delete id="removeById" parameterType="java.lang.String">
+        <include refid="BaseDelete"/>
+        AND id = #{id}
+    </delete>
+
+    <!--批量删除-->
+    <delete id="bathRemoveByIds" parameterType="java.lang.String">
+        <include refid="BaseDelete"/>
+        and id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

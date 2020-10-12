@@ -1,0 +1,23 @@
+server:
+  port: 1001
+
+spring:
+  application:
+    name: teaching-registry
+  datasource:
+    url: jdbc:mysql://localhost:3306/leyou
+    username: root
+    password: 730805
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+eureka:
+  client:
+  #不注册eureka本身
+    fetchRegistry: false
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: http://127.0.0.1:${server.port}/eureka
+  server:
+    enableSelfPreservation: false # 关闭自我保护
+    evictionIntervalTimerInMs: 5000 # 每隔5秒进行一次服务列表清理

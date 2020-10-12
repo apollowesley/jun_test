@@ -1,0 +1,42 @@
+package com.feiynn.{{modelPrefixLowercase}}.mgr;
+
+import java.util.List;
+{{#id2bean}}import org.springframework.cache.annotation.Cacheable;{{/id2bean}}
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.feiynn.common.base.service.BaseGenericServiceImpl;
+import com.feiynn.{{modelPrefixLowercase}}.model.{{modelUppercase}};
+import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableMap;
+
+@Service
+public class {{modelUppercase}}MgrImpl extends BaseGenericServiceImpl implements
+		{{modelUppercase}}Mgr {
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void delete{{modelUppercase}}(List<String> ids) {
+		executeHql(" delete from {{modelUppercase}} where id in :ids ",
+				ImmutableMap.<String, Object> of("ids", ids));
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void saveOrUpdate{{modelUppercase}}({{modelUppercase}} {{modelLowercase}},String type) {
+		if (Strings.nullToEmpty(type).equals("save")) {
+			save({{modelLowercase}});
+		} else {
+			update({{modelLowercase}});
+		}
+	}
+	
+	{{#id2bean}}
+	@Override
+	@Cacheable(value = "{{UPPER_UNDERSCORE}}_CACHE", key = "#id + 'id2bean'")
+	public <T> T id2bean(String id) {
+		T t = getObject("from {{modelUppercase}} where id=:id ",
+				ImmutableMap.<String, Object> of("id", id));
+		return t;
+	}
+	{{/id2bean}}
+}

@@ -1,0 +1,13 @@
+@import "bootstrap_custom";
+@import "~bootstrap/scss/bootstrap";
+
+html, body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: 14px;
+}
+
+.site-header { height: 50px; }
+.site-body { padding-top: 50px; }
+.site-footer { background-color: white; }

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>view/View.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DataScope.html">DataScope</a></li><li><a href="HTMLView.html">HTMLView</a><ul class='methods'><li data-type='method'><a href="HTMLView.html#attach">attach</a></li><li data-type='method'><a href="HTMLView.html#childOf">childOf</a></li><li data-type='method'><a href="HTMLView.html#detach">detach</a></li><li data-type='method'><a href="HTMLView.html#emit">emit</a></li><li data-type='method'><a href="HTMLView.html#off">off</a></li><li data-type='method'><a href="HTMLView.html#on">on</a></li><li data-type='method'><a href="HTMLView.html#one">one</a></li><li data-type='method'><a href="HTMLView.html#parse">parse</a></li><li data-type='method'><a href="HTMLView.html#render">render</a></li><li data-type='method'><a href="HTMLView.html#scan">scan</a></li><li data-type='method'><a href="HTMLView.html#valueOf">valueOf</a></li><li data-type='method'><a href="HTMLView.html#watch">watch</a></li></ul></li><li><a href="InnerLink.html">InnerLink</a><ul class='methods'><li data-type='method'><a href="InnerLink.html#toString">toString</a></li></ul></li><li><a href="ListView.html">ListView</a><ul class='methods'><li data-type='method'><a href="ListView.html#attach">attach</a></li><li data-type='method'><a href="ListView.html#childOf">childOf</a></li><li data-type='method'><a href="ListView.html#clear">clear</a></li><li data-type='method'><a href="ListView.html#detach">detach</a></li><li data-type='method'><a href="ListView.html#emit">emit</a></li><li data-type='method'><a href="ListView.html#indexOf">indexOf</a></li><li data-type='method'><a href="ListView.html#insert">insert</a></li><li data-type='method'><a href="ListView.html#off">off</a></li><li data-type='method'><a href="ListView.html#on">on</a></li><li data-type='method'><a href="ListView.html#one">one</a></li><li data-type='method'><a href="ListView.html#remove">remove</a></li><li data-type='method'><a href="ListView.html#render">render</a></li><li data-type='method'><a href="ListView.html#scan">scan</a></li><li data-type='method'><a href="ListView.html#sort">sort</a></li><li data-type='method'><a href="ListView.html#valueOf">valueOf</a></li><li data-type='method'><a href="ListView.html#watch">watch</a></li></ul></li><li><a href="Observer.html">Observer</a><ul class='methods'><li data-type='method'><a href="Observer.html#.extend">extend</a></li><li data-type='method'><a href="Observer.html#.instanceOf">instanceOf</a></li><li data-type='method'><a href="Observer.html#.registerEvent">registerEvent</a></li><li data-type='method'><a href="Observer.html#emit">emit</a></li><li data-type='method'><a href="Observer.html#off">off</a></li><li data-type='method'><a href="Observer.html#on">on</a></li><li data-type='method'><a href="Observer.html#one">one</a></li><li data-type='method'><a href="Observer.html#valueOf">valueOf</a></li></ul></li><li><a href="RenderNode.html">RenderNode</a><ul class='methods'><li data-type='method'><a href="RenderNode.html#toString">toString</a></li></ul></li><li><a href="TreeView.html">TreeView</a><ul class='methods'><li data-type='method'><a href="TreeView.html#.fromFlat">fromFlat</a></li><li data-type='method'><a href="TreeView.html#attach">attach</a></li><li data-type='method'><a href="TreeView.html#childOf">childOf</a></li><li data-type='method'><a href="TreeView.html#clear">clear</a></li><li data-type='method'><a href="TreeView.html#detach">detach</a></li><li data-type='method'><a href="TreeView.html#emit">emit</a></li><li data-type='method'><a href="TreeView.html#indexOf">indexOf</a></li><li data-type='method'><a href="TreeView.html#insert">insert</a></li><li data-type='method'><a href="TreeView.html#off">off</a></li><li data-type='method'><a href="TreeView.html#on">on</a></li><li data-type='method'><a href="TreeView.html#one">one</a></li><li data-type='method'><a href="TreeView.html#remove">remove</a></li><li data-type='method'><a href="TreeView.html#render">render</a></li><li data-type='method'><a href="TreeView.html#scan">scan</a></li><li data-type='method'><a href="TreeView.html#sort">sort</a></li><li data-type='method'><a href="TreeView.html#valueOf">valueOf</a></li><li data-type='method'><a href="TreeView.html#watch">watch</a></li></ul></li><li><a href="View.html">View</a><ul class='methods'><li data-type='method'><a href="View.html#.extend">extend</a></li><li data-type='method'><a href="View.html#attach">attach</a></li><li data-type='method'><a href="View.html#childOf">childOf</a></li><li data-type='method'><a href="View.html#detach">detach</a></li><li data-type='method'><a href="View.html#emit">emit</a></li><li data-type='method'><a href="View.html#off">off</a></li><li data-type='method'><a href="View.html#on">on</a></li><li data-type='method'><a href="View.html#one">one</a></li><li data-type='method'><a href="View.html#scan">scan</a></li><li data-type='method'><a href="View.html#valueOf">valueOf</a></li><li data-type='method'><a href="View.html#watch">watch</a></li></ul></li><li><a href="WebApp.html">WebApp</a><ul class='methods'><li data-type='method'><a href="WebApp.html#.component">component</a></li><li data-type='method'><a href="WebApp.html#emit">emit</a></li><li data-type='method'><a href="WebApp.html#getRoute">getRoute</a></li><li data-type='method'><a href="WebApp.html#load">load</a></li><li data-type='method'><a href="WebApp.html#loadPage">loadPage</a></li><li data-type='method'><a href="WebApp.html#off">off</a></li><li data-type='method'><a href="WebApp.html#on">on</a></li><li data-type='method'><a href="WebApp.html#one">one</a></li><li data-type='method'><a href="WebApp.html#setURLData">setURLData</a></li><li data-type='method'><a href="WebApp.html#valueOf">valueOf</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-WebApp.html">WebApp</a></li></ul><h3>Externals</h3><ul><li><a href="external-_jQuery.fn_.html">jQuery.fn</a><ul class='methods'><li data-type='method'><a href="external-_jQuery.fn_.html#.iWebApp">iWebApp</a></li><li data-type='method'><a href="external-_jQuery.fn_.html#.view">view</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="HTMLView.html#event:attach">attach</a></li><li><a href="HTMLView.html#event:update">update</a></li><li><a href="ListView.html#event:attach">attach</a></li><li><a href="ListView.html#event:update">update</a></li><li><a href="TreeView.html#event:attach">attach</a></li><li><a href="TreeView.html#event:update">update</a></li><li><a href="View.html#event:attach">attach</a></li><li><a href="View.html#event:update">update</a></li><li><a href="WebApp.html#event:data">data</a></li><li><a href="WebApp.html#event:ready">ready</a></li><li><a href="WebApp.html#event:request">request</a></li><li><a href="WebApp.html#event:route">route</a></li><li><a href="WebApp.html#event:template">template</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">view/View.js</h1>
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define([
+    'jquery', '../base/Observer', '../base/DataScope', './RenderNode'
+],  function ($, Observer, DataScope, RenderNode) {
+
+    /**
+     * 视图抽象类
+     *
+     * @author  TechQuery
+     *
+     * @class   View
+     * @extends Observer
+     *
+     * @param   {jQueryAcceptable} $_View  - Container DOM of View
+     * @param   {object}               [scope] - Data object as a scope
+     *
+     * @returns {View}                 Return the last one if a View instance
+     *                                 has been created on this element
+     */
+
+    function View($_View, scope) {
+
+        var _This_ = Observer.call(
+                $.Class.call(this, View, ['render']),  $_View,  true
+            );
+
+        return  (_This_ !== this)  ?
+            _This_ :
+            this.setPrivate({
+                id:          '',
+                name:        this.$_View[0].name || this.$_View[0].dataset.name,
+                /**
+                 * 视图数据作用域
+                 *
+                 * @name      __data__
+                 * @type      {DataScope}
+                 *
+                 * @memberof  View
+                 * @instance
+                 *
+                 * @protected
+                 */
+                data:        new DataScope( scope ),
+                parse:       0,
+                child:       [ ],
+                observer:    null
+            }).attach();
+    }
+
+    var Sub_Class = [ ];
+
+    return  Observer.extend(View, {
+        getSub:    function (iDOM) {
+
+            var is_View = iDOM.getAttribute('is');
+
+            for (var i = Sub_Class.length - 1;  Sub_Class[i];  i--)
+                if (
+                    is_View ?
+                        (is_View === Sub_Class[i].name)  :
+                        Sub_Class[i].is( iDOM )
+                )
+                    return  new Sub_Class[i](
+                        iDOM,
+                        (this.instanceOf( iDOM.parentNode )  ||  '').__data__
+                    );
+        },
+        /**
+         * 继承出一个视图子类
+         *
+         * @author   TechQuery
+         *
+         * @memberof View
+         *
+         * @param    {function} constructor - Constructor of the Sub Class
+         * @param    {?object}  Static      - Static properties
+         * @param    {object}   [prototype] - Instance properties
+         *
+         * @returns  {function} The Sub Class
+         */
+        extend:    function (constructor, Static, prototype) {
+
+            Sub_Class.push( constructor );
+
+            Static = Static  ||  { };
+
+            Static.is = Static.is || $.noop;
+
+            return $.Class.extend.call(
+                this,  constructor,  Static,  prototype
+            ).signSelector();
+        }
+    }, {
+        attrWatch:     function () {
+            var _This_ = this;
+
+            this.__observer__ = new self.MutationObserver(function () {
+
+                var iData = { };
+
+                $.each(arguments[0],  function () {
+
+                    var iNew = this.target.getAttribute( this.attributeName );
+
+                    if (
+                        (iNew != this.oldValue)  &amp;&amp;
+                        (! (this.oldValue || '').match( RenderNode.expression ))
+                    )
+                        iData[$.camelCase( this.attributeName.slice(5) )] = iNew;
+                });
+
+                /**
+                 * 自定义属性 更新事件
+                 *
+                 * @event    View#update
+                 *
+                 * @type     {object}
+                 *
+                 * @property {string}      type   - Event Name
+                 * @property {HTMLElement} target - View container
+                 */
+
+                if (_This_.__parse__  &amp;&amp;  (! $.isEmptyObject( iData )))
+                    _This_.render( iData ).emit({
+                        type:      'update',
+                        target:    _This_.$_View[0]
+                    }, iData);
+            });
+
+            this.__observer__.observe(this.$_View[0], {
+                attributes:           true,
+                attributeOldValue:    true,
+                attributeFilter:      $.map(
+                    Object.keys( this.$_View[0].dataset ),
+                    function () {
+                        return  'data-'  +  $.hyphenCase( arguments[0] );
+                    }
+                )
+            });
+        },
+        /**
+         * 挂载视图
+         *
+         * @author   TechQuery
+         *
+         * @memberof View.prototype
+         *
+         * @fires    View#attach
+         *
+         * @returns  {View} Current View
+         */
+        attach:        function () {
+
+            if (! this.$_View[0].id)
+                this.$_View[0].id = this.__id__ || $.uuid('View');
+
+            this.__id__ = this.$_View[0].id;
+
+            this.$_View.data('[object View]', this);
+
+            if ( this.$_View[0].dataset.href )  this.attrWatch();
+
+            /**
+             * 视图挂载完成事件
+             *
+             * @event    View#attach
+             *
+             * @type     {object}
+             *
+             * @property {string}      type   - Event Name
+             * @property {HTMLElement} target - View container
+             */
+
+            this.emit({
+                type:      'attach',
+                target:    this.$_View.append( this.$_Content )[0]
+            });
+
+            return this;
+        },
+        /**
+         * 卸载视图
+         *
+         * @author   TechQuery
+         *
+         * @memberof View.prototype
+         *
+         * @returns  {View} Current View
+         */
+        detach:        function () {
+
+            if ( this.$_View[0].id.match(/^View_\w+/) )  this.$_View[0].id = '';
+
+            this.$_View.data('[object View]', null);
+
+            if (this.__observer__) {
+                this.__observer__.disconnect();
+
+                delete this.__observer__;
+            }
+
+            this.$_Content = this.$_View.children().detach();
+
+            return this;
+        },
+        /**
+         * HTML 树解析器
+         *
+         * @callback View~parser
+         *
+         * @this     View
+         * @param    {HTMLElement|View} node - A Renderable Object
+         */
+        /**
+         * HTML 树扫描器
+         *
+         * @author    TechQuery
+         *
+         * @memberof  View.prototype
+         * @protected
+         *
+         * @param     {View~parser} parser - A callback to process HTMLElement
+         *
+         * @returns   {View}        Current View
+         */
+        scan:          function (parser) {
+
+            var Sub_View = [ ];
+
+            var iSearcher = this.$_View.treeWalker(1,  (function (iDOM) {
+
+                    var iView;
+
+                    if (this.$_View[0] !== iDOM) {
+
+                        if ( iDOM.dataset.href ) {
+
+                            iView = View.getSub( iDOM );
+
+                            if (this.__child__.indexOf( iView )  &lt;  0)
+                                this.__child__.push( iView );
+
+                            return null;
+
+                        } else if (
+                            iDOM.dataset.name  ||
+                            (iView = View.instanceOf(iDOM, false))
+                        ) {
+                            iView = iView  ||  View.getSub( iDOM );
+
+                            Sub_View.push(
+                                (iView.parse  &amp;&amp;  (! iView.__parse__))  ?
+                                    iView.parse()  :  iView
+                            );
+
+                            return null;
+
+                        } else if (
+                            (iDOM.parentNode == document.head)  &amp;&amp;
+                            (iDOM.tagName.toLowerCase() != 'title')
+                        )
+                            return null;
+                    }
+
+                    return  parser.call(this, iDOM);
+
+                }).bind( this ));
+
+            while (! iSearcher.next().done)  ;
+
+            for (var i = 0;  this.__child__[i];  i++)
+                parser.call(this,  this.__child__[i].$_View[0]);
+
+            for (var i = 0;  Sub_View[i];  i++)
+                parser.call(this, Sub_View[i]);
+
+            this.__parse__ = $.now();
+
+            return this;
+        },
+        /**
+         * 视图对象 属性监视
+         *
+         * @author   TechQuery
+         *
+         * @memberof View.prototype
+         *
+         * @param    {string} key       - Property Key
+         * @param    {object} [get_set] - Getter &amp; Setter
+         *
+         * @returns  {View}   Current View
+         */
+        watch:         function (key, get_set) {
+
+            if (! (key in Object.getPrototypeOf( this )))
+                this.setPublic(key, get_set, {
+                    get:    function () {
+
+                        return  this.__data__[key];
+                    },
+                    set:    this.render.bind(this, key)
+                });
+
+            return this;
+        },
+        /**
+         * 获取视图上的数据
+         *
+         * @author   TechQuery
+         *
+         * @memberof View.prototype
+         *
+         * @returns  {object} Data of this View in plain object
+         */
+        valueOf:       function () {
+
+            return  this.__data__.valueOf();
+        },
+        /**
+         * 获取子组件
+         *
+         * @author   TechQuery
+         *
+         * @memberof View.prototype
+         *
+         * @param    {string}  [$_Filter] - jQuery Selector
+         *
+         * @returns  {View[]}  Array of Child Component
+         */
+        childOf:       function ($_Filter) {
+
+            var children = this.__child__ || this;
+
+            return  $_Filter ?
+                $.map(children,  function (VM) {
+
+                    return  VM.$_View.is( $_Filter )  ?  VM  :  null;
+                }) :
+                Array.from( children );
+        }
+    }).registerEvent('ready', 'update');
+
+});</code></pre>
+        </article>
+    </section>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 03 2017 07:42:48 GMT+0800 (中国标准时间) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

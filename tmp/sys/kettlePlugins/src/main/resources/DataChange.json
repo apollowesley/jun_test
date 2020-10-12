@@ -1,0 +1,6 @@
+{
+    "changeConfig": [
+        {"inputField": "field1", "changeType": "sc2tc", "outputField": "field2"},
+        {"inputField": "field3", "changeType": "hz2py", "outputField": "field4"}
+    ] 
+}

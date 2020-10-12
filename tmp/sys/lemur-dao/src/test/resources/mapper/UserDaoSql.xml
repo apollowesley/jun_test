@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="io.lemur.dao.test.examples.dao.user.UserDao">
+	<sql key="listUserByAge">
+		select * from user where age &lt;= :age
+	</sql>
+	<sql key="updateUserBirthday">
+		<![CDATA[
+			update user set birthday = :birthday where
+			<#if name ?exists>
+			and name = :name
+			</#if>
+			<#if age ?exists>
+			and age = :age
+			</#if>
+		]]>
+	</sql>
+	
+</mapper>

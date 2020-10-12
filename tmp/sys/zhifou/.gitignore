@@ -1,0 +1,14 @@
+/.idea
+/.vscode
+/vendor
+*.log
+*.xml
+*.apk
+*.rar
+*.zip
+*.bak
+/unpackage/*
+!/unpackage/res/
+.env
+.DS_Store
+.git

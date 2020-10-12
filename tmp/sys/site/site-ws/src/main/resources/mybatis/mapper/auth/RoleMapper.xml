@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.site.auth.mapper.RoleMapper">
+
+	<resultMap id="roleMap" type="com.site.auth.model.Role">
+		<result property="id" column="ID" />
+		<result property="roleName" column="ROLE_NAME" />
+		<result property="roleCode" column="ROLE_CODE" />
+		<result property="parentId" column="PARENT_ID" />
+		<result property="remark" column="REMARK" />
+		<result property="isDel" column="IS_DEL" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="updateTime" column="UPDATE_TIME" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.site.auth.model.Role">
+		 <![CDATA[ insert into t_auth_role(id , role_name, role_code , parent_id , remark , is_del , create_time , update_time) values(#{id} , #{roleName} , #{roleCode} , #{parentId} , #{remark} , #{isDel} , #{createTime} , #{updateTime}) ]]>
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+	    	select id , role_name , role_code , parent_id, remark , is_del , create_time , update_time
+	    ]]>
+	</sql>
+
+	<sql id="find_as_xxx">
+	    <![CDATA[
+	    	select r.id , r.role_name , r.role_code , r.parent_id , r.remark , r.is_del , r.create_time , r.update_time
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	from t_auth_role
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	where 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="string" resultMap="roleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE ID=#{id}
+	</select>
+
+	<select id="findRoleByUserId" parameterType="string" resultMap="roleMap">
+		<include refid="find_as_xxx" />
+		from t_auth_role r , t_auth_user_role ur where r.id=ur.role_id and
+		ur.user_id=#{userId}
+	</select>
+
+	<select id="findRoleByCode" parameterType="string" resultMap="roleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE ROLE_CODE=#{roleCode}
+	</select>
+
+	<select id="paginateRolePage" resultMap="roleMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<update id="update" parameterType="com.site.auth.model.Role">
+		UPDATE t_auth_role
+		<set>
+			<if test="roleName != null and roleName!=''">
+				ROLE_NAME = #{roleName},
+			</if>
+			<if test="roleCode != null and roleCode!=''">
+				ROLE_CODE = #{roleCode},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				PARENT_ID = #{parentId},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark}
+			</if>
+			<if test="isDel != null">
+				IS_DEL = #{isDel},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				CREATE_TIME = #{createTime},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				UPDATE_TIME = #{updateTime},
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<delete id="delete" parameterType="Map">
+		DELETE FROM t_auth_role WHERE ID IN
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

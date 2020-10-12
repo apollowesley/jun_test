@@ -1,0 +1,60 @@
+package $aoPackageName;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+import $serviceName;
+import $importClassName;
+
+@Service("$lowerEntityNameAO")
+public class $entityNameAOImpl implements $entityNameAO {
+
+	@Autowired
+	private $entityNameService $lowerEntityNameService;
+
+	@Override
+	public void save($entityName $lowerEntityName) {
+		Assert.notNull($lowerEntityName, "");
+		$lowerEntityNameService.save$entityName($lowerEntityName);
+	}
+
+	@Override
+	public $entityName edit($type $primaryKey) {
+		return $lowerEntityNameService.get$entityName($primaryKey);
+	}
+
+	@Override
+	public void update($entityName $lowerEntityName) {
+		Assert.notNull($lowerEntityName, "");
+		$entityName $lowerEntityNameTemp = $lowerEntityNameService.get$entityName($lowerEntityName.getId());
+//		if ($lowerEntityNameTemp == null) {
+//			throw new NotExistException("");
+//		}
+		$updateCode
+		$lowerEntityNameService.update$entityName($lowerEntityNameTemp);
+	}
+
+	@Override
+	public $entityName detail($type $primaryKey) {
+		$entityName $lowerEntityName = $lowerEntityNameService.get$entityName($primaryKey);
+
+//		if ($lowerEntityName == null) {
+//			throw new NotExistException("");
+//		}
+
+		return $lowerEntityName;
+	}
+
+	@Override
+	public void delete($type $primaryKey) {
+		$lowerEntityNameService.delete$entityName($primaryKey);
+	}
+	
+	@Override
+	public List<$entityName> queryAll() {
+		return $lowerEntityNameService.queryAll();
+	}
+}

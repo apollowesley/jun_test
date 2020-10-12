@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>speedy管理系统-做专业快速的开发管理平台</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<script src="/static/public/js/publicDesktop.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css" />
+<style>
+#content li{width:70px;height:70px;text-align:center;margin-top:10px;flex:auto;flex-grow: 0;flex-shrink: 0;}
+#content li a{display:block;color:#000;font-size:28px;width:100%;}
+#content #listicon li:hover{background:#e1e1e1;}
+#righthand li{width:100%;height:30px;line-height:30px;}
+#righthand li a{display:block;font-size:12px;text-align:left;height:auto;color:#000;text-indent: 1em;}
+#righthand li a:hover{background:#e1e1e1;}
+.listright{}
+.windows{width:60%;height:40%;position:fixed;background:#fff;left:20%;top:20%;border:1px solid #666;}
+.windowstitle:hover{cursor:move}
+.windowstitle:active{cursor:move}
+.fullScreen{width:100%;height:94%;}
+</style>
+<body>
+<div class="box" style="user-select:none;">
+		<div id="content" style="float:left;display:block;width:100%;height:94%;">
+			<ul id="listicon" style="width:100%;height:100%;display: flex;flex-direction: column;flex-wrap: wrap;align-content: flex-start">
+				<li> 
+					<a href="javascript:void(0);" >
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+				<li> 
+					<a href="javascript:void(0);" >
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+				<li> 
+					<a href="javascript:void(0);" >
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+        		<li> 
+					<a href="javascript:void(0);">
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+        		<li> 
+					<a href="javascript:void(0);">
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+        		<li> 
+					<a href="javascript:void(0);" >
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+        		<li> 
+					<a href="javascript:void(0);">
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+        		<li> 
+					<a href="javascript:void(0);">
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+        		<li> 
+					<a href="javascript:void(0);">
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+        		<li> 
+					<a href="javascript:void(0);">
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+        		<li> 
+					<a href="javascript:void(0);"  ondblclick="javascript:alert(123);">
+			          <span class="glyphicon glyphicon-folder-open"></span>
+			          <span style="display:block;font-size:14px;">顶级菜单</span>
+			        </a>
+        		</li>
+			</ul>
+		</div>
+		<div class="footer" id="footer">
+			<div id="footerlist" style="z-index:999;position:absolute;height:500px;width:400px;background:#5bc0de;bottom:6.4%;display:none;">
+				<dl class="left" style="width:50%;">
+					<dt>头像</dt>
+					<dt>个人注释</dt>
+				</dl>
+				<ul class="left" style="width:50%;">
+					<li>修改密码</li>
+					<li></li>
+					<li>退出登录</li>
+				</ul>
+			</div>
+			<div id="footericon" style="background-color:#5bc0de;border-color: #fff;width:100%;height:6%;float:left" >
+				<a href="javascript:void(0);" class="btn btn-info  btn-lg left">
+					<span class="glyphicon glyphicon-th-large"></span>
+				</a>
+				<ul>
+					<li id="1" class="btn btn-info  btn-lg left active" onclick="openWindows(this)" data-url="toPage?page=common/menu/menu"><span>顶级菜单</span></li>
+					<li class="btn btn-info  btn-lg left" onclick="openWindows(this)" data-url="toPage?page=common/article/article"><span>顶级菜单</span></li>
+				</ul>
+			</div>
+		</div>
+		<div id="windows" class="windows">
+			<div id="windowstitle" class="windowstitle left" style="width:100%;height:12%;user-select:none;border-bottom:1px solid #e1e1e1;">
+				<p>
+					<span class="left">顶级菜单</span>
+					<a class="right glyphicon glyphicon-remove" onclick="closeWindows()"></a>
+					<a class="glyphicon glyphicon-stop right" onclick="fullScreen()"></a>
+					<a class="right glyphicon glyphicon-minus" onclick="shrink()"></a>
+				</p>
+			</div>
+			<iframe id="frame" name="frame" width="100%" height="88%" frameborder="0" style="float:left;" src="toPage?page=common/article/article"></iframe>
+		</div>
+</div>
+<script>
+function clicks(data){
+	$("#righthand").remove();
+	console.log(1112);
+}
+function fullScreen(){
+	//窗口全屏
+	var className=$("#windows").prop("class");
+	if(className.indexOf("fullScreen")>-1){
+		$("#windows").css("top","");
+		$("#windows").css("left","");
+		$("#windows").removeClass("fullScreen");
+	}else{
+		//left:0px;top:0px;
+		$("#windows").css("top","0");
+		$("#windows").css("left","0");
+		$("#windows").addClass("fullScreen");
+	}
+	
+}
+
+function closeWindows(){
+	//关闭窗口
+	$("#windows").toggle();
+}
+function openWindows(e){
+	//打开窗口
+	console.log($(e).data("url"));
+	$(e).parent().find("li").each(function(){
+		if($(this).prop("class").indexOf("active")>-1){
+			$(this).removeClass("active");
+		}
+	})
+	$(e).addClass("active");
+	$("#windows").show();
+	$("#frame").prop("src",$(e).data("url"));
+}
+var leftValue=0;
+var topValue=0;
+$("#windowstitle").mousedown(function(ev){
+	var disX = ev.pageX - $(this).offset().left;//求出鼠标距离拖拽的div左边框的距离；
+    var disY = ev.pageY - $(this).offset().top;
+	$(".box").mousemove(function(e){
+		if(parseInt($("#windows").offset().left)>0){
+			if((e.pageX-disX)>0){
+				$("#windows").css("left",e.pageX-disX);
+			}
+		}
+		if(parseInt($("#windows").offset().top)>0){
+			if((e.pageY-disY)>0){
+				$("#windows").css("top",e.pageY-disY);
+			}
+		}
+		var classNames=$("#windows").prop("class");
+		if(classNames.indexOf("fullScreen")==-1&&parseInt($("#windows").offset().top)==0&&e.pageY>topValue){
+			if((e.pageY-disY)>0){
+				$("#windows").css("top",e.pageY-disY);
+			}
+			
+		}
+		if(classNames.indexOf("fullScreen")==-1&&parseInt($("#windows").offset().left)==0&&e.pageX>leftValue){
+			if((e.pageX-disX)>0){
+				$("#windows").css("left",e.pageX-disX);
+			}
+		}
+		topValue=e.pageY;
+		leftValue=e.pageX;
+	})
+	$(".box").mouseup(function(e){
+		 $(".box").off();
+	})
+	 return false;
+})
+
+
+
+$("#content").click(function(){
+	$("#footerlist").hide(300);
+})
+$(document).contextmenu(function(e){
+	 e.preventDefault();
+})
+$(".box").contextmenu(function(e){
+	$("#footerlist").hide(300);
+    e.preventDefault();
+});
+$("#listicon").find("li").contextmenu(function(e){
+	$("#footerlist").hide(300);
+    e.preventDefault();
+});
+$("#righthand").contextmenu(function(e){
+	$("#footerlist").hide(300);
+	e.preventDefault();
+});
+$("#footericon a").click(function(){
+	$("#footerlist").toggle(300);
+})
+$("#listicon").find("li").mouseup(function(oEvent){
+	oEvent.stopPropagation();
+	 if (!oEvent) oEvent=window.event;
+	$("#righthand").remove();
+	 if (oEvent.button==2) {
+    	$("#righthand").remove();
+    	var x=oEvent.clientX;
+    	var y=oEvent.clientY;
+    	$("body").append("<div id='righthand' style='display:none;z-index:99999;position:fixed;background:#fff;width:200px;height:300px;left:"+x+"px;top:"+y+"px;'></div>");
+    	$("#righthand").show(300);
+    }
+	 
+	 var righthand=$("#righthand");
+	    var listright=$("#listright");
+	    if(righthand.length>0&&listright.length==0){
+	    	$("#righthand").append("<ul id='listright' class='listright'><li><a onclick='clicks()'>打开</a></li><li><a onclick='clicks()'>编辑</a></li><li><a>删除</a></li></ul>");
+	    	$("#righthand").contextmenu(function(e){
+	    		$("#footerlist").hide(300);
+	    		e.preventDefault();
+	    	});
+	    }else{
+	        //$("#righthand").remove();
+	    }
+})
+
+$("#content,#footer").not("#righthand").click(function(){
+	 var righthand=$("#righthand");
+    var listright=$("#listright");
+    if(righthand.length>0&&listright.length>0){
+    	$("#righthand").remove();
+    }
+})
+//在这里你就可以自己定义事件的函数啦
+$("#content").not("#righthand,li").mouseup(function(oEvent) {
+    if (!oEvent) oEvent=window.event;
+    if (oEvent.button==2) {
+    	$("#righthand").remove();
+    	var x=oEvent.offsetX;
+    	var y=oEvent.offsetY;
+    	$(".box").append("<div id='righthand' style='display:none;z-index:99999;position:fixed;background:#fff;width:200px;height:300px;left:"+x+"px;top:"+y+"px;'></div>");
+    	$("#righthand").show(300);
+    }
+    
+    var righthand=$("#righthand");
+    var listright=$("#listright");
+    if(righthand.length>0&&listright.length==0){
+    	$("#righthand").append("<ul id='listright' class='listright'><li><a onclick='clicks()'>刷新页面</a></li><li><a>新建文件夹</a></li><li><a>个性化设置</a></li></ul>");
+    	$("#righthand").contextmenu(function(e){
+    		$("#footerlist").hide(300);
+    		e.preventDefault();
+    	});
+    }else{
+        //$("#righthand").remove();
+    }
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.framework.model.mapper.AccountAuthorityMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.framework.model.pojo.AccountAuthority">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="account_id" jdbcType="BIGINT" property="accountId" />
+    <result column="authority" jdbcType="VARCHAR" property="authority" />
+  </resultMap>
+  <insert id="insertOrUpdate" parameterType="cn.gson.framework.model.pojo.AccountAuthority">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_account_authority
+    (account_id, authority)
+    values
+    (#{accountId,jdbcType=BIGINT}, #{authority,jdbcType=VARCHAR})
+    on duplicate key update 
+    account_id = #{accountId,jdbcType=BIGINT}, 
+    authority = #{authority,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="cn.gson.framework.model.pojo.AccountAuthority">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    insert into fw_account_authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="authority != null">
+        authority,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="authority != null">
+        #{authority,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="authority != null">
+        authority = #{authority,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

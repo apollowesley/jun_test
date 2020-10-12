@@ -1,0 +1,54 @@
+<!--pages/plus/plus.wxml-->
+<!--pages/order-list/order-list.wxml-->
+<view class="navbar">
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}        </text>
+</view>
+
+<!--支出-->
+<view class='zc' hidden="{{currentTab!==0}}">
+  <view>
+    <text>金额</text><input placeholder='请输入' type='digit' name='money' bindinput="getmoney"></input>
+  </view>
+   <view>
+    <text>类别</text><input placeholder='请输入' name='type' bindinput='gettype'></input>
+  </view>
+   <view>
+    <text>账户</text>
+    <picker bindchange="changeCountry"  value="{{index}}" range="{{pay_method}}">
+    <text class='text' style='color:#333333;'>{{pay_method[index]}}</text>
+    </picker>
+  </view>
+   <view style='border-bottom:0px;'>
+    <text>时间</text>
+    <picker mode="date" value="{{date}}" start="1900-1-1" end="{{nowDate}}" bindchange="changeDate">
+    <text class='text' style='color:#333333;'>{{date}}</text>
+     </picker>
+   <picker mode="time" value="{{time}}" bindchange="changeTime">
+    <text class='hm' style='color:#333333;'>{{time}}</text>
+   </picker>
+  </view>
+</view>
+
+<!--收入-->
+<view class='zc' hidden="{{currentTab!==1}}">
+<view>
+    <text>金额</text><input placeholder='请输入' type='digit' name='money' bindinput="getmoney"></input>
+  </view>
+   <view>
+    <text>类别</text><input placeholder='请输入' name='type' bindinput='gettype'></input>
+  </view>
+   <view style='border-bottom:0px;'>
+    <text>时间</text>
+    <picker mode="date" value="{{date}}" start="1900-1-1" end="{{nowDate}}" bindchange="changeDate">
+    <text class='text' style='color:#333333;'>{{date}}</text>
+     </picker>
+   <picker mode="time" value="{{time}}" bindchange="changeTime">
+    <text class='hm' style='color:#333333;'>{{time}}</text>
+   </picker>
+  </view>
+</view>
+<textarea placeholder="备注" name='remark' bindinput='getremark'/>
+<view class='btn'>
+  <text class='bzcg' bindtap='bzcg'>保存草稿</text>
+  <text class='qr' bindtap='qr'>确认</text>
+</view>

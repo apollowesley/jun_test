@@ -1,0 +1,39 @@
+page {
+    background-color: #FFFFFF;
+}
+.topBar {
+    width: 100%;
+    padding:20rpx 20rpx 20rpx 84rpx;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.topBar::before {
+    content: '';
+    width:22rpx;
+    height:22rpx;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #248ffb;
+    left:20rpx;
+    top:41rpx;
+}
+.topBar .title {
+    font-size: 36rpx;
+    line-height: 64rpx;
+}
+.topBar .p {
+    color: #999999;
+}
+
+.submitBtn {
+    width:490rpx;
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    color: #fff;
+    margin:42rpx auto;
+    background-color: #3c8cf0;
+    border-radius: 20rpx;
+    font-size: 36rpx;
+}

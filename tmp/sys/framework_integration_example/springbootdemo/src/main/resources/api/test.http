@@ -1,0 +1,7 @@
+###
+GET {{url}}/user/index
+###
+GET {{url}}/user/showone?name=xieke
+###
+GET {{url}}/user/showtwo?id=1
+###

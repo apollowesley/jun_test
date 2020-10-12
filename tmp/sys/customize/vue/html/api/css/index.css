@@ -1,0 +1,33 @@
+#vue-header {
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid deepskyblue;
+}
+
+#vue-body {
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+#vue-body div {
+    float: left;
+}
+
+#vue-menu {
+    width: 10%;
+    height: 450px;
+    border-right: 1px solid red;
+    margin-right: 20px;
+}
+
+#vue-content {
+    width: 80%;
+    border-left: 1px solid red;
+}
+
+#vue-footer {
+    height: 30px;
+    width: 100%;
+    clear:both;
+    border-top: 1px solid deepskyblue;
+}

@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>服务器运行状态信息</title>
+<link rel="stylesheet" type="text/css" href="{{ static_url("css/bootstrap.css") }}">
+</head>
+<body>
+  <script src="{{ static_url("js/bootstrap.js") }}"></script>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">L项目版本自动化发布系统</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+            </p>
+            <ul class="nav">
+               <li><a href="/">Index</a></li>
+               <li class="active"><a href="/serverinfo/">服务信息查看</a></li>
+              <li><a href="/login">登陆</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+
+<div class="pagination pagination-large">
+  <h3>&nbsp;</h3>
+  <legend>L项目服务器日志</legend>
+  <table class="table table-hover condensed table-bordered">
+    <tr><td>日志信息</tr>
+    {% for log in logs %}
+      <tr><td><pre>{{ log }}</pre></tr>
+    {% end %}
+  </table>
+</div>
+ </body>
+ </html>

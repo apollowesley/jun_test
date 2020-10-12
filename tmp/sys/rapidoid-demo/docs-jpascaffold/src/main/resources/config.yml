@@ -1,0 +1,17 @@
+
+jdbc:
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=true
+  username: root
+  password: mysql
+  options: logger=Slf4JLogger
+
+hibernate:
+  dialect: org.hibernate.dialect.MySQL5Dialect
+
+gui:
+  brand: 'Cool app'
+  search: true
+
+log:
+  level: trace

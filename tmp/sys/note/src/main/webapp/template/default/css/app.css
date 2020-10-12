@@ -1,0 +1,191 @@
+.content{margin:auto;width: 750px;}
+.setframeWrap {
+	display: inline;
+	float: left;
+	min-height: 770px;
+	padding: 20px 30px;
+	width: 750px;
+}
+
+.setframeWrap h3 {
+	font-size: 1.5em;
+	margin: 5px 0 20px;
+}
+
+.setframeWrap h3 span {
+	color: #999999;
+	font-size: 12px;
+	font-weight: 500;
+	margin-left: 8px;
+}
+
+.setframeWrap h3 span i {
+	color: #FF0000;
+	font-family: "SimSun";
+}
+
+
+.Menubox {
+	border-bottom: 3px solid #EAEDEE;
+	clear: both;
+	height: 30px;
+	margin: 20px 0 5px;
+}
+
+.Menubox ul {
+	margin: 0;
+	padding: 0;
+}
+
+.Menubox li {
+	float: left;
+	padding-right: 2px;
+}
+
+.tagn {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #EAEDEE #EAEDEE -moz-use-text-color;
+	border-color: #EAEDEE;
+	border-image: none;
+	border-radius: 3px 3px 0 0;
+	border-style: solid solid none;
+	border-width: 1px 1px medium;
+	float: left;
+	height: 28px;
+	padding-right: 2px;
+}
+
+.tagcurrent {
+	background-position: right bottom;
+	float: left;
+	height: 30px;
+}
+
+.tagn span,.tagcurrent span {
+	border-radius: 3px 3px 0 0;
+	cursor: pointer;
+	float: left;
+	font-size: 12px;
+	height: 24px;
+	line-height: 16px;
+	padding: 7px 9px 0 11px;
+}
+
+.tagcurrent span {
+	background: none repeat scroll 0 0 #EAEDEE;
+	color: #333333;
+	padding-top: 8px;
+}
+.main3Box_t2 {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: medium none;
+	float: left;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 40px;
+	margin: 0;
+	overflow: hidden;
+	text-indent: 5px;
+}
+.ts_menu_22 {
+	background: url("../images/wap_tt.png?201304081653") no-repeat scroll 0
+		0 rgba(0, 0, 0, 0);
+	height: 110px;
+	line-height: 30px;
+	margin: 0 auto;
+	padding-bottom: 5px;
+}
+.main3Box_m {
+	border: medium none;
+	padding-bottom: 20px;
+}
+.ts_m3 {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	display: block;
+	float: none;
+	margin: 30px 0 0 20px;
+	overflow: hidden;
+}
+.feedCell .wap2 {
+	background: url("../img/AndroidAppSmall.png") no-repeat scroll;
+	float: left;
+	height: 570px;
+	margin-right: 30px;
+	width: 320px;
+}
+.android_bg {
+	background: url("../img/AndroidAppSmall.png") no-repeat scroll;
+	font-size: 16px;
+	font-weight: 600;
+	height: 30px;
+	line-height: 32px;
+	padding-left: 40px;
+}
+.feedCell .wap .wapF {
+	height: 323px;
+	margin: 104px 0 0 36px;
+	width: 227px;
+}
+
+.feedCell .wap .wapF iframe {
+	height: 323px;
+	overflow: auto;
+	width: 227px;
+}
+
+.feedCell .wapT {
+	color: #0082CB;
+	display: inline;
+	float: left;
+	font-size: 14px;
+	line-height: 25px;
+	margin-bottom: 10px;
+	width: 230px;
+	word-break: normal;
+	word-wrap: break-word;
+}
+.ts_m4 {
+	color: #444444;
+	display: inline;
+	float: left;
+	font-size: 14px;
+	margin-left: 9px;
+	width: 340px;
+}
+
+.ts_m4 li {
+	padding: 10px 0;
+}
+
+.ts_m4 li b {
+	color: #0082CB;
+}
+.W_hline {
+	border-bottom: 1px dotted #DDDDDD;
+	height: 0;
+	margin: 20px 0 18px;
+	overflow: hidden;
+	padding: 0;
+}
+.android_qr{	
+	background: url("../img/androidapk.png") no-repeat scroll;
+	height: 110px;
+	width:110px;
+	padding-left: 40px;
+}
+.android_click{
+	text-decoration:none;
+	font-size:36px;
+	line-height:72px;
+	height: 110px;
+	width:220px;
+	padding-left: 40px;
+}
+.android_click a{color:#23f;}
+.android_click a:hover{
+	text-decoration:none;
+	color:#55d;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>角色管理</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/public.js"></script>
+<link href="/static/public/css/system.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/Alert.js"></script>
+
+<script src="/static/common/menu/menu.js"></script>
+<script src="/static/public/js/Tool.js"></script>
+<style>
+.list-box{margin:0 auto;background:#fff;width:98%;margin-top:10px;}
+.list-box .title{float:left;margin-top:20px;margin-left:20px;width:90%;}
+.list-box .context{float:left;width:100%;height:74%;overflow-y:scroll;}
+.pagination{float: left}
+.sonMenus .name{text-indent:2em;}
+.showMenu{cursor:pointer}
+.showMenu:after{content:"+";}
+.showMenus:after{content:"-";}
+.handles .name{text-indent:4em;}
+</style>
+<body>
+	<div class="list-box">
+		<div class="nav_title"><p><span style="color: #2aabd2;font-weight: bold;width: 10px;background:#2aabd2;margin-right: 10px;">|</span> 角色管理</p></div>
+		<div class="context table-responsive">
+			<div class="handle" >
+				<div class="input-group left" style="width:300px;" th:if="${session.handle.hasHandel(session.user.handle,'/role/search')}">
+		            <input type="text" class="form-control"  id="sval">
+		            <span class="input-group-addon btn btn-default" id="search">搜索</span>
+		        </div>
+				<button class="btn btn-success left" onclick="javascript:window.location.href='/common/role/addPage';" th:if="${session.handle.hasHandel(session.user.handle,'/role/add')}">增加</button>
+				<button class="btn btn-primary left" id="update" th:if="${session.handle.hasHandel(session.user.handle,'/role/update')}">修改</button>
+				<button class="btn btn-danger left" id="delete" th:if="${session.handle.hasHandel(session.user.handle,'/role/delete')}">删除</button>
+				<button class="btn btn-danger left" id="menuset" onclick="role.menuset('menuset')"  data-parame="{path:'/plugin/menu.html',value:'id',text:'name'}">权限设置</button>
+			</div>
+
+			<table class="role table">
+				<thead>
+					<tr>
+						<th>
+							  <div class="checkbox">
+							        <input type="checkbox" id="all">
+							            <label for="all"></label>
+							</div>
+						</th>
+					       <th class="id"></th>
+					       <th class="menuids" hidden>菜单</th>
+					       <th class="name">角色名称</th>
+					       <th class="sort">排序</th>
+					       <th class="dept">部门</th>
+					       <th class="createtime">创建时间</th>
+					       <th class="createuser">创建人</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+		<div class="paging">
+			<ul class="pagination">
+			</ul>
+		</div>
+	</div>
+	<script src="/static/common/role/role.js"></script>
+	<script>
+		role.loadPage(0,20);
+		role.updatePage();
+		role.delete();
+		$(".pages").bind("click",function(){
+			$(".pages").each(function(){
+				$(this).removeClass("active");
+			})
+			$(this).addClass("active");
+			var index=$(this).text()-1;
+			menu.loadPage(index,20);
+		})
+	</script>
+</body>
+</html>

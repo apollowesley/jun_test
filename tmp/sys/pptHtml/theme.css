@@ -1,0 +1,376 @@
+/**
+	CSSS basic slideshow theme
+	
+	@author Lea Verou
+	@version 1.0
+*/
+
+/**
+ * Variables
+ */
+.slide h2,
+section > header.slide > h1 {
+	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 50;
+}
+ 
+/*我添加的，用于控制内容的背景的*/
+section .slide {
+	background: black url(img/内容背景.jpg) center bottom;
+	background-size: 100% 100%;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+}
+ 
+/**
+ * Styles
+ */
+
+* {
+	padding:0;	
+	margin:0;
+	font:inherit;
+	color:inherit;
+}
+
+html {
+	/*background: black url(img/题目背景.jpg) bottom center;*/
+	background-size: auto;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+button {
+	padding:.2em .5em;
+}
+
+a:hover {
+	text-shadow: 0 0 .5em white, 0 0 1em white;
+}
+
+select {
+	color: black;
+}
+
+code, pre, style, textarea, input {
+	font-family: Consolas, 'Andale Mono', 'Courier New', monospace;	
+	background:rgba(0,0,0,.4);
+}
+
+code {
+	padding:.2em .2em .1em;
+	white-space: nowrap;
+	border-radius:.2em;
+	border: 1px solid rgba(0,0,0,0.5);
+	background: rgba(0,0,0,0.25);
+	box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 12px rgba(255,255,255,0.15), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+}
+
+pre, style, textarea {
+	padding:.3em .5em;
+	margin-left: -.1em;
+	border:2px solid rgba(255, 255, 255, .1);
+	box-shadow:.1em .1em .5em black inset;
+}
+
+	pre > code {
+		padding: 0;
+		white-space: pre;
+		border: 0;
+		background: 0;
+		box-shadow: none;
+	}
+
+textarea {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+strong, b {
+	font-weight:bold;	
+}
+
+	pre strong {
+		text-shadow: 0 0 .6em white;
+	}
+
+
+/*下面重点需要调整一下 slide们的样式 */
+.slide {
+	/*padding:0 2.5% 2%;*/
+	background: rgba(0,0,0,.5);
+	background-clip: border-box;
+	background-repeat:no-repeat;
+	text-shadow:.05em .05em .1em rgba(0,0,0,.4);
+	color: black;
+	border:30px solid transparent;
+}
+
+#indicator {
+	background: rgba(255, 255, 255, .6);
+	color: black;
+	text-shadow: .03em .03em .1em white;
+}
+
+	.slide h2 {
+		font-family: 'Helvetica Neue', Helvetica, sans-serif;
+		font-weight: 100;
+		font-size: 0.6in;
+	}
+	
+	.slide p,
+	.slide li {
+		font-weight: bold;
+		letter-spacing: -.03em;
+	}
+		
+	.slide > ul {
+		list-style:none;	
+	}
+	
+	.slide ol {
+		margin-left:2em;	
+	}
+		
+		.slide > ul ul {
+			margin-left:2em;	
+			list-style: none;
+		}
+		
+			.slide li li {
+				font-size:80%;
+			}
+			
+		.slide li {
+			margin:.2em 0;
+		}
+		
+		.slide > ul > li:before {
+			content:'\2714';
+			color: #a0c12c;
+			padding-right: .2em;
+		}
+		
+			.slide li li:before {
+				content: '\279C';
+				color: #28bcbc;
+				padding-right: .2em;
+			}
+			
+section > header.slide {
+	background-color: rgba(0,0,0,.8);
+}
+
+	section > header.slide > h1 {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		margin-top: -.6em;
+		font-size: 400%;
+		line-height: 1;
+		text-align: center;
+	}
+
+.slide .emphasis {
+	padding: .4em .5em .3em;
+	margin: .3em 0;
+	background: #f80;
+	background: linear-gradient(#fa0, #f80);
+	color: black;
+	font-weight: bold;
+	letter-spacing: -.05em;
+	line-height: .85;
+	text-shadow: .05em .05em .1em rgba(0,0,0,.4);
+	border-radius: .3em;
+	box-shadow:.1em .1em .5em black;
+}
+
+.light.slide .emphasis {
+	box-shadow:.1em .1em .5em rgba(0,0,0,.4);
+}
+
+.slide .emphasis::before {
+	content: '\279C';
+	color: rgba(255,255,255,.5);
+	float: left;	
+	width: .75em;
+	height: 0;
+	padding: .45em 0 .3em;
+	margin: -.2em .2em 0 -.25em;
+	border: .12em solid;
+	text-align: center;
+	line-height: 0;
+	font-size: 120%;
+	font-family: inherit;
+	text-shadow: none;
+	border-radius:999px;
+	transform: rotate(45deg);
+}
+
+.attribution {
+	background: rgba(0,0,0,.8);
+	color: white;
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 1em;
+	padding: .5em 1em;
+	font-size: 30%;
+	text-shadow: .05em .05em .1em black;
+}
+
+	.attribution a {
+		text-decoration: none;
+	}
+	
+	.attribution a::after {
+		content:  ' (' attr(href) ')';
+	}
+
+/* Syntax highlighting */
+
+.comment {
+	color: #999;
+}
+
+.string {
+	color: yellow;
+}
+
+.keyword {
+	font-weight: bold;
+	color: deeppink;
+}
+
+.number, .boolean {
+	color: #0cf;
+}
+
+.regex {
+	color: orange;
+}
+
+
+/*下面是我定义的一些样式*/
+section.title h1{
+	font-family:'Helvetica Neue', Helvetica, sans-serif;
+	color:rgba(0,0,0,1.00);
+	text-align:center;
+}
+table.myDescription{
+	font-size:29px;
+	font-family:"宋体";
+	color:rgba(0,0,0,1.00);
+	vertical-align:middle;
+	margin:0 auto;
+	padding-top:10%;	
+}
+
+header>section {
+	margin-top:100px;
+}
+
+/*div#qualHisContainer{
+	width:auto;
+	height:307px;
+}*/
+
+/*针对 section technicalLine 进行格式设置*/
+p#techLinep{
+	position:absolute;
+	bottom:0%;
+	width:100%;
+	text-align:center;
+}
+
+img#qualHisPic{
+	vertical-align:middle;
+}
+a.hasHerf{
+	text-decoration:none;
+}
+
+div#techMethodContainer{
+	position:relative;
+	height:auto;
+	text-align:center;
+}
+
+div#techMethod{
+	margin:0 auto;
+	vertical-align:middle;
+	width:633px;
+	height:500px;
+	padding:0;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	left:50%;
+}
+
+p#qualHisIntro{
+	position:absolute;
+	bottom:0%;
+	width:100%;
+	text-align:center;
+}
+
+/*针对 section qual2KwIntro 进行格式设置*/
+p#qual2Kp{
+	position:absolute;
+	bottom:0%;
+	width:100%;
+	text-align:center;
+}
+
+/*针对 section ReNuMaIntro 进行格式设置*/
+p#ReNuMap{
+	position:absolute;
+	bottom:0%;
+	width:100%;
+	text-align:center;
+}
+
+div#ReNuMaIntroD{
+	text-align:center;
+}
+
+/*针对section mainControlIntro 进行格式设置*/
+p#MCIntrop{
+	position:absolute;
+	bottom:0%;
+	width:100%;
+	text-align:center;
+}
+
+div#MCIntro{
+	text-align:center;
+}
+
+/*针对section simDRes 进行格式设置*/
+p#simDResp{
+	position:absolute;
+	bottom:0%;
+	width:100%;
+	text-align:center;
+}
+
+/*针对section simPRes 进行格式设置*/
+p#simPResp{
+	position:absolute;
+	bottom:0%;
+	width:100%;
+	text-align:center;
+}
+
+/*针对section theEnd 进行格式控制*/
+section#theEnd{
+	text-align:center;
+}
+p#theEndp{
+	font-size:0.6in;
+	margin-top:4em;
+}

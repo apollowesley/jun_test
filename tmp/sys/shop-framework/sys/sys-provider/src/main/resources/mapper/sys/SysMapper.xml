@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.kld.sys.dto.SellCtgyDto">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="SellCtgyColumns">
+        sellCtgyId,sellCtgyName,orderNo,ctgyLvl,parentCtgy,isFreeze,title,keywords,createrId,createrName,createTime,modifierId,modifierName,modifyTime
+    </sql>
+
+    <insert id="insert" parameterType="com.kld.sys.dto.SellCtgyDto">
+        INSERT INTO t_mms_sell_ctgy (
+        sellCtgyId ,
+        sellCtgyName ,
+        orderNo ,
+        ctgyLvl ,
+        parentCtgy ,
+        isFreeze ,
+        title ,
+        keywords ,
+        createrId ,
+        createrName ,
+        createTime ,
+        modifierId ,
+        modifierName ,
+        modifyTime
+        ) VALUES (
+        #{sellCtgyId,jdbcType=VARCHAR},
+        #{sellCtgyName,jdbcType=VARCHAR},
+        #{orderNo,jdbcType=INTEGER},
+        #{ctgyLvl,jdbcType=CHAR},
+        #{parentCtgy,jdbcType=VARCHAR},
+        #{isFreeze,jdbcType=CHAR},
+        #{title,jdbcType=VARCHAR},
+        #{keywords,jdbcType=VARCHAR},
+        #{createrId,jdbcType=INTEGER},
+        #{createrName,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{modifierId,jdbcType=INTEGER},
+        #{modifierName,jdbcType=VARCHAR},
+        #{modifyTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+
+</mapper>
+

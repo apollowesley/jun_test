@@ -1,0 +1,72 @@
+package org.slingerxv.recorder;
+
+/**
+ * Sql数据类型
+ * 
+ * @author hank
+ *
+ */
+public enum SQLType {
+	//
+	TINYINT,
+	//
+	SMALLINT,
+	//
+	MEDIUMINT,
+	//
+	INT,
+	//
+	INTEGER,
+	//
+	BIGINT,
+	//
+	BIT,
+	//
+	REAL,
+	//
+	DOUBLE,
+	//
+	FLOAT,
+	//
+	DECIMAL,
+	//
+	NUMERIC,
+	//
+	CHAR,
+	//
+	VARCHAR,
+	//
+	DATE,
+	//
+	TIME,
+	//
+	YEAR,
+	//
+	TIMESTAMP,
+	//
+	DATETIME,
+	//
+	TINYBLOB,
+	//
+	BLOB,
+	//
+	MEDIUMBLOB,
+	//
+	LONGBLOB,
+	//
+	TINYTEXT,
+	//
+	TEXT,
+	//
+	MEDIUMTEXT,
+	//
+	LONGTEXT,
+	//
+	ENUM,
+	//
+	SET,
+	//
+	BINARY,
+	//
+	VARBINARY,;
+}

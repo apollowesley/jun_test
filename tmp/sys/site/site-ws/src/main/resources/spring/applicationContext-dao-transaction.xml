@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd  
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 事务配置 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 其它方法使用普通事务 -->
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="create*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="execute*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="call*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="modify*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception" />
+
+			<!-- 默认只读 -->
+			<tx:method name="*" read-only="true" />
+
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 事务AOP -->
+	<aop:config>
+		<aop:pointcut id="txPointCut" expression="execution(* com.site..*Service.*(..))" />
+		<aop:advisor order="2" pointcut-ref="txPointCut" advice-ref="txAdvice" />
+	</aop:config>
+
+	<!-- 其他接口事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+
+	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
+</beans>    

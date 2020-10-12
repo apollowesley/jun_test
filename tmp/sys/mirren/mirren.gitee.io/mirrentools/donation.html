@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>情怀打赏</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Site CSS -->
+    <link href="css/bootstrap.min.css" tppabs="https://mirren.gitee.io/mirrentools/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="./css/font-awesome.min.css" rel="stylesheet">-->
+    <!--<link href="./css/site.min.css" rel="stylesheet">-->
+    <link href="css/page.css" tppabs="https://mirren.gitee.io/mirrentools/css/page.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../../cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js" tppabs="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="../../cdn.bootcss.com/respond.js/1.4.2/respond.min.js" tppabs="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="icon" href="images/my-logo.png">
+    <link rel="shortcut icon" href="images/my-logo.png">
+    <style>
+        .job-hot {
+            position: absolute;
+            color: #d9534f;
+            right: 0;
+            top: 15px;
+        }
+
+        ul > li {
+            list-style-type: none;
+        }
+
+        ul > li > p {
+            word-break: break-all;
+        }
+
+        .qr img {
+            margin: 10px 3%;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<hr>
+<h2 class="text-center">感谢您的打赏</h2>
+<div class="container qr" style="display:flex;justify-content: center">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 ">
+            <img src="images/weixin.png" tppabs="https://mirren.gitee.io/mirrentools/images/weixin.png" alt="微信收款二维码">
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 ">
+            <img src="images/alipay.png" tppabs="https://mirren.gitee.io/mirrentools/images/alipay.png" alt="支付宝收款二维码">
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row footer-bottom">
+    <ul class="list-inline text-center" style="color: #555;">
+        <li>感谢您的打赏,打赏后如果您方便的话请将您的网址,打赏留言发到我的邮箱 : 690389491@qq.com 以便于我展示在下面列表中...</li>
+    </ul>
+</div>
+<div style="width:95%" class="container-fluid text-center">
+    <table class="table table-bordered  table-hover">
+        <thead class="ant-table-thead">
+        <tr>
+            <th class="text-center" width="8%">姓名</th>
+            <th class="text-center"  width="8%">金 额</th>
+            <th class="text-center"  width="20%">个人/公司网址</th>
+            <th class="text-center"  width="12%">日 期</th>
+            <th class="text-center"  width="8%">打赏途径</th>
+            <th class="text-center"  width="22%">打赏留言</th>
+            <th class="text-center"  width="22%">备 注</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div class="row" style="padding-left:20%">
+        <ul class="page" maxshowpageitem="5" pagelistcount="10" valueCount="20" curPage="1" id="page"></ul>
+    </div>
+</div>
+
+<script src="js/jquery.min.js" tppabs="https://mirren.gitee.io/mirrentools/js/jquery.min.js"></script>
+<script src="js/page.js" tppabs="https://mirren.gitee.io/mirrentools/js/page.js"></script>
+<script src="js/donation-data.js" tppabs="https://mirren.gitee.io/mirrentools/js/donation-data.js"></script>
+<script>
+    let html = '';
+    function render(array) {
+        html = '';
+        for (let i = 0; i < array.length; i++) {
+            let item = array[i],
+                    {name, money, address, time, pay, mes, tip} = item;
+            html += `<tr"><td class="">${name}</td><td class="">${money}</td><td class=""><a href="${address}" target="_blank">${address}</a></td><td class="">${time}</td><td class="">${pay}</td> <td class="">${mes}</td><td class="">${tip}</td></tr>`;
+        }
+        $('tbody').html('');
+        $('tbody').append(html);
+    }
+    var curPage = {
+        "cur": function (curPage) {
+            $("#page").attr("curPage", curPage);
+            var showlen = $("#page").attr("pagelistcount");
+            var count = arr.length;
+            var start = (curPage - 1) * showlen;
+            var end = curPage * showlen;
+            if (end > count) {
+                end = count;
+            }
+            getDataAndLoad(start, end);
+        }
+    }
+    //开启方法翻页
+    $(function () {
+        $("#page").attr("valueCount", arr.length);
+        var count = $("#page").attr("valueCount");
+        var showCount = $("#page").attr("pagelistcount");
+        if (parseInt(count) > parseInt(showCount)) {
+            //使用该语句开启翻页,以上的判断只是判断如果已经总行数已经比第一页的数据小了就没有必要开启显示了
+            $("#page").initPage(count, 1, curPage.cur);
+        } else {
+            getDataAndLoad(0, count);
+        }
+    });
+    //得到需要加载的数据并加载
+    function getDataAndLoad(start, end) {
+        var arry = new Array();
+        for (var i = start; i < end; i++) {
+            arry.push(arr[i]);
+        }
+        render(arry);
+    }
+
+
+</script>
+
+</body>
+</html>

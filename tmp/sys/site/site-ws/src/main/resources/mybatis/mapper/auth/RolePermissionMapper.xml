@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.site.auth.mapper.RolePermissionMapper">
+
+	<resultMap id="rolePermissionMap" type="com.site.auth.model.RolePermission">
+		<result property="id" column="id" />
+		<result property="roleId" column="ROLE_ID" />
+		<result property="permissionId" column="PERMISSION_ID" />
+		<result property="isDel" column="IS_DEL" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="updateTime" column="UPDATE_TIME" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.site.auth.model.RolePermission">
+		insert into t_auth_role_permission(id, role_id , permission_id , is_del , create_time , update_time) values(#{id},#{roleId},#{permissionId}, #{isDel} , #{createTime} , #{updateTime})
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+	    	select id , role_id , permission_id , is_del , create_time , update_time
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM t_auth_role_permission
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="int" resultMap="rolePermissionMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE ID=#{id}
+	</select>
+
+	<select id="findRolePermission" parameterType="com.site.auth.model.RolePermission" resultMap="rolePermissionMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		WHERE ROLE_ID=#{roleId} and PERMISSION_ID=#{permissionId}
+	</select>
+
+	<select id="findListPage">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<include refid="where_xxx" />
+	</select>
+
+	<update id="update" parameterType="com.site.auth.model.RolePermission">
+		UPDATE t_auth_role_permission
+		<set>
+			<if test="roleId != null">
+				ROLE_ID = #{roleId},
+			</if>
+			<if test="permissionId != null">
+				PERMISSION_ID = #{permissionId}
+			</if>
+			<if test="isDel != null">
+				IS_DEL = #{isDel},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				CREATE_TIME = #{createTime},
+			</if>
+			<if test="parentId != null and parentId!=''">
+				UPDATE_TIME = #{updateTime},
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<delete id="delete" parameterType="Map">
+		DELETE FROM t_auth_role_permission
+		WHERE ID IN
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

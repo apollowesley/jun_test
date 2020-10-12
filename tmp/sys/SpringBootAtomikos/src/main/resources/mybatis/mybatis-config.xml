@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- <settings>
+		这个配置使全局的映射器启用或禁用缓存
+		<setting name="cacheEnabled" value="true" />
+		设置超时时间，它决定驱动等待一个数据库响应的时间。
+		<setting name="defaultStatementTimeout" value="25000" />
+	</settings> -->
+
+	<!-- 配置分页插件 -->
+	<!-- <plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			指定使用的数据库是什么
+			<property name="dialect" value="mysql" />
+		</plugin>
+	</plugins> -->
+
+</configuration>

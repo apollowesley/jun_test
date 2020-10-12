@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<email
+        xmlns="http://www.w3school.com.cn"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.w3school.com.cn email.xsd">
+    <to>George</to>
+    <from></from><!--有值则取当前值，没有值则取默认值-->
+    <heading></heading><!--限定属性，不能有值，否则报错-->
+    <body>Don't forget the meeting!</body>
+    <sendDate>1980-03-27</sendDate>
+    <sendTime>12:39:25</sendTime>
+    <sendDateTime>2017-11-11T12:39:25</sendDateTime>
+    <isSuccess>true</isSuccess>
+    <attrCount>2</attrCount>
+    <car>BMW-宝马</car><!--枚举类型-->
+    <password>lbr50789</password><!--八位数的不含特殊字符的密码-->
+</email>

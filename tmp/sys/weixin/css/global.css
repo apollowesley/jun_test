@@ -1,0 +1,52 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Microsoft Yahei', 'Simsun', Helvetica, Arial, sans-serif;
+    font-weight: 100;
+}
+
+html {
+    min-height: 100%;
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    height: 100%;
+    background: #fff;
+    color: #333;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+em, strong, i {
+    font-style: normal;
+}
+
+input {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+img {
+    vertical-align: middle;
+}
+
+a {
+    color: #000;
+}
+
+a, a:visited {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.content {
+    margin: 0 auto;
+    max-width: 640px;
+}

@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+html,body{margin:0;padding:0;font:12px/1.5 tahoma,arial,\5b8b\4f53}
+.contenter{margin:0 auto;padding:0;width:960px;}
+.header{height:30px;line-height:30px;}
+.navigate{height:30px;line-height:30px;}
+.pagebody{height:320px;line-height:30px;}
+.footer{}
+.login_div{float:right;width:300px;border:1px solid #CCC; padding:10px 0;margin:10px auto;}
+.login_form_nm,.login_form_pwd,.login,.register {
+	margin:auto;
+	width: 220px;
+	list-style: none;
+	padding:10px 0;
+}
+.login_form_nm  input,.login_form_pwd input{
+	height:20px;
+	line-height:16px;
+	border:#CCC 1px solid;
+	width: 220px;
+	padding: 0;
+}
+.login_form_nm label,.login_form_pwd label{
+font-weight:700;
+}
+.forget_pwd{position:relative;left:130px;}
+.login {margin:5px auto;
+}
+.login input{height:26px;line-height:26px;width: 220px;border:#CCC 1px solid; cursor:pointer;font-weight:700;}
+
+.register {margin:auto;text-align:right;line-height:20px;}
+.login_form_remember{
+	margin:auto;
+	width: 220px;
+	list-style: none;
+}
+.login_form_remember input{
+	margin:auto;
+	list-style: none;
+	vertical-align: middle;
+}

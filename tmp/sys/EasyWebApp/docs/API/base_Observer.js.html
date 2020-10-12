@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>base/Observer.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DataScope.html">DataScope</a></li><li><a href="HTMLView.html">HTMLView</a><ul class='methods'><li data-type='method'><a href="HTMLView.html#attach">attach</a></li><li data-type='method'><a href="HTMLView.html#childOf">childOf</a></li><li data-type='method'><a href="HTMLView.html#detach">detach</a></li><li data-type='method'><a href="HTMLView.html#emit">emit</a></li><li data-type='method'><a href="HTMLView.html#off">off</a></li><li data-type='method'><a href="HTMLView.html#on">on</a></li><li data-type='method'><a href="HTMLView.html#one">one</a></li><li data-type='method'><a href="HTMLView.html#parse">parse</a></li><li data-type='method'><a href="HTMLView.html#render">render</a></li><li data-type='method'><a href="HTMLView.html#scan">scan</a></li><li data-type='method'><a href="HTMLView.html#valueOf">valueOf</a></li><li data-type='method'><a href="HTMLView.html#watch">watch</a></li></ul></li><li><a href="InnerLink.html">InnerLink</a><ul class='methods'><li data-type='method'><a href="InnerLink.html#toString">toString</a></li></ul></li><li><a href="ListView.html">ListView</a><ul class='methods'><li data-type='method'><a href="ListView.html#attach">attach</a></li><li data-type='method'><a href="ListView.html#childOf">childOf</a></li><li data-type='method'><a href="ListView.html#clear">clear</a></li><li data-type='method'><a href="ListView.html#detach">detach</a></li><li data-type='method'><a href="ListView.html#emit">emit</a></li><li data-type='method'><a href="ListView.html#indexOf">indexOf</a></li><li data-type='method'><a href="ListView.html#insert">insert</a></li><li data-type='method'><a href="ListView.html#off">off</a></li><li data-type='method'><a href="ListView.html#on">on</a></li><li data-type='method'><a href="ListView.html#one">one</a></li><li data-type='method'><a href="ListView.html#remove">remove</a></li><li data-type='method'><a href="ListView.html#render">render</a></li><li data-type='method'><a href="ListView.html#scan">scan</a></li><li data-type='method'><a href="ListView.html#sort">sort</a></li><li data-type='method'><a href="ListView.html#valueOf">valueOf</a></li><li data-type='method'><a href="ListView.html#watch">watch</a></li></ul></li><li><a href="Observer.html">Observer</a><ul class='methods'><li data-type='method'><a href="Observer.html#.extend">extend</a></li><li data-type='method'><a href="Observer.html#.instanceOf">instanceOf</a></li><li data-type='method'><a href="Observer.html#.registerEvent">registerEvent</a></li><li data-type='method'><a href="Observer.html#emit">emit</a></li><li data-type='method'><a href="Observer.html#off">off</a></li><li data-type='method'><a href="Observer.html#on">on</a></li><li data-type='method'><a href="Observer.html#one">one</a></li><li data-type='method'><a href="Observer.html#valueOf">valueOf</a></li></ul></li><li><a href="RenderNode.html">RenderNode</a><ul class='methods'><li data-type='method'><a href="RenderNode.html#toString">toString</a></li></ul></li><li><a href="TreeView.html">TreeView</a><ul class='methods'><li data-type='method'><a href="TreeView.html#.fromFlat">fromFlat</a></li><li data-type='method'><a href="TreeView.html#attach">attach</a></li><li data-type='method'><a href="TreeView.html#childOf">childOf</a></li><li data-type='method'><a href="TreeView.html#clear">clear</a></li><li data-type='method'><a href="TreeView.html#detach">detach</a></li><li data-type='method'><a href="TreeView.html#emit">emit</a></li><li data-type='method'><a href="TreeView.html#indexOf">indexOf</a></li><li data-type='method'><a href="TreeView.html#insert">insert</a></li><li data-type='method'><a href="TreeView.html#off">off</a></li><li data-type='method'><a href="TreeView.html#on">on</a></li><li data-type='method'><a href="TreeView.html#one">one</a></li><li data-type='method'><a href="TreeView.html#remove">remove</a></li><li data-type='method'><a href="TreeView.html#render">render</a></li><li data-type='method'><a href="TreeView.html#scan">scan</a></li><li data-type='method'><a href="TreeView.html#sort">sort</a></li><li data-type='method'><a href="TreeView.html#valueOf">valueOf</a></li><li data-type='method'><a href="TreeView.html#watch">watch</a></li></ul></li><li><a href="View.html">View</a><ul class='methods'><li data-type='method'><a href="View.html#.extend">extend</a></li><li data-type='method'><a href="View.html#attach">attach</a></li><li data-type='method'><a href="View.html#childOf">childOf</a></li><li data-type='method'><a href="View.html#detach">detach</a></li><li data-type='method'><a href="View.html#emit">emit</a></li><li data-type='method'><a href="View.html#off">off</a></li><li data-type='method'><a href="View.html#on">on</a></li><li data-type='method'><a href="View.html#one">one</a></li><li data-type='method'><a href="View.html#scan">scan</a></li><li data-type='method'><a href="View.html#valueOf">valueOf</a></li><li data-type='method'><a href="View.html#watch">watch</a></li></ul></li><li><a href="WebApp.html">WebApp</a><ul class='methods'><li data-type='method'><a href="WebApp.html#.component">component</a></li><li data-type='method'><a href="WebApp.html#emit">emit</a></li><li data-type='method'><a href="WebApp.html#getRoute">getRoute</a></li><li data-type='method'><a href="WebApp.html#load">load</a></li><li data-type='method'><a href="WebApp.html#loadPage">loadPage</a></li><li data-type='method'><a href="WebApp.html#off">off</a></li><li data-type='method'><a href="WebApp.html#on">on</a></li><li data-type='method'><a href="WebApp.html#one">one</a></li><li data-type='method'><a href="WebApp.html#setURLData">setURLData</a></li><li data-type='method'><a href="WebApp.html#valueOf">valueOf</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-WebApp.html">WebApp</a></li></ul><h3>Externals</h3><ul><li><a href="external-_jQuery.fn_.html">jQuery.fn</a><ul class='methods'><li data-type='method'><a href="external-_jQuery.fn_.html#.iWebApp">iWebApp</a></li><li data-type='method'><a href="external-_jQuery.fn_.html#.view">view</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="HTMLView.html#event:attach">attach</a></li><li><a href="HTMLView.html#event:update">update</a></li><li><a href="ListView.html#event:attach">attach</a></li><li><a href="ListView.html#event:update">update</a></li><li><a href="TreeView.html#event:attach">attach</a></li><li><a href="TreeView.html#event:update">update</a></li><li><a href="View.html#event:attach">attach</a></li><li><a href="View.html#event:update">update</a></li><li><a href="WebApp.html#event:data">data</a></li><li><a href="WebApp.html#event:ready">ready</a></li><li><a href="WebApp.html#event:request">request</a></li><li><a href="WebApp.html#event:route">route</a></li><li><a href="WebApp.html#event:template">template</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">base/Observer.js</h1>
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define(['jquery', 'jQueryKit'],  function ($) {
+
+    /**
+     * 多条件观察者
+     *
+     * @author  TechQuery
+     *
+     * @class   Observer
+     *
+     * @param   {jQueryAcceptable} $_View      - Container DOM of Observer
+     * @param   {boolean}          [all_event] - Register all kinds of
+     *                                           event handlers in HTML code
+     *
+     * @returns {Observer}         Return the last one if a Observer instance
+     *                             has been created on this element
+     */
+
+    function Observer($_View, all_event) {
+        /**
+         * 容器元素的 jQuery 包装
+         *
+         * @name     $_View
+         * @type     {jQuery}
+         *
+         * @memberof Observer
+         * @instance
+         *
+         * @readonly
+         */
+        this.$_View = ($_View instanceof $)  ?  $_View  :  $( $_View );
+
+        this.setPrivate('handle',  { });
+
+        return  this.init( all_event );
+    }
+
+    function basicMethod(iClass) {
+
+        var iType = Observer.prototype.toString.call({constructor: iClass});
+
+        $.extend(iClass.prototype, {
+            init:          function (all_event) {
+
+                var _This_ = this.$_View.data( iType );
+
+                return  ((_This_ != null)  &amp;&amp;  (_This_ !== this))  ?
+                    _This_  :
+                    $.data(this.$_View[0],  iType,  this.setHandle( all_event ));
+            },
+            setHandle:     function (all_event) {
+
+                var _This_ = this;
+
+                $.each(this.$_View[0].attributes,  function () {
+
+                    var iName = (this.nodeName.match(/^on(\w+)/i) || '')[1];
+
+                    if (
+                        (! iName)  ||
+                        !(all_event  ||  (iName in iClass.Bind_Event))  ||
+                        (this.nodeName in this.ownerElement)
+                    )
+                        return;
+
+                    Object.defineProperty(this.ownerElement,  'on' + iName,  {
+                        set:    function (iHandler) {
+
+                            _This_.off( iName );
+
+                            if (typeof iHandler === 'function')
+                                _This_.on(iName, iHandler);
+                        },
+                        get:    function () {
+
+                            return Observer.prototype.valueOf.call(
+                                _This_,  iName,  'handler'
+                            )[0];
+                        }
+                    });
+                });
+
+                return this;
+            },
+            destructor:    function () {
+
+                this.$_View.removeData( iType );
+
+                return  this.valueOf.apply(this, arguments);
+            }
+        });
+
+        return  $.extend(iClass, {
+            Bind_Event:       { },
+            /**
+             * 注册子类事件类型
+             *
+             * @author    TechQuery
+             *
+             * @memberof  Observer
+             * @protected
+             *
+             * @param     {...string} name - Event Names
+             *
+             * @returns   {function}  Sub Class of Observer
+             */
+            registerEvent:    function (name) {
+
+                $.extend(iClass.Bind_Event,  $.makeSet.apply($, arguments));
+
+                return this;
+            },
+            signSelector:     function () {
+
+                var _This_ = this;
+
+                $.expr[':'][ this.name.toLowerCase() ] = function () {
+                    return (
+                        ($.data(arguments[0], iType) || '')  instanceof  _This_
+                    );
+                };
+
+                return this;
+            },
+            /**
+             * 从一个元素节点开始向上查找实例，并返回首个发现的实例
+             *
+             * @author   TechQuery
+             *
+             * @memberof Observer
+             *
+             * @param    {jQueryAcceptable} $_DOM        Search up from this Element
+             * @param    {boolean}          Check_Parent
+             *
+             * @returns  {Observer}         Observer instance
+             */
+            instanceOf:       function ($_DOM, Check_Parent) {
+
+                var _Instance_,  element = $( $_DOM )[0];
+
+                while ( element ) {
+
+                    _Instance_ = $.data(element, iType);
+
+                    if (_Instance_ instanceof this)  return _Instance_;
+
+                    element = (Check_Parent !== false)  &amp;&amp;  element.parentNode;
+                }
+            }
+        }).signSelector();
+    }
+
+    return  basicMethod($.Class.extend(Observer, {
+        /**
+         * 继承出一个观察者子类
+         *
+         * @author   TechQuery
+         *
+         * @memberof Observer
+         *
+         * @param    {function} constructor - Constructor of the Sub Class
+         * @param    {?object}  Static      - Static properties
+         * @param    {object}   [prototype] - Instance properties
+         *
+         * @returns  {function} The Sub Class
+         */
+        extend:      function (constructor, Static, prototype) {
+
+            return basicMethod($.Class.extend.call(
+                this,  constructor,  Static,  prototype
+            ));
+        },
+        getEvent:    function (event) {
+
+            return $.extend(
+                { },
+                (typeof event == 'string')  ?  {type: event}  :  event,
+                arguments[1]
+            );
+        },
+        match:       function (event, iHandle) {
+            var iRegExp;
+
+            for (var iKey in iHandle) {
+
+                iRegExp = event[iKey] instanceof RegExp;
+
+                switch ($.Type( iHandle[iKey] )) {
+                    case 'RegExp':
+                        if ( iRegExp ) {
+                            if (event[iKey].toString() != iHandle[iKey].toString())
+                                return;
+                            break;
+                        }
+                    case 'String':    {
+                        if (! (event[iKey] || '')[iRegExp ? 'test' : 'match'](
+                            iHandle[iKey]
+                        ))
+                            return;
+                        break;
+                    }
+                    case 'Function':
+                        if (typeof event[iKey] != 'function')  break;
+                    default:
+                        if (event[iKey] !== iHandle[iKey])  return;
+                }
+            }
+
+            return iHandle;
+        }
+    }, {
+        toString:    function () {
+
+            return  '[object ' + this.constructor.name + ']';
+        },
+        /**
+         * 查询事件
+         *
+         * @author   TechQuery
+         *
+         * @memberof Observer.prototype
+         *
+         * @param    {string}          [event] - Event Name
+         * @param    {string}          [key]   - Key of Event property
+         *
+         * @returns  {object|object[]} Event Handlers
+         */
+        valueOf:     function (event, key) {
+
+            if (! event)  return  this.__handle__;
+
+            return  (! key)  ?  this.__handle__[event]  :
+                $.map(this.__handle__[event],  function () {
+
+                    return  arguments[0][ key ];
+                });
+        },
+        /**
+         * 注册一个事件回调
+         *
+         * @author   TechQuery
+         *
+         * @memberof Observer.prototype
+         *
+         * @param    {string|object} event    - An Event Name or Event Object
+         * @param    {function}      callback
+         *
+         * @returns  {Observer}      Current Observer
+         */
+        on:          function (event, callback) {
+
+            event = Observer.getEvent(event,  {handler: callback});
+
+            var iHandle = this.__handle__[event.type] =
+                    this.__handle__[event.type]  ||  [ ];
+
+            for (var i = 0;  iHandle[i];  i++)
+                if ($.isEqual(iHandle[i], event))  return this;
+
+            iHandle.push( event );
+
+            return this;
+        },
+        /**
+         * 触发一个事件
+         *
+         * @author   TechQuery
+         *
+         * @memberof Observer.prototype
+         *
+         * @param    {string|object} event  - An Event Name or Event Object
+         * @param    {*}             [data] - Additional Data for callbacks
+         *
+         * @returns  {*}             Data returned by last callback
+         */
+        emit:        function (event, iData) {
+
+            event = Observer.getEvent( event );
+
+            return  (this.__handle__[event.type] || [ ]).reduce(
+                (function (_Data_, iHandle) {
+
+                    if (! Observer.match(event, iHandle))  return _Data_;
+
+                    var iResult = iHandle.handler.call(this, event, _Data_);
+
+                    return  (iResult != null)  ?  iResult  :  _Data_;
+
+                }).bind( this ),
+                iData
+            );
+        },
+        /**
+         * 注销事件回调
+         *
+         * @author   TechQuery
+         *
+         * @memberof Observer.prototype
+         *
+         * @param    {string|object}  event      An Event Name or Event Object
+         * @param    {function}       [callback]
+         *
+         * @returns  {Observer}       Current Observer
+         */
+        off:         function (event, callback) {
+
+            event = Observer.getEvent(event,  {handler: callback});
+
+            this.__handle__[event.type] = $.map(
+                this.__handle__[event.type],  function (iHandle) {
+
+                    return  Observer.match(event, iHandle)  ?  null  :  iHandle;
+                }
+            );
+
+            return this;
+        },
+        /**
+         * 注册一个事件回调（一次性）
+         *
+         * @author   TechQuery
+         *
+         * @memberof Observer.prototype
+         *
+         * @param    {string|object}    event      An Event Name or Event Object
+         * @param    {function}         [callback]
+         *
+         * @returns  {Observer|Promise} Current Observer or Promise
+         */
+        one:         function () {
+
+            var _This_ = this,  iArgs = $.makeArray( arguments );
+
+            var callback = iArgs.slice(-1)[0];
+
+            callback = (typeof callback === 'function')  &amp;&amp;  iArgs.pop();
+
+            var iPromise = new Promise(function (iResolve) {
+
+                    _This_.on.apply(_This_,  iArgs.concat(function once() {
+
+                        _This_.off.apply(_This_,  iArgs.concat( once ));
+
+                        if ( callback )  return  callback.apply(this, arguments);
+
+                        iResolve( arguments[1] );
+                    }));
+                });
+
+            return  callback ? this : iPromise;
+        }
+    }));
+});
+</code></pre>
+        </article>
+    </section>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 03 2017 07:42:48 GMT+0800 (中国标准时间) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

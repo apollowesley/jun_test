@@ -1,0 +1,31 @@
+<idea-plugin>
+  <id>com.feng.zhihao.plugin.FreeMarkerGenerateCode</id>
+  <name>FreeMarkerGenerateCode</name>
+  <version>1.0</version>
+  <vendor email="1209103220@qq.com" url="https://fengzhihao.xyz/">冯智豪</vendor>
+  <!-- 插件的描述 -->
+  <description><![CDATA[
+      通过FreeMarker 自动生成代码。<br/>
+      通过Init初始化项目，初始化后会在项目根目录生成FreeMarker文件夹。<br/>
+      FreeMarker 下需要自定义文件模版，模版文件的文件名称中{}会被替换成模版名称。例如{}Service.java 文件会被替换成XxxService.java<br/>
+      FreeMarker 内置变量${modelName} 该变量的值为模版名称<br/>
+
+      通过项目视图: 右键菜单-> Generate Code  生成代码，安装提示输入模版名称。会在右键选中的文件夹下生成对应的模版文件。<br/>
+
+      模版文件夹下支持文件夹。递归生成。<br/>
+      ]]></description>
+  <change-notes>Initial release of the plugin.</change-notes>
+  <depends>com.intellij.modules.platform</depends>
+
+  <actions>
+    <action id="com.feng.zhihao.plugin.FreeMarkerGenerateCode.generate" class="com.feng.zhihao.plugin.GenerateCode" text="FreeMarker Generate Code" description="代码生成">
+      <add-to-group group-id="RevealGroup" anchor="last"/>
+    </action>
+    <!-- Add your actions here -->
+    <action id="com.feng.zhihao.plugin.FreeMarkerGenerateCode.init" class="com.feng.zhihao.plugin.Init" text="FreeMarker Generate Code Init" description="项目初始化">
+      <add-to-group group-id="RevealGroup" anchor="last"/>
+    </action>
+
+  </actions>
+
+</idea-plugin>

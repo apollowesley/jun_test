@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http:www.kiwipeach.cn/emailSchema"
+           xmlns="http:www.kiwipeach.cn/emailSchema"
+           elementFormDefault="qualified">
+    <!--Hello World入门-->
+    <xs:element name="email"><!--定义一个元素-->
+        <xs:complexType><!--表示一个符合类型与sequence配合是用-->
+                <xs:sequence>
+                    <xs:element name="to" type="xs:string"/>
+                    <xs:element name="from" type="xs:string"/>
+                    <xs:element name="heading" type="xs:string"/>
+                    <xs:element name="body" type="xs:string"/>
+                </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+<!--
+
+1）解析Schema头信息，详细内容参考：
+1.http://www.w3school.com.cn/schema/
+2.http://blog.csdn.net/xiaozaq/article/details/78341462
+
+xmlns:xs="http://www.w3.org/2001/XMLSchema"：表示数据类型等定义来自w3
+targetNamespace="http://www.w3school.com.cn"：表示文档中要定义的元素来自什么命名空间
+xmlns="http://www.w3school.com.cn"：表示此文档的默认命名空间是什么
+elementFormDefault="qualified"： 表示要求xml文档的每一个元素都要有命名空间指定
+
+-->

@@ -1,0 +1,60 @@
+.width50{
+	width:50px;
+}
+.width60{
+	width:60px;
+}
+.width65{
+	width:65px;
+}
+.width70{
+	width:70px;
+}
+.width80{
+	width:80px;
+}
+.width95{
+	width:95px;
+}
+.width100{
+	width:100px;
+}
+
+.width110{
+	width:110px;
+}
+body {
+	font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+	min-width:1200px;
+}
+@media (min-width: 1200px){
+	.container{
+		width:1200px;
+	}
+}
+@media (min-width: 992px){
+	.container{
+		width:1200px;
+	}
+}
+@media (min-width: 768px){
+	.container{
+		width:1200px;
+	}
+}
+#zjbg_wraper section{
+	margin:50px 0;
+}
+#zjbg_wraper section table{
+	margin-top:20px;
+}
+#zjbg_wraper section table th{
+	text-align:center;
+	height:60px;
+	vertical-align:middle;
+}
+#zjbg_wraper ul li{
+	font-size:18px;
+	padding:10px 20px;
+	display:inline-block;
+}

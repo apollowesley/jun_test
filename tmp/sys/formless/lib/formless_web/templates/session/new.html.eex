@@ -1,0 +1,25 @@
+<div class="card-body">
+  <%= form_for @changeset, Routes.session_path(@conn, :create), fn f -> %>
+    <div class="form-group">
+      <%= label f, :username, "用户名" %>
+      <%= text_input f, :username, class: "form-control #{error_class(f, :username)}" %>
+      <%= error_tag f, :username %>
+    </div>
+
+    <div class="form-group">
+      <%= label f, :password, "密码" %>
+      <%= password_input f, :password, class: "form-control #{error_class(f, :password)}" %>
+      <%= error_tag f, :password %>
+    </div>
+
+    <div class="form-group d-flex justify-content-between">
+      <div class="custom-control custom-checkbox">
+        <%= checkbox f, :remember_me, class: "custom-control-input" %>
+        <%= label f, :remember_me, "记住我", class: "custom-control-label" %>
+      </div>
+      <%= link "注册账号", to: Routes.user_path(@conn, :new) %>
+    </div>
+
+    <%= submit "登录", class: "btn btn-primary btn-lg btn-block" %>
+  <% end %>
+</div>

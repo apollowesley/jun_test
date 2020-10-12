@@ -1,0 +1,66 @@
+第一步：首先导入前面命令行建立的两个maven项目Hello和HelloFriend。
+       方法：选择file-->import-->Existing MAVEN PROJECTS选项选择对应项目路径导入即可
+
+第二步：按顺序先后执行Hello和HelloFriend项目的的构建
+       方法：右击各自项目pom.xml文件，选择run as中的maven install命令将构件安装至仓库中
+
+
+第三步：通过eclipse新建第三个maven项目。选择file-->new-->other-->MAVEN PROJECT选项
+
+第四步：在src/main/java中新建文件cn.itcast.maven.MakeFriends.java
+
+package cn.itcast.maven;
+
+public class MakeFriends {
+
+	public String makeFriends(String name){
+		
+		HelloFriend friend = new HelloFriend();
+		friend.sayHelloToFriend("litingwei");	
+		String str = "Hey,"+friend.getMyName()+" make a friend please.";
+		System.out.println(str);
+		return str;
+	}
+}
+
+
+第五步：在src/test/java中新建文件cn.itcast.maven.MakeFriendsTest.java
+
+package cn.itcast.maven;
+
+import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class MakeFriendsTest {
+
+	@Test
+	public void testMakeFriends(){		
+		MakeFriends makeFriend = new MakeFriends();
+		String str = makeFriend.makeFriends("litingwei");
+		assertEquals("Hey,John make a friend please.",str);		
+
+	}
+}
+
+第六步：点击根目录pom.xml添加依赖
+
+     <dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.9</version>
+			<scope>test</scope>
+		</dependency>	
+		<dependency>
+	    	<groupId>cn.itcast.maven</groupId>
+	    	<artifactId>HelloFriend</artifactId>
+	    	<version>0.0.1-SNAPSHOT</version>
+	    	<type>jar</type>
+	    	<scope>compile</scope>
+  	  </dependency>
+
+     </dependencies>
+
+第七步：右击pom.xml选择run as 中的命令执行即可

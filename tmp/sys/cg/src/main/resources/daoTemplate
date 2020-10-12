@@ -1,0 +1,44 @@
+package $daoPackageName;
+
+import java.util.List;
+
+import $importClassName;
+
+public interface $daoClassName {
+
+	/**
+	 * 保存功能
+	 * 
+	 * @param $lowerEntityName
+	 */
+	public void save($entityName $lowerEntityName);
+
+	/**
+	 * 更新功能
+	 * 
+	 * @param $lowerEntityName
+	 */
+	public void update($entityName $lowerEntityName);
+
+	/**
+	 * 根据主键获取单个实例
+	 * 
+	 * @param $primaryKey
+	 * @return
+	 */
+	public $entityName get($type $primaryKey);
+
+	/**
+	 * 查询所有
+	 * 
+	 * @return
+	 */
+	public List<$entityName> queryAll();
+
+	/**
+	 * 根据主键删除单个实例
+	 * 
+	 * @param $primaryKey
+	 */
+	public void delete($type $primaryKey);
+}

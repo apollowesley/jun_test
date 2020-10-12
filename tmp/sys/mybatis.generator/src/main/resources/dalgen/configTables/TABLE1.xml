@@ -1,0 +1,76 @@
+<!DOCTYPE table SYSTEM "../config/table-config-1.0.dtd">
+<table sqlname="table1" physicalName="table1" remark="TABLE1">
+   <column name="CARD" javatype="String" jdbctype="VARCHAR" typeHandler="com.test.XX"/>
+    <!--  特殊字符说明 &lt;&gt; <> -->
+    <!-- baseSql option中 select * 会自动替换为 include -->
+    <sql id="Base_Column_List">
+        ID,CARD
+    </sql>
+
+    <!-- baseSql option中 select sf.* 会自动替换为 include -->
+    <sql id="Base_SF_Column_List">
+        sf.ID,sf.CARD
+    </sql>
+<resultmap name="xxx" type="xxx">
+    <column name="CARD" javatype="String" jdbctype="VARCHAR" typeHandler="com.test.XX"/>
+</resultmap>
+    <operation name="insert" paramtype="object" remark="插入表:table1" autoGen="true">
+            <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+                SELECT
+                LAST_INSERT_ID()
+            </selectKey>
+            <![CDATA[
+            INSERT INTO table1(
+                    ID
+                    ,CARD
+            )VALUES(
+                     null
+                    , #{card,jdbcType=VARCHAR}
+            )
+            ]]>
+    </operation>
+
+    <!-- foreach 可以自定义类型，paramtype="primitive" foreach->javatype="自己书写的类"  -->
+    <!-- 只有一个参数且为List时必须将参数命名为list -->
+    <operation name="insertBatch" paramtype="objectList" remark="批量插入表:table1"  autoGen="true">
+            INSERT INTO table1(
+                    ID
+                    ,CARD
+            )VALUES
+            <foreach collection="list"  item="item" separator=",">
+                (
+                     null
+                    , #{item.card,jdbcType=VARCHAR}
+                )
+            </foreach>
+    </operation>
+
+    <!-- 不推荐使用全 update 有需要自己打开
+    <operation name="update" paramtype="object" remark="更新表:table1"  autoGen="true">
+        <![CDATA[
+        UPDATE table1
+        SET
+            CARD            = #{card,jdbcType=VARCHAR}
+        WHERE
+            ID              = #{id,jdbcType=INTEGER}
+        ]]>
+    </operation>
+    -->
+    <operation name="deleteById"  remark="根据主键删除数据:table1">
+        <![CDATA[
+        DELETE FROM table1
+        WHERE
+            ID = #{id,jdbcType=INTEGER}
+        ]]>
+    </operation>
+
+    <operation name="getById" multiplicity="one" remark="根据主键获取数据:table1">
+        SELECT *
+        FROM table1
+        WHERE
+        <![CDATA[
+            ID = #{id,jdbcType=INTEGER}
+        ]]>
+    </operation>
+
+</table>

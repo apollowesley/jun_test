@@ -1,0 +1,27 @@
+<modal #modal>
+    <modal-header>
+        <h4>应用明细</h4>
+    </modal-header>
+    <modal-content>
+        <form *ngIf="entity" #applicationForm="ngForm">
+            <div class="form-group">
+                <label>名称</label>
+                <input class="form-control" type="text" required minlength="5" maxlength="50" [(ngModel)]="entity.Name" ngControl="name"
+                #name="ngForm" />
+                <div [hidden]="name.valid" class="alert alert-danger">
+                    名称必填，长度5-50。
+                </div>
+            </div>
+            <div class="form-group">
+                <label>上级应用</label>
+                <select class="form-control">
+                    <option *ngFor="#p of parents" [value]="p.Guid">{{p.Name}}</option>
+                </select>
+            </div>
+        </form>
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="save()">确定</button>
+        <button class="btn btn-primary" (click)="cancel()">取消</button>
+    </modal-footer>
+</modal>

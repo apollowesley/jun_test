@@ -1,0 +1,69 @@
+<!--pages/memoitem/memoitem.wxml-->
+<!-- 分组下的便签列表 -->
+<view class="container">
+  <block wx:if="{{isNull}}">
+    <view class="empty">
+      <image src="../../images/memo/empty.png"></image>
+      <view>点击右下角按钮新建便签</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="memoWrapper" style="height:{{memoWrapperHeight}}" id="memoWrapper">
+      <block wx:for="{{topData}}">
+        <view class="memoItem isTop" catchtap="toDisplay" catchlongpress="toOperate" data-idx="{{index}}" data-type="isTop" style="background-color:{{item.bgColor}};width:{{memoWidth}}">
+          <view class="itemLeft">
+            <view class="leftTop">{{item.content.text}}</view>
+            <view class="leftBottom">{{item.date}}</view>
+          </view>
+          <view class="itemRight">
+            <view class="icon iconfont icon-start1"></view>
+          </view>
+        </view>
+        <view class="selectIcon" wx:if="{{isOperate}}" catchtap="toDisplay" data-idx="{{index}}" data-type="isTop">
+          <view class="icon iconfont {{item.isCheck?'icon-xuanzhong3':'icon-weixuanzhong'}}"></view>
+        </view>
+      </block>
+      <block wx:for="{{normalData}}">
+        <view class="memoItem" catchtap="toDisplay" catchlongpress="toOperate" data-idx="{{index}}" data-type="normal" style="background-color:{{item.bgColor}};width:{{memoWidth}}">
+          <view class="itemLeft">
+            <view class="leftTop">{{item.content.text}}</view>
+            <view class="leftBottom">{{item.date}}</view>
+          </view>
+          <view class="itemRight">
+            <view class="icon iconfont icon-wujiaoxingxingxing1"></view>
+          </view>
+        </view>
+        <view class="selectIcon" wx:if="{{isOperate}}" catchtap="toDisplay" data-idx="{{index}}" data-type="normal">
+          <view class="icon iconfont {{item.isCheck?'icon-xuanzhong3':'icon-weixuanzhong'}}"></view>
+        </view>
+      </block>
+      <view id="loadMore" wx:if="{{hasMore}}">
+        <image class="loadPng" src="../../images/loading.png"></image>
+        <text class="loadText">{{loadText}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+<!-- 添加便签图标 -->
+<view wx:if="{{isBtn}}" class="btnWrapper" style="left:{{Mleft}};right:{{Mright}};top:{{Mtop}};bottom:{{Mbottom}}" catchtouchstart="startMove" catchtouchmove="moving" catchtouchend="endMove">
+  <view class="btnIcon">
+    <view class="icon iconfont icon-penleather"></view>
+  </view>
+</view>
+<!-- 底部操作按钮 -->
+<view class="operateGroup" wx:if="{{isOperate}}" id="operateGroup">
+  <view class="operateTool">
+    <view class="selectAll" catchtap="toSelectAll">
+      <view class="icon iconfont icon-quanxuan"></view>
+      <view class="title">全选</view>
+    </view>
+    <view class="deleteSelect" catchtap="toDelete">
+      <view class="icon iconfont icon-delete2"></view>
+      <view class="title">删除</view>
+    </view>
+    <view class="cancleOperate" catchtap="cancleOperate">
+      <view class="icon iconfont icon-guanbi"></view>
+      <view class="title">取消</view>
+    </view>
+  </view>
+</view>

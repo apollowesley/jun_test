@@ -1,0 +1,59 @@
+{
+  "success": true,
+  "code": "000000",
+  "msg": "操作成功",
+  "data": [
+    {
+      "id": 1029,
+      "videoName": "视频名称",
+      "videoCode": "video_code_wnqsqrkeyroxjas",
+      "videoUrl": "http://localhost:9000/files/video/1543390405428.mp4",
+      "des": "视频描述信息",
+      "picture": "http://localhost:9000/files/img/p2.jpg",
+      "visitCount": 12,
+      "status": 3,
+      "createUser": "idea",
+      "createTime": null,
+      "updateTime": null
+    },
+    {
+      "id": 1028,
+      "videoName": "视频名称2",
+      "videoCode": "video_code_htonvebwihvhaun",
+      "videoUrl": "http://localhost:9000/files/video/1543377720002.mp4",
+      "des": "视频描述 2",
+      "picture": "http://localhost:9000/files/img/asd.png",
+      "visitCount": 5,
+      "status": 3,
+      "createUser": "idea",
+      "createTime": null,
+      "updateTime": null
+    },
+    {
+      "id": 1003,
+      "videoName": "会记师企业级模式实训",
+      "videoCode": "video_code_smkxuq14",
+      "videoUrl": "http://localhost:9000/files/video/v/v2.mp4",
+      "des": "这是一段视频介绍信息",
+      "picture": "http://localhost:9000/files/img/1543758007646.jpg",
+      "visitCount": 1,
+      "status": 3,
+      "createUser": "idea",
+      "createTime": null,
+      "updateTime": null
+    },
+    {
+      "id": 1004,
+      "videoName": "Java从入门到精通",
+      "videoCode": "video_code_smkxuq15",
+      "videoUrl": "http://localhost:9000/files/video/v/v2.mp4",
+      "des": "这是一段视频介绍信息",
+      "picture": "http://localhost:9000/files/img/p9.jpg",
+      "visitCount": 1,
+      "status": 3,
+      "createUser": "idea",
+      "createTime": null,
+      "updateTime": null
+    }
+  ]
+}

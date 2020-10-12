@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jason.project.project-utils</groupId>
+		<artifactId>project-utils</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.jason.project.project-utils</groupId>
+	<artifactId>utils-email</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>utils-email</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<javax.mail.version>1.5.6</javax.mail.version>
+		<org.junit.version>4.12</org.junit.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>${javax.mail.version}</version>
+			<scope>system</scope>
+			<systemPath>D:/maven/com/sun/mail/javax.mail/1.5.6/javax.mail-1.5.6.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${org.junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

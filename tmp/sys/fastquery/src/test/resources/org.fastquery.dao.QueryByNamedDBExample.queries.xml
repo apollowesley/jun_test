@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+
+	<!-- 定义全局 parts -->
+	<parts>
+		<part name="feids">id,name,age</part>
+	</parts>
+	
+	<query id="findUserInfoAll">
+		select id,name,age from UserInfo
+	</query>
+
+
+	<query id="findUserInfoOne">
+		<value>
+			## :id 最终会替换成 ?
+			## ${id} 不会替换还成"?",引用的是参数源值
+			select id,name,age from UserInfo where id = :id
+		</value>
+	</query>
+
+	<query id="findUserInfoByNameAndAge">
+		<value>
+			select id,name,age from UserInfo where 1 #{#condition}
+		</value>
+
+		<parts>
+			<part name="condition">
+				#if(${name})
+				and name = :name
+				#end
+
+				#if(${age})
+				and age = :age
+				#end
+			</part>
+		</parts>
+	</query>
+
+	<query id="findPage">
+
+		<!-- 查询主体语句 -->
+		<!-- #{#limit} 内置零件,表示分页区间,#{#limit}可以放在SQL语句中的任何地方,前提是:必须符合SQL语法. #{#limit}默认在尾部. -->
+		<value>
+			select no, name, sex from Student #{#condition} #{#order}
+		</value>
+
+		<!-- 求和语句 -->
+		<countQuery>
+			select count(no) from Student #{#condition}
+		</countQuery>
+
+		<!-- 定义零件集,他们可以被value,countQuery节点引用,以达到复用的效果 -->
+		<parts>
+			<part name="condition"> <!-- 内容可能包含小于号或者大于号,用CDATA就不用转义了 -->
+			  <![CDATA[
+			  <where>
+				#if($no)
+				or no like :no
+				#end
+
+				#if($name)
+				or name like :name
+				#end
+
+				#if($age)
+				or age > :age
+				#end
+			</where>
+			 ]]>
+			</part>
+
+			<part name="order">
+				order by age desc
+			</part>
+		</parts>
+		
+	</query>
+	
+	<query id="updateUserInfoById">
+	    ## 在这里支持velocity语法
+		update UserInfo set name = :name,age = :age where id= :id
+	</query>
+	
+	<!-- 局部part优先渲染 -->
+	<!-- 举例说明:  编译#{#feids}的过程:先从`<query>`范围里寻找name为feids的part,若没有找到,就去全局`<parts>`里寻找name为feids的part. -->	
+	<query id="findUAll">
+		<value>select #{#feids} from UserInfo</value>
+	</query>
+	
+	<query id="findUserAll">
+		<value>select #{#feids} from UserInfo</value>
+		<parts>
+			<part name="feids">name</part>
+		</parts>
+	</query>
+</queries>
+
+
+
+
+
+

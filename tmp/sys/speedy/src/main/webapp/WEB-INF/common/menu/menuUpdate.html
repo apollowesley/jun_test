@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <title>测试</title>
+    </head>
+    <script src="/static/public/js/jquery.js"></script>
+    <link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/public/css/public.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/public/css/system.css" rel="stylesheet" type="text/css"/>
+    <script src="/static/public/js/public.js"></script>
+    <script src="/static/public/js/Alert.js"></script>
+    <script src="/static/common/menu/menuinfo.js"></script>
+    <style>
+        ul li {
+            float: left;
+            width: 33%
+        }
+    </style>
+    <body>
+        <div class="list-box">
+            <div class="title">
+                <p>栏目增加</p>
+            </div>
+            <form role="form" id="menudata" action="javascript:void(0);">
+                <input type="hidden" class="form-control" th:value="${table}" name="table" id="table">
+                <ul>
+                    <li>
+                        <div class=" input-group">
+                            <span class="input-group-addon">名称</span>
+                            <input type="hidden" class="form-control" th:value="${menu.id}" name="id" id="id" placeholder="请输入">
+                            <input type="text" class="form-control" th:value="${menu.name}" name="name" id="name"
+                                   placeholder="请输入名称">
+                        </div>
+                        <div class=" input-group">
+                            <span class="input-group-addon">排序</span>
+                            <input type="number" class="form-control" th:value="${menu.sort}" name="sort" id="sort"
+                                   placeholder="请输入排序">
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" input-group">
+                            <span class="input-group-addon">父级</span>
+                            <select class="form-control" th:value="${menu.parent}" name="parent" id="parent"
+                                   placeholder="请输入父级">
+                            </select>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" input-group">
+                            <span class="input-group-addon">是否菜单</span>
+                            <select type="text" class="form-control" id="ismenu" name="ismenu" >
+                                <option value="1" th:selected="${menu.ismenu=='1'}">是</option>
+                                <option value="0" th:selected="${menu.ismenu=='0'}">否</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" input-group">
+                            <span class="input-group-addon">图标</span>
+                            <input type="text" class="form-control" name="icon" th:value="${menu.icon}" id="icon"
+                                   placeholder="请输入图标">
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" input-group">
+                            <span class="input-group-addon">请求</span>
+                            <input type="file" class="form-control" th:value="${menu.path}" id="path"
+                                   placeholder="请输入请求">
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" input-group">
+                            <span class="input-group-addon">对应表</span>
+                            <input type="text" class="form-control" th:value="${menu.tablename}" id="tablename"
+                                   placeholder="请输入对应表">
+                        </div>
+                    </li>
+                </ul>
+                <div style="width:100%;float: left;">
+                    <button type="button" id="menuUpdate" class="btn btn-default">提交</button>
+                	<button type="button" id="cancel" class="btn btn-default">取消</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

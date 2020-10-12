@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="context" extends="struts-default" namespace="/context">
+
+        <action name="context" class="com.gs.struts.ContextAction">
+            <result>/WEB-INF/pages/action-context.jsp</result>
+        </action>
+    </package>
+
+    <package name="aware" extends="struts-default" namespace="/aware">
+        <action name="aware" class="com.gs.struts.AwareAction">
+            <result>/WEB-INF/pages/action-context.jsp</result>
+        </action>
+    </package>
+</struts>

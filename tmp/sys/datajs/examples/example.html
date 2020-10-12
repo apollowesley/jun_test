@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>example</title>
+  <link rel="stylesheet" type="text/css" href="example.css">
+  <script src="../data.js"></script>
+  <script src="example.js"></script>
+</head>
+<body>
+<!-- 用户姓名 -->
+user.name: <input id="userName" data-name="user.name" type="text" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<!-- 用户年龄 -->
+user.age: <input id="userAge" data-name="user.age" type="text" />
+<br /><br />
+
+<!-- 性别 -->
+sex:
+<select id="sex" data-name="sex">
+  <option value="">--请选择--</option>
+  <option value="male">男</option>
+  <option value="female">女</option>
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<!-- 是否单身 -->
+single: <input id="single" data-name="single" type="checkbox"/>
+<br />
+
+<!-- 兴趣 -->
+<p class="inline-block padding-right-default">
+  hobby: <br />
+  <select id="hobby" data-name="hobby" multiple="multiple">
+    <option value="football">足球</option>
+    <option value="basketball">篮球</option>
+    <option value="tennisball">羽毛球</option>
+  </select>
+</p>
+
+<!-- 简介 -->
+<p class="inline-block">
+  description: <br />
+  <textarea id="description" data-name="description"></textarea>
+</p><br />
+
+<!-- 水平分隔线 -->
+<hr />
+
+<!-- 赋值 -->
+<p class="inline-block padding-right-default">
+  赋值:<br />
+  <textarea id="setterExpression"></textarea><br />
+  <!-- 按钮 -->
+  <button onclick="setExpression('setterExpression', '_(\'user.name\', \'小明\')')">
+    user.name赋值"小明"
+  </button>
+
+  <button onclick="setExpression('setterExpression', '_(\'sex\', \'female\')')">
+    sex选择"女"
+  </button>
+
+  <button onclick="setExpression('setterExpression', '_(\'sex\', \'male\')')">
+    sex选择"男"
+  </button><br />
+
+  <button onclick="setExpression('setterExpression', '_(\'single\', true)')">
+    single勾上
+  </button>
+
+  <button onclick="setExpression('setterExpression', '_(\'single\', false)')">
+    single不勾上
+  </button>
+
+  <button onclick="setExpression('setterExpression', '_(\'hobby\', [\'football\', \'tennisball\'])')">
+    hobby选择"足球"和"羽毛球"
+  </button><br />
+
+  <button onclick="setExpression('setterExpression', '_(\'hobby\', [\'football\', \'basketball\'])')">
+    hobby选择"足球"和"篮球"
+  </button>
+
+  <button onclick="setExpression('setterExpression', '_(\'user.*\', {\'user.name\': \'小红\', \'user.age\':12})')">
+    同时设置user.name和user.age
+  </button><br />
+
+  <button onclick="setExpression('setterExpression', '_([\'sex\', \'single\'], {\'sex\': \'female\', \'single\':true})')">
+    同时设置sex和single
+  </button>
+
+  <button onclick="setExpression('setterExpression', '_(\'*\', null, true)')">
+    所有清空
+  </button><br />
+
+  <button onclick="setValue()" class="color-highlight">执行</button>
+</p>
+
+<!-- 取值 -->
+<p class="inline-block">
+  取值:<br />
+  <textarea id="getterExpression"></textarea><br />
+  <!-- 按钮 -->
+  <button onclick="setExpression('getterExpression', '_(\'user.name\')')">
+    获取user.name
+  </button>
+
+  <button onclick="setExpression('getterExpression', '_(\'single\')')">
+    获取single
+  </button>
+
+  <button onclick="setExpression('getterExpression', '_(\'sex\')')">
+    获取sex
+  </button>
+
+  <button onclick="setExpression('getterExpression', '_(\'hobby\')')">
+    获取hobby
+  </button><br />
+
+  <button onclick="setExpression('getterExpression', '_(\'user.*\')')">
+    同时获取user.name和user.age
+  </button>
+
+  <button onclick="setExpression('getterExpression', '_([\'sex\', \'single\'])')">
+    同时获取sex和single
+  </button><br />
+
+  <button onclick="setExpression('getterExpression', '_(\'*\')')">
+    获取所有
+  </button><br />
+
+  <button onclick="getValue()" class="color-highlight">执行</button>
+</p>
+</body>
+</html>

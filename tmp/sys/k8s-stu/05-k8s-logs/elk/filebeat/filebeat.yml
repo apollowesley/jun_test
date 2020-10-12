@@ -1,0 +1,82 @@
+
+---
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    -  /tmp/data/pvp.log
+  tags: ["log-info"]
+  fields:
+    index: 'data-info'
+
+- type: log
+  enabled: true
+  paths:
+    -  /tmp/data/error.log
+  tags: ["log-error"]
+  fields:
+    index: 'data-error'
+
+output.console:
+  enabled: true
+  codec.json:
+    pretty: true
+
+#./filebeat test config  -c x.yml 
+#Config OK
+
+#./filebeat -c xxx.yml
+
+
+---
+####input
+filebeat.inputs:
+- type: log
+  paths:
+    -  /data/logs/game_job.log
+  fields:
+    log_type: 'game_job'
+
+- type: log
+  paths:
+    -  /data/logs/herog-activity.log
+  fields:
+    log_type: 'herog-activity'
+
+#processors config
+processors:
+- drop_fields:
+    fields: ["input_type", "offset", "beat.name","beat.version","beat.hostname","input.type","prospector.type","log.file.path"]
+
+#ilm
+setup.ilm.enabled: false
+
+#pretty json testing
+output.console:
+  enabled: true
+  codec.json:
+    pretty: true
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+  indices:
+    - index: "hot_game_job-%{+yyyy-MM-dd}"
+      when.contains:
+        fields:
+          index: 'game_job'
+    - index: "hot_herog-activity-%{+yyyy-MM-dd}"
+      when.contains:
+        fields:
+          index: 'herog-activity'
+---
+filebeat.inputs:
+- type: log
+  enable: true
+  paths:
+    - /data/logs/pvp.log
+  fileds:
+    log_type: "pvp_log"
+output.console:
+  enabled: true
+  codec.json:
+  pretty: true

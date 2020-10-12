@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.neuedu.fly.mapper.UserMapper">
+
+  <resultMap id="BaseResultMap" type="org.neuedu.fly.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="user_status" jdbcType="INTEGER" property="userStatus" />
+    <result column="email_status" jdbcType="INTEGER" property="emailStatus" />
+    <result column="email_code" jdbcType="INTEGER" property="emailCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, tel, email, nick_name, sex, city, signature, head_img, `password`, qq, sina,
+    wealth, kiss, grade, `role`, user_status, email_status, email_code, create_time, 
+    update_time
+  </sql>
+
+  <select id="login" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List" /> from tbl_user
+      where (tel = #{logName}  or email = #{logName} ) and password = #{logPwd}
+  </select>
+
+  <insert id="register">
+     insert into tbl_user(tel,nick_name,password,update_time) values(#{tel},#{nickName} ,#{password} ,current_timestamp)
+  </insert>
+
+  <select id="isUniqueTel" resultType="boolean">
+    select count(1) from tbl_user where tel = #{tel}
+  </select>
+
+
+</mapper>

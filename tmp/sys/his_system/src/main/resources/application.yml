@@ -1,0 +1,32 @@
+server:
+  port: 80
+
+#数据源配置
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql:///neuedu_his?serverTimezone=UTC&useSSL=false
+      username: root
+      password: root
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  # redis 配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+
+logging:
+  level:
+    org.neuedu.his: debug
+
+#全局配置：逻辑删除
+mybatis-plus:
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-field: delMark
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+

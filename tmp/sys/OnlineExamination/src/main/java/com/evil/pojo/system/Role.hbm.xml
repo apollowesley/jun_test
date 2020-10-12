@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.evil.pojo.system.Role" table="tb_roles">
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="roleName" column="rolename" type="string" length="50" />
+		<property name="roleDesc" column="roledesc" type="string" length="200" />
+		<property name="roleValue" column="rolevalue" type="string" length="20" />
+		<property name="regdate" column="regdate" type="timestamp" update="false" />
+
+		<!-- 映射Role到Right的多对多关联关系 -->
+		<set name="rights" table="tb_role_right" lazy="false" inverse="true">
+			<key column="roleid" />
+			<many-to-many column="rightid" class="com.evil.pojo.system.Right" />
+		</set>
+	</class>
+</hibernate-mapping>

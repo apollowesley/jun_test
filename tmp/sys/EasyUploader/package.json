@@ -1,0 +1,60 @@
+{
+  "name": "easyuploader",
+  "version": "0.0.10",
+  "description": "EasyUploader is a lightweight js file upload library. EasyUploader是一个轻量级的的js文件上传库。",
+  "main": "dist/easyuploader.cjs.js",
+  "module": "dist/easyuploader.esm.js",
+  "browser": "dist/easyuploader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:init": "eslint --init",
+    "lint": "eslint --fix --ext .js src",
+    "commit": "git-cz",
+    "dev": "npm run watch & npm run start",
+    "watch": "rollup -c build/rollup.config.js -w",
+    "start": "php -S localhost:1180",
+    "build": "rollup -c build/rollup.config.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hillpy/EasyUploader.git"
+  },
+  "keywords": [
+    "EasyUploader",
+    "html5",
+    "easy",
+    "upload"
+  ],
+  "author": "shinn_lancelot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hillpy/EasyUploader/issues"
+  },
+  "readme": "README.md",
+  "devDependencies": {
+    "commitizen": "^3.1.1",
+    "conventional-changelog": "^3.0.5",
+    "conventional-changelog-cli": "^2.0.11",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "rollup": "^1.1.2",
+    "rollup-plugin-buble": "^0.19.6",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-flow-no-whitespace": "^1.0.0",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-terser": "^4.0.3"
+  },
+  "dependencies": {},
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

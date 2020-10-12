@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <jaxws:client id="firstClient"
+                  serviceClass= "cn.kiwipeach.client.first.HelloWorldWS"
+                  address= "http://192.168.1.107:8080/firstWS?wsdl">
+        <jaxws:outInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+            <bean class="cn.kiwipeach.client.interceptor.CustomCXFClientInterceptor">
+                <constructor-arg name="name" value="buruliu"/>
+                <constructor-arg name="password" value="123456"/>
+            </bean>
+        </jaxws:outInterceptors>
+    </jaxws:client>
+
+    <jaxws:client id="secondClient" serviceClass="cn.kiwipeach.client.second.SecondPortType"
+    address="http://192.168.1.107:8080/secondWS?wsdl">
+    </jaxws:client>
+
+</beans>

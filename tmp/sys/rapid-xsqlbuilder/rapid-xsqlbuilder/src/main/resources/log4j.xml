@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- 输出到控制台 -->
+	<appender name="myConsole" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} |%-5p|%t|%m|%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="INFO" />
+			<param name="levelMax" value="ERROR" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<!-- 输出到日志文件 -->
+	<appender name="LOG.DEBUG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/debug/debug.log" />
+		<param name="DatePattern" value="yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%-5p] %c {%F:%L} - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+	<appender name="LOG.INFO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/info/info.log" />
+		<param name="DatePattern" value="yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%-5p] %c {%F:%L} - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+	<appender name="LOG.WARN" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/warn/warn.log" />
+		<param name="DatePattern" value="yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%-5p] %c {%F:%L} - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="WARN" />
+		</filter>
+	</appender>
+	<appender name="LOG.ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/error/error.log" />
+		<param name="DatePattern" value="yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%-5p] %c {%F:%L} - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
+	<logger name="java.sql.PreparedStatement" additivity="true">
+		<level value="INFO" />
+		<appender-ref ref="myConsole" />
+	</logger>
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="myConsole" />
+	</root>
+</log4j:configuration>

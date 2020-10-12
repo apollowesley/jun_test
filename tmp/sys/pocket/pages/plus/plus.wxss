@@ -1,0 +1,111 @@
+/* pages/order-list/order-list.wxss */
+page{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #F6F6F6;
+}
+.navbar{
+  flex: none;
+  display: flex;
+  background: #fff; 
+  height: 30px;
+  line-height: 30px;
+  padding-top: 7px;
+  font-size: 14px;
+  color: #787878;
+}
+.navbar .item{
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 45rpx;
+  border-bottom: 1px solid #E5E5E5;
+}
+.navbar .item.active{
+  color: #343233;
+  border-bottom: 1px solid #1296db;
+}
+
+.zc,.sr{
+  margin-top: 15px;
+  background: #fff
+}
+
+.zc view{
+  height: 55px;
+  line-height: 55px;
+  color: #686868;
+  width: 95%;
+  margin-left: 12px;
+  border-bottom: 1px solid #E6E6E6;
+}
+
+.zc text{
+  font-size: 14px;
+  color: #888888;
+}
+
+.zc input{
+  color: #1296db;
+  margin-left: 35px;
+  height: 15px;
+  position: absolute;
+  margin-top: 17px;
+  font-size: 14px;
+}
+
+input{
+  display: inline-block;
+}
+
+textarea{
+  display: inline-block;
+  margin-top: 20px;
+  height: 100px;
+  width: 100%;
+  padding-left: 12px;
+  padding-top: 17px;
+  background: #fff;
+  color: #888888
+}
+
+.text{
+   margin-left: 35px;
+   display: inline-block;
+}
+
+.hm{
+   margin-left: 20px;
+   display: inline-block;
+}
+
+picker{
+  display: inline-block;
+}
+
+.btn{
+  position: absolute;
+  bottom: 0px;
+  height: 45px;
+  line-height: 45px;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #CFCFCF;
+}
+
+.bzcg{
+  font-size: 13px;
+  width: 50%;
+  text-align: center;
+  display: inline-block;
+  color: #5B5B5B;
+  border-right: 1px solid #ECECEC;
+}
+.qr{
+  font-size: 13px;
+  width: 49%;
+  text-align: center;
+  display: inline-block;
+  color: #1296db;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<admin>
+	<!-- 管理员端 -->
+	<bean name="Menu" value="com.admin.sysmenu.Menu"></bean>
+	<bean name="Users" value="com.admin.sysmenu.Users"></bean>
+	<bean name="Feedback" value="com.admin.sysmenu.Feedback"></bean>
+	<bean name="Template" value="com.admin.sysmenu.Template"></bean>
+	<bean name="Version" value="com.admin.sysmenu.Version"></bean>
+	<bean name="Exception" value="com.admin.sysmenu.Exception"></bean>
+	<!-- 管理员端 -->
+
+
+
+	<!-- 移动端 -->
+	<bean name="portalReal" value="com.api.PortalReal"></bean>
+	<bean name="chatDeal" value="com.api.chat.ChatDeal"></bean>
+	<bean name="billsAction" value="com.api.action.BillsAction"></bean>
+	<bean name="dynamicAction" value="com.api.action.DynamicAction"></bean>
+	<bean name="collectionAction" value="com.api.action.CollectionAction"></bean>
+	<!-- 移动端 -->
+</admin>

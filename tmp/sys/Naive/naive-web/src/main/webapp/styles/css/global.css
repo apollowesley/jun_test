@@ -1,0 +1,64 @@
+body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,
+form,input,select,textarea,fieldset{margin:0px;padding:0px;}
+body{color:#333333;font:12px/1.5 Arial,SimSun;background-color:#ffffff;}
+frame,iframe,a img{border:none;-border:0px;}
+h1,h2,h3,h4,h5,h6,caption,th,em,strong,code,pre{font-style:normal;font-weight:normal;}
+h1{font:16px Tahoma,Arial,"Microsoft YaHei";}
+h2{font:14px Tahoma,Arial,"Microsoft YaHei";}
+h4,h5,h6,caption{font-size:1em;}
+table{border-collapse:collapse;border-spacing:0px;empty-cells:show;}
+ul,ol{list-style-type:none;}
+a{text-decoration:none;color:#333333;}
+input,select,option,textarea,button,label{font:1em Arial,SimSun;}
+label{vertical-align:middle;}
+button, .btn{padding:5px;width : 100px;}
+.btn_small{
+	padding:3px;
+	width:70px;
+	height:28px;
+}
+.small_btn{
+	width: 50px;
+	padding:3px;
+	height:28px;
+}
+.clearinner:after{
+	content:"";
+	display:block;
+	clear:both;
+	height:0px;
+}
+.clearafter:after{
+	content:"";
+	display:block;
+	clear:both;
+	font:0px/0px Arial;
+	height:0px;
+}
+.clear{
+	clear:both;
+	font:0px/0px Arial;
+	height:0px;
+}
+.hidden{
+	visibility:hidden;
+}
+.nowrap{
+	white-space:nowrap;
+	word-break:keep-all;
+}
+
+.center{ text-align:center;}
+.margin5{ margin:5px;}
+
+/*2012-5-30日加  ----开始*/
+.fl{float:left;}
+.fr{float:right;}
+.hide{display:none;}
+.radius{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px
+}
+/*2012-5-30日加-----结束*/
+

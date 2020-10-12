@@ -1,0 +1,27 @@
+/**
+ * Copyright 2017 KiWiPeach
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+package cn.kiwipeach.design.performance.vistor;
+
+/**
+ * Create Date: 2017/11/25 
+ * Description: 测试访问者模式
+ * @author kiwipeach [1099501218@qq.com]
+ */
+public class RunMain {
+    public static void main(String[] args) {
+        Vistor vistor = new Vistor("杜甫");
+        Subject subject = new Subject("李白");
+
+        //宾客主动登门造访
+        vistor.visit(subject);
+        //东道主等待宾客前来拜访
+//        subject.accept(vistor);
+    }
+}

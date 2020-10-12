@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>模板生成示例</title>
+		<meta name="description" content="">
+		<meta name="author" content="weile">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="assert/css/normalize.css" />
+		<link rel="stylesheet" href="assert/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assert/css/main.css" />
+	</head>
+
+	<body>
+		<div id="zjbg_wraper">
+			<!----二级模板匹配例子----->
+			<div class="sections"></div>
+			<section class="hidden ZJtemplate">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-right">
+							<button class="btn btn-primary">
+								通过{name}
+							</button>
+							<button class="btn btn-primary">
+								不通过
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-xs-12 text-center">
+
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th class="width50">
+										<input type="checkbox" class="ZJcheckAll" />
+										</th>
+										<th class="width110"><span>组织编号</span></th>
+										<th class="width80"><span>样品名称</span></th>
+										<th class="width110"><span>提取编号</span></th>
+										<th class="width70"><span>浓度 (ng/μl)</span></th>
+										<th class="width50"><span>体积 (μl)</span></th>
+										<th class="width50"><span>总量 (μg)</span></th>
+										<th class="width100"><span>OD260/280</span></th>
+										<th class="width100"><span>OD260/230</span></th>
+										<th class="width80"><span>文库类型</span></th>
+										<th class="width80"><span>28S/18S</span></th>
+										<th class="width60"><span>RIN值</span></th>
+										<th class="width95"><span>检测结果 真核转录组</span></th>
+										<th class="width95"><span>备注</span></th>
+										<th class="width65"><span>剩余量</span></th>
+									</tr>
+								</thead>
+								<tbody >
+									<tr class="innertemplate">
+										<td>
+										<input type="checkbox" class="ZJcheck"/>
+										</td>
+										<td>{zjbh}</td>
+										<td>{ypmc}</td>
+										<td>{tqbh}</td>
+										<td>{nd}</td>
+										<td>{tj}</td>
+										<td>{zl}</td>
+										<td>{od280}</td>
+										<td>{od230}</td>
+										<td>{wklx}</td>
+										<td>{ss}</td>
+										<td>{rin}</td>
+										<td>{jcjg}</td>
+										<td>{bz}</td>
+										<td>{syl}</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-----一级模板匹配例子---->
+			<div class="text-center">
+				<ul style="font-weight: bold;">
+					<li>姓名</li>
+					<li>年龄</li>
+					<li>性别</li>
+				</ul>
+				<div class="dataul"></div>
+				<ul class="hidden oneTemplate">
+					<li>{name}</li>
+					<li>{age}</li>
+					<li>{sex}</li>
+				</ul>
+			</div>
+			
+			<footer>
+				<p>
+					&copy; Copyright  by weile
+				</p>
+			</footer>
+		</div>
+
+		<script type="text/javascript" src="assert/js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="assert/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assert/js/templateJS.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				/*二级循环模板数据**/
+				var dataSample = [{
+						"name" : "1",
+						list : [{
+							"zjbh" : "121sdfafafda",
+							"ypmc" : "331混合",
+							"tqbh" : "121sdfafafda",
+							"nd" : "1",
+							"tj" : "1",
+							"zl" : "1",
+							"od280" : "1",
+							"od230" : "1",
+							"wklx" : "1",
+							"ss" : "1",
+							"rin" : "1",
+							"jcjg" : "1",
+							"bz" : "1",
+							"syl" : "1"
+						}, {
+							"zjbh" : "121sdfafafda",
+							"ypmc" : "331混合",
+							"tqbh" : "121sdfafafda",
+							"nd" : "1",
+							"tj" : "1",
+							"zl" : "1",
+							"od280" : "1",
+							"od230" : "1",
+							"wklx" : "1",
+							"ss" : "1",
+							"rin" : "1",
+							"jcjg" : "1",
+							"bz" : "1",
+							"syl" : "1"
+						}, {
+							"zjbh" : "121sdfafafda",
+							"ypmc" : "331混合",
+							"tqbh" : "121sdfafafda",
+							"nd" : "1",
+							"tj" : "1",
+							"zl" : "1",
+							"od280" : "1",
+							"od230" : "1",
+							"wklx" : "1",
+							"ss" : "1",
+							"rin" : "1",
+							"jcjg" : "1",
+							"bz" : "1",
+							"syl" : "1"
+						}]
+
+					}, {
+						"name" : "2",
+						list : [{
+							"zjbh" : "121sdfafafda",
+							"ypmc" : "331混合",
+							"tqbh" : "121sdfafafda",
+							"nd" : "1",
+							"tj" : "1",
+							"zl" : "1",
+							"od280" : "1",
+							"od230" : "1",
+							"wklx" : "1",
+							"ss" : "1",
+							"rin" : "1",
+							"jcjg" : "1",
+							"bz" : "1",
+							"syl" : "1"
+						}, {
+							"zjbh" : "121sdfafafda",
+							"ypmc" : "331混合",
+							"tqbh" : "121sdfafafda",
+							"nd" : "1",
+							"tj" : "1",
+							"zl" : "1",
+							"od280" : "1",
+							"od230" : "1",
+							"wklx" : "1",
+							"ss" : "1",
+							"rin" : "1",
+							"jcjg" : "1",
+							"bz" : "1",
+							"syl" : "1"
+						}, {
+							"zjbh" : "121sdfafafda",
+							"ypmc" : "331混合",
+							"tqbh" : "121sdfafafda",
+							"nd" : "1",
+							"tj" : "1",
+							"zl" : "1",
+							"od280" : "1",
+							"od230" : "1",
+							"wklx" : "1",
+							"ss" : "1",
+							"rin" : "1",
+							"jcjg" : "1",
+							"bz" : "1",
+							"syl" : "1"
+						}]
+
+					}, {
+						"name" : "3",
+						list : [{
+							"zjbh" : "121sdfafafda",
+							"ypmc" : "331混合",
+							"tqbh" : "121sdfafafda",
+							"nd" : "1",
+							"tj" : "1",
+							"zl" : "1",
+							"od280" : "1",
+							"od230" : "1",
+							"wklx" : "1",
+							"ss" : "1",
+							"rin" : "1",
+							"jcjg" : "1",
+							"bz" : "1",
+							"syl" : "1"
+						}, {
+							"zjbh" : "121sdfafafda",
+							"ypmc" : "331混合",
+							"tqbh" : "121sdfafafda",
+							"nd" : "1",
+							"tj" : "1",
+							"zl" : "1",
+							"od280" : "1",
+							"od230" : "1",
+							"wklx" : "1",
+							"ss" : "1",
+							"rin" : "1",
+							"jcjg" : "1",
+							"bz" : "1",
+							"syl" : "1"
+						}, {
+							"zjbh" : "121sdfafafda",
+							"ypmc" : "331混合",
+							"tqbh" : "121sdfafafda",
+							"nd" : "1",
+							"tj" : "1",
+							"zl" : "1",
+							"od280" : "1",
+							"od230" : "1",
+							"wklx" : "1",
+							"ss" : "1",
+							"rin" : "1",
+							"jcjg" : "1",
+							"bz" : "1",
+							"syl" : "1"
+						}]
+
+					}];
+				$(".ZJtemplate").template({
+					"data" : dataSample,      //需要展示的数据（`json`格式）
+					"innerdataTag" : "list",   //需要展示二级循环的数据key值（`json`格式）
+					"innerTemplateTag" : ".innertemplate",//需要展示二级循环的模板选择器
+					"templateTag":".sections"  //将展示数据放在这个选择器标签前面 使用`append()`方法
+				});
+				
+				/*-级循环模板数据**/
+				var dataOne=[{
+					"name":"zhagnsan",
+					"age":"18",
+					"sex":"女"
+				},{
+					"name":"wagnwu",
+					"age":"15",
+					"sex":"男"
+				},{
+					"name":"小李",
+					"age":"20",
+					"sex":"女"
+				}];
+				$(".oneTemplate").template({
+					"data" : dataOne,
+					"templateTag":".dataul"
+				});
+			});
+		</script>
+
+	</body>
+</html>

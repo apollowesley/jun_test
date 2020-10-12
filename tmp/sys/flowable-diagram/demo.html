@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="snap.svg.js"></script>
+    <script src="diagram.js"></script>
+</head>
+<body>
+<style>
+    #svg {
+        width : 190px;
+        height : 190px;
+        border: 1px solid #0a0a0a;
+    }
+</style>
+<svg id="svg"></svg>
+<script>
+
+    var data = {
+
+        "nodes": [
+            {
+                "type": "start",
+                "x": 55,
+                "y": 20
+            },
+            {
+                "type": "end",
+                "x": 55,
+                "y": 140
+            },
+            {
+                "type": "task",
+                "id": "task1",
+                "name": "运维人员审批",
+                "highlight": true,
+                "x": 20,
+                "y": 80,
+                "w": 150
+            }
+        ],
+        "lines": [
+            {
+                "from": "start",
+                "to": "task1"
+            },
+            {
+                "from": "task1",
+                "to": "end"
+            }
+        ]
+    };
+
+    var flow = new Flow("svg", data);
+    flow.render();
+
+</script>
+</body>
+</html>

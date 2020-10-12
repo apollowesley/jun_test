@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sise.school.teach.bussiness.student.dao.StudentCollectionDao" >
+  <resultMap id="BaseResultMap" type="com.sise.school.teach.bussiness.student.po.StudentCollectionPO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stu_code" property="stuCode" jdbcType="CHAR" />
+    <result column="collection_code" property="collectionCode" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stu_code, collection_code, create_time, update_time
+  </sql>
+  <insert id="insert" parameterType="com.sise.school.teach.bussiness.student.po.StudentCollectionPO" >
+    insert into t_student_collection (   stu_code, collection_code, create_time,
+      update_time)
+    values ( #{stuCode,jdbcType=CHAR}, #{collectionCode,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <select id="selectAllByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM t_student_collection
+    WHERE stu_code=#{stuCode}
+  </select>
+
+  <select id="selectOneByStuCodeAndColCode" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM t_student_collection
+    WHERE stu_code=#{stuCode} AND collection_code=#{colCode}
+  </select>
+
+  <delete id="deleteByCode" parameterType="java.lang.String" >
+   DELETE FROM t_student_collection
+   WHERE stu_code=#{stuCode} and collection_code=#{collectionCode}
+  </delete>
+
+
+</mapper>

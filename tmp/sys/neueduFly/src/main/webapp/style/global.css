@@ -1,0 +1,97 @@
+
+a:hover{
+    color: #5FB878;
+}
+/* 顶部导航栏 */
+.fly-header{
+    height: 60px;
+}
+.fly-logo{
+    position: absolute;
+    top: 0px;
+    line-height: 60px;
+}
+.fly-nav{
+    position: absolute;
+    top: 0px;
+    left: 200px;
+    height: 60px;
+}
+.fly-nav .iconfont{
+    position: relative;
+    top: 3px;
+    font-size: 26px;
+    padding-right: 10px;
+}
+
+.fly-nav-user{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.fly-nav-user a:link {color: rgba(255,255,255,.7);}		/* 未访问的链接 */
+.fly-nav-user a:visited {color: rgba(255,255,255,.7);}	/* 已访问的链接 */
+.fly-nav-user a:hover {color: rgba(255,255,255,1);}	/* 鼠标移动到链接上 */
+.fly-nav-user a:active {color: rgba(255,255,255,.7);}	/* 选定的链接 */
+
+.fly-nav-user .iconfont{
+    font-size: 30px;
+}
+.fly-nav-user .layui-nav-item a{
+    padding: 0px;
+    padding-left: 18px;
+}
+
+.layui-nav-more{
+    display: none;
+}
+
+html{background-color: #F2F2F2;}
+.fly-penel-color{
+    background-color: white;
+}
+.layui-container{
+    padding: 0px;
+}
+
+.fly-panel-style{
+    margin-bottom: 15px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+}
+
+/* 版权声明 */
+.fly-footer{
+    border-top: 1px solid #e2e2e2;
+    color: #737573;
+    margin: 35px 0 0;
+    text-align: center;
+}
+.fly-footer a {
+    padding: 0 6px;
+    font-weight: 300;
+    color: #333;
+}
+.fly-footer p:first-child{
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.fly-footer p:first-child a{
+    padding: 10px;
+}
+.fly-footer p:nth-child(2) a{
+   margin-left: 15px;
+}
+.fly-footer p:nth-child(3){
+    margin: 25px 0px 15px 0px;
+    color: #999;
+}
+.fly-footer .upyun img{
+    height: 28px;
+}
+.fly-footer .maoyun img{
+    height: 28px;
+}
+.fly-footer p:last-child{
+    margin-bottom: 32px;
+}

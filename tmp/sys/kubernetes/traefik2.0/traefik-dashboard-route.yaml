@@ -1,0 +1,44 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-https
+  namespace: kube-system
+spec:
+  redirectScheme:
+    scheme: https
+---
+# 不使用 https
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard-route-http
+  namespace: kube-system
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`traefik.xkcoding.com`)
+      kind: Rule
+      services:
+        - name: traefik
+          port: 8080
+      middlewares: # 使用跳转的中间件，强制 https
+        - name: redirect-https
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard-route-https
+  namespace: kube-system
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: xkcoding-tls
+    # certResolver: default
+  routes:
+    - match: Host(`traefik.xkcoding.com`)
+      kind: Rule
+      services:
+        - name: traefik
+          port: 8080

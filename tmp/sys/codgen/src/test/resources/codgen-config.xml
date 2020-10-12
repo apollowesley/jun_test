@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE codgen-config PUBLIC "-//Apache Software Foundation//DTD Tengen Configuration 1.0//EN" "com/bcs/codgen/resources/codgen-config_1_0.dtd">
+<codgen-config>
+	<project name="test" label="测试项目" outputEncoding="UTF-8" isDefault="true" extends="defaultProject">
+		<dbProvider class="com.bcs.codgen.service.impl.MysqlProvider">
+			<jdbcConfig>
+				<driver>com.mysql.jdbc.Driver</driver>
+				<url>jdbc:mysql://localhost:3306/codgen_test?useUnicode=true&amp;characterEncoding=UTF-8</url>
+				<user>root</user>
+				<password>123</password>
+			</jdbcConfig>
+			<columnHandler class="com.bcs.codgen.service.impl.DataTypeConverterForJava"/>
+			<!-- 不使用系统默认的空格分隔符（要使用则去掉下面这行配置，当然可以设置其他分隔符来覆盖默认的空格分隔符） -->
+			<splitorForLabelFromComment></splitorForLabelFromComment>
+		</dbProvider>
+		
+		<dataModel name="templateDirectory">template/AOWork</dataModel>
+		<dataModel name="outputDirectory">D:/QtoneProject/TengenCode/${copyright.author}/${projectName}</dataModel>
+		<dataModel name="NamespaceModel" >com.qtone.aow.model.${groupName}</dataModel>
+		<dataModel name="NamespaceParam">com.qtone.aow.model.${groupName}</dataModel>
+		<dataModel name="NamespaceDao">com.qtone.aow.dao.${groupName}</dataModel>
+		<dataModel name="NamespaceDaoImpl">com.qtone.aow.dao.${groupName}</dataModel>
+		<dataModel name="NamespaceBll">com.qtone.aow.bll.${groupName}</dataModel>
+		<dataModel name="NamespaceBllImpl">com.qtone.aow.bll.${groupName}</dataModel>
+		<dataModel name="NamespaceApp">com.qtone.aow.app.${groupName}</dataModel>
+				
+		<template name="tDao" type="file">Dao.ftl</template>
+		
+		<output name="Model" type="text" templateText="${defaultJavaModel}" ></output>
+		<output name="Param" type="text" templateFile="Param.ftl" ></output>
+		<output name="Dao" type="text" templateName="tDao"></output>
+		<output name="DaoImpl" type="file"></output>
+		<output name="Bll" type="file" templateFile="template/AOWork/Bll">${outputDirectory}/Bll.java</output>
+		<output name="BllImpl" type="file">${outputDirectory}/BllImpl.java</output>
+	</project>
+</codgen-config>

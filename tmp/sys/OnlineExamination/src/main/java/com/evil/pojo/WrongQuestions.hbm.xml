@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.evil.pojo.WrongQuestions" table="tb_wrongquestions"
+		catalog="onlineexamination">
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="correctNumber" type="java.lang.Integer">
+			<column name="correctNumber" />
+		</property>
+
+		<property name="userId" column="userId" type="java.lang.String"
+			length="32" />
+
+		<!-- 映射WrongQuestion到Questions的多对一关联关系 -->
+		<many-to-one name="questions" class="com.evil.pojo.Questions" lazy="false">
+			<column name="questionsID" length="32" not-null="true" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

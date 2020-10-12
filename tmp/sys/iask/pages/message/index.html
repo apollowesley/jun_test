@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Messages</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../lib/mui/mui.css" />
+		<link rel="stylesheet" href="../../css/app.css" />
+		<style>
+		</style>
+	</head>
+
+	<body>
+		<div id="openFilter" class="mui-popover" >
+			<div class="mui-popover-arrow"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#">Only Unread</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">View All</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mui-content">
+			<!--下拉刷新容器-->
+			<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div id="list" class="mui-content-padded">
+						<ul class="mui-table-view app-card">
+						Loading...
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script id="list" url="/api/messages" type="text/template">
+	{{#data}}
+		<ul class="mui-table-view app-card">
+			<li class="mui-table-view-cell">
+				<a style="padding:0px;" app-event="openDetail" msgid="{{id}}" status="{{status}}" title="{{to.name}}" url="/pages/features/questions/detail.html" data="{{object.id}}" href="javascript:void(0)">
+					<div class="app-card-head">
+						<img app-event="tapHead" class="mui-media-object mui-pull-left {{from.id}}_avatar" height="50px" style="border-radius: 50%;" src="../../img/head.png" />
+						{{from.name}} {{action}}:
+					</div>
+					<div class="app-card-body mui-ellipsis-3" style="padding-top:15px; padding-bottom:15px;">
+						{{description}}
+					</div>
+					<div class="app-card-bottom">
+						<div class="app-card-tags">
+							{{createAtFmt}}
+						</div> 
+						<div class="app-card-count">
+							{{#read}}
+							<span id="{{id}}_status" class="mui-badge">{{status}}</span>
+							{{/read}}
+							{{^read}}
+							<span id="{{id}}_status" class="mui-badge mui-badge-danger">{{status}}</span>
+							{{/read}}
+						</div>
+						<div class="mui-clearfix"></div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	{{/data}}
+	</script>
+	<script src="../../lib/mui/mui.js"></script>
+	<script src="../../lib/framework/z-app.js"></script>
+	<script src="../../lib/mustache/mustache.min.js"></script>
+	<script src="../../lib/framework/utils.js"></script>
+	<script src="../../lib/framework/results.js"></script> 
+	<script>
+		App.go({
+			init : {
+				pullRefresh : {
+					// 开启下拉刷新
+					down : {
+						beforeDefined : function(tpl) {
+							App.pageNo = 1;
+							App.status = "";
+							App.resetLoadMore();
+						}
+					},
+					// 上拉加载更多
+					up : {
+						hasMore : function (tpl) {
+							var result = tpl.ajax.result;
+							var hasMore = App.pageNo <= result.pageCount;
+							return hasMore;
+						}
+					},
+				},
+			},
+			deviceReady : function(e) {
+				App.pageNo = 1;
+				App.pageSize = 20;
+			},
+			events : {
+				view : {
+					beforeShow : function() {
+						if (App.ready == true) {
+							settings();
+						}
+					}
+				},
+				// 自定义事件
+				custom : {
+					onMenuClick : function(e){
+						App.resetLoadMore();
+						App.parent().setStyle({mask: 'none'});
+						App.parent().removeEventListener("maskClick");
+						
+						var status = e.detail.menu.value;
+						
+						if ("set-all-read" == status) {
+							App.status = "";
+							//set all to read ajax
+						} else {
+							App.pageNo = 1;
+							App.status = status;
+							document.getElementById('list').innerHTML = "<ul class='mui-table-view app-card'>loading...</ul>";		
+							App.handleTemplate({
+								reload : true, 
+							});
+						}
+						
+					}, 
+					openFilter : function(e) {
+						var maskview = App.parent();
+						var url = '/pages/common/menu.html';
+						var styles = {
+							top : '48px',
+							width : '40%',
+							height : '140px',
+							right : '0',
+							data : [
+								{ text : 'Only Unread', value : 'unread' },
+								{ text : 'Set All to Read', value : 'set-all-read' },
+								{ text : 'Refresh', value : '' },
+							],
+							notifyTo : 'onMenuClick',
+						};
+						App.toggleMenu({
+							url : url,
+							styles : styles,
+							maskview : maskview,
+							mask : 'rgba(255,255,255,0.0)'
+						});
+					},
+					tapHead : function(e) {
+						alert('tap head');
+					},
+					//打开详细信息
+					openDetail : function(e) {
+						var tgt = e.target;
+						// 发起一个read请求到后端
+						var msgid = tgt.getAttribute('msgid');
+						var status = tgt.getAttribute('status'); 
+						if (status == 'unread') {
+							App.httpClient().ajax('POST', '/api/messages/read', {cache:false, data:{msgId:msgid}, loading:false}, function(result) {
+								tgt.setAttribute('status', 'read');
+								var d = document.getElementById(msgid+"_status");
+								d.classList.remove('mui-badge-danger');
+								d.innerHTML = 'read';
+								App.notifyParent('updateMessage', {})
+							});
+						}
+						
+						var data = tgt.getAttribute('data');
+						var title = tgt.getAttribute('title');
+						var detailUrl = tgt.getAttribute('url');
+						var opts = {
+							title : title || 'Question Detail',
+							reload : true,
+							styles : {
+								questionId : data, 
+							}
+						}
+						App.openDetail(detailUrl, opts);
+					},
+					tapTag : function(e) {
+					},
+					reload : function(e) {
+						App.pullRefresh.down.callback();
+					}
+				}
+			},
+			// 模板渲染
+			template : {
+				// 定义模板的参数,比如分页参数等
+				defined : function(tpl) {
+					App.userids = [];
+					
+					tpl.ajax.options.data.status = App.status;
+					tpl.ajax.options.data.pageNo = App.pageNo++;
+					tpl.ajax.options.data.pageSize = App.pageSize;
+				},
+				// 渲染模板
+				render : function(tpl) {
+					if (!tpl.ajax.result || typeof tpl.ajax.result == 'undefined') {
+						return "";
+					}
+					// 准备好你的数据模型
+					var data = tpl.ajax.result.data;
+					if (!data) {
+						if (tpl.pullRefresh.down) {
+							return "<center>no data</center>";	
+						} 
+						return " ";
+					}
+					App.pageNo++;
+					// 记住用户ID,用于后面的头像获取
+					App.each(data, function(i,v){
+						if (typeof v.from == 'undefined' || !v.from) {
+							return;
+						}
+						var uid = v.from.id;
+						if (App.contains(App.userids, uid)) {
+						} else {
+							App.userids.push(uid);
+						}
+					});
+					var model = {
+						data : data, 
+						action : function() {
+							if (this.type == 'answer') {
+								return "answered";
+							} 
+							if (this.type == 'follow') {
+								return "Followed you";
+							}
+							
+							return this.type;
+						},
+						read : function() {
+							return this.status == 'read' ? true : false;
+						}
+					};
+					// 使用'大胡子'模板引擎来渲染
+					var output = Mustache.render(tpl.html, model);
+					return output;
+				},
+				complete : function(tpl) {
+					// 处理头像图片
+					var appid = null;
+					var appidkey = plus.storage.getItem('appidkey');
+					if (appidkey) {
+						appid = plus.storage.getItem(appidkey);
+					}
+					App.each(App.userids, function(i,uid){
+						var doms = document.getElementsByClassName(uid+"_avatar");
+						App.each(doms, function(i,d){
+							var path = "api/user/avatars/thumb?user_id="+uid+"&"+appidkey+"="+appid;
+							var src = App.opts.init.http.base+'/'+path;
+							var oldsrc = d.src;
+							d.onerror = function(e){
+								d.src = oldsrc;
+							}
+							d.src = src;
+						});
+					});
+				}
+			},
+			appReady : function() {
+				App.ready = true;
+				settings();
+			}
+		});
+		
+		function settings() {
+			App.notifyParent('settings', {
+				buttons : {
+					data : [
+						{ icon : 'mui-icon-arrowdown' }
+					],
+					onNotify : "openFilter"
+				}
+			})
+		}
+	</script>
+</html>

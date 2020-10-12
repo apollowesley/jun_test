@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="User">
+
+  <resultMap id="UserMap" type="cn.backflow.admin.entity.User">
+    <id property="id" column="id"/>
+    <result property="name" column="name"/>
+    <result property="pass" column="pass"/>
+    <result property="email" column="email"/>
+    <result property="phone" column="phone"/>
+    <result property="avatar" column="avatar"/>
+    <result property="gender" column="gender"/>
+    <result property="roleId" column="role_id"/>
+    <result property="roleName" column="role_name"/>
+    <result property="departmentId" column="department_id"/>
+    <result property="departmentName" column="department_name"/>
+    <result property="birthday" column="birthday"/>
+    <result property="status" column="status"/>
+    <result property="visited" column="visited"/>
+    <result property="created" column="created"/>
+    <result property="updated" column="updated"/>
+  </resultMap>
+
+  <!-- 用于select查询公用抽取的列 -->
+  <sql id="User.columns">
+    id, name, pass, email, phone, avatar, gender, role_id, department_id, birthday, status, visited, created, updated
+  </sql>
+
+  <sql id="User.fullcolumns">
+    u.id, u.pass, u.name, email, phone, avatar, role_id, r.name role_name, department_id, d.name department_name, u.status, u.visited, u.created, u.updated
+  </sql>
+
+  <!-- 关联外表数据的列 -->
+  <sql id="User.partialcolumns">
+    u.id, u.name, email, phone, avatar, role_id, r.name role_name, department_id, d.name department_name, u.status
+  </sql>
+
+  <!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_user (
+    name,
+    pass,
+    avatar,
+    gender,
+    <if test="email neq null">email,</if>
+    phone,
+    role_id,
+    department_id,
+    birthday,
+    status,
+    visited,
+    created
+    ) VALUES (
+    #{name},
+    #{pass},
+    #{avatar},
+    #{gender},
+    <if test="email neq null">#{email},</if>
+    #{phone},
+    #{roleId},
+    #{departmentId},
+    #{birthday},
+    #{status},
+    #{visited},
+    now()
+    )
+  </insert>
+
+  <update id="update">
+    UPDATE t_user SET
+      pass = #{pass},
+      gender = #{gender},
+      email = #{email},
+      phone = #{phone},
+      role_id = #{roleId}
+      department_id = #{departmentId},
+      birthday = #{birthday},
+      status = #{status},
+      updated = now()
+    WHERE
+      id = #{id}
+  </update>
+
+  <update id="updateSelective">
+    UPDATE t_user
+    <set>
+      <if test="pass neq null">pass = #{pass},</if>
+      <if test="gender neq null">gender = #{gender},</if>
+      <if test="email neq null">email = #{email},</if>
+      <if test="phone neq null">phone = #{phone},</if>
+      <if test="avatar neq null">avatar = #{avatar},</if>
+      <if test="roleId neq null">role_id = #{roleId},</if>
+      <if test="departmentId neq null">department_id = #{departmentId},</if>
+      <if test="birthday neq null">birthday = #{birthday},</if>
+      <if test="status neq null">status = #{status},</if>
+      <if test="visited neq null">visited = #{visited},</if>
+      updated = NOW()
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM t_user WHERE id = #{id}
+  </delete>
+
+  <delete id="separateDepartment">
+    UPDATE t_user SET department_id = NULL WHERE department_id = #{_parameter}
+  </delete>
+
+  <delete id="deleteBatch">
+    DELETE FROM t_user WHERE id IN
+    <foreach collection="array" item="id" open="(" close=")" separator=",">#{id}</foreach>
+  </delete>
+
+  <select id="getById" resultMap="UserMap">
+    SELECT
+    <include refid="User.fullcolumns"/>
+    FROM t_user u
+    LEFT JOIN t_role r ON u.role_id = r.id
+    LEFT JOIN t_department d ON u.department_id = d.id
+    WHERE u.id = ${_parameter}
+  </select>
+
+  <select id="getByIdentity" resultMap="UserMap">
+    SELECT
+    <include refid="User.fullcolumns"/>
+    FROM t_user u
+    LEFT JOIN t_role r ON u.role_id = r.id
+    LEFT JOIN t_department d ON u.department_id = d.id
+    <where>
+      <if test="id neq null">AND u.id = #{id}</if>
+      <if test="name neq null">AND u.name = #{name}</if>
+      <if test="email neq null">AND u.email = #{email}</if>
+      <if test="phone neq null">AND u.phone = #{phone}</if>
+    </where>
+  </select>
+
+  <select id="findAll" resultMap="UserMap">
+    SELECT
+    <include refid="User.columns"/>
+    FROM t_user
+    <include refid="PagingDynamicWhere"/>
+  </select>
+
+  <select id="search" resultMap="UserMap">
+    SELECT id, name, avatar, gender, email, phone, department_id FROM t_user
+    <where>
+      <if test="keyword neq ''">(
+        id = #{keyword}
+        OR name LIKE CONCAT(#{keyword}, '%')
+        OR phone LIKE CONCAT(#{keyword}, '%')
+        )
+      </if>
+      <if test="include neq null">
+        OR id IN
+        <foreach collection="include" item="id" open="(" close=")" separator=",">#{id}</foreach>
+      </if>
+      <if test="current neq null">AND id != #{current}</if>
+    </where>
+    <if test="_sort_ neq null">
+      ORDER BY ${_sort_}
+    </if>
+    <if test="_offset_ neq null">
+      LIMIT ${_offset_}, ${_limit_}
+    </if>
+  </select>
+
+  <sql id="PagingDynamicWhere">
+    <where>
+      <if test="name neq null">(name LIKE CONCAT(#{name}, '%') OR phone LIKE CONCAT(#{name}, '%'))</if>
+      <if test="gender neq null">AND gender = #{gender}</if>
+      <if test="email neq null">AND email LIKE CONCAT(#{email}, '%')</if>
+      <if test="phone neq null">AND phone LIKE CONCAT(#{phone}, '%')</if>
+      <if test="status neq null">AND status = #{status}</if>
+      <if test="birthdayBegin neq null">AND birthday >= #{birthdayBegin}</if>
+      <if test="birthdayEnd neq null">AND birthday &lt;= #{birthdayEnd}</if>
+      <if test="visitedBegin neq null">AND visited >= #{visitedBegin}</if>
+      <if test="visitedEnd neq null">AND visited &lt;= #{visitedEnd}</if>
+      <if test="createdBegin neq null">AND created >= #{createdBegin}</if>
+      <if test="createdEnd neq null">AND created &lt;= #{createdEnd}</if>
+      <if test="updatedBegin neq null">AND updated >= #{updatedBegin}</if>
+      <if test="updatedEnd neq null">AND updated &lt;= #{updatedEnd}</if>
+    </where>
+  </sql>
+
+  <select id="paging" resultMap="UserMap">
+    SELECT
+    <include refid="User.columns"/>
+    FROM t_user
+    <include refid="PagingDynamicWhere"/>
+    <if test="_sort_ neq null">
+      ORDER BY ${_sort_}
+    </if>
+    <if test="_offset_ neq null">
+      LIMIT ${_offset_}, ${_limit_}
+    </if>
+  </select>
+
+  <select id="count" resultType="Long">
+    SELECT COUNT(id) FROM t_user
+  </select>
+
+  <select id="pagingCount" resultType="long">
+    SELECT COUNT(id) FROM t_user
+    <include refid="PagingDynamicWhere"/>
+  </select>
+
+  <select id="query" resultMap="UserMap">
+    SELECT
+    <include refid="User.partialcolumns"/>
+    FROM t_user u
+    LEFT JOIN t_department d ON u.department_id = d.id
+    LEFT JOIN t_role r ON u.role_id = r.id
+    <include refid="QueryDynamicWhere"/>
+    <if test="_sort_ neq null">
+      ORDER BY ${_sort_}
+    </if>
+    <if test="_offset_ neq null">
+      LIMIT ${_offset_}, ${_limit_}
+    </if>
+  </select>
+
+  <select id="queryCount" resultType="long">
+    SELECT COUNT(u.id) FROM t_user u LEFT JOIN t_department d ON u.department_id = d.id
+    <include refid="QueryDynamicWhere"/>
+  </select>
+
+  <sql id="QueryDynamicWhere">
+    <where>
+      <if test="keyword neq null">(u.name LIKE CONCAT(#{keyword}, '%') OR email LIKE CONCAT(#{keyword}, '%'))</if>
+      <if test="type eq 'dept'">AND d.ancestors LIKE CONCAT((SELECT ancestors FROM t_department WHERE id = #{dept}), '%')</if>
+      <if test="type eq 'fresh'">AND u.created >= date_sub(now(), INTERVAL 3 MONTH)</if><!-- 取最近3个月添加的数据 -->
+      <if test="type eq 'free'">AND u.department_id IS NULL</if>
+      <if test="type eq 'ban'">AND u.status = 0</if>
+    </where>
+  </sql>
+
+</mapper>

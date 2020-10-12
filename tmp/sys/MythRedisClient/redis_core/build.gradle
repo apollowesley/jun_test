@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: "info.robotbrain.lombok"
+
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/8/docs/api"
+    }
+}
+configurations {
+//    all*.exclude module: 'commons-logging'
+}
+sourceCompatibility = 1.8
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "info.robotbrain.gradle.lombok:lombok-gradle:1.1"
+    }
+}
+repositories {
+    mavenCentral()
+}
+

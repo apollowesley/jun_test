@@ -1,0 +1,29 @@
+package ${packageName};
+
+#foreach($im in ${importList})
+import ${im};
+#end
+
+/**
+ * ${table.desc}dao实现
+ *
+ * User: ${constant_creator}
+ * Date: ${date}
+ */
+@Repository
+public class ${daoImplGeneratedShotClassName} implements ${daoGeneratedShotClassName} {
+
+    /** ${table.desc}mapper */
+    @Autowired
+    private ${javaMapperGeneratedShotClassName} ${javaMapperFirstLowerGeneratedClassName};
+
+    /**
+     * 新增记录
+     *
+     * @param ${modelFirstLowerGeneratedClassName}
+     */
+    @Override
+    public void insert(${modelGeneratedShotClassName} ${modelFirstLowerGeneratedClassName}) {
+        ${javaMapperFirstLowerGeneratedClassName}.insert(${modelFirstLowerGeneratedClassName});
+    }
+}

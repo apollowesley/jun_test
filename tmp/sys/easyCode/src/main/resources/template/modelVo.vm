@@ -1,0 +1,37 @@
+package ${packageName};
+
+#foreach($im in ${importList})
+import ${im};
+#end
+import com.dexcoder.assistant.pager.Pageable;
+
+/**
+ * ${table.desc}
+ *
+ * User: ${constant_creator}
+ * Date: ${date}
+ */
+public class ${modelVoGeneratedShotClassName} extends Pageable {
+
+    /** serialVersionUID */
+    private static final long         serialVersionUID = ${serialVersionUID}L;
+
+#foreach($column in ${table.columns})
+#if(${column.comment})
+    /** ${column.comment} */
+#end
+    private ${column.javaType} ${column.camelName};
+
+#end
+
+#foreach($column in ${table.columns})
+    public ${column.javaType} get${column.firstUpperName}() {
+        return ${column.camelName};
+    }
+
+    public void set${column.firstUpperName}(${column.javaType} ${column.camelName}) {
+        this.${column.camelName} = ${column.camelName};
+    }
+
+#end
+}

@@ -1,0 +1,29 @@
+<view>
+
+  <view class="loanItem-list">
+    <view class="item" wx:for="{{list}}" wx:key="{{id}}" data-proNo="{{item.id}}" data-proName="{{item.posName}}" bindtap='goPosInstallDetail'>
+        <view class='item-tit'>
+            <view class='item-tit-l'>{{item.posName}}</view>
+            <view class='item-tit-r'>{{item.posNo}}</view>
+        </view>
+        <view class='item-wrap'>
+            <view class='item-info'>
+                <view class='item-info-l'>联系人：{{item.posConcract}}  {{item.posMobile}}</view>
+            </view>
+            <view class='item-time'>地址：{{item.posAddr}}</view>
+        </view>
+    </view>
+  </view>
+
+    <view class='tips-upwarp' hidden="{{!loading}}">
+        <view class='upwarp-progress tips-rotate'></view>
+        <text class='upwarp-tip'>加载中..</text>
+    </view>
+    <view class='tips-upwarp' hidden="{{!loadingComplete}}">
+        <view class='noData' wx:if="{{list.length == 0}}">
+            <image src='../../images/mescroll-empty.png'></image>
+            <view class='text'>暂无数据</view>
+        </view>
+        <text class='upwarp-tip' wx:else>我是有底线的</text>
+    </view>
+</view>

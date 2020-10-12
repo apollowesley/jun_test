@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>信息设置</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/public.js"></script>
+<script src="/static/public/js/Alert.js"></script>
+<style>
+.list-box{margin:0 auto;background:#fff;width:98%;margin-top:10px;overflow-y:scroll;}
+.tableForm{width:95%;float:left;margin-top:20px;margin-left:20px}
+.tableInfo{width:95%;float:left;margin-top:20px;margin-left:20px;margin-bottom:20px}
+ul{list-style:none;}
+.dataForm li{float:left;margin-left:10px;margin-top:10px;font-size:16px;width:30%;}
+.tableInfo li{width:45%;float:left;margin-left:20px;}
+.tableInfo li select{width:100%;}
+.btns{width:100%;float:left;margin-top:20px;}
+.btns .btn{margin-left:20px;}
+</style>
+<body>
+<div class="list-box">
+<form class="tableForm" id="tableForm" name="tableForm" action="javascript:void(0);" method="post" role="form">
+	<h2>基础属性</h2>
+	<p>注：该生成器只支持在开发模式下生成</p>
+	<ul class="dataForm">
+		<li ><span>作者:<input type="text" class ="form-control" name="author" value="qingfeng"/></span></li>
+		<!-- /system/article -->
+		<li><span>请求路径:<input type="text" class ="form-control" id="requestPath" name="requestPath" value="/common/article"/></span></li>
+		<!-- com.luoqy.speedy.modular.system -->
+		<li><span>包名路径:<input type="text" class ="form-control" name="projectPackage" value="com.luoqy.speedy.core.base"/></span></li>
+		<li><span>前缀:<input type="text" class ="form-control" name="ignoreTabelPrefix" value="speedy_"/></span></li>
+		<li><span>管理名称:<input type="text" class ="form-control" name="bizName" value="文章管理"/></span></li>
+		<li><span>库名:<input type="text" class ="form-control" name="dbName" id="dbName" value="speedy"/></span></li>
+		<li><span>表名称:<input type="text" class ="form-control" name="tablename" id="table" value="speedy_article" readonly="readonly"/></span></li>
+		<li>
+			<span>单页/列表:
+				<select type="text" class ="form-control" name="pageType" id="pageType">
+					<option value="2">列表</option>
+					<option value="1">单页</option>
+				</select>
+			</span>
+		</li>
+	</ul>
+	<div id="arrData">
+	</div>
+</form>
+<div class="tableInfo">
+	<h2>生成属性</h2>
+	<p>注：生成的文件将替换已经生成的文件，请谨慎选择</p>
+	<ul>
+		<li>
+			<p>数据表(选择一个需要生成的数据表)</p>
+			<select size="18" id="tables">
+				<option th:each="table,set : ${tables}" th:value="${table.TABLE_NAME}" th:text="${table.TABLE_NAME+'-'+table.TABLE_COMMENT}">
+				</option>
+			</select>
+		</li>
+		<li>
+			<p>生成文件(按住CTRL选择多个)</p>
+			<select  multiple="true" size="18l" id="tableInfo">
+				<option value="indexPageSwitch=true">indexPage文件</option>
+				<option value="jsSwitch=true">indexPageJs文件</option>
+				<option value="addPageSwitch=true">添加页面页面</option>
+				<option value="infoJsSwitch=true">详情页Js文件</option>
+				<option value="editPageSwitch=true">更新页面文件</option>
+				<option value="controllerSwitch=true">Controller控制层</option>
+				<option value="serviceSwitch=true">Service控制层类文件</option>
+				<option value="daoSwitch=true">Dao持久层类文件</option>
+				<option value="entitySwitch=true">Entity实体类文件</option>
+			</select>
+		</li>
+	</ul>
+	
+	<div class="btns">
+		<button id="generate" class="btn btn-success">生成代码</button>
+	</div>
+</div>
+</div>
+<script>
+	$("#tables").change(function(){
+		var table=$(this).val();
+		$("#table").val(table);
+		var path=$("#requestPath").val();
+		var lastIndex=path.lastIndexOf("\/");    
+		path=path.substring(0,lastIndex);
+		if(table.indexOf("_")>-1){
+			var size=table.split("_");
+			$("#requestPath").val(path+"/"+size[size.length-1]);
+		}else{
+			$("#requestPath").val(path);
+		}
+		
+		
+	})
+	$("#generate").click(function(){
+		var arrData=$("#tableInfo").val();
+		$("#tableForm").find("#arrData").html("");
+		for(var i=0;i<arrData.length;i++){
+			var data=arrData[i].split("=");
+			$("#arrData").append("<input type='hidden' name='"+data[0]+"' value='"+data[1]+"' />");
+		}
+		var data=$("#tableForm").serialize();
+		console.log(data);
+		$.ajax({
+			url:"/code/generate",
+			data:data,
+			type:"post",
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				if(res.state==1){
+					Alert.hint(res.message);
+				}
+			},error:function(error){
+				console.log(error);
+			}
+		})
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="SecureUtilsBuild" default="Build" basedir="." >
+	<property name="srcDir" location="src" />
+	<property name="binDir" location="bin" />
+	<property name="jarDir" location="jar" />
+	<property name="libFile" location="${jarDir}/secureUtils.jar" />
+	
+	<target name="Init">
+		<delete dir="${jarDir}" />
+		<mkdir dir="${jarDir}" />
+	</target>
+
+	<target name="Compile" depends="Init" >
+		<javac srcdir="${srcDir}" destdir="${binDir}" includeantruntime="on" >
+			<compilerarg line="-encoding UTF-8" />
+		</javac>
+	</target>	
+	
+	<target name="BuildLib" depends="Init, Compile">
+		<jar jarfile="${libFile}" filesonly="true" >
+			<fileset dir="${binDir}">
+				<include name="com/bayern/factory/*.class"/>
+				<include name="com/bayern/other/*.class"/>
+				<include name="com/bayern/secure/*.class"/>
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="Build" depends="BuildLib">
+		<echo message="Build success" />
+	</target>
+</project>

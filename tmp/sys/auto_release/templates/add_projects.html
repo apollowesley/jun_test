@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>L项目版本发布记录</title>
+<link rel="stylesheet" type="text/css" href="{{ static_url("css/bootstrap.css") }}">
+</head>
+<body>
+  <script src="{{ static_url("js/bootstrap.js") }}"></script>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">L项目版本自动化发布系统</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+            </p>
+            <ul class="nav">
+               <li><a href="/">Index</a></li>
+               <li><a href="/serverinfo/">服务信息查看</a></li>
+               <li><a href="/taskinfo/">任务信息查看</a></li>
+               <li class="active"><a href="/projects/">项目管理</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <p></p>
+<h3>&nbsp;</h3>
+<legend>项目添加</legend>
+<a href="/add_project/" class="btn btn-large btn-primary btn-block">添加项目</a>
+<table class="table table-hover condensed table-bordered">
+  <tr class="info"><td>项目代号<td>项目名称<td>版本文件路径<td colspan="2">项目管理</tr>
+{% for project in projects_info %}
+  <tr>
+    <td> {{ project.get('project_code') }}
+    <td> {{ project.get('project_name') }}
+    <td> {{ project.get('project_path') }}
+    <td> <a href="/project_edit/{{ project.get('_id') }}">Edit</a>
+    <td> <a href="/project_del/{{ project.get('_id') }}">Del</a>
+  </tr>
+{% end %}
+</table>
+<form class="form-horizontal" action="/add_project/" method="post">
+   <div class="control-group">
+    <label class="control-label" >项目代号</label>
+    <div class="controls">
+      <input type="text" name="project_code" placeholder="Project_L">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" >项目名称</label>
+    <div class="controls">
+      <input type="text" name="project_name" placeholder="魔三国">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" >版本发布路径</label>
+    <div class="controls">
+      <input type="text" name="project_path" placeholder="/tmp/mobileGame/">
+    </div>
+  </div>
+      <button type="submit" class="btn btn-block btn-primary">提交</button>
+</form>
+ </body>
+ </html>
+ 

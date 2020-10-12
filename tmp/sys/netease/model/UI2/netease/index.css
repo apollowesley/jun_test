@@ -1,0 +1,54 @@
+h4, h5 ,.h5, .h6{ color:#555;}
+
+.text-white{ color:#fff;}
+.text-success{ color:#32bd60;}
+.text-danger{ color:#ff7767;}
+
+.x-titlebar{ background:none;}
+.x-titlebar .x-titlebar-title{ padding:5px 0;}
+.x-titlebar .x-titlebar-right .btn{ padding-left:0;}
+
+.x-cards{ padding-top:0px;}
+
+.img5{ width:48px; height:48px;}
+.btn i{ font-size:20px;}
+
+.x-noborder.table > tbody > tr > td{
+	border: 0;
+}
+
+.x-fill.table > tbody > tr > td{
+	padding: 0;
+}
+
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{
+	border:1px solid rgba(90, 90, 90, 0.05);
+}
+
+
+/*特卖*/
+.iSale td{position:relative;}
+.iSale td > img{ width:100%;}
+.iSale td > .text{width:100%; position:absolute; left:0; bottom:0;}
+.iSale td > .text h5:last-child{ font-weight:bold;}
+
+/*页脚按钮组*/
+.x-tuniu.btn-group{ background-color:#fff;}
+.x-tuniu.btn-group .btn{ border-top:0;}
+.x-tuniu.btn-group .btn span{ font-size:12px; font-weight:normal;}
+.x-tuniu.btn-group .btn:hover,.x-card.btn-group .btn.active{ color:#32bd60; padding:0;border-top:0;}
+
+/*左右内边距*/
+.x-tuniu.panel{ margin-bottom:10px;}
+.x-tuniu.panel > .panel-heading .panel-title{ color:#333;}
+.x-tuniu .panel-heading, .x-tuniu ul{ border-bottom:0;}
+.x-tuniu .list-group-item{ border-radius:0;}
+.x-tuniu .list-group-item:last-child{ border-bottom:0;}
+.x-tuniu .x-nobarder{ border:0;}
+
+/*保证*/
+.iEnsure{ margin-top:15px; padding-top:15px; border-top:1px solid rgba(90, 90, 90, 0.1);}
+.iEnsure .badge{ display:block; width:120px; line-height:20px; margin:0 auto; background-color:#b0bac4; font-size:14px; border-radius:15px;}
+.iEnsure .btn-group{ width:80%; margin:0 auto;}
+.iEnsure .btn-group .btn{ color:#b0bac4;}
+

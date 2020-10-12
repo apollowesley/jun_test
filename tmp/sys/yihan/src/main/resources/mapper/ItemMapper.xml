@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ItemMapper">
+    <insert id="addType" parameterType="pojo.Type">
+        insert into type values(null,#{item},#{level},#{src})
+    </insert>
+    <insert id="addItem">
+        insert into item values(null,#{src},#{name},#{type},#{author},#{date},#{text},#{level})
+    </insert>
+    <insert id="addDetail">
+        insert into detail values(null,#{itemid},#{type1},#{type2},#{item1},#{item2},#{level})
+    </insert>
+    <update id="editType">
+        update type set item=#{item},level=#{level},src=#{src} where id=#{id}
+    </update>
+    <update id="editItemById" parameterType="pojo.Item">
+        update item set src=#{src},name=#{name},type=#{type},author=#{author},date=#{date},text=#{text},level=#{level} where id=#{id}
+    </update>
+    <update id="editDetail">
+        update detail set level=#{level}, item1=#{item1}, item2=#{item2} where id=#{id}
+    </update>
+    <delete id="delTypeById">
+        delete from type where id=#{id}
+    </delete>
+    <delete id="delItem">
+        delete from item where id=#{id}
+    </delete>
+    <delete id="delDetail">
+        delete from detail where id=#{id}
+    </delete>
+    <delete id="delDetailByItemId">
+        delete from detail where itemid=#{id}
+    </delete>
+    <select id="getAllType" resultType="pojo.Type">
+        select * from type order by level
+    </select>
+    <select id="getTypeById" resultType="pojo.Type" parameterType="integer">
+        select * from type where id=#{id}
+    </select>
+    <select id="getAllItem" resultType="pojo.Item">
+        select *,
+        item type1
+        from item,type
+        where item.type=type.id
+        order by item.level
+    </select>
+
+    <sql id="whereVo">
+        <where>
+            <if test="vo.type!=null and vo.type!=''">
+                and item.type=#{vo.type}
+            </if>
+            <if test="vo.name!=null and vo.name!=''">
+                and item.name like '%${vo.name}%'
+            </if>
+        </where>
+    </sql>
+    <select id="getItemSize" resultType="integer" parameterType="pojo.QueryVo">
+        select count(*) from item
+        <include refid="whereVo"/>
+    </select>
+    <select id="getItemList" resultType="pojo.Item" parameterType="pojo.QueryVo">
+        select *,
+        item type1
+        from item
+        left join type on item.type=type.id
+        left join img on item.src=img.name
+        <include refid="whereVo"/>
+        order by item.level
+        limit #{start},#{vo.limitLine}
+    </select>
+    <select id="getItemById" resultType="pojo.Item" parameterType="integer">
+        select *,item type1
+        from item,type
+        where item.type=type.id
+        and item.id=#{id}
+    </select>
+    <select id="getItemByTypeId" resultType="pojo.Item">
+        select *,
+        item type1
+        from item,type
+        where item.type=type.id
+        and item.type=#{typeId}
+        order by item.level
+    </select>
+    <select id="getDetailByItemId" resultType="pojo.Detail">
+        select * from detail where itemid=#{id} order by level
+    </select>
+    <select id="getDetailById" resultType="pojo.Detail">
+        select * from detail where id=#{id}
+    </select>
+</mapper>

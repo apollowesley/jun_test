@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slavic.hors.orm.mapper.HorsPortalLoginRecordMapper">
+
+    <resultMap type="com.slavic.hors.orm.entity.HorsPortalLoginRecord" id="HorsPortalLoginRecordMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="loginIp" column="login_ip" jdbcType="VARCHAR"/>
+        <result property="ipLocation" column="ip_location" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="osName" column="os_name" jdbcType="VARCHAR"/>
+        <result property="osVersion" column="os_version" jdbcType="VARCHAR"/>
+        <result property="browserName" column="browser_name" jdbcType="VARCHAR"/>
+        <result property="browserVersion" column="browser_version" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HorsPortalLoginRecordMap">
+        select
+          id, user_id, login_ip, ip_location, create_time, os_name, os_version, browser_name, browser_version
+        from api_starter.hors_portal_login_record
+        where id = #{id}
+    </select>
+    
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="HorsPortalLoginRecordMap">
+        select
+          id, user_id, login_ip, ip_location, create_time, os_name, os_version, browser_name, browser_version
+        from api_starter.hors_portal_login_record
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="loginIp != null and loginIp != ''">
+                and login_ip = #{loginIp}
+            </if>
+            <if test="ipLocation != null and ipLocation != ''">
+                and ip_location = #{ipLocation}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="osName != null and osName != ''">
+                and os_name = #{osName}
+            </if>
+            <if test="osVersion != null and osVersion != ''">
+                and os_version = #{osVersion}
+            </if>
+            <if test="browserName != null and browserName != ''">
+                and browser_name = #{browserName}
+            </if>
+            <if test="browserVersion != null and browserVersion != ''">
+                and browser_version = #{browserVersion}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into api_starter.hors_portal_login_record(user_id, login_ip, ip_location, create_time, os_name, os_version, browser_name, browser_version)
+        values (#{userId}, #{loginIp}, #{ipLocation}, #{createTime}, #{osName}, #{osVersion}, #{browserName}, #{browserVersion})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="updateById">
+        update api_starter.hors_portal_login_record
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="loginIp != null and loginIp != ''">
+                login_ip = #{loginIp},
+            </if>
+            <if test="ipLocation != null and ipLocation != ''">
+                ip_location = #{ipLocation},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="osName != null and osName != ''">
+                os_name = #{osName},
+            </if>
+            <if test="osVersion != null and osVersion != ''">
+                os_version = #{osVersion},
+            </if>
+            <if test="browserName != null and browserName != ''">
+                browser_name = #{browserName},
+            </if>
+            <if test="browserVersion != null and browserVersion != ''">
+                browser_version = #{browserVersion},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from api_starter.hors_portal_login_record where id = #{id}
+    </delete>
+
+</mapper>

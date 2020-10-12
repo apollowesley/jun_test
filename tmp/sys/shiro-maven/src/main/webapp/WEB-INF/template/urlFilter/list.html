@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="${request.contextPath}/static/css/css.css">
+</head>
+<body>
+
+[#if msg??]
+    <div class="message">${msg!}</div>
+[/#if]
+
+[@shiro.hasPermission name="urlFilter:create"]
+    <a href="${request.contextPath}/urlFilter/create">URL新增</a><br/>
+[/@shiro.hasPermission]
+<table class="table">
+    <thead>
+        <tr>
+            <th>名称</th>
+            <th>URL</th>
+            <th>角色列表</th>
+            <th>权限列表</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        [#list urlFilterList as urlFilter]
+            <tr>
+                <td>${(urlFilter.name)!}</td>
+                <td>${(urlFilter.url)!}</td>
+                <td>${(urlFilter.roles)!}</td>
+                <td>${(urlFilter.permissions)!}</td>
+                <td>
+                    [@shiro.hasPermission name="urlFilter:update"]
+                        <a href="${request.contextPath}/urlFilter/${urlFilter.id}/update">修改</a>
+                    [/@shiro.hasPermission]
+
+                    [@shiro.hasPermission name="urlFilter:delete"]
+                        <a href="${request.contextPath}/urlFilter/${urlFilter.id}/delete">删除</a>
+                    [/@shiro.hasPermission]
+                </td>
+            </tr>
+       [/#list]
+    </tbody>
+</table>
+
+</body>
+</html>

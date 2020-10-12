@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>route demo</title>
+	<style>
+		* {
+			padding: 0px;
+			margin:0;
+		}
+		body{
+			font-family: "\5FAE\8F6F\96C5\9ED1", Tahoma, Verdana, sans-serif, STHeiTi;
+			background: #99CCFF;
+		}
+		.header{
+			background: #66CCCC;
+			box-shadow: 0px 1px 7px;
+			margin-bottom: 2px;
+
+		}
+		.header .item{
+
+		}
+		.w990 .cer{
+			width: 990px;
+			margin: auto;
+			
+		}
+		.header .cer{
+			line-height: 50px;
+			color: #fff;
+			font-size: 25px;
+			font-weight: bold;
+		}
+		.body{
+			color: #fff;
+			font-size: 20px;
+			line-height: 40px;
+			padding: 10px;
+		}
+
+
+
+		.btn{
+			display: inline-block;
+			padding: 6px 12px;
+			margin-bottom: 0;
+			text-decoration: none;
+			font-weight: 400;
+			line-height: 1.42857143;
+			text-align: center;
+			white-space: nowrap;
+			vertical-align: middle;
+			-ms-touch-action: manipulation;
+			touch-action: manipulation;
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			background-image: none;
+			border: 1px solid transparent;
+			border-radius: 2px;
+		}
+		.btn.btn-w83{
+			width:83px;
+		}
+
+		.btn:hover,.btn:focus{
+			text-decoration: none;
+		}
+		.btn.btn-primary{
+			color: #fff;
+			background-color: #e3101e;
+			border-color: #e3101e;
+		}
+		.btn.btn-primary:hover,.btn.btn-primary:focus{
+			background: #ff5757;
+			border-color:#ff5757;
+		}
+		.btn.btn-default{
+			color: #333;
+			background-color: #fff;
+			border-color: #ddd;
+		}
+		.btn.btn-default:hover,.btn.btn-default:focus{
+			background: #fff;
+			border-color:#ccc;
+		}
+		.cer.box{
+			  padding: 10px;
+			  border: #fff solid 1px;
+			  margin-top: 20px;
+			  padding-top: 0px;
+		}
+		.box h3{
+			  border-bottom: 1px #fff solid;
+			  line-height: 40px;
+			  font-size: 20px;
+
+		}
+	</style>
+</head>
+<body class="w990">
+	<div class="header">
+		<div class="cer">route.js简单例子</div>
+	</div>
+	<div class="body">
+		<div class="cer">
+			<a href="#hello?a=a&b=b=c" class="btn btn-primary">nameP->hello</a>
+			<a href="#hello" class="btn btn-primary" r-hash>nameP->helloURL无变化也会执行</a>
+			<br>
+			<a href="#/a1/b1" class="btn btn-primary">paramP->/:a/:b</a>
+			<a href="#/a11/4545/daf" class="btn btn-primary">startP->/a11</a>
+			<br>
+			<a href="#/444546546465" class="btn btn-primary">匹配不到</a>
+			<a href="#/yibu" class="btn btn-primary">异步处理</a>
+			<br>
+			<a href="#/a?a=3" class="btn btn-primary">自制匹配函数</a>
+		</div>
+		<div class="cer box">
+			<h3>执行次数:</h3>
+			<div id="cont-log">
+				0
+			</div>
+		</div>
+		<div class="cer box">
+			<h3>pr:</h3>
+			<div id="pr-log">
+				prlog
+			</div>
+		</div>
+		<div class="cer box">
+			<h3>ctx:</h3>
+			<div id="ctx-log">
+				ctxlog
+			</div>
+		</div>
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="../lib/ramda.min.js"></script>
+	<script src="../lib/jueji.js"></script>
+	<script src="../js/route.js"></script>
+	<script>
+		var s = J.stream;
+		var ds = J.dostream;
+		var cont = 0;
+		function parse(a){
+			if(typeof a == "object") return JSON.stringify(a,null,4);
+			return a;
+		}
+		function domlog(pr,ctx){
+			$("#cont-log").text(++cont);
+			$("#pr-log").text(parse(pr))
+			$("#ctx-log").text(parse(ctx))
+		}
+
+		function domlog404(pr,ctx){
+			$("#cont-log").text(++cont);
+			$("#pr-log").text(404+"===="+parse(pr))
+			$("#ctx-log").text(404+"===="+parse(ctx))
+		}
+
+		function loadState(){
+			$("#pr-log").text("loading...");
+			$("#ctx-log").text("loading...")
+		}
+		function yibutest(pr,ctx){
+			return J.milldam(function(fn){
+				setTimeout(function(){
+					fn("异步返回的结果")
+				},1000);
+			});
+		}
+		//自制匹配函数
+		function diyP(url,ctx){
+			if(url=="/a?a=3") return "diydata";
+			//匹配失败
+			return route.nextp;
+		}
+		var dofn = route.route([
+			//解析URL参数并放到ctx.query中
+			//nextp 代表执行下面的规则
+			s(route.queryStringG,J.ctx("query"),route.nextp)
+			//匹配/hello 匹配失败继续向下执行
+			,s(route.nameP("/hello"),domlog)
+			,s(route.nameP("/"),domlog)
+			,s(route.paramP("/:a/:b"),domlog)
+			,s(route.nameP("/hello"),domlog)
+			,s(route.startP("/a11"),domlog)
+			,s(route.nameP("/yibu"),R.tap(loadState),yibutest,domlog)
+			,s(diyP,domlog)
+			,domlog404
+		]);
+		//监控hash变化 获取URL执行dofn
+		ds(null,route.hashMilldam,dofn);
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: blogs_web
+  profiles:
+    ##dev  开发环境   prod 生产环境
+    active: dev
+  #datasource数据库配置
+
+  #management:
+  #  endpoints:
+  #    web:
+  #      exposure:
+  #        include: "*"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        jdbc.lob.non_contextual_creation: true
+
+#    日志配置
+logging:
+  level:
+    org:
+      hibernate:
+        sql: debug
+
+
+#eureka相关配置
+eureka:
+  client:
+#    eureka健康检查
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://xiaokai:xiaokai123456@localhost:8671/eureka
+  instance:
+    prefer-ip-address: true
+#    暂时用不到
+#    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    metadata-map:
+      zone: ABC      # eureka可以理解的元数据
+      lilizhou: BBC  # 不会影响客户端行为
+    lease-renewal-interval-in-seconds: 5
+
+#oauth2配置
+auth-server: http://localhost:8085/uac
+
+security:
+  oauth2:
+    client:
+      client-id: sheep1
+      client-secret: 123456
+      user-authorization-uri: ${auth-server}/oauth/authorize
+      access-token-uri: ${auth-server}/oauth/token
+    resource:
+      jwt:
+        key-uri: ${auth-server}/oauth/token_key
+
+
+

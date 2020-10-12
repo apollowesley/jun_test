@@ -1,0 +1,35 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": [
+      ""
+    ],
+    "includePattern": ".+\\.js(doc)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "templates": {
+    "name": "jPublic工具文档",
+    "footerText": "jPublic工具文档",
+    "useCollapsibles": true,
+    "cleverLinks": true,
+    "monospaceLinks": true,
+    "default": {
+      "outputSourceFiles": true
+    },
+    "applicationName": "jPublic",
+    "logo": {
+      "url": "favicon.ico",
+      "width": "30px",
+      "height": "30px",
+      "link": "https://github.com/smltq/jPublic"
+    }
+  },
+  "opts": {
+    //模板路径
+    "template": "node_modules/tui-jsdoc-template",
+    //输出目录
+    "destination": "docs"
+  }
+}

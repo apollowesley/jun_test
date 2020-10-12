@@ -1,0 +1,53 @@
+---
+#nfs-pv
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce     #这儿的权限模式，千万记住要需要挂载的YAML文件的权限模式一样，否则会报找不见storageClass的错误。
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: mvpbang
+  nfs:
+    path: /nfs_data
+    server: 10.24.3.9
+
+---
+#nfs-pvc-mvpbang
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-pvc-mvpbang
+spec:
+  accessModes:
+    - ReadWriteOnce      #这儿的权限模式，千万记住要需要挂载的YAML文件的权限模式一样，否则会报找不见storageClass的错误。
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: mvpbang
+
+---
+#pod-pvc-mvpbang
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testpod-pvc
+spec:
+  containers:
+    - name: testpod-pvc
+      image: alpine
+      args:
+      - /bin/sh
+      - -c
+      - sleep 30000
+      volumeMounts:
+      - mountPath: "/data"
+        name: mydata
+  volumes:
+    - name: mydata
+      persistentVolumeClaim:
+        claimName: nfs-pvc-mvpbang
+--- 

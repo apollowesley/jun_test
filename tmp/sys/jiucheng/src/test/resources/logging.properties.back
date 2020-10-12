@@ -1,0 +1,9 @@
+
+handlers = org.jiucheng.log.StandardHandler
+
+.level = FINE
+
+org.jiucheng.log.StandardHandler.level = FINE
+org.jiucheng.log.StandardHandler.formatter = org.jiucheng.log.StandardFormatter
+
+org.jiucheng.orm.SQLHelper.level = SEVERE

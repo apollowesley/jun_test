@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+    <tlib-version>0.9</tlib-version>  
+    <jsp-version>1.2</jsp-version>
+   <!--标签头-->  
+    <short-name>w</short-name>  
+    <!--将来在页面用tagLib引用时的URI属性,这部分的名字可以随便写，只要是符合HTTP网址形式的 -->  
+    <uri>http://java.com/tags/pager</uri>  
+    <display-name>"MyTags"</display-name>
+       
+    <!-- 自定义标签的描述信息 -->  
+    <tag>  
+        <!-- 标签名 -->  
+        <name>pager</name>  
+        <!-- 对应的标签处理类全限定名 -->  
+        <tag-class>com.evil.tag.PagerTag</tag-class>  
+        <!-- 标签主体的类型 -->  
+        <body-content>JSP</body-content>
+    	<description><![CDATA[Execute an action from within a view]]></description>
+        <!-- 当前页号属性的描述信息 -->  
+        <attribute>  
+            <!-- 属性名 -->  
+            <name>pageNum</name>  
+            <!-- 该属性是否为必要的 -->  
+            <required>true</required>  
+            <!-- 属性值是否可以在JSP运行时期动态产生 -->  
+            <rtexprvalue>true</rtexprvalue>
+            <!-- 属性的数据类型 -->  
+            <type>int</type>  
+        </attribute>  
+        <!-- 总记录数属性的描述信息 -->  
+        <attribute>  
+            <name>recordCount</name>  
+            <required>true</required>  
+            <rtexprvalue>true</rtexprvalue>  
+            <type>int</type>  
+        </attribute>  
+        <!-- 总页数属性的描述信息 -->  
+        <attribute>  
+            <name>numPerPage</name>  
+            <required>true</required>  
+            <rtexprvalue>true</rtexprvalue>  
+            <type>int</type>  
+        </attribute>  
+        <!-- 分页标签要跳转的URI属性的描述信息 -->  
+        <attribute>  
+            <name>url</name>  
+            <required>true</required>  
+            <rtexprvalue>true</rtexprvalue>  
+            <type>java.lang.String</type>  
+        </attribute>  
+        <!-- 分页标签提交类型的描述信息 -->  
+        <attribute>  
+            <name>submitType</name>  
+            <required>true</required>  
+            <rtexprvalue>true</rtexprvalue>  
+            <type>java.lang.String</type>  
+        </attribute>
+        <!-- 分页标签AJAX函数名称的描述信息 -->  
+        <attribute>  
+            <name>funcName</name>  
+            <rtexprvalue>true</rtexprvalue>  
+            <type>java.lang.String</type>  
+        </attribute>    
+        <!-- 分页标签AJAX请求的数据页的描述信息 -->  
+        <attribute>  
+            <name>dataBar</name>  
+            <rtexprvalue>true</rtexprvalue>  
+            <type>java.lang.String</type>  
+        </attribute>  
+    </tag>  
+    
+    	<!-- 输出类型名称的标签 -->
+	<tag>
+		<name>paperType</name>
+		<tag-class>com.evil.tag.TypeOutTag</tag-class>
+		<body-content>empty</body-content>
+
+		<!-- 属性vlue -->
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>String</type>
+		</attribute>
+	</tag>
+</taglib> 

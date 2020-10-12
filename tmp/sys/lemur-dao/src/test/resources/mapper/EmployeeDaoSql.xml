@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="io.lemur.dao.test.examples.dao.EmployeeDao">
+	<sql key="contion">
+		<![CDATA[
+			<#if employee.age ?exists>
+				and age = :employee.age
+			</#if>
+			<#if employee.name ?exists>
+				and name = :employee.name
+			</#if>
+			<#if employee.empno ?exists>
+				and empno = :employee.empno
+			</#if>
+		]]>
+	</sql>
+	<sql key="getAllEmployees">
+		<![CDATA[
+			SELECT * FROM employee where
+			<#include "io.lemur.dao.test.examples.dao.EmployeeDao.contion">
+		]]>
+	</sql>
+	<sql key="getCount">
+		SELECT count(*) FROM employee
+	</sql>
+	<sql key="getMap">
+		SELECT * FROM employee WHERE empno = :empno and name = :name
+	</sql>
+</mapper>

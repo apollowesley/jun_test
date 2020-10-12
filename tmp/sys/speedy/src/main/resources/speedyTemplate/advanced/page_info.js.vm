@@ -1,0 +1,68 @@
+$(document).ready(function(){
+	$("#cancel").bind("click",function(){
+		window.history.back(-1);
+	})
+	//增加方法
+	$("#${context.moduleName}Add").bind("click",function(){
+		var data=$("#${context.moduleName}data").serialize();
+		if(verify()){
+			$.ajax({
+				url:"${context.requestPath}/add",
+				data:data,
+				type:"post",
+				dataType:"json",
+				success:function(res){
+					Alert.hint(res.message);
+					if(res.state==1){
+						setTimeout(function(){
+							window.location.href="${context.requestPath}";
+						},2000)
+					}
+				},error:function(err){
+					Alert.hint(err);
+				}
+			})
+		}
+	})
+	//更新方法
+	$("#${context.moduleName}Update").bind("click",function(){
+		var data=$("#${context.moduleName}data").serialize();
+		if(verify()){
+			$.ajax({
+				url:"${context.requestPath}/update",
+				data:data,
+				type:"post",
+				dataType:"json",
+				success:function(res){
+						Alert.hint(res.message);
+					if(res.state==1){
+						setTimeout(function(){
+							window.location.href="${context.requestPath}";
+						},2000)
+						
+					}
+				},error:function(err){
+					Alert.hint(err);
+				}
+			})
+		}
+	})
+})
+
+function verify(){
+//required
+	var flag=false;
+	$(".required").each(function(){
+		var value=$(this).val();
+		var idName=$(this).prop("id");
+		if(""==value&&"id"!=idName){
+			var text=$(this).parent().text();
+			Alert.hint(text+"是必须填写的");
+			flag=false;
+			return false;
+		}else{
+			flag=true;
+		}
+	})
+	return flag;
+}

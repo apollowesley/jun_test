@@ -1,0 +1,9 @@
+package ${package.Service};
+
+/**
+ *
+ *
+ */
+public interface ${table.entityName}Service{
+
+}

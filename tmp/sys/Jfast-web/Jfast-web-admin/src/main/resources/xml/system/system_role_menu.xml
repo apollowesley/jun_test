@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="system.role.menu">
+
+    <!-- 删除角色菜单 -->
+    <delete id="system.role.menu.deleteByRoleId" parameterType="Integer">
+        delete from system_role_menu where role_id = #{roleId}
+    </delete>
+
+    <select id="system.role.menu.getByRoleId" parameterType="Integer" resultType="map">
+        select menu.* from system_role_menu role_menu, system_menu menu where
+         role_menu.menu_id = menu.id and role_menu.role_id = #{roleId}
+    </select>
+
+    <insert id="system.role.menu.batchSave" parameterType="map">
+        insert into system_role_menu(role_id, menu_id)
+        values
+        <foreach collection="list" separator="," item="item">
+            (#{item.roleId}, #{item.menuId})
+        </foreach>
+    </insert>
+</mapper>

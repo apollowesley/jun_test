@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>CSSS: A brief introduction</title>
+	
+	<link href="slideshow.css" rel="stylesheet" />
+	<link href="theme.css" rel="stylesheet" />
+	<link href="talk.css" rel="stylesheet" />
+	<script src="prefixfree.min.js"></script>
+</head>
+<body data-duration="10">
+
+<header id="intro" class="slide">
+	<section class="title">
+    	<h1>Qual2Kw模型与ReNuMa模型在新安江流域联用的探索性研究</h1>
+        <table class="myDescription">
+        	<tr>
+            	<td>姓名:</td>
+                <td style="text-align:center">李  川</td>
+                
+            </tr>
+            <tr>
+                <td>学号:</td>
+                <td style="text-align:center">2120120491</td>
+            </tr>
+            <tr>    
+                <td>导师:</td>
+
+
+                <td style="text-align:center">王玉秋教授</td>
+
+            </tr>
+            <tr>    
+                <td>专业:</td>
+                <td style="text-align:center; letter-spacing:8px"> 环境科学</td>
+            </tr>
+        </table>
+    </section>
+	<!--<p class="attribution">By Lea Verou</p>-->
+</header>
+
+
+<!--
+第二部分应该是目录
+目录应该是有超级链接的，从一个地方索引到另一个地方
+-->
+<section>
+	<section id="content" class="slide" title="目录">
+    	<h2>目录</h2>
+        <ul>
+        	<li><a class="hasHerf" href="index.html#sectWhat">引言</a></li>
+            <li><a class="hasHerf" href="index.html#techMM">应用的技术</a></li>
+            <li><a class="hasHerf" href="index.html#mainControlIntro">联用模型介绍</a></li>
+            <li><a class="hasHerf" href="index.html#simDRes">日模拟结果分析</a></li>
+            <li><a class="hasHerf" herf="index.html#simPRes">多年连续模拟结果分析</a></li>
+            <li><a class="hasHerf" herf="index.html#innovatePoint">结论与不足</a></li>
+            
+        </ul>
+    </section>
+</section>
+
+
+<!-- 引言部分 -->
+<section>
+
+	<!--
+    	为什么要做这件事儿呢。
+        最最重要的一个原因是   在水质模型的发展历程中，如何解决面源污染是一个非常重要的问题。
+    -->
+
+
+	<!-- 下面目的和意义部分 如果能说好就说，如果说不好就不要说了 这是一个备选的部分
+    1. 目的主要是解决水质模型发展历程中，面源负荷难以解决的问题。
+    -->
+  	<section id="combinePurpose" class="slide" title="模型联用的意义">
+    	<h2>模型联用的目的以及意义</h2>
+        <!-- 
+        1. 重点就是添加几张图片
+        2. 简单介绍一下
+        3. 重点需要思考一下，给什么格式
+        -->
+        
+        <!--
+        1. 无序的标号尝试改为有顺序的
+        2. 研究一下原来的动画机制是什么	
+         -->
+        <ul>
+        	<li class="delayed">面源负荷对水质的影响在某些情况下是不容忽视的</li>
+            <li class="delayed">面源负荷难以直接监测，需要采用模型的手段进行评估。</li>
+            <li class="delayed">面源负荷模型与水质模型的结合是水质模型发展历程中的重要议题</li>
+        </ul>
+    </section>
+   
+    
+	<section id="sectWhat" class="slide" title="研究目的" >
+		<h2>研究的具体内容</h2>
+		<ul>
+        	<li class="delayed">探索水质模型与面源模型结合的方法</li>
+			<li class="delayed">评估新安江流域点面源污染负荷对新安江黄山段的影响</li>
+			<li class="delayed">探究流域负荷模型与水质模型联用的方法</li>
+			<li class="delayed">开发能够评估面源负荷的新的水质模型</li>
+		</ul>
+	</section>
+    
+    <section id="techMM" class="slide" title="采用的技术" >
+		<h2>采用的技术</h2>
+		<ul>
+			<li class="delayed">Qual2Kw模型</li>
+			<li class="delayed">ReNuMa模型</li>
+			<li class="delayed">规划求解插件</li>
+		</ul>
+	</section>
+    
+    <!--
+    <section class="slide" title="技术路线" >
+		<h2>技术路线</h2>
+		<!-- 
+        	技术路线这张图比较大
+            有没有一种拖拽图片，或者放大图片的办法
+            好好想想
+         -->
+    <!--     
+	</section>
+    -->
+    
+     
+    
+    <!--
+    本研究的技术路线主要是回答如何进行模型联用的基本步骤
+    
+    进而引出我们需要的最优化方法。
+    -->
+    <section id="technicalLine" class="slide" title="技术路线">
+    	<h2 id="techLineH2">本研究的技术路线</h2>
+        <!-- 
+        1. 技术路线图比较大，想想利用什么技术去处理。
+        2. 放大技术或者别的什么的。
+        思考吧，青年！
+        -->
+        <div id="techMethodContainer"> 
+        	<div id="techMethod">
+        		<img id="techMethodPic" src="img/技术路线图.jpg"></img>
+        	</div>
+        </div>
+        <p id="techLinep">技术路线</p>
+    </section>
+</section>
+
+
+
+<!-- ======================================================================== -->
+<!-- ======================================================================== -->
+<!--主要介绍 本研究所采用的技术-->
+<section>    
+    <section id="qual2Intro"  class="slide" title="采用的技术" >
+		<h2 id="qual2IntroH2">Qual系列模型发展历程</h2>
+        <!-- 模型简介部分的大纲是：
+        1. 首先介绍一下Qual2系列模型的发展历程，给一张图，然后撤掉
+        2. 其次是重点介绍一下Qual2Kw模型
+        3. 这个地方的 四副图  走马灯转化，后期思考这个的东西的效果 
+        根据这个ppt的框架，有可能需要两个section啊-->
+        <div id="qualHisContainer" >
+        	<div id="qualHis">
+        		<img id="qualHisPic" src="img/Qual2Intro/Qual1示意图.jpg"></img>
+        	</div>
+        </div>
+        
+        <p id="qualHisIntro" align="center">Qual I示意图</p>
+        <!-- qualiHis图片的位置后期采用  dom编程 确定一下 -->
+	</section>
+    
+    <section id="qual2KwIntro" class="slide" title="Qual2Kw简介">
+    	<h2 id="qual2KwIntroH2">Qual2Kw模型简介</h2>
+        <!-- 
+        1. 把原理手册里面的东西写进去
+        2. 简单介绍一下公式
+        3. 想好样式
+        
+        在这个地方把Qual2Kw所有的东西讲清楚。
+        -->
+        <div id="qual2KIntroContainer">
+        	<div id="qual2KIntro">
+            	<img id="qual2KIntroPic" src="img/qual2KwIntro/模型基本结构示意图.bmp">
+                </img>
+             </div>
+         </div>
+         <p id="qual2Kp" align="center">Qual2Kw基本结构</p>
+    </section>
+    
+    
+    <section id="ReNuMaIntro" class="slide" title="ReNuMa简介">
+    	<h2 id="ReNuMaH2">ReNuMa模型简介</h2>
+        <!-- 
+        1. 重点就是添加几张图片
+        2. 简单介绍一下
+        3. 重点需要思考一下，给什么格式
+        -->
+        <div id="ReNuMaIntroContainer">
+        	<div id="ReNuMaIntroD">
+            	<img id="ReNuMaIntroPic" src="img/ReNuMa/ReNuMa基本原理图.JPG">    	
+                </img>
+            </div>
+        </div>
+        <p id="ReNuMap" align="center">ReNuMa模型基本结构</p>
+    </section>
+    
+    
+    <!-- 升级ReNuMa的校准模块 -->
+    <section id="updateReNuCalib" class="slide" title="改进ReNuMa的校准模块">
+    	<h2>改进ReNuMa校准模块</h2>
+        <!-- 
+        1. 重点在于提出ReNuMa的缺点，以及应对策略
+        -->
+        <p>存在的主要问题：</p>
+        <ul>
+        	<li class="delayed">难以做到全局寻优</li>
+            <li class="delayed">不能够设定参数的上下限</li>
+            <li class="delayed">不是完全的自动化校准</li>
+        </ul>
+        
+        <!--
+        在这个页面还要  连带的说一下解决的方法。
+        解决的方法：  
+        1. 重新设计校准算法
+        2. 利用新版本的规划求解宏设定参数的上下限
+        3. 为了模型的联用，校准全面自动化
+        -->
+    </section>
+    
+     
+    <section id="algorithmIntro" class="slide" title="算法介绍">
+    	<h2>算法介绍</h2>
+        <!--这个地方重点就是介绍一下算法
+        1. 遗传算法： 
+        -->
+        
+        <ul>
+        	<li class="delayed">遗传算法：具有较好的全局寻优能力</li>
+            <li class="delayed">GRG：具有较好的局部寻优能力</li>
+        </ul>
+        
+        <!--
+       	这一部分也要包括算法测试。
+        把算法测试结果写在这里
+        -->
+    </section>
+</section>
+    
+    
+<!--
+这一部分重点是联用模型介绍
+介绍一下，两个模型合并后的产物。
+-->  
+<!--==========================================================-->  
+<section>    
+    <!--
+    这个section介绍合并的主要工作
+    其实也就是介绍  主控工作簿的操作逻辑。
+    -->
+    
+    <section id="mainControlIntro" class="slide" title="主控工作簿简介">
+    	<h2 id="MCIntroH2">主控工作簿简介</h2>
+        <!-- 
+        1. 重点从输入，处理的相关逻辑介绍
+        演示几张截图就好
+        2. 这一页从技术层面讲：尝试大量运用dom编程。  图片撤了之后，在添加说明性文字。
+        -->
+        <div id="MCIntroContainer">
+        	<div id="MCIntro">
+            	<img id="MCIntroPic" src="img/MainWorkbook/主控工作表.JPG">    	
+                </img>
+            </div>
+        </div>
+        <p id="MCIntrop">主控工作表</p>
+    </section>
+    
+    
+    <!--下面开始重点介绍结果输出-->
+    <section id="calcMode" class="slide" title="计算模式">
+    	<h2>计算模式</h2>
+        <!-- 
+        1. 重点从输入，处理的相关逻辑介绍
+        -->
+        <ul>
+        	<li class="delayed">基于日的模拟</li>
+            <li class="delayed">基于时间段的模拟</li>
+        </ul>
+    </section>
+    
+</section>
+
+<section>
+	<section id="simDRes" class="slide" title="日模拟结果">
+    <h2 id="simDResH2">日模拟结果</h2>
+    <div id="simDResContainer">
+    	<div id="simDResU1"><img id="simDResU1Pic" src="img/simResult/simDRes/Clib/溶解氧Clib.png"></img></div>
+        <div id="simDResU2"><img id="simDResU2Pic" src="img/simResult/simDRes/Clib/温度Clib.png"></img></div>
+        <hr/>
+        <div id="simDResD1"><img id="simDResD1Pic" src="img/simResult/simDRes/Clib/总氮Clib.png"></div>
+        <div id="simDResD2"><img id="simDResD2Pic" src="img/simResult/simDRes/Clib/总磷Clib.png"></div>
+    </div>
+    <p id="simDResp">校准期模拟结果</p>
+    </section>
+    
+    <section id="simPRes" class="slide" title="基于时间段的模拟结果">
+    <h2 id="simPResH2">基于时间段的模拟结果</h2>
+    <div id="simPResContainer">
+    	<div id="simPResDiv">
+        	<img id="simPResPic" src="img/simResult/基于时间段模拟结果.png"></img>
+        </div>
+    </div>
+    <p id="simPResp">模拟结果</p>
+    </section>
+    
+    <section id="innovatePoint" class="slide" title="创新点">
+    	<h2 id="innoH2">创新点</h2>
+        <ul>
+        	<li class="delayed">进一步完善了ReNuMa模型的校准模块</li>
+        	<li class="delayed">利用ReNuMa模型，为Qual2Kw模型提供更加准确的面源负荷信息</li>
+            <li class="delayed">利用联用的模型对新安江流域历年水质状况进行了评估</li>
+        </ul>
+    </section>
+    <section id="weakPoint" class="slide" title="不足之处">
+    	<h2 id="weakH2">不足之处</h2>
+        <ul>
+        	<li class="delayed">时间尺度上不匹配</li>
+            <li class="delayed">指标属性上不匹配</li>
+            <li class="delayed">ReNuMa并不能为Qual2Kw提供完整的模拟指标</li>
+        </ul>
+    </section>
+    <section id="theEnd" class="slide" title="Thank you">
+    	<p id="theEndp">That's All!</p>
+    </section>
+</section>
+
+
+<!--
+==================================================================
+==================================================================
+-->
+<!---->
+<section>
+    
+	<section class="slide">
+		<h2>History</h2>
+		<ul>
+			<li class="delayed">I had to create a presentation for my talk at <a href="http://front-trends.com">Front Trends 2010</a></li>
+			<li class="delayed">The only web-based presentation systems I knew of didn't fit my needs</li>
+			<li class="delayed">&hellip;so I rolled up my own</li>
+			<li class="delayed">FT2010 attendees asked me to release it</li>
+			<li class="delayed">and here it is! ;-)</li>
+		</ul>
+	</section>
+	
+	<section class="slide" id="navigation">
+		<h2>Navigation</h2>
+		<p>Only through keyboard for now :(</p>
+		<ul>
+			<li>→ or ↓ to advance to the next slide or incrementally displayed item</li>
+			<li>← or ↑ to go to the previous slide or incrementally displayed item</li>
+			<li>Ctrl* + → or Ctrl* + ↓ to jump to the next slide</li>
+			<li>Ctrl* + ← or Ctrl* + ↑ to jump to the previous slide</li>
+			<li>Home to go to the first slide, End to go to the last</li>
+			<li>Ctrl* + G to jump to an arbitrary slide (by slide number or identifier)</li>
+		</ul>
+		<p>* Ctrl or Shift actually. Only Shift works in Opera.</p>
+	</section>
+</section>
+
+<section>
+	<header class="slide">
+		<h1>Features</h1>
+	</header>
+	
+	<section class="slide">
+		<h2>Thumbnail view</h2>
+		<p>Press Ctrl+H (or Shift+H if you're in Opera) now.</p>
+		<p class="delayed">Cool, huh? You can press Ctrl+Shift+H to see all slides (warning: can be slow!)</p>
+	</section>
+	
+	<section class="slide">
+		<h2>Timer</h2>
+		<ul>
+			<li>Timer in the form of a progress bar on the top</li>
+			<li>Define the talk duration with the attribute <code>data-duration</code> on the <code>body</code></li>
+			<li>Style the timer and the end state with the selectors <code>#timer</code> and <code>#timer.end</code> respectively.</li>
+		</ul>
+	</section>
+	
+	<section class="slide">
+		<h2>Presenter view</h2>
+		<p>This slide has presenter notes. They are only visible in presenter view (Ctrl+P or Shift+P).</p>
+		<p class="presenter-notes">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</section>
+	
+	<section class="slide">
+		<style scoped>
+			h2 {
+				font-size: 200%;
+				font-weight: bold;
+			}
+		</style>
+		<h2><code>&lt;style scoped /&gt;</code></h2>
+		<p>You can use the HTML5 <code>scoped</code> attribute on style elements in slides, to only style the current slide or inside sections that include multiple slides to style all of them and nothing else.</p>
+		<p>For example, inspect this slide and then run <code>$$('style[scoped]')[0].sheet.cssRules[0].selectorText</code> in the console to see how the original selector gets changed.</p>
+	</section>
+	
+	<section class="slide">
+		<h2>More features</h2>
+		<ul>
+			<li class="delayed">IDs are dynamically assigned by JavaScript&hellip;</li>
+			<li class="delayed">&hellip;but you can also assign your own, bringing the best of both worlds</li>
+			<li class="delayed">Incremental display of slide contents (just add <code>class="delayed"</code>)</li>
+			<li class="delayed">Slide scaling based on window size (size everything you want to be scalable in ems)</li>
+			<li class="delayed">Document.title changing according to slide title (fetched either from the <code>title</code> attribute or the slide's heading)</li>
+		</ul>
+	</section>
+	
+	<section class="slide">
+		<h2>Drawbacks</h2>
+		<ul>
+			<li>Only supports modern browsers. Why?
+				<ul>
+					<li>More lightweight</li>
+					<li>Easier to understand code</li>	
+					<li>It's a presentation, so the environment is controlled anyway</li>
+				</ul>
+			</li>
+			<li>No mouse click to advance to the next slide. I consider it annoying.</li>
+			<li>Doesn't work in mobile :(</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<header class="slide">
+		<h1>Plugins</h1>
+	</header>
+	
+	<section class="slide">
+		<h2>Plugin: CSS Snippets</h2>
+		<pre>new CSSSnippet(document.getElementById('snippet'));</pre>
+		<ul>
+			<li>Dynamically edit CSS and reflect the results in any element's style
+				<ul>
+					<li>Which one? Specify a selector with the <code>data-subject</code> attribute or leave blank for the slide to be the subject</li>
+				</ul>
+			<li>Automatically prefixes CSS3 properties/values, when needed
+				<ul>
+					<li>Also does it with the style attribute (statically) if the element is not a text field (doesn't work in IE and Firefox 3.6)</li>
+				</ul>
+			</li>
+			<li>Textarea automatically adjusts rows/font-size on line break (use class <code>dont-adjust</code> to turn off)</li>
+		</ul>
+	</section>
+	
+	<section class="slide">
+		<h2>CSS Snippets demo</h2>
+		<p>Edit the following CSS code:</p>
+		<textarea class="snippet">background-color:red;
+background-image: linear-gradient(red, #600)</textarea>
+	</section>
+	
+	<section class="slide" id="animation-demo">
+		<h2>CSS Snippets: raw CSS</h2>
+		<textarea class="snippet" data-raw>@keyframes rainbow {
+	from, to { background: red }
+	16% { background: yellow }
+	33% { background: green }
+	50% { background: aqua }
+	66% { background: blue }
+	83% { background: fuchsia }
+}
+
+#animation-demo { animation: 30s rainbow infinite; }</textarea>
+	</section>
+	
+	<section class="slide">
+		<h2>Plugin: CSS Controls</h2>
+		<ul>
+			<li>Use sliders and other controls to adjust CSS values
+				<ul>
+					<li>Which one? Specify a selector with the <code>data-subject</code> attribute or leave blank for the slide to be the subject</li>
+					<li>Specify style with <code>data-style</code> (use <code>{value}</code> where the result will be)</li>
+				</ul>
+			<li>Automatically prefixes CSS3 properties/values, when needed</li>
+		</ul>
+	</section>
+	
+	<section class="slide" id="css-controls-demo">
+		<h2>CSS Controls demo</h2>
+		<label>Slide lightness: 
+			<input type="range" min="0" max="255" value="128" data-style="background-color:rgb({value}, {value}, {value});" class="css-control" />
+		</label>
+		<label>
+			border-width:
+			<input type="number" min="0" max="60" value="30" data-style="border-width: {value}px;" class="css-control" size="5" />
+		</label>
+		<label>
+			font-family:
+			<select data-style="font-family: {value};" class="css-control">
+				<option selected>sans-serif</option>
+				<option>Georgia, serif</option>
+				<option>Consolas, monospace</option>
+				<option>'Trebuchet MS', sans-serif</option>
+			</select>
+		</label>
+	</section>
+	
+	<section class="slide">
+		<h2>Plugin: Code highlight</h2>
+		<ul>
+			<li>Syntax highlighting for every <code>&lt;code&gt;</code> element with a <code>lang</code> attribute.</li>
+			<li>Only highlights when the slide becomes active, for performance</li>
+			<li>Currently only supports JavaScript, but it's easy to add any language</li>
+			<li>Styling done through easy to understand classes like <code>.string</code> or <code>.comment</code></li>
+		</ul>
+	</section>
+	
+	<section class="slide">
+		<h2>Code highlight example</h2>
+		<pre><code lang="javascript">// Comment
+document.addEventListener('DOMAttrModified',function(e) {
+  var node = e.target, attr = e.attrName;
+  if(/^input$/i.test(node.nodeName) 
+    &amp;&amp; (attr === 'placeholder' || attr === 'value')
+    || foo > 5)
+      Placeholder.update(node);
+}, false);</code></pre>
+	</section>
+</section>
+<footer class="slide" title="The End">
+	<h2>Thank you!</h2>
+	<p>Get it or contribute at <a href="http://github.com/LeaVerou/CSSS">http://github.com/LeaVerou/CSSS</a></p>
+	<p>Credits:</p>
+	<ul>
+		<li><a href="http://lukeroberts.us/2008/12/wallpaper-colourful-wood/">Colored wood background by Luke Roberts</a></li>
+		<li>The name CSSS is actually inspired by S5, as you could probably guess ;-)</li>
+		<li>A big thanks to the community at Github for various contributions to this project</li>
+	</ul>
+</footer>
+
+<script src="slideshow.js"></script>
+<script src="plugins/css-edit.js"></script>
+<script src="plugins/css-snippets.js"></script>
+<script src="plugins/css-controls.js"></script>
+<script src="plugins/code-highlight.js"></script>
+<script src="plugins/adjustDisSize.js"></script>
+<script>
+var slideshow = new SlideShow();
+
+var snippets = document.querySelectorAll('.snippet');
+for(var i=0; i<snippets.length; i++) {
+	new CSSSnippet(snippets[i]);
+}
+
+var cssControls = document.querySelectorAll('.css-control');
+for(var i=0; i<cssControls.length; i++) {
+	new CSSControl(cssControls[i]);
+}
+</script>
+	
+</body>
+</html>

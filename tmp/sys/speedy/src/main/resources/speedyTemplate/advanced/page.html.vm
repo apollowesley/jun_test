@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>${context.bizName}</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/public.js"></script>
+<link href="/static/public/css/system.css" rel="stylesheet" type="text/css" />
+<script src="/static/public/js/Alert.js"></script>
+<style>
+.list-box .context{float:left;width:100%;height:74%;overflow-y:scroll;}
+.pagination{float: left}
+.list-box .nav_title{float:left;margin-top:20px;margin-left:20px;width:90%;}
+.list-box .context{float:left;width:100%;}
+</style>
+<body>
+	<div class="list-box">
+		<div class="nav_title"><p><span style="color: #2aabd2;font-weight: bold;width: 10px;background:#2aabd2;margin-right: 10px;">|</span>${context.bizName}</p></div>
+		<div class="context table-responsive">
+			<div class="handle" >
+				<div class="input-group left" style="width:300px;" th:if="${prefix}session.handle.hasHandel(session.user.handle,'/${context.moduleName}/search')}">
+		            <input type="text" class="form-control"  id="keyword">
+		            <span class="input-group-addon btn btn-default" id="search">搜索</span>
+		        </div>
+				<button class="btn btn-success left" onclick="javascript:window.location.href='${context.requestPath}/addPage';" th:if="${prefix}session.handle.hasHandel(session.user.handle,'/${context.moduleName}/add')}">增加</button>
+				<button class="btn btn-primary left" id="update" th:if="${prefix}session.handle.hasHandel(session.user.handle,'/${context.moduleName}/update')}">修改</button>
+				<button class="btn btn-danger left" id="delete" th:if="${prefix}session.handle.hasHandel(session.user.handle,'/${context.moduleName}/delete')}">删除</button>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							  <div class="checkbox">
+							        <input type="checkbox" id="all">
+							            <label for="all"></label>
+							</div>
+						</th>
+						#foreach ($item in $!{title})
+					       <th class="$!{item.COLUMN_NAME}">$!{item.COLUMN_COMMENT}</th>
+					     #end
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+		<div class="paging">
+			<ul class="pagination">
+			</ul>
+		</div>
+	</div>
+	<script src="/static${context.requestPath}/${context.moduleName}.js"></script>
+	<script>
+		${context.moduleName}.loadPage(0,20);
+		${context.moduleName}.updatePage();
+		${context.moduleName}.delete();
+		$("#search").bind("click",function(){
+			var keyword=$("#keyword").val();
+			${context.moduleName}.search(0,20,keyword);
+		})
+		$(".pages").bind("click",function(){
+			$(".pages").each(function(){
+				$(this).removeClass("active");
+			})
+			$(this).addClass("active");
+			var index=$(this).text()-1;
+			menu.loadPage(index,20);
+		})
+	</script>
+</body>
+</html>

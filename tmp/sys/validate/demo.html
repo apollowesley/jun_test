@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>validate demo</title>
+    <meta charset="UTF-8"/>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://10176523.cn/usr/themes/default/libs/highlight/highlight.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://10176523.cn/usr/themes/default/libs/highlight/highlight.css">
+	<script type="text/javascript" src="validate.ie8.js"></script>
+	<style type="text/css">
+	body{font-size:12px;}
+	.form-group{padding:5px;}
+	.msg{color:red;display:block;}
+	.input{border:1px solid #ccc;width:100%;height:24px;text-indent:5px;font-size:14px}
+	h4{margin:0;padding:0;}
+	table{width:100%;border-collapse:collapse;}
+	#demo td{border-bottom:1px solid #ccc;width:50%;vertical-align:top}
+	.api td{height:30px;text-indent:5px;font-size:14px;}
+	strong,.blue{font-size:20px;color:#0074D9;}
+	.red{color: #FF4136}
+	.error{border:1px solid #ff4136;}
+	.success{border:1px solid green;}
+	</style>
+</head>
+<body>
+<h3>插件演示：<small>（可审查元素查看表单上面的属性）</small></h3>
+	<form>
+		<table id="demo">
+			<tr>
+				<td>
+					<div class="form-group">
+						<h4>读取HTML默认属性required|max|min|pattern</h4>
+						<input type="text" class="input" placeholder="HTML默认属性" required max="300" min="50" pattern="[0-9]*"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<h4>只允许字母</h4>
+						<input type="text" class="input" placeholder="只允许输入字母，可空" data-validate="alpha"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<h4>只允许输入数字，且最少输入4位</h4>
+						<input type="text" class="input" placeholder="只允许输入数字，且最少输入4位" data-validate="numeric|minlength[4]"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<h4>只允许输入最多8位的数字和字母，可空</h4>
+						<input type="text" class="input" placeholder="只允许输入最多8位的数字和字母，可空"data-validate="alphanumeric|maxlength[8]"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<h4>字母开头的数字和字母，长度8-10为</h4>
+						<input type="text" class="input" placeholder="字母开头的数字和字母，长度8"data-validate="alphabegin|alphanumeric|maxlength[10]|minlength[8]"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<h4>验证邮箱，必填</h4>
+						<input type="text" class="input" placeholder="验证邮箱，必填" data-validate="required|email"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<h4>验证URL，必填</h4>
+						<input type="text" class="input" placeholder="验证URL，必填" data-validate="required|url"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<h4>验证手机，必填</h4>
+						<input type="text" class="input" placeholder="验证手机，必填"data-validate="required|mobile"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<h4>自定义正则 ^[a-z]{5,10}$</h4>
+						<input type="text" value="123" id="customPattern" class="input" placeholder="自定义正则"data-validate="pattern[^[a-z]{5,10}$]"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<h4>需要和前一个文本框值相同</h4>
+						<input type="text" class="input" data-validate="equal[#customPattern]" placeholder="HTML5 pattern属性" />
+						<span class="msg"></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<h4>调用自定义方法验证</h4>
+						<input type="text" class="input" placeholder="调用自定义方法验证" data-validate="fn[zidingyifangfa]"/>
+						<span class="msg"></span>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<h4>单选框</h4>
+						<div data-validate="groupRequired">
+							<label><input type="radio" value="0" name="ball"/> 足球</label>
+							<label><input type="radio" value="1" name="ball"/> 篮球</label>
+							<label><input type="radio" value="2" name="ball"/> 乒乓球</label>
+						</div>
+						<span class="msg"></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<h4>复选框，最少选2项，最多选4项</h4>
+						<div data-validate="groupMax[4]|groupMin[2]">
+							<label><input type="checkbox" value="0" name="subject"/> 数学</label>
+							<label><input type="checkbox" value="1" name="subject"/> 语文</label>
+							<label><input type="checkbox" value="2" name="subject"/> 英语</label>
+							<label><input type="checkbox" value="3" name="subject"/> 化学</label>
+							<label><input type="checkbox" value="4" name="subject"/> 物理</label>
+							<label><input type="checkbox" value="5" name="subject"/> 生物</label>
+							<label><input type="checkbox" value="6" name="subject"/> 地理</label>
+							<label><input type="checkbox" value="7" name="subject"/> 历史</label>
+							<label><input type="checkbox" value="8" name="subject"/> 政治</label>
+						</div>
+						<span class="msg"></span>
+					</div>
+				</td>
+				<td>
+					<div class="form-group">
+						<h4>单个选择框，必须勾选</h4>
+						<label><input type="checkbox" value="0" name="agree" data-validate="required"/> 同意该协议<span class="msg"></span></label>
+						
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label><input type="checkbox" id="all" checked="checked" />验证全部表单</label>
+					<label><input type="checkbox" id="allrule" />验证全部规则</label>
+					<input type="button" value="验证表单"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+<h3>调用示例：</h3>
+<pre>var opt = {
+	//是否验证所有的表单元素（默认为true，设置为false后遇到验证不通过的表单将停止继续验证）
+	all:true,
+	//表单上设置的规则是否全部验证（默认为false，设置true之后表单的所有规则都验证）
+	allrule:false,
+	//单个表单元素验证成功的回调函数（默认为null，function中this指向验证成功的表单元素的jq对象）
+	valid:function(){
+		this.css('border','1px solid green').next().html('').hide();
+	},
+	//单个表单元素验证失败的回调函数（默认为null，function中this指向验证失败的表单元素的jq对象）
+	//错误信息在data('msg')中
+	invalid:function(){
+		this.css('border','1px solid red').next().html(this.data('msg').join('，')).show()
+	},
+	//表单内所有元素都验证成功的回调函数（默认为null，function中this指向表单的jquery对象）
+	allvalid:function(){
+		alert('表单验证通过！')
+	},
+	//自定义验证方法 data-validate="fn[zidingyifangfa]"，方法名自定义，
+	//参数msg为验证失败的消息数组，function中this指向表单的jquery对象
+	//验证失败可以往msg中push错误信息，验证完毕需要返回验证结果，否则默认验证通过
+	zidingyifangfa:function(msg){
+		var r = /^iphone.*/i.test(this.val());
+		r || msg.push('只能以iPhone开头');
+		return r;
+	}
+
+}
+$('input[type=button]').on('click',function(){
+	var result = $('form').validate(opt);
+	console.log(result);//返回值为true表示表单验证通过，返回值为false表示表单验证失败
+})</pre>
+
+<h3>插件API：</h3>
+<table class="api" border="1">
+    <tr><td colspan="3"><strong>data-validate 可选参数</strong></td></tr><tr><td>参数名称</td><td>验证不通过的默认消息</td><td>示例</td></tr>
+    <tr><td>required</td><td>此项为必填</td><td>data-validate="required"</td></tr>
+    <tr><td>alpha</td><td>只能填写字母</td><td>data-validate="alpha"</td></tr>
+    <tr><td>numeric</td><td>只能填写数字</td><td>data-validate="numeric"</td></tr>
+    <tr><td>alphanumeric</td><td>只能填写数字和字母</td><td>data-validate="alphanumeric"</td></tr>
+    <tr><td>alphabegin</td><td>只能以字母开头</td><td>data-validate="alphabegin"</td></tr>
+    <tr><td>mobile</td><td>手机号格式不正确</td><td>data-validate="mobile"</td></tr>
+    <tr><td>url</td><td>URL格式不正确</td><td>data-validate="url"</td></tr>
+    <tr><td>email</td><td>邮箱格式不正确</td><td>data-validate="email"</td></tr>
+    <tr><td>pattern</td><td>格式不正确</td><td>data-validate="pattern[^regexp$]"</td></tr>
+    <tr><td>max</td><td>最大值为max</td><td>data-validate="max[max]"</td></tr>
+    <tr><td>min</td><td>最小值为min</td><td>data-validate="min[min]"</td></tr>
+    <tr><td>maxlength</td><td>最多输入maxlength个字符</td><td>data-validate="maxlength[maxlength]"</td></tr>
+    <tr><td>minlength</td><td>最少输入minlength个字符</td><td>data-validate="minlength[minlength]"</td></tr>
+    <tr><td>groupRequired</td><td>请勾选一项</td><td>data-validate="groupRequired"</td></tr>
+    <tr><td>groupMax</td><td>最多选择groupMax项</td><td>data-validate="groupMax[groupMax]"</td></tr>
+    <tr><td>groupMin</td><td>最少选择groupMin项</td><td>data-validate="groupMin[groupMin]"</td></tr>
+    <tr><td>fn</td><td>自定义消息</td><td>data-validate="fn[自定义fn名字]"</td></tr>
+    <tr><td>equal</td><td>两次输入的不一致</td><td>data-validate="equal[需要值相等的jquery选择器]"</td></tr>
+    <tr><td colspan="3" class="red">多个验证规则请用“|”分隔，例如：data-validate="numeric|minlength[5]" 表示只能输入数字，且最少5位数。如果一个表单元素上既出现了属性也出现了 data-validate设置，则data-validate优先级高于属性优先级（如同时设置了pattern="xxx"  和 data-validate="pattern[xxxx]" 则只会采取data-validate的规则）</td></tr>
+    <tr><td colspan="3"><strong>HTML默认属性 可选参数</strong></td></tr>
+    <tr><td>参数名称</td><td>验证不通过的默认消息</td><td>示例</td></tr>
+    <tr><td>required</td><td>此项为必填</td><td>&lt;input type="text" required/&gt</td></tr>
+    <tr><td>min</td><td>最小值为min</td><td>&lt;input type="text" min="5"/&gt</td></tr>
+    <tr><td>max</td><td>最大值为max</td><td>&lt;input type="text" max="10"/&gt</td></tr>
+    <tr><td>pattern</td><td>格式不正确</td><td>&lt;input type="text" pattern="[0-9]*"/&gt</td></tr>
+    <tr><td colspan="3"><strong>validate方法调用参数和说明</strong></td></tr>
+    <tr><td>参数</td><td>默认值</td><td>说明</td></tr>
+    <tr><td>all</td><td>true</td><td>是否验证所有的表单元素（遇到验证不通过的继续验证后面的表单元素）</td></tr>
+    <tr><td>allrule</td><td>false</td><td>表单上设置的规则是否全部验证（默认失败一个规则就跳过剩余的验证规则）</td></tr>
+    <tr><td>valid</td><td>null</td><td>单个表单元素验证成功的回调函数（回调函数中的this指向验证成功的表单元素的jquery对象）</td></tr>
+    <tr><td>invalid</td><td>null</td><td>单个表单元素验证失败的回调函数（回调函数中的this指向验证失败的表单元素的jquery对象，错误消息在this.data('msg')中，错误消息为数组类型）</td></tr>
+    <tr><td>allvalid</td><td>null</td><td>表单内所有元素都验证成功的回调函数（可用于表单提交等）</td></tr><tr><td rowspan="2">自定义方法</td><td rowspan="2">-</td><td>当内置的验证规则无法满足您的要求时可自己写方法来验证规则，示例如下：</td></tr>
+    <tr><td style="text-indent:0"><pre>&lt;form&gt;
+	&lt;input type="text" data-validate="fn[address]"/&gt;
+&lt;/form&gt;
+&lt;script&gt;
+$('form').validate({
+	address:function(msg){
+		var result = /^.+市.*$/.test(this.val());
+		if(result == false){
+			msg.push('填写的地址必须包含市')
+		}
+		return result;
+	}
+})
+&lt;/script&gt;</pre></td></tr></table>
+	<script type="text/javascript">
+		$(function() {
+			var opt = {
+				all:true,
+				allrule:false,
+			
+			}
+			$('#all').on('change',function(){
+				opt.all = this.checked;
+			})
+			$('#allrule').on('change',function(){
+				opt.allrule = this.checked;
+			})
+			$('input[type=button]').on('click',function(){
+				$('.error').removeClass('error')
+				$('.success').removeClass('success')
+				$('.msg').text('');
+				var result = $('form').validate({
+					all:$('#all').prop('checked'),
+					allrule:$('#allrule').prop('checked'),
+					valid:function(){
+						this.removeClass('error').addClass('success').next().html('');
+					},
+					invalid:function(){
+						this.removeClass('success').addClass('error').one('click focus',function(){
+							$(this).removeClass('error').next().html('');
+						}).next().html(this.data('msg').join('，'));
+						console.info(this[0].tagName.toLowerCase(),'错误信息：',this.data('msg'));
+					},
+					allvalid:function(){
+						alert('表单验证通过！')
+					},
+					zidingyifangfa:function(msg){
+						var r = /^iphone.*/i.test(this.val());
+						r || msg.push('只能以iPhone开头');
+						return r;
+					}
+				});
+				console.log('表单验证结果：'+result);
+			})
+			$('pre').highlight();
+		})
+	</script>
+	<script type="text/javascript" src="http://wechatfe.github.io/vconsole/lib/vconsole.min.js"></script>
+</body>
+</html>

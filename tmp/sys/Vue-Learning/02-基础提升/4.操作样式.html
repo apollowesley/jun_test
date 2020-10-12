@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script type="text/javascript" src="../lib/vue-2.6.10.js"></script>
+</head>
+<style>
+    .active {
+        color: red;
+    }
+
+    .md-font-size {
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+<body>
+<div id="cssExample">
+
+    <h4>1.单个绑定样式</h4>
+    <p v-bind:class="{ active: isActive,'md-font-size':mdFontSize}">我的内容上面绑定了两个样式：active,md-font-size</p>
+    <h4>2.使用对象进行绑定</h4>
+    <div>
+        <p v-bind:class="objClass">通过对象进行样式绑定</p>
+    </div>
+    <h4>3.直接使用内容样式（不推荐方式一,css样式名称可以使用驼峰命名）</h4>
+    <div>
+        <p v-bind:style="{'font-size':customStyle.fontSize,fontWeight:customStyle.fontWeight,color:customStyle.color}">
+            通过对象进行样式绑定</p>
+    </div>
+    <h4>4.直接使用内容样式（推荐方式二）</h4>
+    <div>
+        <p v-bind:style="[baseStyle,overrideStyle]">通过对象进行样式绑定</p>
+    </div>
+
+</div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#cssExample',
+        data: {
+            isActive: true,
+            'mdFontSize': true,
+            customStyle: {
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: 'red'
+            },
+            baseStyle: {
+                color: 'red',
+                fontSize: '20px'
+            },
+            overrideStyle: {
+                'font-weight': 'bold'
+            }
+        },
+        computed: {
+            objClass: function () {
+                return {
+                    active: this.isActive,
+                    'md-font-size': this.mdFontSize
+                }
+            }
+        }
+    });
+</script>
+</html>

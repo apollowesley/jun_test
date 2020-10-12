@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sise.school.teach.bussiness.video.dao.VideoDao" >
+  <resultMap id="BaseResultMap" type="com.sise.school.teach.bussiness.video.po.VideoPO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="video_code" property="videoCode" jdbcType="VARCHAR" />
+    <result column="video_name" property="videoName" jdbcType="VARCHAR" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+    <result column="visit_count" property="visitCount" jdbcType="INTEGER" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, video_code, video_name, video_url,visit_count, des, picture,status, create_user,create_time, update_time
+  </sql>
+  <insert id="insert" parameterType="com.sise.school.teach.bussiness.video.po.VideoPO" >
+    insert into t_video (  id, video_code, video_name, video_url, des,  picture, create_user,
+    create_time,update_time)
+    values (#{id,jdbcType=INTEGER},  #{videoCode,jdbcType=VARCHAR},#{videoName,jdbcType=VARCHAR},
+      #{videoUrl,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
+       #{createTime,jdbcType=TIMESTAMP},  #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <select id="selectOneByVideoCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM t_video
+    WHERE video_code=#{videoCode,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectNewVideo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM t_video
+    WHERE status=3
+    ORDER BY create_time DESC LIMIT 5
+  </select>
+
+  <select id="selectOneByVideoName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM t_video
+    WHERE video_name=#{videoName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectVideoByStatus" resultMap="BaseResultMap">
+    SELECT
+   <include refid="Base_Column_List"></include>
+    FROM t_video
+    WHERE status=3
+    ORDER BY create_time DESC LIMIT 15
+  </select>
+
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM t_video
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <if test="videoName != null" >
+        AND  video_name LIKE CONCAT(CONCAT('%',#{videoName},'%'))
+      </if>
+      <if test="createUser != null" >
+        AND  create_user  LIKE CONCAT(CONCAT('%',#{createUser},'%'))
+      </if>
+      <if test="des !=null">
+        AND  des LIKE CONCAT(CONCAT('%',#{des},'%'))
+      </if>
+    </trim>
+    ORDER BY create_time DESC
+  </select>
+
+  <update id="updateByVideoName"  parameterType="com.sise.school.teach.bussiness.video.po.VideoPO"  >
+    UPDATE t_video
+    <set>
+      <if test="videoUrl != null and videoUrl!=''">
+        video_url=#{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null  and videoName!=''">
+        picture=#{picture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    WHERE video_name=#{videoName,jdbcType=VARCHAR}
+  </update>
+
+   <update id="updateVideoVisitCount">
+    UPDATE t_video SET visit_count=visit_count+1
+    WHERE video_code=#{videoCode}
+  </update>
+
+  <update id="updateStatusByCode">
+    UPDATE t_video SET
+    status=#{status}
+    WHERE video_code=#{videoCode}
+  </update>
+</mapper>

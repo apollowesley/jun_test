@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<email
+        xmlns="http:www.kiwipeach.cn/emailSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http:www.kiwipeach.cn/emailSchema email.xsd">
+    <!--第一个-->
+    <to>George</to>
+    <from>John</from>
+    <heading>Reminder</heading>
+    <body>Don't forget the meeting!</body>
+</email>
+<!--
+1）xmlns="http:www.kiwipeach.cn/emailSchema"：引用命名空间
+-->

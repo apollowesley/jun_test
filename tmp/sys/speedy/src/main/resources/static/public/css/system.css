@@ -1,0 +1,57 @@
+.list-box{
+    margin:0 auto;background:#fff;width:98%;margin-top:10px;
+}
+.list-box .nav_title{
+    float:left;margin-top:20px;margin-left:20px;width:90%;
+}
+.table th,.table td{text-align:center;vertical-align: middle!important;}
+.table thead tr{background:#e1e1e1;}
+/** checkbox 样式*/
+.checkbox {
+	margin-top:0px;
+	margin-bottom:0px;
+    position: relative;
+    display: inline-block;
+}
+.checkbox input[type="checkbox"] {
+    opacity: 0;
+}
+.checkbox label:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -9px;
+    width: 19px;
+    height: 18px;
+    display: inline-block;
+    border-radius: 2px;
+    border: 1px solid #bbb;
+    background: #fff;
+}
+.checkbox input[type="checkbox"]:checked +label:after {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    content: "\e013";
+    top: 50%;
+    left: 4px;
+    margin-top: -5px;
+    font-size: 11px;
+    line-height: 1;
+    width: 16px;
+    height: 16px;
+    color: #333;
+}
+.checkbox label {
+    cursor: pointer;
+    line-height: 1.2;
+    font-weight: normal;
+    margin-bottom: 0;
+    text-align: left;
+}
+/**checkbox 样式结束*/
+.handle{
+	width:100%;
+	float:left;
+}

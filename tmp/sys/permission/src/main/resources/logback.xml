@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+    <!--所有日志都会输出-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--通过设置进行压缩和归档-->
+    <!--<appender name="permission" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/permission.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            &lt;!&ndash;压缩格式&ndash;&gt;
+            <fileNamePattern>${catalina.home}/logs/permission.$d{yyyy-MM-dd-HH}.log.gz</fileNamePattern>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    &lt;!&ndash;不同类型日志，使用不用的日志文件&ndash;&gt;
+    <logger name="xxx" level="INFO">
+        <appender-ref ref="permission" />
+    </logger>-->
+
+    <!--级别等级： trace < debug < info < warn < error -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
+

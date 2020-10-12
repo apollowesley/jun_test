@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task-3.0.xsd
+        http://www.springframework.org/schema/aop 
+	  http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	  
+
+		<!-- 设置代理 -->
+		<aop:aspectj-autoproxy proxy-target-class="true" />
+	
+		<bean id="jedisCluster" class="cn.uncode.cache.store.redis.cluster.JedisClusterFactory">
+			<property name="resource">
+				<value>file:C:/MyDecument/codes/conf/config.properties</value>
+			</property>
+		</bean>
+		<bean id="cache" class="cn.uncode.cache.store.redis.cluster.RedisStore">
+			<property name="jedisCluster" ref="jedisCluster" />
+		</bean>
+	
+		<!-- 配置缓存代理管理器 -->
+		<bean id="proxyCacheManager" class="cn.uncode.cache.ConfigCacheManager" init-method="init">
+			<!-- 注解的扫描路径 -->
+			<property name="scanPackage" value="com.buffaloex.common.service"></property>
+			<property name="cache" ref="cache" />
+		</bean>
+	
+		<!-- 配置aop缓存处理器 -->
+		<bean class="cn.uncode.cache.framework.aop.handle.CacheManagerHandle">
+			<property name="cacheManager" ref="proxyCacheManager" />
+		</bean>
+	
+</beans>

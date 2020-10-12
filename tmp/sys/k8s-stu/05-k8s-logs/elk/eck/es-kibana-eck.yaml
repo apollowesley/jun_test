@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: elasticsearch
+---
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: quickstart
+  namespace: elasticsearch
+spec:
+  version: 7.5.0
+  nodeSets:
+  - name: es-sigle
+    count: 1
+    config:
+      node.master: true
+      node.data: true
+      node.ingest: true
+      node.store.allow_mmap: false
+      #path.repo: /usr/share/elasticsearch/data/backup
+      #reindex.remote.whitelist: 34.92.211.9:9200
+    podTemplate:
+      spec:
+        containers:
+        - name: elasticsearch
+          env:
+          - name: ES_JAVA_OPTS
+            value: -Xms512m -Xmx512m
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 0.5
+            limits:
+              memory: 1Gi
+              cpu: 1
+        volumes:
+        - name: elasticsearch-data
+          emptyDir: {}
+  http:
+   tls:
+    selfSignedCertificate:
+      disabled: true
+---
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: quickstart
+  namespace: elasticsearch
+spec:
+  version: 7.5.0
+  count: 1
+  elasticsearchRef:
+    name: quickstart
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true

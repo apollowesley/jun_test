@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+
+
+
+    <constant name="modelDir" value="dexcoder-core"/>
+    <constant name="daoDir" value="dexcoder-core"/>
+    <constant name="serviceDir" value="dexcoder-core"/>
+    <constant name="controllerDir" value="dexcoder-admin"/>
+    <constant name="pageDir" value="dexcoder-web"/>
+    <constant name="basePackage" value="com.dexcoder.site.core"/>
+
+    <table name="CRAWL_ARTICLE" desc="抓取文章">
+        <!--<columns>-->
+        <!--<column name="user_id" type="integer" comment="用户id" javaClass=""/>-->
+        <!--<column name="user_name" type="string" comment="用户姓名"/>-->
+        <!--<column name="user_age" type="int" comment="用户年龄"/>-->
+        <!--</columns>-->
+        <tasks>
+            <task name="model"/>
+            <task name="modelVo"/>
+            <!--<task name="dao"/>-->
+            <!--<task name="daoImpl"/>-->
+            <task name="service"/>
+            <task name="serviceImpl"/>
+            <task name="controller"/>
+            <task name="listPage"/>
+            <task name="inputPage"/>
+        </tasks>
+    </table>
+
+
+    <tasks>
+
+        <task name="model"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/model.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value=""/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="${modelDir}"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.model"/>
+        </task>
+        <task name="modelVo"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/modelVo.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Vo"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="${modelDir}"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.vo"/>
+        </task>
+
+        <task name="javaMapper"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/javaMapper.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Mapper"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="${mapperDir}"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.mapper"/>
+        </task>
+
+        <task name="xmlMapper"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/xmlMapper.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Mapper"/>
+            <property name="suffix" value=".xml"/>
+            <property name="moduledir" value="${mapperDir}"/>
+            <property name="srcdir" value="src/main/resources"/>
+            <property name="package" value="${basePackage}.mapper"/>
+        </task>
+
+        <task name="dao"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/spring_jdbc/dao.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Dao"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="${daoDir}"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.dao"/>
+        </task>
+
+        <task name="daoImpl"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <!--<plugin name="serialVersionUIDPlugin" value="com.meiriyouke.easycode.plugins.SerialVersionUIDPlugin"/>-->
+            <property name="template" value="template/spring_jdbc/daoImpl.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="DaoImpl"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="${daoDir}"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.dao.impl"/>
+        </task>
+
+        <task name="service"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/service.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Service"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="${serviceDir}"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.service"/>
+        </task>
+
+        <task name="serviceImpl"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/serviceImpl.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="ServiceImpl"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="${serviceDir}"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="${basePackage}.service.impl"/>
+        </task>
+
+        <task name="controller"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/controller.vm"/>
+            <property name="beginFix" value=""/>
+            <property name="endFix" value="Controller"/>
+            <property name="suffix" value=".java"/>
+            <property name="moduledir" value="${controllerDir}"/>
+            <property name="srcdir" value="src/main/java"/>
+            <property name="package" value="com.dexcoder.site.admin.controller.content"/>
+        </task>
+
+        <task name="listPage"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/list-page.vm"/>
+            <property name="beginFix" value="list-"/>
+            <property name="endFix" value=""/>
+            <property name="suffix" value=".vm"/>
+            <property name="moduledir" value="${pageDir}"/>
+            <property name="srcdir" value="src/main/webapp/WEB-INF/admin/content"/>
+            <property name="package" value=""/>
+        </task>
+
+        <task name="inputPage"
+              class="com.meiriyouke.easycode.generator.DefaultCodeGenerator">
+            <property name="template" value="template/input-page.vm"/>
+            <property name="beginFix" value="input-"/>
+            <property name="endFix" value=""/>
+            <property name="suffix" value=".vm"/>
+            <property name="moduledir" value="${pageDir}"/>
+            <property name="srcdir" value="src/main/webapp/WEB-INF/admin/content"/>
+            <property name="package" value=""/>
+        </task>
+
+    </tasks>
+</config>
+

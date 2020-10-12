@@ -1,0 +1,156 @@
+# nfs作为Volume
+# redis /data storage nfs 
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+# 应用的镜像
+      - image: redis
+        name: redis
+        imagePullPolicy: IfNotPresent
+# 应用的内部端口
+        ports:
+        - containerPort: 6379
+          name: redis6379
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        - name: REDIS_PASSWORD
+          value: "redis"          
+# 持久化挂接位置，在docker中 
+        volumeMounts:
+        - name: redis-persistent-storage
+          mountPath: /data
+      volumes:      
+# 宿主机上的目录
+      - name: redis-persistent-storage
+        nfs:
+          path: /nfs-share  #nfs share dirs must be exist
+          server: 192.168.3.103
+--- 
+#nfs-pv.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: slow
+  mountOptions:
+  - hard
+  - nfsvers=4.1
+  # 此持久化存储卷使用nfs插件
+  nfs:
+    # nfs共享目录为/tmp
+    path: /tmp
+    # nfs服务器的地址
+    server: 192.168.5.150
+--- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nfs-provisioner
+  labels:
+    app: nfs-provisioner
+spec:
+  ports:
+    - name: nfs
+      port: 2049
+    - name: mountd
+      port: 20048
+    - name: rpcbind
+      port: 111
+    - name: rpcbind-udp
+      port: 111
+      protocol: UDP
+  selector:
+    app: nfs-provisioner
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nfs-provisioner
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nfs-provisioner
+    spec:
+      containers:
+        - name: nfs-provisioner
+          image: quay.io/kubernetes_incubator/nfs-provisioner:v1.0.8
+          ports:
+            - name: nfs
+              containerPort: 2049
+            - name: mountd
+              containerPort: 20048
+            - name: rpcbind
+              containerPort: 111
+            - name: rpcbind-udp
+              containerPort: 111
+              protocol: UDP
+          securityContext:
+            capabilities:
+              add:
+                - DAC_READ_SEARCH
+                - SYS_RESOURCE
+          args:
+            # 定义提供者的名称，存储类通过此名称指定提供者
+            - "-provisioner=nfs-provisioner"
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: SERVICE_NAME
+              value: nfs-provisioner
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          imagePullPolicy: "IfNotPresent"
+          volumeMounts:
+            - name: export-volume
+              mountPath: /export
+      volumes:
+        - name: export-volume
+          hostPath:
+            path: /srv
+---

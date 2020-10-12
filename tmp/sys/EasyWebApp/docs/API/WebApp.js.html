@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>WebApp.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DataScope.html">DataScope</a></li><li><a href="HTMLView.html">HTMLView</a><ul class='methods'><li data-type='method'><a href="HTMLView.html#attach">attach</a></li><li data-type='method'><a href="HTMLView.html#childOf">childOf</a></li><li data-type='method'><a href="HTMLView.html#detach">detach</a></li><li data-type='method'><a href="HTMLView.html#emit">emit</a></li><li data-type='method'><a href="HTMLView.html#off">off</a></li><li data-type='method'><a href="HTMLView.html#on">on</a></li><li data-type='method'><a href="HTMLView.html#one">one</a></li><li data-type='method'><a href="HTMLView.html#parse">parse</a></li><li data-type='method'><a href="HTMLView.html#render">render</a></li><li data-type='method'><a href="HTMLView.html#scan">scan</a></li><li data-type='method'><a href="HTMLView.html#valueOf">valueOf</a></li><li data-type='method'><a href="HTMLView.html#watch">watch</a></li></ul></li><li><a href="InnerLink.html">InnerLink</a><ul class='methods'><li data-type='method'><a href="InnerLink.html#toString">toString</a></li></ul></li><li><a href="ListView.html">ListView</a><ul class='methods'><li data-type='method'><a href="ListView.html#attach">attach</a></li><li data-type='method'><a href="ListView.html#childOf">childOf</a></li><li data-type='method'><a href="ListView.html#clear">clear</a></li><li data-type='method'><a href="ListView.html#detach">detach</a></li><li data-type='method'><a href="ListView.html#emit">emit</a></li><li data-type='method'><a href="ListView.html#indexOf">indexOf</a></li><li data-type='method'><a href="ListView.html#insert">insert</a></li><li data-type='method'><a href="ListView.html#off">off</a></li><li data-type='method'><a href="ListView.html#on">on</a></li><li data-type='method'><a href="ListView.html#one">one</a></li><li data-type='method'><a href="ListView.html#remove">remove</a></li><li data-type='method'><a href="ListView.html#render">render</a></li><li data-type='method'><a href="ListView.html#scan">scan</a></li><li data-type='method'><a href="ListView.html#sort">sort</a></li><li data-type='method'><a href="ListView.html#valueOf">valueOf</a></li><li data-type='method'><a href="ListView.html#watch">watch</a></li></ul></li><li><a href="Observer.html">Observer</a><ul class='methods'><li data-type='method'><a href="Observer.html#.extend">extend</a></li><li data-type='method'><a href="Observer.html#.instanceOf">instanceOf</a></li><li data-type='method'><a href="Observer.html#.registerEvent">registerEvent</a></li><li data-type='method'><a href="Observer.html#emit">emit</a></li><li data-type='method'><a href="Observer.html#off">off</a></li><li data-type='method'><a href="Observer.html#on">on</a></li><li data-type='method'><a href="Observer.html#one">one</a></li><li data-type='method'><a href="Observer.html#valueOf">valueOf</a></li></ul></li><li><a href="RenderNode.html">RenderNode</a><ul class='methods'><li data-type='method'><a href="RenderNode.html#toString">toString</a></li></ul></li><li><a href="TreeView.html">TreeView</a><ul class='methods'><li data-type='method'><a href="TreeView.html#.fromFlat">fromFlat</a></li><li data-type='method'><a href="TreeView.html#attach">attach</a></li><li data-type='method'><a href="TreeView.html#childOf">childOf</a></li><li data-type='method'><a href="TreeView.html#clear">clear</a></li><li data-type='method'><a href="TreeView.html#detach">detach</a></li><li data-type='method'><a href="TreeView.html#emit">emit</a></li><li data-type='method'><a href="TreeView.html#indexOf">indexOf</a></li><li data-type='method'><a href="TreeView.html#insert">insert</a></li><li data-type='method'><a href="TreeView.html#off">off</a></li><li data-type='method'><a href="TreeView.html#on">on</a></li><li data-type='method'><a href="TreeView.html#one">one</a></li><li data-type='method'><a href="TreeView.html#remove">remove</a></li><li data-type='method'><a href="TreeView.html#render">render</a></li><li data-type='method'><a href="TreeView.html#scan">scan</a></li><li data-type='method'><a href="TreeView.html#sort">sort</a></li><li data-type='method'><a href="TreeView.html#valueOf">valueOf</a></li><li data-type='method'><a href="TreeView.html#watch">watch</a></li></ul></li><li><a href="View.html">View</a><ul class='methods'><li data-type='method'><a href="View.html#.extend">extend</a></li><li data-type='method'><a href="View.html#attach">attach</a></li><li data-type='method'><a href="View.html#childOf">childOf</a></li><li data-type='method'><a href="View.html#detach">detach</a></li><li data-type='method'><a href="View.html#emit">emit</a></li><li data-type='method'><a href="View.html#off">off</a></li><li data-type='method'><a href="View.html#on">on</a></li><li data-type='method'><a href="View.html#one">one</a></li><li data-type='method'><a href="View.html#scan">scan</a></li><li data-type='method'><a href="View.html#valueOf">valueOf</a></li><li data-type='method'><a href="View.html#watch">watch</a></li></ul></li><li><a href="WebApp.html">WebApp</a><ul class='methods'><li data-type='method'><a href="WebApp.html#.component">component</a></li><li data-type='method'><a href="WebApp.html#emit">emit</a></li><li data-type='method'><a href="WebApp.html#getRoute">getRoute</a></li><li data-type='method'><a href="WebApp.html#load">load</a></li><li data-type='method'><a href="WebApp.html#loadPage">loadPage</a></li><li data-type='method'><a href="WebApp.html#off">off</a></li><li data-type='method'><a href="WebApp.html#on">on</a></li><li data-type='method'><a href="WebApp.html#one">one</a></li><li data-type='method'><a href="WebApp.html#setURLData">setURLData</a></li><li data-type='method'><a href="WebApp.html#valueOf">valueOf</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-WebApp.html">WebApp</a></li></ul><h3>Externals</h3><ul><li><a href="external-_jQuery.fn_.html">jQuery.fn</a><ul class='methods'><li data-type='method'><a href="external-_jQuery.fn_.html#.iWebApp">iWebApp</a></li><li data-type='method'><a href="external-_jQuery.fn_.html#.view">view</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="HTMLView.html#event:attach">attach</a></li><li><a href="HTMLView.html#event:update">update</a></li><li><a href="ListView.html#event:attach">attach</a></li><li><a href="ListView.html#event:update">update</a></li><li><a href="TreeView.html#event:attach">attach</a></li><li><a href="TreeView.html#event:update">update</a></li><li><a href="View.html#event:attach">attach</a></li><li><a href="View.html#event:update">update</a></li><li><a href="WebApp.html#event:data">data</a></li><li><a href="WebApp.html#event:ready">ready</a></li><li><a href="WebApp.html#event:request">request</a></li><li><a href="WebApp.html#event:route">route</a></li><li><a href="WebApp.html#event:template">template</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">WebApp.js</h1>
+
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define([
+    'jquery', './base/Observer',
+    './view/View', './view/HTMLView', './view/ListView', './view/TreeView',
+    './view/DOMkit', './InnerLink'
+],  function ($, Observer, View, HTMLView, ListView, TreeView, DOMkit, InnerLink) {
+
+    /**
+     * Web 应用（单例）构造函数
+     *
+     * @author  TechQuery
+     *
+     * @class   WebApp
+     * @extends Observer
+     *
+     * @param   {jQueryAcceptable}  Page_Box    Container DOM for Inner Page
+     * @param   {(string|URL)}      [API_Root]  The Root Path of Back-end API
+     *                                          formatted as Absolute URL
+     */
+
+    function WebApp(Page_Box, API_Root) {
+
+        if (this instanceof $)
+            return  new WebApp(this[0], Page_Box, API_Root);
+
+        var _This_ = WebApp.instanceOf( $('*:webapp') )  ||  this;
+
+        if (_This_ !== this)  return _This_;
+
+        Observer.call(this, Page_Box).pageRoot = new URL($.filePath() + '/');
+        /**
+         * 后端 API 根路径
+         *
+         * @name     apiRoot
+         * @type     {URL}
+         *
+         * @memberof WebApp
+         * @instance
+         *
+         * @readonly
+         */
+        this.apiRoot = new URL(API_Root || '',  this.pageRoot);
+
+        this.length = 0;
+
+        this.lastPage = -1;
+
+        self.setTimeout( this.listen().boot.bind( this ) );
+    }
+
+    function linkOf(URL, part) {
+
+        return this.filter(
+            '[href'  +  (part ? '^' : '')  +  '="'  +  URL  +  '"]'
+        );
+    }
+
+    return  Observer.extend(WebApp, {
+        View:        View,
+        HTMLView:    HTMLView,
+        ListView:    ListView,
+        TreeView:    TreeView
+    }, {
+        splice:           Array.prototype.splice,
+        getCID:           function () {
+
+            return  (arguments[0] + '').replace(this.pageRoot, '').split('#')[0];
+        },
+        /**
+         * 明文显示当前 SPA 内页的路由 URI
+         *
+         * @author    TechQuery
+         *
+         * @memberof  WebApp.prototype
+         *
+         * @returns   {string}  The full route URI of current Inner Page
+         *                      in plain text
+         */
+        getRoute:         function () {
+            try {
+                return self.atob(
+                    (self.location.hash.match(/^\#!(.+)/) || '')[1]  ||  ''
+                );
+            } catch (error) { }
+        },
+        _emit:            function (type, link, data) {
+
+            var $_Target = ((link.target === 'page')  ?  this  :  link).$_View;
+
+            var observer = (type in link.__handle__)  ?
+                    link  :  View.instanceOf($_Target, false);
+
+            /**
+             * 基于链接路由的事件对象
+             *
+             * @typedef  {object}      RouterEvent
+             *
+             * @property {string}      type              Event Name
+             * @property {HTMLElement} target            Related Element
+             * @property {string}      [href]            HTML URI
+             * @property {string}      [src]             JSON URI
+             * @property {string}      [method="GET"]    HTTP Method of JSON URI
+             * @property {string}      [contentType]     MIME Type of request
+             * @property {string}      [charset="UTF-8"] CharSet of request
+             */
+
+            link = $.extend(link.valueOf(), {
+                type:      type,
+                target:    $_Target[0]
+            });
+
+            data = this.emit(link, data)  ||  data;
+
+            return  observer  ?  (observer.emit(link, data)  ||  data)  :  data;
+        },
+        emitRoute:        function (link) {
+
+            var $_Nav = $('a[href], area[href]'),  route = this.getRoute();
+
+            var page = route.split('?')[0];
+
+            var path = $.filePath( page )  ||  page,  $_Item;
+
+            ($_Item = linkOf.call($_Nav, route))[0]  ||
+            ($_Item = linkOf.call($_Nav, page))[0]  ||
+            ($_Item = linkOf.call($_Nav, path, true));
+
+            /**
+             * 路由切换事件
+             *
+             * @event WebApp#route
+             *
+             * @type  {RouterEvent}
+             */
+
+            this._emit('route', link, $_Item);
+        },
+        switchTo:         function (Index) {
+
+            if (this.lastPage == Index)  return;
+
+            var page = View.instanceOf(this.$_View, false);
+
+            if ( page )  page.detach();
+
+            if (this.lastPage > -1)  this[ this.lastPage ].view = page;
+
+            if (page = (this[ Index ]  ||  '').view) {
+
+                page.attach();
+
+                this.emitRoute( this[ Index ] );
+
+                return page;
+            }
+        },
+        setRoute:         function (link) {
+
+            this.switchTo();
+
+            if (this[ this.lastPage ]  !=  (link + '')) {
+
+                if (++this.lastPage != this.length)
+                    this.splice(this.lastPage, Infinity);
+
+                self.history[
+                    ((this.getRoute() == link) ? 'replace' : 'push')  +  'State'
+                ](
+                    {index: this.length},
+                    document.title = link.title,
+                    '#!'  +  self.btoa( this.getCID( link ) )
+                );
+
+                this.emitRoute( this[ this.length++ ] = link );
+            }
+
+            return this;
+        },
+        loadView:         function (link, HTML) {
+
+            var target = (
+                    (link.target === 'page')  ?  this.setRoute( link )  :  link
+                ).$_View[0];
+
+            /**
+             * 视图模板 加载成功事件
+             *
+             * @event WebApp#template
+             *
+             * @type  {RouterEvent}
+             */
+
+            if (HTML = this._emit('template', link, HTML))
+                DOMkit.build(target, link, HTML);
+
+            var view = View.getSub( target );
+
+            if ( view.parse )  view.parse();
+
+            if (! $('script:not(head > *)', target)[0])
+                link.emit('load');
+
+            return view;
+        },
+        loadChild:        function (view) {
+
+            return Promise.all($.map(
+                view.childOf(':visible'),  this.load.bind( this )
+            )).then(function () {
+
+                return view;
+            });
+        },
+        loadComponent:    function (link, HTML, data) {
+
+            var JS_Load = link.one('load'),  view = this.loadView(link, HTML);
+
+            return  JS_Load.then(function (factory) {
+
+                data = $.extend(
+                    data,  link.data,  link.$_View[0].dataset,  data
+                );
+
+                return view.render(
+                    factory  ?  (factory.call(view, data)  ||  data)  :  data
+                );
+            }).then( this.loadChild.bind( this ) );
+        },
+        autoFocus:        function (global) {
+
+            var target = $(
+                    'a[href][data-autofocus="true"]',
+                    global ? document : this.$_View[0]
+                )[0];
+
+            if ( target ) {
+
+                target.click();
+
+                return  this.one({type: 'ready',  target: this.$_View[0]});
+            }
+        },
+        /**
+         * 加载一个链接/视图的 DOM 元素或 SPA 对象
+         *
+         * @author    TechQuery
+         *
+         * @memberof  WebApp.prototype
+         *
+         * @param     {HTMLElement|View}  link - an HTML Element or SPA Object of
+         *                                       a Link or View
+         * @returns   {Promise}
+         *
+         * @fires     WebApp#request
+         * @fires     WebApp#data
+         * @fires     WebApp#ready
+         */
+        load:             function (link) {
+
+            if (! (link instanceof InnerLink))
+                link = new InnerLink(
+                    (link instanceof Observer)  ?  link.$_View[0]  :  link
+                );
+
+            var _This_ = this;
+
+            return  link.load(function () {
+
+                if ((this.dataType || '').slice(0, 4)  ===  'json')
+                    this.url = (new URL(this.url, _This_.apiRoot))  +  '';
+
+                /**
+                 * AJAX 请求发起事件
+                 *
+                 * @event WebApp#request
+                 *
+                 * @type  {RouterEvent}
+                 */
+
+                _This_._emit('request', link, {
+                    option:       this,
+                    transport:    arguments[0]
+                });
+
+                this.crossDomain = $.isXDomain( this.url );
+
+            }).then(function () {
+
+                var data = arguments[0][1];
+
+                if (data != null) {
+
+                    link.header = data.head;
+
+                    /**
+                     * 链接 / 视图 数据加载成功事件
+                     *
+                     * @event WebApp#data
+                     *
+                     * @type  {RouterEvent}
+                     */
+
+                    data = _This_._emit('data', link, data.body);
+                }
+
+                if (link.target !== 'data')
+                    return  _This_.loadComponent(link, arguments[0][0], data);
+
+            }).then(function (view) {
+
+                if (! (view instanceof View))  return;
+
+                var promise = view.one('ready');
+
+                /**
+                 * 视图加载完成事件
+                 *
+                 * @event WebApp#ready
+                 *
+                 * @type  {RouterEvent}
+                 */
+
+                _This_._emit('ready', link, view);
+
+                if (link.target === 'page')
+                    promise = _This_.autoFocus() || promise;
+
+                return promise;
+            });
+        },
+        /**
+         * 按 浏览历史索引 或 路由 URI 加载内页
+         *
+         * @author    TechQuery
+         *
+         * @memberof  WebApp.prototype
+         *
+         * @param     {number|string} [URI=0] - a History Index or Route URI
+         * @returns   {Promise}
+         *
+         * @listens   WebApp#ready
+         */
+        loadPage:         function (URI) {
+
+            URI = URI || 0;
+
+            if (isNaN( URI ))
+                return  this.load( $('&lt;a href="' + URI + '" />')[0] );
+
+            var link = this[+URI + this.lastPage];
+
+            if ( link )  delete link.view;
+
+            if (! URI)  return  this.load( link );
+
+            self.history.go( URI );
+
+            return  this.one({type: 'ready',  target: this.$_View[0]});
+        },
+        listen:           function () {
+
+            var _This_ = this;
+
+            $('html').on('click submit',  InnerLink.HTML_Link,  function (event) {
+                if (
+                    ((this.tagName !== 'FORM')  ||  (event.type === 'submit'))  &amp;&amp;
+                    ((this.target || '_self')  ===  '_self')  &amp;&amp;
+                    _This_.getCID(this.href || this.action)
+                ) {
+                    event.preventDefault();
+
+                    _This_.load( this );
+                }
+            });
+
+            $( self ).on('popstate',  function () {
+
+                var state = this.history.state || '',  route = _This_.getRoute();
+
+                var link = _This_[ state.index ];
+
+            //  To reload history pages after the Web App reloading
+
+                if ((! link)  ||  (
+                    route  &amp;&amp;  (! state.data)  &amp;&amp;  (route != _This_.getCID( link ))
+                ))
+                    return  route  &amp;&amp;  _This_.loadPage( route );
+
+                if (_This_.lastPage !== state.index)
+                    Promise.resolve(
+                        _This_.switchTo( state.index )  ||  _This_.load( link )
+                    ).then(function () {
+
+                        _This_.lastPage = state.index;
+
+                        document.title = link.title;
+                    });
+                else if ( state.data )
+                    View.instanceOf(_This_.$_View, false).render( state.data );
+            });
+
+            return this;
+        },
+        boot:             function () {
+
+            DOMkit.build(document.body, '');
+
+            var root = (new HTMLView('html')).parse().render( $.paramJSON() ),
+                _This_ = this;
+
+            return  this[root.$_View[0].dataset.href ? 'load' : 'loadChild'](
+                root
+            ).then(function () {
+
+                var Init = _This_.getRoute();
+
+                return  Init ?
+                    _This_.loadPage( Init )  :  _This_.autoFocus( true );
+            });
+        }
+    });
+});</code></pre>
+        </article>
+    </section>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 03 2017 07:42:48 GMT+0800 (中国标准时间) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+*.class
+*.classpath
+*.project
+*.prefs
+org.eclipse.*.xml
+
+thread/.settings/
+thread/target/

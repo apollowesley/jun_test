@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件与循环</title>
+    <script type="text/javascript" src="../lib/vue-2.6.10.js"></script>
+</head>
+<style rel="stylesheet">
+    .app-nav {
+        height: 200px;
+        background: blanchedalmond;
+    }
+
+    .app-view{
+
+    }
+
+    .app-content {
+        height: 400px;
+        background: pink;
+        width: 50%;
+        float: left;
+    }
+
+    .app-sidebar {
+        height: 400px;
+        width: 50%;
+        background: greenyellow;
+        float: left;
+    }
+
+    .app-footer {
+        height: 100px;
+        background: goldenrod;
+        clear: left;
+    }
+</style>
+<body>
+<!--原本内容-->
+<!--<div id="app">
+    <div class="app-nav">导航栏</div>
+    <div class="app-view">
+        <div class="app-content">内容区</div>
+        <div class="app-sidebar">导航栏</div>
+    </div>
+    <div class="app-footer">底部内容</div>
+</div>-->
+<!--Vue组件化结果-->
+<div id="app">
+    <app-nav text="导航栏"></app-nav>
+    <app-view>
+        <!--<app-content text="内容区"></app-content>
+        <app-sidebar text="大纲区域"></app-sidebar>-->
+    </app-view>
+    <app-footer text="底部"></app-footer>
+</div>
+
+</body>
+<script type="text/javascript">
+
+    /**
+     * 下面注册的组件的方式叫：全局注册，当然还有局部注册和单文件注册还没展示，这些到时候与Nodejs整合会更加明显
+     */
+    Vue.component('app-nav', {
+        props: ['text'],
+        template: '<div class="app-nav">{{ text}}</div>'
+    });
+    Vue.component('app-view', {
+        template: '<div class="app-view"><app-content text="内容区"></app-content><app-sidebar text="大纲区域"></app-sidebar></div>'
+    });
+
+    Vue.component('app-content', {
+        props: ['text'],
+        template: '<div class="app-content">{{ text}}</div>'
+    });
+
+    Vue.component('app-sidebar', {
+        props: ['text'],
+        template: '<div class="app-sidebar">{{ text}}</div>'
+    });
+
+    Vue.component('app-footer', {
+        props: ['text'],
+        template: '<div class="app-footer">{{ text}}</div>'
+    });
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+
+        }
+    })
+</script>
+</html>

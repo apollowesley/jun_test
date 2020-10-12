@@ -1,0 +1,60 @@
+#macro ( property $name $type )
+    private $type $name;
+#end
+#macro ( access $name $type )
+    public #javatype(${type}) get#ucf($name)() {
+        return this.$name;
+    }
+
+    public void set#ucf($name)(#javatype(${type}) ${name}) {
+        this.${name} = ${name};
+    }
+#end
+#macro ( lower $value )${value.toLowerCase()}#end
+#macro ( upper $value )${value.toUpperCase()}#end
+#macro ( lcf $name )${stringUtils.toLowerCaseFirst($name)}#end
+#macro ( ucf $name )${stringUtils.toUpperCaseFirst($name)}#end
+#macro ( lucf $value )${stringUtils.toUpperCaseFirst(${value.toLowerCase()})}#end
+#macro ( javatype $type )${stringUtils.getJavaType($type)}#end
+#############################################################################################
+package com.xbd.ebs.model.to;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
+import java.io.Serializable;
+
+public class #lucf($table.name)_vo implements Serializable {
+
+## 主键
+    private #javatype(${table.primaryKeyColumn.type}) ${table.primaryKeyColumn.name} = null;
+
+## 属性
+#foreach ($property in $table.properties)
+    private #javatype($property.type) ${property.name} = null;
+
+#end
+    public #lucf(${table.name})_vo() {
+    }
+
+    public #lucf(${table.name})_vo(#javatype(${table.primaryKeyColumn.type}) ${table.primaryKeyColumn.name}) {
+        this.set#ucf(${table.primaryKeyColumn.name})(${table.primaryKeyColumn.name});
+    }
+
+#access(${table.primaryKeyColumn.name} ${table.primaryKeyColumn.type})
+
+##属性setter getter
+#foreach ($property in $hbm.clazz.properties)
+#access(${property.name} ${property.type})
+
+#end
+
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("${table.primaryKeyColumn.name}", this.${table.primaryKeyColumn.name})
+#foreach ($property in $hbm.clazz.properties)
+                .append("${property.name}", this.${property.name})
+#end  
+                .toString();
+    }
+}

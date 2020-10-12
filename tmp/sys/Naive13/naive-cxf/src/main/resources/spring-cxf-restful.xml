@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+  xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+  xsi:schemaLocation="    
+            http://www.springframework.org/schema/beans     
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd    
+            http://cxf.apache.org/jaxws    
+            http://cxf.apache.org/schemas/jaxws.xsd
+            http://cxf.apache.org/jaxrs
+            http://cxf.apache.org/schemas/jaxrs.xsd">
+  <!-- Import apache CXF bean definition 固定 -->
+  <import resource="classpath:META-INF/cxf/cxf.xml" />
+  <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+  <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+  <bean id="restSample" class="org.duomn.naive.cxf.restful.service.impl.RESTSampleSource" />
+  <!-- 这里的地址很重要，客户端需要通过这个地址来访问WebService -->
+  <jaxrs:server id="restServiceContainer" address="/rest">
+    <jaxrs:serviceBeans>
+      <ref bean="restSample" />
+    </jaxrs:serviceBeans>
+    <jaxrs:extensionMappings>
+      <entry key="json" value="application/json" />
+      <entry key="xml" value="application/xml" />
+    </jaxrs:extensionMappings>
+    <jaxrs:languageMappings>
+      <entry key="en" value="en-gb" />
+    </jaxrs:languageMappings>
+  </jaxrs:server>
+</beans>  

@@ -1,0 +1,43 @@
+server:
+  port: 80
+  servlet:
+    context-path: /
+
+spring:
+  mvc:
+    view:
+      prefix: classpath:/page/
+      suffix: .html
+    static-path-pattern: /**
+
+  resources:
+    static-locations: classpath:/static/,classpath:/page/
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/quick-dev?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: root
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+
+shiro:
+  salt: man!@#$%^&*
+  hash:
+    algorithName: MD5
+    iterations: 1024
+
+mybatis:
+  mapper-locations: classpath:/mybatis/mapper/**/*Mapper.xml
+  type-aliases-package: pers.man.quickdevservice.entity.po
+  configuration:
+    # 插入为空时插入空值避免报空指针
+    jdbc-type-for-null: null
+
+dozer:
+  config:
+    # dozer配置文件位置
+    location: classpath*:dozer/*.xml

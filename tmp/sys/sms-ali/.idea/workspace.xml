@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f4f5689d-a91a-4368-9c8b-658110a34b75" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="F:\apache-maven-3.6.3\maven-repo" />
+        <option name="mavenHome" value="F:/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="F:\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1daI6iWooyIL9GP0kopqCqFJ5Oi" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring-vue" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.qiaozhi" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qiaozhi.service.impl" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SmsApplication">
+    <configuration name="SmsApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qiaozhi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.qiaozhi" />
+      <option name="MAIN_CLASS_NAME" value="com.qiaozhi.SmsApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SmsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sms" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qiaozhi.SmsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SmsApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f4f5689d-a91a-4368-9c8b-658110a34b75" name="Default Changelist" comment="" />
+      <created>1592656603637</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592656603637</updated>
+      <workItem from="1592656611142" duration="7683000" />
+      <workItem from="1593307813395" duration="412000" />
+      <workItem from="1593309934197" duration="168000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1592662122599">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1592662122599" />
+    <state x="575" y="340" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1592663572247">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="575" y="340" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1592663572247" />
+    <state x="553" y="300" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1592663574377">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="553" y="300" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.824@0.0.1536.824" timestamp="1592663574377" />
+    <state x="549" y="170" key="FileChooserDialogImpl" timestamp="1593308230959">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593308230959" />
+    <state width="1493" height="357" key="GridCell.Tab.0.bottom" timestamp="1592664575777">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="357" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592664575777" />
+    <state width="1493" height="357" key="GridCell.Tab.0.center" timestamp="1592664575777">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="357" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592664575777" />
+    <state width="1493" height="357" key="GridCell.Tab.0.left" timestamp="1592664575761">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="357" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592664575761" />
+    <state width="1493" height="357" key="GridCell.Tab.0.right" timestamp="1592664575777">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="357" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592664575777" />
+    <state width="1493" height="357" key="GridCell.Tab.1.bottom" timestamp="1592664575777">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="357" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592664575777" />
+    <state width="1493" height="357" key="GridCell.Tab.1.center" timestamp="1592664575777">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="357" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1592664575777" />
+    <state width="1493" height="357" key="GridCell.Tab.1.left" timestamp="1592664575777">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="357" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1592664575777" />
+    <state width="1493" height="357" key="GridCell.Tab.1.right" timestamp="1592664575777">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="357" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1592664575777" />
+    <state x="272" y="57" key="SettingsEditor" timestamp="1592657732692">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="272" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1592657732692" />
+    <state x="461" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1593307822877">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="461" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1593307822877" />
+  </component>
+</project>

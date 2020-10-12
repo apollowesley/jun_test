@@ -1,0 +1,19 @@
+# all nodes of database
+# written by Kevin@2015.7.30
+
+
+-  host     : 10.255.208.45
+   port     : 3306
+   instance : lore
+   user     : ddim
+   pass     : "12348765"
+   tables   :    
+       -  table    : tb_knowledges
+          id_field : knowledge_id
+          id_type  : text
+          fields   :
+              -  field  : issue
+                 type   : text   
+              -  field  : tags
+                 type   : text 
+                 

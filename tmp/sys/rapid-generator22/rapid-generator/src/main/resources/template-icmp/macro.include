@@ -1,0 +1,148 @@
+<#-- 本文件包含一些公共的函数,本文件会被其它模板自动include -->
+
+<#-- 将value变成jsp el表达式,主要由于FreeMarker生成表达式不方便 -->
+<#macro jspEl value>${r"${"}${value}}</#macro>
+
+<#-- 生成java构造函数 -->
+<#macro generateConstructor constructor>
+	public ${constructor}(){
+	}
+
+	public ${constructor}(
+	<#list table.pkColumns as column>
+		${column.javaType} ${column.columnNameLower}<#if column_has_next>,</#if>
+	</#list>		){
+	<#list table.pkColumns as column>
+		<#if column.pk>
+		this.${column.columnNameLower} = ${column.columnNameLower};
+		</#if>
+	</#list>
+	}
+
+</#macro>
+<#macro generateJavaColumns>
+<#list table.columns as column>
+    public void set${column.columnNameLower?cap_first}(${column.javaType?split(".")?last} ${column.columnNameLower}){
+        this.${column.columnNameLower} = ${column.columnNameLower};
+    }
+    public ${column.javaType?split(".")?last} get${column.columnNameLower?cap_first}(){
+        return ${column.columnNameLower};
+    }
+</#list>
+</#macro>
+
+<#macro generateNotPKJavaColumns>
+<#list table.columns as column>
+    <#if column.columnNameLower != "id">
+    public void set${column.columnNameLower?cap_first}(${column.javaType?split(".")?last} ${column.columnNameLower}){
+        this.${column.columnNameLower} = ${column.columnNameLower};
+    }
+    public ${column.javaType?split(".")?last} get${column.columnNameLower?cap_first}(){
+        return ${column.columnNameLower};
+    }
+    </#if>
+</#list>
+</#macro>
+
+<#macro generatePKJavaColumns>
+<#if table.singleId>
+	public void set${table.getPkColumn().columnNameLower?cap_first}(${table.getPkColumn().javaType} ${table.getPkColumn().columnNameLower}){
+		this.${table.getPkColumn().columnNameLower} = ${table.getPkColumn().columnNameLower};
+	}
+	public ${table.getPkColumn().javaType} get${table.getPkColumn().columnNameLower?cap_first}(){
+		return ${table.getPkColumn().columnNameLower};
+	}
+<#elseif table.compositeId>
+	<#list table.pkColumns as column>
+	public void set${column.columnNameLower?cap_first}(${column.javaType} ${column.columnNameLower}){
+		this.${column.columnNameLower} = ${column.columnNameLower};
+	}
+	public ${column.javaType} get${column.columnNameLower?cap_first}(){
+		return ${column.columnNameLower};
+	}
+	</#list>
+</#if>
+</#macro>
+
+<#macro generateJavaColumnsDto>
+	<#list table.columns as column>
+	public void set${column.columnNameLower?cap_first}(${column.javaType} ${column.columnNameLower}){
+		this.${column.columnNameLower} = ${column.columnNameLower};
+	}
+	
+	public ${column.javaType} get${column.columnNameLower?cap_first}(){
+		return ${column.columnNameLower};
+	}
+	</#list>
+</#macro>
+<#macro generateToString className>
+    @Override
+    public String toString(){
+        return "${className}{" +
+                <#list table.columns as column>
+                    "${column.columnNameLower}='" + ${column.columnNameLower} + "\'<#if column_has_next>,</#if>" +
+                </#list>
+                "}";
+    }
+</#macro>
+
+<#macro generateNotPkToString className>
+    @Override
+    public String toString(){
+        return "${className}{" +
+                <#list table.columns as column>
+                    <#if column.columnNameLower != "id">
+                    "${column.columnNameLower}='" + ${column.columnNameLower} + "\'<#if column_has_next>,</#if>" +
+                    </#if>
+                </#list>
+                "}";
+    }
+</#macro>
+
+
+<#macro generatePKToString className>
+    @Override
+    public String toString(){
+    <#if table.singleId>
+        return "${className}{" +
+                    "${table.getPkColumn().columnNameLower}='" + ${table.getPkColumn().columnNameLower} +
+                "}";
+    <#elseif table.compositeId>
+        return "${className}{" +
+                <#list table.pkColumns as column>
+                    "${column.columnNameLower}='" + ${column.columnNameLower} + "\'<#if column_has_next>,</#if>" +
+                </#list>
+                "}";
+    </#if>
+    }
+</#macro>
+
+<#macro getField>
+    public static String getField(){
+        return getField(null);
+    }
+    public static String getField(String aliasName){
+        String[] fields = ArrayUtils.clone(Fields);
+        if(StringUtils.isNotBlank(aliasName)){
+             Arrays.stream(fields).map(field-> aliasName +"." + field + "as " + field);
+        }
+        return  StringUtils.join(fields,",");
+    }
+</#macro>
+
+<#macro getImport>
+    <#assign fields="">
+    <#list table.columns as column>
+    <#if !fields?contains(column.javaType) && !column.javaType?contains("java.lang")>
+        <#assign fields=fields+ ";" + column.javaType/>
+import ${column.javaType};
+<#if column.javaType == "java.util.Date">
+import org.springframework.format.annotation.DateTimeFormat;
+</#if>
+    </#if>
+    </#list>
+
+</#macro>
+<#macro Field>
+    public static final String[] Fields={<#list table.columns as column>"${column.underscoreName}"<#if column_has_next>,</#if></#list>};
+</#macro>

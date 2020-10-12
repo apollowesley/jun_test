@@ -1,0 +1,38 @@
+{
+    "name": "lhz.pp.ms",
+    "version": "1.0.0",
+    "description": "权限平台管理系统。",
+    "main": "app/index.js",
+    "scripts": {
+        "start": "npm run lite-server",
+        "typings": "typings"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://git.oschina.net/liuhongzhe/Lhz.PermissionPlatform.ManagementSystem.git"
+    },
+    "author": "劉宏哲",
+    "license": "MIT",
+    "dependencies": {
+        "angular2": "2.0.0-beta.12",
+        "bootstrap": "^3.3.6",
+        "es6-promise": "^3.0.2",
+        "es6-shim": "^0.35.0",
+        "jquery": "^2.2.1",
+        "ng2-bootstrap": "^1.0.6",
+        "ng2-modal": "0.0.1",
+        "reflect-metadata": "0.1.2",
+        "rxjs": "5.0.0-beta.2",
+        "systemjs": "0.19.24",
+        "zone.js": "0.6.6"
+    },
+    "devDependencies": {
+        "concurrently": "^2.0.0",
+        "del": "^2.2.0",
+        "gulp": "^3.9.1",
+        "gulp-typescript": "^2.12.0",
+        "lite-server": "^2.1.0",
+        "typescript": "^1.8.9",
+        "typings": "^0.7.9"
+    }
+}

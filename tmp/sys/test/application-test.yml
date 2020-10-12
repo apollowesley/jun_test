@@ -1,0 +1,17 @@
+## 共用配置，由于所有服务都整合了rabbitmq，所以将其放在这里。
+sleuth:
+    sampler:
+      percentage: 1.0
+
+spring:
+  rabbitmq:
+    host: 10.12.8.225
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka/
+  instance:
+    prefer-ip-address: true

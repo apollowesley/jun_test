@@ -1,0 +1,22 @@
+<properties>
+	<!-- 增加redis数据源配置 -->
+	<property name="default" class="org.frameworkset.nosql.redis.RedisDB">
+		
+		<!-- redis服务器地址和端口配置，用回车换行符分割多个服务器节点 -->
+		<property name="servers">
+			127.0.0.1:6379
+		</property>
+		<!-- 
+		
+		single 单节点模式，单redis服务器模式，nodes列表只需要配置一个redis服务器的地址和端口即可
+		cluster 集群模式，redis集群或者分片集群模式，nodes列表需要配置所有redis服务器的地址和端口（包括主节点和从节点）
+		 -->
+		<property name="mode" value="single" />
+			
+		
+		<property name="poolMaxTotal" value="10"/>	
+		<property name="poolMaxWaitMillis" value="2000"/>	
+		 
+	</property>
+	 
+</properties>

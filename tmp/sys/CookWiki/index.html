@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./css/api.css" />
+		<link rel="stylesheet" type="text/css" href="./css/common.css" />
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="header">
+				<nav id="nav">
+					<a id="left"> </a>
+					<div id="middle">
+						<strong id="title">菜谱百科</strong>
+					</div>
+					<a id="right" > <span class="glyphicon glyphicon-search" tapmode="active" onclick="openSearchBar()"></span> </a>
+				</nav>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="./script/api.js"></script>
+	<script type="text/javascript" src="./script/common.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+
+			var header = $api.byId('header');
+			$api.fixIos7Bar(header);
+			var headerPos = $api.offset(header);
+			
+			//引入tabBar模块
+			var bottomTabBar = api.require('tabBar');
+
+			//设置frame窗口组
+			api.openFrameGroup({
+				name : 'winGroup',
+				background : '#F2EEE9',
+				scrollEnabled : true,     //设置frameGroup可以滑动切换
+				rect : {
+					x : 0,
+					y : headerPos.h,
+					w : "auto",
+					h : "auto"
+				},
+				frames : [{
+					name : 'main',
+					url : './html/main.html', //主页面
+					bgColor : '#F2EEE9',
+					bounces : false,
+					vScrollBarEnabled : true,
+					hScrollBarEnabled : false
+				}, {
+					name : 'category',
+					url : './html/category.html', //分类页面
+					pageParam : {
+						headerPosY : headerPos.h
+					},
+					bounces : false,
+					bgColor : '#F2EEE9',
+					vScrollBarEnabled : false,
+					hScrollBarEnabled : false
+				}, {
+					name : 'person',
+					url : './html/person.html', //个人页面
+					pageParam : {
+						headerPosY : headerPos.h
+					},
+					bounces : false,
+					bgColor : '#F2EEE9',
+					vScrollBarEnabled : false,
+					hScrollBarEnabled : false
+				}, {
+					name : 'setting',
+					url : './html/setting.html', //设置页面
+					bounces : false,
+					bgColor : '#F2EEE9',
+					vScrollBarEnabled : false,
+					hScrollBarEnabled : false
+				}]
+			}, function(ret, err) {
+				//滑动页面设置底部导航定位
+				bottomTabBar.setSelect({index:ret.index});
+			});
+
+			//设置底部tabBar按钮
+			bottomTabBar.open({
+				bgImg : 'widget://res/tabBar_bg.png',
+				selectImg : 'widget://res/selecte_tabBar.png',
+				items : [{
+					title : '推荐',
+					img : 'widget://res/tabBar_item1.png'
+				}, {
+					title : '分类',
+					img : 'widget://res/tabBar_item2.png'
+				}, {
+					title : '我的',
+					img : 'widget://res/tabBar_item3.png'
+				}, {
+					title : '设置',
+					img : 'widget://res/tabBar_item4.png'
+				}],
+				selecteIndex : 0
+			}, function(ret, err) {
+
+				//改变frame窗口组显示的页面
+				api.setFrameGroupIndex({
+					name : 'winGroup',
+					index : ret.index
+				});
+
+			});
+			
+			//安卓设备返回键退出事件
+			exitApp();
+
+		};
+	</script>
+</html>

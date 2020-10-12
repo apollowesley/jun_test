@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "开始点名",
+    "backgroundColor": "#FFFFFF",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
+}

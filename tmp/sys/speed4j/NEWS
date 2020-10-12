@@ -1,0 +1,53 @@
+0.10
+====
+
+* Much improved memory management: The StopWatch queue size has now a maximum limit
+  (to prevent a case where a producer would just keep sending stuff that we couldn't
+  process fast enough).  Also, the StopWatch queues are now emptied as quickly
+  as possible. 
+  
+* Added new internal JMX attribute: "DroppedStopWatches" to monitor StopWatches
+  which are dropped when they can't fit in the queue.
+  
+* There's another new internal JMX attribute: "StopWatchQueueLength" which you
+  can use to directly monitor whether Speed4j is keeping up with the incoming
+  events.
+
+* You can now shut up the PeriodicalLog logging by simply setting the slf4jLogName
+  to an empty string.
+
+0.9
+===
+
+* Fixed NPE when the tag didn't get any data. (Fixes #5 and #6).
+
+0.8
+===
+
+* Minor performance optimizations; uses less memory overall.
+
+0.7
+===
+
+* Fixes issues #1 & #2, where the Collector Thread was misbehaving.
+  (Yay! First issues!)
+
+0.6
+===
+
+* Improved thread safety in PeriodicalLog calculations.
+
+0.5
+===
+
+* Fixed NPE during PeriodicalLog shutdown.
+
+0.4
+===
+
+* Added 95th percentile calculation, courtesy of Jakarta Commons.
+
+0.3
+===
+
+First official release, yay!

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{width:1000px;height:700px;margin: 100px auto;position: relative;border:1px solid #AFEEEE;}
+			#header{position: absolute;margin-left: 170px;}
+			#content{margin-top: 30px;}
+			#footer{position: absolute;margin-left: 370px;margin-top: 20px;}
+			td{width: 150px; border:1px solid #000;text-align: center;}
+			input{display: inline-block;}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="header">
+				姓名:<input type="text" value="" id="name1" />
+				性别:<input type="checkbox" value="" id="wom" />女
+				<input type="checkbox" value=""/>男
+				年龄:<input type="text" value="" id="age"/>
+				<input type="button" value="提交" id="commit"/>
+			</div>
+			<div id="content">	
+				<table id="table">
+					<caption style="color:black;font-weight: bold;">人员信息</caption>
+					<thead>
+						<tr>
+							<td style="color: #8A2BE2;"><input type="checkbox"value="" id="checkA" />全选</td>
+							<td style="color: #8A2BE2;">编号</td>
+							<td style="color: #8A2BE2;">姓名</td>
+							<td style="color: #8A2BE2;">性别</td>
+							<td style="color: #8A2BE2;">年龄</td>
+							<td style="color: #8A2BE2;">操作</td>
+						</tr>				
+					</thead>
+					<tbody id="tbody">
+						<tr id="tr1">
+							<td><input type="checkbox"value="" class="check"/></td>
+							<td>1</td>
+							<td>小花</td>
+							<td>女</td>
+							<td>20</td>
+							<td><input type="type"value="删除"style="width: 40px;text-align: center;background: #AFEEEE;" class="selet"/></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox"value="" class="check"/></td>
+							<td>2</td>
+							<td>小明</td>
+							<td>男</td>
+							<td>22</td>
+							<td><input type="type"value="删除"style="width: 40px;text-align: center;background: #AFEEEE;" class="selet"/></td>
+						</tr>
+					</tbody>
+				</table
+			</div>
+			<div id="footer">
+				<input type="text" value="" id="findT"/>
+				<input type="button" value="查找" id="find" />
+			</div>	
+		</div>
+		<script>
+			var name1 = document.getElementById("name1");
+			var age = document.getElementById("age");
+			var commit = document.getElementById("commit");
+			var table = document.getElementById("table");
+			var tbody = document.getElementById("tbody");
+			var trs = tbody.getElementsByTagName("tr");
+			var tr1=  document.getElementById("tr1");
+			var selets = document.getElementsByClassName("selet");
+			var find = document.getElementById("find");
+			var findT = document.getElementById("findT");
+			var wom = document.getElementById("wom");
+			var checks = document.getElementsByClassName("check");
+			var num = 3;
+			var onoff = true;
+			
+			commit.onclick = function(){
+				var newtr = tr1.cloneNode(true);
+				newtr.style.background = "white";
+				var tds = newtr.getElementsByTagName("td");
+				tds[0].children[0].onclick = function(){////问题1：开关的问题导致新生成的信息，只能实现自身切换，怎么设置开关？是用this?还是？
+					
+					if(this.checked){
+						this.parentElement.parentElement.style.background = "yellow";
+					}else{
+						this.parentElement.parentElement.style.background = "white";
+					}
+					
+				}
+				tds[1].innerHTML = num++;//编号
+				tds[2].innerHTML = name1.value;//姓名
+				if(wom.checked){
+					tds[3].innerHTML = "女";//性别
+				}else{
+					tds[3].innerHTML = "男";//性别
+				}
+				tds[4].innerHTML = age.value;//年龄
+				tds[5].children[0].onclick = function(){
+					tbody.removeChild(this.parentElement.parentElement);
+				}
+			    tbody.appendChild(newtr);			    
+			}
+			for(var i = 0;i<selets.length;i++){
+				selets[i].onclick = function(){
+//					console.log(this.parentElement.parentElement);
+					tbody.removeChild(this.parentElement.parentElement);
+				}
+			}
+			//查找功能
+			find.onclick = function(){
+				for(var i = 0;i<trs.length;i++){
+					for(var j = 0;j<trs[i].children.length;j++){
+//						console.log(trs[i].children.length);
+						if(findT.value == trs[i].children[j].innerHTML){
+							trs[i].children[j].parentElement.style.background = "yellow";
+//							alert(trs[i].firstElementChild);
+							trs[i].children[0].children[0].checked = true;//问题2：我想表述把tr下面的第一个子元素即td，td下面的子元素Input，但这样不对，求解。
+						}							
+					}				
+				}
+			}
+			//单个选择
+			for(var i = 0;i<checks.length;i++){
+				checks[i].onoff = true;
+				checks[i].onclick = function(){					
+					if(this.onoff){
+						this.parentElement.parentElement.style.background = "yellow";
+						this.checked = true;
+					}else{
+						this.parentElement.parentElement.style.background = "white";
+						this.checked = false;
+					}
+					this.onoff = !this.onoff;
+				}
+			}
+			//操作全选按钮
+			checkA.onclick = function(){
+				if (this.checked){
+					for (var i=0;i<checks.length;i++){
+						checks[i].parentElement.parentElement.style.background = "yellow";
+						checks[i].checked = true;
+					}
+				}else{
+					for (var i=0;i<checks.length;i++){
+						checks[i].parentElement.parentElement.style.background = "white";
+						checks[i].checked =false;
+					}
+				}
+			}
+		</script>
+	</body>
+	
+</html>

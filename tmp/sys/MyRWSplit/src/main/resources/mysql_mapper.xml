@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.freedom.mysql.myrwsplit.interfaces.RoleMapper">
+
+	<!-- no use,!!!
+	<parameterMap type="Map" id="InsertFuneralMap0"> 
+	 <parameter property="v_in_employeecd" jdbcType="BIGINT" javaType="Long" mode="IN" resultMap="Map" typeHandler="java.lang.Object" /> 
+	</parameterMap> 
+	<parameterMap type="Map" id="InsertFuneralMap1"> 
+		<parameter property="v_in_employeecd" jdbcType="BIGINT" javaType="Long" mode="OUT" resultMap="Map" typeHandler="java.lang.Object"/> 
+	</parameterMap> -->
+
+
+
+	<!-- 
+	<sql id="sql0" > select * from abc where 111 </sql> 
+	<sql id="sql1"> select * from abc where 111 </sql> 
+	-->
+
+	<!-- can have many resultmap elements 
+	<resultMap id="roleResultMap" type="interfaces.Role"> 
+		<constructor> 
+		<idArg column="id" javaType="int" jdbcType="INTEGER" /> 
+		<arg column="username" javaType="String"/> 
+		</constructor> 
+		<id property="id" column="user_id" /> 
+			<result property="username" column="username"/> 
+			<result property="password" column="password"/> 
+	</resultMap> 
+	-->
+
+	<resultMap id="roleResultMap" type="com.freedom.mysql.myrwsplit.bean.Role">
+		<id property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="author" column="author" />
+	</resultMap>
+
+	<select id="getRole" parameterType="int" resultMap="roleResultMap">
+		select id,title,author from ambari.test where id=#{id}
+	</select>
+
+	<select id="getRole0" parameterType="int"
+		resultType="com.freedom.mysql.myrwsplit.bean.Role">
+		select id,title,author from ambari.test where id=#{id}
+	</select>
+
+	<!-- u can use map to offer parameter also! -->
+	<insert id="insertRole" parameterType="com.freedom.mysql.myrwsplit.bean.Role"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into ambari.test(id,title,author) values(#{id},#{title}, #{author})
+	</insert>
+
+	<update id="updateUser" parameterType="int">
+		update t_user set name=#{name}, age=#{age} where id=#{id}
+	</update>
+
+	<delete id="deleteRole" parameterType="com.freedom.mysql.myrwsplit.bean.Role">
+		delete from ambari.test	where id=#{id}
+	</delete>
+ 
+    
+	<delete id="deleteAllApplications">
+		delete from uniconsole.relation
+	</delete>
+
+	<!-- u can use map to offer parameter also! -->
+	<insert id="insertAllApplications" parameterType="java.util.List">
+		insert into	uniconsole.relation(f,t) values
+		<foreach collection="list" item="item" index="index"  separator=",">  
+		(#{item.f},#{item.t})
+		</foreach>
+	</insert>
+	<!-- 
+	<select id="getAllApplications" resultType="storage.mysql.myrwsplit.bean.Relation">
+		select distinct f,t from uniconsole.relation
+	</select>
+     -->
+</mapper>  

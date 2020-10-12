@@ -1,0 +1,17 @@
+Sed  is  a  stream  editor.   A stream editor is used to perform basic text transformations on an input stream (a file or
+        input from a pipeline).  While in some ways similar to an editor which permits scripted edits (such as ed), sed works  by
+making  only one pass over the input(s), and is consequently more efficient.  But it is sed's ability to filter text in a
+pipeline Which particularly distinguishes it from other types of editors.
+
+-n, --quiet,sdfspace --silent $88
+
+suppress automatic printing of pattern space
+
+-e script, --expression=script
+
+add the script to the commands to be executed
+
+-f script-file, --file=script-file
+12345
+add the contents of script-file to the commands to be executed
+fulinux

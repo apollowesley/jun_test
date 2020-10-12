@@ -1,0 +1,299 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              10/17/2018 20:40:53 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\51work) DEBUG OBJECTEXTEND PRI
+                    -NT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include<reg52.h>
+   2          #include<string.h>
+   3          #include<intrins.h>
+   4          #include "74HC595.h"
+   5          
+   6          char buf_string[64];  //定义数据包长度为15个字符
+   7          char clock[4] = {0,0,0,0}; //时间4位显示
+   8          char last_state = 0;
+   9          sbit LED=P2^6;
+  10          sbit LIGHT=P2^7;
+  11          //----------------------------------------------//
+  12          
+  13          unsigned long Time = 0;
+  14          unsigned char str[]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90};
+  15          
+  16          /*******************************
+  17                      串口通信
+  18              MCU:89C52RC        11.0592MHz
+  19          
+  20          //11.0592MHz 0xd0 1200bps
+  21          //12MHz 0xcc 1200bps
+  22          //11.0592MHz 0xfa 9600bps
+  23          //0xf4 11.0592MHz  0xf3 12MHz 4800bps
+  24          //均在SMOD=1的情况下（波特率倍增模式）
+  25          *******************************/
+  26          //串口发送函数
+  27          void PutString(unsigned char *TXStr)  
+  28          {                
+  29   1          ES=0;     
+  30   1           while(*TXStr!=0) 
+  31   1          {                      
+  32   2              SBUF=*TXStr;
+  33   2              while(TI==0);
+  34   2              TI=0;    
+  35   2              TXStr++;
+  36   2          }
+  37   1          ES=1; 
+  38   1      }
+  39          void PutChar(unsigned char c)
+  40          {
+  41   1        ES=0;
+  42   1        SBUF=c;
+  43   1        while(TI==0);
+  44   1        TI=0;
+  45   1        ES=1;
+  46   1      }
+  47          
+  48          unsigned long power(char a, char b)
+  49          {
+  50   1        unsigned long count = 1;
+  51   1        char i = 0;
+  52   1        for(;i < b;i++)
+  53   1        {
+  54   2          count*=a;
+C51 COMPILER V9.56.0.0   MAIN                                                              10/17/2018 20:40:53 PAGE 2   
+
+  55   2        }
+  56   1        return count;
+  57   1      }
+  58          
+  59          unsigned long TransLong(char *str)
+  60          {
+  61   1        unsigned long count = 0;
+  62   1        unsigned char length = strlen(str);
+  63   1        int i = length - 1;
+  64   1        for(;i > 0; i--)
+  65   1        {
+  66   2          count+=(power(10,(length - 1 - i))*(str[i] - '0'));
+  67   2        }
+  68   1        return count;
+  69   1      }
+  70          
+  71          void DealResult()
+  72          {
+  73   1          char *buf = buf_string;
+  74   1          if(buf_string[0] == 'i'){
+  75   2            //调用结果
+  76   2            //153908665
+  77   2            unsigned long secMillis = TransLong(buf_string);
+  78   2            unsigned char sec = (secMillis / 60) % 60;
+  79   2            //我们是东八区
+  80   2            unsigned char hour = ((secMillis / 60 + 8 * 60) / 60) % 24;
+  81   2            clock[0] = hour / 10;
+  82   2            clock[1] = hour % 10;
+  83   2            clock[2] = sec / 10;
+  84   2            clock[3] = sec % 10;
+  85   2      
+  86   2            
+  87   2            
+  88   2          }else if(buf_string[1] == 'c'){
+  89   2            //命令执行
+  90   2            if(0 == strcmp(buf,"con")){
+  91   3              //点灯
+  92   3              LED = 0;
+  93   3            }else if(0 == strcmp(buf,"coff")){
+  94   3              //灭灯
+  95   3              LED = 1;
+  96   3            }
+  97   2          }
+  98   1        
+  99   1      }
+ 100          
+ 101          
+ 102          //定时器1用作波特率发生器
+ 103          void Init_USART()  
+ 104          {
+ 105   1          //strcmp("a","b");
+ 106   1          SCON=0x50;  //串口方式1，使能接收
+ 107   1          TMOD|=0x21;  //定时器1工作方式2（8位自动重装初值）
+ 108   1          TMOD&=~0x10;
+ 109   1          TH1=0xfa;   //9600bps
+ 110   1          TL1=0xfa;  
+ 111   1          PCON|=0x80;  //SMOD=1
+ 112   1          TR1=1;
+ 113   1          TI=0;
+ 114   1          RI=0;
+ 115   1          //PS=1;   //提高串口中断优先级
+ 116   1          ES=1;  //开启串口中断使能
+C51 COMPILER V9.56.0.0   MAIN                                                              10/17/2018 20:40:53 PAGE 3   
+
+ 117   1      }
+ 118          
+ 119          
+ 120          /************************
+ 121                  中断函数
+ 122          ************************/
+ 123          //串口中断服务函数-----------
+ 124          unsigned char wnum = 0;
+ 125          unsigned char state = 0;
+ 126          void USART() interrupt 4   //标志位TI和RI需要手动复位，TI和RI置位共用一个中断入口
+ 127          {
+ 128   1          //if(ReceiveString())
+ 129   1          //{
+ 130   1              //数据包长度正确则执行以下代码
+ 131   1          //    Deal_UART_RecData();   
+ 132   1          //}
+ 133   1          char tmp;
+ 134   1          tmp = SBUF;
+ 135   1          if('$' == tmp)
+ 136   1          {
+ 137   2            //结束开始标志位
+ 138   2            state = 1;
+ 139   2          }else if('{' == tmp && state == 1){
+ 140   2            state = 2;
+ 141   2          }else if(state == 2)
+ 142   1          {
+ 143   2            //i:invoke 远程调用 c:command 命令下发
+ 144   2            if('i' == tmp || 'c' == tmp)
+ 145   2            {
+ 146   3              //第一位是信息标志位，标识着是哪种类型的标志
+ 147   3              state = 3;
+ 148   3              buf_string[0] = tmp;
+ 149   3              wnum++;
+ 150   3            }
+ 151   2            //这里其实忽略了一位，但是不会影响
+ 152   2          }else if(state == 3){
+ 153   2            if('s' == tmp){
+ 154   3              state = 4;
+ 155   3            }else if('e' == tmp){
+ 156   3              state = 99;
+ 157   3            }
+ 158   2          }else if('}' == tmp && state == 4){
+ 159   2            //开始写入buff
+ 160   2            state = 5;
+ 161   2            wnum = 1;
+ 162   2          }else if(state == 5){
+ 163   2            buf_string[wnum] = tmp;
+ 164   2            wnum++;
+ 165   2            if(wnum == 63){
+ 166   3              buf_string[63] = '\0';
+ 167   3              state = 100;
+ 168   3            }
+ 169   2          }else if(tmp == '}' && state == 99){
+ 170   2            state = 100;
+ 171   2            buf_string[wnum] = '\0';
+ 172   2          }
+ 173   1          
+ 174   1          if(state == 100){
+ 175   2            //写入完成,开始处理逻辑
+ 176   2            DealResult();
+ 177   2            
+ 178   2          }
+C51 COMPILER V9.56.0.0   MAIN                                                              10/17/2018 20:40:53 PAGE 4   
+
+ 179   1          RI=0;  //接收并处理一次数据后把接收中断标志清除一下，拒绝响应在中断接收
+             -忙的时候发来的请求
+ 180   1      }
+ 181          /***************************
+ 182                  主函数
+ 183          ***************************/
+ 184          void main()
+ 185          {
+ 186   1          unsigned char i = 0, j = 0, k = 0, state = 0;
+ 187   1          unsigned char dis_num[4];
+ 188   1          dis_num[0]=0x00;
+ 189   1          dis_num[1]=0xff;
+ 190   1          EA=1;
+ 191   1          Init_USART();
+ 192   1          PutString("System init\r\n");
+ 193   1      //    Hc595SendByte(0xff);
+ 194   1          
+ 195   1          while(1)
+ 196   1          {
+ 197   2              PutString("invoke 3241a641ebb443f6b1addd6daea21874 getGmt\r\n");
+ 198   2              for(i = 0; i <  60; i++)
+ 199   2              {
+ 200   3                for(j = 0; j < 150; j++)
+ 201   3                {
+ 202   4                  display(str[clock[0]],0x08);
+ 203   4                  display(str[clock[1]],0x04);
+ 204   4                  display(str[clock[2]],0x02);
+ 205   4                  display(str[clock[3]],0x01);
+ 206   4                  //取一个瞬时值，防止抖动
+ 207   4                  state = LIGHT;
+ 208   4                  if(state != last_state)
+ 209   4                  {
+ 210   5                    if(1 == state)
+ 211   5                    {
+ 212   6                      PutString("param light 0\r\n");
+ 213   6                    }
+ 214   5                    else
+ 215   5                    {
+ 216   6                      PutString("param light 1\r\n");
+ 217   6                    }
+ 218   5                    last_state = state;
+ 219   5                  }
+ 220   4                  
+ 221   4                }   
+ 222   3              }
+ 223   2                
+ 224   2            
+ 225   2              
+ 226   2            
+ 227   2              
+ 228   2            
+ 229   2      //      display(0xf0);
+ 230   2      //      Delay10ms(100);
+ 231   2      //      Writ8bit(0x0f);
+ 232   2              //扫描更新数码管
+ 233   2      //      for(i = 0;i>3;i++)
+ 234   2      //      {
+ 235   2                
+ 236   2      //        WriteWord(Digit0,displayTime/(60*60)/10); //显示小时的十位
+ 237   2      //        WriteWord(Digit1,displayTime/(60*60)%10); //显示小时的个位
+ 238   2      //        displayTime=displayTime%(60*60);      //取出分钟数
+ 239   2      //        WriteWord(Digit3,displayTime/60/10);    //显示分钟的十位
+C51 COMPILER V9.56.0.0   MAIN                                                              10/17/2018 20:40:53 PAGE 5   
+
+ 240   2      //        WriteWord(Digit4,displayTime/60%10);    //显示分钟的个位
+ 241   2      //        displayTime=displayTime%60;         //取出秒钟数
+ 242   2      //        WriteWord(Digit6,displayTime/10);     //显示秒钟的十位
+ 243   2      //        WriteWord(Digit7,displayTime%10);     //显示秒钟的个位
+ 244   2      //        delay(100);
+ 245   2        //    }
+ 246   2            
+ 247   2          }
+ 248   1      }
+ 249          
+ 250          
+ 251          //void Timer0(void) interrupt 1      //定时器0 中断函数
+ 252          //{
+ 253          //   TH0 = (65536 - 10000)/256;
+ 254          //   TL0 = (65536 - 10000)%256;     //每50ms产生一次中断
+ 255          //   Time=Time+10;  //每次中断时间加50ms
+ 256          //   if (Time > 86400000) Time=Time%86400000;  //超过24小时，时间对24小时取余数
+ 257          //}
+ 258          //void timerInit()   //定时器初始化
+ 259          //{
+ 260          //     TMOD = 0x21; //选择模式1  16位计数 最大计数65536
+ 261          
+ 262          //     TH0 = (65536 - 100000)/256;
+ 263          //     TL0 = (65536 - 100000)%256;
+ 264          //     IE = 0x8A;   //开启定时器中断 
+ 265          //     TR0  = 1;    //开启T0定时器
+ 266          //}
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    806    ----
+   CONSTANT SIZE    =    104    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     85      33
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

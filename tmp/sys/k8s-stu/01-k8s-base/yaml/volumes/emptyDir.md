@@ -1,0 +1,73 @@
+##
+```
+#emptyDir
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-emptydir
+  namespace: default
+spec:
+  containers:
+  - name: test-pod-emptydir
+    image: alpine
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do echo hello; sleep 10;done"]
+    volumeMounts:
+    - mountPath: /cache
+      name: cache-volume
+  volumes:
+  - name: cache-volume
+    emptyDir: {}
+```
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: restapi
+  template:
+    metadata:
+      labels:
+        app: restapi
+        tier: backend
+        track: stable
+    spec:
+      containers:
+      - name: restapi
+        image: xiliangma/restapi:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: dev
+          containerPort: 8080
+        - name: prod
+          containerPort: 8088
+        - name: https
+          containerPort: 443
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1024Mi
+          requests:
+            cpu: 300m
+            memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /swagger
+            port: 8080
+            scheme: HTTP 
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 3
+          failureThreshold: 3
+        volumeMounts:
+        - mountPath: /tmp/cache
+          name: test-volume # 通过指定名称关联存储
+      volumes:
+      - name: test-volume
+        emptyDir: {}
+```

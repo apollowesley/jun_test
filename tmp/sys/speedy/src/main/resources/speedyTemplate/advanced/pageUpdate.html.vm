@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>${context.bizName}</title>
+</head>
+<script src="/static/public/js/jquery.js"></script>
+<link href="/static/public/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="/static/public/css/public.css" rel="stylesheet" type="text/css"/>
+<link href="/static/public/css/system.css" rel="stylesheet" type="text/css"/>
+<script src="/static/public/js/public.js"></script>
+<script src="/static/public/js/Alert.js"></script>
+<script src="/static/common/${context.moduleName}/${context.moduleName}info.js"></script>
+<style>
+    ul li {
+        float: left;
+        width: 33%
+    }
+</style>
+<body>
+<div class="list-box">
+    <div class="title"><p>${context.bizName}更新</p></div>
+    <form role="form" id="${context.moduleName}data" action="javascript:void(0);">
+        <input type="hidden" class="form-control" th:value="${table}" name="table" id="table">
+        <ul>
+        #foreach ($item in $!{title})
+            <li>
+                <div class="input-group">
+                    <label class="input-group-addon">$!{item.COLUMN_COMMENT}</label>
+                    <input type="text" class="form-control $!{item.isnull}" th:value="${prefix}${context.moduleName}.$!{item.COLUMN_NAME}}"
+                           name="$!{item.COLUMN_NAME}"  id="$!{item.COLUMN_NAME}" placeholder="请输入$!{item.COLUMN_COMMENT}">
+                </div>
+            </li>
+        #end
+        </ul>
+        <div style="width:100%;float: left;">
+            <button type="button" id="${context.moduleName}Update" class="btn btn-default">提交</button>
+        	<button type="button" id="cancel" class="btn btn-default">取消</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

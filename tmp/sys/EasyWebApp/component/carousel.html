@@ -1,0 +1,30 @@
+<style disabled>
+    ul[data-name] {
+        margin:        0;
+        height:        100%;
+        list-style:    none;
+        padding:       0;
+    }
+    ul[data-name] input[type="radio"] {
+        display:    none;
+    }
+    ul[data-name] input[type="radio"] ~ * {
+        display:      none;
+        max-width:    100%;
+        margin:       auto;
+    }
+    ul[data-name] input[type="radio"]:checked ~ * {
+        display:    block;
+    }
+</style>
+<script src="carousel.js"></script>
+
+<ul data-name="list">
+    <li>
+        <label for="${view.__id__ + view.__index__}"></label>
+        <input type="radio"
+               id="${view.__id__ + view.__index__}" name="${scope.name}"
+               checked="${! view.__index__}" />
+        <img src="${view.url}" />
+    </li>
+</ul>

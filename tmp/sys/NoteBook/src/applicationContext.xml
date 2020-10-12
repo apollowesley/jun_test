@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+	xmlns:tx="http://www.springframework.org/schema/tx"	
+	>
+
+	<!-- #############spring注入给hibernate4的bean组件#############-->
+	
+	<!-- 定义数据源，这里用的是DBCP实现 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/hsp_hql?useUnicode=true&amp;characterEncoding=utf-8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="123456"></property>
+	</bean>
+	
+	<!-- 定义hibernate的sessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<!-- DEBUG输出SQL语句 -->
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- 排版DEBUG输出SQL语句 -->
+				<prop key="hibernate.format_sql">true</prop>
+				<!--  thread -->
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+				
+				<!-- 使用hibernate自动在数据库中创建表 
+				<prop key="hbm2ddl.auto">create</prop>				
+				-->
+			</props>			
+		</property>
+		<!-- 映射POJO对象 -->		
+		<property name="mappingResources">
+			<list>
+				<!-- 使用XML映射文件 -->
+				<value>model/Users.hbm.xml</value>
+				<value>model/Message.hbm.xml</value>	
+			</list>			
+		</property>				
+	</bean>
+	
+	<!-- 事务管理器配置, Hibernate4单数据源事务 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	
+	<!-- 配置事务增强处理Bean，指定事务管理器  -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 所有以find开头的方法时read-only的 -->
+            <tx:method name="find*" read-only="true"/>
+            <!-- 其它事务使用默认的事务设置 -->
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+   
+    <!-- AOP切面 -->
+    <aop:config  proxy-target-class="true">
+        <!-- 配置一个切入点，匹配service.impl层的所有方法的执行 -->
+        <aop:pointcut expression="execution(public * service.impl.*.*(..))" id="userPointCut"/>
+        <!-- 指定在userpointCut切入点应用txAdvice事务增强处理 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="userPointCut"/>
+    </aop:config>
+  
+    
+	<!-- 使用annotation定义事务，即tx:annotation-driven元素的出现开启了事务行为 
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	-->
+	<!-- #############spring注入给hibernate4的bean组件#############-->	
+	
+	<!-- ############# spring注入Struts2的bean #############-->	
+	<!-- 让spring管理action的实例，实现类为com.jkxy.action.userAction -->
+	<bean id="userAction" class="action.userAction">
+		<!-- 依赖注入业务逻辑组件 -->
+		<property name="userService" ref="userService"></property>		
+	</bean>	
+	<bean id="goMessageUiAction" class="action.goMessageUiAction">
+		<!-- 依赖注入业务逻辑组件 -->
+		<property name="messageService" ref="messageService"></property>		
+	</bean>	
+	<bean id="goPublishMessageUIAction" class="action.goPublishMessageUIAction">
+		<!-- 依赖注入业务逻辑组件 
+		<property name="messageService" ref="messageService"></property>		
+		-->
+	</bean>	
+	<bean id="publishMessageAction" class="action.publishMessageAction">
+		<!-- 依赖注入业务逻辑组件 -->
+		<property name="messageService" ref="messageService"></property>	
+		<property name="userService" ref="userService"></property>				
+	</bean>	
+	<!-- ############# spring注入Struts2的action #############-->
+	
+	<!-- ############# spring注入Service的bean #############-->	
+	<!-- 公共类必须定义成 abstract="true",让子类继承parent="student" --> 
+	<bean id="baseService" abstract="true">
+		<property name="baseDAO" ref="messageDAO"></property>
+	</bean>
+	<bean id="userService" parent="baseService" class="service.impl.UserService">
+		<property name="userDAO" ref="userDAO"></property>
+	</bean>
+	<bean id="messageService" parent="baseService" class="service.impl.MessageService">
+		<property name="messageDAO" ref="messageDAO"></property>
+	</bean>
+	<!-- ############# spring注入Service的bean #############-->	
+	
+	<!-- ############# spring注入DAO的bean #############-->	
+	<!-- 公共类必须定义成 abstract="true",让子类继承parent="student" --> 
+	<bean id="baseDAO" abstract="true">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="userDAO" parent="baseDAO" class="dao.impl.UserDAO">
+	<!-- 如果自己在这里配置属性sessionFactory,则会替换从父对象继承的数据  没有配置的话按照父类
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		-->
+	</bean>
+	<bean id="messageDAO" parent="baseDAO" class="dao.impl.MessageDAO">
+	<!-- 如果自己在这里配置属性sessionFactory,则会替换从父对象继承的数据  没有配置的话按照父类
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		-->
+	</bean>
+	<!-- ############# spring注入DAO的bean #############-->	
+	
+</beans>

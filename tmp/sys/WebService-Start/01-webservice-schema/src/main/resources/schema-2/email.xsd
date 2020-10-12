@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.w3school.com.cn"
+           xmlns="http://www.w3school.com.cn"
+           elementFormDefault="qualified">
+    <!--***************************XSD简易元素的定义***************************-->
+    <xs:element name="email">
+        <xs:complexType>
+            <xs:sequence maxOccurs="2">
+                <xs:element name="to" type="xs:string"/><!--1.字符串类型-->
+                <xs:element name="from" type="xs:string" default="liuburu@qq.com"/><!--2.缺省值-->
+                <xs:element name="heading" type="xs:string" fixed="邮件标题"/><!--3.固定值-->
+                <xs:element name="body" type="xs:string"></xs:element>
+                <xs:element name="sendDate" type="xs:date"/><!-- 日期类型YYYY-MM-DD -->
+                <xs:element name="sendTime" type="xs:time"/><!-- 日期类型hh:mm:ss-->
+                <xs:element name="sendDateTime" type="xs:dateTime"/><!-- 日期类型YYYY-MM-DDThh:mm:ss -->
+                <xs:element name="isSuccess" type="xs:boolean"/><!--boolean类型-->
+                <!-- <xs:element name="attrCount" type="xs:integer"/>--><!--integer类型-->
+                <xs:element name="attrCount"><!--4.限定值[0,3]-->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer"><!--xs:integer不能丢-->
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="3"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <!--5.枚举类型-->
+                <xs:element name="car">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Audi-艾迪"/>
+                            <xs:enumeration value="Golf-高尔夫"/>
+                            <xs:enumeration value="BMW-宝马"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <!--正则表达式-->
+                <xs:element name="password">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[a-zA-Z0-9]{8}"/><!--大写或小写字母 a - z 亦或数字 0 - 9-->
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+

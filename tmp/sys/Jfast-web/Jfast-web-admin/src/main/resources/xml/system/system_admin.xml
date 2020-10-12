@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="system.admin">
+
+    <select id="system.admin.list"  resultType="map">
+        select * from system_admin
+         <where>
+             <if test="name != null and name != ''">
+                 <bind name="searchName" value="'%' + name + '%'"/>
+                 and (login_name like #{searchName} or name like #{searchName})
+             </if>
+         </where>
+         order by id desc
+    </select>
+
+    <select id="system.admin.findByName" resultType="map">
+        select  * from system_admin where login_name = #{loginName} limit 1
+    </select>
+
+    <select id="system.admin.getRole" resultType="map">
+        select role_id from system_admin_role where admin_id = #{id}
+    </select>
+    <select id="system.admin.findById" resultType="map">
+        select  * from system_admin where id = #{id}
+    </select>
+
+    <update id="system.admin.updateByUserId" parameterType="map">
+        update system_admin set login_count = #{loginCount}, login_ip = #{loginIp}, last_login_time = #{lastLoginTime}
+        where id = #{userId}
+    </update>
+
+    <insert id="system.admin.save" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        insert into system_admin
+        <foreach collection="params.keys" item="key" open="(" close=")" separator="," >
+            ${key}
+        </foreach>
+        values
+        <foreach collection="params.values"  item="value" open="(" close=")" separator=",">
+            #{value}
+        </foreach>
+    </insert>
+
+    <update id="system.admin.update" parameterType="map">
+        update system_admin
+        <foreach collection="params.keys" item="key" open="set" separator="," >
+            ${key} = #{params[${key}]}
+        </foreach>
+        where id = #{params.id}
+    </update>
+</mapper>
