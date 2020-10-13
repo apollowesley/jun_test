@@ -1,0 +1,106 @@
+.order {
+  background: #f7f7f7;
+  min-height: 100vh;
+}
+
+.order-head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+}
+
+.order-container {
+  padding-top: 104rpx;
+  overflow: hidden;
+}
+
+.loading {
+  color: #666 !important;
+}
+
+.order-wrap {
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 20rpx 20rpx 0;
+}
+
+.order-wrap:first-child {
+  border-top: 0;
+}
+
+.o-head {
+  display: flex;
+}
+
+.o-head > image {
+  flex: none;
+  width: 100rpx;
+  height: 100rpx;
+  background: #eee;
+}
+
+.o-head > text {
+  flex: none;
+  width: 120rpx;
+  text-align: right;
+  color: #777;
+  font-size: 24rpx;
+}
+
+.o-head > view {
+  flex: auto;
+  padding-left: 20rpx;
+}
+
+.o-head > view > text {
+  display: block;
+}
+
+.o-head > view > text:first-child {
+  width: 470rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.o-head > view > text:last-child {
+  margin-top: 26rpx;
+  color: #777;
+  font-size: 24rpx;
+}
+
+.o-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 84rpx;
+  padding-left: 120rpx;
+}
+
+.o-foot .zPrice {
+  color: #777;
+  line-height: 1;
+  font-size: 28rpx;
+}
+
+.o-foot .btn {
+  font-size: 0;
+}
+
+.o-foot button {
+  width: 130rpx;
+  line-height: 48rpx;
+  padding: 0;
+  margin-left: 20rpx;
+  /* border: 0 !important; */
+  font-size: 28rpx;
+  background: #fff;
+  color: #555;
+}
+
+.pay, .code {
+  color: #fff !important;
+  background: #fd69ab !important;
+}

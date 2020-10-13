@@ -1,0 +1,7 @@
+{
+  "desc": "王佳斌",
+  "rules": [{
+  "action": "allow",
+  "page": "*"
+  }]
+}

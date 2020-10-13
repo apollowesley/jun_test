@@ -1,0 +1,194 @@
+.main {
+  min-height: 100vh;
+  background: #f7f7f7;
+  padding-bottom: 100rpx;
+}
+
+.head {
+  height: 260rpx;
+  position: relative;
+}
+
+.headwrap, .head > image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.headwrap {
+  z-index: 1;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headwrap > image {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.headinfo text {
+  color: #fd69ab;
+  display: block;
+}
+
+.headinfo text:first-child {
+  font-size: 32rpx;
+  margin-bottom: 15rpx;
+}
+
+.address {
+  background: #fff;
+  padding: 14rpx 20rpx 14rpx 0;
+  display: flex;
+}
+
+.addicon {
+  flex: none;
+  width: 100rpx;
+  display: flex;
+}
+
+.addicon image {
+  width: 28rpx;
+  height: 34rpx;
+  margin: auto;
+}
+
+.addinfo text {
+  display: block;
+  color: #666;
+  padding: 6rpx 0;
+}
+
+.shop {
+  margin-top: 20rpx;
+  background: #fff;
+}
+
+.shopwrap {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  padding: 0 20rpx;
+}
+
+.shopwrap image {
+  flex: none;
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 6rpx;
+  background: #eee;
+  margin-right: 20rpx;
+}
+
+.shopwrap text {
+  flex: none;
+  width: calc(100vw - 60rpx - 56rpx);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.goodswrap {
+  border-bottom: 4rpx solid #fff;
+  background: #f7f7f7;
+  display: flex;
+  padding: 20rpx;
+}
+
+.goodswrap:last-child {
+  border-bottom: 0;
+}
+
+.goodswrap > image {
+  flex: none;
+  width: 130rpx;
+  height: 130rpx;
+  background: #eee;
+  border-radius: 10rpx;
+}
+
+.goodsinfo {
+  flex: auto;
+  padding: 0 20rpx;
+}
+
+.goodsname {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.goodssize {
+  color: #888;
+  margin-top: 4px;
+  font-size: 24rpx;
+}
+
+.goodsprice {
+  flex: none;
+  width: 140rpx;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.goodsprice > text {
+  display: block;
+}
+
+.goodsprice .price, .goodsprice .num {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.goodsprice .price {
+  text-decoration: line-through;
+}
+
+.other > view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80rpx;
+  padding: 0 20rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.other .total {
+  border-bottom: 0;
+}
+
+.other .total text:last-child {
+  color: #fd69ab;
+}
+
+.order {
+  background: #fff;
+  padding: 20rpx 20rpx 0;
+  line-height: 1;
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 20rpx;
+}
+
+.order > view {
+  padding-bottom: 20rpx;
+}
+
+.orderbtn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+  padding: 10rpx;
+  background: #fff;
+}

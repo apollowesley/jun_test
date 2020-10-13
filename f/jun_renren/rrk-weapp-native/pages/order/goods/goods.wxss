@@ -1,0 +1,21 @@
+.order {
+  background: #f7f7f7;
+  min-height: 100vh;
+}
+
+.order-head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+}
+
+.order-container {
+  padding-top: 84rpx;
+  overflow: hidden;
+}
+
+.loading{
+  color: #666 !important;
+}

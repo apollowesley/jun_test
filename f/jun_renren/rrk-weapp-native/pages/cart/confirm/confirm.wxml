@@ -1,0 +1,59 @@
+<view class="order">
+  <navigator open-type="navigateTo" url="/pages/user/address/address" class="address">
+    <view class="ad-icon" wx:if="{{defaultAdd}}"><image src="../../../assets/address/address.png" lazy-load mode="aspectFit"></image></view>
+    <view class="ad-info" wx:if="{{defaultAdd}}">
+      <view class="ad-desc">
+        <view class="ad-name">{{defaultAdd.name}}</view>
+        <view class="ad-tel">{{defaultAdd.phone}}</view>
+        <view class="ad-tag" wx:if="{{defaultAdd.istrue === 1}}">默认</view>
+      </view>
+      <view class="ad-txt">{{defaultAdd.address}} {{defaultAdd.remark}}</view>
+    </view>
+    <view class="ad-right" wx:if="{{defaultAdd}}"><image src="../../../assets/address/arrow_right.png" lazy-load mode="aspectFit"></image></view>
+    <view class="ad-no" wx:else><image src="../../../assets/address/new_add@3x.png" lazy-load mode="aspectFit"></image><text>还没有收货地址，请添加</text></view>
+  </navigator>
+  <!-- 店铺商品 -->
+  <view class="shop" wx:for="{{views}}" wx:for-item="shop" wx:for-index="index" wx:key="index" wx:if="{{shop.onShow}}">
+    <view class="shop-wrap">
+      <image class="shop-pic" src="{{shop.picture}}" lazy-load mode="aspectFill"></image>
+      <view class="shop-name">{{shop.dianName}}</view>
+    </view>
+    <view class="goods">
+      <view class="goods-wrap" wx:for="{{shop.productS}}" wx:for-item="item" wx:for-index="idx" wx:key="idx" wx:if="{{item.selected}}">
+        <image class="goods-pic" src="{{item.picture}}" lazy-load mode="aspectFill"></image>
+        <view class="goods-info">
+          <view class="goods-name">{{item.productName}}</view>
+          <view class="goods-desc">{{item.norms}}</view>
+          <view class="goods-box">
+            <view class="goods-price">¥{{filter.toFlo2(item.sellPrice)}}</view>
+            <view class="goods-num">×{{item.num}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="post">
+      <view class="post-tit">配送方式</view>
+      <view class="post-txt">¥{{filter.toFlo2(shop.totalPost)}}</view>
+    </view>
+    <view class="remark">
+      <view class="remark-tit">买家留言</view>
+      <view class="remark-txt">
+        <input placeholder="有什么想对商家说的可以写在这里哦" data-index="{{index}}"  bindinput="remarkInput" />
+      </view>
+    </view>
+    <view class="info">共计{{shop.totalNum}}件商品 小计<text>¥{{filter.toFlo2(shop.totalPrice)}}</text></view>
+  </view>
+  <!-- submit -->
+  <view class="bottom">
+    <view class="bottom-info">
+    合计金额：
+      <text class="price">¥{{filter.toFlo2(totalPrice)}}</text>
+    </view>
+    <view class="bottom-btn">
+      <i-button type="rrk" loading="{{loading}}" bindtap="onSubmit" long>结算</i-button>
+    </view>
+  </view>
+</view>
+
+<!-- 过滤器 -->
+<wxs module="filter" src="../../../filters/index.wxs"></wxs>

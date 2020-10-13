@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 2.settings:包含很多的重要设置 setting:用来设置每一个设置项 name:设置项名 value:设置项值 例如：mapUnderscoreToCamelCase 
+		默认为false 这个的作用是驼峰命名转换，l_name -> lName -->
+	<settings>
+		<!-- 允许 JDBC 支持自动生成主键 -->
+		<setting name="useGeneratedKeys" value="true"/>
+		<!--开启驼峰命名 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<!--是否开启二级缓存 -->
+		<setting name="cacheEnabled" value="false" />
+		<!-- 打开延迟加载开关 -->
+		<!-- 是否懒加载 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 是否积极加载   false为按需要加载 -->
+		<setting name="aggressiveLazyLoading" value="false" />
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+	<!-- 实体类.xml映射文件中 参数resulType可用 -->
+	<!--<typeAliases>
+		&lt;!&ndash; 单个定义别名 &ndash;&gt;
+		&lt;!&ndash; <typeAlias type="com.jplee.mybatis.model.RcUser" alias="RcUser"/> &ndash;&gt;
+		&lt;!&ndash; 批量定义别名 别名为包下实体类类名 &ndash;&gt;
+		<package name="com.jplee.boot.model" />
+	</typeAliases>
+	
+	&lt;!&ndash; 定义映射文件 &ndash;&gt;
+	<mappers>
+		&lt;!&ndash;<mapper resource="com/jplee/boot/mapper/RcUserMapper.xml"/>&ndash;&gt;
+		<package name="com.jplee.boot.mapper"></package>
+	</mappers>-->
+	
+</configuration>  

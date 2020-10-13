@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "个人中心",
+  "usingComponents": {
+      "hot-live": "/components/user/hotLive/index",
+      "load-more": "/components/iview/load-more/index"
+  }
+}

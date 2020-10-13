@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "商品订单",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "i-tabs": "/components/iview/tabs/index",
+    "i-tab": "/components/iview/tab/index",
+    "load-more": "/components/iview/load-more/index",
+    "order-wrap": "/components/order/orderWrap/index"
+  }
+}

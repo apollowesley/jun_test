@@ -1,0 +1,57 @@
+.address {
+  background: #f7f7f7;
+  min-height: 100vh;
+  padding-bottom: 100rpx;
+}
+
+.add-wrap {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+
+.add-wrap.add-switch {
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.add-title {
+  flex: none;
+  min-width: 130rpx;
+  padding-right: 20rpx;
+}
+
+.add-input {
+  flex: auto;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  min-height: 60rpx;
+  height: 60rpx;
+}
+
+.add-icon {
+  flex: none;
+  width: 48rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.add-icon image{
+  width: 28rpx;
+  height: 34rpx;
+}
+
+.bottom-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  border-top: 1px solid #eee;
+  background: #fff;
+  width: 100%;
+  padding: 10rpx;
+}

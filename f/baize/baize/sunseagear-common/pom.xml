@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>baize</artifactId>
+        <groupId>com.sunseagear</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>sunseagear-common</artifactId>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <url>http://www.sunseagear.com</url>
+
+    <modules>
+        <module>sunseagear-common-base</module>
+        <module>sunseagear-common-datarule</module>
+        <module>sunseagear-common-query</module>
+        <module>sunseagear-common-utils</module>
+        <module>sunseagear-common-oss</module>
+        <module>sunseagear-common-quartz</module>
+        <module>sunseagear-common-sms</module>
+        <module>sunseagear-common-email</module>
+        <module>sunseagear-common-tenant</module>
+    </modules>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!-- 编码和编译和JDK版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/activeMQ.iml" filepath="$PROJECT_DIR$/activeMQ.iml" />
+      <module fileurl="file://$PROJECT_DIR$/activeMQ-queue/activeMQ-queue.iml" filepath="$PROJECT_DIR$/activeMQ-queue/activeMQ-queue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/activeMQ-topic/activeMQ-topic.iml" filepath="$PROJECT_DIR$/activeMQ-topic/activeMQ-topic.iml" />
+    </modules>
+  </component>
+</project>
+

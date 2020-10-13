@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>主页侧滑菜单</title>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>	
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style type="text/css">
+			body,.mui-content {
+				color: #fff;
+				background: url(images/index-menu-bg.png) no-repeat fixed top;
+			}
+			.title {
+				margin: 35px 15px 10px;
+			}
+			.title+.content {
+				margin: 10px 15px 35px;
+				color: #bbb;
+				text-indent: 1em;
+				font-size: 14px;
+				line-height: 24px;
+			}
+			.mui-table-view {
+				margin-bottom: 35px;
+				background: rgba(255,255,255,.1);
+			}
+			#login-btn{
+				border-radius: 5px;
+				padding: 5px 20px;
+				box-shadow: 2px 2px 5px rgba(255,145,0,.7);
+        	}
+        	.content > p{
+        		margin: 20px 10px 20px 10px;
+        	}
+        	.mui-icon span{
+        		font-size: 18px;
+        	}
+        	.content > ul :not(:first-child){
+        		margin-top: -20px;
+        	}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="hr-30"></div>
+			<div class="content">
+				<div style="text-indent: 20px;">36Kr,让创业更简单</div>	
+				<p><button id="login-btn" type="button" class="mui-btn mui-btn-danger mui-btn-block">登录</button></p>
+			</div>
+			<div class="title">圈子</div>
+			<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" open-type="common" href="login.html">
+						<div>
+							<span class="mui-icon mui-icon-star"></span><span>我的收藏</span>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" open-type="common" href="login.html">
+						<div>
+							<span class="mui-icon mui-icon-compose"></span><span>我的文章</span>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="login.html">
+						<div>
+							<span class="mui-icon mui-icon-weibo"></span><span>我的关注</span>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="login.html">
+						<div>
+							<span class="mui-icon mui-icon-flag"></span><span>融资人</span>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="login.html">
+						<div>
+							<span class="mui-icon mui-icon-personadd"></span><span>众筹</span>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="feedback.html">
+						<div>
+							<span class="mui-icon mui-icon-email"></span><span>意见反馈</span>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="about.html">
+						<div>
+							<span class="mui-icon mui-icon-info"></span><span>关于</span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script>
+			// 侧滑菜单
+			var aniShow = "slide-in-right";
+			//关于backbutton和menubutton两个按键的说明，在iOS平台不存在，故需隐藏
+			if(!mui.os.android){
+				var span = document.getElementById("android-only")
+				if(span){
+					span.style.display = "none";
+				}
+				aniShow = "pop-in";
+			}
+			var subWebview=null,template=null,index=null;
+			mui.plusReady(function () {
+				//获得主页面webview引用；
+				index = plus.webview.currentWebview().opener();
+			})
+			mui('.mui-table-view').on('tap', 'a', function() {
+				var id = this.getAttribute("href");
+				var type = this.getAttribute("open-type");
+				var href = this.href;
+				var webview_style = {
+					popGesture: "close"
+				};
+				mui.openWindow({
+					id: id,
+					url: href,
+					styles: webview_style,
+					show: {
+						aniShow: aniShow
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			
+			window.addEventListener('dragstart',function(e){
+				mui.gestures.touch.lockDirection = true; //锁定方向
+				mui.gestures.touch.startDirection = e.detail.direction;
+			});
+			window.addEventListener('dragleft', function(e) {
+				if(!mui.isScrolling){
+					e.detail.gesture.preventDefault();	
+				}
+			});
+			//监听左滑事件，若菜单已展开，左滑要关闭菜单；
+			window.addEventListener("swipeleft",function (e) {
+				if(Math.abs(e.detail.angle)>170){
+					close();						
+				}
+			});
+		</script>
+	</body>
+</html>

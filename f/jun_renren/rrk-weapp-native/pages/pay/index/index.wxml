@@ -1,0 +1,29 @@
+<view>
+  <view class="pay">
+    <view class="pay-head">
+      <view class="pay-head-wrap">
+        <view class="pay-icon">
+          <text></text>支付金额</view>
+        <view class="pay-price">￥{{filter.toFlo2(totalMoney)}}</view>
+      </view>
+    </view>
+    <view class="pay-contain">
+      <view class="pay-title">选择支付方式</view>
+      <view class="pay-wrap">
+        <label>
+          <view class="input-icon">
+            <text></text>微信支付
+          </view>
+          <radio checked color="#fd69ab"></radio>
+        </label>
+      </view>
+    </view>
+    <view class="btn">
+      <i-button type="rrk" bindtap="wxPay" size="small">立即支付</i-button>
+    </view>
+  </view>
+</view>
+
+
+<!--  -->
+<wxs module="filter" src="../../../filters/index.wxs"></wxs>

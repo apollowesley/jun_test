@@ -1,0 +1,24 @@
+#端口
+server:
+    port: 2014
+#spring
+spring:
+  session:
+     store-type: none
+  messages: #国际化
+      basename: i18n/messages,i18n/ValidationMessages
+  thymeleaf: #关闭默认模板引擎
+    cache: false
+    enabled: false
+  aop:  #使用CGLIB来实现AOP的时候
+     proxy-target-class: true
+
+#beetl配置
+beetlsql:
+  enabled: false
+beetl:
+  formTag:
+    prefix: form
+  enabled: false
+  suffix: html
+  templatesPath: templates

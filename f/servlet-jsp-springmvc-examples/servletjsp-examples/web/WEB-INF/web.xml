@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <filter>
+        <filter-name>CharsetEncodingFilter</filter-name>
+        <filter-class>fun.oook.filter.CharsetEncodingFilter</filter-class>
+        <async-supported>true</async-supported>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharsetEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>SimpleServlet</servlet-name>
+        <servlet-class>fun.oook.c01.SimpleServlet</servlet-class>
+        <load-on-startup>10</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SimpleServlet</servlet-name>
+        <url-pattern>/simple</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <servlet-class>fun.oook.c01.WelcomeServlet</servlet-class>
+        <load-on-startup>20</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <url-pattern>/welcome</url-pattern>
+    </servlet-mapping>
+
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <scripting-invalid>true</scripting-invalid>
+            <!-- 禁用jsp页面脚本 -->
+        </jsp-property-group>
+    </jsp-config>
+
+    <!-- restricts access to JSP pages   -->
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>JSP pages</web-resource-name>-->
+<!--            <url-pattern>/c12/*</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint/>-->
+<!--    </security-constraint>-->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Servlet1</web-resource-name>
+            <url-pattern>/c12/servlet1</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>member</role-name>
+            <role-name>manager</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <!--        <auth-method>BASIC</auth-method>-->
+        <!--        <auth-method>DIGEST</auth-method>-->
+        <!--        <realm-name>Members Only</realm-name>-->
+
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/c12/login.html</form-login-page>
+            <form-error-page>/c12/error.html</form-error-page>
+        </form-login-config>
+    </login-config>
+    <welcome-file-list>
+        <welcome-file>/c03/welcome.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

@@ -1,0 +1,57 @@
+<view class="main">
+  <!-- 头部 -->
+  <view class="head">
+    <view class="headwrap">
+      <view class="headinfo">
+        <text class="headstatus">{{view.status}}</text>
+        <text class="headmsg" wx:if="{{view.endtime}}">还剩{{filter.second2time(view.endtime)}}关闭</text>
+      </view>
+      <image wx:if="{{view}}" src="../../../assets/order/status{{view.statuscode}}.png" lazy-load mode="aspectFit"></image>
+    </view>
+    <image src="../../../assets/order/order_head@2x.png" lazy-load mode="aspectFill"></image>
+  </view>
+  <!-- 地址 -->
+  <view class="address">
+    <view class="addicon"><image src="../../../assets/address/address.png" lazy-load mode="aspectFill"></image></view>
+    <view class="addinfo">
+      <text>{{view.username}} {{view.phone}}</text>
+      <text>{{view.address}}</text>
+    </view>
+  </view>
+  <!-- 店铺、商品信息 -->
+  <view class="shop">
+    <view class="shopwrap">
+      <image src="{{view.shoplogo}}" lazy-load mode="aspectFill"></image>
+      <text>{{view.shopname}}</text>
+    </view>
+    <view class="goods">
+      <view class="goodswrap" wx:for="{{view.products}}" wx:key="index">
+        <image src="{{item.pic}}" lazy-load mode="aspectFill"></image>
+        <view class="goodsinfo">
+          <view class="goodsname">{{item.productname}}</view>
+          <view class="goodssize">{{item.norms}}</view>
+        </view>
+        <view class="goodsprice">
+          <text class="sellprice">¥{{item.saleprice}}</text>
+          <text class="price">¥{{item.price}}</text>
+          <text class="num">×{{item.count}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="other">
+      <view class="post"><text>运费</text><text>¥ {{view.postage}}</text></view>
+      <view class="total"><text>实付款(含运费)</text><text>¥ {{view.zprice}}</text></view>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="order">
+    <view class="orernum" wx:if="{{view.ordernum}}">订单编号：{{view.ordernum}}</view>
+    <view class="createtime" wx:if="{{view.time}}">创建时间：{{view.time}}</view>
+    <view class="canneltime" wx:if="{{view.cancletime}}">取消时间：{{view.cancletime}}</view>
+  </view>
+</view>
+<view class="orderbtn">
+  <i-button type="rrk" size="small" long disabled="{{view.statuscode!=='0'&&view.statuscode!=='8'}}" data-num="{{view.ordernum}}" data-price="{{view.zprice}}" bind:click="toPay">支付</i-button>
+</view>
+
+<wxs module="filter" src="../../../filters/index.wxs"></wxs>

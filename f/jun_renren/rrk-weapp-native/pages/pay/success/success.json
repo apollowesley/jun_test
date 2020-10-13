@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "支付成功",
+  "usingComponents": {
+    "i-button": "/components/iview/button/index"
+  }
+}

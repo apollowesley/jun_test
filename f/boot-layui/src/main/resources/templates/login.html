@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <title>登录</title>
+</head>
+<body class="layui-layout-login">
+<div class="login-bg">
+    <div class="cover"></div>
+</div>
+<div class="login-content">
+    <h1 class="login-box-title"><i class="fa fa-fw fa-user"></i>[[#{login.tip}]]</h1>
+    <!--<form class="layui-form" th:action="@{/login}" method="post">-->
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-icon layui-icon-username" for="username"></label>
+            <input class="layui-input" type="text" name="username" id="username" th:placeholder="#{login.username}" placeholder="用户名">
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-icon layui-icon-password" for="password"></label>
+            <input class="layui-input" type="password" name="password" id="password" th:placeholder="#{login.password}" placeholder="密码" lay-verify="password">
+        </div>
+        <!--<div th:if="${isCaptcha}" class="layui-form-item captcha-item">
+            <label class="layui-icon layui-icon-vercode"></label>
+            <input class="layui-input" type="text" name="captcha" autocomplete="off" placeholder="验证码">
+            <img class="captcha-img" th:src="@{/captcha}" />
+        </div>-->
+        <div class="layui-form-item">
+            <input type="checkbox" name="rememberMe" th:title="#{login.remember}" title="记住我" lay-skin="primary" />
+            <a class="layui-layout-right forget-password" href="javascript:alert('请联系超级管理员！')">[[#{login.forgot}]]</a>
+        </div>
+        <button class="layui-btn layui-btn-fluid ajax-login" lay-filter="login-form" lay-submit=""><i class="fa fa-sign-in fa-lg fa-fw"></i> [[#{login.submit}]]</button>
+        <div class="layui-form-item">
+        <!--<p class="btn btn-sm" th:href="">中文</p>
+        <p class="btn btn-sm">English</p>-->
+        <a class="btn-sm" th:href="@{/login.html(l='zh_CN')}">中文</a>
+        <a class="btn-sm" th:href="@{/login.html(l='en_US')}">English</a>
+        </div>
+    </form>
+</div>
+
+<style type="text/css">
+    a{
+        cursor: pointer;
+    }
+    .layui-layout-login .login-bg{
+        background-color: #e7e7e7;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+    .layui-layout-login .login-bg .cover{
+        background-color: #009688;
+        height: 50%;
+    }
+    .layui-layout-login .login-content{
+        width:300px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform:translate(-50%,-50%);
+        background-color: #ffffff;
+        padding: 40px;
+        padding-top: 32px;
+        -webkit-box-shadow: 0px 3px 20px 3px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 3px 20px 3px rgba(0, 0, 0, 0.15);
+    }
+    /*.layui-layout-login .login-content.captcha{
+        width:300px;
+        padding-bottom: 38px;
+    }
+    .layui-layout-login .login-content.captcha .captcha-item .layui-icon{
+        font-size: 16px;
+    }
+    .layui-layout-login .login-content.captcha .captcha-item .layui-input{
+        float: left;
+        width: 180px;
+    }
+    .layui-layout-login .login-content.captcha .captcha-item .captcha-img{
+        float: right;
+        height: 38px;
+        cursor: pointer;
+    }*/
+    .layui-layout-login .login-box-title{
+        font-size: 26px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #444444;
+    }
+    .layui-layout-login .layui-form-item{
+        position: relative;
+        margin-bottom: 20px;
+        min-height: 18px;
+    }
+    .layui-layout-login .layui-form-item label{
+        position: absolute;
+        top:0;
+        left: 0;
+        font-size: 18px;
+        width: 38px;
+        line-height: 38px;
+        text-align: center;
+        color: #999999;
+    }
+    .layui-layout-login .layui-form-item input[type=text],
+    .layui-layout-login .layui-form-item input[type=password]{
+        padding-left: 36px;
+        border: 1px solid #ddd;
+        transition: all 0s;
+        -webkit-transition: all 0s;
+    }
+    .layui-layout-login .layui-form-item .layui-form-checkbox{
+        margin-top: 0;
+    }
+    .layui-layout-login .layui-form-item .layui-form-checkbox .layui-icon{
+        width: 14px;
+        height: 14px;
+        top: 1px;
+        line-height: 14px;
+    }
+    .layui-layout-login .layui-form-item .layui-form-checkbox[lay-skin=primary]:hover i {
+        border-color: #009688;
+    }
+    .layui-layout-login .layui-form-item .layui-form-checked[lay-skin=primary] i{
+        border-color: #009688;
+        background-color: #009688;
+    }
+    .layui-layout-login .layui-form-item .forget-password{
+        color: #009688;
+    }
+
+    /*.btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:4px}*/
+
+    .btn-sm{padding:10px 55px;font-size:14px;line-height:1.5;border-radius:3px;color:#444444;}
+
+
+</style>
+<script th:replace="/common/template :: script"></script>
+<!--<script th:src="@{/js/login.js}" charset="utf-8"></script>-->
+
+<script charset="utf-8">
+    ;(function () {
+        layui.use(['form', 'layer', 'jquery'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , $ = layui.jquery;
+
+            //自定义验证规则
+            form.verify({
+                password: [
+                    /^[\S]{6,12}$/
+                    ,'密码必须6到12位，且不能出现空格'
+                ]
+
+            });
+
+            //监听提交
+            form.on('submit(login-form)', function (data) {
+                console.log(data);
+
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                })
+
+                var field = data.field;
+                //ajax和后台交互,ansyc:false表示请求执行完了才会往下执行
+                $.ajax({
+                    type: "post",
+                    url: "/boot-layui/login",
+                    data: field,
+                    dataType: "json",
+                    ansyc:false,
+                    success: function (resp) {
+                        layer.alert(resp.code);
+
+                        console.log(resp.code);
+
+                        if(resp.code != "200"){
+                            layer.alert(resp.msg);
+                        }
+                        window.location.href = "/boot-layui/user/add";
+                    }
+                });
+
+                return false;
+            });
+
+        });
+    })();
+</script>
+</body>
+</html>
+

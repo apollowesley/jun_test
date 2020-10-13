@@ -1,0 +1,15 @@
+.idea
+target
+*.iml
+
+web/WEB-INF/classes
+
+*/logs/
+*/classes/
+*.class
+
+rebel*.xml
+/web/c09/image/test.jpeg
+/servletjpa-examples/web/WEB-INF/classes
+/servletjpa-examples/web/logs
+/springmvc-examples/web/WEB-INF/classes/

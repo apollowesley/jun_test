@@ -1,0 +1,45 @@
+<!--pages/groupon/confirm.wxml-->
+<view class="order">
+  <!-- 商品信息 -->
+  <view class="shop" wx:if="grouponInfo">
+    <view class="goods">
+      <view class="goods-wrap">
+        <image class="goods-pic" src="{{grouponInfo.picture}}" lazy-load mode="aspectFill" />
+        <view class="goods-info">
+          <view class="goods-box">
+            <view class="goods-name">{{grouponInfo.productName}}</view>
+            <view class="goods-price">¥{{grouponInfo.sellPrice}}</view>
+          </view>
+          <view class="goods-box">
+            <view class="goods-price"></view>
+            <view class="goods-num">×{{selectNum}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="post">
+      <view class="post-tit">购买数量</view>
+      <view class="post-txt">
+        <zan-stepper stepper="{{selectNum}}" min="1" size="small" bind:change="numChange"></zan-stepper>
+      </view>
+    </view>
+    <view class="post">
+      <view class="post-tit">联系方式</view>
+      <view class="post-txt">{{userInfo.MobilePhone}}</view>
+    </view>
+    <view class="info">共计{{selectNum}}件商品 小计
+      <view>¥{{filter.toFlo2(totalPrice)}}</view>
+    </view>
+  </view>
+  <!-- 底部按钮 -->
+  <view class="bottom" v-if="grouponInfo">
+    <view class="bottom-info">合计金额：
+      <view>¥{{filter.toFlo2(totalPrice)}}</view>
+    </view>
+    <view class="bottom-btn">
+      <i-button type="rrk" loading="{{loading}}" bindtap="onSubmit" long>结算</i-button>
+    </view>
+  </view>
+</view>
+<!-- 过滤器 -->
+<wxs module="filter" src="../../filters/index.wxs"></wxs>

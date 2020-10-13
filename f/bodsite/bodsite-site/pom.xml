@@ -1,0 +1,159 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.bodsite</groupId>
+		<artifactId>bodsite-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>bodsite-site</artifactId>
+	<packaging>war</packaging>
+	<name>${project.artifactId}</name>
+
+	<dependencies>
+		<!-- dubbo -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<exclusions>
+				<exclusion><!-- 排除自带依赖 -->
+					<artifactId>spring</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>netty</artifactId>
+					<groupId>org.jboss.netty</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- zkclient -->
+		<dependency>
+			<groupId>com.101tec</groupId>
+			<artifactId>zkclient</artifactId>
+		</dependency>
+		<!-- zookeeper -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+		</dependency>
+		<!-- spring begin -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<!-- JSR-303 Validation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.bodsite</groupId>
+			<artifactId>bodsite-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bodsite</groupId>
+			<artifactId>bodsite-common</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bodsite</groupId>
+			<artifactId>bodsite-site-api</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bodsite</groupId>
+			<artifactId>bodsite-search-api</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.thetransactioncompany/cors-filter -->
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>cors-filter</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.thetransactioncompany/java-property-utils -->
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>java-property-utils</artifactId>
+			<version>1.10</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<!-- filters中定义了变量配置文件的地址，其中地址中的环境变量就是perent中profile中定义的值 resource中定义那些文件目录下的配置文件定义的变量将被filter中的配置文件信息所替换成固定值 
+			<filters> <filter>../${build.deployment}.properties</filter> </filters> -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>*.*</include>
+					<include>META-INF/spring/*</include>
+					<include>spring/*</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources/system/${build.deployment}</directory>
+				<targetPath>system</targetPath>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<includes>
+					<include>*.*</include>
+					<include>META-INF/spring/*</include>
+					<include>spring/*</include>
+				</includes>
+			</testResource>
+			<testResource>
+				<directory>src/test/resources/system/${build.deployment}</directory>
+				<targetPath>system</targetPath>
+			</testResource>
+		</testResources>
+	</build>
+</project>
+

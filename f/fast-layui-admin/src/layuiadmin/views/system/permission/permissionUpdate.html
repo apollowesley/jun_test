@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>编辑权限</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../lib/layui/css/layui.css">
+
+    <style>
+        .layui-row {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-form" lay-filter="layuiadmin-form-admin" id="layuiadmin-form-admin"
+        style="padding: 20px 30px 20px 30px;">
+        <input type="hidden" name="id" id="id">
+        <input type="hidden" name="parentId" id="parentId">
+        <input type="hidden" name="grade" id="grade">
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">* </span>名称</label>
+            <div class="layui-input-inline">
+                <input type="text" id="name" name="name" lay-verify="required" placeholder="请输入" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">* </span>链接</label>
+            <div class="layui-input-inline">
+                <input type="text" id="url" name="url" lay-verify="required" placeholder="请输入" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">图标</label>
+            <div class="layui-input-inline">
+                <input type="text" id="imageUrl" name="imageUrl" placeholder="请输入" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">* </span>排序</label>
+            <div class="layui-input-inline">
+                <input type="text" id="priority" name="priority" lay-verify="required|number" placeholder="请输入"
+                    autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">* </span>类型</label>
+            <div class="layui-input-block">
+                <input type="radio" name="type" value="1" title="菜单" checked="">
+                <input type="radio" name="type" value="2" title="按钮">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-inline">
+                <input type="text" id="description" name="description" placeholder="请输入" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">权限</label>
+            <div class="layui-input-inline">
+                <input type="text" id="permission" name="permission" placeholder="请输入" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item layui-hide">
+            <input type="button" lay-submit lay-filter="permissionUpdateSubmit" id="permissionUpdateSubmit" value="确认">
+        </div>
+    </div>
+</body>
+<script src="../../../lib/jquery/jquery-3.3.1.min.js"></script>
+<script src="../../../lib/jquery/jquery.cookie.js"></script>
+<script src="../../../lib/jquery/jquery.session.js"></script>
+
+<script src="../../../utils/http.js"></script>
+<script src="../../../api/admin/sys-permission-api.js"></script>
+<script src="../../../lib/layui/layui.js"></script>
+<script src="../../../utils/utils.js"></script>
+<script>
+    //监听form表单的提交事件
+    layui.use(['jquery', 'form', 'element'], function () {
+        var form = layui.form,
+            element = layui.element,
+            $ = layui.jquery;
+
+        $(document).ready(function () {
+            var id = GetQueryString("id");
+            look(id);
+
+
+        });
+
+        //查看
+        function look(id) {
+            apiGet(permission.getPermissionById + id, null, function (res) {
+                form.val("layuiadmin-form-admin", {
+                    "id": res.data.id,
+                    "name": res.data.name,
+                    "parentId": res.data.parentId,
+                    "url": res.data.url,
+                    "imageUrl": res.data.imageUrl,
+                    "priority": res.data.priority,
+                    "type": res.data.type.toString(),
+                    "description": res.data.description,
+                    "grade": res.data.grade,
+                    "permission": res.data.permission,
+                });
+            })
+        }
+    });
+</script>
+
+</html>

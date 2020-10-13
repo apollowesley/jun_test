@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.renren</groupId>
+    <artifactId>renren-security</artifactId>
+    <version>4.0.0</version>
+  </parent>
+  <artifactId>renren-ureport</artifactId>
+  <name>renren-ureport</name>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+        <groupId>com.bstek.ureport</groupId>
+        <artifactId>ureport2-console</artifactId>
+        <version>2.3.0-SNAPSHOT</version>
+    </dependency>
+        
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+      <!-- 告诉Maven该到这里去下载snapshot版本的包 -->
+    <repositories>
+        <repository>
+		    <id>sonatype</id>
+		    <url>https://oss.sonatype.org/content/groups/public/</url>
+		</repository>
+    </repositories>
+    
+</project>

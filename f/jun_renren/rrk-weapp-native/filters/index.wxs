@@ -1,0 +1,49 @@
+var price1 = function (val) {
+  return parseFloat(val).toFixed(1)
+}
+
+var price2 = function (val) {
+  return parseFloat(val).toFixed(2)
+}
+
+var viewnum = function viewNum(val) {
+  if (parseFloat(val) > 10000) {
+    return (Math.ceil(parseFloat(val) / 1000) / 10) + 'w'
+  } else {
+    return parseFloat(val)
+  }
+}
+
+var groupStatus = function groupStatus(val) {
+  if (val === '1') {
+    return '待使用'
+  } else if (val === '4') {
+    return '待评价'
+  } else if (val === '2') {
+    return '退款/售后'
+  } else if (val === '6') {
+    return '过期'
+  } else {
+    return '待付款'
+  }
+}
+
+var groupValidity = function groupValidity(val) {
+  return val.split(',')[0]
+}
+
+var second2time = function second2time(val) {
+  var time = parseFloat(val)
+  var _h = Math.floor(time / 60 / 60 % 60)
+  var _m = Math.floor(time / 60 % 60)
+  return _h + '小时' + _m + '分'
+}
+
+module.exports = {
+  toFlo1: price1,
+  toFlo2: price2,
+  viewnum: viewnum,
+  groupStatus: groupStatus,
+  groupValidity: groupValidity,
+  second2time: second2time
+}

@@ -1,0 +1,34 @@
+<view class="main">
+  <view class="header">
+    <image src="{{thumb}}" class="thumb"></image>
+    <text class="nickname">{{nickname}}</text>
+  </view>
+  <view class="address-box">
+    <view class="address-manage">
+      <navigator url="/page/component/user/set/info">设置</navigator>
+    </view>
+  </view>
+  <view class="orders-box">
+    <view class="orders">我的流程</view>
+    <block wx:for="{{process}}">
+      <navigator url="">
+        <view class="process_list">
+          <view class="item">
+            <view class="title">
+              <text class="">{{item.title}}</text>
+              <text class="">--</text>
+              <text class="">当前节点：{{item.state}}</text>
+            </view>
+            <view>
+              <text class="message">申请人：{{item.name}}</text>
+            </view>
+            <view>
+              <text class="time">申请时间：{{item.time}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="line"></view>
+      </navigator>
+    </block>
+  </view>
+</view>

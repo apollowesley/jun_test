@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	<description>JMS简单应用配置[三种监听器，后两者可用于消费者向生产者发送回复消息]</description>
+	
+	<!-- ActiveMQ连接工厂 -->
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://localhost:61616"/>
+	</bean>
+	<!-- Spring Caching 连接工厂 -->
+	<bean id="cachingConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+		<property name="targetConnectionFactory" ref="connectionFactory"/>
+		<property name="sessionCacheSize" value="10"/>
+	</bean>
+	<!-- Spring JMS Template -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="cachingConnectionFactory"/>
+	</bean>
+	
+	
+	<!-- MessageListener消息监听器-开始 -->
+	<!-- Queue定义 -->
+	<bean id="notifyQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="q.notify"/>
+	</bean>
+	<!-- 使用JmsTemplate的消息生产者 -->
+	<bean id="notifyMessageProducer" class="com.github.xieyuqian.jms.simple.NotifyMessageProducer">
+		<property name="jmsTemplate" ref="jmsTemplate"/>
+		<property name="notifyQueue" ref="notifyQueue"/>
+	</bean>
+	<!-- 异步接收消息处理类 -->
+	<bean id="notifyMessageListener" class="com.github.xieyuqian.jms.simple.NotifyMessageListener"/>
+	<!-- 异步接收Queue消息Container -->
+	<bean id="queueContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="notifyQueue"/>
+		<property name="messageListener" ref="notifyMessageListener"/>
+	</bean>
+	<!-- MessageListener消息监听器-结束 -->
+	
+	
+	<!--  SessionAwareMessageListener消息监听器-开始 -->
+	<!-- 生产者的Queue -->
+	<bean id="samlQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="q.saml"/>
+	</bean>
+	<!-- 消费者返回消息的Queue -->
+	<bean id="samlResponseQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="q.samlResponse"/>
+	</bean>
+	<!-- 生产者 -->
+	<bean id="samlProducer" class="com.github.xieyuqian.jms.simple02.SamlProducer">
+		<property name="jmsTemplate" ref="jmsTemplate"/>
+		<property name="samlQueue" ref="samlQueue"/>
+	</bean>
+	<!-- 消费者监听器 -->
+	<bean id="samlListener" class="com.github.xieyuqian.jms.simple02.SamlListener">
+		<!-- 注入消费者返回消息Queue -->
+		<property name="samlResponseQueue" ref="samlResponseQueue"/>
+	</bean>
+	<!-- 消费者消息监听容器 -->
+	<bean id="samlContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="samlQueue"/>
+		<property name="messageListener" ref="samlListener"/>
+	</bean>
+	<!-- 生成者这边用于接收消费者返回消息的监听器 -->
+	<bean id="samlPListener" class="com.github.xieyuqian.jms.simple02.SamlPListener"/>
+	<!-- 生产者消息监听容器(用于获取消费返回的消息) -->
+	<bean id="samlPContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="samlResponseQueue"/>
+		<property name="messageListener" ref="samlPListener"/>
+	</bean>
+	<!--  SessionAwareMessageListener消息监听器-结束 -->
+	
+	
+	<!--  MessageListenerAdapter消息监听器-开始 -->
+	<!-- 生产者的Queue -->
+	<bean id="mlaQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="q.mla"/>
+	</bean>
+	<!-- 消费者返回消息的Queue -->
+	<bean id="mlaResponseQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="q.mlaResponse"/>
+	</bean>
+	<!-- 生产者 -->
+	<bean id="mlaProducer" class="com.github.xieyuqian.jms.simple03.MlaProducer">
+		<property name="jmsTemplate" ref="jmsTemplate"/>
+		<property name="mlaQueue" ref="mlaQueue"/>
+		<!-- 如果没有在MessageListenerAdapter中注入消费者回复消息的Queue则可以在此注入给生产者
+		<property name="mlaResponseQueue" ref="mlaResponseQueue"/>
+		 -->
+	</bean>
+	<!-- 消费者监听器(MessageListenerAdapter) -->
+	<bean id="mlaListenerAdapter" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<property name="delegate">
+			<bean class="com.github.xieyuqian.jms.simple03.MlaListener"/>
+		</property>
+		<property name="defaultListenerMethod" value="receiveMessage"/>
+		<property name="defaultResponseDestination" ref="mlaResponseQueue"/>
+	</bean>
+	<!-- 消费者消息监听容器 -->
+	<bean id="mlaContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="mlaQueue"/>
+		<property name="messageListener" ref="mlaListenerAdapter"/>
+	</bean>
+	<!-- 生成者这边用于接收消费者返回消息的监听器  -->
+	<bean id="mlaPListener" class="com.github.xieyuqian.jms.simple03.MlaPListener"/>
+	<!-- 生产者消息监听容器(用于获取消费返回的消息) -->
+	<bean id="mlaPContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="mlaResponseQueue"/>
+		<property name="messageListener" ref="mlaPListener"/>
+	</bean>
+	<!--  MessageListenerAdapter消息监听器-结束 -->
+</beans>

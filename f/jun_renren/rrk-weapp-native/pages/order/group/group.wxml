@@ -1,0 +1,32 @@
+<view class="order">
+  <view class="order-head">
+    <i-tabs current="{{current}}" color="#fd69ab" bindchange="onChange">
+      <i-tab key="10" title="全部"></i-tab>
+      <i-tab key="0" title="待付款"></i-tab>
+      <i-tab key="1" title="待使用"></i-tab>
+      <i-tab key="4" title="待评价"></i-tab>
+      <i-tab key="2" title="退款/售后"></i-tab>
+    </i-tabs>
+  </view>
+  <view class="order-container">
+    <view class="order-wrap" wx:for="{{orderView}}" wx:key="index" data-num="{{item.zOrderNum}}" data-state="{{item.state}}" bindtap="jumpToDetail">
+      <view class="o-head">
+        <image src="{{item.productPic}}" mode="aspectFill" lazy-load></image>
+        <view><text>{{item.productName}}</text><text>数量：{{item.number}}</text></view>
+        <text>{{filter.groupStatus(item.state)}}</text>
+      </view>
+      <view class="o-foot">
+        <view class="zPrice">总价：¥ {{filter.toFlo2(item.zPrice)}}</view>
+        <view class="btn">
+          <button size="mini" data-num="{{item.zOrderNum}}" data-index="{{index}}" catchtap="orderDel">关闭</button>
+          <button size="mini" class="code" wx:if="{{item.state === '1'}}" data-num="{{item.zOrderNum}}" catchtap="jumpToDetail">查看券码</button>
+          <button size="mini" class="pay" wx:if="{{item.state === '0'}}" data-num="{{item.zOrderNum}}" data-price="{{item.zPrice}}"catchtap="orderPay">付款</button>
+        </view>
+      </view>
+    </view>
+    <load-more i-class="loading" loading="{{!finished}}" tip="{{finished ? '暂无数据' : ''}}"></load-more>
+  </view>
+</view>
+
+<!--  -->
+<wxs module="filter" src="../../../filters/index.wxs"></wxs>

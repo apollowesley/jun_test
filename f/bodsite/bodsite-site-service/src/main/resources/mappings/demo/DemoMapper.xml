@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bodsite.demo.dao.DemoMapper">
+  <resultMap id="BaseResultMap" type="com.bodsite.demo.entity.Demo">
+    <id column="demo_id" jdbcType="INTEGER" property="demoId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    demo_id, name, age, sex
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bodsite_demo
+    where demo_id = #{demoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bodsite_demo
+    where demo_id = #{demoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bodsite.demo.entity.Demo">
+    insert into bodsite_demo (demo_id, name, age, 
+      sex)
+    values (#{demoId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{sex,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bodsite.demo.entity.Demo">
+    insert into bodsite_demo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="demoId != null">
+        demo_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="demoId != null">
+        #{demoId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bodsite.demo.entity.Demo">
+    update bodsite_demo
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+    </set>
+    where demo_id = #{demoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bodsite.demo.entity.Demo">
+    update bodsite_demo
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=TINYINT}
+    where demo_id = #{demoId,jdbcType=INTEGER}
+  </update>
+</mapper>

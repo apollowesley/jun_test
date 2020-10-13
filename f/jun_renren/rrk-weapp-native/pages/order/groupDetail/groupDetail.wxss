@@ -1,0 +1,168 @@
+.detail {
+  min-height: 100vh;
+  background: #f7f7f7;
+}
+
+.head {
+  background: #fff;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.head > image {
+  flex: none;
+  width: 200rpx;
+  height: 160rpx;
+  background: #eee;
+}
+
+.head > view {
+  flex: auto;
+  padding-left: 20rpx;
+}
+
+.head > view > view:last-child {
+  color: #fd69ab;
+  margin-top: 40rpx;
+}
+
+.desc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  height: 80rpx;
+  border-top: 1px solid #eee;
+  color: #80c269;
+}
+
+.desc > view {
+  padding: 0 40rpx;
+  display: flex;
+  align-items: center;
+}
+
+.desc > view > image{
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 16rpx;
+}
+
+.pay-btn {
+  padding: 30rpx 40rpx 10rpx;
+}
+
+.title {
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.ticket {
+  background: #fff;
+  color: #666;
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.ticket-head {
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+
+.ticket-body {
+  padding: 20rpx 20rpx 0;
+}
+
+.ticket-body view {
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket-body view:last-child {
+  margin-bottom: 0;
+}
+
+.ticket-body view text{
+  color: #80c269;
+}
+
+.tread {
+  background: #fff;
+  color: #666;
+  margin-top: 20rpx;
+}
+
+.tread-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0 20rpx 20rpx;
+}
+
+.tread-tel {
+  flex: none;
+  width: 140rpx;
+  height: 120rpx;
+  border-left: 1px solid #eee;
+  display: flex;
+}
+
+.tread-tel image{
+  width: 70rpx;
+  height: 70rpx;
+  margin: auto;
+  pointer-events: none;
+}
+
+.tread-info > view {
+  margin-bottom: 16rpx;
+}
+
+.tread-name {
+  color: #333;
+}
+
+.tread-juli {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.tread-juli image{
+  width: 28rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+.info {
+  background: #fff;
+  color: #666;
+  margin-top: 20rpx;
+}
+
+.info-wrap {
+  padding: 20rpx;
+  font-size: 0;
+}
+
+.info-wrap > view text {
+  width: 124rpx;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 24rpx;
+}
+
+.info-wrap > view text:first-child {
+  text-align: right;
+}
+
+.canvas {
+    margin: 20rpx auto auto;
+    width: 150px;
+    height: 150px;
+}

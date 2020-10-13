@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "navigationStyle": "default",
+  "navigationBarTitleText": "搜索仓库",
+  "enablePullDownRefresh": true
+}

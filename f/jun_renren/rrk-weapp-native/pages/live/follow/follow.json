@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "关注",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "live-wrap": "/components/user/liveWrap/index",
+    "load-more": "/components/iview/load-more/index"
+  }
+}

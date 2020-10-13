@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <title>登录</title>
+</head>
+<body class="layui-layout-login">
+<form class="layui-form">
+    <div class="login">
+        <div class="login-box">
+            <p class="title">T钱包运营管理平台</p>
+            <div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="text" id="userName" required lay-verify="required" autocomplete="off" placeholder="账号" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="password" id="password" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" onchange="passwordChange()">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">记住密码</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="close" id="rememberSwitch" lay-skin="switch" lay-filter="switchRemember" lay-text="ON|OFF">
+                    </div>
+                </div>
+                <!-- <div class="layui-form-item">
+                     <label class="layui-form-label">开关-默认关</label>
+                     <div class="layui-input-block">
+                         <input name="close" type="checkbox" lay-skin="switch" lay-text="ON|OFF">
+                     </div>
+                 </div>-->
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn subimt-btn" lay-submit lay-filter="login-form">登录</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<style type="text/css">
+    .login {
+        position: absolute;
+        background-color: #324057;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 402;
+    }
+
+    .title {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 36px;
+        color: #fff;
+        line-height: 72px;
+        top: -72px;
+        left: 0;
+    }
+
+    .login-box {
+        position: relative;
+        padding: 40px;
+        width: 400px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 5px 5px 10px 0 rgba(125, 125, 125, 0.6);
+    }
+    .layui-input-block {
+        margin-left:0px;
+    }
+    .layui-form-label {
+        padding-left:0px;
+        text-align:left;
+        width:58px;
+    }
+    .subimt-btn {
+        width:100%;
+    }
+    .layui-input:hover, .layui-textarea:hover{
+        border-color:#1E9FFF !important;
+    }
+</style>
+<script th:replace="/common/template :: script"></script>
+<!--<script th:src="@{/js/login.js}" charset="utf-8"></script>-->
+<script>
+    var $, form, layer;
+    var changeFlag = true;
+    layui.use(['jquery','form','layer'], function(){
+        $ = layui.jquery, form = layui.form,layer = layui.layer;
+        layer.config({offset:'t',time:1000});//配置全局项
+
+        //监听提交
+        form.on('submit(login-form)', function(data){
+
+        });
+    });
+
+</script>
+</body>
+</html>

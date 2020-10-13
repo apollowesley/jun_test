@@ -1,0 +1,81 @@
+.pay {
+  position: relative;
+}
+
+.pay-head {
+  width: 100%;
+  height: 288rpx;
+  background: url(https://gw.lgh81.com/Share/weapp/pay/bj.png) center bottom /cover no-repeat;
+  display: flex;
+  background-color: #fff;
+}
+
+.pay-head-wrap {
+  margin: auto;
+  font-size: 36rpx;
+  text-align: center;
+}
+
+.pay-icon {
+  display: flex;
+  align-items: center;
+}
+
+.pay-icon text {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 14rpx;
+  background: url(https://gw.lgh81.com/Share/weapp/pay/pay.png) center /contain no-repeat;
+}
+
+.pay-price {
+  font-size: 72rpx;
+  color: #fd69ab;
+  margin-top: 40rpx;
+}
+
+.pay-price:first-letter {
+  font-size: 28rpx;
+}
+
+.pay-contain {
+  width: 100%;
+  background: #fff;
+}
+
+.pay-title {
+  padding: 20rpx;
+  font-size: 28rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.pay-wrap label {
+  height: 128rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.input-icon {
+  display: flex;
+  align-items: center;
+}
+
+.input-icon text {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  background-image: url(https://gw.lgh81.com/Share/weapp/pay/sprites.png);
+  background-repeat: no-repeat;
+  background-size: 70rpx;
+}
+
+.btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+}

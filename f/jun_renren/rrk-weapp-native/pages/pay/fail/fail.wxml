@@ -1,0 +1,14 @@
+<view class="msg">
+  <view class="weui-msg">
+    <view class="weui-msg-icon">
+      <icon type="clear" size="70" color="#ed3f14"></icon>
+    </view>
+    <view class="weui-msg-area">
+      <view class="weui-msg-title">支付失败</view>
+      <view class="weui-msg-desc">下载人人咖购物App，享受更多优惠哦~</view>
+    </view>
+    <view class="weui-msg-btn">
+      <i-button type="error" bindtap="goback" size="small">返回</i-button>
+    </view>
+  </view>
+</view>

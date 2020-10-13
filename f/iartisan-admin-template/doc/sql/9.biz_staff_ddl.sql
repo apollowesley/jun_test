@@ -1,0 +1,10 @@
+CREATE TABLE `biz_staff` (
+  `STAFF_ID` varchar(48) NOT NULL COMMENT '主键',
+  `STAFF_NAME` varchar(50) NOT NULL COMMENT '员工姓名',
+  `STAFF_STATUS` varchar(1) DEFAULT NULL COMMENT 'Y:在职 N离职',
+  `STAFF_DEPT` varchar(48) DEFAULT NULL COMMENT '员工所在部门',
+  `STATUS` varchar(1) NOT NULL DEFAULT 'E' COMMENT '数据状态',
+  `CREATE_TIME` datetime DEFAULT NULL COMMENT '创建时间',
+  `UPDATE_TIME` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`STAFF_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='员工表'

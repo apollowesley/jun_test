@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<context:component-scan base-package="com.bodsite.*" />
+	<!-- 开启AOP注解 -->
+	<aop:aspectj-autoproxy />
+	<!-- 自定义扩展PropertyPlaceholderConfigurer 加载配置文件 -->
+	<bean id="propertyConfigurer" class="com.bodsite.common.config.properties.SystemProperty">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:system/*.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- spring加载log4j配置 -->
+	<bean id="log4jInitialization"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
+		<property name="targetMethod" value="initLogging" />
+		<property name="arguments">
+			<list>
+				<value>classpath:system/log4j.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<import resource="classpath:spring/application-mybatis.xml"/>
+</beans>

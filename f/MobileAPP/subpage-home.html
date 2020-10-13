@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>36 氪</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			html,body {
+				background-color: #efeff4;
+			}
+			.title{
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			.mui-control-content {
+				background-color: white;
+				min-height: 215px;
+			}
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+		
+			.mui-bar~.mui-content .mui-fullscreen {
+				height: auto;
+			}
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+			}
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			.mui-pull-top-tips .mui-pull-loading {
+				margin: 0;
+			}
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1mobile">
+							全部
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							氪TV
+						</a>
+						<a class="mui-control-item" href="#item3mobile">
+							近期活动
+						</a>
+						<a class="mui-control-item" href="#item4mobile">
+							O2O
+						</a>
+						<a class="mui-control-item" href="#item5mobile">
+							新硬件
+						</a>
+						<a class="mui-control-item" href="#item6mobile">
+							创业
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-group" id="list">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="article01.html">
+											<img class="mui-media-object mui-pull-right" src="images/thumb/thumb01.png">
+											<div class="mui-media-body">
+												关于独角兽，除了十亿美元，还有另一种解读
+												<p class='mui-ellipsis'>他们在我们生活中也始终扮演着重要的角色，或是改变我们的生活，或是曾经让我们眼前一亮后迅速普及，慢慢我们都把他们当成理所当然。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="article02.html">
+											<img class="mui-media-object mui-pull-right" src="images/thumb/thumb02.png">
+											<div class="mui-media-body">
+												即使在墙外，Google 也惦记着中国移动市场的生意
+												<p class='mui-ellipsis'>对于 Google 来说，中国和印度市场是其移动端布局不可获取的一部分。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.baidu.com">
+											<img class="mui-media-object mui-pull-right" src="images/thumb/thumb03.png">
+											<div class="mui-media-body">
+												避开K12战场，优儿学堂想以心理健康切入儿童心智成长服务
+												<p class='mui-ellipsis'>创始人苏德中为剑桥心理学博士毕业，曾任英国首相卡梅伦教改政策顾问。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.taobao.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/html5-web-sql.jpg">
+											<div class="mui-media-body">
+												按需道路救援服务 Urgent.ly 获 700 万美元 A 轮融资
+												<p class='mui-ellipsis'>和我们之前介绍过的 Honk 一样, Urgent.</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.souhu.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/iframe-tag.jpg">
+											<div class="mui-media-body">
+												通过DIY为你打造专属进口红酒的“花马”，获得数百万天使融资
+												<p class='mui-ellipsis'>红酒的毛利厚、复购率高以及市场增长快等，这几个特性吸引了不少创业者和投资人的兴趣。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.taobao.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/auto-complete-input.jpg">
+											<div class="mui-media-body">
+												蛋糕可不可以有“潮”牌？Woh hol要试下
+												<p class='mui-ellipsis'>提到时尚，很多人最先想到的都是时装，潮牌，很少会有人把经常见到的，多年没怎么变过的蛋糕同时尚联系起来。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.souhu.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/background-position.jpg">
+											<div class="mui-media-body">
+												Apple也玩标签，但 Ving是标签中的 emoji
+												<p class='mui-ellipsis'>Anyway，我们很期待。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="article01.html">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/CSS3-virtual-class.jpg">
+											<div class="mui-media-body">
+												专利又曝光了，苹果或许要出智能戒指 (Apple Ring)
+												<p class='mui-ellipsis'>标签，俨然已经成为现代人一种情绪和内容的表达方式，不想花费太多时间在文字介绍上，于是打上一个标签以概括内容。</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="article01.html">
+											<img class="mui-media-object mui-pull-right" src="images/yuantiao.jpg">
+											<div class="mui-media-body">
+												Google向媒体展示无人车
+												<p class='mui-ellipsis'>Google的无人车已经完成了120万英里的公路行驶。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="article02.html">
+											<img class="mui-media-object mui-pull-right" src="images/shuijiao.jpg">
+											<div class="mui-media-body">
+												为什么他们成了全球发展最快的公司？秘密也许就在他们的网站首页
+												<p class='mui-ellipsis'>秘密就是简单</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.baidu.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/tmp.jpg">
+											<div class="mui-media-body">
+												关于独角兽，除了十亿美元，也许还有另一种解读
+												<p class='mui-ellipsis'>他们在我们生活中也始终扮演着重要的角色，或是改变我们的生活，或是曾经让我们眼前一亮后迅速普及，慢慢我们都把他们当成理所当然。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.taobao.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/responsive_neum.gif">
+											<div class="mui-media-body">
+												即使在墙外，Google 也惦记着中国移动市场的生意
+												<p class='mui-ellipsis'>对于 Google 来说，中国和印度市场是其移动端布局不可获取的一部分。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.souhu.com">
+											<img class="mui-media-object mui-pull-right" src="images/muwu.jpg">
+											<div class="mui-media-body">
+												通过DIY为你打造专属进口红酒的“花马”，获得数百万天使融资
+												<p class='mui-ellipsis'>红酒的毛利厚、复购率高以及市场增长快等，这几个特性吸引了不少创业者和投资人的兴趣。</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="article01.html">
+											<img class="mui-media-object mui-pull-right" src="images/yuantiao.jpg">
+											<div class="mui-media-body">
+												当硬派的苹果选择了软性的内容，中国市场也成了库克最后的赌注
+												<p class='mui-ellipsis'>今天，Apple Music，iTunes movies 和 iBooks 在中国大陆正式落地。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="article02.html">
+											<img class="mui-media-object mui-pull-right" src="images/shuijiao.jpg">
+											<div class="mui-media-body">
+												曲奇单车希望做一款能解决普通用户的痛点的智能自行车
+												<p class='mui-ellipsis'>而今，智能自行车已经不是什么新鲜词了，duBike，乐视，BICI，700Bike，洛克菲勒等相继走入人们的视线，这些自行车大多都在设计，制造，智能化方面没少下工夫，然而对于普通用户的一些刚需，他们似乎考虑的还不够。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.baidu.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/range-1.jpg">
+											<div class="mui-media-body">
+												船只整合、路线规划、酒店住宿，去海钓想做海钓爱好者的一站式服务平台
+												<p class='mui-ellipsis'>关于中国海钓人群的具体数字，我找了半天也没找到，能查到的两个数字分别是 30 万（专业级别）和 40 万。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.taobao.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/proxy.jpg">
+											<div class="mui-media-body">
+												特斯拉 Model X正式发布，最远续航413公里，官方售价未公布
+												<p class='mui-ellipsis'>此次共发布P90D和90D两款车型，百公里加速最快3.2秒，第一批量产车即将交付</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.souhu.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/memcached-tomcat2.jpg">
+											<div class="mui-media-body">
+												caoz：创业公司如何做好信息安全
+												<p class='mui-ellipsis'>最近安全类事件繁多，创业者们，注意一下。</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="article01.html">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/html5-canvas-1.jpg">
+											<div class="mui-media-body">
+												Feedly 是否会利用 Share Collection 打造订阅社群？
+												<p class='mui-ellipsis'>Feedly 近期添加了一个新的功能——Share Collection。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="article02.html">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/html5-canvas-image.jpg">
+											<div class="mui-media-body">
+												当我们还在谈论如何智能制造时，GE已经在做应用商店了
+												<p class='mui-ellipsis'>GE 推出应用商店并非单纯地进军软件领域，而是借此完善产品的后续服务，补全产品线。商店内的 app 不是面向普通消费者，而是旨在帮助制造从业者们更好地了解和使用 GE 机器。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.baidu.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/html5-canvas-1.jpg">
+											<div class="mui-media-body">
+												Twitter的自我革命：打破140字的舒适圈
+												<p class='mui-ellipsis'>我们之前对Twitter的预感，看来是正确的……</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.taobao.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/flex-direction.jpg">
+											<div class="mui-media-body">
+												Snapchat 的GIF 头像是为了促进陌生人交友么？
+												<p class='mui-ellipsis'>Snapchat 作为阅后即焚应用的鼻祖，一直以来秉承着匿名、私密的性质。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.souhu.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/date-input-tag.jpg">
+											<div class="mui-media-body">
+												斯诺登开通Twitter账号，第一粉献给美国国家安全局
+												<p class='mui-ellipsis'>"Can you hear me now?</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item5mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="article01.html">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/css3-selector-error.jpg">
+											<div class="mui-media-body">
+												特斯拉重大利好，今天正式进入北京市新能源汽车摇号目录
+												<p class='mui-ellipsis'>今天，特斯拉宣布正式进入“北京市新能源汽车摇号目录”。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="article02.html">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/css3-flex_box-attr1.jpg">
+											<div class="mui-media-body">
+												苹果表粉们，可以用谷歌地图了，体验更优
+												<p class='mui-ellipsis'>尽管苹果地图自发布以来改进了很多，但仍然无法与谷歌地图相提并论。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.baidu.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/banlance.jpg">
+											<div class="mui-media-body">
+												Evernote全球裁员13％，关闭3个办公室
+												<p class='mui-ellipsis'>还是那句话，Evernote 会成为下一只倒下的独角兽么？</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.taobao.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/css-font-size-adjust.jpg">
+											<div class="mui-media-body">
+												3D打印技术不断进步，人造器官还会远吗？
+												<p class='mui-ellipsis'>给身体换个零件</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.souhu.com">
+											<img class="mui-media-object mui-pull-right" src="images/muwu.jpg">
+											<div class="mui-media-body">
+												通过DIY为你打造专属进口红酒的“花马”，获得数百万天使融资
+												<p class='mui-ellipsis'>红酒的毛利厚、复购率高以及市场增长快等，这几个特性吸引了不少创业者和投资人的兴趣。</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item6mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="article01.html">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/9-cells.jpg">
+											<div class="mui-media-body">
+												8 点 1 氪: Google 发布多款产品；Twitter 要取消推文上限
+												<p class='mui-ellipsis'>大公司Google 一口气发布了 2 只 Nexus 手机、2 款 Chromecast 、1 台 Pixel C 平板和 Android M 系统Nexus 6p 由华为代工，配置骁龙 810 v2.</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="article02.html">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/css-selector-ui-status.gif">
+											<div class="mui-media-body">
+												即使在墙外，Google 也惦记着中国移动市场的生意
+												<p class='mui-ellipsis'>对于 Google 来说，中国和印度市场是其移动端布局不可获取的一部分。</p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media">
+										<a href="http://m.baidu.com">
+											<img class="mui-media-object mui-pull-right" src="http://7xlan5.com1.z0.glb.clouddn.com/images/CSS3-text-shadow.jpg">
+											<div class="mui-media-body">
+												听硅谷超级天使的话，做最会讲故事的人
+												<p class='mui-ellipsis'>好的产品就是专门为用户所写的故事</p>
+											</div>
+										</a>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script>
+		var aniShow = "pop-in";
+		 //只有ios支持的功能需要在Android平台隐藏；
+		if (mui.os.android) {
+			var list = document.querySelectorAll('.ios-only');
+			if (list) {
+				for (var i = 0; i < list.length; i++) {
+					list[i].style.display = 'none';
+				}
+			}
+			//Android平台暂时使用slide-in-right动画
+			if(parseFloat(mui.os.version)<4.4){
+				aniShow = "slide-in-right";
+			}
+		}
+	
+		//主列表点击事件
+		mui('#list').on('tap', 'a', function() {
+			var id = this.getAttribute('href');
+			var href = this.href;
+			var type = this.getAttribute("open-type");
+				mui.openWindow({
+					id: id,
+					url: this.href,
+					show: {
+						aniShow: aniShow
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+		});
+		var index = null; //主页面
+		function openMenu() {
+			!index && (index = mui.currentWebview.parent());
+			mui.fire(index, "menu:open");
+		}
+		//在android4.4.2中的swipe事件，需要preventDefault一下，否则触发不正常
+		window.addEventListener('dragstart', function(e) {
+			mui.gestures.touch.lockDirection = true; //锁定方向
+			mui.gestures.touch.startDirection = e.detail.direction;
+		});
+		window.addEventListener('dragright', function(e) {
+			if (!mui.isScrolling) {
+				e.detail.gesture.preventDefault();
+			}
+		});
+		 //监听右滑事件，若侧滑菜单未显示，右滑要显示菜单；
+		window.addEventListener("swiperight", function(e) {
+			//默认滑动角度在-45度到45度之间，都会触发右滑菜单，为避免误操作，可自定义限制滑动角度；
+			if (Math.abs(e.detail.angle) < 4) {
+				openMenu();
+			}
+		});
+	</script>
+	<script src="js/mui.pullToRefresh.js"></script>
+	<script src="js/mui.pullToRefresh.material.js"></script>
+	<script>
+		// 选项卡切换和下拉刷新
+		mui.init();
+		(function($) {
+			
+			var page = 0; 				// 分页全局变量
+			//阻尼系数
+			var deceleration = mui.os.ios?0.003:0.0009;
+			$('.mui-scroll-wrapper').scroll({
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration:deceleration
+			});
+			$.ready(function() {
+				//循环初始化所有下拉刷新，上拉加载。
+				$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+					$(pullRefreshEl).pullToRefresh({
+						down: {
+							callback: function() {
+								var self = this;
+								setTimeout(function() {
+									var ul = self.element.querySelector('.mui-table-view');
+									createAndInsertFragment(false,ul,2);
+									self.endPullDownToRefresh();
+								}, 500);
+							}
+						},
+						up: {
+							callback: function() {
+								var self = this;
+								setTimeout(function() {
+									var ul = self.element.querySelector('.mui-table-view');
+									createAndInsertFragment(true,ul,2);
+									self.endPullUpToRefresh();
+								}, 500);
+							}
+						}
+					});
+				});
+				
+				/**
+				 * 创建并添加文档碎片
+				 * @param {Object} count 一次显示的条目
+				 * @param {Object} reverse 指定是正向插入还是反向插入
+				 * @param {Object} parent 父级元素
+				 */
+				var createAndInsertFragment = function(reverse,parent,count) {
+					
+					var url = 'http://go2.tunnel.mobi/mobile/outline.do';
+					mui.getJSON(url,{page:page+''},function(data){
+						console.log(data);
+						//ajax回调只是返回数据，不涉及到具体的业务逻辑，逻辑在afterGotData中执行
+						afterGotData(data);
+					});
+					page++;
+					
+					/**
+					 * 处理数据逻辑
+					 * @param {Object} data
+					 */
+					function afterGotData(data) {
+						console.log(data.length);
+						if(!data[0]){
+							mui.toast('没有更多了。');
+							return;
+						}
+						
+						var fragment = document.createDocumentFragment();
+						var li;
+						for (var i = 0; i < data.length; i++) {
+							li = document.createElement('li');
+							li.className = 'mui-table-view-cell mui-media';
+							li.innerHTML = getLiInnerHTML(data[i]);
+							fragment.appendChild(li);
+						}
+						// 将文档碎片插入到DOM节点
+						reverse ? parent.appendChild(fragment) : parent.insertBefore(fragment, parent.firstChild);
+
+					}
+				};
+				
+				/**
+				 * 拼接列表项的内容 
+				 * @param {Object} obj
+				 */
+				var getLiInnerHTML = function(obj){
+					
+					var html = '<a href="loading.html"><img class="mui-media-object mui-pull-right" src="';
+						html += obj.thumb + '">' + '<div class="mui-media-body">';
+						html += obj.title + '<p class="mui-ellipsis">';
+						html += obj.introduce + '</p></div></a>';
+					
+					return html;
+				}
+			});
+		})(mui);
+	</script>
+</html>

@@ -1,0 +1,74 @@
+# Tomcat
+server:
+    tomcat:
+        uri-encoding: UTF-8
+        max-threads: 1000
+        min-spare-threads: 30
+    port: 8080
+    connection-timeout: 5000ms
+    servlet:
+      context-path: /${spring.application.name}
+
+spring:
+    application:
+        name: wechat-renren
+    # 环境 dev|test|
+    profiles:
+        active: dev
+    # jackson时间格式化
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    servlet:
+        multipart:
+            max-file-size: 100MB
+            max-request-size: 100MB
+            enabled: true
+    resources: # 指定静态资源的路径
+        static-locations: classpath:/static/,classpath:/views/
+    redis:
+        open: false  # 是否开启redis缓存  true开启   false关闭
+        database: 0
+        host: localhost
+        port: 16379
+        password:       # 密码（默认为空）
+        timeout: 6000ms  # 连接超时时长（毫秒）
+        jedis:
+            pool:
+              max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+              max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+              max-idle: 10      # 连接池中的最大空闲连接
+              min-idle: 5
+    boot:
+      admin:
+        client:
+          enabled: false  #不开启监控
+          url: http://localhost:8088/wechat-monitoring
+          instance:
+            name: ${spring.application.name}
+            prefer-ip: true
+            service-url: http://${eureka.instance.hostname}:${server.port}/${spring.application.name}/
+          username: gzpflm
+          password: gzpflm
+
+# Mybatis配置
+mybatis:
+    mapperLocations: classpath:mapper/**/*.xml
+    configuration:
+        map-underscore-to-camel-case: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://gzpflm:gzpflm@localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.hostname}:${server.port}/${spring.application.name}
+
+

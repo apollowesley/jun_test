@@ -1,0 +1,51 @@
+<view class="detail">
+  <view class="head">
+    <image src="{{info.productPic}}" mode="aspectFill" lazy-load></image>
+    <view>
+      <view>{{info.productName}}</view>
+      <view>¥ {{info.sellPrice}}</view>
+    </view>
+  </view>
+  <view class="desc">
+    <view><image src="../../../assets/order/icon_duihao@3x.png" lazy-load mode="aspectFit"></image>支持自动退款</view>
+    <view><image src="../../../assets/order/icon_duihao@3x.png" lazy-load mode="aspectFit"></image>过期自动退</view>
+  </view>
+  <view class="pay-btn" wx:if="{{state === '0'}}">
+    <i-button type="rrk" shape="circle" size="small" long data-price="{{info.sellPrice}}" data-num="{{info.orderNum}}" bind:click="jumpToPay">付款</i-button>
+  </view>
+  <view class="ticket" wx:if="{{info.payTime !== ''}}">
+    <view class="ticket-head">
+      <view wx:if="{{info.validity}}">有效期至：{{filter.groupValidity(info.validity)}}</view>
+    </view>
+    <view class="ticket-body">
+      <view wx:for="{{info.subList}}" wx:key="index" data-code="{{item.code}}" bindtap="createCode">密码： {{item.code}}<text>{{item.typeName}}</text></view>
+    </view>
+    <canvas class='canvas' canvas-id='canvas' wx:if="{{showCode}}"></canvas>
+  </view>
+  <view class="tread">
+    <view class="title">商家信息</view>
+    <view class="tread-wrap">
+      <view class="tread-info">
+        <view class="tread-name">{{info.productName}}</view>
+        <view class="tread-add">{{info.dianAddress}}</view>
+        <view class="tread-juli"><image src="../../../assets/address/address.png" lazy-load mode="aspectFit"></image>{{info.juli}}</view>
+      </view>
+      <view class="tread-tel" data-tel="{{info.tellPhone}}" catch:tap="callPhone">
+        <image src="../../../assets/order/tel.png" lazy-load mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+  <view class="info">
+    <view class="title">订单信息</view>
+    <view class="info-wrap">
+      <view class="info-num"><text>订单号：</text><text>{{info.orderNum}}</text></view>
+      <view class="info-time"><text>下单时间：</text><text>{{info.downTime}}</text></view>
+      <view class="info-pay" wx:if="{{info.payTime !== ''}}"><text>付款时间：</text><text>{{info.payTime}}</text></view>
+      <view class="info-count"><text>数量：</text><text>{{info.number}}</text></view>
+      <view class="info-price"><text>总价：</text><text>{{info.zPrice}}</text></view>
+    </view>
+  </view>
+</view>
+
+<!--  -->
+<wxs module="filter" src="../../../filters/index.wxs"></wxs>

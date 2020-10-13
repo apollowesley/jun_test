@@ -1,0 +1,52 @@
+layuiAdmin std（iframe版）
+
+# 关于产品
+layuiAdmin std 是一款由 layui 官方出品的高质量付费产品，可用于快速开发通用型后台管理系统。
+
+# 运行说明：
+直接运行入口文件即可： src/views/index.html
+
+
+# 目录说明：
+dist/  经过打包压缩后的文件，一般用于正式环境使用
+src/   源代码，一般用于开发环境
+
+# 源码构建
+项目可采用 gulp 构建，gulpfile.js 是任务脚本，package.json 是任务配置文件
+step1：确保你的电脑已经安装好了 Node.js
+step2: 命令行安装 gulp：npm install gulp -g
+step3：切换到 layuiAdmin 项目根目录（即 gulpfile.js 所在目录），命令行安装任务所依赖的包：npm install
+安装完成后，即可直接执行命令：gulp
+即可完成 src 到 dist 目录的构建
+
+
+# 官网地址：
+http://www.layui.com/admin/
+
+
+# 版权须知
+layuiAdmin 受国家计算机软件著作权保护，
+未经官网正规渠道授权擅自公开产品源文件、
+以及直接对产品二次出售的，
+我们将保留追究法律责任的权利。
+
+© 2018 layui.com 版权所有
+
+
+
+src/
+layuiAdmin 源代码，通常用于开发环境（如本地）。
+
+src/layuiadmin/：layuiAdmin 的静态资源（JS、CSS、模块碎片等）
+
+**src/layuiadmin/json/：模拟接口返回的 JSON 相应信息，实际应用时可无视。
+**src/layuiadmin/layui/：layui 基础框架，功能一般领先于官网提供下载的版本。
+**src/layuiadmin/lib/：layuiAdmin 的核心模块，通常不建议修改。
+**src/layuiadmin/modules/：layuiAdmin 的业务模块
+**src/layuiadmin/style/：layuiAdmin 的样式文件
+**src/layuiadmin/tpl/：layuiAdmin 部分区块可能用到的模版碎片
+**src/layuiadmin/config.js：全局配置文件
+src/views/：layuiAdmin 提供的视图文件，你可以将其移动到你服务端工程的 view 层中，注意修改 JS/CSS 的路径即可。
+
+dist/
+通过 gulp 将 资源包的 src 目录的源代码进行构建后生成的目录（即：将 JS 和 CSS 文件进行了压缩等处理），通常用于线上环境。关于 gulp 的使用，下文也有介绍。

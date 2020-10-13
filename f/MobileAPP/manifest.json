@@ -1,0 +1,216 @@
+{
+	"@platforms": ["android", "iPhone", "iPad"],
+	"id": "H56049CFE",/*必选，应用的标识*/
+	"name": "36Kr",/*必选，应用名称*/
+	"version": {
+		"name": "1.0",/*必选，版本名称*/
+		"code": ""
+	},
+	"description": "",/*可选，应用描述信息*/
+	"icons": {
+		"72": "icon.png"
+	},
+	"fullscreen": true,
+	"launch_path": "index.html",/*必选，应用的入口页面，默认为根目录下的index.html；也可以是网络地址，网络地址必须以http://或https://开头*/
+	"developer": {
+		"email": "",/*可选，开发者名称*/
+		"name": "",/*可选，开发者邮箱地址*/
+		"url": ""
+	},
+	"permissions": {
+
+
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+
+		"Camera": {
+			"description": "访问摄像头"
+		},
+		"Device": {
+			"description": "访问设备信息"
+		},
+		"Downloader": {
+			"description": "文件下载管理"
+		},
+		"Events": {
+			"description": "应用扩展事件"
+		},
+		"File": {
+			"description": "访问本地文件系统"
+		},
+		"Gallery": {
+			"description": "访问系统相册"
+		},
+
+		"Invocation": {
+			"description": "使用Native.js能力"
+		},
+		
+		
+		
+		"Storage": {
+			"description": "管理应用本地数据"
+		},
+		"Uploader": {
+			"description": "管理文件上传任务"
+		},
+		"Runtime": {
+			"description": "访问运行期环境"
+		},
+		"XMLHttpRequest": {
+			"description": "跨域网络访问"
+		},
+		"Speech": {
+			"description": "管理语音识别插件"
+		},
+		"Zip": {
+			"description": "文件压缩与解压缩"
+		},
+		"Webview": {
+			"description": "窗口管理"
+		},
+		"NativeUI": {
+			"description": "原生UI控件"
+		},
+		"Speech": {
+			"description": "管理语音识别插件"
+		},
+
+		"NativeUI": {
+			"description": "原生UI控件"
+		},
+		"Navigator": {
+			"description": "浏览器信息"
+		},
+		"NativeObj": {},
+		"Share": {},
+		"OAuth": {},"Audio":{}
+	},
+	"plus": {
+		"popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，none为无侧滑返回功能，hide为侧滑隐藏Webview窗口。参考ask.dcloud.net.cn/article/102*/
+		"splashscreen": {
+			"autoclose": true,/*如果为true，程序启动的图片可以自动关闭，如果为false，开发者需要手动关闭*/
+			"waiting": true,
+			"delay": "0"
+		},
+		"runmode": "normal",/*两个值，liberate或normal，前者在应用安装时释放资源，后者不需要释放资源*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {
+			"plugins": {
+				"share": {
+					"qq": {
+						"appid": "1104891932",
+						"description": "QQ分享"
+					},
+					"sina": {
+						"appkey": "3473089204",
+						"appsecret": "65b8b80eb21e9a54dd243b0da7e43932",
+						"redirect_uri": "http://open.weibo.com/apps/3473089204?",
+						"description": "可选，新浪微博分享"
+					},
+					"weixin": {
+						"appid": "1234345",
+						"appsecret": "kjfdsjfksdjijwirejirjieriewurw",
+						"description": "可选，微信分享"
+					},"tencent":{"appkey":"12334344","appsecret":"5654654","redirect_uri":"http://127.0.0.1","description":"可选，腾讯微博分享"}
+				},
+				"oauth": {
+					"qq": {
+						"appid": "1104891932"
+					},
+					"sina": {
+						"appkey": "3473089204",
+						"appsecret": "65b8b80eb21e9a54dd243b0da7e43932",
+						"redirect_uri": "http:/m.sina.com"
+					},
+					"weixin": {
+						"appid": "dsfsdfsdf",
+						"appsecret": "sdfsdrewrwerewrwerwerewrwe"
+					}
+				}
+			},
+			"debug": false,/*可选，是否为debug模式，可取值：true表示debug模式运行，false表示release模式运行，默认值为false*/
+			"apple": {
+				"appid": "",/*iOS必选，苹果开发网站申请的appid，如com.dheaven.hbuilder*/
+				"mobileprovision": "",/*iOS必选，打包配置文件*/
+				"password": "",/*iOS必选，导入配置文件密码*/
+				"p12": "",/*iOS必选，打包配置文件关联的个人证书*/
+				"devices": "universal",/*iphone，可取值iphone/ipad/universal*/
+				"frameworks": []
+			},
+			"google": {
+				"packagename": "",/*Android必选，程序包名，如com.dheaven.hbuilder*/
+				"keystore": "",/*Android必选，打包证书文件*/
+				"password": "",/*Android必选，打包证书密码*/
+				"aliasname": "",/*Android必选，打包证书别名*/
+				"permissions": ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_LOCATION_EXTRA_COMMANDS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_MOCK_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+			},
+			"orientation": ["portrait-primary", "landscape-primary", "portrait-secondary", "landscape-secondary"],/*必选*/
+			"icons": {
+				"ios": {
+					"prerendered": "", /*必选，是否高亮显示*/
+					"auto": "", /*可选，512x512，用于自动生成各种尺寸图标的大分辨率程序图标*/
+					"iphone": {
+						"normal": "unpackage/res/icons/57x57.png",/*可选，57x57，iPhone普通屏幕程序图标*/
+						"retina": "unpackage/res/icons/114x114.png",/*可选，114x114，iPhone高分屏程序图标*/
+						"retina7": "unpackage/res/icons/120x120.png",/*可选，120x120，iPhone iOS7高分屏程序图标*/
+						"spotlight-normal": "unpackage/res/icons/29x29.png", /*可选，29x29，iPhone Spotlight搜索程序图标*/
+						"spotlight-retina": "unpackage/res/icons/58x58.png", /*可选，58x58，iPhone高分屏Spotlight搜索程序图标*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*可选，80x80，iPhone iOS7高分屏Spotlight搜索程序图标*/
+						"settings-normal": "unpackage/res/icons/29x29.png", /*可选，29x29，iPhone设置页面程序图标*/
+						"settings-retina": "unpackage/res/icons/58x58.png",
+						"retina8": "unpackage/res/icons/180x180.png",
+						"settings-retina8": "unpackage/res/icons/87x87.png"
+					},
+					"ipad": {
+						"normal": "unpackage/res/icons/72x72.png", /*可选，72x72，iPad普通屏幕程序图标*/
+						"retina": "unpackage/res/icons/144x144.png", /*可选，144x144，iPad高分屏程序图标*/
+						"normal7": "unpackage/res/icons/76x76.png", /*可选，76x76，iPad iOS7程序图标*/
+						"retina7": "unpackage/res/icons/152x152.png", /*可选，152x152，iPad iOS7高分屏程序图标*/
+						"spotlight-normal": "unpackage/res/icons/50x50.png", /*可选，50x50，iPad Spotlight搜索程序图标*/
+						"spotlight-retina": "unpackage/res/icons/100x100.png", /*可选，100x100，iPad高分屏Spotlight搜索程序图标*/
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",/*可选，40x40，iPad iOS7 Spotlight搜索程序图标*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*可选，80x80，iPad iOS7高分屏Spotlight搜索程序图标*/
+						"settings-normal": "unpackage/res/icons/29x29.png",/*可选，29x29，iPad设置页面程序图标*/
+						"settings-retina": "unpackage/res/icons/58x58.png"
+					}
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", /*必选，48x48，普通屏程序图标*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*必选，48x48，大屏程序图标*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*必选，72x72，高分屏程序图标*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*必选，96x96，720P高分屏程序图标*/
+					"xxhdpi": "unpackage/res/icons/144x144.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"default": "", /*必选，320x480，iPhone3启动图片*/
+						"retina35": "",/*必选，640x960，3.5英寸设备(iPhone4)启动图片*/
+						"retina40": ""
+					},
+					"ipad": {
+						"portrait": "", /*可选，768x1004，需支持iPad时必选，iPad竖屏启动图片*/
+						"portrait-retina": "",/*可选，1536x2008，需支持iPad时必选，iPad高分屏竖屏图片*/
+						"landscape": "", /*可选，1024x748，需支持iPad时必选，iPad横屏启动图片*/
+						"landscape-retina": "", /*可选 ，2048x1496，需支持iPad时必选，iPad高分屏横屏启动图片*/
+						"portrait7": "", /*可选，768x1024，需支持iPad iOS7时必选，iPad竖屏启动图片*/
+						"portrait-retina7": "",/*可选，1536x2048，需支持iPad iOS7时必选，iPad高分屏竖屏图片*/
+						"landscape7": "", /*可选，1024x768，需支持iPad iOS7时必选，iPad横屏启动图片*/
+						"landscape-retina7": ""
+					}
+				},
+				"android": {
+					"xhdpi": "E:/tmp/launcher_720_1080.png",
+					"hdpi": "E:/tmp/launch_480_800.png",
+					"xxhdpi": "E:/tmp/launch_1080_1920.png"
+				}
+			}
+		}
+	}
+}

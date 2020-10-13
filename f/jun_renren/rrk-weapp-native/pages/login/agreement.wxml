@@ -1,0 +1,8 @@
+<view class="container">
+	<view class="agreement">
+		<rich-text nodes="{{agreement}}"></rich-text>
+	</view>
+	<view class="zan-btns button">
+		<button class="zan-btn un" bindtap="agreeThis">我已同意此协议</button>
+	</view>
+</view>

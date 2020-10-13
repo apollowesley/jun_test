@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 定义消息主题（Topic） -->
+    <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg>
+            <value>guo_topic</value>
+        </constructor-arg>
+    </bean>
+
+    <!--============================以下是通过配置监听消息==============-->
+    <!-- 配置JMS连接工厂 -->
+    <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="failover:(tcp://localhost:61616)" />
+    </bean>
+    <!-- 配置JMS模板（Topic），pubSubDomain="true"-->
+    <bean id="topicJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="defaultDestination" ref="topicDestination" />
+        <!-- 在使用Spring JMS的时候，主题（Topic）和队列消息的主要差异体现在JmsTemplate中"pubSubDomain"是否设置为True。如果为True，则是Topic；如果是false或者默认，则是queue。-->
+        <property name="pubSubDomain" value="true" />
+        <property name="receiveTimeout" value="10000" />
+    </bean>
+
+    <!-- 消息主题监听者 和 主题监听容器 可以配置多个，即多个订阅者 -->
+    <!-- 消息主题监听者(Topic) -->
+    <bean id="topicMessageListener" class="com.hh.listener.TopicLinstener" />
+    <bean id="topicMessageListener2" class="com.hh.listener.TopicLinstenerTwo" />
+    <!-- 主题监听容器 （Topic） 这里设置连个监听器-->
+    <bean id="topicJmsContainer"
+          class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="destination" ref="topicDestination" />
+        <property name="messageListener" ref="topicMessageListener" />
+    </bean>
+    <bean id="topicJmsContainer2"
+          class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="destination" ref="topicDestination" />
+        <property name="messageListener" ref="topicMessageListener2" />
+    </bean>
+</beans>

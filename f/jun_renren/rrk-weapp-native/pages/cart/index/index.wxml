@@ -1,0 +1,53 @@
+<!--pages/cart/index/index.wxml-->
+<view class="cart">
+  <view class="cart-contain" wx:for="{{views}}" wx:for-item="shop" wx:for-index="index" wx:key="index">
+    <view class="cart-wrap">
+      <view class="shop">
+        <label class="select" data-sIndex="{{index}}" data-selected="{{shop.selected}}" bindtap="onShopSelect">
+          <checkbox class="select-native" type="checkbox" checked="{{shop.selected}}" color="#fd69ab" />
+        </label>
+        <image class="shop-pic" src="{{shop.picture}}" lazy-load mode="aspectFill"></image>
+        <view class="shop-name">{{shop.dianName}}</view>
+        <view class="shop-edit">
+          <p class="edit-s" bindtap="onEdit">{{isEdit ? '取消' : '编辑'}}</p>
+          <p class="del-s" wx:if="{{isEdit}}" data-index="{{index}}" bindtap="delGoods">删除</p>
+        </view>
+      </view>
+      <view class="goods-contain">
+        <view class="goods-wrap" wx:for="{{shop.productS}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+          <label class="select" data-sIndex="{{index}}" data-gIndex="{{idx}}" data-selected="{{item.selected}}" bindtap="onGoodsSelect">
+            <checkbox class="select-native" type="checkbox" checked="{{item.selected}}" color="#fd69ab" />
+          </label>
+          <image class="goods-pic" src="{{item.picture}}" lazy-load mode="aspectFill"></image>
+          <view class="goods-info">
+            <view class="goods-name">{{item.productName}}</view>
+            <view class="goods-desc">{{item.norms}}</view>
+            <view class="goods-box">
+              <view class="goods-price">¥{{filter.toFlo2(item.sellPrice)}}</view>
+              <zan-stepper
+              stepper="{{item.num}}"
+              min="1"
+              max="{{item.stock}}"
+              size="small"
+              data-sIndex="{{index}}"
+              data-gIndex="{{idx}}"
+              bind:change="numChange"></zan-stepper>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="bottom-info">
+      <view class="price">总金额：¥{{filter.toFlo2(allPrice)}}</view>
+      <view class="other">共{{allNum}}件，运费共计：¥{{filter.toFlo2(allPost)}}</view>
+    </view>
+    <view class="bottom-btn">
+      <i-button type="rrk" loading="{{loading}}" bindtap="onSubmit" long>结算</i-button>
+    </view>
+  </view>
+</view>
+
+<!--  -->
+<wxs module="filter" src="../../../filters/index.wxs"></wxs>

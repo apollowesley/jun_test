@@ -1,0 +1,22 @@
+page {
+  font-size: 28rpx;
+}
+
+view, text {
+  box-sizing: border-box;
+}
+
+image {
+  border: 0;
+  vertical-align: middle;
+  height: auto;
+  display: inline;
+}
+
+.cf:before, .cf:after {
+  content: '';
+  clear: both;
+  height: 0;
+  display: table;
+  visibility: hidden;
+}

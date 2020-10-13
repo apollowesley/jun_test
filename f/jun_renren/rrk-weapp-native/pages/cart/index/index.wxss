@@ -1,0 +1,125 @@
+.select {
+  flex: none;
+  padding-right: 30rpx;
+}
+
+.select-native {
+  font-size: 0;
+}
+
+.cart {
+  padding-bottom: 88rpx;
+}
+
+.shop {
+  display: flex;
+  align-items: center;
+  background: #f8f8f8;
+  padding: 20rpx;
+}
+
+.shop-pic {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  background: #eee;
+}
+
+.shop-edit {
+  flex: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #888;
+  line-height: 44rpx;
+}
+
+.del-s {
+  margin-left: 40rpx;
+  color: #fd69ab;
+}
+
+.goods-wrap {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.goods-pic {
+  flex: none;
+  width: 172rpx;
+  height: 172rpx;
+  border-radius: 10rpx;
+  background: #eee;
+}
+
+.goods-info {
+  flex: auto;
+  padding-left: 20rpx;
+}
+
+.goods-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.goods-desc {
+  font-size: 24rpx;
+  margin: 10rpx 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #888;
+}
+
+.goods-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.goods-price {
+  font-size: 36rpx;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  border-top: 1px solid #eee;
+  background: #fff;
+  width: 100%;
+  display: flex;
+}
+
+.bottom-info {
+  flex: none;
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  padding-left: 54px;
+}
+
+.price {
+  flex: none;
+  width: 100%;
+  font-size: 16px;
+}
+
+.other {
+  flex: none;
+  width: 100%;
+  font-size: 12px;
+  color: #888;
+}
+
+.bottom-btn {
+  flex: none;
+  width: 30%;
+}

@@ -1,0 +1,18 @@
+<form id="form" bind:submit="onSubmit" report-submit="true">
+  <view class="msg">
+    <view class="weui-msg">
+      <view class="weui-msg-icon">
+        <icon type="success" size="70" color="#19be6b"></icon>
+      </view>
+      <view class="weui-msg-area">
+        <view class="weui-msg-title">支付成功</view>
+        <view class="weui-msg-desc">下载人人咖购物App，享受更多优惠哦~</view>
+      </view>
+      <view class="weui-msg-btn">
+        <!-- <i-button type="success" bindtap="appDownLoad" size="small">下载APP</i-button> -->
+        <!-- <i-button type="default" bindtap="goBack" size="small">返回</i-button> -->
+        <button type="default" form-type="submit">返回</button>
+      </view>
+    </view>
+  </view>
+</form>

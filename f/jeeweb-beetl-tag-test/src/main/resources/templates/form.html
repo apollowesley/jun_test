@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这里一个测试的标签Demo</title>
+</head>
+<body>
+这里一个测试的标签Demo
+<#form:form id="testForm" modelAttribute="table" method="post" class="form-horizontal">
+    <#form:checkboxes path="tableName" items="${tableList}" itemValue="id" itemLabel="tableName" /><br/>
+    <#form:radiobuttons path="tableName" items="${tableList}" itemValue="id" itemLabel="tableName"/><br/>
+    <#form:select path="tableName"><br/>
+        <#form:option  value="1">财务部</#form:option>
+        <#form:options items="${tableList}" itemValue="id" itemLabel="tableName" />
+        <#form:option value="1">财务部</#form:option>
+        <#form:option value="2">开发部</#form:option>
+        <#form:option value="3">销售部</#form:option>
+    </#form:select>
+    <#form:input path="tableName" nested="true" /><br />
+    <#form:input path="tableName" nested="false"  defaultValue="你好斯蒂芬斯蒂芬"/><br />
+    <#form:checkboxes path="tableName" dict="sf" /><br/>
+    <#form:radiobuttons path="tableName" dict="sf" /><br/>
+</#form:form>
+</body>
+</html>

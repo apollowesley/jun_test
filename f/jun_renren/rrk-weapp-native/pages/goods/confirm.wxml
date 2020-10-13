@@ -1,0 +1,69 @@
+<!--pages/goods/confirm.wxml-->
+<view class="order">
+  <!-- 地址管理 -->
+  <navigator open-type="navigateTo" url="/pages/user/address/address" class="address">
+    <view class="ad-icon" wx:if="{{defaultAdd}}">
+      <image src="../../assets/address/address.png" lazy-load mode="aspectFit"></image>
+    </view>
+    <view class="ad-info" wx:if="{{defaultAdd}}">
+      <view class="ad-desc">
+        <view class="ad-name">{{defaultAdd.name}}</view>
+        <view class="ad-tel">{{defaultAdd.phone}}</view>
+        <view class="ad-tag" wx:if="{{defaultAdd.istrue === 1}}">默认</view>
+      </view>
+      <view class="ad-txt">{{defaultAdd.address}} {{defaultAdd.remark}}</view>
+    </view>
+    <view class="ad-right" wx:if="{{defaultAdd}}">
+      <image src="../../assets/address/arrow_right.png" lazy-load mode="aspectFit"></image>
+    </view>
+    <view class="ad-no" wx:else>
+      <image src="../../assets/address/new_add@3x.png" lazy-load mode="aspectFit"></image>
+      <text>还没有收货地址，请添加</text>
+    </view>
+  </navigator>
+  <!-- 商品信息 -->
+  <view class="shop" wx:if="{{goodsInfo}}">
+    <view class="shop-wrap">
+      <image class="shop-pic" src="{{goodsInfo.shopPic}}" lazy-load mode="aspectFill" />
+      <view class="shop-name">{{goodsInfo.shopName}}</view>
+    </view>
+    <view class="goods">
+      <view class="goods-wrap">
+        <image class="goods-pic" src="{{goodsInfo.picture}}" lazy-load mode="aspectFill"></image>
+        <view class="goods-info">
+          <view class="goods-name">{{goodsInfo.productName}}</view>
+          <view class="goods-desc">{{selectNorms.norms}}</view>
+          <view class="goods-box">
+            <view class="goods-price">¥{{selectNorms.sellPrice}}</view>
+            <view class="goods-num">×{{selectNum}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="post">
+      <view class="post-tit">配送方式</view>
+      <view class="post-txt" wx:if="{{goodsInfo.postage === '0'}}">快递包邮</view>
+      <view class="post-txt" wx:else>运费{{goodsInfo.postage}}元</view>
+    </view>
+    <view class="remark">
+      <view class="remark-tit">买家留言</view>
+      <view class="remark-txt">
+        <input placeholder="有什么想对商家说的可以写在这里哦" bindinput="remarkInput" />
+      </view>
+    </view>
+    <view class="info">共计{{selectNum}}件商品 小计
+      <text>¥{{filter.toFlo2(totalPrice)}}</text>
+    </view>
+  </view>
+  <!-- 底部按钮 -->
+  <view class="bottom" wx:if="goodsInfo">
+    <view class="bottom-info">合计金额：
+      <i>¥{{filter.toFlo2(totalPrice)}}</i>
+    </view>
+    <view class="bottom-btn">
+      <i-button type="rrk" loading="{{loading}}" bindtap="onSubmit" long>结算</i-button>
+    </view>
+  </view>
+</view>
+<!-- 过滤器 -->
+<wxs module="filter" src="../../filters/index.wxs"></wxs>

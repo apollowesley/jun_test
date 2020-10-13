@@ -1,0 +1,148 @@
+/* pages/groupon/confirm.wxss */
+
+.order {
+  min-height: 100vh;
+  background: #f7f7f7;
+  padding-bottom: 44px;
+}
+
+.shop {
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.shop-wrap {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding-left: 10px;
+}
+
+.shop-pic {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #eee;
+}
+
+.shop-name {
+  padding-left: 10px;
+}
+
+.goods-wrap {
+  background: #f7f7f7;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+.goods:last-child {
+  margin-bottom: 0;
+}
+
+.goods-pic {
+  flex: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  background: #eee;
+}
+
+.goods-info {
+  height: 60px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+.goods-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 30px;
+}
+
+.goods-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.goods-price {
+  color: #fd69ab;
+}
+
+.goods-num {
+  color: #888;
+  font-size: 12px;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 10px;
+  border-bottom: 1px solid #f7f7f7;
+}
+
+.remark {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 10px;
+  border-bottom: 1px solid #f7f7f7;
+}
+
+.remark-txt {
+  flex: auto;
+  padding-left: 10px;
+}
+
+.remark-txt ._input {
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 40px;
+  padding: 10px;
+}
+
+.info ._i {
+  color: #fd69ab;
+  margin-left: 5px;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  border-top: 1px solid #eee;
+  background: #fff;
+  width: 100%;
+  display: flex;
+}
+
+.bottom-info {
+  flex: none;
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  font-size: 16px;
+}
+
+.bottom-info ._i {
+  color: #fd69ab;
+  font-size: 16px;
+}
+
+.bottom-btn {
+  flex: none;
+  width: 30%;
+}

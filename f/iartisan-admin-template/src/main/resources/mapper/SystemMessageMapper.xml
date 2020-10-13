@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.iartisan.admin.template.dao.mapper.SystemMessageMapper">
+
+    <sql id="BASE_COLUMN_RESULT">
+        uuid,receiver_id,receiver_name,sender_id,sender_name,msg_type_id,msg_type_desc,msg_title,msg_content,msg_param,is_read,status,create_time,update_time
+    </sql>
+
+</mapper>

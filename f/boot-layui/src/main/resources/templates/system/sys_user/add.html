@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>用户注册</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<form class="layui-form" action="">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <!-- layui-input-block 整行样式 -->
+        <div class="layui-input-inline">
+            <input class="layui-input" type="text" name="username" placeholder="请输入用户名" autocomplete="off"
+                   lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户密码</label>
+        <div class="layui-input-inline">
+            <input class="layui-input" type="password" name="password" placeholder="请输入用户密码">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话号码</label>
+        <div class="layui-input-inline">
+            <input class="layui-input" type="text" name="mobile" placeholder="请输入电话号码" autocomplete="off"
+                   lay-verify="required|phone">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择性别</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="gender" value="1" title="男" checked>
+            <div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i>
+                <div>男</div>
+            </div>
+            <input type="radio" name="gender" value="2" title="女">
+            <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
+                <div>女</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">生日</label>
+            <div class="layui-input-inline">
+                <input name="birth" class="layui-input" id="birth" type="text" placeholder="yyyy-MM-dd" autocomplete="off"
+                       lay-verify="date">
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="layui-form-item">
+        <label class="layui-form-label">验证身份证</label>
+        <div class="layui-input-block">
+            <input name="identity" class="layui-input" type="text" placeholder="" autocomplete="off" lay-verify="identity">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">自定义验证</label>
+        <div class="layui-input-inline">
+            <input name="password" class="layui-input" type="password" placeholder="请输入密码" autocomplete="off" lay-verify="pass">
+        </div>
+        <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+    </div>-->
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-filter="regist-user" lay-submit="">立即提交</button>
+            <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+        </div>
+    </div>
+</form>
+
+
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<!--<script th:src="@{/webjars/jquery/3.2.1/jquery.js}"></script>-->
+<script>
+
+    ;(function () {
+        layui.use(['form', 'layer', 'layedit', 'laydate', 'jquery'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate
+                , $ = layui.jquery;
+
+            //日期 由于传的字符串问题需后续找到转日期的方法再试
+            laydate.render({
+                elem: '#birth'
+            });
+
+
+            //自定义验证规则
+            form.verify({
+                password: [
+                    /^[\S]{6,12}$/
+                    , '密码必须6到12位，且不能出现空格'
+                ]
+            });
+
+            //监听提交
+            form.on('submit(regist-user)', function (data) {
+                console.log(data);
+
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                })
+
+                var field = data.field;
+                //ajax和后台交互,ansyc:false表示请求执行完了才会往下执行
+                $.ajax({
+                    type: "post",
+                    url: "/boot-layui/user/regist",
+                    data: field,
+                    dataType: "json",
+                    ansyc:false,
+                    success: function (resp) {
+                        layer.alert(resp.status);
+                        // layer.msg(resp.status);
+                        console.log(resp.status);
+                    }
+                });
+
+                 return false;
+            });
+        });
+    })();
+</script>
+</body>
+
+</html>

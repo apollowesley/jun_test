@@ -1,0 +1,17 @@
+*.bat
+*.log
+*.log.*
+.project
+/.settings
+*/*.log
+*/*.log.*
+*/logs
+*/target
+*/test*
+*/.settings
+*/.classpath
+*/.project
+*/*/target
+*/*/.settings
+*/*/.classpath
+*/*/.project

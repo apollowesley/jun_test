@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.iartisan.admin.template.dao.mapper.SystemMenuMapper">
+
+    <sql id="Base_Column_List">
+        MENU_ID,MENU_NAME,MENU_PERMISSION,MENU_URL,MENU_ICON,PARENT_MENU_ID,CREATE_TIME,UPDATE_TIME
+    </sql>
+
+    <select id="selectFirstMenus" resultType="systemMenu">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from system_menu
+        where (PARENT_MENU_ID IS NULL OR length(PARENT_MENU_ID)=0)
+        <if test="menuIds != null">
+            AND MENU_ID IN
+            <foreach item="item" collection="menuIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="selectSecondMenus" resultType="systemMenu">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from system_menu
+        where PARENT_MENU_ID =#{parentMenuId}
+        <if test="menuIds != null">
+            AND MENU_ID IN
+            <foreach item="item" collection="menuIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+    <select id="selectById" resultType="systemMenu">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from system_menu
+        where MENU_ID =#{_parameter}
+    </select>
+
+    <select id="selectPage" resultType="systemMenu">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from system_menu
+        where 1=1
+    </select>
+    <select id="selectList" resultType="systemMenu">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from system_menu
+        where 1=1
+    </select>
+
+</mapper>

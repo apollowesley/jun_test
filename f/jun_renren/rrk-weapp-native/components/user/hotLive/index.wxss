@@ -1,0 +1,104 @@
+.today-wrap {
+  font-size: 24rpx;
+  position: relative;
+}
+
+.today-pic {
+  display: block;
+  width: 100%;
+  height: calc((100vw - 30rpx) / 2);
+  background: #eee;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.today-live {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  color: #fff;
+  padding: 8rpx 14rpx;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 40rpx;
+  border: 1px solid #fff;
+  line-height: 1;
+  display: flex;
+  font-size: 24rpx;
+  align-items: center;
+}
+
+.today-live text {
+  width: 16rpx;
+  height: 16rpx;
+  margin-right: 6rpx;
+  border-radius: 50%;
+  background: #ff5858;
+}
+
+.today-info {
+  display: flex;
+  margin-top: 16rpx;
+}
+
+.today-info > image {
+  flex: none;
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+  border: 1px solid #fff;
+  background: #eee;
+}
+
+.today-desc {
+  flex: auto;
+  color: #fff;
+}
+
+.today-name {
+  display: block;
+  width: 276rpx;
+  font-size: 26rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.today-user {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  flex: none;
+  width: 180rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.user-num {
+  flex: none;
+  width: 90rpx;
+  line-height: 1;
+  height: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.user-num text {
+  font-size: 22rpx;
+}
+
+.user-icon {
+  flex: none;
+  width: 22rpx;
+  height: 22rpx;
+  margin-right: 6rpx;
+  line-height: 1;
+  background: url(https://gw.lgh81.com/Share/weapp/home/renshu-1.png) center / contain no-repeat;
+}

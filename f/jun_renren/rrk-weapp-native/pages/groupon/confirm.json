@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+    "zan-stepper": "/components/stepper/index",
+    "i-button": "/components/iview/button/index"
+  }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!--zookeeper注册中心 -->
+	<dubbo:registry address="${dubbo.registry.address}" group="${dubbo.registry.group}" />
+	<!-- 设置超时时间以及重试次数 -->
+	<dubbo:consumer timeout="${dubbo.consumer.timeout}" retries="${dubbo.consumer.retries}" />
+	<!-- 生成远程服务代理，可以和本地bean一样使用-->  
+	<dubbo:reference id="payService" interface="com.bodsite.pay.service.PayService" check="${dubbo.service.check}"/>	
+</beans>

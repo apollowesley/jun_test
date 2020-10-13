@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configure>
+	<basedir>E:\\autocode</basedir>
+	<basePackage>com.bessky.financial</basePackage>
+	<db>
+		<!-- <dbName>wbtest</dbName>
+		<user>root</user>
+		<pwd>123456</pwd>
+		<driver>com.mysql.jdbc.Driver</driver>
+		<url>jdbc:mysql://192.168.96.38:3306/wbtest?useUnicode=true&amp;characterEncoding=UTF-8</url> -->
+		
+		<dbName>finance_daily</dbName>
+		<user>bitb_dev</user>
+		<pwd>bitb_dev</pwd>
+		<driver>com.mysql.jdbc.Driver</driver>
+		<url>jdbc:mysql://192.168.99.113:3306/finance_daily?useUnicode=true&amp;characterEncoding=UTF-8</url>
+	</db>
+	<packageSetting>
+		<controllerPackage>controller</controllerPackage>
+		<daoPackage>dao</daoPackage>
+		<daoImplPackage>impl</daoImplPackage>
+		<servicePackage>service</servicePackage>
+		<serviceImplPackage>impl</serviceImplPackage>
+		<entityPackage>entity</entityPackage>
+		<mapperPackage>sqlmap</mapperPackage>
+		<viewPackage>jsp</viewPackage>
+		<jsPackage>js</jsPackage>
+		<isDeleteTablePrefix>true</isDeleteTablePrefix>
+	</packageSetting>
+	<module>
+		<persistance>mybatis</persistance>
+		<name></name>
+		<isDeleteTablePrefix>true</isDeleteTablePrefix>
+		<savePath></savePath>
+		<framework>mvc</framework>
+		<table name="t_shipments_refund"
+		prefix="t_"></table>  
+	</module>
+</configure>

@@ -1,0 +1,17 @@
+# Created by .ignore support plugin (hsz.mobi)
+/.idea/
+/ffast-core/target/
+/ffast-admin/target/
+/ffast-generator/target/
+.mvn
+/*.iml
+*.iml
+/ffast-generator/*.iml
+/ffast-admin/*.iml
+/ffast-parent/*.iml
+/ffast.iml
+/ffast-admin/ffast-admin.iml
+/ffast-core/ffast-core.iml
+/ffast-generator/ffast-generator.iml
+/ffast-admin/src/main/resources/application-private.yml
+/ffast-admin/src/main/resources/application-private-dev.yml

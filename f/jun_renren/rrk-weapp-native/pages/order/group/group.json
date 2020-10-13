@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "团购订单",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "i-tabs": "/components/iview/tabs/index",
+    "i-tab": "/components/iview/tab/index",
+    "i-button": "/components/iview/button/index",
+    "load-more": "/components/iview/load-more/index"
+  }
+}

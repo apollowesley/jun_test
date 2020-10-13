@@ -1,0 +1,85 @@
+page {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+cover-view {
+  white-space: pre-wrap !important;
+  overflow: visible !important;
+}
+
+.message {
+  position: fixed;
+  bottom: 140rpx;
+  left: 0;
+  padding: 0;
+  display: block;
+  width: 500rpx;
+  transition: 0.4s all;
+  transform: translate3d(0, 0, 0);
+  padding-left: 30rpx;
+  color: #fff;
+}
+
+.message .msg-list {
+  max-height: 20vh;
+  overflow-y: scroll;
+  min-height: 45rpx;
+  min-width: 126rpx;
+}
+
+.message .msg-info {
+  white-space: pre-wrap;
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  margin-bottom: 6rpx;
+  font-size: 0;
+  line-height: 1;
+  position: relative;
+  display: inline-block !important;
+}
+
+.message .msg-info:last-child {
+  margin-bottom: 0;
+}
+
+.msg-name {
+  line-height: 1;
+  font-size: 28rpx;
+  display: inline !important;
+  vertical-align: middle;
+  pointer-events: none;
+  background: #f30;
+  position: relative;
+}
+
+.msg-detail {
+  line-height: 1;
+  font-size: 28rpx;
+  display: inline !important;
+  vertical-align: middle;
+  white-space: pre-wrap;
+  background: #f90;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.msg-detail .box{
+  width: 110rpx;
+  display: inline-block;
+}
+
+
+canvas{
+  width: 500rpx;
+  height: 240rpx;
+}
+
+live-player,
+video {
+	width: 100vw;
+	height: 100vh;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}

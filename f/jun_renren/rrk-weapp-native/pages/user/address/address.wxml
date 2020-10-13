@@ -1,0 +1,25 @@
+<view class="address">
+    <view class="add-wrap {{item.active ? 'active' : ''}}"  wx:for="{{views}}" wx:for-index="index" wx:key="index" data-index="{{index}}" bindtap="onAddress">
+      <view class="add-head">
+        <view class="name">{{item.name}}</view>
+        <view class="tel">{{item.phone}}</view>
+      </view>
+      <view class="add-body">{{item.address}} {{item.remark}}</view>
+      <view class="add-foot">
+        <view class="default" data-index="{{index}}" catchtap="onDefault">
+          <image src="../../../assets/address/default_{{item.istrue === 1 ? 'on' : 'off'}}.png" lazy-load mode="aspectFit"></image>设为默认
+        </view>
+        <view class="opera">
+          <view class="edit" data-index="{{index}}" catchtap="jumpToEdit">
+            <image src="../../../assets/address/edit.png" lazy-load mode="aspectFit"></image>编辑
+          </view>
+          <view class="del" data-index="{{index}}" catchtap="onDelete">
+            <image src="../../../assets/address/delete.png" lazy-load mode="aspectFit"></image>删除
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="bottom">
+      <i-button type="rrk" size="small" long bind:click="plusAddress">新增地址</i-button>
+    </view>
+  </view>

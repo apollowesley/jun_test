@@ -1,0 +1,14 @@
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #060606 !important;
+}
+
+.layui-layer-black .layui-layer-title {
+    border: none;
+    background-color: #333;
+    color: #fff;
+}
+.layui-layer-black .layui-layer-btn .layui-layer-btn0 {
+    border-color: #333;
+    background-color: #333;
+    color: #fff;
+}

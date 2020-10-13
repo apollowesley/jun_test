@@ -1,0 +1,14 @@
+<live-player id="live"></live-player>
+<canvas class='canvas' canvas-id='canvas'>
+  <cover-view class="msg-name">lv1 欧皇:</cover-view>
+  <cover-view class="msg-detail"><cover-view class="box"></cover-view> 饿死它二特特色图二特瑞特特瑞而饿死它二特特色图二特瑞特特瑞而</cover-view>
+</canvas>
+<cover-view class="message">
+    <cover-view class="msg-list" scroll-top="10000">
+      <cover-view class="msg-info" wx:for="{{5}}" wx:key="item.id">
+        <!-- <cover-view class="msg-name">lv1 欧皇:</cover-view>
+        <cover-view class="msg-detail">饿死它二特特色图二特瑞特特瑞而饿死它二特特色图二特瑞特特瑞而</cover-view> -->
+      </cover-view>
+
+    </cover-view>
+  </cover-view>

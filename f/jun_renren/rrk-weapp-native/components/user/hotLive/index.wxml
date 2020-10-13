@@ -1,0 +1,22 @@
+<view class="today-wrap custom-class" bindtap="jumpToLive">
+  <image class="today-pic" src="{{liveItem.livePicture}}" lazy-load mode="aspectFill">
+    <view class="today-live">
+      <text></text>{{liveItem.isOnline!=='2'?'回放':'直播中'}}
+    </view>
+  </image>
+  <view class="today-info">
+    <image src="{{liveItem.picture}}" lazy-load mode="aspectFill"></image>
+    <view class="today-desc">
+      <text class="today-name">{{liveItem.liveName}}</text>
+      <view class="today-user">
+        <text class="user-name">{{liveItem.userName}}</text>
+        <view class="user-num">
+          <text class="user-icon"></text>
+          <text class="user-view">{{filter.viewnum(liveItem.viewNum)}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--  -->
+<wxs module="filter" src="../../../filters/index.wxs"></wxs>

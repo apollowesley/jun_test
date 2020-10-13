@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>微信基础token</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" href="../../plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="../../libs/jquery.min.js"></script>
+    <script src="../../plugins/layer/layer.js"></script>
+    <script src="../../libs/bootstrap.min.js"></script>
+    <script src="../../libs/vue.min.js"></script>
+    <script src="../../plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="../../plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../libs/ajaxupload.js"></script>
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div  class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2 control-label">基础token</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="基础token" v-model="token.accessToken"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">过期时间</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="过期时间"  v-model="token.expiryTime"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">有效期(秒)</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="有效期(秒)"  v-model="token.expiresIn"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">创建日期</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="创建日期" v-model="token.createTime" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">更新日期</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="更新日期" v-model="token.updateTime"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#rrapp',
+        data: {
+            title: "微信基础token",
+            token: {},
+
+        },
+        created: function () {
+            this.query();
+        },
+        methods: {
+            query: function () {
+                var url = baseURL + "sys/wechattoken/get";
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    contentType: "application/json",
+                    // data: JSON.stringify(vm.token),
+                    success: function (r) {
+                        if (r.code === 0) {
+                            vm.token=r.data;
+                        } else {
+                            alert(r.msg);
+                        }
+                    }
+                });
+            }
+
+        }
+    });
+</script>
+</body>
+</html>

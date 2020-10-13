@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:cache="http://www.springframework.org/schema/cache" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+                        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd 
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+                        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+    <!-- 如果配置了<mvc:annotation-driven />，则RequestMappingHandlerMapping这个bean中配置的自定义拦截器不会生效。 需要使用<mvc:interceptors>配置拦截器才可以。-->
+    <!-- <mvc:annotation-driven /> -->
+    
+    <mvc:annotation-driven>
+        <!-- 处理responseBody 里面日期类型 -->  
+        <mvc:message-converters>  
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
+                <property name="objectMapper">  
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">  
+                        <property name="dateFormat">  
+                            <bean class="java.text.SimpleDateFormat">  
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />  
+                            </bean>  
+                        </property>  
+                    </bean>  
+                </property>  
+            </bean>  
+        </mvc:message-converters>  
+    </mvc:annotation-driven>
+	
+    <!-- 这个配置用于junit测试.正式访问项目的时候，可以注释掉,因为springmvc已经配置好 -->
+    <!-- 加上这句配置，自动扫描，则测试的时候才输出aop日志信息， -->
+    <context:component-scan base-package="com.zb" />
+	
+	<!-- 
+	[项目集成了redis缓存了。ehcache暂时不用。如果想切换成ehcache，则将注释去掉即可。同时在shiro的核心配置中，指定ehcacheManage配置]
+    <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:/ehcache.xml" />
+        <property name="shared" value="true" />
+    </bean>
+    
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehCacheManager" />
+    </bean>
+
+    <cache:annotation-driven cache-manager="cacheManager" />
+     -->
+     
+    <!-- 引入配置 -->
+    <import resource="classpath:/jdbc/jdbc-context.xml" />
+    <import resource="classpath:/spring/activemq/spring-activemq-queue.xml" />
+    <import resource="classpath:/spring/activemq/spring-activemq-topic.xml" />
+    
+    
+    <!-- 配置属性资源文件 -->
+    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:/jdbc/jdbc.properties</value>
+                <value>classpath:/properties/config.properties</value>
+                <value>classpath:/properties/redis.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 引入properties -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!-- ignoreResourceNotFound表示：是否忽略无法加载的文件 -->
+        <property name="ignoreResourceNotFound" value="false" />
+        <property name="properties" ref="configProperties" />
+    </bean>
+	
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="java.lang.System" />
+        <property name="targetMethod" value="setProperty" />
+        <property name="arguments">
+            <list>
+                <value>system.project_name</value>
+                <value>${system.project_name}</value>
+            </list>
+        </property>
+    </bean>
+	
+	<!-- mysql数据库 -->
+	<bean id="mysqldataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+	
+	<!-- sqlserver数据库 -->
+	<bean id="sqlserverdataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${sqlserver.jdbc.driverClassName}" />
+        <property name="url" value="${sqlserver.jdbc.url}" />
+        <property name="username" value="${sqlserver.jdbc.username}" />
+        <property name="password" value="${sqlserver.jdbc.password}" />
+    </bean>
+    
+    <!-- 动态数据源配置 -->
+    <bean id="dataSource" class="com.zb.common.annotation.dynamicDataSource.DynamicDataSource">
+    	<property name="targetDataSources">  
+              <map key-type="java.lang.String">  
+                 <entry key="mysql" value-ref="mysqldataSource"/>  
+                 <entry key="sqlserver" value-ref="sqlserverdataSource"/>  
+              </map>  
+              
+        </property>
+        <!-- 默认连接的是mysql数据库 -->
+        <property name="defaultTargetDataSource" ref="mysqldataSource"/>
+    </bean>
+    
+    <!-- 这里的配置，与DataSourceAspect中的效果一样。 -->
+    <!-- 
+    <bean id="manyDataSourceAspect" class="com.zb.aspect.DataSourceAspect" />
+	<aop:config>
+        <aop:aspect id="c" ref="manyDataSourceAspect">
+            <aop:pointcut id="tx" expression="execution(* com.zb.service.*.*(..))"/>
+            <aop:around pointcut-ref="tx" method="doMethod"/>
+        </aop:aspect>
+    </aop:config> 
+     -->
+   
+
+	<bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />   
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+
+    <!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+    	<property name="interceptors">
+    		<list>
+    			<ref bean="wsInterceptor"/>
+    		</list>
+    	</property>
+    </bean> -->
+    
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+	
+	<bean id="wsInterceptor" class="com.zb.interceptor.wsInterceptor"/>
+	
+	<!-- 
+		由于<mvc:annotation-driven />默认注册了默认的拦截器，如果使用RequestMappingHandlerMapping注册拦截器的话，则不会生效。使用<mvc:interceptors>注解注册拦截器就会生效。
+		<mvc:interceptors>的优先级比RequestMappingHandlerMapping这个bean的优先级要高！
+	 -->
+	 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/resources/**"/>
+			<ref bean="wsInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+	<task:annotation-driven/>
+	
+</beans>

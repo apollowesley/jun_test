@@ -1,0 +1,67 @@
+<html lang="en">
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>支付测试</title>
+    </head>
+	<script type="text/javascript" src="../../js/jquery-1.12.1.min.js"></script>
+	<body>
+		<table>
+			<tr><td>商品id</td><td><input type="text" id="productId"></td></tr>
+			<tr><td>数量</td><td><input type="text" id="num"></td></tr>
+			<tr><td>支付类型</td><td>
+			<input name="payType" type="radio" value="AILPAY_PC" />支付宝PC-MD5
+			<input name="payType" type="radio" value="AILPAY_PC_R" />支付宝PC-RSA
+			<input name="payType" type="radio" value="AILPAY_APP" />支付宝APP-RSA
+			<input name="payType" type="radio" value="WEIXIN_JSAPI" />微信JSAPI
+			<input name="payType" type="radio" value="WEIXIN_NATIVE" />微信扫码
+			<input name="payType" type="radio" value="WEIXIN_APP" />微信APP
+			<tr><td colspan="2"><button id="submit" type="button">提交</button></td></tr>
+		</table>
+		<div id="myFormDiv"></div>
+		<script type="text/javascript">
+			$("#submit").click(function(){
+				var data = {
+					productId:$("#productId").val(),
+					num:$("#num").val(),
+					payType: $("input[name='payType']:checked").val()
+				};
+				subAjax(data,"http://127.0.0.1:8080/bodsite-site/trade/toOrder",function(data){
+					if(data.extra.payForm){
+						$("#myFormDiv").html(data.extra.payForm);
+					}else{
+						var txt;
+						for (x in data.extra)  
+						  {  
+							txt=txt +":"+person[x];  
+						  } 
+						$("#myFormDiv").html(txt);
+					}
+				});	
+			});
+		
+			
+			function subAjax(arr,url,successFunc,errorFunc){
+				$.ajax({
+					type: "POST",
+					url: url,
+					data:JSON.stringify(arr),
+					dataType: "json",
+					async: false,
+					contentType:"application/json",
+					success: function(data){
+						if(data.code===0){
+							if(successFunc && successFunc instanceof Function){
+								successFunc(data);
+							}
+						}else{
+							alert(data.message);
+						}
+					},
+					error: function(XMLHttpRequest,textStatus,errorThrown){
+						alert(error);
+					}
+				});
+			}
+		</script>
+	</body>
+<html>

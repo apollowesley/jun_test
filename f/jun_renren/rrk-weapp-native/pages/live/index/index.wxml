@@ -1,0 +1,129 @@
+<live-player id="live" class="{{chatShow ? 'active' : ''}}" src="{{video}}" autoplay="{{isLive}}" object-fit="fillCrop" bindstatechange="liveChange" binderror="error"></live-player>
+<video id="video" class="{{chatShow ? 'active' : ''}} {{isLive ? 'hidden' : ''}}" src="{{video}}" autoplay="{{!isLive}}" controls="{{false}}" objectFit="fill" bindplay="onPlay" bindended="videoEnd" binderror="error"></video>
+<cover-view class="label-ui" hidden="{{chatShow}}">
+  <!-- 用户信息 -->
+  <cover-view class="room">
+    <cover-view class="info">
+      <cover-view class="anchor">
+        <cover-image src="{{liveInfo.ShortUser.picture}}" class="img" />
+        <cover-view class="txt">
+          <cover-view class="name">{{liveInfo.ShortUser.userName}}</cover-view>
+          <cover-view class="hot">
+            <cover-image src="/assets/live/people.png" class="people" />
+            <cover-view>{{liveInfo.viewNum}}</cover-view>
+          </cover-view>
+        </cover-view>
+        <cover-view class="follow" wx:if="{{isLike !== '0'}}" bindtap="setAttention">已关注</cover-view>
+        <cover-view class="follow" wx:else bindtap="setAttention">关注</cover-view>
+      </cover-view>
+      <cover-view class="status">
+        <cover-view wx:if="{{isLive}}">直播中</cover-view>
+        <cover-view wx:else>回放</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="capital">
+      <cover-view class="bean">
+        <cover-image src="/assets/live/kadou.png" class="icon" />
+        <cover-view class="text">咖豆:{{liveInfo.zsy}}　</cover-view>
+      </cover-view>
+      <cover-view class="anchor-id">
+        <cover-image src="/assets/live/id.png" class="icon" />
+        <cover-view class="text">人人咖ID:{{liveInfo.userId}}　</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="detail" wx:if="{{liveInfo.product}}" bindtap="openGoods">
+      <cover-image src="{{liveInfo.product.picture}}-200_200" class="img" />
+      <cover-view class="price">¥{{liveInfo.product.sellPrice}}</cover-view>
+    </cover-view>
+  </cover-view>
+  <!-- 左侧聊天消息框 -->
+  <cover-view class="{{goodsShow ? 'active' : ''}} message">
+    <cover-view class="msg-list" scroll-top="{{msgTop}}">
+      <cover-view wx:for="{{msg}}" wx:key="index" class="msg-info">
+        <cover-view class="msg-background" wx:if="{{item.showType === 10}}">
+          <cover-image src="/assets/level/lv{{item.rank}}.png"></cover-image>
+          <cover-view class="msg-level">LV{{item.rank}}　</cover-view>
+          <cover-view class="msg-name">{{item.name}}　</cover-view>
+          <cover-view class="msg-detail">{{item.message}}　</cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+  <!-- 右侧按钮组 -->
+  <cover-view class="{{goodsShow ? 'active' : ''}} buttons">
+    <cover-view class="button">
+      <cover-image src="/assets/live/up.png" class="icon" bindtap="prev" />
+    </cover-view>
+    <cover-view class="button">
+      <cover-image src="/assets/live/down.png" class="icon" bindtap="next" />
+    </cover-view>
+    <cover-view class="button" hidden>
+      <cover-image src="/assets/live/gift.png" class="icon" bindtap="closeIM" />
+    </cover-view>
+    <cover-view class="button" bindtap="userChat">
+      <cover-image src="/assets/live/message.png" class="icon" />
+    </cover-view>
+    <button class="button" open-type="share">
+      <cover-image src="/assets/live/share.png" class="icon" />
+    </button>
+  </cover-view>
+  <!-- 底部按钮 -->
+  <cover-view class="nav {{chatShow ? 'active' : ''}}">
+    <cover-view class="btn">首页</cover-view>
+    <cover-view class="url" bindtap="userFollow">关注</cover-view>
+    <cover-view class="ico" bindtap="openShop">
+      <cover-image class="img" src="/assets/live/icon_kadian@3x.png" mode="aspectFit" />
+    </cover-view>
+    <cover-view class="url" bindtap="userCart">购物车</cover-view>
+    <cover-view class="url" bindtap="userPage">我的</cover-view>
+  </cover-view>
+</cover-view>
+<!-- 商品购买弹窗 -->
+<cover-view class="goods" wx:if="{{list.length !== 0 && goodsShow && !chatShow}}">
+  <cover-image class="goods-close" src="/assets/common/close3@3x.png" mode="aspectFit" bindtap="openShop"></cover-image>
+  <cover-image src="/assets/live/up.png" class="icon" data-idx="{{0}}" bindtap="goodsChange" wx:if="{{list.length > 1}}" />
+  <cover-view class="content">
+    <cover-view class="info">
+      <cover-image src="{{goodsInfo.picture}}-200_200" class="img" />
+      <cover-view class="text">
+        <cover-view class="name">{{goodsInfo.productName}}</cover-view>
+        <cover-view class="price">
+          <cover-view>¥</cover-view>
+          <cover-view class="money" wx:if="{{goodsInfo.productType === '0'}}">{{goodsInfo.price}}</cover-view>
+          <cover-view class="money" wx:else>{{goodsInfo.sellPrice}}</cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="line"></cover-view>
+    <cover-view class="choose">
+      <cover-view class="item specs" wx:if="{{goodsInfo.productType === '0'}}">
+        <cover-view class="name">规格</cover-view>
+        <cover-view class="contents">
+          <button wx:for="{{goodsInfo.pInfo}}" wx:key="item.id" class="{{[index === selected ? 'selected' : '']}} spec" data-idx="{{index}}" bindtap="selectNorms">{{item.norms}}</button>
+        </cover-view>
+      </cover-view>
+      <cover-view class="item btns">
+        <cover-view class="name">数量</cover-view>
+        <cover-view class="contents">
+          <cover-view class="minus" bindtap="minus">-</cover-view>
+          <cover-view class="number">{{num}}</cover-view>
+          <cover-view class="plus" bindtap="plus">+</cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="line"></cover-view>
+    <cover-view class="buttons">
+      <button class="btn cart" bindtap="addCart" wx:if="{{goodsInfo.productType === '0'}}">加入购物车</button>
+      <button class="btn buy" bindtap="buyNow">立即购买</button>
+    </cover-view>
+  </cover-view>
+  <cover-image src="/assets/live/down.png" class="icon" data-idx="{{1}}" bindtap="goodsChange" wx:if="{{list.length > 1}}"></cover-image>
+</cover-view>
+<!-- 聊天弹窗 -->
+<form bindsubmit="chatSubmit" bindreset="chatReset" class="chat" wx:if="{{chatShow}}">
+  <input name="msg" focus="{{chatShow}}" placeholder="请输入聊天内容" />
+  <view class="chat-btns">
+    <button formType="submit">发送</button>
+    <button formType="reset">关闭</button>
+  </view>
+</form>

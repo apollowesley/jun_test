@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>easyweb</groupId>
+    <artifactId>easy</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <modules>
+        <module>easy-admin</module>
+        <module>easy-demo</module>
+        <module>easy-oss</module>
+        <module>easy-wechat</module>
+        <module>easy-shop</module>
+        <module>easy-pay</module>
+        <module>easy-cms</module>
+        <module>easy-api</module>
+        <module>easy-poi</module>
+    </modules>
+</project>

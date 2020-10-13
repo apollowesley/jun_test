@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>日志管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../lib/layui/css/layui.css">
+    <style>
+        .layui-row {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <div class="layui-row">
+                    <i class="layui-icon layui-icon-location"></i><span>当前位置：日志管理-列表</span>
+                </div>
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-form" lay-filter="form">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">起始日期</label>
+                            <div class="layui-input-block">
+                                <input type="text" class="layui-input" id="startTime" name="startTime">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">结束日期</label>
+                            <div class="layui-input-block">
+                                <input type="text" class="layui-input" id="endTime" name="endTime">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">IP地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="ipAddress" name="ipAddress" placeholder="请输入" autocomplete="off"
+                                    class="layui-input">
+                            </div>
+                        </div>
+
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">用户名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="userName" name="userName" placeholder="请输入" autocomplete="off"
+                                    class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="description" name="description" placeholder="请输入"
+                                    autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-sm" id="search" data-type="reload">搜索</button>
+                            <button class="layui-btn layui-btn-warm layui-btn-sm" id="reset"
+                                data-type="reset">清空</button>
+                        </div>
+                    </div>
+                    <!--表格头部功能栏-->
+                    <script type="text/html" id="toolbarDemo">
+                        <div id="toolbarView"></div>
+                    </script>
+                    <!--表格栏-->
+                    <div class="mainTab">
+                        <table id="logTable" lay-filter="test">
+
+                        </table>
+                    </div>
+                    <!--表头功能栏-->
+                    <script id="toolBarViewTpl" type="text/html">
+                        <div class="layui-btn-container">
+                            {{#  if(d.delete){ }}
+                            <button class="layui-btn layui-btn-sm" lay-event="batchDelete">删除</button>
+                            {{#  } }}
+                            {{#  if(d.export){ }}
+                            <button class="layui-btn layui-btn-sm" lay-event="export">导出</button>
+                            {{#  } }}
+
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="../../../lib/jquery/jquery-3.3.1.min.js"></script>
+<script src="../../../lib/jquery/jquery.cookie.js"></script>
+<script src="../../../lib/jquery/jquery.session.js"></script>
+
+<script src="../../../utils/http.js"></script>
+<script src="../../../api/admin/sys-log-api.js"></script>
+<script src="../../../lib/layui/layui.js"></script>
+<script src="../../../utils/utils.js"></script>
+<script src="../../../lib/moment/moment.min.js"></script>
+
+<script src="../../../utils/permission.js"></script>
+
+<script>
+    layui.use(['table', 'jquery', 'form', 'layer', 'laytpl', 'laydate'], function () {
+
+        var $ = layui.jquery,
+            table = layui.table,
+            layer = layui.layer,
+            laytpl = layui.laytpl,
+            laydate = layui.laydate,
+            form = layui.form;
+
+        var today = moment().format("YYYY-MM-DD HH:mm:ss"); //当前时间
+        var before15dayTime = moment().subtract(15, "days").format("YYYY-MM-DD HH:mm:ss"); //当前时间的前10天时间
+
+        laydate.render({
+            elem: '#startTime',
+            value: before15dayTime,
+            type: 'datetime'
+        });
+
+        laydate.render({
+            elem: '#endTime',
+            value: today,
+            type: 'datetime'
+        });
+
+        table.render({
+            id: "logTable",
+            elem: '#logTable',
+            method: 'post',
+            toolbar: '#toolbarDemo',
+            url: log.getListByPage,
+            contentType: 'application/json',
+            headers: {
+                Token: $.cookie("token")
+            },
+            //重置请求前参数
+            request: {
+                pageName: 'currPage', //页码的参数名称，默认：page
+                limitName: 'pageSize', //每页数据量的参数名，默认：limit
+            },
+            where: {
+                "orderBy": "DESC",
+                "orderByName": "createTime",
+                "params": {
+                    "startTime": $('#startTime').val(),
+                    "endTime": $('#endTime').val(),
+                }
+            },
+            page: {
+                theme: '#5eb95e',
+                curr: 1, //起始页，默认是1
+                limit: 15, //每页显示的条数，默认是10
+                limits: [15, 20, 30],
+                layout: ['count', 'prev', 'page', 'next', 'skip', 'limit'],
+            },
+            parseData: function (res) { //res 即为原始返回的数据
+                if (res.code == "0000") {
+                    return {
+                        "code": res.code, //解析接口状态
+                        "msg": res.msg, //解析提示文本
+                        "count": res.data.totalCount, //解析数据长度
+                        "data": res.data.list //解析数据列表
+                    };
+                } else {
+                    layer.alert(res.msg, {
+                        icon: 5,
+                        title: "提示"
+                    });
+                }
+            },
+            //数据渲染后做的操作
+            done: function (res, curr, count) {
+
+                toolbarView();
+            },
+            cols: [
+                [ //表头
+                    {
+                        type: 'checkbox',
+                        fixed: 'left'
+                    },
+                    {
+                        title: '序号',
+                        type: 'numbers'
+                    },
+                    {
+                        field: 'userName',
+                        title: '用户名称',
+                        align: 'center',
+                    },
+
+                    {
+                        field: 'ipAddress',
+                        title: 'IP地址',
+                        align: 'center',
+                    },
+                    {
+                        field: 'modelName',
+                        title: '模块名称',
+                        align: 'center',
+                    },
+                    {
+                        field: 'operateName',
+                        title: '操作',
+                        align: 'center',
+                    },
+                    {
+                        field: 'description',
+                        title: '标题',
+                        align: 'center',
+                    },
+                    {
+                        align: 'center',
+                        field: 'typeName',
+                        title: '终端',
+
+                    },
+                    {
+                        align: 'center',
+                        field: 'createTime',
+                        title: '创建时间',
+
+                    },
+
+                ]
+            ],
+            defaultToolbar: [],
+            loading: true,
+        });
+
+        active = {
+            //搜索
+            reload: function () {
+                table.reload('logTable', {
+                    where: {
+                        "orderBy": "DESC",
+                        "orderByName": "createTime",
+                        "params": {
+                            "userName": $('#userName').val(),
+                            "ipAddress": $('#ipAddress').val(),
+                            "startTime": $('#startTime').val(),
+                            "endTime": $('#endTime').val(),
+                            "description": $("#description").val(),
+                        }
+                    },
+                    page: {
+                        theme: '#5eb95e',
+                        curr: 1, //起始页，默认是1
+                        limit: 15, //每页显示的条数，默认是10
+                        limits: [15, 20, 30],
+                        layout: ['count', 'prev', 'page', 'next', 'skip', 'limit'],
+                    },
+                });
+            },
+            //重置
+            reset: function () {
+                window.location.reload();
+            },
+            //删除
+            batchDelete: function () {
+                var checkStatus = table.checkStatus('logTable');
+                if (isUndefined(checkStatus.data)) {
+                    layer.alert('至少选择一行进行删除', {
+                        icon: 5,
+                        title: "提示"
+                    });
+                    return false;
+                }
+                layer.alert('确认删除吗？', {
+                    skin: 'layui-layer-molv',
+                    closeBtn: 1,
+                    anim: 1,
+                    btn: ['确定', '取消'],
+                    icon: 7,
+                    yes: function (index) {
+                        apiDelete(log.batchDelete, {
+                            "ids": checkStatus.data
+                        }, function (res) {
+                            table.reload('logTable'); //数据刷新
+                            layer.close(index); //关闭弹层
+                        });
+                    }
+                });
+            },
+            //导出
+            export: function () {
+                var startTime = $('#startTime').val();
+                var endTime = $('#endTime').val();
+                var userName = $('#userName').val();
+                var ipAddress = $('#ipAddress').val();
+
+                var url = log.export+"?ipAddress=" + ipAddress + "&userName=" + userName +
+                    "&startTime=" + startTime + "&endTime=" + endTime;
+                var fileName = '系统日志_' + startTime + "_" + endTime + ".xls";
+                exportByToken(url, fileName);
+            }
+        }
+        //搜索
+        $('#search').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        //重置
+        $('#reset').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        //监听事件
+        table.on('toolbar(test)', function (obj) {
+            switch (obj.event) {
+                case 'export':
+                    active[obj.event] ? active[obj.event].call(this) : '';
+                    break;
+                case 'batchDelete':
+                    active[obj.event] ? active[obj.event].call(this) : '';
+                    break;
+            };
+        });
+
+
+        function toolbarView() {
+            var data = {};
+            data.export = permission.getPermission('system:log:export');
+            data.delete = permission.getPermission('system:log:delete');
+            laytpl(toolBarViewTpl.innerHTML).render(data, function (html) {
+                $("#toolbarView").html(html);
+            });
+        }
+
+    });
+</script>
+
+</html>

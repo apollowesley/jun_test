@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>新增参数</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../lib/layui/css/layui.css">
+
+</head>
+
+<body>
+    <div class="layui-form" style="padding: 20px 30px 0 0;" lay-filter="form">
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">* </span>参数编号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="code" lay-verify="required" placeholder="请输入" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">* </span>参数名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" lay-verify="required" placeholder="请输入" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">* </span>参数值</label>
+            <div class="layui-input-inline">
+                <input type="text" name="value" lay-verify="required" placeholder="请输入" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">* </span>参数类型</label>
+            <div class="layui-input-inline">
+                <select name="type" lay-verify="required" lay-filter="type">
+                    <option value="">请选择</option>
+                    <option value="0">Redis缓存</option>
+                    <option value="1">设备厂家</option>
+                    <option value="2">芯片厂商</option>
+                    <option value="3">版本号码</option>
+                    <option value="4">应用类型</option>
+                    <option value="5">证书用途</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">* </span>状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="1" title="启动" checked="">
+                <input type="radio" name="status" value="0" title="停用">
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <input type="button" lay-submit lay-filter="paramsAddSubmit" id="paramsAddSubmit" value="确认">
+        </div>
+    </div>
+</body>
+<script src="../../../lib/jquery/jquery-3.3.1.min.js"></script>
+<script src="../../../lib/jquery/jquery.cookie.js"></script>
+<script src="../../../lib/jquery/jquery.session.js"></script>
+
+<script src="../../../utils/http.js"></script>
+<script src="../../../api/admin/sys-params-api.js"></script>
+<script src="../../../lib/layui/layui.js"></script>
+<script src="../../../utils/utils.js"></script>
+
+<script src="../../../utils/permission.js"></script>
+<script>
+    //监听form表单的提交事件
+    layui.use(['jquery', 'form', 'layer'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.jquery;
+        $(document).ready(function () {
+            init();
+        });
+        function init() {
+            form.val("form", {
+                "code": "",
+                "value": "",
+                "name": "",
+                "type": "",
+                "status": "1"
+            });
+        }
+    });
+</script>
+
+</html>

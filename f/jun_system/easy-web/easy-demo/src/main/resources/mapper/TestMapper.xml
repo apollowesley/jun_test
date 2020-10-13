@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.spring.mapper.TestMapper">
+    <resultMap type="boot.spring.po.TestVo" id="testMap">
+        <id column="id" property="id"></id>
+        <result column="uid" property="uid"/>
+        <result column="name" property="name"/>
+        <result column="num" property="num"/>
+        <result column="type" property="type"/>
+        <result column="create_date" property="createDate"/>
+    </resultMap>
+
+    <select id="query" resultMap="testMap">
+        select id,uid,name,num,type,create_date from test
+	</select>
+
+    <select id="querySet" resultType="String">
+        select uid from test
+    </select>
+
+    <insert id="batchAdd">
+        INSERT INTO test(id,uid,name,num,type,create_date)
+        VALUES
+        <foreach collection="testList" item="item" separator=",">
+            (#{item.id},#{item.uid},#{item.name},#{item.num},#{item.type},#{item.createDate})
+        </foreach>
+    </insert>
+</mapper>

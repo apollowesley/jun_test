@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+                        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	<!-- 主写库 -->
+	<!-- <bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias">
+			<value>DBPool</value>
+		</property>
+		<property name="driver" value="${pool.driver}" />
+		<property name="driverUrl" value="${pool.url}" />
+		<property name="user" value="${pool.username}" />
+		<property name="password" value="${pool.password}" />
+		<property name="maximumConnectionCount" value="${pool.maximumConnectionCount}" />
+		<property name="minimumConnectionCount" value="${pool.minimumConnectionCount}" />
+		<property name="prototypeCount" value="${pool.prototypeCount}" />
+		<property name="simultaneousBuildThrottle" value="${pool.simultaneousBuildThrottle}" />
+		<property name="maximumActiveTime" value="${pool.maximumActiveTime}" />
+		<property name="maximumConnectionLifetime" value="${pool.maximumConnectionLifetime}" />
+	</bean> -->
+
+	<bean id="sqlSessionFactory" class="com.zb.mapper.BeanFactory">
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:com/zb/**/*Mapper.xml</value>
+			</array>
+		</property>
+		<property name="typeAliasesPackage" value="com.zb.bean" />
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">     <!-- 通用分页配置 -->
+					<property name="properties">
+						<value>
+							dialect=mysql
+							reasonable=true
+							rowBoundsWithCount=true
+							pageSizeZero=true
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.zb.mapper" />
+	</bean>
+
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 注解方式配置事物 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>

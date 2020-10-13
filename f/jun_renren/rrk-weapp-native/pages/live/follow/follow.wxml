@@ -1,0 +1,6 @@
+<view class="follow">
+  <view class="live-contain">
+    <live-wrap class="video-wrap" wx:for="{{list}}" wx:for-item="item" wx:key="index" liveItem="{{item}}"></live-wrap>
+  </view>
+  <load-more i-class="loading" loading="{{!finished}}" tip="{{finished ? '暂无数据' : ''}}"></load-more>
+</view>

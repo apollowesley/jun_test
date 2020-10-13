@@ -1,0 +1,213 @@
+log.vue<template>
+  <div class="app-container calendar-list-container">
+    <div class="toolbar-container">
+      <el-button :loading="batchDeleteLoading" size="mini" class="filter-item" type="danger" icon="el-icon-document" @click="handleBatchDelete">删除</el-button>
+      <el-button v-waves size="mini" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ $t('table.search') }}</el-button>
+    </div>
+    <el-table
+      v-loading="listLoading"
+      ref="multipleTable"
+      :key="tableKey"
+      :data="list"
+      element-loading-text="给我一点时间"
+      border
+      fit
+      highlight-current-row
+      tyle="width: 100%"
+      @selection-change="handleSelectionChange">
+      <el-table-column type="selection" align="center"/>
+      <el-table-column width="120" align="center" label="操作标题">
+        <template slot-scope="scope">
+          <span>{{ scope.row.title }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="80" align="center" label="操作类型">
+        <template slot-scope="scope">
+          <span>{{ scope.row.logType }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="120" align="center" label="URI">
+        <template slot-scope="scope">
+          <span>{{ scope.row.requestUri }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="80" align="center" label="操作人">
+        <template slot-scope="scope">
+          <span>{{ scope.row.operationName }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="80" align="center" label="操作IP">
+        <template slot-scope="scope">
+          <span>{{ scope.row.operationIp }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="80" align="center" label="浏览器">
+        <template slot-scope="scope">
+          <span>{{ scope.row.browser }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="100" align="center" label="操作系统">
+        <template slot-scope="scope">
+          <span>{{ scope.row.os }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="80" align="center" label="请求状态">
+        <template slot-scope="scope">
+          <el-tag :type="scope.row.status | statusTypeFilter">{{ scope.row.status | statusFilter }}</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column width="160" align="center" label="操作时间">
+        <template slot-scope="scope">
+          <span>{{ scope.row.createDate }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column :label="$t('table.actions')" align="center" class-name="small-padding fixed-width">
+        <template slot-scope="scope">
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">{{ $t('table.delete') }}</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <div class="pagination-container">
+      <el-pagination
+        :current-page.sync="listQuery.page"
+        :page-sizes="[10,20,30, 50]"
+        :page-size="listQuery.limit"
+        :total="total"
+        background
+        layout="total, sizes, prev, pager, next, jumper"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"/>
+    </div>
+  </div>
+</template>
+
+<script>
+import { fetchOperationLogList, deleteOperationLog, batchDeleteOperationLog } from '@/api/monitor/log/operation'
+import waves from '@/directive/waves' // 水波纹指令
+
+export default {
+  name: 'ScheduleJobLogList',
+  directives: {
+    waves
+  },
+  filters: {
+    statusTypeFilter(status) {
+      const statusMap = {
+        '0': 'danger',
+        '1': 'success'
+      }
+      return statusMap[status]
+    },
+    statusFilter(status) {
+      const statusMap = {
+        '0': '失败',
+        '1': '成功'
+      }
+      return statusMap[status]
+    }
+  },
+  data() {
+    return {
+      tableKey: 0,
+      list: null,
+      total: null,
+      listLoading: true,
+      listQuery: {
+        page: 1,
+        limit: 10,
+        importance: undefined,
+        title: undefined,
+        type: undefined,
+        sort: '+id'
+      },
+      showReviewer: false,
+      dialogFormVisible: false,
+      multipleSelection: [],
+      batchDeleteLoading: false,
+      statusOptions: [
+        { label: '发送失败', value: '-1' },
+        { label: '发送中', value: '0' },
+        { label: '发送成功', value: '1' }
+      ]
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.listLoading = true
+      fetchOperationLogList(this.listQuery).then(response => {
+        this.list = response.data.records
+        this.total = response.data.total
+        this.listLoading = false
+      })
+    },
+    handleFilter() {
+      this.listQuery.page = 1
+      this.getList()
+    },
+    handleSizeChange(val) {
+      this.listQuery.limit = val
+      this.getList()
+    },
+    handleCurrentChange(val) {
+      this.listQuery.page = val
+      this.getList()
+    },
+    handleModifyStatus(row, status) {
+      this.$message({
+        message: '操作成功',
+        type: 'success'
+      })
+      row.status = status
+    },
+    handleDelete(row) {
+      deleteOperationLog(row.id).then(() => {
+        this.$notify({
+          title: '成功',
+          message: '删除成功',
+          type: 'success',
+          duration: 2000
+        })
+        const index = this.list.indexOf(row)
+        this.list.splice(index, 1)
+      })
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+    },
+    handleBatchDelete() {
+      if (this.multipleSelection.length) {
+        this.batchDeleteLoading = true
+        const list = this.multipleSelection
+        var ids = []
+        list.forEach(function(value, index, array) {
+          ids.push(value.id)
+        })
+        var idsStr = ids.join(',')
+        batchDeleteOperationLog(idsStr).then(() => {
+          this.$notify({
+            title: '成功',
+            message: '提交成功',
+            type: 'success',
+            duration: 2000
+          })
+          this.$refs.multipleTable.clearSelection()
+          this.batchDeleteLoading = false
+        }).catch(() => {
+          this.batchDeleteLoading = false
+        })
+        this.getList()
+      } else {
+        this.$message({
+          message: '至少选择一条日志',
+          type: 'warning'
+        })
+      }
+    }
+  }
+}
+</script>

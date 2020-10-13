@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<!-- druid 连接池配置信息 http://www.cnblogs.com/SummerinShire/p/5828888.html -->
+	<!-- druid 数据库连接池 -->
+	<bean id="masterDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<!-- 连接数据库信息 -->
+		<property name="driverClassName" value="${master.jdbc.driver}" />
+		<property name="url" value="${master.jdbc.url}" />
+		<property name="username" value="${master.jdbc.username}" />
+		<property name="password" value="${master.jdbc.password}" />
+
+		<!-- 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时 -->
+		<property name="initialSize" value="1" />
+		<!-- 最大连接池数量 -->
+		<property name="maxActive" value="50" />
+		<!-- 最小连接池数量 -->
+		<property name="minIdle" value="10" />
+		<!-- 获取连接时最大等待时间，单位毫秒 -->
+		<property name="maxWait" value="60000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!-- 用来检测连接是否有效的sq -->
+		<property name="validationQuery" value="SELECT 'x' FROM DUAL" />
+		<!-- 建议配置为true，不影响性能，并且保证安全性 -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+		<property name="testOnBorrow" value="false" />
+		<!-- 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+		<property name="testOnReturn" value="false" />
+		<!-- 属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall -->
+		<property name="filters" value="stat" />
+	</bean>
+
+	<bean id="slaveDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<!-- 连接数据库信息 -->
+		<property name="driverClassName" value="${slave1.jdbc.driver}" />
+		<property name="url" value="${slave1.jdbc.url}" />
+		<property name="username" value="${slave1.jdbc.username}" />
+		<property name="password" value="${slave1.jdbc.password}" />
+
+		<!-- 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时 -->
+		<property name="initialSize" value="1" />
+		<!-- 最大连接池数量 -->
+		<property name="maxActive" value="50" />
+		<!-- 最小连接池数量 -->
+		<property name="minIdle" value="10" />
+		<!-- 获取连接时最大等待时间，单位毫秒 -->
+		<property name="maxWait" value="60000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!-- 用来检测连接是否有效的sq -->
+		<property name="validationQuery" value="SELECT 'x' FROM DUAL" />
+		<!-- 建议配置为true，不影响性能，并且保证安全性 -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+		<property name="testOnBorrow" value="false" />
+		<!-- 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+		<property name="testOnReturn" value="false" />
+		<!-- 属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall -->
+		<property name="filters" value="stat" />
+	</bean>
+	<!-- 动态数据源 -->
+	<bean id="dataSource" class="com.bodsite.common.datasource.DynamicDataSource">
+		<property name="master" ref="masterDataSource" />
+		<property name="slaves">
+			<list>
+				<ref bean="slaveDataSource" />
+			</list>
+		</property>
+		<property name="strategy" value="0"/>
+	</bean>
+
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:mappings/**/*.xml" />
+	</bean>
+	<!-- 定义事务 -->
+	<bean id="transactionManager"
+		class="com.bodsite.common.datasource.DynamicDataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 扫描@Transactional注解的类定义事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+	<!-- 自动注册mybatis mapper bean -->
+	<!-- 注意,没有必要去指定SqlSessionFactory或SqlSessionTemplate, 因为MapperScannerConfigurer将会创建 
+		MapperFactoryBean，之后自动装配。 但是，如果你使 用了一个以上的DataSource，那 么自动装配可能会失效。 这种情况下,你可以使用 
+		sqlSessionFactoryBeanName或sqlSessionTemplateBeanName 属性来设置正确的 bean名称来使用。 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.bodsite.**.dao" />
+	</bean>
+</beans>

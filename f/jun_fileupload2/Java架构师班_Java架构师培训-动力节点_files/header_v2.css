@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* 初始化 */
+body, span, div, img, ul, ol, li, p, dl, dt, dd, input, form, h1, h2, h3, h4, h5, h6, * {margin: 0;padding: 0;}
+img {border: none; /*transition:2s;*/}
+ul {list-style: none;}
+a {text-decoration:none;color:#000;}
+a:hover {text-decoration:none; /*color:#000;*/}
+input:focus {outline: none;}
+i{font-style: normal;}
+.fl {float: left;}
+.fr {float: right;}
+.abs {position: absolute;}
+.rel {position: relative;}
+.clear {clear: both;}
+/* 初始化end */
+.page-head{min-width: 1200px;height: 106px;margin: 0 auto;background: white;}
+.page-head #pageHead{width: 1200px;height: 106px;margin: 0 auto;padding: 30px 0;box-sizing: border-box;}
+.page-head #pageHead .page-logo{width: 194px;height: 46px;float: left;}
+.page-head #pageHead .page-logo a{display: inline-block;width: 100%;height: 100%;background: url("../images/logo-page.png") no-repeat center;overflow: hidden;text-indent: -999999px;}
+.page-head #pageHead .page-bar{width: 950px;height: 46px;line-height: 46px;float: right;position: relative;}
+.page-head #pageHead .page-bar li{float: left;margin-right: 60px;font-size: 14px;}
+.page-head #pageHead .page-bar li a{color: #090723;}
+.page-head #pageHead .page-bar>li:hover>a{color: #FD7526;}
+.page-head #pageHead .page-bar li:last-child{margin-right: 0;}
+/*二级导航*/
+[class^='cai-'],
+[class*=' cai-']{background: url("../images/all-course1.png") no-repeat;-webkit-background-size: 31px 211px;background-size: 31px 211px;}
+.page-head #pageHead .page-bar .two-title{position: absolute;width: 734px;top: 45px;left: 85px;height: 140px;background: white;box-sizing: border-box;padding: 20px;z-index: 100;display: none;}
+.page-head #pageHead .page-bar .two-title ul{height: 140px;overflow: hidden;box-sizing: border-box;}
+.page-head #pageHead .page-bar .two-title ul li{float: left;width: 133px;height: 100px;background: #F3F3F3;text-align: center;line-height: 22px;border: 1px solid #E1E1E1;box-sizing: border-box;overflow: hidden;margin-right: 7px;}
+.page-head #pageHead .page-bar .two-title ul li:last-child{margin-right: 0;}
+.page-head #pageHead .page-bar .two-title ul li a{display: inline-block;width: 133px;height: 100px;box-sizing: border-box;padding: 13px 0;color: #787878;}
+.page-head #pageHead .page-bar .two-title>ul li a span{display: inline-block;width: 30px;height: 30px;text-align: center;}
+.page-head #pageHead .page-bar .two-title>ul li span.cai-all1{background-position: 0 4px;}
+.page-head #pageHead .page-bar .two-title>ul li span.cai-all2{background-position: 0 -28px;}
+.page-head #pageHead .page-bar .two-title>ul li span.cai-all3{background-position: 0 -57px;}
+.page-head #pageHead .page-bar .two-title>ul li span.cai-all4{background-position: 0 -87px;}
+.page-head #pageHead .page-bar .two-title>ul li span.cai-all5{background-position: 0 -146px;}
+.page-head #pageHead .page-bar .two-title>ul li span.cai-all6{background-position: 0 -181px;}
+/*.page-head #pageHead .page-bar .two-title ul li a img{margin: 2px auto;}*/
+.page-head #pageHead .page-bar .two-title ul li .p-change{color: #8C8C8C;font-size: 12px;}
+.page-head #pageHead .page-bar .two-title ul li:hover{border-color: #FF7B3A;}
+.page-head #pageHead .page-bar .two-title ul li:hover .p-change{color: #FF7B3A;}
+
+ins{ z-index: -1px !important; }
+
+/*免费咨询电话隐藏*/
+.lxb-container{width: 0!important;height: 0!important;overflow: hidden;}
+.custom-text{width: 0!important;height: 0!important;overflow: hidden;}
+.lxb-hide-btn{display: none!important;}
+.lxb-cb-input{display: none!important;}
+.lxb-cb-input-btn{display: none!important;}

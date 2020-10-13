@@ -1,0 +1,32 @@
+<view class="address">
+  <view class="add-wrap">
+    <view class="add-title">收货人</view>
+    <input class="add-input" type="text" bindinput="nameInput" value="{{name}}" placeholder="请填写收件人姓名" />
+  </view>
+  <view class="add-wrap">
+    <view class="add-title">联系电话</view>
+    <input class="add-input" type="number" bindinput="phoneInput" value="{{phone}}" maxlength="11" placeholder="请填写收件人手机号码" />
+  </view>
+  <picker mode="region" bindchange="regionChange" value="{{region}}">
+    <view class="add-wrap">
+      <view class="add-title">省市区</view>
+      <input class="add-input picker" value="{{area}}" type="text" disabled placeholder="请选择地区" />
+      <view class="add-icon">
+        <image src="../../../assets/address/address.png" lazy-load></image>
+      </view>
+    </view>
+  </picker>
+  <view class="add-wrap">
+    <view class="add-title">详细地址</view>
+    <input class="add-input" type="text" bindinput="remarkInput" value="{{remark}}" placeholder="请填写收件人详细地址" />
+  </view>
+  <!--  -->
+  <view class="add-wrap add-switch">
+    <view class="add-title">设为默认</view>
+    <switch bindchange="switchChange" checked="{{isDefault === 0 ? false : true}}" color="#fd69ab" />
+  </view>
+  <!--  -->
+  <view class="bottom-btn">
+    <i-button type="rrk" bind:click="onSave" size="small" long>保存</i-button>
+  </view>
+</view>

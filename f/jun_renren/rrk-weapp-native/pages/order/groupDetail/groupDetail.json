@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "团购详情",
+  "usingComponents": {
+    "i-button": "/components/iview/button/index"
+  }
+}

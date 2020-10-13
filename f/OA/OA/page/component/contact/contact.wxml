@@ -1,0 +1,29 @@
+<view  stytle=" overflow-x: hidden; overflow-y: auto;">
+<view class="serach"><view class="serach_view_show" bindtap="bindtap"> 搜索</view></view>
+
+ <toast hidden="{{isHiddenToast}}" stytle="display:flex  width:100rpx" duration="1000" bindchange="toastChange">
+  </toast>
+
+<view  class="line"></view>
+  <view class="message__list">
+      <block wx:for="{{departments}}"  wx:for-index="idx">
+          <view class="item-tree" >
+           <image src="/image/close.png" class="tree_image"/>         
+             <text class="title">{{item.name}}</text>
+             <text class="time"></text>
+          </view>
+
+         <block wx:for="{{item.empList}}">
+         <navigator url="/page/component/message/chat/chat?name={{item.name}}">
+          <view class="item-tree-list">
+            <image src="/image/41.png" class="tree_image"/>
+            <text class="title">{{item.name}}</text>
+          </view>
+          </navigator>
+         </block>
+         <view  class="line" wx:if="{{idx==1}}"></view>
+         <view  class="line-narrow"wx:if="{{idx!=1}}" ></view>
+
+      </block>
+  </view>
+</view>

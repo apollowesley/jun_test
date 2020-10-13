@@ -1,0 +1,52 @@
+#@adminLayout()
+#define main()
+<div class="admin-content-box">
+	<!-- 列表 -->
+	<div class="jf-admin-panel-box">
+		<div>
+			<button class="layui-btn" onclick="showFancyBox('/imzdx/category/add">添加</button>
+		</div>
+		<table class="layui-table" lay-skin="line">
+		  <thead>
+		    <tr>
+		      <th></th>
+		      <th>标题</th>
+		      <th>创建时间</th>
+		      <th>修改时间</th>
+		      <th>操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		   #for(x : page.list)
+		    <tr>
+		      	<td>#(x.id)</td>
+		      	<td>#(x.name)</td>
+		      	<td>#(x.create_time)</td>
+		      	<td>#(x.update_time)</td>
+		      <td>
+					<span onclick="showFancyBox('/imzdx/category/view?id=#(x.id)')">查看</span>
+					<span onclick="showFancyBox('/imzdx/category/edit?id=#(x.id)')">更新</span>
+					<span onclick="showFancyBox('/imzdx/category/delete?id=#(x.id)')">删除</span>
+		      </td>
+		    </tr>
+		   #end
+		  </tbody>
+		</table>
+
+		#@paginate(accountPage.pageNumber, accountPage.totalPage, "/imzdx/category/list?p=")
+
+	</div>
+
+</div>
+#end
+
+#define css()
+
+#end
+
+#define js()
+
+	<script type="text/javascript">
+
+	</script>
+#end

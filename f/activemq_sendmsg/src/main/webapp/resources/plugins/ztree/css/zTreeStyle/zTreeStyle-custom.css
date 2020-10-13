@@ -1,0 +1,39 @@
+.ztree * {
+	font-size: 14px;
+	font-family: "Microsoft Yahei", Verdana, Simsun, "Segoe UI", "Segoe UI Web Regular", "Segoe UI Symbol", "Helvetica Neue", "BBAlpha Sans", "S60 Sans", Arial, sans-serif;
+}
+
+.ztree {
+padding-top: 24px;
+padding-left: 36px;
+}
+
+.ztree li a.curSelectedNode {
+	height: 18px;
+	background-color: #D4D4D4;
+	border: 1px #D4D4D4 solid;
+}
+
+.ztree li {
+	line-height: 22px;
+}
+
+.ztree li span.button.switch {
+width: 18px;
+height: 22px;
+}
+
+.ztree li a {
+height: 20px;
+}
+
+.ztree li span.button.ico_docu {
+vertical-align: middle;
+}
+
+.ztree li span.button.ico_open {
+vertical-align: middle;
+}
+.ztree li span.button.ico_close {
+vertical-align: middle;
+}

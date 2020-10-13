@@ -1,0 +1,73 @@
+ <view class='container'>
+<!-- 修改密码 -->
+ <view class="password-from"> 
+ <!--旧密码-->
+ <view class="inputView"> 
+  <image class="keyImage" src="/image/password.png"></image> 
+  <label class="passwordLab">旧密码</label> 
+  <input class="inputText" placeholder="请输入原密码" bindinput="phoneInput" /> 
+ </view> 
+ <view class="line"></view> 
+ <!--新密码 -->
+ <view class="inputView"> 
+  <image class="keyImage" src="/image/password.png"></image> 
+  <label class="passwordLab">新密码</label> 
+  <input class="inputText" password="true" placeholder="请输入新密码" bindinput="passwordInput" /> 
+ </view> 
+ <view class="line"></view> 
+   <!-- 确认密码 -->
+ <view class="inputView"> 
+  <image class="keyImage" src="/image/password.png"></image> 
+  <label class="passwordLab">确认密码</label> 
+  <input class="inputText" password="true" placeholder="请输入新密码" bindinput="passwordInput" /> 
+ </view> 
+ <!--按钮-->
+ <view class="BtnView"> 
+  <button class="Btn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="save">保存</button> 
+ </view> 
+ </view>
+
+<!-- 修改个人信息 -->
+ <view class="password-from"> 
+ <!--手机号-->
+ <view class="inputView"> 
+  <image class="keyImage" src="/image/phone.png"></image> 
+  <label class="passwordLab">手机号</label> 
+  <input class="inputText" placeholder="" bindinput="phoneInput" /> 
+ </view> 
+ <view class="line"></view>
+ <!--QQ号 -->
+ <view class="inputView"> 
+  <image class="keyImage" src="/image/qq.png"></image> 
+  <label class="passwordLab">QQ号</label> 
+  <input class="inputText" password="true" placeholder="" bindinput="passwordInput" /> 
+ </view> 
+ <view class="line"></view> 
+   <!-- 微信号 -->
+ <view class="inputView"> 
+  <image class="keyImage" src="/image/wechat.png"></image> 
+  <label class="passwordLab">微信号</label> 
+  <input class="inputText" password="true" placeholder="" bindinput="passwordInput" /> 
+ </view>
+  <view class="line"></view> 
+    <!-- 邮箱 -->
+ <view class="inputView"> 
+  <image class="keyImage" src="/image/youjian.png"></image> 
+  <label class="passwordLab">邮箱</label> 
+  <input class="inputText" password="true" placeholder="" bindinput="passwordInput" /> 
+ </view>
+  <view class="line"></view> 
+    <!-- 爱好 -->
+ <view class="inputView"> 
+  <image class="keyImage" src="/image/aihao.png"></image> 
+  <label class="passwordLab">爱好</label> 
+  <input class="inputText" password="true" placeholder="" bindinput="passwordInput" /> 
+ </view> 
+  <view class="line"></view> 
+ <!--按钮-->
+ <view class="BtnView"> 
+  <button class="Btn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="save">保存</button> 
+ </view> 
+ </view>
+
+ </view> 

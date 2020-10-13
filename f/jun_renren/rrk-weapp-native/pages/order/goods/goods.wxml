@@ -1,0 +1,23 @@
+<view class="order">
+  <view class="order-head">
+    <i-tabs current="{{current}}" color="#fd69ab" bindchange="onChange">
+      <i-tab key="10" title="全部"></i-tab>
+      <i-tab key="0" title="待付款"></i-tab>
+      <i-tab key="1" title="待发货"></i-tab>
+      <i-tab key="2" title="待收货"></i-tab>
+      <i-tab key="4" title="待评价"></i-tab>
+    </i-tabs>
+  </view>
+  <view class="order-container">
+    <order-wrap
+    class="order-wrapper"
+    wx:for="{{orderView}}"
+    orderInfo="{{item}}"
+    wx:key="index"
+    idx="{{index}}"
+    bindonCannel="onCannel"
+    bindonDelete="onDelete"
+    ></order-wrap>
+    <load-more i-class="loading" loading="{{!finished}}" tip="{{finished ? '暂无数据' : ''}}"></load-more>
+  </view>
+</view>

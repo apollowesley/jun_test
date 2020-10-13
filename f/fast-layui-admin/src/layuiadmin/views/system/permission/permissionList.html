@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>权限管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../lib/layui/css/layui.css">
+    <style>
+        .layui-row {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-fluid">
+
+        <div class="layui-card">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <div class="layui-row">
+                    <i class="layui-icon layui-icon-location"></i><span>当前位置：权限管理-列表</span>
+                </div>
+            </div>
+            <div class="layui-card-body">
+                <!--表格头部功能栏-->
+                <script type="text/html" id="toolbarDemo">
+                    <div id="toolbarView"></div>
+                </script>
+                <!--操作栏-->
+                <script type="text/html" id="barDemo">
+                    <div class="barView"></div>
+                </script>
+                <!--表格栏-->
+                <div class="mainTab">
+                    <table id="permissionTable" lay-filter="test">
+
+                    </table>
+                </div>
+                <!--操作模板-->
+                <script id="barViewTpl" type="text/html">
+                    {{#  if(d.add){ }}
+                    <button class="layui-btn layui-btn-xs" lay-event="add">添加</button>
+                    {{#  } }}
+                    {{#  if(d.update){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    {{#  } }}
+                    {{#  if(d.delete){ }}
+                    <button class="layui-btn layui-btn-xs" lay-event="batchDelete">删除</button>
+                    {{#  } }}
+                </script>
+                <!--表头功能栏-->
+                <script id="toolBarViewTpl" type="text/html">
+                    <div class="layui-btn-container">
+                        {{#  if(d.add){ }}
+                        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+                        {{#  } }}
+
+                    </div>
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../../lib/jquery/jquery-3.3.1.min.js"></script>
+<script src="../../../lib/jquery/jquery.cookie.js"></script>
+<script src="../../../lib/jquery/jquery.session.js"></script>
+<script src="../../../utils/permission.js"></script>
+
+<script src="../../../utils/http.js"></script>
+<script src="../../../api/admin/sys-permission-api.js"></script>
+<script src="../../../lib/layui/layui.js"></script>
+<script src="../../../utils/utils.js"></script>
+
+<script>
+    layui.config({
+        base: '../../../lib/treeTable/'
+    }).extend({
+        treetable: 'extend/treetable'
+    }).use(['table', 'treetable', 'laytpl', 'layer', 'form', ], function () {
+
+        var $ = layui.jquery,
+            table = layui.table,
+            layer = layui.layer,
+            laytpl = layui.laytpl,
+            form = layui.form,
+            treetable = layui.treetable;
+
+        treetable.render({
+            treeColIndex: 1, // 树形图标显示在第几列
+            treeSpid: 0, // 最上级的父级id
+            treeIdName: 'id', // id字段的名称
+            treePidName: 'parentId', // pid字段的名称
+            treeDefaultClose: false, // 是否默认折叠
+            treeLinkage: false, // 父级展开时是否自动展开所有子级
+
+            elem: '#permissionTable',
+            toolbar: '#toolbarDemo',
+            url: permission.getList,
+            contentType: 'application/json',
+            headers: {
+                Token: $.cookie("token")
+            },
+            done: function (res, curr, count) {
+                //按钮权限设置
+                toolbarView();
+                barView();
+            },
+            cols: [
+                [{
+                        title: '序号',
+                        type: 'numbers'
+                    },
+                    {
+                        field: 'name',
+                        title: '权限名称',
+                        align: 'center',
+                        minWidth: 200,
+                    },
+                    {
+                        field: 'grade',
+                        title: '等级',
+                        align: 'center',
+                    },
+                    {
+                        field: 'url',
+                        title: '链接',
+                        align: 'center',
+
+                    },
+                    {
+                        field: 'priority',
+                        title: '排序',
+                        align: 'center',
+                    },
+                    {
+                        field: 'type',
+                        title: '类型',
+                        templet: function (d) {
+                            if (d.type == 1) {
+                                return '菜单';
+                            } else if (d.type == 2) {
+                                return '按钮';
+                            } else {
+                                return ''
+                            }
+                        },
+                        align: 'center',
+                    },
+                    {
+                        field: 'permission',
+                        title: '权限标识',
+                        align: 'center',
+
+                    },
+                    {
+                        field: 'description',
+                        title: '描述',
+                        align: 'center',
+                        minWidth: 200,
+                    },
+                    {
+                        fixed: 'right',
+                        title: '操作',
+                        toolbar: '#barDemo',
+                        align: 'center',
+                        minWidth: 200,
+                    },
+                ]
+            ],
+            defaultToolbar: [],
+            loading: true,
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            if (obj.event === 'edit') { //编辑
+                update(obj.data.id);
+            } else if (obj.event === 'add') {
+                add(obj.data.id, obj.data.grade + 1);
+            } else if (obj.event === 'batchDelete') {
+                deleteById(obj.data.id);
+            }
+        });
+
+        //监听事件
+        table.on('toolbar(test)', function (obj) {
+            console.info(obj.event);
+            switch (obj.event) {
+                case 'add':
+                    add(0, 1);
+                    break;
+
+            };
+        });
+
+        //编辑
+        function update(id) {
+            layer.open({
+                type: 2,
+                title: "编辑权限",
+                shadeClose: false,
+                area: ['800px', '400px'],
+                content: 'permissionUpdate.html?id=' + id,
+                resize: false,
+                shade: 0.5,
+                maxmin: true,
+                btn: ['确定', '取消'],
+                yes: function (index, layero) {
+                    var iframeWindow = window['layui-layer-iframe' + index],
+                        submitID = 'permissionUpdateSubmit',
+                        submit = layero.find('iframe').contents().find('#' + submitID);
+                    var flag = true;
+                    iframeWindow.layui.form.on('submit(' + submitID + ')', function (data) {
+                        var field = data.field; //获取提交的字段
+
+                        if (flag) {
+                            flag = false;
+                            apiPost(permission.submit, field, function (res) {
+                                window.location.reload();
+                                layer.close(index); //关闭弹层
+                            });
+                        }
+                    });
+                    submit.trigger('click');
+                }
+            });
+        }
+        //新增
+        function add(parentId, grade) {
+            layer.open({
+                type: 2,
+                title: "添加权限",
+                shadeClose: false,
+                area: ['800px', '400px'],
+                content: 'permissionAdd.html?parentId=' + parentId + '&grade=' + grade,
+                resize: false,
+                shade: 0.5,
+                maxmin: true,
+                btn: ['确定', '取消'],
+                yes: function (index, layero) {
+                    var iframeWindow = window['layui-layer-iframe' + index],
+                        submitID = 'permissionAddSubmit',
+                        submit = layero.find('iframe').contents().find('#' + submitID);
+                    //监听提交
+                    var flag = true;
+                    iframeWindow.layui.form.on('submit(' + submitID + ')',
+                        function (data) {
+                            var field = data.field; //获取提交的字段
+                            if (flag) {
+                                flag = false;
+                                apiPost(permission.addPermission, field, function (res) {
+                                    window.location.reload();
+                                    layer.close(index); //关闭弹层
+                                });
+                            }
+                        });
+                    submit.trigger('click');
+                }
+            });
+            form.render();
+        }
+        //删除
+        function deleteById(id) {
+            if (isUndefined(id)) {
+                layer.alert('id不能为空', {
+                    icon: 5,
+                    title: "提示"
+                });
+                return false;
+            }
+            layer.alert('确认删除吗？', {
+                skin: 'layui-layer-molv',
+                closeBtn: 1,
+                anim: 1,
+                btn: ['确定', '取消'],
+                icon: 7,
+                yes: function (index) {
+                    console.info(id);
+                    apiDelete(permission.deleteById + id, null, function (res) {
+                        //console.info(res);
+                        window.location.reload();
+                        layer.close(index); //关闭弹层
+                    });
+                }
+            });
+        }
+
+        function toolbarView() {
+            var data = {};
+            data.add = myPermission.getPermission('system:permission:add');
+            laytpl(toolBarViewTpl.innerHTML).render(data, function (html) {
+                $("#toolbarView").html(html);
+            });
+        }
+
+        function barView() {
+            var data = {};
+            data.update = myPermission.getPermission('system:permission:update');
+            data.delete = myPermission.getPermission('system:permission:delete');
+            data.add = myPermission.getPermission('system:permission:add');
+
+            laytpl(barViewTpl.innerHTML).render(data, function (html) {
+                $(".barView").append(html);
+            });
+        }
+    });
+</script>
+
+</html>

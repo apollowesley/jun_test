@@ -1,0 +1,23 @@
+<view class="container">
+  <image src="../../assets/common/top.jpg" mode="aspectFill"></image>
+  <!-- 绑定手机号 -->
+  <view class="form">
+    <view class="input">
+      <label class="tel"></label>
+      <input type="number" placeholder="请输入手机号码" maxlength="11" data-key="phone" bindinput="inputValue" value="{{mobile}}" />
+    </view>
+    <view class="input">
+      <label class="code"></label>
+      <input class="verify" type="number" placeholder="请输入验证码" maxlength="6" data-key="code" bindinput="inputValue" value="{{code}}" />
+      <text class="codeBtn" bindtap="smsSend" wx:if="{{!isSend}}">获取验证码</text>
+      <text class="codeBtn" wx:else>{{time}}秒后重发</text>
+    </view>
+    <view class="notice">点击登录即表示您同意
+      <text bindtap="userAgreement">《人人咖用户协议》</text>
+    </view>
+    <view class="zan-btns button">
+      <button class="zan-btn un" open-type="getUserInfo" bindgetuserinfo="bindMobile" wx:if="{{phone !== '' && code !== ''}}">登录</button>
+      <button class="zan-btn un" bindtap="checkPhone" wx:else>登录</button>
+    </view>
+  </view>
+</view>

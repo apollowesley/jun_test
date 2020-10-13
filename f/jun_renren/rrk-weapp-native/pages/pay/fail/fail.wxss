@@ -1,0 +1,34 @@
+.msg {
+  background-color: #fff;
+  height: 100vh;
+}
+
+.weui-msg {
+  padding-top: 72rpx;
+  text-align: center;
+}
+
+.weui-msg-icon {
+  margin-bottom: 60rpx;
+}
+
+.van-icon {
+  font-size: 186rpx;
+  color: #ff5ad3;
+}
+
+.weui-msg-area {
+  margin-bottom: 50rpx;
+  padding: 0 40rpx;
+}
+
+.weui-msg-title {
+  margin-bottom: 30rpx;
+  font-weight: 400;
+  font-size: 40rpx;
+}
+
+.weui-msg-desc {
+  font-size: 28rpx;
+  color: #999;
+}

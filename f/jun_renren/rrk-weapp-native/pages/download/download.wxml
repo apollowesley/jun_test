@@ -1,0 +1,22 @@
+<view class="download">
+  <view class="context">全民分享 · 人人创客</view>
+  <view class="bg">
+    <image src="../../assets/common/bg.png" lazy-load></image>
+    <view class="main">
+      <view class="title">下载人人咖</view>
+      <view class="contain on">
+        <view class="wrap" wx:if="{{ios}}">
+          <image src="../../assets/common/ios.png" mode="aspectFit" lazy-load></image>
+          <text id="ios">苹果商店搜索“人人咖”下载</text>
+          <!-- <text id="ios" bindtap="save">保存二维码</text> -->
+        </view>
+        <view class="wrap" wx:if="{{android}}">
+          <image src="../../assets/common/qrcode@3x.png" mode="aspectFit" lazy-load></image>
+          <text id="android" bindtap="save">保存二维码</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="cover"></view>
+  <image class="rotate" src="../../assets/common/h5.png" lazy-load></image>
+</view>

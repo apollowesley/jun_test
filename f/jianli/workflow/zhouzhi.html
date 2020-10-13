@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>周志生成</title>
+
+    <script src="js/vue.min.js"></script>
+    <script src="js/base.js"></script>
+
+    <style type="text/css">
+      *{font-family:"Microsoft YaHei", "SimSun";color:#282828;padding: 0;margin: 0;}
+      input[type="text"]{border: 1px solid #ccc;margin: 0 5px;text-align: center;}
+      .neirong{height: 50px;width: 99%;border: 1px solid #ccc;}
+
+      [type="button"]{padding: 10px;margin: 10px 0 0 0;}
+    </style>
+</head>
+<body>
+
+    <div id="app" style="overflow: hidden;">
+        <div style="overflow: hidden;">
+          <div style="float:left;width: 48%">
+            <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                <colgroup>
+                    <col width="200">
+                    <col width="400">
+                    <col width="200">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td colspan="3" style="text-align: center;font-weight: bold;background: rgb(242, 242, 242);"><input type="text" v-model="name" style="width: 80px;">的周报(<input type="type" v-model="year" style="width: 40px;">年<input type="type" v-model="month" style="width: 20px;">月<input type="type" v-model="day" style="width: 40px;">日-{{getEndTime()}})</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"  style="background: rgb(242, 242, 242);padding: 5px 0;">本周工作完成情况</td>
+                    </tr>
+                    <tr>
+                        <td>日期</td>
+                        <td>工作事项</td>
+                        <td>完成情况</td>
+                    </tr>
+
+                    <tr v-for="(day, index) in thiswork">
+                        <td>{{getTime({type:"thiswork",index:index})}}</td>
+                        <td><textarea class="neirong" v-model="day.data"></textarea></td>
+                        <td><textarea class="neirong" v-model="day.qingkuang"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="background: rgb(242, 242, 242);padding: 5px 0;">工作心得</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                          <div style="min-height: 50px;">
+                              <textarea class="neirong" v-model="xinde"></textarea>
+                          </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background: rgb(242, 242, 242);padding: 5px 0;">下周工作计划</td>
+                    </tr>
+                    <tr>
+                        <td>日期</td>
+                        <td>计划完成的主要工作</td>
+                        <td>预计达到的目标</td>
+                    </tr>
+
+                    <tr v-for="(day, index) in nextwork">
+                        <td>{{getTime({type:"nextwork",index:index})}}</td>
+                        <td><textarea class="neirong" v-model="day.data"></textarea></td>
+                        <td><textarea class="neirong" v-model="day.qingkuang"></textarea></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+          </div>
+          <div style="float:right;width: 48%">
+            <div id="js-getHtml">
+            <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                <colgroup>
+                    <col width="200">
+                    <col width="400">
+                    <col width="200">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td colspan="3" style="text-align: center;font-weight: bold;background: rgb(242, 242, 242);">{{name}}的周报({{year}}年{{month}}月{{day}}日-{{getEndTime()}})</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"  style="background: rgb(242, 242, 242);padding: 5px 0;">本周工作完成情况</td>
+                    </tr>
+                    <tr>
+                        <td>日期</td>
+                        <td>工作事项</td>
+                        <td>完成情况</td>
+                    </tr>
+                    <tr v-for="(day, index) in thiswork">
+                        <td>{{getTime({type:"nextwork",index:index})}}</td>
+                        <td v-html="keepTextStyle(day.data)"></td>
+                        <td v-html="keepTextStyle(day.qingkuang)"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background: rgb(242, 242, 242);padding: 5px 0;">工作心得</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                          <div style="min-height: 50px;">
+                              {{keepTextStyle(xinde)}}
+                          </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background: rgb(242, 242, 242);padding: 5px 0;">下周工作计划</td>
+                    </tr>
+                    
+                    <tr v-for="(day, index) in nextwork">
+                        <td>{{getTime({type:"nextwork",index:index})}}</td>
+                        <td v-html="keepTextStyle(day.data)"></td>
+                        <td v-html="keepTextStyle(day.qingkuang)"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            </div>
+            <p>
+                <input type="button" value="生成邮件" id="js-button">
+            </p>
+          </div>
+        </div>
+        <div style="margin: 10px 0;">
+          <textarea style="border: 1px solid #ccc;width: 100%; height: 100px;" id="js-html"></textarea>
+        </div>
+    </div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+        name:"徐龙昌1",
+        year:2020,
+        month:09,
+        day:14,
+        thiswork:[
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            },
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            },
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            },
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            },
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            }
+        ],
+        nextwork:[
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            },
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            },
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            },
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            },
+            {
+                time:"2020-09-14",
+                data:"演示会\n工作流线上反馈响应",
+                qingkuang:"已完成"
+            }
+        ],
+        xinde:""
+    },
+      mounted: function () {
+        
+      },
+    methods:{
+      getTime:function(option){
+        var time = this.year + "-" + this.month + "-" + this.day;
+        this.time = time;
+        //debugger;
+        var newTime;
+        if(option.type == "thiswork"){
+            newTime = this.getData(option.index);
+        }else{
+            newTime = this.getData(option.index + 7);
+        }
+        var dayText = ["一","二","三","四","五","六","七",]
+        return newTime + "（周"+dayText[option.index]+"）";
+      },
+      getEndTime:function(){
+            var time = this.year + "-" + this.month + "-" + this.day;
+            this.time = time;
+            //debugger;
+            var newTime;
+            newTime = this.getData(this.thiswork.length + this.nextwork.length +1);
+            newTime = newTime.replace('-','年').replace('-','月')+"日";
+            return newTime;
+        },
+        keepTextStyle:function(val){
+        　　return val.replace(/\n/g,"<br/>")
+        },
+      getData:function(day){
+            if(!this.time){
+                return "";
+            }
+            var date = new Date(this.time);
+            var newDate = new Date(date.setDate(date.getDate() + day));
+            var year = newDate.getFullYear();
+            var month = newDate.getMonth()+1;
+            if(month <10){
+                month = "0" + month;
+            }
+            var day =  newDate.getDate();
+            if(day <10){
+                day = "0" + day;
+            }
+            
+            return year + "-" + month + "-" + day;
+          }
+        }
+  })
+
+  $("#js-button").on("click",function(){
+    $("#js-html").val($("#js-getHtml").html());
+  })
+</script>
+
+</body>
+</html>

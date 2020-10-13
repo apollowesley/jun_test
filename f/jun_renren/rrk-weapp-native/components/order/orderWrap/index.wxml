@@ -1,0 +1,38 @@
+<view class="order-item" data-num="{{orderInfo.ordernum}}" data-type="{{orderInfo.ordertype}}" bindtap="jumpToDetail">
+  <view class="order-head">
+    <view class="shop">
+      <image class="shop-pic" src="{{orderInfo.shoplogo}}" mode="aspectFill" lazy-load></image>
+      <text>{{orderInfo.shopname}}</text>
+    </view>
+    <view>{{orderInfo.status}}</view>
+  </view>
+  <view class="order-body">
+    <view class="order-goods" wx:for="{{orderInfo.products}}" wx:for-index="i" wx:key="i">
+      <image class="order-goods-pic" src="{{item.pic}}" mode="aspectFill" lazy-load></image>
+      <view class="order-goods-info">
+        <view class="order-goods-name">
+          <view class="name">{{item.productname}}</view>
+          <text class="desc">{{item.norms}}</text>
+        </view>
+        <view class="order-goods-price">
+          <view class="sell-price">¥{{item.saleprice}}</view>
+          <view class="price">¥{{item.price}}</view>
+          <text class="num">×{{item.count}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="order-foot">
+    <view class="order-foot-info">共计{{orderInfo.zcount}}件商品 合计：¥{{orderInfo.zprice}}(含运费：¥{{filter.toFlo2(orderInfo.postage)}})</view>
+    <view class="order-foot-opera">
+      <button class="order-refund" size="mini" wx:if="{{orderInfo.statuscode === '1' || orderInfo.statuscode === '2'}}" catchtap="onReFund">退款</button>
+      <button class="order-eval" size="mini" wx:if="{{orderInfo.statuscode === '4'}}" catchtap="onEval">评价</button>
+      <button class="order-cannel" size="mini" wx:if="{{orderInfo.statuscode === '0' || orderInfo.statuscode === '8'}}" data-num="{{orderInfo.ordernum}}" data-type="{{orderInfo.ordertype}}" catchtap="onCannel">取消订单</button>
+      <button class="order-del" size="mini" wx:else data-num="{{orderInfo.ordernum}}" data-type="{{orderInfo.ordertype}}" catchtap="onDel">删除订单</button>
+      <button class="order-pay order-button" size="mini" type="warn" wx:if="{{orderInfo.statuscode === '0' || orderInfo.statuscode === '8'}}" data-num="{{orderInfo.ordernum}}" data-price="{{orderInfo.zprice}}" catchtap="onPay">付款</button>
+    </view>
+  </view>
+</view>
+
+<!--  -->
+<wxs module="filter" src="../../../filters/index.wxs"></wxs>

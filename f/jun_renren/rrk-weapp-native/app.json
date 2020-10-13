@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/live/index/index",
+    "pages/live/follow/follow",
+    "pages/user/home/home",
+    "pages/cart/index/index",
+    "pages/cart/confirm/confirm",
+    "pages/pay/index/index",
+    "pages/pay/success/success",
+    "pages/pay/fail/fail",
+    "pages/user/address/address",
+    "pages/user/plusAddr/plusAddr",
+    "pages/user/editAddr/editAddr",
+    "pages/login/bind-mobile",
+    "pages/login/agreement",
+    "pages/order/group/group",
+    "pages/order/goods/goods",
+    "pages/order/groupDetail/groupDetail",
+    "pages/order/goodsDetail/goodsDetail",
+    "pages/goods/confirm",
+    "pages/groupon/confirm",
+    "pages/download/download",
+    "pages/live/ceshi/ceshi"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#080608",
+    "navigationBarTitleText": "人人咖",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f7f7f7"
+  }
+}

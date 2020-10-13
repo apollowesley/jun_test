@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../lib/layui/css/layui.css">
+    <style>
+        .layui-row {
+            margin-bottom: 10px;
+        }
+        input,select {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <!--定位-->
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <div class="layui-row">
+                    <i class="layui-icon layui-icon-location"></i><span>当前位置：用户管理-列表</span>
+                </div>
+            </div>
+
+            <div class="layui-card-body">
+                <div class="layui-form" lay-filter="form">
+                    <div class="layui-form-item">
+                        <!--搜索栏-->
+                        <div class="layui-inline">
+                            <label class="layui-form-label">登录名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="username" name="username" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <select name="status" id="status" lay-filter="status">
+                                    <option value="">全部</option>
+                                    <option value="1">启用</option>
+                                    <option value="0">禁用</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">员工编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="staffNo" name="staffNo" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">真实姓名</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="name" name="name" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-sm" id="search" data-type="reload">搜索</button>
+                            <button class="layui-btn layui-btn-warm layui-btn-sm" id="reset"
+                                data-type="reset">清空</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--表格头部功能栏-->
+                <script type="text/html" id="toolbarDemo">
+                    <div id="toolbarView"></div>
+                </script>
+
+                <!--操作栏-->
+                <script type="text/html" id="barDemo">
+                    <div class="barView">
+                        {{#  if(d.status == 0){ }}
+                        <a class="layui-btn  layui-btn-xs start-stop" lay-event="start">启用</a>
+                        {{#  } else if(d.status == 1){ }}
+                        <a class="layui-btn layui-btn-danger layui-btn-xs start-stop" lay-event="stop">禁用</a>
+                        {{#  } }}
+                    </div>
+                </script>
+
+                <!--表格栏-->
+                <div class="mainTab">
+                    <table id="userTable" lay-filter="test">
+                    </table>
+                </div>
+
+                <script id="toolBarViewTpl" type="text/html">
+                    <div class="layui-btn-container">
+                        {{#  if(d.add){ }}
+                        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+                        {{#  } }}
+                        {{#  if(d.delete){ }}
+                        <button class="layui-btn layui-btn-sm" lay-event="batchDelete">删除</button>
+                        {{#  } }}
+                    </div>
+                </script>
+
+                <script id="barViewTpl" type="text/html">
+                    {{#  if(d.update){ }}
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    {{#  } }}
+                </script>
+
+                <!--查看模板-->
+                <script id="usernameTemplet" type="text/html">
+                    <div><a href="JavaScript:void(0)" lay-event="look" class="layui-table-link">{{d.username}}</a></div>
+                </script>
+            </div>
+        </div>
+    </div>
+    <script src="../../../lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../../lib/jquery/jquery.cookie.js"></script>
+    <script src="../../../lib/jquery/jquery.session.js"></script>
+
+    <script src="../../../utils/http.js"></script>
+    <script src="../../../api/admin/sys-user-api.js"></script>
+    <script src="../../../lib/layui/layui.js"></script>
+    <script src="../../../utils/utils.js"></script>
+    <script src="../../../utils/permission.js"></script>
+    <script>
+        layui.use(['table', 'layer', 'form', 'jquery', 'laytpl'], function () {
+            var table = layui.table,
+                form = layui.form,
+                layer = layui.layer,
+                laytpl = layui.laytpl,
+                $ = layui.jquery;
+
+            table.render({
+                id: "userTable",
+                elem: '#userTable',
+                method: 'post',
+                toolbar: '#toolbarDemo',
+                url: user.getListByPage,
+                contentType: 'application/json',
+                headers: {
+                    Token: $.cookie("token")
+                },
+                //重置请求前参数
+                request: {
+                    pageName: 'currPage', //页码的参数名称，默认：page
+                    limitName: 'pageSize', //每页数据量的参数名，默认：limit
+                },
+                where: {
+                    "orderBy": "DESC",
+                    "orderByName": "createTime",
+                    "params": {}
+                },
+                page: {
+                    theme: '#5eb95e',
+                    curr: 1, //起始页，默认是1
+                    limit: 15, //每页显示的条数，默认是10
+                    limits: [15, 20, 30],
+                    layout: ['count', 'prev', 'page', 'next', 'skip', 'limit'],
+
+                },
+                parseData: function (res) { //res 即为原始返回的数据
+                    if (res.code == "0000") {
+                        return {
+                            "code": res.code, //解析接口状态
+                            "msg": res.msg, //解析提示文本
+                            "count": res.data.totalCount, //解析数据长度
+                            "data": res.data.list //解析数据列表
+                        };
+                    } else {
+                        layer.alert(res.msg, {
+                            icon: 5,
+                            title: "提示"
+                        });
+                    }
+                },
+                //数据渲染后做的操作
+                done: function (res, curr, count) {
+                    toolbarView();
+                    barView();
+                    var startAndStop = permission.getPermission('system:user:startAndStop');
+                    if (!startAndStop) {
+                        $(".start-stop").remove();
+                    }
+                },
+                cols: [
+                    [{
+                            type: 'checkbox',
+                            fixed: 'left'
+                        },
+                        {
+                            title: '序号',
+                            type: 'numbers'
+                        },
+                        {
+                            align: 'center',
+                            field: 'username',
+                            title: '登录名',
+                            templet: '#usernameTemplet',
+                        },
+                        {
+                            align: 'center',
+                            field: 'name',
+                            title: '真实姓名',
+
+                        },
+                        {
+                            align: 'center',
+                            field: 'sexName',
+                            title: '性别',
+
+                        },
+                        {
+                            align: 'center',
+                            field: 'staffNo',
+                            title: '员工编号',
+
+                        }, {
+                            align: 'center',
+                            field: 'departmentName',
+                            title: '部门名称',
+
+                        },
+                        {
+                            align: 'center',
+                            field: 'statusName',
+                            title: '状态',
+
+                        },
+
+                        {
+                            align: 'center',
+                            fixed: 'right',
+                            title: '操作',
+                            width: 150,
+                            toolbar: '#barDemo'
+                        }
+                    ]
+                ],
+                defaultToolbar: [],
+                loading: true,
+            });
+
+            active = {
+                //搜索
+                reload: function () {
+                    table.reload('userTable', {
+                        where: {
+                            "orderBy": "DESC",
+                            "orderByName": "createTime",
+                            "params": {
+                                "username": $('#username').val(),
+                                "name": $('#name').val(),
+                                "status": $('#status').val(),
+                                "staffNo": $('#staffNo').val()
+                            }
+                        },
+                        page: {
+                            theme: '#5eb95e',
+                            curr: 1, //起始页，默认是1
+                            limit: 15, //每页显示的条数，默认是10
+                            limits: [15, 20, 30],
+                            layout: ['count', 'prev', 'page', 'next', 'skip', 'limit'],
+                        },
+                    });
+                },
+                //重置
+                reset: function () {
+                    window.location.reload();
+                },
+                add: function () {
+                    layer.open({
+                        type: 2,
+                        title: "添加用户",
+                        shadeClose: false,
+                        area: ['800px', '400px'],
+                        content: 'userAdd.html',
+                        resize: false,
+                        shade: 0.5,
+                        maxmin: true,
+                        btn: ['确定', '取消'],
+                        yes: function (index, layero) {
+                            var iframeWindow = window['layui-layer-iframe' + index],
+                                submitID = 'LAY-user-back-submit',
+                                submit = layero.find('iframe').contents().find('#' +
+                                    submitID);
+                            //监听提交
+                            iframeWindow.layui.form.on('submit(userAddSubmit)', function (
+                                data) {
+                                var field = data.field; //获取提交的字段
+                                field.role = field.role.split(",");
+                                apiPost(user.userAdd, field, function (res) {
+
+                                    table.reload('userTable'); //数据刷新
+                                    layer.close(index); //关闭弹层
+                                })
+                            });
+                            submit.trigger('click');
+                        }
+                    });
+                    form.render();
+                },
+
+                batchDelete: function () {
+                    var checkStatus = table.checkStatus('userTable');
+                    if (isUndefined(checkStatus.data)) {
+                        layer.alert('至少选择一行进行删除', {
+                            icon: 5,
+                            title: "提示"
+                        });
+                        return false;
+                    }
+                    layer.alert('确认删除吗？', {
+                        skin: 'layui-layer-molv',
+                        closeBtn: 1,
+                        anim: 1,
+                        btn: ['确定', '取消'],
+                        icon: 7,
+                        yes: function (index) {
+                            apiDelete(user.batchDelete, {
+                                "ids": checkStatus.data
+                            }, function (res) {
+                                table.reload('userTable'); //数据刷新
+                                layer.close(index); //关闭弹层
+                            });
+                        }
+                    });
+                },
+
+                look: function () {
+
+
+                }
+            };
+            //搜索
+            $('#search').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+
+            //清空
+            $("#reset").on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            })
+
+            //监听工具栏
+            table.on('toolbar(test)', function (obj) {
+                switch (obj.event) {
+                    case 'add':
+                        active[obj.event] ? active[obj.event].call(this) : '';
+                        break;
+                    case 'batchDelete':
+                        active[obj.event] ? active[obj.event].call(this) : '';
+                        break;
+                };
+            });
+
+            //监听行工具事件
+            table.on('tool(test)', function (obj) {
+                switch (obj.event) {
+                    case 'stop':
+                        updateStatus(obj.data.id, '0', '禁用');
+                        break;
+                    case 'start':
+                        updateStatus(obj.data.id, '1', '启用');
+                        break;
+                    case 'edit':
+                        update(obj.data.id);
+                        break;
+                    case 'look':
+                        look(obj.data.id);
+                        break;
+                };
+            });
+
+            //禁用和启用
+            function updateStatus(id, status, name) {
+                layer.alert('你确认' + name + '吗？', {
+                    skin: 'layui-layer-molv',
+                    closeBtn: 1,
+                    anim: 1,
+                    btn: ['确定', '取消'],
+                    icon: 7,
+                    yes: function (index) {
+                        apiGet(user.updateStatus + id + '/' + status, null, function (res) {
+                            table.reload('userTable'); //数据刷新
+                            layer.close(index); //关闭弹层
+                        })
+                    }
+                });
+            }
+
+
+            function toolbarView() {
+                var data = {};
+                data.add = permission.getPermission('system:user:add');
+                data.delete = permission.getPermission('system:user:delete');
+                laytpl(toolBarViewTpl.innerHTML).render(data, function (html) {
+                    $("#toolbarView").html(html);
+                });
+            }
+
+            function barView() {
+                var data = {};
+                data.update = permission.getPermission('system:user:update');
+                laytpl(barViewTpl.innerHTML).render(data, function (html) {
+                    $(".barView").append(html);
+                });
+            }
+
+            //编辑
+            function update(id) {
+                layer.open({
+                    type: 2,
+                    title: "编辑用户",
+                    shadeClose: false,
+                    area: ['800px', '400px'],
+                    content: 'userUpdate.html?id=' + id,
+                    resize: false,
+                    shade: 0.5,
+                    maxmin: true,
+                    btn: ['确定', '取消'],
+                    yes: function (index, layero) {
+                        var iframeWindow = window['layui-layer-iframe' + index],
+                            submitID = 'LAY-user-back-submit',
+                            submit = layero.find('iframe').contents().find('#' + submitID);
+
+                        iframeWindow.layui.form.on('submit(userAddSubmit)', function (data) {
+                            var field = data.field; //获取提交的字段
+                            console.info(field);
+                            field.role = field.role.split(",");
+                            apiPost(user.userUpdate, field, function (res) {
+                                table.reload('userTable'); //数据刷新
+                                layer.close(index); //关闭弹层
+                            })
+                        });
+                        submit.trigger('click');
+                    }
+                });
+            }
+            //查看
+            function look(id) {
+                layer.open({
+                    type: 2,
+                    title: "查看用户",
+                    shadeClose: false,
+                    area: ['800px', '400px'],
+                    content: 'userDetail.html?id=' + id,
+                    resize: false,
+                    shade: 0.5,
+                    maxmin: true,
+                    btn: ['确定', '取消'],
+                });
+
+            }
+
+
+
+        });
+    </script>
+</body>
+
+</html>

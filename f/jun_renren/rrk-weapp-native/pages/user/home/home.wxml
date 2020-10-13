@@ -1,0 +1,48 @@
+<view class="home">
+  <view class="home-head">
+    <view class="user-info" wx:if="{{rrk}}">
+      <view class="user-head">
+        <image class="user-pic" src="{{rrk.picture}}" mode="aspectFill" lazy-load></image>
+        <navigator class="user-btn" open-type="navigate" url="/pages/download/download">下载APP</navigator>
+      </view>
+      <view class="user-name">{{rrk.userName}}</view>
+      <view class="user-id">ID : {{rrk.id}}</view>
+      <view class="user-signature">{{rrk.signature}}</view>
+      <view class="user-desc">
+        <view id="sex">
+          <view id="{{rrk.sex === '男' ? 'nan' : 'nv'}}"></view>{{rrk.sex}}
+        </view>
+        <view id="age">{{rrk.age}}岁</view>
+        <view id="online">{{rrk.isOnLine === 1 ? '在线' : '不在线'}}</view>
+      </view>
+      <view class="user-motto"></view>
+    </view>
+    <view class="cover"></view>
+    <image class="bg" src="{{rrk.picture}}" mode="aspectFill" lazy-load></image>
+  </view>
+  <!-- 订单类 -->
+  <view class="order">
+    <navigator open-type="navigateTo" url="/pages/pay/fail/fail">
+      <image src="../../../assets/user/dingdan_01@2x.png" lazy-load mode="aspectFit"></image>
+      <text>商品订单</text>
+    </navigator>
+    <navigator open-type="navigateTo" url="/pages/order/group/group">
+      <image src="../../../assets/user/dingdan_02@2x.png" lazy-load mode="aspectFit"></image>
+      <text>团购订单</text>
+    </navigator>
+    <navigator open-type="navigateTo" url="/pages/cart/index/index">
+      <image src="../../../assets/user/cart.png" lazy-load mode="aspectFit"></image>
+      <text>购物车</text>
+    </navigator>
+  </view>
+  <!-- 猜你喜欢 -->
+  <view class="video">
+    <view class="title">猜你喜欢</view>
+    <view class="video-contain">
+      <view class="video-wrapper">
+        <hot-live class="video-wrap" wx:for="{{liveViews}}" wx:for-item="item" wx:key="index" liveItem="{{item}}"></hot-live>
+      </view>
+      <load-more i-class="loading" loading="{{!finished}}" tip="{{finished ? '暂无数据' : ''}}"></load-more>
+    </view>
+  </view>
+</view>

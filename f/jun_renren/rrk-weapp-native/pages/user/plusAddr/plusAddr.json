@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "新增地址",
+  "usingComponents": {
+    "i-button": "/components/iview/button/index"
+  }
+}
