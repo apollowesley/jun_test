@@ -1,0 +1,22 @@
+<view class="viewlist">
+    <view class='items'>
+        <view class='hd'>预约日期</view>
+        <view class='bd'>
+            <picker mode="date" value="{{date}}" start="{{startDate}}" bindchange="bindDateChange">
+              <input value='{{date}}' placeholder='选择预约日期' disabled='true'/>
+            </picker>
+        </view>
+    </view>
+    <view class='items'>
+        <view class='hd'>预约时间</view>
+        <view class='bd'>
+            <picker mode="time" value="{{time}}" start="09:00" end="18:00" bindchange="bindTimeChange">
+              <input value='{{time}}' placeholder='选择预约时间' disabled='true'/>
+            </picker>
+        </view>
+    </view>
+</view>
+
+<view class='btnBar'>
+    <view class='btn w490' bindtap='goOrderManagement'>确定预约</view>
+</view>

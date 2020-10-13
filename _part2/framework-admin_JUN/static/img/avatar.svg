@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     style="background: #fd507e"
+     pointer-events="none"
+     width="160px"
+     height="160px">
+  <text
+      text-anchor="middle"
+      x="50%"
+      y="50%"
+      dy="0.35em"
+      pointer-events="auto"
+      fill="#fff"
+      font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+      style="font-weight: 400; font-size: 60px">Ye
+  </text>
+</svg>

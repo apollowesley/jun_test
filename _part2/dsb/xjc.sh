@@ -1,0 +1,1 @@
+xjc -d src/ -p common.framework.dsb.bo -extension schema/

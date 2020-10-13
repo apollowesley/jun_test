@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>ssd</title>
+</head>
+<body>
+<h1>  
+
+	freemarker.flt
+	
+	${user}
+	<hr/>
+	
+	#assign
+	<#assign msg = "欢迎freemarker">
+	${msg}
+	<#assign msg1 = ["欢迎","freemarker"]>
+	${msg1[0]}--
+	${msg1[1]}
+	<#assign msg2 = {"hello":"freemarker"}>
+	${msg2.hello}
+	
+	<hr/>
+	#include parse 是否模板解析
+	<#-- include filename encoding="GBK" parse="true"-->  
+	
+	<hr/>
+	<#if user =="panmg" >
+		<hr> ${user}</hr>
+	</#if>
+	
+	
+	<ul>
+	   <#list mapL.keySet() as key> 
+          <li>
+                ${key} ${mapL[key]}== ${mapL.get(key)}
+                <#if key=="list">
+                	<#list mapL.get(key) as value >
+                	 	<span>${value}</span>
+                	</#list>
+                </#if>
+           </li>
+        </#list>
+	</ul>
+
+	
+	<img width="67" height="27" id="codeImg" onclick="changeCode();" 
+	alt="点击更换验证码" src="${cxtpath}/image" />
+</h1>
+<script type="text/javascript">
+  /*验证码图片替换*/
+        function changeCode() {
+            document.getElementById("codeImg").src = "${cxtpath}/image?nocache="+ Math.random();
+        }
+
+</script>
+</body>
+</html>

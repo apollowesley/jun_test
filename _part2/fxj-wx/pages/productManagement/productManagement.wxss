@@ -1,0 +1,210 @@
+.orderList {
+    padding: 102rpx 26rpx 0;
+}
+
+.orderList .items {
+    background-color: #fff;
+    margin-top: 24rpx;
+    color: #7a7a7a;
+    border-radius: 12rpx;
+}
+
+.orderList .hd {
+    height: 76rpx;
+    line-height: 74rpx;
+    border-bottom: 2rpx #eee dotted;
+    padding:0 20rpx 0 100rpx;
+    font-size: 32rpx;
+    position: relative;
+}
+
+.orderList .hd .r {
+    float: right;
+    font-size: 28rpx
+}
+
+.orderList .hd .l {
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.orderList .hd::before {
+    width: 60rpx;
+    height: 74rpx;
+    line-height: 74rpx;
+    font-family: iconfont;
+    content: "\e620";
+    position: absolute;
+    left: 26rpx;
+    top: 0;
+    font-size: 48rpx;
+    color: #7aa6d1;
+}
+
+.orderList .bd {
+    padding: 20rpx 0 30rpx 34rpx;
+}
+
+.orderList .t {
+    display: -webkit-box;
+    height: 50rpx;
+    line-height: 50rpx;
+    overflow: hidden;
+    padding-right: 34rpx
+}
+
+.orderList .t .l, .orderList .t .c, .orderList .t .r {
+    padding-right: 20rpx;
+    white-space:nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.orderList .t .l {
+    width: 150rpx;
+}
+
+.orderList .t .c {
+    width: 200rpx;
+}
+
+.orderList .t .r {
+    width: 240rpx;
+    text-align: right;
+    padding-right: 0;
+}
+
+.orderList .middle {
+    height: 50rpx;
+    line-height: 50rpx;
+    width: 100%;
+    overflow: hidden;
+}
+
+.orderList .middle .l,.orderList .middle .c {
+    width:50%;
+    float: left;
+    white-space:nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    padding-right:34rpx;
+}
+.orderList .middle .c {
+    text-align: right;
+}
+
+.orderList .b {
+    padding-top: 20rpx;
+    overflow: hidden;
+}
+
+.orderList .b .btn {
+    overflow: hidden;
+    width: 136rpx;
+    text-align: center;
+    border: 2rpx solid #7aa6d1;
+    height: 64rpx;
+    line-height: 60rpx;
+    box-sizing: border-box;
+    font-size: 24rpx;
+    border-radius: 12rpx;
+    float: left;
+    margin-right: 30rpx;
+}
+
+.orderList .b .btn.bgBlur {
+    background-color: #7aa6d1;
+    color: #fff;
+}
+
+
+
+.loanItem-list{
+  background-color: #FFF;
+  margin: 130rpx 0 0;
+  padding: 0 30rpx;
+}
+.loanItem-list .item{
+  height: 160rpx;
+  padding: 40rpx 0;
+  position: relative;
+  display: flex;
+  border-bottom: 2rpx solid #e2e2e2;
+}
+.loanItem-list .item::after{
+  position: absolute;
+  content: "\e60a";
+  color: #ccc;
+  font-family: iconfont;
+  width: 22px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  right: 0;
+  top: 50%;
+  margin-top: -10px;
+  font-size:22px;
+}
+.loanItem-list .item:last-child{
+  border-bottom: none;
+}
+.item-l{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 20rpx;
+  background-color: #edf6fd;
+  margin-right: 40rpx;
+  position: relative;
+}
+.item-pic{
+  width: 70rpx;
+  height: 70rpx;
+  margin: 45rpx auto;
+}
+.item-pic .c{
+  width: 100%;
+  height: 100%;
+}
+.item-l-t{
+  width: 110rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #88dcf4;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 0 40rpx 0 0;
+  color: #fff;
+  text-align: center;
+  font-size: 26rpx;
+  overflow: hidden;
+}
+.item-m{
+  flex: 1;
+}
+.item-name{
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.item-info, .item-text{
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+}
+.item-pri{
+  color: #f7931e;
+}
+.item-txt{
+  color: #aaa;
+}

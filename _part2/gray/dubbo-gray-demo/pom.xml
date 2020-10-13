@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<!-- 配置springboot -->
+	<parent>  
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-starter-parent</artifactId>  
+        <version>1.4.3.RELEASE</version>  
+    </parent>  
+	
+	<groupId>com.gray</groupId>
+	<artifactId>dubbo-gray</artifactId>
+	<packaging>pom</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- 包含子模块 -->
+	<modules>
+		<module>dubbo-gray-api</module>
+		<module>dubbo-gray-provider</module>
+		<module>dubbo-gray-consumer</module>
+	</modules>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+        <java.version>1.7</java.version>  
+        <dep.zkclient.version>0.1</dep.zkclient.version>  
+	 	<dep.dubbo.version>2.5.3</dep.dubbo.version>
+		<dep.zookeeper.version>3.4.6</dep.zookeeper.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<scope>test</scope>
+			</dependency>
+	
+			<!-- dubbo -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dep.dubbo.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>  
+	                    <artifactId>spring</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+	  					<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- zookeeper -->
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${dep.zookeeper.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>  
+	                    <artifactId>spring</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+	  					<artifactId>log4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+	  					<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.github.sgroschupf</groupId>
+				<artifactId>zkclient</artifactId>
+				<version>0.1</version>
+				<exclusions>
+					<exclusion>
+						<groupId>log4j</groupId>
+	  					<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

@@ -1,0 +1,20 @@
+@import '../../pages/applyMortgage/applyMortgage.wxss';
+.btnBar {
+    text-align: center;
+    margin-top: 80rpx;
+}
+
+.btnBar .btn {
+    width: 292rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #fff;
+    background-color: #df6330;
+    display: inline-block;
+    margin:0 20rpx;
+    border-radius: 12rpx;
+}
+
+.btnBar .btn.blue {
+    background-color: #7aa6d1;
+}

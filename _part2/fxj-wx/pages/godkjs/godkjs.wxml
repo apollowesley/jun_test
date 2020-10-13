@@ -1,0 +1,113 @@
+<view class='title'>额度快测输入</view>
+<view class="data">
+    <view class='items'>
+         <view class='hd'>估值/万:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{lsnum}}' bindinput='lsnumInput' placeholder='请输入估值/万'></input>
+        </view>
+    </view>
+       <view class='items'>
+         <view class='hd'>贷款成数:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{lsnum2}}' bindinput='lsnum2Input' placeholder='请输入贷款成数'></input>
+        </view>
+    </view>
+      <!-- <view class='items'>
+         <view class='hd'>申请金额:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{money}}' bindinput='moneyInput' placeholder='请输入申请金额'></input>
+        </view>
+    </view> -->
+    <view class='items'>
+         <view class='hd'>月综合利息:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{frameno}}' bindinput='framenoInput' placeholder='请输入月综合利息'></input>
+        </view>
+    </view>
+       <view class='items'>
+         <view class='hd'>年息:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{frameno1}}' bindinput='frameno1Input' placeholder='请输入年息'></input>
+        </view>
+    </view>
+    <view class='items'>
+               <view class='hd'>申请期数/月:</view>
+               <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{engineno}}' bindinput='enginenoInput' placeholder='请输入申请期数/月'></input>
+        </view>
+    </view>
+
+      <view class='items'>
+               <view class='hd'>保险费:</view>
+               <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{insurance}}' bindinput='insuranceInput' placeholder='请输入保险费'></input>
+        </view>
+    </view>
+ <view class='items'>
+               <view class='hd'>返佣比例:</view>
+               <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{fanyong}}' bindinput='fanyongInput' placeholder='请输入返佣比例'></input>
+        </view>
+    </view>
+  <view class='items'>
+               <view class='hd'>GPS费用:</view>
+               <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{gps}}' bindinput='gpsInput' placeholder='请输入GPS费用'></input>
+        </view>
+    </view>
+      <!-- <view class='items'>
+         <view class='bd'>银行方费率:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{engineno1}}' bindinput='engineno1Input' placeholder='请输入银行方费率'></input>
+        </view>
+    </view> -->
+    <view class="btn" bindtap='sbumitBtn'>一键快测</view>
+</view>
+
+<view class='wrap'>
+    <view class='title'>额度快测结果</view>
+    <view class='resultBox'>
+        <view class='list'>
+            <view class='l'>可申请金额:</view>
+            <view class='r'>{{result1}}</view>
+        </view>
+        <view class='list'>
+            <view class='l'>总贷款额:</view>
+            <view class='r'>{{result2}}</view>
+        </view>
+         <view class='list'>
+            <view class='l'>本息总和:</view>
+            <view class='r'>{{result3}}</view>
+        </view>
+          <view class='list'>
+            <view class='l'>月供:</view>
+            <view class='r'>{{result4}}</view>
+        </view>
+          <view class='list'>
+            <view class='l'>佣金:</view>
+            <view class='r'>{{result5}}</view>
+        </view>
+          <view class='list'>
+            <view class='l'>合同贷款额:</view>
+            <view class='r'>{{result6}}</view>
+        </view>
+        <!-- <view class='list'>
+            <view class='l'>总扣分:</view>
+            <view class='r'>{{totalDeduction}}</view>
+        </view>
+        <view class='list'>
+            <view class='l'>总罚款:</view>
+            <view class='r'>{{totalFine}}</view>
+        </view> -->
+    </view>
+
+    <!-- <view class='queryList' wx:for="{{list}}" wx:key="id" wx:if="list.length > 0">
+        <view class='h3'>{{item.wzxw}}</view>
+        <view class='p'>{{item.wzdd}}</view>
+        <view class='b'>
+            {{item.wzsj}}
+            <text>罚款{{item.wzfk}}</text>
+            <text>扣{{item.wzjf}}分</text>
+        </view>
+    </view> -->
+</view>

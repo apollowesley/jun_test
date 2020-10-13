@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.ideal.sh.cn/dynamic-service-bean"
+	jaxb:version="1.0" jaxb:extensionBindingPrefixes="xjc"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:dsb="http://www.ideal.sh.cn/dynamic-service-bean">
+
+	<xsd:include schemaLocation="DisabledServicesType.xsd"></xsd:include>
+	<xsd:include schemaLocation="StartupServicesType.xsd"></xsd:include>
+	<xsd:include schemaLocation="SystemPropsType.xsd"></xsd:include>
+	<xsd:complexType name="DSBConfType">
+
+		<xsd:sequence>
+			<xsd:element name="dsb.server.name" type="xsd:string"></xsd:element>
+			<xsd:element name="dsb.deploy.dir" type="xsd:string"></xsd:element>
+			<xsd:element name="dsb.annotation.bypass.dir" type="xsd:string"></xsd:element>
+			<xsd:element name="dsb.socket.port" type="xsd:int"></xsd:element>
+			<xsd:element name="dsb.rmi.server.port" type="xsd:int"></xsd:element>
+			<xsd:element name="dsb.server.language" type="xsd:string"></xsd:element>
+			<xsd:element name="dsb.server.log.dir" type="xsd:string"></xsd:element>
+			<xsd:element name="dsb.server.log.name" type="xsd:string"></xsd:element>
+			<xsd:element name="dsb.server.log.level" type="xsd:int"></xsd:element>
+			<xsd:element name="dsb.server.log.maxfilesize" type="xsd:int"></xsd:element>
+			<xsd:element name="cmd.server.port" type="xsd:int"></xsd:element>
+			<xsd:element name="cmd.thread.count" type="xsd:int"></xsd:element>
+			<xsd:element name="cmd.conn.timeout" type="xsd:long"></xsd:element>
+			<xsd:element name="startupservices" type="dsb:StartupServiesType">
+			</xsd:element>
+			<xsd:element name="disabledservices" type="dsb:DisabledServiesType">
+			</xsd:element>
+			<xsd:element name="systemprops" type="dsb:SystemPropsType"
+				maxOccurs="unbounded" minOccurs="0">
+			</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

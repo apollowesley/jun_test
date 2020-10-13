@@ -1,0 +1,362 @@
+@charset "UTF-8";
+
+body {
+	padding-top: 50px;
+}
+
+/**Bootstrap css begin**/
+.container .jumbotron {
+	padding: 0;	
+}
+
+.jumbotron {
+	padding: 0;	
+}
+/**Bootstrap css end**/
+
+#scrollUp {
+    background-color: #777;
+    color: #eee;
+    font-size: 40px;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    bottom: 20px;
+    right: 5px;
+    overflow: hidden;
+    width: 46px;
+    height: 46px;
+    border: none;
+    opacity: .8
+}
+
+#scrollUp:hover {
+    background-color: #333
+}
+
+@media screen and (min-width:992px) {
+    #scrollUp {
+		right: 10px;
+        bottom: 100px;
+    }
+}
+
+#page-back {
+	background-color: #777;
+	color: #eee;
+	font-size: 40px;
+	line-height: 1;
+	text-align: center;
+	text-decoration: none;
+	left: 5px;
+	bottom: 20px;
+	overflow: hidden;
+	width: 46px;
+	height: 46px;
+	border: none;
+	opacity: .8;
+}
+
+@media screen and (min-width:992px) {
+    #page-back {
+		left: 10px;
+        bottom: 100px;
+    }
+}
+
+#page-back:hover {
+	background-color: #333;
+	cursor: pointer;
+}
+
+.site.footer {
+    color: #777;
+    padding: 30px 0;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 50px
+}
+
+.site.footer a {
+    color: #777
+}
+
+.site.footer-top .about>div {
+    
+    margin-bottom: 10px
+}
+
+.site.footer-top .about>div h4 {
+    font-size: 16px
+}
+
+.site.footer-bottom {
+    font-size: 13px
+}
+
+.site.footer-bottom ul>li {
+    padding: 0
+}
+
+.site.footer-bottom ul>li+li:before {
+    padding: 0 10px;
+    color: #ccc;
+    content: "|"
+}
+
+.site.tutorship-list-item {
+	padding: 20px 10px;
+	min-height: 545px;
+	border: 1px solid #CCC;
+	margin-top: 20px;
+	margin-bottom:50px;
+	position: relative;
+}
+
+.site.teacher-list-item {
+	padding: 20px 10px;
+	min-height: 400px;
+	border: 1px solid #CCC;
+	margin-top: 20px;
+	margin-bottom:50px;
+	position: relative;
+}
+
+.site.pointer-cursor {
+	cursor: pointer;
+}
+
+.site.a a:hover,a:focus {
+	text-decoration: none;
+}
+
+.site.like {
+	color: #333;
+}
+
+.site.comment {
+	color:#333;
+}
+
+.site.datetime {
+	font-size: 12px;
+	color: #999;	
+}
+
+.site.header {
+	padding: 30px;	
+}
+
+.site.u-default-icon {
+	width: 80px;
+	height: 80px;	
+}
+
+.site.u-small-icon {
+	width: 50px;
+	height: 50px;	
+}
+
+.site.u-large-icon {
+	width: 120px;
+	height: 120px;
+}
+
+.site.u-mini-icon {
+	width: 30px;
+	height: 30px;
+}
+
+.site.icon-left-small {
+	margin-left: 70px;	
+}
+
+.site.icon-left-default {
+ 	margin-left: 100px;	
+}
+
+.site.icon-left-large {
+	margin-left: 140px;	
+}
+
+.site.icon-right-small {
+	margin-right: 70px;	
+}
+
+.site.icon-right-default {
+	margin-right: 100px;	
+}
+
+.site.icon-right-large {
+	margin-right: 140px;	
+}
+
+.site.margin-bottom-15 {
+	margin-bottom: 15px;	
+}
+
+.site.padding-bottom-15 {
+	padding-bottom: 15px;	
+}
+
+.site.padding-bottom-0 {
+	padding-bottom: 0px;	
+}
+
+.site.comment-list {
+	margin-bottom:	15px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #DDD;	
+}
+
+.site.icon-gender-default {
+	
+}
+
+.site.icon-gender-small {
+	
+}
+
+.site.icon-gender-large {
+	
+}
+
+.site.icon-male {
+	color:#0080FF;
+}
+
+.site.icon-female {
+	color:#C03;	
+}
+
+.site.hr-dash-white {
+	border-top: none;
+	border-bottom:1px dashed #FFF;	
+}
+
+.site.hr-dash-light-dark {
+	border-top: none;
+	border-bottom:1px dashed #DDD;	
+}
+
+.site.tutorship-status {
+	position: absolute;
+	z-index: 1;
+	top: -23px;
+	right: 20px;
+	display: block;
+}
+
+.site.teacher-status {
+	position: absolute;
+	z-index: 1;
+	top: -23px;
+	right: 20px;
+	display: block;
+}
+
+.site.course-info>span {
+    padding: 0
+}
+
+.site.course-info>span+span:before {
+	padding:0 10px;
+    content: "|"
+}
+
+.site.talk-words:before {
+	content: "“";
+}
+
+.site.talk-words:after {
+	content: "”";
+}
+
+.list-group-item {
+	padding-left: 30px;	
+}
+
+.site.list-group-title {
+	padding-left: 5px;
+	font-weight: bold;	
+}
+
+.site.blockquote {
+	padding: 0;
+	font-size: 16px;
+}
+
+.site.blockquote a {
+	display: inline-block;
+	margin-bottom: 10px;	
+}
+
+.list-inline >li{
+	padding-bottom: 10px;
+}
+
+.site.apply-teacher {
+	margin-bottom:	15px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #DDD;	
+}
+
+.site.apply-teacher.selected {
+	border-bottom: 1px dashed #428bca;
+}
+
+.site.sidebar-fix {
+	position: fixed;
+	top: 50p;	
+}
+
+.site.barcode-thumbnail {
+	border: none;
+}
+
+.site.barcode-thumbnail >img {
+	width: 100px;
+	height: 100px;
+	margin-left: 0px;
+}
+
+.site.barcode-thumbnail .caption {
+	padding: 9px 0;
+}
+
+.site.section-title {
+	font-size: 16px;
+	color: #777;
+	border-bottom: 1px solid #DDD;	
+	margin-bottom: 15px;	
+}
+
+.site.admin.tutorship-list-item {
+	padding: 20px 10px;
+	border: 1px solid #CCC;
+	margin-top: 20px;
+	margin-bottom:50px;
+	position: relative;
+	min-height: 1px;
+}
+
+.site.admin.teacher-list-item {
+	padding: 20px 10px;
+	border: 1px solid #CCC;
+	margin-top: 20px;
+	margin-bottom:50px;
+	position: relative;
+	min-height: 1px;
+}
+
+.site.display-none {
+	display: none;	
+}
+
+.site.page-content-section {
+	margin-bottom: 30px;	
+}
+
+.site.user-a {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}

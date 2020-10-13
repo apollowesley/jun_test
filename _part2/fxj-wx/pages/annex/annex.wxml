@@ -1,0 +1,6 @@
+<view class="annexMain">
+    <view class='items' bindtap='goannexPhotoUpload'>
+        <view class='title'>补充材料</view>
+        <view class='p'>请拍照上传</view>
+    </view>
+</view>

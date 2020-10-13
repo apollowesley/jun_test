@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    
+    <!-- 配置在ApplicationContext中 
+    <bean  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="location">
+		<value>classpath:properties/database.properties</value>
+	</property>
+	</bean>
+	-->
+	<!-- Hibernate session factory -->
+	<bean id="sessionFactory"
+	  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+    <property name="dataSource">
+      <ref bean="dataSourceC3p0"/>
+    </property>
+
+    <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+            </props>
+     </property>
+     <!--当然也可以不使用上面这种指定的方式，而使用包扫描的方式做为替换，推荐这种-->
+		<property name="packagesToScan">
+			<list>
+				<value>com.managementsystem.entity</value>
+			</list>
+		</property>
+
+     
+     <!--  使用需要扫描的类,反向生成对应的表
+		<property name="annotatedClasses">
+	        <list>
+	        	<value>com.managementsystem.entity.Resources</value>
+	        </list>
+	     </property>
+	-->
+    </bean>
+    
+
+    
+</beans>

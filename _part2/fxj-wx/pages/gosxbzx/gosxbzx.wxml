@@ -1,0 +1,65 @@
+<view class='title'>请输入人员信息</view>
+<view class='ocr'>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>姓名:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" placeholder="请输入姓名" value='{{name}}' bindinput='nameInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>身份证号:</view>
+            <view class='bd'>
+                <input type='idcard' placeholder-class="placeholder"  placeholder="请输入身份证号" value='{{ocrIdNumber}}' bindinput='ocrIdNumberInput'></input>
+            </view>
+        </view>
+        <!-- <view class='items'>
+            <view class='hd'>银行卡:</view>
+            <view class='bd'>
+                <input type='text' value='{{bankcardno}}' bindinput='bankcardno' ></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>电话:</view>
+            <view class='bd'>
+            <input type='text' value='{{mobile}}' bindinput='mobile' ></input>
+        </view> -->
+    <!-- </view> -->
+    </view>
+</view>
+
+<view class='submitBtn' bindtap="submitBtn">查询</view>
+
+
+
+
+<view class='wrap' >
+    <view class='title'>总条数：{{tiaoshu}}</view>
+    <view class='resultBox'>
+      <!-- <view class="tiaoshu">总条数：{{tiaoshu}}</view> -->
+     <view class='list'  wx:for="{{list}}">
+            <view class='l'>被执行人:{{item.entityName}}</view>
+            <view class='r' >执行编号：{{item.entityId}}</view>
+            <view class='r' >id号：{{item.id}}</view>
+            <view class='r' >案件编号：{{item.caseCode}}</view>
+            <view class='r' >执行时间：{{item.regDate}}</view>
+            <view class='r' >执行法院：{{item.courtName}}</view>
+
+        </view>
+    </view>
+</view>
+
+<!-- <view class='list-msg'>
+    <view class='list-msg2' bindtap='bindShowMsg'>
+        <text >{{tihuoWay}}</text>
+        <image style='height:20rpx;width:20rpx;' src='../../images/tool/down.png'></image>
+    </view> -->
+ 
+<!-- 下拉需要显示的列表 -->
+    <!-- <view class="select_box" wx:if="{{select}}" >
+        <view class="select_one" bindtap="mySelect"  data-name="同盾">同盾</view>
+        <view class="select_one" bindtap="mySelect" data-name="百融">百融</view>
+        <view class="select_one" bindtap="mySelect" data-name="中诚信">中诚信</view>
+        <view class="select_one" bindtap="mySelect" data-name="黑瞳">黑瞳</view>
+    </view>
+  </view> -->

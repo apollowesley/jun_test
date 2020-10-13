@@ -1,0 +1,22 @@
+
+.app-header { background-color: #fbfbfb }
+.navbar-brand { background-color: #eae4d8 }
+.app-aside { border-right: 1px solid #c5c0b6; background-color: #eae4d8 }
+.app-aside .children,
+.app-aside .aside-item.opened { background-color: #e6dfd1 !important }
+.app-aside .aside-item, .app-aside .children .fold-header { color: #68667b }
+.app-aside .aside-item > i { color: #68667b; background-color: #c5c0b6 }
+.app-aside .aside-item.parent:after { color: #68667b }
+.app-aside .aside-item:hover { background-color: #e6dfd1; color: #252525 }
+.app-aside .aside-item.active { background-color: #dad2c5; color: #252525; border-color: #d0c9bd }
+.app-aside .aside-item.opened,
+.app-aside .aside-item:hover > i,
+.app-aside .aside-item.active > i,
+.app-aside .aside-item.opened > i,
+.app-aside .aside-item.opened > span { color: #252525 }
+.app-aside .aside-divider { border-color: #dbd0ba !important }
+.app-aside .children .aside-item:hover { background-color: #dad2c5 }
+.aside-folded .app-aside .children { border: 1px solid #c5c0b6 }
+@media (max-width: 991px) {
+  .app-aside .children { border: 1px solid #c5c0b6 }
+}

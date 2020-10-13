@@ -1,0 +1,128 @@
+buildscript {
+    ext {
+        springBootVersion = "2.1.7.RELEASE"
+        mybatisPlusVersion = "3.2.0"
+        hikariCPVersion = "3.3.1"
+        swaggerVersion = "2.9.2"
+        joddVersion = "5.0.10"
+        crabVersion = "0.2"
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/central" }
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    }
+}
+
+description = "Crab 1.0 WEB 快速开发框架"
+
+// 项目配置
+allprojects {
+    group "com.baomidou"
+    version "0.1"
+
+}
+
+// 子模块配置
+subprojects {
+    apply plugin: "java"
+    apply plugin: "maven"
+    apply plugin: "idea"
+    apply plugin: 'org.springframework.boot'
+    apply plugin: "io.spring.dependency-management"
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.compilerArgs << "-Xlint:unchecked"
+    }
+
+    // 仓库配置
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://repo.spring.io/milestone" }
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://jitpack.io" }
+        jcenter()
+    }
+
+    configurations {
+        compile.exclude group: "ch.qos.logback"
+        compile.exclude group: "com.amazonaws"
+        compile.exclude group: "org.apache.tomcat"
+        compile.exclude module: "undertow-websockets-jsr"
+        compile.exclude module: "spring-boot-starter-tomcat"
+        compile.exclude module: "spring-boot-starter-logging"
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+        }
+        dependencies {
+            // 文档
+            dependency("io.springfox:springfox-swagger2:${swaggerVersion}")
+            dependency("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+            // 工具类
+            dependency("org.jodd:jodd-bean:${joddVersion}")
+            dependency("commons-io:commons-io:2.6")
+            dependency("org.apache.commons:commons-lang3:3.8.1")
+            dependency("org.projectlombok:lombok:1.18.6")
+            dependency("net.coobird:thumbnailator:0.4.8")
+            dependency("org.javers:javers-core:5.2.5")
+            dependency("com.google.zxing:core:3.3.3")
+            dependency("com.belerweb:pinyin4j:2.5.1")
+            dependency("com.baomidou:kisso:3.7.4")
+            dependency("org.freemarker:freemarker:2.3.28")
+
+            // 日志
+            dependency("org.slf4j:slf4j-api:1.7.25")
+            dependency("com.lmax:disruptor:3.4.2")
+
+            // 编译测试
+            dependency("javax.servlet:servlet-api:2.5")
+            dependency("org.mockito:mockito-all:1.10.19")
+            dependency("org.databene:contiperf:2.3.4")
+            dependency("junit:junit:4.12")
+
+            // JVM 性能监控
+            dependency("net.bull.javamelody:javamelody-spring-boot-starter:1.74.0")
+
+            // orm db
+            dependency("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
+            dependency("com.baomidou:mybatis-plus-generator:${mybatisPlusVersion}")
+            dependency("com.baomidou:mybatis-plus-extension:${mybatisPlusVersion}")
+            dependency("com.baomidou:crab-core:${crabVersion}")
+            dependency("com.zaxxer:HikariCP:${hikariCPVersion}")
+            dependency("org.postgresql:postgresql:42.2.5.jre7")
+            dependency("mysql:mysql-connector-java:8.0.15")
+            dependency("p6spy:p6spy:3.8.1")
+        }
+    }
+
+    // 依赖配置
+    dependencies {
+        compile("org.slf4j:slf4j-api")
+        annotationProcessor("org.projectlombok:lombok")
+        compileOnly("javax.servlet:servlet-api")
+        compileOnly("org.projectlombok:lombok")
+
+        // 编译测试
+        testAnnotationProcessor("org.projectlombok:lombok")
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+        testCompile("org.mockito:mockito-all")
+        testCompile("org.databene:contiperf")
+        testCompile("javax.servlet:servlet-api")
+        testCompile("junit:junit")
+    }
+
+    // 编译环境 JDK1.8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

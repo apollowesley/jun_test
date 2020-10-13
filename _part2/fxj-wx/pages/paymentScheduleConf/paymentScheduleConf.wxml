@@ -1,0 +1,131 @@
+<view class='borderbox'>
+    <view class='tbviewlist'>
+        <view class='items onafter'>
+            <view class='r'>{{cusName}}</view>
+            <view class='c'>客户姓名</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>{{orderNo}}</view>
+            <view class='c'>订单号</view>
+        </view>
+        
+        <view class='items onafter'>
+            <view class='r'>{{loanPeriod}}期</view>
+            <view class='c'>期数</view>
+        </view>
+        <!-- <view class='items onafter'>
+            <view class='r'>{{createDate}}</view>
+            <view class='c'>贷款预计发放日</view>
+        </view> -->
+        <view class='items onafter'>
+            <view class='r'>{{loanDate}}</view>
+            <view class='c'>预计首次还款日</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>{{loanReMethod}}</view>
+            <view class='c'>还款方式</view>
+        </view>
+<!-- 下面新增 -->
+        <view class='items onafter'>
+            <view class='r'>{{carPinggujia}}</view>
+            <view class='c'>车辆评估价</view>
+        </view>
+
+                <!-- <view class='items onafter'>
+            <view class='r'>{{loanMonth}}</view>
+            <view class='c'>综合利率</view>
+        </view> -->
+
+
+                <view class='items onafter'>
+            <view class='r'>{{carRongzie}}</view>
+            <view class='c'>车辆融资额</view>
+        </view>
+
+
+         <view class='items onafter'>
+            <view class='r'>{{bxFy}}</view>
+            <view class='c'>保险费用</view>
+        </view>
+    <view class='items onafter'>
+        <view class='r'>{{loanSum}}</view>
+        <view class='c'>计息金额</view>
+    </view>
+
+    <view class='items onafter'>
+        <view class='r'>{{gpsFy}}</view>
+        <view class='c'>GPS费用</view>
+    </view>
+     <view class='items onafter'>
+        <view class='r'>{{lydbFuwfei}}</view>
+        <view class='c'>担保服务费</view>
+    </view>
+    <!-- <view class='items onafter'>
+        <view class='r'>{{conJine}}</view>
+        <view class='c'>合同金额</view>
+    </view> -->
+    <!-- <view class='items onafter'>
+        <view class='r'>{{lydbFuwfei}}</view>
+        <view class='c'>服务费</view>
+    </view> -->
+    <!-- <view class='items onafter'>
+        <view class='r'>{{loanAmount}}</view>
+        <view class='c'>贷款金额</view>
+    </view> -->
+    <!-- <view class='items onafter'>
+        <view class='r'>{{daoshouJine}}</view>
+        <view class='c'>到手金额</view>
+    </view> -->
+
+    <!-- <view class='items onafter'>
+        <view class='bd r'>
+            <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写放款户名" value='{{orderBy11}}' bindinput='orderBy11Input'></input>
+        </view>
+        <view class='hd c'>放款户名:</view>
+    </view>
+    <view class='items onafter'>
+        <view class='bd r'>
+            <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写开户行" value='{{orderBy12}}' bindinput='orderBy12Input'></input>
+        </view>
+        <view class='hd c'>开户行:</view>
+    </view>
+    <view class='items onafter'>
+        <view class='bd r'>
+            <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写卡号" value='{{orderBy13}}' bindinput='orderBy13Input'></input>
+        </view>
+        <view class='hd c'>卡号:</view>
+    </view> -->
+
+
+
+    </view>
+</view>
+
+
+
+
+
+
+
+
+<view class='title'>还款计划表
+  <!-- <view class='download'></view> -->
+</view>
+<view class='titlebar'>
+    <view class='number'>期数</view>
+    <view class='date'>还款日期</view>
+    <view class='price'>还款金额</view>
+</view>
+<view class='itemsbar' wx:for="{{list}}" wx:key="id">
+    <view class='number'>{{item.refPeriod}}</view>
+    <view class='date'>{{item.refDate}}</view>
+    <view class='price'>{{item.refAmount}}</view>
+</view>
+
+
+
+
+<view class='btnBar'>
+    <view class='btn'   bindtap='saveBtn'>不同意</view>
+    <view class='btn blue'   bindtap='submitBtn'>同意</view>
+</view>

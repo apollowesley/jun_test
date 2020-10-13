@@ -1,0 +1,34 @@
+package ${context.packageName}.entity;
+
+#if(${table.hasDateField})
+import java.util.Date;
+#end
+#if(${table.hasBigDecimalField})
+import java.math.BigDecimal;
+#end
+
+import net.oschina.durcframework.easymybatis.query.annotation.ValueField;
+import net.oschina.durcframework.easymybatis.query.param.BaseParam;
+
+/**
+ 查询参数封装
+*/
+public class ${context.javaBeanName}Sch extends BaseParam {
+
+#foreach($column in $columns) 
+    private ${column.javaTypeBox} ${column.javaFieldName}Sch;
+#end
+
+#foreach(${column} in ${columns}) 
+    public void set${column.javaFieldNameUF}Sch(${column.javaTypeBox} ${column.javaFieldName}Sch){
+        this.${column.javaFieldName}Sch = ${column.javaFieldName}Sch;
+    }
+    
+    @ValueField(column = "${column.columnName}")
+    public ${column.javaTypeBox} get${column.javaFieldNameUF}Sch(){
+        return this.${column.javaFieldName}Sch;
+    }
+
+#end
+
+}

@@ -1,0 +1,15 @@
+<view class="topBar">
+    <view class='title'>补充材料</view>
+    <view class='p'>请拍照上传</view>
+</view>
+<view class='uploadimg'>
+    <view class='items' wx:for="{{picUrlList}}" wx:key="id">
+        <view class='delete' bindtap='deletePic' data-index="{{index}}" data-picId="{{item.id}}"></view>
+        <view class='pic' style='background-image:url({{item.attaUrl}})'></view>
+    </view>
+    <view class='items'>
+        <view class='pic' bindtap='getEnclosurePic'></view>
+    </view>
+</view>
+
+

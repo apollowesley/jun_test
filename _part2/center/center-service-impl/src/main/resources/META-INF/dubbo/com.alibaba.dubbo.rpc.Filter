@@ -1,0 +1,1 @@
+dubboServiceFilter=org.apache.playframework.service.filter.DubboServiceFilter

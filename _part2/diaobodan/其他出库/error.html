@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+		<title>错误页面</title>
+		<link href="./css/bootstrap3.css" rel="stylesheet"/>
+		<link href="./css/loading.css" rel="stylesheet"/>
+	</head>
+	<body class="Index">
+		<div class="jumbotron" style='text-align:center'>
+		  <h2 id="msg">出错啦！！！</h2>
+		  <p>点击下方按钮退出轻应用</p>
+		  <p><a class="btn btn-primary btn-lg" href="#" role="button" id="exit">退出</a></p>
+		</div>
+
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/bootstrap3.min.js"></script>
+		<script src="js/bootstrap-table.js"></script>
+		<script src="js/bootstrap-table-export.js"></script>
+		<script src="js/bootstrap-datepicker.js"></script>
+		<script src="js/loading.js"></script>
+		<script src="js/mxcore.js"></script>
+		<script src="js/baseapp.js"></script>
+		<script>
+			$(document).ready(function(){
+				var errorcode = mxCore.getQueryString('code');
+				switch(errorcode){
+					case "-1":
+						$("#msg").text("对不起，登录情况异常！");
+						break;
+					case "-2":
+						$("#msg").text("对不起，您不是EAS用户！");
+						break;
+					case "-3":
+						$("#msg").text("对不起，您没有权限！");
+						break;
+				}
+				$("#exit").on('click',function(){
+					mxCore.connectWebViewJavascriptBridge(function(bridge){
+						mxCore.closeMXWindow();
+					});
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>ssd</title>
+</head>
+<body>
+<h1>  
+	COCOOK ---  velocity.vm
+	
+	${user}
+	<hr/>
+	
+	#set
+	#set ($msg = "欢迎 velicoty")
+	${msg}
+	
+	<hr/>
+	#parser
+	parser 导入并解析模板
+	parse("/inc/head.htm")
+	include 只导入html,不解析
+	include("/inc/footer.htm")
+	
+	<hr/>
+	#if(${user}=="panmg")
+		<hr> ${user}</hr>
+	#end
+	
+	
+	<ul>
+	#foreach($key in $map.keySet())
+				
+		<li>
+			#if($key =="list")
+				#foreach($val in $map.get($key))
+				<span> list== $val</span>
+				#end
+			#elseif($key=="name")
+			$map.get($key)
+			#end
+			
+		</li>
+	#end
+	</ul>
+	
+	
+	<img width="67" height="27" id="codeImg" onclick="changeCode();" 
+	alt="点击更换验证码" src="$cxtpath/image" />
+	<img width="67" height="27" id="codeImg" onclick="changeCode();" 
+	alt="点击更换验证码" src="/img/02.png" />
+</h1>
+<script type="text/javascript">
+  /*验证码图片替换*/
+        function changeCode() {
+            document.getElementById("codeImg").src = "$cxtpath/image?nocache="+ Math.random();
+        }
+
+</script>
+</body>
+</html>

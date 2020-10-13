@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>快速开发后台-登录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    
+    <link rel="stylesheet" href="./css/style-baba97cf77.min.css"/>
+
+    <link rel="stylesheet" href="./css/plugins-49c10d1e75.login.min.css"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<body class="login">
+
+<div class="content" id="login-main" style="margin-top:150px;">
+    <login @login:submit="login" :logo="logo" :rules="rules" :messages="messages" :backstretch="['image/bg/1.jpg','image/bg/2.jpg','image/bg/3.jpg','image/bg/4.jpg']">
+        <div class="form-group form-md-line-input " >
+            <label for="" class="col-md-3 control-label">用户名</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control"  name="name" >
+                <div class="form-control-focus">
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-md-line-input ">
+            <label for="" class="col-md-3 control-label">密码</label>
+            <div class="col-md-9">
+                <input type="password" class="form-control" name="password">
+                <div class="form-control-focus">
+                </div>
+            </div>
+        </div>
+    </login>
+</div>
+
+<div class="copyright">
+	 2016 &copy; Gavin. 
+</div>
+
+<script src="./js/common-9cc6c826d7.min.js"></script>
+<script src="./js/plugins-0b3ce02d3f.login.min.js"></script>
+
+<script src="./js/login-4bced9e1c0.min.js"></script>
+
+</body>
+</html>

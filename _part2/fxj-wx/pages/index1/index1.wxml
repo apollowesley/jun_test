@@ -1,0 +1,9 @@
+<view class="banner"></view>
+<view class="loanItem">
+    <view class="items" wx:for="{{list}}" wx:key="id" data-proFinanceSum="{{item.proFinanceSum}}"  data-proNo="{{item.proNo}}" data-proName="{{item.proName}}" data-proClass="{{item.proClass}}" data-newList1="{{item.newList1}}" data-newList2="{{item.newList2}}" data-newList3="{{item.newList3}}" data-newList4="{{item.newList4}}" data-newList5="{{item.newList5}}" data-newList6="{{item.newList6}}" data-newList7="{{item.newList7}}" data-newList8="{{item.newList8}}" data-newList9="{{item.newList9}}" data-newList10="{{item.newList10}}" data-newList11="{{item.newList11}}"data-newList12="{{item.newList12}}" data-newList13="{{item.newList13}}" data-newList14="{{item.newList14}}"data-newList15="{{item.newList15}}"data-newList16="{{item.newList16}}"data-newList17="{{item.newList17}}"data-newList18="{{item.newList18}}"data-newList19="{{item.newList19}}"data-newList20="{{item.newList20}}"data-newList21="{{item.newList21}}" data-newList22="{{item.newList22}}" data-newList23="{{item.newList23}}" data-newList24="{{item.newList24}}" data-newList25="{{item.newList25}}" data-newList26="{{item.newList26}}"bindtap='goApplyMortgage'  >
+      <view style="display:flex;">
+        <view class="title">{{item.proName}}</view>
+        <view class="btn">立即申请</view>
+      </view>
+    </view>
+</view>

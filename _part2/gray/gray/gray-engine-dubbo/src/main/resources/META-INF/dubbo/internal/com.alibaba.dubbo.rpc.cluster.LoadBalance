@@ -1,0 +1,2 @@
+grayrandom=com.xlz.engine.dubbo.cluster.RandomLoadBalance
+grayroundrobin=com.xlz.engine.dubbo.cluster.RoundRobinLoadBalance

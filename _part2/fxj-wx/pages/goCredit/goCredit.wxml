@@ -1,0 +1,127 @@
+<!-- <view class='title-1'>
+  <view class='title'>大数据查询</view>
+  <view class='look'>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        请选择查询接口：{{array[index]}}
+      </view>
+    </picker>
+  </view> 
+</view> -->
+<view class='ocr'>
+    <view class="title">OCR身份证识别</view>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>姓名:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrName}}' bindinput='ocrNameInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>性别:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrSex}}' bindinput='ocrSexInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>民族:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrNation}}' bindinput='ocrNationInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>出生:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrBirth}}' bindinput='ocrBirthInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>地址:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrAddress}}' bindinput='ocrAddressInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>身份证号:</view>
+            <view class='bd'>
+                <input type='idcard' placeholder-class="placeholder" value='{{ocrIdNumber}}' bindinput='ocrIdNumberInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>签发机关:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrOffice}}' bindinput='ocrOfficeInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>有效期限:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrValidityPeriod}}' bindinput='ocrValidityPeriodInput'></input>
+            </view>
+        </view>
+         <view class='items'>
+            <view class='hd'>银行卡:</view>
+            <view class='bd'>
+                <input type='text' value='{{bankcardno}}' bindinput='bankcardno' ></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>电话:</view>
+            <view class='bd'>
+            <input type='text' value='{{mobile}}' bindinput='mobile' ></input>
+        </view>
+    </view>
+           
+    </view>
+    <view class='ocrUpload'>
+        <view class="ocrUploadBtn" data-sbtype="2" bindtap='upEnclosure'>身份人面像</view>
+        <view class="ocrUploadBtn" data-sbtype="3" bindtap='upEnclosure'>身份国徽面</view>
+    </view>
+    <view class='ocrUpload'>
+        <view class="ocrUploadBtn"  bindtap='submitBtn'>大数据查询</view>
+    </view>
+</view>
+
+<!-- <view class='ocr'>
+    <view class="title">基本信息</view>
+    <view class='ocrMain'> -->
+        <!-- <view class='items'>
+            <view class='hd'>姓名:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrName}}' bindinput='ocrNameInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>身份证号:</view>
+            <view class='bd'>
+                <input type='idcard' placeholder-class="placeholder" value='{{ocrIdNumber}}' bindinput='ocrIdNumberInput'></input>
+            </view>
+        </view> -->
+<!-- 
+    </view>
+</view>
+
+<view class='submitBtn' bindtap="submitBtn">查询</view> -->
+
+
+
+
+<view class='wrap' >
+    <view class='title'>大数据查询结果</view>
+    <view class='resultBox'>
+        <view class='list'>
+            <view class='l'>查询结果:</view>
+            <view class='r'>
+              <input type='text' value='{{queryResults}}' bindinput='queryResults' >{{queryResults}}</input>
+            </view>
+        </view>
+        <view class='list'>
+            <view class='l'>信用分数:</view>
+            <view class='r'>
+              <input type='text' value='{{violationTimes}}' bindinput='violationTimes' >{{violationTimes}}</input>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='submitBtn' bindtap="submitBtn1" >提交申请</view>
+

@@ -1,0 +1,83 @@
+.centerTop {
+    padding:30rpx 40rpx;
+    background-color: #7aa6d1;
+    position: relative;
+    overflow: hidden;
+    color: #FFFFFF;
+}
+.centerTop .hd {
+    width: 104rpx;
+    height: 104rpx;
+    border: 2rpx solid #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    float: left;
+    position: relative;
+    padding: 6rpx;
+    box-sizing: border-box;
+}
+.centerTop .hd image {
+    width: 88rpx;
+    height:88rpx;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.centerTop .bd {
+    margin:0 0 0 124rpx;
+    height: 104rpx;
+}
+.centerTop .bd .name,.centerTop .bd .place {
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    font-size: 32rpx;
+}
+.centerTop .bd .name {
+    height:104rpx;
+    line-height:104rpx;
+}
+.centerTop .bd .place {
+    font-size: 28rpx;
+    height:40rpx;
+    line-height: 40rpx;
+}
+.ico {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 6px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #999999;
+    font-family: iconfont;
+    font-size: 22px;
+}
+.ico-data::before {
+    content: "\e626";
+    font-size:32px;
+}
+.ico-draft::before {
+    content: "\e600";
+    font-size: 24px;
+}
+.ico-message::before {
+    content: "\e601";
+    font-size: 30px;
+}
+.ico-count::before {
+    content: "\e629";
+    font-size:20px;
+}
+.ico-team::before {
+    content: "\e699";
+    font-size: 26px;
+}
+.ico-feedback::before {
+    content: "\e610";
+    font-size: 20px;
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/task   
+        http://www.springframework.org/schema/task/spring-task-3.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/tx
+	    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<context:annotation-config />
+
+	<!-- 使用注解的包，包括子集 -->
+	<context:component-scan base-package="org.apache.center">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<aop:aspectj-autoproxy />
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>
+
+	<bean id="dataSource" destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+	</bean>
+
+	<!-- MyBatis SqlSessionFactoryBean 配置 -->
+	<bean id="sqlSessionFactory"
+		class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="typeAliasesPackage" value="org.apache.center.model" />
+		<property name="mapperLocations"
+			value="classpath:org/apache/center/dao/mapper/*Mapper.xml" />
+		<property name="plugins">
+			<array>
+				<!-- 分页插件配置 -->
+				<bean id="paginationInterceptor"
+					class="org.apache.playframework.mybatisplus.plugins.PaginationInterceptor">
+					<property name="dialectType" value="mysql" />
+				</bean> 
+			</array>
+		</property>
+		<property name="globalConfig" ref="globalConfig" />
+	</bean>
+	<bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
+		<!-- ID 策略，值配置参考源码 -->
+		<!-- <property name="idType" value="0" /> -->
+		<!-- Oracle需要添加该项 -->
+		<!-- <property name="dbType" value="oracle" /> -->
+		<!-- 全局表为下划线命名设置 true -->
+		<!-- <property name="dbColumnUnderline" value="true" /> -->
+		<property name="sqlInjector" ref="autosqlinjector" />
+	</bean>
+	<bean id="autosqlinjector" class="org.apache.playframework.mybatisplus.mapper.AutoSqlInjector" />
+
+
+	<!-- 加载 mapper.xml 接口 配置文件 -->
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.apache.center.dao" />
+	</bean>
+
+	<!-- 事务相关控制 -->
+	<bean name="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- 配置事物,用annotation @Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true) -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean class="org.apache.playframework.util.SpringUtils"></bean>
+
+	<import resource="classpath:dubbo-provider.xml" />
+</beans>  

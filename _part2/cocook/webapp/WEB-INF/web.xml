@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<!--
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/config/log4j.properties</param-value>
+	</context-param>
+	-->
+	<!--<listener>
+		<listener-class>com.synhe.listener.SynheListener</listener-class>
+	</listener>
+	-->
+	
+	<!-- 静态文件拦截
+		Tomcat, Jetty, JBoss, and GlassFish  默认 Servlet的名字  "default"
+		Google App Engine 默认 Servlet的名字  "_ah_default"
+		Resin 默认 Servlet的名字   "resin-file"
+		WebLogic 默认 Servlet的名字    "FileServlet"
+		WebSphere  默认 Servlet的名字   "SimpleFileServlet",
+		具体静态文件都会被 web服务器代理 
+	 -->
+	<servlet-mapping> 
+	    <servlet-name>default</servlet-name>  
+	    <url-pattern>*.jpg</url-pattern>   
+	    <url-pattern>*.gif</url-pattern>   
+	    <url-pattern>*.png</url-pattern>   
+	    <url-pattern>*.css</url-pattern>   
+	    <url-pattern>*.js</url-pattern>       
+	    <url-pattern>*.swf</url-pattern>       
+	    <url-pattern>*.html</url-pattern>       
+	    <url-pattern>*.ico</url-pattern>       
+	    <url-pattern>*.inc</url-pattern>       
+	    <url-pattern>*.xls</url-pattern>       
+	    <url-pattern>*.exe</url-pattern>       
+	</servlet-mapping>    
+	
+	
+	<servlet>
+		<!-- 定义Servlet名称 -->
+		<servlet-name>cocookServlet</servlet-name>
+		<!-- Servlet具体实现类 -->
+		<servlet-class>tom.cocook.handler.CocookServlet</servlet-class>
+		<!-- 初始化上下文对象 -->
+		<init-param>
+			<!-- 参数名称 -->
+			<param-name>SystemConfigLocation</param-name>
+			<!-- 加载配置文件 -->
+			<param-value>/WEB-INF/config/app.properties</param-value>
+		</init-param>
+		<!-- 设置启动的优先级 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- 
+		1、拦截*.do，例如：/user/add.do，弊端：所有的url都要以.do结尾。不会影响访问静态文件。
+		2、拦截/app/*，例如：/app/user/add，弊端：请求的url都要包含/app，@RequestMapping("/user/add")中不须要包含/app。
+		3、拦截/，例如：/user/add，弊端：对jpg,js,css静态文件的访问也被拦截不能正常显示。静态文件使用default 静态servlet。
+		4、拦截/*,静态和jsp,action都会拦截, 和filter相同
+	 -->
+	 
+	<servlet-mapping>
+		<servlet-name>cocookServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -1,0 +1,5 @@
+rootProject.name = 'crab'
+
+include 'crab-common'
+include 'service-parent'
+include 'service-system'

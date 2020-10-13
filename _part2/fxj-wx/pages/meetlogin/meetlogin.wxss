@@ -1,0 +1,8 @@
+@import '../../pages/applyMortgage/applyMortgage.wxss';
+
+.img-wrap{
+    padding: 14rpx;
+}
+.img-wrap image{
+    width: 100%;
+}

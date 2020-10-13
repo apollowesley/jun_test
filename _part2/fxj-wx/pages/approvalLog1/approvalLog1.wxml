@@ -1,0 +1,18 @@
+<!-- <view class="title">
+    <view class='hd'>结果</view>
+    <view class='bd'>操作</view>
+</view> -->
+
+<view class='wrap'>
+    <view class='queryList' wx:for="{{loglist}}" wx:key="id">
+            <view class='h3'>{{item.bpmStatus}}{{item.logContent}}</view>
+ 
+
+     <view class='b'>
+            {{item.logDate}} 
+            <text>{{item.logUser}} </text>
+         
+        </view>
+
+    </view>
+</view>

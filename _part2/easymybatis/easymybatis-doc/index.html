@@ -1,0 +1,1685 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>easymybatis开发文档</title>
+        <!-- 代码样式，可根据自己喜欢的改 -->
+        <link rel="stylesheet" href="./static/highlight/styles/vs.css">
+		<script src="./static/highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+        <link rel="stylesheet" type="text/css" href="./static/github2-rightpart.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./static/github1-contents.css">
+        <link rel="stylesheet" href="./static/zTreeStyle.css" type="text/css">
+        <style>
+            .ztree li a.curSelectedNode {
+                padding-top: 0px;
+                background-color: #FFE6B0;
+                color: black;
+                height: 16px;
+                border: 1px #FFB951 solid;
+                opacity: 0.8;
+            }
+            .ztree{
+                overflow: auto;
+                height:100%;
+                min-height: 200px;
+                top: 0px;
+            }
+            .task-list{list-style-type: disc !important;}
+        </style>
+    </head>
+    <body style="">
+        <div>
+            <div style="width:30%;">
+                <ul id="tree" class="ztree" style="width: 260px; overflow: auto; position: fixed; z-index: 2147483647; border: 0px none; left: 0px; bottom: 0px;">
+                <!-- 目录内容在网页另存为之后将插入到此处 -->
+                </ul>
+            </div>
+            <div id="readme" style="width:70%;margin-left:25%;">
+                <article class="markdown-body">
+
+
+<!-- ***********************************************************内容分割线****************************************************************** -->
+<!-- 请把你的html正文部分粘贴到此处，在浏览器中打开之后将会自动生成目录。如果想要将目录保留并嵌入到此文档中，只需在浏览器中“另存为->网页，全部”即可 -->
+ <div class="ui container">
+    <div id="project-title">
+      <div class="title-wrap">
+        <div class="left">
+          <i class="icon eye"></i>
+          文档预览:
+          durcframework/easymybatis
+        </div>
+        <div class="right">
+          Export by Gitee
+        </div>
+      </div>
+    </div>
+
+    <div class="ui container" id="wiki-preview-container">
+      <div id="wiki-preview">
+        <div class="ui segment">
+          <div id="page-detail" class="markdown-body">
+            <div class='title'>easymybatis开发文档</div><div class='content'><h1>
+<a id="easymybatis开发文档" class="anchor" href="#easymybatis%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3"></a>easymybatis开发文档</h1>
+<p>easymybatis是一个mybatis增强类库，目的为简化mybatis的开发，让开发更高效。</p>
+<ul class="task-list">
+<li>git地址：<a href="https://git.oschina.net/durcframework/easymybatis">easymybatis</a>
+</li>
+<li>demo地址：<a href="http://git.oschina.net/durcframework/easymybatis-springboot">demo with springboot</a>
+</li>
+<li>QQ交流群:328419269</li>
+</ul>
+<p>easymybatis的特性如下：</p>
+<ul class="task-list">
+<li>无需编写xml文件即可完成CRUD操作。</li>
+<li>支持多表查询、聚合查询、分页查询（支持多种数据库）。</li>
+<li>支持批量添加，指定字段批量添加。</li>
+<li>支持Dao层访问控制，如某个dao只有查询功能，某个dao有crud功能等。</li>
+<li>支持自定义sql，sql语句可以写在配置文件中，同样支持mybatis标签。</li>
+<li>支持mysql，sqlserver，oracle，其它数据库扩展方便（增加一个模板文件即可）。</li>
+<li>使用方式不变，与Spring集成只改了一处配置。</li>
+<li>支持与springboot集成。</li>
+<li>mybatis参数设置灵活，继承mybatis官方设置方式。</li>
+<li>轻量级，无侵入性，可与传统mybatis用法共存。</li>
+<li>没有修改框架源码(无插件)，可同时使用官方提供的功能。</li>
+</ul>
+<p>easymybatis支持的功能如下：</p>
+<ul class="task-list">
+<li>基本的CRUD</li>
+<li>主键策略设置</li>
+<li>字段填充功能</li>
+<li>枚举属性</li>
+<li>全局Dao</li>
+<li>乐观锁</li>
+<li>逻辑删除</li>
+</ul>
+<h2>
+<a id="架构组成" class="anchor" href="#%E6%9E%B6%E6%9E%84%E7%BB%84%E6%88%90"></a>架构组成</h2>
+<p>easymybatis的架构如下：</p>
+<p><img src="https://git.oschina.net/uploads/images/2017/0905/135741_c7821a5b_332975.png" alt="架构" title="em_arc.png"></p>
+<h2>
+<a id="运行流程" class="anchor" href="#%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B"></a>运行流程</h2>
+<p>easymybatis的运行流程图：</p>
+<p><img src="https://git.oschina.net/uploads/images/2017/0905/135821_508ba7cc_332975.png" alt="运行流程" title="em_flow.png"></p>
+<ol class="task-list">
+<li>服务器启动的时候easymybatis负责扫描Dao.java。</li>
+<li>扫描完成后解析出Dao.class以及实体类Entity.class。</li>
+<li>代码生成组件根据Dao.class和Entity.class生成mapper文件内容，生成方式由velocity模板指定。</li>
+<li>把mapper文件内容转化成Resource对象设置到SqlSessionFactory中。</li>
+</ol>
+<h1>
+<a id="快速开始" class="anchor" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"></a>快速开始</h1>
+<h2>
+<a id="创建springboot项目" class="anchor" href="#%E5%88%9B%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE"></a>创建springboot项目</h2>
+<p>访问<a href="http://start.spring.io/">http://start.spring.io/</a> 生成一个springboot空项目，输入Group，Artifact点生成即可，如图：
+<img src="https://gitee.com/uploads/images/2017/1219/121354_be6dc10c_332975.png" alt="创建空项目" title="1.png">
+点击Generate Project，下载demo.zip</p>
+<h2>
+<a id="导入项目" class="anchor" href="#%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE"></a>导入项目</h2>
+<p>将下载的demo.zip解压，然后导入项目。eclipse中右键 -&gt; Import... -&gt; Existing Maven Project，选择项目文件夹。导入到eclipse中后等待maven相关jar包下载。</p>
+<h2>
+<a id="添加maven依赖" class="anchor" href="#%E6%B7%BB%E5%8A%A0maven%E4%BE%9D%E8%B5%96"></a>添加maven依赖</h2>
+<p>jar包下载完成后，打开pom.xml，添加如下依赖：</p>
+<pre lang="xml" class="xml"><code>&lt;!-- easymybatis的starter --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;net.oschina.durcframework&lt;/groupId&gt;
+    &lt;artifactId&gt;easymybatis-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;1.8.4&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2>
+<a id="添加数据库配置" class="anchor" href="#%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE"></a>添加数据库配置</h2>
+<p>在application.properties中添加数据库配置</p>
+<pre><code>spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/stu?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull
+spring.datasource.username=root
+spring.datasource.password=root
+</code></pre>
+<h2>
+<a id="添加java文件" class="anchor" href="#%E6%B7%BB%E5%8A%A0java%E6%96%87%E4%BB%B6"></a>添加Java文件</h2>
+<p>假设数据库中有张t_user表，DDL如下：</p>
+<pre lang="sql" class="sql"><code>CREATE TABLE `t_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `username` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `state` tinyint(4) DEFAULT NULL COMMENT '状态',
+  `isdel` bit(1) DEFAULT NULL COMMENT '是否删除',
+  `remark` text COMMENT '备注',
+  `add_time` datetime DEFAULT NULL COMMENT '添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+</code></pre>
+<p>我们加入对应的实体类和Dao:</p>
+<ul class="task-list">
+<li>TUser.java ：</li>
+</ul>
+<pre lang="java" class="java"><code>@Table(name = "t_user")
+public class TUser {    
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id; // ID   
+    private String username; // 用户名 
+    private Byte state; // 状态   
+    private Boolean isdel;  // 是否删除 
+    private String remark;  // 备注   
+    private Date addTime;   // 添加时间
+    
+    // 省略 getter setter
+}
+</code></pre>
+<p>实体类文件采用和hibernate相同的方式，您可以使用我们的代码生成工具生成
+<a href="https://gitee.com/durcframework/easymybatis-generator">https://gitee.com/durcframework/easymybatis-generator</a></p>
+<ul class="task-list">
+<li>TUserDao.java :</li>
+</ul>
+<pre lang="java" class="java"><code>public interface TUserDao extends CrudDao&lt;TUser&gt; {
+}
+</code></pre>
+<p>TUserDao继承CrudDao即可，这样这个Dao就拥有了CRUD功能。</p>
+<h2>
+<a id="添加测试用例" class="anchor" href="#%E6%B7%BB%E5%8A%A0%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"></a>添加测试用例</h2>
+<pre lang="java" class="java"><code>public class TUserDaoTest extends DemoApplicationTests {
+
+    @Autowired
+    TUserDao dao;
+
+        @Test
+    public void testInsert() {
+        TUser user = new TUser();
+        user.setIsdel(false);       
+        user.setRemark("testInsert");       
+        user.setUsername("张三");
+        
+        dao.save(user);
+        
+        System.out.println("添加后的主键:" + user.getId());       
+    }
+    
+    @Test
+    public void testGet() {
+        TUser user = dao.get(3);
+        System.out.println(user);                
+    }
+
+        @Test
+    public void testUpdate() {
+        TUser user = dao.get(3);
+        user.setUsername("李四");     
+        user.setIsdel(true);
+        
+        int i = dao.update(user);
+        System.out.println("testUpdate --&gt; " + i);
+    }
+
+        @Test
+    public void testDel() {
+        TUser user = new TUser();
+        user.setId(3);
+        int i = dao.del(user);
+        System.out.println("del --&gt; " + i);
+    }
+}
+</code></pre>
+<p>然后运行单元测试，运行成功后表示项目已经搭建完毕了。</p>
+<p>最后项目结构图：</p>
+<p><img src="https://git.oschina.net/uploads/images/2017/1012/112354_8c2c6969_332975.png" alt="最后项目结构图" title="2.png"></p>
+<h1>
+<a id="查询" class="anchor" href="#%E6%9F%A5%E8%AF%A2"></a>查询</h1>
+<p>本小节主要讲解easymybatis的查询功能。easymybatis提供丰富的查询方式，满足日常查询所需。</p>
+<h2>
+<a id="分页查询" class="anchor" href="#%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"></a>分页查询</h2>
+<h3>
+<a id="方式1" class="anchor" href="#%E6%96%B9%E5%BC%8F1"></a>方式1</h3>
+<p>前端传递两个分页参数pageIndex，pageSize</p>
+<pre lang="java" class="java"><code>    // http://localhost:8080/page1?pageIndex=1&amp;pageSize=10
+    @GetMapping("page1")
+    public List&lt;TUser&gt; page1(int pageIndex,int pageSize) {
+        Query query = new Query().page(pageIndex, pageSize);
+        List&lt;TUser&gt; list = dao.find(query);
+        return list;
+    }
+</code></pre>
+<h3>
+<a id="方式2" class="anchor" href="#%E6%96%B9%E5%BC%8F2"></a>方式2</h3>
+<p>PageParam里面封装了pageIndex，pageSize参数</p>
+<pre lang="java" class="java"><code>    // http://localhost:8080/page2?pageIndex=1&amp;pageSize=10
+    @GetMapping("page2")
+    public List&lt;TUser&gt; page2(PageParam param) {
+        Query query = param.toQuery();
+        List&lt;TUser&gt; list = dao.find(query);
+        return list;
+    }
+</code></pre>
+<h3>
+<a id="返回结果集和总记录数" class="anchor" href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E9%9B%86%E5%92%8C%E6%80%BB%E8%AE%B0%E5%BD%95%E6%95%B0"></a>返回结果集和总记录数</h3>
+<p>方式1和方式2只能查询结果集，通常我们查询还需返回记录总数并返回给前端，easymybatis的处理方式如下：</p>
+<pre lang="java" class="java"><code>// http://localhost:8080/page3?pageIndex=1&amp;pageSize=10
+    @GetMapping("page3")
+    public Map&lt;String,Object&gt; page3(PageParam param) {
+        Query query = param.toQuery();
+        List&lt;TUser&gt; list = dao.find(query);
+        long total = dao.countTotal(query);
+        
+        Map&lt;String,Object&gt; result = new HashMap&lt;String, Object&gt;();
+        result.put("list", list);
+        result.put("total", total);
+        
+        return result;
+    }
+</code></pre>
+<p>easymybatis提供一种更简洁的方式来处理：</p>
+<pre lang="java" class="java"><code>// http://localhost:8080/page4?pageIndex=1&amp;pageSize=10
+    @GetMapping("page4")
+    public PageInfo&lt;TUser&gt; page4(PageParam param) {
+        PageInfo&lt;TUser&gt; result = QueryUtils.query(dao, param);
+        return result;
+    }
+</code></pre>
+<p>PageInfo里面包含了List，total信息，还包含了一些额外信息，完整数据如下：</p>
+<pre lang="json" class="json"><code>{
+    "currentPageIndex": 1, // 当前页
+    "firstPageIndex": 1, // 首页
+    "lastPageIndex": 2, // 尾页
+    "list": [     // 结果集
+        {},
+        {}
+    ],
+    "nextPageIndex": 2, // 下一页
+    "pageCount": 2, // 总页数
+    "pageIndex": 1, // 当前页
+    "pageSize": 10, // 每页记录数
+    "prePageIndex": 1, // 上一页
+    "start": 0,
+    "total": 20 // 总记录数
+}
+</code></pre>
+<h3>
+<a id="完整代码" class="anchor" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"></a>完整代码</h3>
+<pre lang="java" class="java"><code>@RestController
+public class UserSchController {
+
+    @Autowired
+    private TUserDao dao;
+    
+    // http://localhost:8080/page1?pageIndex=1&amp;pageSize=10
+    @GetMapping("page1")
+    public List&lt;TUser&gt; page1(int pageIndex,int pageSize) {
+        Query query = new Query().page(pageIndex, pageSize);
+        List&lt;TUser&gt; list = dao.find(query);
+        return list;
+    }
+    
+    // http://localhost:8080/page2?pageIndex=1&amp;pageSize=10
+    @GetMapping("page2")
+    public List&lt;TUser&gt; page2(PageParam param) {
+        Query query = param.toQuery();
+        List&lt;TUser&gt; list = dao.find(query);
+        return list;
+    }
+    
+    // http://localhost:8080/page3?pageIndex=1&amp;pageSize=10
+    @GetMapping("page3")
+    public Map&lt;String,Object&gt; page3(PageParam param) {
+        Query query = param.toQuery();
+        List&lt;TUser&gt; list = dao.find(query);
+        long total = dao.countTotal(query);
+        
+        Map&lt;String,Object&gt; result = new HashMap&lt;String, Object&gt;();
+        result.put("list", list);
+        result.put("total", total);
+        
+        return result;
+    }
+    
+    // http://localhost:8080/page4?pageIndex=1&amp;pageSize=10
+    @GetMapping("page4")
+    public PageInfo&lt;TUser&gt; page4(PageParam param) {
+        PageInfo&lt;TUser&gt; result = QueryUtils.query(dao, param);
+        return result;
+    }
+}
+</code></pre>
+<h2>
+<a id="联表分页查询" class="anchor" href="#%E8%81%94%E8%A1%A8%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"></a>联表分页查询</h2>
+<ul class="task-list">
+<li>方式1：代码形式</li>
+</ul>
+<pre><code>/**
+     * 联表分页
+     * SELECT t.`id` , t.`username` , t.`state` , t.`isdel` , t.`remark` , t.`add_time` , t.`money` , t.`left_money` 
+     * FROM `t_user` t 
+     * LEFT JOIN user_info t2 ON t.id = t2.user_id 
+     * WHERE t.isdel = 0 LIMIT ?,? 
+     */
+    @Test
+    public void testJoinPage() {
+        Query query = Query.build()
+             // 左连接查询,主表的alias默认为t
+                .join("LEFT JOIN user_info t2 ON t.id = t2.user_id")
+                .page(1, 5); 
+        
+        List&lt;TUser&gt; list = dao.find(query);
+        
+        System.out.println("==============");
+        for (TUser user : list) {
+            System.out.println(
+                user.getId() 
+                + " " + user.getUsername() 
+            );
+        }
+        System.out.println("==============");
+    }
+</code></pre>
+<ul class="task-list">
+<li>方式2：xml形式：</li>
+</ul>
+<p>xml:</p>
+<pre><code>&lt;select id="findJoinPage"
+        parameterType="net.oschina.durcframework.easymybatis.query.Pageable"
+        resultMap="baseResultMap"&gt;
+        SELECT t.*,t2.city,t2.address
+        FROM t_user t LEFT JOIN user_info t2 ON t.id = t2.user_id
+        &lt;include refid="common.where" /&gt;
+        &lt;include refid="common.orderBy" /&gt;
+        &lt;include refid="common.limit" /&gt;
+    &lt;/select&gt;
+</code></pre>
+<p>java：</p>
+<pre><code> @Test
+    public void testJoinPageXml() {
+        Query query = Query.build()
+                    .page(1, 5); 
+            
+        List&lt;TUser&gt; list = dao.findJoinPage(query);
+        
+        System.out.println("==============");
+        for (TUser user : list) {
+            System.out.println(
+                user.getId() 
+                + " " + user.getUsername() 
+            );
+        }
+        System.out.println("==============");
+    }
+</code></pre>
+<h2>
+<a id="根据参数字段查询" class="anchor" href="#%E6%A0%B9%E6%8D%AE%E5%8F%82%E6%95%B0%E5%AD%97%E6%AE%B5%E6%9F%A5%E8%AF%A2"></a>根据参数字段查询</h2>
+<h3>
+<a id="查询姓名为张三的用户" class="anchor" href="#%E6%9F%A5%E8%AF%A2%E5%A7%93%E5%90%8D%E4%B8%BA%E5%BC%A0%E4%B8%89%E7%9A%84%E7%94%A8%E6%88%B7"></a>查询姓名为张三的用户</h3>
+<pre lang="java" class="java"><code>// http://localhost:8080/sch?username=张三
+    @GetMapping("sch")
+    public List&lt;TUser&gt; sch(String username) {
+        Query query = new Query();
+        query.eq("username", username);
+        List&lt;TUser&gt; list = dao.find(query);
+        return list;
+    }
+</code></pre>
+<h3>
+<a id="查询姓名为张三并且拥有的钱大于100块" class="anchor" href="#%E6%9F%A5%E8%AF%A2%E5%A7%93%E5%90%8D%E4%B8%BA%E5%BC%A0%E4%B8%89%E5%B9%B6%E4%B8%94%E6%8B%A5%E6%9C%89%E7%9A%84%E9%92%B1%E5%A4%A7%E4%BA%8E100%E5%9D%97"></a>查询姓名为张三并且拥有的钱大于100块</h3>
+<pre lang="java" class="java"><code>// http://localhost:8080/sch2?username=张三
+    @GetMapping("sch2")
+    public List&lt;TUser&gt; sch2(String username) {
+        Query query = new Query();
+        query.eq("username", username).gt("money", 100);
+        List&lt;TUser&gt; list = dao.find(query);
+        return list;
+    }
+</code></pre>
+<h3>
+<a id="查询姓名为张三并带分页" class="anchor" href="#%E6%9F%A5%E8%AF%A2%E5%A7%93%E5%90%8D%E4%B8%BA%E5%BC%A0%E4%B8%89%E5%B9%B6%E5%B8%A6%E5%88%86%E9%A1%B5"></a>查询姓名为张三并带分页</h3>
+<pre lang="java" class="java"><code>// http://localhost:8080/sch3?username=张三&amp;pageIndex=1&amp;pageSize=5
+    @GetMapping("sch3")
+    public List&lt;TUser&gt; sch3(String username,PageParam param) {
+        Query query = param.toQuery();
+        query.eq("username", username);
+        List&lt;TUser&gt; list = dao.find(query);
+        return list;
+    }
+</code></pre>
+<h3>
+<a id="查询钱最多的前三名" class="anchor" href="#%E6%9F%A5%E8%AF%A2%E9%92%B1%E6%9C%80%E5%A4%9A%E7%9A%84%E5%89%8D%E4%B8%89%E5%90%8D"></a>查询钱最多的前三名</h3>
+<pre lang="java" class="java"><code>// http://localhost:8080/sch4
+    @GetMapping("sch4")
+    public List&lt;TUser&gt; sch4() {
+        Query query = new Query();
+        query.orderby("money", Sort.DESC) // 按金额降序
+            .page(1, 3);
+        List&lt;TUser&gt; list = dao.find(query);
+        return list;
+    }
+</code></pre>
+<h3>
+<a id="将参数放在对象中查询" class="anchor" href="#%E5%B0%86%E5%8F%82%E6%95%B0%E6%94%BE%E5%9C%A8%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%9F%A5%E8%AF%A2"></a>将参数放在对象中查询</h3>
+<pre lang="java" class="java"><code>// http://localhost:8080/sch5?username=张三
+    @GetMapping("sch5")
+    public List&lt;TUser&gt; sch5(UserParam userParam) {
+        Query query = userParam.toQuery();
+        query.eq("username", userParam.getUsername());
+        List&lt;TUser&gt; list = dao.find(query);
+        return list;
+    }
+</code></pre>
+<p>UserParam继承PageSortParam类，表示支持分页和排序查询</p>
+<h3>
+<a id="使用普通bean查询" class="anchor" href="#%E4%BD%BF%E7%94%A8%E6%99%AE%E9%80%9Abean%E6%9F%A5%E8%AF%A2"></a>使用普通bean查询</h3>
+<p>假设有个User类如下</p>
+<pre lang="java" class="java"><code>public class User {
+    private Integer id;
+    private String userName;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+}
+</code></pre>
+<p>我们将这个类作为查询参数,那么在springmvc中可以这样写:</p>
+<pre lang="java" class="java"><code>@GetMapping(path="findUserBean.do")
+public List&lt;User&gt; findUser(User user) {
+    Query query = Query.build(user);
+    List&lt;User&gt; list = dao.find(query);
+    return list;
+}
+</code></pre>
+<p>Query query = Query.buildFromBean(user);这句是将User中的属性转换成对应条件,假设userName的值为"jim",那么会封装成一个条件where user_name='jim'</p>
+<p>浏览器输入链接:<a href="http://localhost:8080/easymybatis-springmvc/findUserBean.do?userName=jim">http://localhost:8080/easymybatis-springmvc/findUserBean.do?userName=jim</a>
+后台将会执行如下SQL:</p>
+<pre><code>SELECT id,user_name FROM user t WHERE t.user_name = ?
+</code></pre>
+<p>?的值为jim</p>
+<h3>
+<a id="condition注解" class="anchor" href="#condition%E6%B3%A8%E8%A7%A3"></a>@Condition注解</h3>
+<p>@Condition注解用来强化查询，有了这个注解可以生成各种查询条件。</p>
+<p>@Condition注解有三个属性：</p>
+<ul class="task-list">
+<li>joint：表达式之间的连接符,AND|OR,默认AND</li>
+<li>column：数据库字段名，可选</li>
+<li>operator：连接符枚举，存放了等于、大于、小于等连接符</li>
+</ul>
+<p>如果要查询id大于2的用户只需在get方法上加上一个@Condition注解即可:</p>
+<pre lang="java" class="java"><code>@Condition(operator=Operator.gt)
+public Integer getId() {
+    return this.id;
+}
+</code></pre>
+<p>这样，当id有值时，会封装成一个<strong>where id&gt;2</strong>的条件</p>
+<ul class="task-list">
+<li>需要注意的是，如果不指定column属性，系统会默认取get方法中属性名，然后转换成数据库字段名。如果需要指定数据库字段名的话，可以使用@Condition的column属性。</li>
+</ul>
+<p>public Integer get++UserName++() {
+return this.userName;
+}</p>
+<p>这种情况下会取下划线部分字段，然后转换成数据库字段名。</p>
+<pre lang="java" class="java"><code>@Condition(column="username") // 显示指定字段名
+public Integer getUserName() {
+    return this.userName;
+}
+</code></pre>
+<p>使用@Condition可以生产更加灵活的条件查询,比如需要查询日期为2017-12-1~2017-12-10日的记录,我们可以这样写:</p>
+<pre lang="java" class="java"><code>@Condition(column="add_date",operator=Operator.ge)
+public Date getStartDate() {
+    return this.startDate;
+}
+
+@Condition(column="add_date",operator=Operator.lt)
+public Date getEndDate() {
+    return this.endDate;
+}
+</code></pre>
+<p>转换成SQL语句:</p>
+<pre><code>t.add_date&gt;='2017-12-1' AND t.add_date&lt;'2017-12-10'
+</code></pre>
+<h4>
+<a id="in查询" class="anchor" href="#in%E6%9F%A5%E8%AF%A2"></a>IN查询</h4>
+<p>假设前端页面传来多个值比如checkbox勾选多个id=[1,2],那么我们在User类里面可以用Integer[]或List来接收.</p>
+<pre lang="java" class="java"><code>private Integer[] idArr;
+
+public void setIdArr(Integer[] idArr) {this.idArr = idArr;}
+
+@Condition(column="id")
+public Integer[] getIdArr() {return this.idArr;}
+</code></pre>
+<p>这样会生成where id IN(1,2)条件。</p>
+<h2>
+<a id="排序查询" class="anchor" href="#%E6%8E%92%E5%BA%8F%E6%9F%A5%E8%AF%A2"></a>排序查询</h2>
+<p>// 根据添加时间倒序</p>
+<pre lang="java" class="java"><code>Query query = new Query();
+query.addSort("create_time",Sort.DESC);
+dao.find(query);
+</code></pre>
+<h2>
+<a id="多表关联查询" class="anchor" href="#%E5%A4%9A%E8%A1%A8%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2"></a>多表关联查询</h2>
+<p>多表关联查询使用的地方很多，比如需要关联第二张表，获取第二张表的几个字段，然后返回给前端。</p>
+<p>easymybatis的用法如下：
+假如我们需要关联第二张表，并且获取第二张表里的city，address字段。步骤如下：</p>
+<ul class="task-list">
+<li>在实体类中添加city，address字段，并标记@Transient注解。只要不是主表中的字段都要加上@Transient</li>
+</ul>
+<pre lang="java" class="java"><code>@Transient
+private String city;
+@Transient
+private String address;
+
+// getter setter
+</code></pre>
+<ul class="task-list">
+<li>接下来是查询代码：</li>
+</ul>
+<pre lang="java" class="java"><code>Query query = new Query();
+// 添加第二张表的字段,跟主表字段一起返回
+query.addOtherColumns(
+    "t2.city"
+    ,"t2.address"
+);
+// 左连接查询,主表的alias默认为t
+query.join("LEFT JOIN user_info t2 ON t.id = t2.user_id"); 
+// 添加查询条件
+query.eq("t.username", "张三");
+
+List&lt;TUser&gt; list = dao.find(query);
+</code></pre>
+<p>得到的SQL语句：</p>
+<pre lang="sql" class="sql"><code>SELECT 
+    t.`id` , t.`username` , t.`state` , t.`isdel` , t.`remark` , t.`add_time` , t.`money` , t.`left_money` 
+    , t2.city , t2.address 
+FROM `t_user` t LEFT JOIN user_info t2 ON t.id = t2.user_id 
+WHERE t.username = ?
+LIMIT ?,?
+</code></pre>
+<p>关联了user_info表之后，还可以筛选user_info的数据，也就是针对user_info表进行查询：</p>
+<pre lang="java" class="java"><code>query.eq("t2.city","杭州");
+</code></pre>
+<h2>
+<a id="使用select查询" class="anchor" href="#%E4%BD%BF%E7%94%A8select%E6%9F%A5%E8%AF%A2"></a>使用@Select查询</h2>
+<p>@Select注解是mybatis官方提供的一个功能，easymybatis可以理解为是官方的一种扩展，因此同样支持此功能。
+在Dao中添加如下代码：</p>
+<pre lang="java" class="java"><code>@Select("select * from t_user where id=#{id}")
+TUser selectById(@Param("id") int id);
+</code></pre>
+<p>编写测试用例</p>
+<pre lang="java" class="java"><code>@Test
+public void testSelectById() {
+    TUser user = dao.selectById(3);
+
+    System.out.println(user.getUsername());
+}
+</code></pre>
+<p>除了@Select之外，还有@Update，@Insert，@Delete，这里就不多做演示了。</p>
+<h2>
+<a id="query类详解" class="anchor" href="#query%E7%B1%BB%E8%AF%A6%E8%A7%A3"></a>Query类详解</h2>
+<p>Query是一个查询参数类，通常配合Dao一起使用。</p>
+<h3>
+<a id="参数介绍" class="anchor" href="#%E5%8F%82%E6%95%B0%E4%BB%8B%E7%BB%8D"></a>参数介绍</h3>
+<p>Query里面封装了一系列查询参数，主要分为以下几类：</p>
+<ul class="task-list">
+<li>分页参数：设置分页</li>
+<li>排序参数：设置排序字段</li>
+<li>条件参数：设置查询条件</li>
+<li>字段参数：可返回指定字段</li>
+</ul>
+<p>下面逐个讲解每个参数的用法。</p>
+<h3>
+<a id="分页参数" class="anchor" href="#%E5%88%86%E9%A1%B5%E5%8F%82%E6%95%B0"></a>分页参数</h3>
+<p>一般来说分页的使用比较简单，通常是两个参数，
+pageIndex：当前页索引，pageSize：每页几条数据。
+Query类使用**page(pageIdnex, pageSize)**方法来设置。
+假如我们要查询第二页，每页10条数据，代码可以这样写：</p>
+<pre lang="java" class="java"><code>Query query = new Query().page(2, 10);
+List&lt;User&gt; list = dao.find(query);
+</code></pre>
+<p>如果要实现不规则分页，可以这样写：</p>
+<pre lang="java" class="java"><code>Query query = new Query().limit(3,5);
+// 对应mysql：limit 3,5
+</code></pre>
+<ul class="task-list">
+<li>如果要查询所有数据,则可以这样写:</li>
+</ul>
+<pre lang="java" class="java"><code>Query query = new Query();
+List&lt;User&gt; list = dao.findAll(query);
+</code></pre>
+<h3>
+<a id="排序参数" class="anchor" href="#%E6%8E%92%E5%BA%8F%E5%8F%82%E6%95%B0"></a>排序参数</h3>
+<p>设置排序：</p>
+<pre><code>orderby(String sortname, Sort sort)
+</code></pre>
+<p>其中sortname为数据库字段，非javaBean属性</p>
+<ul class="task-list">
+<li>orderby(String sortname, Sort sort)则可以指定排序方式，Sort为排序方式枚举
+假如要按照添加时间倒序，可以这样写：</li>
+</ul>
+<pre lang="java" class="java"><code>Query query = new Query().orderby("create_time",Sort.DESC);
+dao.find(query);
+</code></pre>
+<p>添加多个排序字段可以在后面追加：</p>
+<pre><code>query.orderby("create_time",Sort.DESC).orderby("id",Sort.ASC);
+</code></pre>
+<h3>
+<a id="条件参数" class="anchor" href="#%E6%9D%A1%E4%BB%B6%E5%8F%82%E6%95%B0"></a>条件参数</h3>
+<p>条件参数是用的最多一个，因为在查询中往往需要加入各种条件。
+easymybatis在条件查询上面做了一些封装，这里不做太多讲解，只讲下基本的用法，以后会单独开一篇文章来介绍。感兴趣的同学可以自行查看源码，也不难理解。</p>
+<p>条件参数使用非常简单，Query对象封装一系列常用条件查询。</p>
+<ul class="task-list">
+<li>等值查询eq(String columnName, Object value)，columnName为数据库字段名，value为查询的值
+假设我们要查询姓名为张三的用户，可以这样写：</li>
+</ul>
+<pre lang="java" class="java"><code>Query query = new Query();
+query.eq("username","张三");
+List&lt;User&gt; list = dao.find(query);
+</code></pre>
+<p>通过方法名即可知道eq表示等于'='，同理lt表示小于&lt;,gt表示大于&gt;</p>
+<table>
+<thead>
+<tr>
+<th>查询方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eq</td>
+<td>等于=</td>
+</tr>
+<tr>
+<td>gt</td>
+<td>大于&gt;</td>
+</tr>
+<tr>
+<td>lt</td>
+<td>小于&lt;</td>
+</tr>
+<tr>
+<td>ge</td>
+<td>大于等于&gt;=</td>
+</tr>
+<tr>
+<td>le</td>
+<td>小于等于&lt;=</td>
+</tr>
+<tr>
+<td>notEq</td>
+<td>不等于&lt;&gt;</td>
+</tr>
+<tr>
+<td>like</td>
+<td>模糊查询</td>
+</tr>
+<tr>
+<td>in</td>
+<td>in()查询</td>
+</tr>
+<tr>
+<td>notIn</td>
+<td>not in()查询</td>
+</tr>
+<tr>
+<td>isNull</td>
+<td>NULL值查询</td>
+</tr>
+<tr>
+<td>notNull</td>
+<td>IS NOT NULL</td>
+</tr>
+<tr>
+<td>notEmpty</td>
+<td>字段不为空，非NULL且有内容</td>
+</tr>
+<tr>
+<td>isEmpty</td>
+<td>字段为NULL或者为''</td>
+</tr>
+</tbody>
+</table>
+<p>如果上述方法还不能满足查询需求的话，我们可以使用自定sql的方式来编写查询条件，方法为：</p>
+<pre lang="java" class="java"><code>Query query = new Query();
+query.sql(" username='Jim' OR username='Tom'");
+</code></pre>
+<p><strong>注意</strong>：sql()方法不会处理sql注入问题，因此尽量少用。</p>
+<h3>
+<a id="字段参数" class="anchor" href="#%E5%AD%97%E6%AE%B5%E5%8F%82%E6%95%B0"></a>字段参数</h3>
+<p>在某些场景下，我们只想获取表里面几个字段的信息，不想查询所有字段。此时使用方式如下：</p>
+<pre lang="java" class="java"><code>Query query = new Query();
+// 只返回id,username
+query.setColumns(Arrays.asList("id","username"));
+List&lt;TUser&gt; list = dao.find(query);
+</code></pre>
+<p>这里的"id"，"username"都为数据库字段。</p>
+<h1>
+<a id="主键策略设置" class="anchor" href="#%E4%B8%BB%E9%94%AE%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE"></a>主键策略设置</h1>
+<p>跟hibernate的主键生成策略一致</p>
+<h2>
+<a id="主键自增" class="anchor" href="#%E4%B8%BB%E9%94%AE%E8%87%AA%E5%A2%9E"></a>主键自增</h2>
+<p>数据库主键设置自增后，这样设置：</p>
+<pre lang="java" class="java"><code>@Id
+@Column(name = "id")
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Integer id;
+</code></pre>
+<p>这样在做insert后，id会自动填充自增后的值。</p>
+<h2>
+<a id="主键使用uuid" class="anchor" href="#%E4%B8%BB%E9%94%AE%E4%BD%BF%E7%94%A8uuid"></a>主键使用uuid</h2>
+<p>数据库主键是varchar类型，insert后自动填充uuid，并返回。</p>
+<pre lang="java" class="java"><code>@Id
+@Column(name = "id")
+@GeneratedValue(generator = "system-uuid")
+private String id;
+</code></pre>
+<p>这样在做insert后，id字段会自动填充uuid。</p>
+<ul class="task-list">
+<li>注：uuid的生成方式是调用数据库底层实现，如MySql的实现方式为： SELECT UUID()</li>
+</ul>
+<h2>
+<a id="自定义uuid" class="anchor" href="#%E8%87%AA%E5%AE%9A%E4%B9%89uuid"></a>自定义uuid</h2>
+<p>如果不希望使用底层数据库的uuid，可自定义自己实现，实现方式如下：</p>
+<ul class="task-list">
+<li>首先entity中的id字段@GeneratedValue注解设置成AUTO</li>
+</ul>
+<pre><code>@Id
+@Column(name = "id")
+@GeneratedValue(strategy=GenerationType.AUTO)
+private String id;
+</code></pre>
+<ul class="task-list">
+<li>创建一个类UUIDFill并继承FillHandler类</li>
+</ul>
+<pre lang="java" class="java"><code>public class UUIDFill extends FillHandler&lt;String&gt; {
+    @Override
+    public String getColumnName() {
+        return "id"; // 作用在id字段上
+    }
+    @Override
+    public FillType getFillType() {
+        return FillType.INSERT; // INSERT时触发
+    }
+    @Override
+    protected Object getFillValue(String defaultValue) {
+        return UUID.randomUUID().toString(); // 自定义的uuid生成方式
+    }
+}
+</code></pre>
+<ul class="task-list">
+<li>在application.properties中添加</li>
+</ul>
+<pre><code># key:填充器全路径类名,value:构造函数参数值,没有可不填
+mybatis.fill.com.xx.aa.UUIDFill=
+</code></pre>
+<p>格式为mybatis.fill.类路径=构造参数(没有可不填)</p>
+<p>到此已经可以了，当进行insert操作后，id字段会自动插入自定义的uuid。</p>
+<p>但是使用过程中还会有个问题，如果数据库中既有自增主键的表，也有自定义UUID主键的表，那么上面的做法就没办法区分了。因此我们要找出自定义UUID主键的表，解决办法是重写FillHandler的match(Class&lt;?&gt; entityClass, Field field, String columnName)方法，完整的代码如下：</p>
+<pre lang="java" class="java"><code>public class UUIDFill extends FillHandler&lt;String&gt; {
+    /* 重写方法，自定义匹配
+        entityClass     实体类class
+        field           字段信息
+        columnName      给定的数据库字段名
+    */
+    @Override
+    public boolean match(Class&lt;?&gt; entityClass, Field field, String columnName) {
+        boolean isPk = field.getAnnotation(Id.class) != null; // 是否有@Id注解
+        
+        GeneratedValue gv = field.getAnnotation(GeneratedValue.class);
+        boolean isAuto = gv != null &amp;&amp; gv.strategy() == GenerationType.AUTO; // 是否有@GeneratedValue注解，并且策略是AUTO
+        
+        return isPk &amp;&amp; isAuto;
+    }
+
+    @Override
+    public String getColumnName() {
+        return "id"; // 作用在id字段上
+    }
+    @Override
+    public FillType getFillType() {
+        return FillType.INSERT; // INSERT时触发
+    }
+    @Override
+    protected Object getFillValue(String defaultValue) {
+        return UUID.randomUUID().toString(); // 自定义的uuid生成方式
+    }
+
+}
+</code></pre>
+<p>这样就能区分出自增主键和自定义主键了。</p>
+<p>自定义uuid生成的配置方式采用的是easymybatis提供的字段填充功能，具体说明可参考 <strong>字段自动填充</strong> 小节。</p>
+<h1>
+<a id="字段自动填充" class="anchor" href="#%E5%AD%97%E6%AE%B5%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85"></a>字段自动填充</h1>
+<h2>
+<a id="填充器设置" class="anchor" href="#%E5%A1%AB%E5%85%85%E5%99%A8%E8%AE%BE%E7%BD%AE"></a>填充器设置</h2>
+<p>假设数据库表里面有两个时间字段gmt_create,gmt_update。</p>
+<p>当进行insert操作时gmt_create，gmt_update字段需要更新。当update时，gmt_update字段需要更新。</p>
+<p>通常的做法是通过Entity手动设置：</p>
+<pre lang="java" class="java"><code>User user = new User();
+user.setGmtCreate(new Date());
+user.setGmtUpdate(new Date());
+</code></pre>
+<p>因为表设计的时候大部分都有这两个字段，所以对每张表都进行手动设置的话很容易错加、漏加。
+easymybatis提供了两个辅助类DateFillInsert和DateFillUpdate，用来处理添加修改时的时间字段自动填充。配置了这两个类之后，时间字段将会自动设置。</p>
+<p>springboot项目配置方式如下：</p>
+<p>在application.properties中添加</p>
+<pre><code>mybatis.fill.net.oschina.durcframework.easymybatis.support.DateFillInsert=
+mybatis.fill.net.oschina.durcframework.easymybatis.support.DateFillUpdate=
+</code></pre>
+<p>如果要指定字段名，可以写成：</p>
+<pre><code>mybatis.fill.net.oschina.durcframework.easymybatis.support.DateFillInsert=add_time
+</code></pre>
+<p>在springmvc的xml中配置如下:</p>
+<pre lang="xml" class="xml"><code>&lt;bean id="sqlSessionFactory"
+        class="net.oschina.durcframework.easymybatis.ext.SqlSessionFactoryBeanExt"&gt;
+        &lt;property name="dataSource" ref="dataSource" /&gt;
+        &lt;property name="configLocation"&gt;
+            &lt;value&gt;classpath:mybatis/mybatisConfig.xml&lt;/value&gt;
+        &lt;/property&gt;
+        &lt;property name="mapperLocations"&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:mybatis/mapper/*.xml&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        
+        &lt;!-- 以下是附加属性 --&gt;
+        
+        &lt;!-- dao所在的包名,跟MapperScannerConfigurer的basePackage一致 
+            多个用;隔开
+        --&gt;
+        &lt;property name="basePackage" value="com.myapp.dao" /&gt;
+        &lt;property name="config"&gt;
+            &lt;bean class="net.oschina.durcframework.easymybatis.EasymybatisConfig"&gt;
+                                &lt;!-- 定义填充器 --&gt;
+                &lt;property name="fills"&gt;
+                    &lt;list&gt;
+                                        &lt;bean class="net.oschina.durcframework.easymybatis.support.DateFillInsert"/&gt;
+                                        &lt;bean class="net.oschina.durcframework.easymybatis.support.DateFillUpdate"/&gt;
+                    &lt;/list&gt;
+                &lt;/property&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+</code></pre>
+<h2>
+<a id="自定义填充器" class="anchor" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A1%AB%E5%85%85%E5%99%A8"></a>自定义填充器</h2>
+<p>除了使用easymybatis默认提供的填充之外，我们还可以自定义填充。</p>
+<p>自定义填充类要继承FillHandler类。
+ 表示填充字段类型，如Date，String，BigDecimal，Boolean。</p>
+<h3>
+<a id="实战springboot" class="anchor" href="#%E5%AE%9E%E6%88%98springboot"></a>实战(springboot)</h3>
+<p>现在有个remark字段，需要在insert时初始化为“备注默认内容”，新建一个StringRemarkFill类如下：</p>
+<pre lang="java" class="java"><code>public class StringRemarkFill extends FillHandler&lt;String&gt; {
+
+    @Override
+    public String getColumnName() {
+        return "remark";
+    }
+
+    @Override
+    public FillType getFillType() {
+        return FillType.INSERT;
+    }
+
+    @Override
+    protected Object getFillValue(String defaultValue) {
+        return "备注默认内容";
+    }
+
+}
+</code></pre>
+<p>StringRemarkFill类中有三个重写方法：</p>
+<ul class="task-list">
+<li>getColumnName() ： 指定表字段名</li>
+<li>getFillType() ： 填充方式，FillType.INSERT:仅insert时填充； FillType.UPDATE：insert，update时填充</li>
+<li>getFillValue(String defaultValue) ：返回填充内容</li>
+</ul>
+<p>然后在application.properties中添加</p>
+<pre><code>mybatis.fill.com.xx.StringRemarkFill=
+</code></pre>
+<p>这样就配置完毕了，调用dao.save(user);时会自动填充remark字段。</p>
+<h2>
+<a id="指定目标类" class="anchor" href="#%E6%8C%87%E5%AE%9A%E7%9B%AE%E6%A0%87%E7%B1%BB"></a>指定目标类</h2>
+<p>上面说到StringRemarkFill填充器，它作用在所有实体类上，也就是说实体类如果有remark字段都会自动填充。这样显然是不合理的，解决办法是指定特定的实体类。只要重写FillHandler类的getTargetEntityClasses()方法即可。</p>
+<pre lang="java" class="java"><code>@Override
+public Class&lt;?&gt;[] getTargetEntityClasses() {
+    return new Class&lt;?&gt;[] { TUser.class };
+}
+</code></pre>
+<p>这样就表示作用在TUser类上，多个类可以追加。最终代码如下：</p>
+<pre lang="java" class="java"><code>public class StringRemarkFill extends FillHandler&lt;String&gt; {
+
+    @Override
+    public String getColumnName() {
+        return "remark";
+    }
+
+    @Override
+    public Class&lt;?&gt;[] getTargetEntityClasses() {
+        return new Class&lt;?&gt;[] { TUser.class }; // 只作用在TUser类上
+    }
+
+    @Override
+    public FillType getFillType() {
+        return FillType.INSERT;
+    }
+
+    @Override
+    protected Object getFillValue(String defaultValue) {
+        return "备注默认内容"; // insert时填充的内容
+    }
+
+}
+</code></pre>
+<h2>
+<a id="高级匹配" class="anchor" href="#%E9%AB%98%E7%BA%A7%E5%8C%B9%E9%85%8D"></a>高级匹配</h2>
+<p>覆盖FillHandler类中的match方法可以让填充器做更高级的匹配，match方法如下</p>
+<pre lang="java" class="java"><code>/**
+ * 是否能够作用到指定字段
+ * @param entityClass 实体类class
+ * @param field 字段信息
+ * @param columnName 给定的数据库字段名
+ * @return
+ */
+public boolean match(Class&lt;?&gt; entityClass, Field field, String columnName)
+</code></pre>
+<p>这个方法返回的是一个boolean，返回true则代表作用到该属性上。例如下面的代码：</p>
+<ul class="task-list">
+<li>匹配出含有@Id和@GeneratedValue(strategy=GenerationType.AUTO)的字段</li>
+</ul>
+<pre lang="java" class="java"><code>public boolean match(Class&lt;?&gt; entityClass, Field field, String columnName) {
+        boolean isPk = field.getAnnotation(Id.class) != null; // 是否有@Id注解
+        
+        GeneratedValue gv = field.getAnnotation(GeneratedValue.class);
+        boolean isAuto = gv != null &amp;&amp; gv.strategy() == GenerationType.AUTO; // 是否有@GeneratedValue注解，并且策略是AUTO
+        
+        return isPk &amp;&amp; isAuto;
+    }
+</code></pre>
+<p>关于自动填充的原理是基于mybatis的TypeHandler实现的，这里就不多做介绍了。感兴趣的同学可以查看FillHandler源码。</p>
+<h1>
+<a id="entity中使用枚举字段" class="anchor" href="#entity%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%9E%9A%E4%B8%BE%E5%AD%97%E6%AE%B5"></a>Entity中使用枚举字段</h1>
+<p>数据库中一些状态字段通常用0,1,2或者简单的字符串进行维护，然后JavaBean实体类中用枚举类型来保存，这样做便于使用和维护。</p>
+<p>easymybatis上使用枚举属性很简单：枚举类实现net.oschina.durcframework.easymybatis.handler.BaseEnum接口即可。</p>
+<p>下面是具体例子：</p>
+<h2>
+<a id="第一步" class="anchor" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"></a>第一步</h2>
+<pre lang="java" class="java"><code>public enum UserInfoType implements BaseEnum&lt;String&gt; {
+    INVALID("0"),VALID("1")
+    ;
+
+    private String status;
+
+    UserInfoType(String type) {
+        this.status = type;
+    }
+    
+    @Override
+    public String getCode() {
+        return status;
+    }
+}
+
+</code></pre>
+<p>首先定义一个枚举类，实现BaseEnum接口，接口类型参数用String，表示保存的值是String类型，如果要保存Int类型的话改用BaseEnum。</p>
+<h2>
+<a id="第二步" class="anchor" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"></a>第二步</h2>
+<p>在javaBean添加该枚举属性：</p>
+<pre lang="java" class="java"><code>public class UserInfo {
+    ...
+    private UserInfoType status;
+
+    // 省略getter setter
+}
+</code></pre>
+<p>接下来就可以使用dao来进行数据操作了，下面是完整测试用例：</p>
+<pre lang="java" class="java"><code>public class UserInfoDaoTest extends EasymybatisSpringbootApplicationTests {
+    
+    @Autowired
+    UserInfoDao userInfoDao;
+    
+    @Test
+    public void testGet() {
+        UserInfo userInfo = userInfoDao.get(3);
+        print("枚举字段status：" + userInfo.getStatus().getCode());
+        print(userInfo);
+    }
+    
+    @Test
+    public void testUpdate() {
+        UserInfo userInfo = userInfoDao.get(3);
+        // 修改枚举值
+        userInfo.setStatus(UserInfoType.INVALID);
+        userInfoDao.update(userInfo);
+    }
+    
+    @Test
+    public void testSave() {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setAddress("aa");
+        userInfo.setCity("杭州");
+        userInfo.setCreateTime(new Date());
+        userInfo.setUserId(3);
+        // 枚举值
+        userInfo.setStatus(UserInfoType.VALID);
+        userInfoDao.save(userInfo);
+    }
+}
+ 
+</code></pre>
+<h1>
+<a id="sql写在xml中" class="anchor" href="#sql%E5%86%99%E5%9C%A8xml%E4%B8%AD"></a>SQL写在xml中</h1>
+<p>easymybatis提供的一些查询方式已经满足大部分的查询需求，但是有些复杂的sql语句还是需要写在xml文件中。easymybatis同样支持将sql语句写在xml中，具体配置如下：</p>
+<ul class="task-list">
+<li>在application.properties添加一句</li>
+</ul>
+<pre><code>mybatis.mapper-locations=classpath:/mybatis/mapper/*.xml
+</code></pre>
+<p>这句话用来指定xml文件的存放地。</p>
+<ul class="task-list">
+<li>
+<p>在resources目录下新建一个mybatis文件夹，在mybatis文件夹下新建mapper文件夹。
+新建一个xml文件，名字跟Dao名字一致，如TUserDao.xml，建完后的文件路径是resources/mybatis/mapper/TUserDao.xml</p>
+</li>
+<li>
+<p>在xml中添加sql语句，如下：</p>
+</li>
+</ul>
+<pre lang="xml" class="xml"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;
+&lt;!-- 注意：文件名必须跟Dao类名字一致，因为是根据文件名做关联。 --&gt;
+&lt;mapper&gt;
+    
+    &lt;select id="selectByName" parameterType="String" resultMap="baseResultMap"&gt;
+        select * from t_user t where t.username = #{username} limit 1
+    &lt;/select&gt;
+    
+&lt;/mapper&gt;
+</code></pre>
+<p>这个xml文件跟其它的mybatis配置文件一样，namespace可不写。这里baseResultMap没有看到定义，但是确实存在，因为这个是easymybatis提供的一个内置resultMap。</p>
+<ul class="task-list">
+<li>在TUseroDao.java中添加：</li>
+</ul>
+<pre lang="java" class="java"><code>TUser selectByName(@Param("username")String username);
+</code></pre>
+<ul class="task-list">
+<li>编写单元测试用例</li>
+</ul>
+<pre lang="java" class="java"><code>@Test
+public void testSelectByName() {
+    TUser user = dao.selectByName("张三");
+
+    System.out.println(user.getUsername());
+}
+    
+</code></pre>
+<h1>
+<a id="配置说明" class="anchor" href="#%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E"></a>配置说明</h1>
+<p>easymybatis存放一些配置参数，这些参数都有默认值，一般情况下可以不用。如果使用springboot的话可以方便的对参数进行设置，只需在application.properties中设置即可，除此之外还可以设置其他mybatis官方参数，具体可参考<a href="http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/">MyBatis-Spring-Boot-Application configuration parameters</a></p>
+<pre><code>mybatis.camel2underline=true
+mybatis.common-sql-classpath=
+mybatis.mapper-save-dir=
+mybatis.mapper-executor-pool-size=50
+mybatis.template-classpath=
+</code></pre>
+<p>下面就讲解下各个属性的作用：</p>
+<ul class="task-list">
+<li>
+<p>camel2underline
+如果为true，则开启驼峰转换下划线功能。实体类中的java字段映射成数据库字段将自动转成下划线形式。可以省略@Column注解。默认true。</p>
+</li>
+<li>
+<p>mapper-executor-pool-size
+mapper处理线程数，此项配置可以加快启动速度。默认值50，生产环境可以设置成较小的数，比如5</p>
+</li>
+<li>
+<p>template-classpath
+指定模板文件class路径，开头结尾必须包含"/"。如果没有指定，则默认读取easymybatis/tpl/下的模板，一般情况下不做配置。</p>
+</li>
+<li>
+<p>common-sql-classpath
+指定公共SQL模块class路径，如果没有指定，则默认读取easymybatis/commonSql.xml，一般情况下不做配置。</p>
+</li>
+<li>
+<p>mapper-save-dir
+指定mapper文件存放路径。因为easymybatis是直接将mapper内容注入到内存当中，开发人员无感知，并且不知道mapper内容是什么样子，这个功能就是让开发人员能够查看到对应的mapper内容，方便定位和排查问题。一般情况下此项不用开启。</p>
+</li>
+</ul>
+<h1>
+<a id="其他功能" class="anchor" href="#%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD"></a>其他功能</h1>
+<h2>
+<a id="指定外部模板" class="anchor" href="#%E6%8C%87%E5%AE%9A%E5%A4%96%E9%83%A8%E6%A8%A1%E6%9D%BF"></a>指定外部模板</h2>
+<p>easymybatis依赖模板文件来生成mapper，默认的模板存放在easymybatis/tpl/下，模板文件名对应某一种数据库，如mysql.vm对应mysql数据库。</p>
+<p>我们可以通过更改template-classpath的值来改变模板读取的位置。默认template-classpath的值为/easymybatis/tpl/。假如你想对mysql.vm做一些修改，那么可以按照如下步骤进行：</p>
+<ol class="task-list">
+<li>使用解压工具解压easymybatis.jar</li>
+<li>在easymybatis/tpl/下找到mysql.vm，拷贝一份出来，放到你的项目中的classpath下（src/main/resources）</li>
+<li>在application.properties中添加一行</li>
+</ol>
+<pre><code>mybatis.template-classpath=/ 
+</code></pre>
+<p>这样在启动时会自动读取classpath根目录下的mysql.vm。控制台也会打印读取模板的信息：</p>
+<pre><code>2017-12-26 19:32:31.021  INFO 13476 --- [           main] n.o.d.e.ext.MapperLocationsBuilder       : 使用模板:/mysql.vm
+</code></pre>
+<p>如果你的项目是springmvc，采用xml配置形式，前两步不变，第三步改为：</p>
+<pre lang="xml" class="xml"><code>&lt;!-- 替换org.mybatis.spring.SqlSessionFactoryBean --&gt;
+    &lt;bean id="sqlSessionFactory"
+        class="net.oschina.durcframework.easymybatis.ext.SqlSessionFactoryBeanExt"&gt;
+        &lt;property name="dataSource" ref="dataSource" /&gt;
+        &lt;property name="configLocation"&gt;
+            &lt;value&gt;classpath:mybatis/mybatisConfig.xml&lt;/value&gt;
+        &lt;/property&gt;
+        &lt;property name="mapperLocations"&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:mybatis/mapper/*.xml&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        
+        &lt;!-- 以下是附加属性 --&gt;
+        
+        &lt;!-- dao所在的包名,跟MapperScannerConfigurer的basePackage一致 
+            多个用;隔开
+        --&gt;
+        &lt;property name="basePackage" value="com.myapp.dao" /&gt;
+        &lt;property name="config"&gt;
+            &lt;bean class="net.oschina.durcframework.easymybatis.EasymybatisConfig"&gt;
+                &lt;!-- 指定外部模板 --&gt;
+                &lt;property name="templateClasspath" value="/"/&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+</code></pre>
+<h2>
+<a id="全局dao" class="anchor" href="#%E5%85%A8%E5%B1%80dao"></a>全局Dao</h2>
+<p>easymybatis提供了全局Dao支持。</p>
+<p>easymybatis设置全局Dao的方式如下：</p>
+<ol class="task-list">
+<li>在resources下新建一个base.vm内容如下</li>
+</ol>
+<pre lang="xml" class="xml"><code>&lt;select id="getMySqlVersion" resultType="String"&gt;
+    select version()
+&lt;/select&gt;
+</code></pre>
+<p>获取数据库版本号SQL.</p>
+<ol class="task-list">
+<li>在application.properties新增一行</li>
+</ol>
+<pre><code>mybatis.global-vm-location=/base.vm
+</code></pre>
+<p>用来指定文件位置，支持file:，classpath:方式。</p>
+<ol class="task-list">
+<li>新建一个全局Dao：GlobalDao.java</li>
+</ol>
+<pre lang="java" class="java"><code>public interface GlobalDao {
+    String getMySqlVersion();
+}
+</code></pre>
+<ol class="task-list">
+<li>自定义的Dao继承GlobalDao.java</li>
+</ol>
+<pre lang="java" class="java"><code>public interface AddressDao extends CrudDao&lt;Address&gt;,GlobalDao {
+
+}
+</code></pre>
+<p>这样AddressDao就具备了getMySqlVersion()功能。base.vm中的文件编写可参考<strong>velocity变量说明</strong></p>
+<h2>
+<a id="乐观锁" class="anchor" href="#%E4%B9%90%E8%A7%82%E9%94%81"></a>乐观锁</h2>
+<p>easymybatis提供的乐观锁使用方式跟JPA一样，使用@Version注解来实现。即：数据库增加一个int或long类型字段version，然后实体类version字段上加上@Version注解即可。实现原理是根据mysql的行锁机制(InnoDB下)，同一条记录只能被一条SQL执行，后面的SQL排队等待。这样version改变后，等待中的SQL还是老的version号，因此更新失败。</p>
+<pre lang="java" class="java"><code>@Version  
+private Long version;  
+</code></pre>
+<ul class="task-list">
+<li>注：更新不成功不会抛出异常，而是update返回值为0</li>
+</ul>
+<h2>
+<a id="逻辑删除" class="anchor" href="#%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4"></a>逻辑删除</h2>
+<p>从1.7版本开始支持逻辑删除功能,即更新一个字段标记为已删除。查询的时候会自动过滤掉已删除的数据。</p>
+<p>假设数据库表中有一个字段is_deleted类型为tinyint，0表示未删除，1表示已删除。</p>
+<p>实体类对应代码如下：</p>
+<pre lang="java" class="java"><code>public class User {
+    @LogicDelete
+    private Byte isDeleted;
+}
+</code></pre>
+<p>在执行dao.del(user);时会触发UPDATE语句，将is_deleted字段更新为1。</p>
+<p>如果is_deleted类型为char(1)，f表示未删除，t表示已删除。</p>
+<pre lang="java" class="java"><code>@LogicDelete(notDeleteValue = "f", deleteValue = "t")
+private String isDeleted;
+</code></pre>
+<p>@LogicDelete提供两个属性</p>
+<ul class="task-list">
+<li>notDeleteValue：指定未删除时的值,不指定默认为0</li>
+<li>deleteValue：指定删除后保存的值,不指定默认为1</li>
+</ul>
+<p>假设1表示未删除，2表示已删除，@LogicDelete的设置方法如下：@LogicDelete(notDeleteValue = "1", deleteValue = "2")。如果每个实体类都要这样设置的话会很麻烦，easymybatis提供了全局配置</p>
+<ul class="task-list">
+<li>springboot下，application.properties添加</li>
+</ul>
+<pre><code># 未删除数据库保存的值，默认为0
+mybatis.logic-not-delete-value=1
+# 删除后数据库保存的值，默认为1
+mybatis.logic-delete-value=2
+</code></pre>
+<ul class="task-list">
+<li>springmvc设置方式如下：</li>
+</ul>
+<pre lang="xml" class="xml"><code>&lt;!-- 替换org.mybatis.spring.SqlSessionFactoryBean --&gt;
+    &lt;bean id="sqlSessionFactory"
+        class="net.oschina.durcframework.easymybatis.ext.SqlSessionFactoryBeanExt"&gt;
+        &lt;property name="dataSource" ref="dataSource" /&gt;
+        &lt;property name="configLocation"&gt;
+            &lt;value&gt;classpath:mybatis/mybatisConfig.xml&lt;/value&gt;
+        &lt;/property&gt;
+        &lt;property name="mapperLocations"&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:mybatis/mapper/*.xml&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        
+        &lt;!-- 以下是附加属性 --&gt;
+        
+        &lt;!-- dao所在的包名,跟MapperScannerConfigurer的basePackage一致 
+            多个用;隔开
+        --&gt;
+        &lt;property name="basePackage" value="com.myapp.dao" /&gt;
+        &lt;property name="config"&gt;
+            &lt;bean class="net.oschina.durcframework.easymybatis.EasymybatisConfig"&gt;        
+                &lt;property name="logicNotDeleteValue" value="1"/&gt;
+                                &lt;property name="logicDeleteValue" value="2"/&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+</code></pre>
+<ul class="task-list">
+<li>注：如果同时设置了@LogicDelete参数和全局配置，会优先读取注解中的配置。</li>
+</ul>
+<h1>
+<a id="多数据源配置" class="anchor" href="#%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE"></a>多数据源配置</h1>
+<p>这里主要介绍在springboot下进行多数据源配置：</p>
+<p>首先application.properties配置：</p>
+<pre><code># 主数据源
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://${mysql.ip}:3306/stu?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull
+spring.datasource.username=${mysql.username}
+spring.datasource.password=${mysql.password}
+
+# 第二个数据源
+spring.datasourceSecond.driver-class-name=com.mysql.jdbc.Driver
+spring.datasourceSecond.url=jdbc:mysql://${mysql.ip}:3306/easydoc?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull
+spring.datasourceSecond.username=${mysql.username}
+spring.datasourceSecond.password=${mysql.password}
+</code></pre>
+<ul class="task-list">
+<li>禁掉springboot自带的DataSourceAutoConfiguration</li>
+</ul>
+<pre><code>@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+</code></pre>
+<ul class="task-list">
+<li>pom移除easymybatis-spring-boot-starter依赖</li>
+<li>pom添加:</li>
+</ul>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;net.oschina.durcframework&lt;/groupId&gt;
+    &lt;artifactId&gt;easymybatis&lt;/artifactId&gt;
+    &lt;version&gt;1.8.4&lt;/version&gt;
+&lt;/dependency&gt;    
+</code></pre>
+<ul class="task-list">
+<li>新建一个数据库配置文件，作为主数据源</li>
+</ul>
+<pre><code>/**
+ * 主数据源,使用方式:
+ * &lt;pre&gt;
+ * 1. pom移除easymybatis-spring-boot-starter依赖
+ * 2. pom添加:
+ * &lt;code&gt;
+ * &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;net.oschina.durcframework&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;easymybatis&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;1.8.4&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+    3. 打开注释:
+    @Configuration
+    @MapperScan(basePackages = { DbMasterConfig.basePackage }, sqlSessionFactoryRef = DbMasterConfig.sqlSessionFactoryName)
+ * &lt;/code&gt;
+ * &lt;/pre&gt;
+ * @author tanghc
+ */
+@Configuration
+@MapperScan(basePackages = { DbMasterConfig.basePackage }, sqlSessionFactoryRef = DbMasterConfig.sqlSessionFactoryName)
+public class DbMasterConfig {
+    
+    /* ********************只需要改这里的配置******************** */
+    static final String dbName = "master";
+    /** 配置文件前缀 */
+    public static final String prefix = "spring.datasource";
+    /** 存放mapper包路径 */
+    public static final String basePackage = "com.myapp.dao";
+    /** mybatis的config文件路径 */
+    public static final String mybatisConfigLocation = "classpath:mybatis/mybatisConfig.xml";
+    /** mybatis的mapper文件路径 */
+    public static final String mybatisMapperLocations = "classpath:mybatis/mapper/*.xml";
+    /** 表新增时间字段名 */
+    public static final String dbInsertDateColumnName = "gmt_create";
+    /** 表更新时间字段名 */
+    public static final String dbUpdateDateColumnName = "gmt_update";
+    /* **************************************************** */
+    
+    /** 数据源名称 */
+    public static final String dataSourceName = "dataSource" + dbName;
+    /** sqlSessionTemplate名称 */
+    public static final String sqlSessionTemplateName = "sqlSessionTemplate" + dbName;
+    /** sqlSessionFactory名称 */
+    public static final String sqlSessionFactoryName = "sqlSessionFactory" + dbName;
+    /** transactionManager名称 */
+    public static final String transactionManagerName = "transactionManager" + dbName;
+    /** transactionTemplate名称 */
+    public static final String transactionTemplateName = "transactionTemplate" + dbName;
+   
+
+    @Bean(name = dataSourceName)
+    @Primary
+    @ConfigurationProperties(prefix = prefix) // application.properteis中对应属性的前缀
+    public DataSource dataSource() {
+        return DruidDataSourceBuilder.create().build();
+    }
+
+    @Bean
+    public EasymybatisConfig easymybatisConfig() {
+        EasymybatisConfig config = new EasymybatisConfig();
+        /*
+         * 驼峰转下划线形式，默认是true 开启后java字段映射成数据库字段将自动转成下划线形式 如：userAge -&gt; user_age
+         * 如果数据库设计完全遵循下划线形式，可以启用 这样可以省略Entity中的注解，@Table，@Column都可以不用，只留
+         * 
+         * @Id
+         * 
+         * @GeneratedValue 参见：UserInfo.java
+         */
+        config.setCamel2underline(true);
+        config.setFills(Arrays.asList(new DateFillInsert(dbInsertDateColumnName),
+                new DateFillUpdate(dbUpdateDateColumnName)));
+
+        return config;
+    }
+
+    @Bean(name = sqlSessionFactoryName)
+    public SqlSessionFactory sqlSessionFactory(@Autowired @Qualifier(dataSourceName) DataSource dataSource,
+            EasymybatisConfig config) throws Exception {
+        Assert.notNull(dataSource, "dataSource can not be null.");
+        Assert.notNull(config, "EasymybatisConfig can not be null.");
+        
+        SqlSessionFactoryBeanExt bean = new SqlSessionFactoryBeanExt();
+
+        bean.setDataSource(dataSource);
+        bean.setConfigLocation(this.getResource(mybatisConfigLocation));
+        bean.setMapperLocations(this.getResources(mybatisMapperLocations));
+
+        // ====以下是附加属性====
+
+        // dao所在的包名,跟MapperScannerConfigurer的basePackage一致,多个用;隔开
+        bean.setBasePackage(basePackage);
+        bean.setConfig(config);
+
+        return bean.getObject();
+
+    }
+
+    @Bean(name = sqlSessionTemplateName)
+    public SqlSessionTemplate sqlSessionTemplate(
+            @Autowired @Qualifier(sqlSessionFactoryName) SqlSessionFactory sessionFactory) throws Exception {
+        SqlSessionTemplate template = new SqlSessionTemplate(sessionFactory); // 使用上面配置的Factory
+        return template;
+    }
+    
+    @Bean(name = transactionManagerName)
+    public PlatformTransactionManager annotationDrivenTransactionManager(
+            @Autowired @Qualifier(dataSourceName) DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
+    
+    @Bean(name = transactionTemplateName)
+    public TransactionTemplate transactionTemplate(@Autowired @Qualifier(transactionManagerName)PlatformTransactionManager transactionManager) {
+        return new TransactionTemplate(transactionManager);
+    }
+    
+
+    private Resource[] getResources(String path) throws IOException {
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        return resolver.getResources(path);
+    }
+
+    private Resource getResource(String path) {
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        return resolver.getResource(path);
+    }
+   
+}
+</code></pre>
+<p>这个文件不用做多大的修改，只需要修改上面的配置内容即可。</p>
+<ul class="task-list">
+<li>新建第二个文件，作为第二个数据源：</li>
+</ul>
+<pre><code>
+/**
+ * 第二个数据源，后续有第三个数据，复制这个文件，然后改下配置即可
+ * @author tanghc
+ */
+@Configuration
+@MapperScan(basePackages = { DbSecondConfig.basePackage }, sqlSessionFactoryRef = DbSecondConfig.sqlSessionFactoryName)
+public class DbSecondConfig {
+    
+    /* ********************只需要改这里的配置******************** */
+    static final String dbName = "Second";
+    /** 配置文件前缀 */
+    public static final String prefix = "spring.datasourceSecond";
+    /** 存放mapper包路径 */
+    public static final String basePackage = "com.app2.dao";
+    /** mybatis的config文件路径 */
+    public static final String mybatisConfigLocation = "classpath:mybatis/mybatisConfig.xml";
+    /** mybatis的mapper文件路径 */
+    public static final String mybatisMapperLocations = "classpath:mybatis/mapper2/*.xml";
+    /** 表新增时间字段名 */
+    public static final String dbInsertDateColumnName = "gmt_create";
+    /** 表更新时间字段名 */
+    public static final String dbUpdateDateColumnName = "gmt_update";
+    /* **************************************************** */
+    
+    /** 数据源名称 */
+    public static final String dataSourceName = "dataSource" + dbName;
+    /** sqlSessionTemplate名称 */
+    public static final String sqlSessionTemplateName = "sqlSessionTemplate" + dbName;
+    /** sqlSessionFactory名称 */
+    public static final String sqlSessionFactoryName = "sqlSessionFactory" + dbName;
+    /** transactionManager名称 */
+    public static final String transactionManagerName = "transactionManager" + dbName;
+    /** transactionTemplate名称 */
+    public static final String transactionTemplateName = "transactionTemplate" + dbName;
+
+    @Bean(name = dataSourceName)
+    @ConfigurationProperties(prefix = prefix) // application.properteis中对应属性的前缀
+    public DataSource dataSourceMater() {
+        return DruidDataSourceBuilder.create().build();
+    }
+
+    @Bean
+    public EasymybatisConfig easymybatisConfig() {
+        EasymybatisConfig config = new EasymybatisConfig();
+        /*
+         * 驼峰转下划线形式，默认是true 开启后java字段映射成数据库字段将自动转成下划线形式 如：userAge -&gt; user_age
+         * 如果数据库设计完全遵循下划线形式，可以启用 这样可以省略Entity中的注解，@Table，@Column都可以不用，只留
+         * 
+         * @Id
+         * 
+         * @GeneratedValue 参见：UserInfo.java
+         */
+        config.setCamel2underline(true);
+        config.setFills(Arrays.asList(new DateFillInsert(dbInsertDateColumnName),
+                new DateFillUpdate(dbUpdateDateColumnName)));
+
+        return config;
+    }
+
+    @Bean(name = sqlSessionFactoryName)
+    public SqlSessionFactory sqlSessionFactory(@Autowired @Qualifier(dataSourceName) DataSource dataSource,
+            EasymybatisConfig config) throws Exception {
+        Assert.notNull(dataSource, "dataSource can not be null.");
+        Assert.notNull(config, "EasymybatisConfig can not be null.");
+        SqlSessionFactoryBeanExt bean = new SqlSessionFactoryBeanExt();
+
+        bean.setDataSource(dataSource);
+        bean.setConfigLocation(this.getResource(mybatisConfigLocation));
+        bean.setMapperLocations(this.getResources(mybatisMapperLocations));
+
+        // ====以下是附加属性====
+
+        // dao所在的包名,跟MapperScannerConfigurer的basePackage一致,多个用;隔开
+        bean.setBasePackage(basePackage);
+        bean.setConfig(config);
+
+        return bean.getObject();
+
+    }
+
+    @Bean(name = sqlSessionTemplateName)
+    public SqlSessionTemplate sqlSessionTemplate(
+            @Autowired @Qualifier(sqlSessionFactoryName) SqlSessionFactory sessionFactory) throws Exception {
+        SqlSessionTemplate template = new SqlSessionTemplate(sessionFactory); // 使用上面配置的Factory
+        return template;
+    }
+    
+    @Bean(name = transactionManagerName)
+    public PlatformTransactionManager annotationDrivenTransactionManager(
+            @Autowired @Qualifier(dataSourceName) DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
+    
+    @Bean(name = transactionTemplateName)
+    public TransactionTemplate transactionTemplate(@Autowired @Qualifier(transactionManagerName)PlatformTransactionManager transactionManager) {
+        return new TransactionTemplate(transactionManager);
+    }
+    
+
+    private Resource[] getResources(String path) throws IOException {
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        return resolver.getResources(path);
+    }
+
+    private Resource getResource(String path) {
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        return resolver.getResource(path);
+    }
+
+}
+</code></pre>
+<p>第二个数据源，后续有第三个数据，复制这个文件，然后改下配置即可</p>
+<h1>
+<a id="附录velocity变量说明" class="anchor" href="#%E9%99%84%E5%BD%95velocity%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E"></a>[附录]velocity变量说明</h1>
+<h2>
+<a id="context" class="anchor" href="#context"></a>${context}</h2>
+<ul class="task-list">
+<li>${context.dbName} : 数据库名称</li>
+<li>${context.packageName} : 包名</li>
+<li>${context.javaBeanName} : Java类名</li>
+<li>${context.javaBeanNameLF} : Java类名且首字母小写</li>
+</ul>
+<h2>
+<a id="pk" class="anchor" href="#pk"></a>${pk}</h2>
+<ul class="task-list">
+<li>${pk.isIdentity} : 是否自增</li>
+<li>${pk.javaFieldName} ： 主键java字段名</li>
+<li>${pk.columnName} ： 主键数据库字段名</li>
+<li>${pk.isUuid} ： 主键是否使用UUID策略</li>
+</ul>
+<h2>
+<a id="table" class="anchor" href="#table"></a>${table}</h2>
+<ul class="task-list">
+<li>${table.tableName} : 数据库表名</li>
+<li>${table.comment} : 表注释</li>
+<li>${table.javaBeanNameLF} : java类名，并且首字母小写</li>
+</ul>
+<h2>
+<a id="foreachcolumn-in-columnsend" class="anchor" href="#foreachcolumn-in-columnsend"></a>#foreach($column in $columns)...#end</h2>
+<ul class="task-list">
+<li>${column.columnName} : 表中字段名</li>
+<li>${column.type} : java字段类型，String，Integer</li>
+<li>${column.fullType} : java字段完整类型，java.lang.String</li>
+<li>${column.javaFieldName} : java字段名</li>
+<li>${column.javaFieldNameUF} : java字段名首字母大写</li>
+<li>${column.javaType} : 字段的java类型</li>
+<li>${column.javaTypeBox} : 字段的java装箱类型,如Integer,Long</li>
+<li>${column.isIdentity} : 是否自增,返回boolean</li>
+<li>${column.isPk} : 是否自增主键,返回boolean</li>
+<li>${column.isIdentityPk} : 是否自增主键,返回boolean</li>
+<li>${column.isEnum} : 是否枚举类型,返回boolean</li>
+<li>${column.mybatisJdbcType} : 返回mybatis定义的jdbcType</li>
+<li>${column.comment} : 表字段注释</li>
+</ul></div>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+<!-- ***********************************************************内容分割线****************************************************************** -->
+
+                </article>
+            </div>
+        </div>
+    <script src="./static/jquery-1.10.2.min.js"></script>
+    <script src="./static/jquery.ztree.all-3.5.min.js"></script>
+    <script src="./static/jquery.ztree_toc.min.js"></script>
+    <script type="text/javascript">
+    var title = document.title;
+        $(document).ready(function(){
+            $('#tree').ztree_toc({
+            	_header_nodes: [{ id:1, pId:0, name:title,open:false}],  // 第一个节点
+            	ztreeSetting: {
+            		view: {
+        				dblClickExpand: false,
+        				showLine: true,
+        				showIcon: false,
+        				selectedMulti: false
+        			},
+        			data: {
+        				simpleData: {
+        					enable: true,
+        					idKey : "id",
+        					pIdKey: "pId"
+        					// rootPId: "0"
+        				}
+        			},
+            		callback: {
+        				beforeClick: function(treeId, treeNode) {
+        					$('a').removeClass('curSelectedNode');
+        					if(treeNode.id == 1){
+        						$('body').scrollTop(0);
+        					}
+        					if($.fn.ztree_toc.defaults.is_highlight_selected_line == true) {
+        						$('#' + treeNode.id).css('color' ,'red').fadeOut("slow" ,function() {
+        							$(this).show().css('color','black');
+        						});
+        					}
+        				}
+        			}            		
+            	},
+                is_auto_number:true, // 菜单是否显示编号，如果markdown标题没有数字标号可以设为true
+                documment_selector:'.markdown-body',
+                is_expand_all: true // 菜单全部展开
+            });
+            // 代码高亮
+            $('.highlight').each(function(i, block) {
+          	    hljs.highlightBlock(block);
+          	});
+        });
+    </script>
+    </body>
+</html>

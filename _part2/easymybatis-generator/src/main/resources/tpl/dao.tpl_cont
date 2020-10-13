@@ -1,0 +1,7 @@
+package ${context.packageName}.dao;
+
+import net.oschina.durcframework.easymybatis.dao.CrudDao;
+import ${context.packageName}.entity.${context.javaBeanName};
+
+public interface ${context.javaBeanName}Dao extends CrudDao<${context.javaBeanName}> {
+}

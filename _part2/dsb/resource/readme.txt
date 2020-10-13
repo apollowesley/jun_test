@@ -1,0 +1,1 @@
+This fold contains all your resource files, like sql scripts etc.

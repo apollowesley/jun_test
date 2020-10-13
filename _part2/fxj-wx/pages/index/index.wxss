@@ -1,0 +1,224 @@
+.bcg{
+  width: 100%;
+  height: 140rpx;
+  background-color: #FFC85B;
+}
+.title{
+  width: 96%;
+  margin-left: 2%;
+  display: flex;
+  background: #fff;
+  border: 2rpx solid #F6EEDD;
+  border-radius: 12rpx;
+  transform: translateY(-50%);
+  padding: 60rpx 0;
+  overflow: hidden;
+}
+.title>view{
+  float: left;
+  width: 33.33%;
+}
+.title .left{
+  text-align: center;
+  border-right:1rpx solid #dddddd; 
+}
+.title .top{
+  font-size: 32rpx;
+  overflow: hidden;
+  margin: 0 5% 16rpx;
+}
+.title .bottom{
+  font-size: 24rpx;
+}
+.title .mid{
+  text-align: center;
+  border-right:1rpx solid #dddddd; 
+}
+.title .right{
+  text-align: center;
+}
+
+.wrap{
+  background: #fff;
+  padding: 2% 2%;
+}
+.mrb{
+  margin-bottom: 20rpx;
+}
+.mrt{
+  margin-top: -212rpx;
+}
+.padt{
+  padding-top: 134rpx;
+}
+.wrap-t{
+  font-size: 28rpx;
+  color: #101010;
+  position: relative;
+  padding: 0 22rpx 10rpx;
+}
+.wrap-t::before{
+  content: "";
+  width: 2rpx;
+  background: #FAC85B;
+  height: 30rpx;
+  position: absolute;
+  top: 5rpx;
+  left: 0;
+}
+.box{
+  display: flex;
+  margin-bottom: 10rpx;
+}
+.box .item{
+  flex: 1;
+}
+.icon{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto 5rpx;
+}
+.info{
+  text-align: center;
+  font-size: 24rpx;
+  color: #101010;
+}
+.icon-01{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_11.png) center center no-repeat;
+  background-size: 80%;
+}
+.icon-02{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_12.png) center center no-repeat;
+  background-size: 90%;
+}
+.icon-03{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_13.png) center center no-repeat;
+  background-size: 90%;
+}
+.icon-04{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_14.png) center center no-repeat;
+  background-size: 90%;
+}
+.icon-05{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_15.png) center center no-repeat;
+  background-size: 80%;
+}
+.icon-06{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_16.png) center center no-repeat;
+  background-size: 90%;
+}
+.icon-07{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_25.png) center center no-repeat;
+  background-size: 80%;
+}
+.icon-08{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_26.png) center center no-repeat;
+  background-size: 80%;
+}
+.icon-09{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_27.png) center center no-repeat;
+  background-size: 80%;
+}
+.icon-10{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_28.png) center center no-repeat;
+  background-size: 80%;
+}
+.icon-11{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_29.png) center center no-repeat;
+  background-size: 80%;
+}
+.icon-12{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_30.png) center center no-repeat;
+  background-size: 80%;
+}
+.icon-13{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_31.png) center center no-repeat;
+  background-size: 80%;
+}
+.icon-14{
+  background: url(http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_32.png) center center no-repeat;
+  background-size: 80%;
+}
+
+
+.msg{
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+}
+.msg .wrap-tittle {
+    height: 70rpx;
+    line-height: 70rpx;
+    margin: 22rpx  0 18rpx  52rpx;
+    color: #373737;
+    position: relative;
+    display: flex;
+}
+.msg .wrap-tittle::before {
+    content: '';
+    width: 6rpx;
+    height: 30rpx;
+    background-color:rgba(228, 61, 85, 0.76);
+    position: absolute;
+    left: -20rpx;
+    top: 24rpx;
+}
+.msg .item{
+  width: 86%;
+  margin-left: 26rpx;
+  margin-top: 20rpx;
+  border: 2rpx solid #FABC56;
+  border-radius: 20rpx;
+  display: flex;
+  padding: 20rpx;
+  font-weight: bold;
+}
+.msg .item .left{
+  flex: 2;
+  font-size: 20rpx;
+  margin-bottom: 10rpx;
+}
+.msg .item .mid{
+  flex: 1;
+}
+.msg .item .right{
+  flex: 1;
+  text-align: center;
+
+}
+.msg .item .left .second{
+  margin-bottom: 6rpx;
+}
+.msg .item .left .third{
+  margin-bottom: 6rpx;
+}
+.msg .item .left .fourth{
+  margin-bottom: 6rpx;
+}
+.msg .item .left .fivth{
+  margin-bottom: 6rpx;
+}
+.msg .item .mid .second{
+  flex: 1;
+  width: 86rpx;
+  height: 86rpx;
+}
+.msg .item .mid .second image{
+  flex: 1;
+  width: 130rpx;
+  height: 100rpx;
+}
+.msg .item .right .second{
+  flex: 1;
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: 36rpx;
+}
+.msg .item .right .second image{
+  flex: 1;
+  width: 60rpx;
+  height: 60rpx;
+}
+.item .first{
+  margin-bottom: 20rpx
+}

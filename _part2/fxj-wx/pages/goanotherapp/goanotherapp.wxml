@@ -1,0 +1,8 @@
+<navigator 
+ target="miniProgram" 
+ open-type="navigate" 
+ app-id="wxaee5b2dadccd6e53" 
+ path="pages/index/index" 
+ extra-data="{{extraData}}"
+ version="develop" 
+ bindsuccess="toMiniProgramSuccess">点击超链接打开绑定的小程序</navigator>

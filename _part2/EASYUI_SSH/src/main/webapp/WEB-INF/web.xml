@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"    
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee    
+          http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"    
+          version="3.1">    
+  <display-name>Archetype Created Web Application</display-name>
+
+  <welcome-file-list>
+  	<welcome-file>/views/jsp/login.html</welcome-file>
+  </welcome-file-list>
+  
+   <!-- Load by Spring ContextLoaderListener -->
+   <context-param>
+       <param-name>contextConfigLocation</param-name>
+       <param-value>classpath:applicationContext.xml</param-value>
+   </context-param>
+ 
+    
+    <!-- Spring ContextLoaderListener -->
+   <listener>
+       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+   </listener>
+    <!-- 请求都交给DispatcherServlet处理 -->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-mvc.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+<!-- 增加spring自带编码过滤器(必须放在第一个) -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+			<!--要使用的字符集，一般我们使用UTF-8(保险起见UTF-8最好)-->
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+		   <param-name>forceEncoding</param-name>
+		   <param-value>true</param-value>
+  		</init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>       
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+<!-- 配置自己编写的编码过滤    因为Spring3.x以后有了HttpMessageConverter消息转换器，(ajax 请求出现的问题)
+把返回String类型的数据编码全部默认转换成iso-8859-1的编码格式，所以就出现了我们遇到的乱码的情况，
+如返回list或其它则使用 MappingJacksonHttpMessageConverter。(故自定义编码过滤器,设置contextType)(或者在注解驱动中设置,在spring mvc.xml中)
+   <filter>
+    <filter-name>EncoidingFilter</filter-name>
+    <filter-class>com.managementsystem.filter.EncodingFilter</filter-class>
+    
+    <init-param>
+       <param-name>Encoding</param-name>
+       <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+       <filter-name>EncoidingFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+  </filter-mapping> 
+  -->  
+    
+    
+    
+    <filter>
+		<filter-name>SpringOpenSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	  	<filter-name>SpringOpenSessionInViewFilter</filter-name>
+	 		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+<!-- 清除jsp空格 -->
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <trim-directive-whitespaces>true</trim-directive-whitespaces>
+        </jsp-property-group>
+    </jsp-config> 
+</web-app>

@@ -1,0 +1,130 @@
+<view class="banner"></view>
+
+<view class='ocr mt1'>
+    <view class="title">放款明细</view>
+    <view class='data'>
+    <view class='items'>
+            <view class='hd'>放款金额:</view>
+            <view class='bd'>
+                <input type='text' readonly='readonly' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写放款金额" value='{{orderAmount}}' ></input>
+            </view>
+        </view>
+
+          <view class='items'>
+            <view class='hd'>放款笔数:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写放款笔数" value='{{orderBy41}}' bindinput='orderBy41Input'></input>
+            </view>
+        </view>
+
+          <view class='items'>
+            <view class='hd'>平均放款金额:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写平均放款金额" value='{{orderBy42}}' bindinput='orderBy42Input'></input>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class='ocr mt'>
+    <view class="title">汇款明细</view>
+    <view class='data'>
+    <view class='items'>
+            <view class='hd'>GPS费用:</view>
+            <view class='bd'>
+                <input type='text' readonly='readonly' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写GPS费用" value='{{orderBy15}}' ></input>
+            </view>
+        </view>
+
+          <view class='items'>
+            <view class='hd'>保证金:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写保证金" value='{{orderBy43}}' bindinput='orderBy43Input'></input>
+            </view>
+        </view>
+
+          <view class='items'>
+            <view class='hd'>中介费:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写中介费" value='{{orderBy44}}' bindinput='orderBy44Input'></input>
+            </view>
+        </view>
+
+         <view class='items'>
+            <view class='hd'>保险费:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写保险费" value='{{orderBy45}}' bindinput='orderBy45Input'></input>
+            </view>
+        </view>
+
+         <view class='items'>
+            <view class='hd'>押金:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写押金" value='{{orderBy46}}' bindinput='orderBy46Input'></input>
+            </view>
+        </view>
+
+         <view class='items'>
+            <view class='hd'>合同金差额:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写合同金差额" value='{{orderBy47}}' bindinput='orderBy47Input'></input>
+            </view>
+        </view>
+
+         <view class='items'>
+            <view class='hd'>回款总计:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写回款总计" value='{{orderBy48}}' bindinput='orderBy48Input'></input>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class='ocr mt'>
+    <view class="title">内返明细</view>
+    <view class='data'>
+    <view class='items'>
+            <view class='hd'>中间费:</view>
+            <view class='bd'>
+                <input type='text'  placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写中间费" value='{{orderBy49}}' bindinput='orderBy49Input' ></input>
+            </view>
+        </view>
+
+          <view class='items'>
+            <view class='hd'>内返金额:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写内返金额" value='{{orderBy50}}' bindinput='orderBy50Input'></input>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class='ocr mt'>
+    <view class="title">上传附件</view>
+    <view class='imgMain'>
+        <view class='items' wx:for="{{fxjProAttList}}" wx:if ="{{item.attType ==130}}" wx:key="id">
+            <view class='hd'>
+                <view class='con'>
+                    <view class='ico'></view>
+                    <view class='text'>{{item.attName}}</view>
+                </view>
+            </view>
+            <view class='bd'>
+                <view class='uploadimg'>
+                    <view class='items' wx:for='{{item.fxjOrderAttaList}}' wx:key='id' wx:for-index='idx'>
+                        <view class='delete' data-img-idx="{{idx}}" data-index="{{index}}" bindtap='deletePic'></view>
+                        <view class='pic' style='background-image:url({{item.attaUrl}})' data-picId="{{item.picId}}"></view>
+                    </view>
+                    <view class='items'>
+                        <view class='pic' bindtap='getEnclosurePic' data-attType="{{item.attType}}" data-index="{{index}}"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class='btnBar'>
+    <!-- <view class='btn' data-proNo="{{proNo}}" bindtap='saveBtn'>保存</view> -->
+    <view class='btn blue' data-proNo="{{proNo}}" bindtap='submitBtn'>提交</view>
+</view>

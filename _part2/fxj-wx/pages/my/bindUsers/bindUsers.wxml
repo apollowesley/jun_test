@@ -1,0 +1,13 @@
+<view class="data">
+    <view class='items'>
+        <view class='hd'>用户姓名</view>
+        <view class='bd'><input type='text' placeholder-class="placeholder" value='{{userName}}' bindinput='userNameInput' placeholder='请输入用户名'></input></view>
+    </view>
+    <view class='items'>
+        <view class='hd'>用户密码</view>
+        <view class='bd'><input type='text' password placeholder-class="placeholder" value='{{userPassword}}' bindinput='userPasswordInput' placeholder='请输入密码'></input></view>
+    </view>
+</view>
+
+<view class="btn" bindtap='sbumitBtn'>提交绑定</view>
+<!-- <view class="btn" bindtap='ykumitBtn'>游客登录</view> -->

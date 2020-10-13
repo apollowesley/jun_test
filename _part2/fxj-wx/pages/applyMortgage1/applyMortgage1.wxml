@@ -1,0 +1,108 @@
+<view class="banner"></view>
+<view class='ocr'>
+    <view class="title">OCR身份证识别</view>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>姓名:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrName}}' bindinput='ocrNameInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>性别:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrSex}}' bindinput='ocrSexInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>民族:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrNation}}' bindinput='ocrNationInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>出生:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrBirth}}' bindinput='ocrBirthInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>地址:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrAddress}}' bindinput='ocrAddressInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>身份证号:</view>
+            <view class='bd'>
+                <input type='idcard' placeholder-class="placeholder" value='{{ocrIdNumber}}' bindinput='ocrIdNumberInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>签发机关:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrOffice}}' bindinput='ocrOfficeInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>有效期限:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrValidityPeriod}}' bindinput='ocrValidityPeriodInput'></input>
+            </view>
+        </view>
+    </view>
+    <view class='ocrUpload'>
+        <view class="ocrUploadBtn" data-sbtype="2" bindtap='upEnclosure'>身份人面像</view>
+        <view class="ocrUploadBtn" data-sbtype="3" bindtap='upEnclosure'>身份国徽面</view>
+    </view>
+</view>
+<view class='ocr mt' >
+    <view class="title">个人资料</view>
+    <view class='data'>
+        <view class='items'>
+            <view class='hd'>征信结果:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写征信结果" value='{{orderby1}}' bindinput='orderBy1Input'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>好车贷评分:</view>
+            <view class='bd'>
+                <input type='number' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写好车贷评分" value='{{orderby2}}' bindinput='orderBy2Input'></input>
+            </view>
+        </view>
+         <view class='items'>
+            <view class='hd'>备注:</view>
+            <view class='bd'>
+                <input type='number' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写备注" value='{{orderby3}}' bindinput='orderBy3Input'></input>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- <view class='ocr mt'  >
+    <view class="title">上传附件</view>
+    <view class='imgMain'>
+        <view class='items' wx:for="{{proAttList}}" wx:key="id">
+            <view class='hd'>
+                <view class='con'>
+                    <view class='ico'></view>
+                    <view class='text'>{{item.attName}}</view>
+                </view>
+            </view>
+            <view class='bd'>
+                <view class='uploadimg'>
+                    <view class='items' wx:for='{{item.picList}}'  wx:key='id' wx:for-index='idx'>
+                        <view class='delete' data-img-idx="{{idx}}" data-index="{{index}}" bindtap='deletePic'></view>
+                        <view class='pic' style='background-image:url({{item.picUrl}})' data-picId="{{item.picId}}"></view>
+                    </view>
+                    <view class='items'>
+                        <view class='pic' bindtap='getEnclosurePic' data-attType="{{item.attType}}" data-index="{{index}}"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> -->
+
+<view class='submitBtn' bindtap="submitBtn" >提交申请</view>
+

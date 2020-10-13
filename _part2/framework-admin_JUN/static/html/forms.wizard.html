@@ -1,0 +1,339 @@
+<div class="p-3 relative">
+  <ul class="nav nav-tabs nav-tabs-triangle" role="tablist">
+    <li class="nav-item">
+      <a data-toggle="tab" href="#f" role="tab" class="nav-link active">
+        <i class="fa fa-folder-o"> </i> Starting
+      </a>
+    </li>
+    <li class="nav-item">
+      <a data-toggle="tab" href="#s" role="tab" class="nav-link ">
+        <i class="fa fa-bell-o"> </i> Next
+      </a>
+    </li>
+    <li class="nav-item">
+      <a data-toggle="tab" href="#t" role="tab" class="nav-link ">
+        <i class="fa fa-check"> </i> Finish
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="f" role="tabpanel">
+      <div class="p-3 bg-white bb-l animated fadeIn bl-l br-l">
+        <div class='row '>
+          <div class="col-sm-5">
+            <div class="p-3">
+              <div><i class="fa fa-fire fa-3x"></i></div>
+              <h3 class="mb-3">Hello, this is the first step</h3>
+              <div>
+                Lorem ipsum dolor sit <span class="font-weight-bold">amet</span>, consectetur adipiscing elit, sed do eiusmod
+                <span class="font-weight-bold">tempor</span> incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam at non proident, sunt in culpa qui
+              </div>
+              <div class="font-xs text-muted mt-2">
+                *adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam
+                quaerat voluptatem. Ut enim ad
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7 ">
+            <form role="form">
+              <div class="form-group-alt-attached">
+                <div class="row">
+                  <div class="col-sm-6 col-sm-6">
+                    <div class="form-group form-group-alt">
+                      <label>First name</label>
+                      <input type="text" class="form-control" placeholder="John" data-ng-model="$parent.form.fname">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-sm-6">
+                    <div class="form-group form-group-alt">
+                      <label>Last name</label>
+                      <input type="text" class="form-control" placeholder="Doe" data-ng-model="$parent.form.lname">
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-alt">
+                      <label>Address</label>
+                      <input type="text" class="form-control" placeholder="350 Fifth Avenue, 34th floor"
+                             data-ng-model="$parent.form.address">
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 col-sm-4">
+                    <div class="form-group form-group-alt">
+                      <label>Angular</label>
+                      <input type="number" class="form-control" placeholder="1-5" data-ng-model="$parent.form.ang">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-sm-4">
+                    <div class="form-group form-group-alt">
+                      <label>NodeJS</label>
+                      <input type="number" class="form-control" placeholder="1-5" data-ng-model="$parent.form.node">
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-sm-4">
+                    <div class="form-group form-group-alt">
+                      <label>Backbone</label>
+                      <input type="number" class="form-control" placeholder="1-5" data-ng-model="$parent.form.bbone">
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-alt">
+                      <label>Comment</label>
+                      <textarea class="form-control" placeholder="your comment here" style="height:70px;"
+                                data-ng-model="$parent.form.comment"></textarea>
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="checkbox px-2 mt-2">
+                <label class="ui-checkbox">
+                  <input type="checkbox" data-ng-model="$parent.form.agree">
+                  <i></i>
+                  I agree terms
+                </label>
+                <button type="button" data-toggle="tab" href="#s"
+                        class="btn btn-sm btn-outline-primary rounded-circle float-right"
+                        data-ng-click="$parent.wizardTabs = 2">Next <i class="fa fa-long-arrow-right"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="s" role="tabpanel">
+      <div class="p-3 bg-white bb-l animated fadeIn bl-l br-l">
+        <div class='row '>
+          <div class="col-sm-5">
+            <div class="p-3">
+              <div><i class="fa fa-key fa-3x"></i></div>
+              <h3 class="mb-3">Second</h3>
+              <div>
+                consectetur adipiscing elit, sed do eiusmod <span class="font-weight-bold">amet</span>, <span
+                class="font-weight-bold">tempor</span> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                at non proident, sunt in culpa qui
+              </div>
+              <div class="font-xs text-muted mt-2">
+                *adipisci velit, sed quia non numquam eius modi magnam aliquam quaerat voluptatem. Ut enim ad tempora
+                incidunt ut labore et dolore
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7 ">
+            <form role="form">
+              <div class="form-group-alt-attached">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-alt">
+                      <label>Position</label>
+                      <select class="form-control" data-ng-model="$parent.form.position">
+                        <option> - choose -</option>
+                        <option>Frontend developer</option>
+                        <option>Backend developer developer</option>
+                        <option>Fullstack programmer</option>
+                      </select>
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group form-group-alt">
+                      <label>Javascript skills</label>
+                      <ul class="list-unstyled bg-no">
+                        <li class="ml-0">
+                          <label class="ui-checkbox m-0">
+                            <input type="checkbox" data-ng-model="$parent.form.skill.node">
+                            <i></i>
+                            NodeJS
+                          </label>
+                        </li>
+                        <li class="ml-0">
+                          <label class="ui-checkbox m-0">
+                            <input type="checkbox" data-ng-model="$parent.form.skill.bb">
+                            <i></i>
+                            BackboneJS
+                          </label>
+                        </li>
+                        <li class="ml-0">
+                          <label class="ui-checkbox m-0">
+                            <input type="checkbox" data-ng-model="$parent.form.skill.jquery">
+                            <i></i>
+                            Jquery
+                          </label>
+                        </li>
+                        <li class="ml-0">
+                          <label class="ui-checkbox m-0">
+                            <input type="checkbox" data-ng-model="$parent.form.skill.ember">
+                            <i></i>
+                            EmberJS
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group form-group-alt">
+                      <label>OS skills</label>
+                      <ul class="list-unstyled bg-no">
+                        <li class="ml-0">
+                          <label class="ui-checkbox m-0">
+                            <input type="checkbox" data-ng-model="$parent.form.skill.win">
+                            <i></i>
+                            Windows
+                          </label>
+                        </li>
+                        <li class="ml-0">
+                          <label class="ui-checkbox m-0">
+                            <input type="checkbox" data-ng-model="$parent.form.skill.osx">
+                            <i></i>
+                            OSX
+                          </label>
+                        </li>
+                        <li class="ml-0">
+                          <label class="ui-checkbox m-0">
+                            <input type="checkbox" data-ng-model="$parent.form.skill.linux">
+                            <i></i>
+                            Linux
+                          </label>
+                        </li>
+                        <li class="ml-0">
+                          <label class="ui-checkbox m-0">
+                            <input type="checkbox" data-ng-model="$parent.form.skill.other">
+                            <i></i>
+                            Other
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-alt">
+                      <label>Which do you prefer</label>
+                      <div>
+                        <label class="ui-radio">
+                          <input type="radio" data-ng-model="$parent.form.skill.prefer" value="1">
+                          <i></i>
+                          Webstorm
+                        </label>
+                        <label class="ui-radio">
+                          <input type="radio" data-ng-model="$parent.form.skill.prefer" value="2">
+                          <i></i>
+                          NetBeans
+                        </label>
+                        <label class="ui-radio">
+                          <input type="radio" data-ng-model="$parent.form.skill.prefer" value="3">
+                          <i></i>
+                          Notepad
+                        </label>
+                        <label class="ui-radio">
+                          <input type="radio" data-ng-model="$parent.form.skill.prefer" value="4">
+                          <i></i>
+                          Other
+                        </label>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group form-group-alt">
+                      <label>Other skills</label>
+                      <textarea class="form-control" placeholder="..." style="height:70px;"
+                                data-ng-model="$parent.form.skill.otherskills"></textarea>
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="checkbox px-2 mt-2">
+                <button type="button" data-toggle="tab" href="#t"
+                        class="btn btn-sm btn-outline-primary rounded-circle float-right "
+                        data-ng-click="$parent.wizardTabs = 3">Next <i class="fa fa-long-arrow-right"></i></button>
+                <button type="button" data-toggle="tab" href="#f"
+                        class="btn btn-sm btn-outline-secondary rounded-circle float-right mr-5"
+                        data-ng-click="$parent.wizardTabs = 1"><i class="fa fa-long-arrow-left"></i> Previous
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="t" role="tabpanel">
+      <div class="p-2 bg-white bb-l clearfix animated fadeIn bl-l br-l">
+        <h3 class="text-center">THANK YOU!</h3>
+        <div class="text-center"><i class="fa fa-smile-o fa-3x"></i></div>
+        <div class="text-center py-3 mb-3">
+          <button type="button" class="btn btn-outline-primary rounded-circle btn-lg" wz-next>Finish</button>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>Lorem ipsum dolor</h4>
+            <div class="mb-2">
+              <i class="fa fa-question float-left fa-3x"></i>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
+              rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+              explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+              consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+              dolorem ipsum quia dolor sit amet,
+            </div>
+            <div class="font-xs text-muted">
+              totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
+              sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+              consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+              dolorem ipsum quia dolor sit amet,
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h4>Nemo enim ipsam</h4>
+            <div class="mb-2">
+              <i class="fa fa-ambulance float-left fa-3x"></i>
+              Sed ut perspiciatis unde omnis iste natus errorem aperiam, eaque ipsa quae ab illo inventore veritatis
+              et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+              nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+            </div>
+            <div class="font-xs text-muted">
+              totam rem aperiam, eaque ipsa quae ab illo i explicabo. Nemo enim ipsam volup fugit, sed quia
+              consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+              dolorem ipsum quia dolor sit amet,
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h4>Illo inventore veritatis et quasi</h4>
+            <div class="mb-2">
+              <i class="fa fa-anchor float-left fa-3x"></i>
+              Sed ut perspiciatis unde omnis iste natlaudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+              veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
+              voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+              voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+            </div>
+            <div class="font-xs text-muted">
+              totam rem aperiam, eaque ipsa quae ab illo inventunt explicabo fugit, sed quia consequuntur magni
+              dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia
+              dolor sit amet,
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

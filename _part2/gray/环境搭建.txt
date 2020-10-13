@@ -1,0 +1,65 @@
+rocketmq配置
+在灰度管理平台配置灰度参数是，如果只配置了应用级别的灰度参数那么consumer会认为所有的consumer的topic相同都为应用配置界面配置的
+
+
+获取服务端配置：
+http://localhost:8080/gray/pullRocketmqConsumer/config?paygent
+
+paygent$$TopicGrayTest$$TagA
+
+
+ 
+对于dubbo的灰度
+我认为指定了一台包含有dubbo服务的应用实例未灰度机（提供provider服务），那么应该在cousumer调用的时候根据路由规则进行选择性调用，provider端本身不用去设置。使用灰度引擎的前提条件是必须要基于zookeeper最为注册中心。
+目前dubbo引擎只支持对象传送，非Integer，String等基本数据对象（当然String非基础数据类型）
+
+准备和配置工作：
+1、准备一台zookeeper，此zookeeper的机器要和管控平台注册的zookeeper为一个集群
+2、我这边准备了三台dubbo的provider，端口号分别是20881,20882,20883。准备了两台consumer，制定的端口号分别为21880,21881。
+3、consumer必须要引入dubbo的灰度引擎，pom中添加依赖如下（见例子dubbo-gray-consumer）：
+	<dependency>
+		<groupId>com.xlz</groupId>
+		<artifactId>gray-engine-dubbo</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+4、spring配置文件中添加如下：
+	<!-- 指定特定的loadbalance机制，也可以在单个dubbo:reference中指定 -->
+	<dubbo:provider loadbalance="grayrandom" />
+	<!-- 管控平台命令接收接口 -->
+	<bean id="grayCmdService" class="com.xlz.engine.dubbo.service.impl.GrayCmdServiceImpl" />
+	<dubbo:service interface="com.xlz.engine.dubbo.service.GrayCmdService" ref="grayCmdService" />
+5、以上已经完成了对应用的配置，首先我们启动服务端
+
+测试：
+下面我们针对不同的场景准备了测试用例。
+1、dubbo-gray-provider中准备了三个三台服务提供provider分别是在：
+	/dubbo-gray-provider-20882/src/main/java/com/alibaba/dubbo/test1/ProviderMain20881.java（对应的dubbo端口号为20881）
+	/dubbo-gray-provider-20882/src/main/java/com/alibaba/dubbo/test2/ProviderMain20882.java（对应的dubbo端口号为20882）
+	/dubbo-gray-provider-20882/src/main/java/com/alibaba/dubbo/test3/ProviderMain20883.java（对应的dubbo端口号为20883）
+这些provider都是将接收到的信息打印出来。
+
+2、dubbo-gray-consumer中同样准备了三台服务，三台应用分别向provider发送数据：
+	/dubbo-gray-consumer-21880/src/main/java/com/alibaba/dubbo/test1/ConsumerMain31881.java
+	/dubbo-gray-consumer-21880/src/main/java/com/alibaba/dubbo/test2/ConsumerMain31882.java
+	/dubbo-gray-consumer-21880/src/main/java/com/alibaba/dubbo/test3/ConsumerMain31883.java
+	
+consumer中分别启动了两个线程，发送的数据格说明：
+线程1中包装的person的name属性值为以zhangsan_开头，后面加上自增i的值，为了测试多属性和正则表达式，可以在正则策略中设置为^zhangsan_1（以zhangsan_1开头的）
+线程2中包装的person的name属性值分别从字符串数组{"zhangsan","lisi","wangwu"}中随机取值，分别测试白名单和正则
+
+3、在上面第五步已经完成了应用启动，现在所有consumer发送的数据随机的分配在了三台provider中
+
+4、白名单测试
+	A、在管控平台配置应用唯一标识（和dubbo:application一致）、灰度属性白、名单策略
+	B、并且添加了白名单{"name":"zhangsan"}、{"name":"lisi"}
+	C、指定灰度机（192.168.56.1:20881，ip根据自己的ip配置，可能因为多个网卡影响测试效果，确定dubbo中注册的ip）
+	D、在应用灰度或者服务灰度中启动灰度
+	E、再次观察provider接收到的数据，此刻看到只有在白名单的数据才落到了灰度机上，其他机器已经没有在白名单中的数据。同时不再白名单中的数据没有落在灰度机，之落在了其他应用实例中
+
+5、正则表达式测试
+同白名单测试
+6、小流量测试
+同白名单测试
+
+
+	

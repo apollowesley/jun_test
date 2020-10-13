@@ -1,0 +1,88 @@
+page {
+    background-color: #fff;
+}
+
+
+.banner{
+  width: 100%;
+  height: 400rpx;
+  background: url(http://www.zhaodui.com.cn/pic/index.jpg) center center no-repeat;
+      background-size: cover;
+
+}
+
+.loanItem {
+    width: 100%;
+    overflow: hidden;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+}
+
+.loanItem .items {
+    width: 100%;
+    padding: 20rpx 0;
+    border-bottom: 1px solid #bbb;
+    box-sizing: border-box;
+}
+
+.loanItem last-child {
+  border-bottom: none
+}
+
+.loanItem .items .title {
+    line-height: 52rpx;
+    font-size: 36rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+}
+
+.loanItem .items .c {
+    overflow: hidden;
+    padding-bottom:30rpx;
+}
+
+.loanItem .items .c .btn {
+    width: 188rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    text-align: center;
+    color: #fff;
+    background-color: #7aa6d1;
+    float: right;
+    font-size: 32rpx;
+    border-radius: 8px;
+}
+
+.loanItem .items .c .tags {
+    margin: 22rpx 200rpx 0 0;
+    display: -webkit-box;
+}
+
+.loanItem .items .c .tags view {
+    width: 100%;
+    -webkit-box-flex: 1;
+    box-sizing: border-box;
+    height: 50rpx;
+    line-height: 46rpx;
+    text-align: center;
+    margin-right: 22rpx;
+    color: #666;
+    border: 2rpx solid #bbb;
+    border-radius: 8px;
+    font-size: 24rpx;
+}
+
+.loanItem .items .b {
+    overflow: hidden;
+    color: #666;
+}
+
+.loanItem .items .r {
+    float: right;
+}
+
+.loanItem .items .l {
+    float: left;
+}

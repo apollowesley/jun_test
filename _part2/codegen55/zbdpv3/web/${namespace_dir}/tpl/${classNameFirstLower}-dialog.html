@@ -1,0 +1,45 @@
+<#assign className = table.className>   
+<#assign classNameFirstLower = className?uncap_first>
+<#assign classNameLowerCase = className?lower_case>
+<div>
+	<div class="modal-header">
+	    <a type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</a>
+	    <span class="modal-title"><rlabel key='${classNameFirstLower}Info'></rlabel></span>
+	</div>
+	<div class="modal-body">
+		<form class="validate-form"  role="form" novalidate="novalidate" name="basic_form_dialog" valid-Form="validForm">
+			<div class="panel-body">
+                 <#list table.columns as column>
+                    <#if column.pk>
+                    
+                    <#elseif  column.isDateTimeColumn>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label><rlabel key="${column.columnNameFirstLower}"></rlabel></label>
+                            <input type="text" class="form-control" dateselect="dateselect" name="${classNameFirstLower}Info.${column.columnNameFirstLower}" ng-model="${classNameFirstLower}Info.${column.columnNameFirstLower}" />
+                        </div>
+                    </div>
+                    <#elseif column.isNumberColumn >
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label><rlabel key="${column.columnNameFirstLower}"></rlabel></label> 
+                            <input type="text" class="form-control" name="${classNameFirstLower}Info.${column.columnNameFirstLower}" ng-model="${classNameFirstLower}Info.${column.columnNameFirstLower}" />
+                        </div>
+                    </div>
+                    <#else >
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label><rlabel key="${column.columnNameFirstLower}"></rlabel></label> 
+                            <input type="text" class="form-control" name="${classNameFirstLower}Info.${column.columnNameFirstLower}" ng-model="${classNameFirstLower}Info.${column.columnNameFirstLower}" />
+                        </div>
+                    </div>
+                    </#if>
+                    </#list>
+             </div>
+        </form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-warning" validCallBack="ok(basic_form_dialog)" formname="basic_form_dialog"><rlabel key='ok'></rlabel></button>
+		<button type="button" class="btn btn-default" ng-click="cancel()"><rlabel key='cancel'></rlabel></button>
+	</div>
+</div>

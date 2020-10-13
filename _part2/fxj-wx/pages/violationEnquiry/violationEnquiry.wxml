@@ -1,0 +1,56 @@
+<view class='title'>违章查询输入</view>
+
+<view class="data">
+
+        
+    
+    <view class='items'>
+        <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{lsnum}}' bindinput='lsnumInput' placeholder='请输入车牌号全部'></input>
+        </view>
+    </view>
+    <view class='items'>
+        <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{frameno}}' bindinput='framenoInput' placeholder='请输入车架号后六位'></input>
+        </view>
+    </view>
+    <view class='items'>
+        <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{engineno}}' bindinput='enginenoInput' placeholder='请输入发动机号后六位'></input>
+        </view>
+    </view>
+    <view class="btn" data-sbtype="6" bindtap='upEnclosure'>行驶证识别</view>
+    <view class="btn" bindtap='sbumitBtn'>违章查询</view>
+</view>
+
+<view class='wrap'>
+    <view class='title'>违章查询结果</view>
+    <view class='resultBox'>
+        <view class='list'>
+            <view class='l'>查询结果:</view>
+            <view class='r'>{{queryResults}}</view>
+        </view>
+        <view class='list'>
+            <view class='l'>违章次数:</view>
+            <view class='r'>{{violationTimes}}</view>
+        </view>
+        <view class='list'>
+            <view class='l'>总扣分:</view>
+            <view class='r'>{{totalDeduction}}</view>
+        </view>
+        <view class='list'>
+            <view class='l'>总罚款:</view>
+            <view class='r'>{{totalFine}}</view>
+        </view>
+    </view>
+
+    <view class='queryList' wx:for="{{list}}" wx:key="id" wx:if="list.length > 0">
+        <view class='h3'>{{item.wzxw}}</view>
+        <view class='p'>{{item.wzdd}}</view>
+        <view class='b'>
+            {{item.wzsj}}
+            <text>罚款{{item.wzfk}}</text>
+            <text>扣{{item.wzjf}}分</text>
+        </view>
+    </view>
+</view>

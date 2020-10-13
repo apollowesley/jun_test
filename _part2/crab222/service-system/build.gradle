@@ -1,0 +1,14 @@
+description "Crab Service System"
+
+dependencies {
+    // compile fileTree(dir: "../libs", include: "*.jar")
+    compile project(":service-parent")
+    compile("com.baomidou:crab-core:0.1")
+    compile("com.google.zxing:core")
+    compile("com.belerweb:pinyin4j")
+    compile("p6spy:p6spy")
+
+    testCompile("com.baomidou:mybatis-plus-generator")
+    testCompile("org.freemarker:freemarker")
+
+}

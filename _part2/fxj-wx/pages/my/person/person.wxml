@@ -1,0 +1,58 @@
+<view class="centerTop">
+    <view class='hd' style='background-image:url({{rawData.avatarUrl}})'></view>
+    <view class='bd'>
+        <view class='name'>{{rawData.nickName}}</view>
+    </view>
+</view>
+
+<view class='borderbox'>
+    <view class='tbviewlist'>
+        <view class='items' bindtap="goPersonData">
+            <view class='c'>
+                <view class='ico ico-data'></view>
+                个人资料
+            </view>
+        </view>
+        <view class='items' bindtap="goMyDraft">
+            <view class='c'>
+                <view class='ico ico-draft'></view>
+                我的草稿
+            </view>
+        </view>
+        <!-- <view class='items' bindtap="goMessage">
+            <view class='c'>
+                <view class='ico ico-message'></view>
+                消息通知
+            </view>
+        </view> -->
+        <view class='items' bindtap="goCount">
+            <view class='c'>
+                <view class='ico ico-count'></view>
+                我的统计
+            </view>
+        </view>
+        <view class='items' bindtap="goTeam">
+            <view class='c'>
+                <view class='ico ico-team'></view>
+                我的团队
+            </view>
+        </view>
+        <!-- <view class='items' bindtap="goTool">
+            <view class='c'>
+                <view class='ico ico-team'></view>
+                展业工具
+            </view>
+        </view> -->
+    </view>
+</view>
+
+<view class='borderbox'>
+    <view class='tbviewlist'>
+        <view class='items' bindtap="goFeedback">
+            <view class='c'>
+                <view class='ico ico-feedback'></view>
+                反馈意见
+            </view>
+        </view>
+    </view>
+</view>

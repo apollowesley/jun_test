@@ -1,0 +1,37 @@
+<view class="topBar">
+    <view class='title'>GPS安装拍照</view>
+    <view class='p'>GPS安装照片</view>
+</view>
+<view class='uploadimg'>
+    <view class='items' wx:for="{{picUrlList}}" wx:key="id">
+        <view class='delete' bindtap='deletePic' data-index="{{index}}" data-picId="{{item.id}}"></view>
+        <view class='pic' style='background-image:url({{item.attaUrl}})'></view>
+    </view>
+    <view class='items'>
+        <view class='pic' bindtap='getEnclosurePic'></view>
+    </view>
+</view>
+<!-- <view class='ocr mt'>
+    <view class="title">上传附件</view>
+    <view class='imgMain'>
+        <view class='items' wx:for="{{fxjProAttList}}"wx:if="{{item.attType ==140 || item.attType ==150 }}" wx:key="id">
+            <view class='hd'>
+                <view class='con'>
+                    <view class='ico'></view>
+                    <view class='text'>{{item.attName}}</view>
+                </view>
+            </view>
+            <view class='bd'>
+                <view class='uploadimg'>
+                    <view class='items' wx:for='{{item.fxjOrderAttaList}}' wx:key='id' wx:for-index='idx'>
+                        <view class='delete' data-img-idx="{{idx}}" data-index="{{index}}" bindtap='deletePic'></view>
+                        <view class='pic' style='background-image:url({{item.attaUrl}})' data-picId="{{item.picId}}"></view>
+                    </view>
+                    <view class='items'>
+                        <view class='pic' bindtap='getEnclosurePic' data-attType="{{item.attType}}" data-index="{{index}}"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> -->

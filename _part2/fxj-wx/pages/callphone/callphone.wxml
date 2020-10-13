@@ -1,0 +1,67 @@
+
+<view class='ocr'>
+    <view class="title">联系列表</view>
+    <view class='block'>
+      <view class="left">
+        <view class="first">{{ocrName}}</view>
+        <view class="second">
+        <view class="l">手机号</view>
+        <view class="r">{{telephone}}</view>
+        </view>
+      </view>
+      <view class="right" bindtap="callPhone">
+        <view class="icon icon-04"></view>
+      </view>
+    </view>
+
+    <view class='block' wx:for="{{fxjOrderEmerList}}">
+      <view class="left">
+        <view class="first">{{item.emergencyContact}}</view>
+        <view class="second">
+        <view class="l">手机号</view>
+        <view class="r">{{item.emergencyMobile}}</view>
+        </view>
+        
+      </view>
+      <view class="right" bindtap="callPhone1">
+        <view class="icon icon-04"></view>
+      </view>
+    </view>
+    <!-- <view class='block'>
+      <view class="left">
+        <view class="first">{{spouseName}}</view>
+        <view class="second">
+        <view class="l">手机号</view>
+        <view class="r">{{spouseTelephone}}</view>
+        </view>
+        
+      </view>
+      <view class="right" bindtap="callPhone1">
+        <view class="icon icon-04"></view>
+      </view>
+    </view>
+
+    <view class='block'>
+      <view class="left">
+        <view class="first">{{urgent}}</view>
+        <view class="second">
+          <view class="l">手机号</view>
+          <view class="r">{{urgentTelephone}}</view>
+        </view>
+      </view>  
+      <view class="right" bindtap="callPhone2">
+        <view class="icon icon-04"></view>
+      </view>
+    </view> -->
+</view>
+<view class='ocr'>
+   <view class="title">通话内容</view>
+ 
+  <view class="contentView">
+  <view class="textarea_bg">
+    <textarea bindinput="textareaInput1"  value="{{orderBy36}}" maxlength="-1" auto-height />
+  </view>
+</view>
+</view>
+<view class='submitBtn' bindtap="submitBtn">提交申请</view>
+

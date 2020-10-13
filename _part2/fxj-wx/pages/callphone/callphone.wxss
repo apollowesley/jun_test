@@ -1,0 +1,120 @@
+/* page{
+  background: #fff;
+} */
+.icon-04{
+  background: url(http://www.zhaodui.com.cn/pic/phone.png) center center no-repeat;
+  background-size: 90%;
+  width: 50rpx;
+  height: 50rpx;
+}
+.block{
+  height: 140rpx;
+  width: 90%;
+  margin-left: 5%;
+  border: 1rpx solid #8C8C8C;
+  border-radius: 15rpx;
+  margin-top: 30rpx;
+  display: flex;
+  position: relative;
+}
+.first{
+  font-size: 30rpx;
+  font-weight: strong;
+  margin: 20rpx 0 10rpx 30rpx;
+
+}
+.second{
+  color: #8C8C8C;
+    font-size: 24rpx;
+    display: flex;
+
+}
+.second .l{
+margin: 10rpx 50rpx 0 30rpx;
+width: 80rpx;
+}
+.second .r{
+margin: 10rpx 50rpx 0 30rpx;
+
+}
+.left{
+  flex: 1
+}
+.right{
+  margin: 48rpx 20rpx 0;
+}
+.ocr {
+    margin:20rpx 0;
+    background-color: #fff;
+    border-radius: 20rpx;
+    overflow: hidden;
+    padding: 20rpx 0;
+    position: relative;
+}
+.ocr .title {
+    height: 70rpx;
+    line-height: 70rpx;
+    margin: 0 34rpx;
+    padding-left: 16rpx;
+    color: #6a5038;
+    position: relative;
+    font-size: 32rpx;
+    font-weight: bold;
+}
+.ocr .title::before {
+    content: '';
+    width: 6rpx;
+    height: 30rpx;
+    background-color: #2a2a2a;
+    position: absolute;
+    left: 0;
+    top: 20rpx;
+}
+
+.ocr .title .certificate {
+    float: right;
+    color: #3c8cf0;
+    font-size: 28rpx;
+    font-weight: normal;
+}
+
+.ocr .title .certificate::after {
+    font-family: iconfont;
+    content: "\e62a";
+    font-size: 36rpx;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 4rpx;
+    font-weight: normal;
+}
+
+.contentView{
+  width: 100%;
+  margin-top: 20rpx;
+}
+.textarea_title{
+  margin-left: 20rpx;
+  color: gray
+}
+.textarea_bg{
+  padding: 0 25rpx;
+  background-color: #fff;
+  border: 1rpx solid #8C8C8C;
+  border-radius: 20rpx;
+  margin: 0 20rpx;
+}
+textarea{
+  width: 700rpx;
+  padding: 25rpx 0;
+  margin-left: -16rpx;
+} 
+.submitBtn {
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    color: #fff;
+    margin: 42rpx;
+    background-color: #3c8cf0;
+    border-radius: 20rpx;
+    font-size: 36rpx;
+}

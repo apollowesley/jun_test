@@ -1,0 +1,373 @@
+body {
+	font-size: 18px!important;
+}
+
+.h-nav {
+	position: fixed;
+	width: 100%;
+	font-size: 0;
+	background: -webkit-linear-gradient(#B5B0B0, #F4F4F8, #C4C9C4);
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#B5B0B0, #F4F4F8, #C4C9C4);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#B5B0B0, #F4F4F8, #C4C9C4);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(#B5B0B0, #F4F4F8, #C4C9C4);
+	/* 标准的语法 */
+	z-index: 10;
+}
+
+.h-nav .active {
+	background: -webkit-linear-gradient(#6ADDEE, #4FBFCF, #68D7E8);
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#6ADDEE, #4FBFCF, #68D7E8);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#6ADDEE, #4FBFCF, #68D7E8);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(#6ADDEE, #4FBFCF, #68D7E8);
+	/* 标准的语法 */
+}
+
+.juTou,
+.fengLu {
+	display: inline-block;
+	width: 50%;
+	padding: 15px 0;
+	font-size: 18px;
+	color: #000;
+	text-align: center;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.juTou {
+	border-right: 1px solid #A69D9D;
+}
+
+
+/***单据头***/
+
+#mainContent {
+	margin-bottom: 20%;
+	margin-left: 14px;
+}
+
+#form1 {
+	padding-top: 17%;
+	font-size: 18px!important;
+	padding-bottom: 10px;
+	/* border-bottom: 1px solid #CAC5C5;*/
+}
+
+.form-horizontal .control-label {
+	float: left;
+	width: 34%;
+	margin-right: 12px;
+	padding-top: 5px;
+	text-align: left;
+	font-size: 18px!important;
+}
+
+.form-group {
+	margin-top: 9px;
+}
+
+input.form-control {
+	width: 50%;
+}
+
+#organize,
+#affairType,
+#transport,
+#code {
+	background-color: #FCFBDF;
+}
+
+#itemTitle {
+	position: relative;
+	top: 22px;
+	left: 131px;
+	color: #3D8AE8;
+}
+
+#form2 .control-label {
+	width: 22%;
+}
+
+#choosePic {
+	width：22px;
+	height: 22px;
+}
+
+.image-div {
+	position: relative;
+	width: 46%;
+	display: inline-block;
+	height: 25%;
+	margin: 2% 0 2% 3%
+}
+
+.image-div img {
+	width: 100%;
+	height: 25%;
+}
+
+.image-upload-div {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background-color: #000;
+	opacity: 0.6;
+	color: #fff;
+	text-align: center;
+	font-size: 2rem
+}
+
+.image-delete-btn {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.big-image-div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #ddd;
+	text-align: center;
+	display: none;
+	z-index: 9999
+}
+
+.big-image-div img {
+	width: 80%;
+	margin-top: 100px;
+}
+
+.body-overflow-hidden {
+	overflow: hidden;
+}
+
+
+/***出库分录***/
+
+#outputContent {
+	padding-top: 17%;
+	padding-bottom: 20%;
+}
+
+
+/*.table{
+	margin-bottom: 15%;
+	
+}*/
+
+#detailTable {
+	margin-bottom: 2px;
+}
+
+#add-btn {
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	line-height: 1.8;
+	background-color: #16A6BB;
+	margin-bottom: 0px;
+}
+
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+select[readonly],
+textarea[readonly] {
+	cursor: not-allowed;
+	background-color: #eeeeee;
+}
+
+
+/***弹窗***/
+
+.dialog-wapper {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.mask-layer {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	opacity: .5;
+	z-index: 11;
+}
+
+.d-inner-wapper {
+	position: relative;
+	right: 0;
+	top: 10%;
+	width: 65%;
+	margin: 0 auto;
+	padding: 15px 10px;
+	font-size: 18px;
+	color: #000;
+	background-color: #ffffff;
+	border: 1px solid #999999;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 6px;
+	-webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+	z-index: 12;
+}
+
+#form3 .control-label {
+	width: 44%;
+	margin-right: 0px;
+}
+
+#form3 .form-control {
+	width: 49%;
+}
+
+#batch,
+#amount,
+#pigWeight {
+	background-color: #FCFBDF;
+}
+
+
+/*.diw-item {
+	position: relative;
+	margin-bottom: 15px;
+}
+.diw-item label {
+	width: 38%;
+	float: left;
+	font-size: 18px;
+}
+.diw-item input[type="text"] {
+	width: 60%;
+	height: 27px;
+	float: right;
+	font-size: 18px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.diw-jiYang-item {
+	position: relative;
+	left: 65%;
+	margin-right: 20px;
+	font-size: 18px;
+	color: #000;
+}
+.diw-jiYang-item input {
+	height: 19px;
+	width: 19px;
+}
+.diw-jiYang-item label {
+	display: inline-block;
+	font-size: 18px;
+}*/
+
+.diw-btns {
+	margin-top: 25px;
+}
+
+.diw-btns button {
+	margin-left: 6%;
+	font-size: 18px;
+	color: #000;
+}
+
+#ensure {
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #5bb75b;
+	background-image: -moz-linear-gradient(top, #62c462, #51a351);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+	background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+	background-image: -o-linear-gradient(top, #62c462, #51a351);
+	background-image: linear-gradient(to bottom, #62c462, #51a351);
+	background-repeat: repeat-x;
+	border-color: #51a351 #51a351 #387038;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+#delet {
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #da4f49;
+	background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+	background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+	background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+	background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+	background-repeat: repeat-x;
+	border-color: #bd362f #bd362f #802420;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.error {
+	display: none;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	font-size: 16px;
+	color: red;
+}
+
+#bottom {
+	background-color: #16A6BB;
+	height: 50px;
+	color: white;
+}
+
+.save {
+	margin-left: 7px;
+	position: relative;
+	top: 10px;
+	font-size: 18px;
+	float: right;
+}
+
+.queryList {
+	margin-left: 7px;
+	margin-right: 11px;
+	position: relative;
+	top: 10px;
+	font-size: 18px;
+	float: right;
+}
+
+.nav_seprator {
+	margin-left: 7px;
+	position: relative;
+	top: 10px;
+	font-size: 18px;
+	float: right;
+}
+
+.commit {
+	float: right;
+	position: relative;
+	top: 10px;
+	margin-left: 7px;
+}
+
+.delete {
+	float: right;
+	position: relative;
+	top: 10px;
+	margin-left: 7px;
+}

@@ -1,0 +1,80 @@
+<view class="bannerspmq"></view>
+<view class='ocr'>
+    <view class="title">OCR身份证识别</view>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>姓名:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrName}}' bindinput='ocrNameInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>性别:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrSex}}' bindinput='ocrSexInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>民族:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrNation}}' bindinput='ocrNationInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>出生:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrBirth}}' bindinput='ocrBirthInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>地址:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrAddress}}' bindinput='ocrAddressInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>身份证号:</view>
+            <view class='bd'>
+                <input type='idcard' placeholder-class="placeholder" value='{{ocrIdNumber}}' bindinput='ocrIdNumberInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>签发机关:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrOffice}}' bindinput='ocrOfficeInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>有效期限:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrValidityPeriod}}' bindinput='ocrValidityPeriodInput'></input>
+            </view>
+        </view>
+
+        <view class='items'>
+            <view class='hd'>人脸对比相似度%:</view>
+            <view class='bd'>
+                <input type='text'   placeholder-class="placeholder" value='{{rldbxsd}}' bindinput='rldbxsdInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>面签人:</view>
+            <view class='bd'>
+                <input type='text'   placeholder-class="placeholder" value='{{yinhangUser}}' bindinput='yinhangUserInput'></input>
+            </view>
+        </view>
+    </view>
+    <view class='ocrUpload'>
+        <view class="ocrUploadBtn" data-sbtype="2" bindtap='upEnclosure'>身份人面像</view>
+        <view class="ocrUploadBtn" data-sbtype="3" bindtap='upEnclosure'>身份国徽面</view>
+        <view class="ocrUploadBtn" data-sbtype="99" bindtap='upEnclosurerldb'>人脸对比</view>
+
+    </view>
+</view>
+
+<!-- <view class='img-wrap'>
+    <image src='http://www.zhaodui.com.cn/pic/meeting.png'></image>
+
+</view> -->
+
+<view class='submitBtn' bindtap="submitBtn">进入面签</view>

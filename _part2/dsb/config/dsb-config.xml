@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dsb:DSBConf xmlns:dsb="http://www.ideal.sh.cn/dynamic-service-bean">
+	<dsb.server.name>dsb-server-1</dsb.server.name>
+	<dsb.deploy.dir>deploy</dsb.deploy.dir>
+	<dsb.annotation.bypass.dir>libs</dsb.annotation.bypass.dir>
+	<dsb.socket.port>10001</dsb.socket.port>
+	<dsb.rmi.server.port>10002</dsb.rmi.server.port>
+	<dsb.server.language>zh</dsb.server.language>
+	<dsb.server.log.dir>log</dsb.server.log.dir>
+	<dsb.server.log.name>dsbserver</dsb.server.log.name>
+	<dsb.server.log.level>0</dsb.server.log.level>
+	<!--Unit: M bytes -->
+	<dsb.server.log.maxfilesize>3</dsb.server.log.maxfilesize>
+	<cmd.server.port>8585</cmd.server.port>
+	<cmd.thread.count>3</cmd.thread.count>
+	<!--Unit: millisecond -->
+	<cmd.conn.timeout>180000</cmd.conn.timeout>
+	<startupservices>
+		<service>DSB/HelloWorldService</service>
+	</startupservices>
+	<disabledservices>
+		<service>DSB/HelloWorldService</service>
+	</disabledservices>
+	<systemprops>
+		<prop.name>java.library.path</prop.name>
+		<prop.value>dll</prop.value>
+	</systemprops>
+	<!-- systemprops> <prop.name>java.rmi.server.hostname</prop.name> <prop.value>server-master.dsb.ideal.com</prop.value> 
+		</systemprops -->
+</dsb:DSBConf>

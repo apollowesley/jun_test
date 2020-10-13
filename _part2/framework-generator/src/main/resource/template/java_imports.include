@@ -1,0 +1,5 @@
+import java.util.*;
+import java.lang.*;
+import ${basepackage}.entity.*;
+import ${basepackage}.repository.*;
+import ${basepackage}.service.*;

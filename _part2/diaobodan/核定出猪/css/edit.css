@@ -1,0 +1,61 @@
+
+.common_div{
+	border: 0px solid;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+	margin-top:10px;
+}
+
+.common_div .ext-input-append{
+	margin-top:2px;
+	margin-bottom:2px;
+	width:100%;
+}
+.common_div .control-label-ext{
+	width:20%;
+}
+.common_div .controls-ext{
+	margin-left:25%;
+	width:80%;
+}
+.editTable {
+	width:100%;
+	margin-left:0px;
+	margin-right:0px;
+	margin-top:10px;
+    border: 1px solid #ddd;
+    border-collapse: collapse!important;
+}
+.editTable thead{
+	
+}
+.editTable thead tr{
+	height:30px;
+	border:1px solid #bbb;
+	background-color:#ddd
+}
+.editTable thead tr th{
+	border:1px solid #bbb;
+}
+
+.editTable tbody{
+	
+}
+.editTable tbody tr{
+	height:30px;
+	border:1px solid #bbb;
+}
+.editTable tbody tr td{
+	border:1px solid #bbb;
+}
+.editTable .addnewrow{
+	background-color:#FF0000
+}
+
+.editTable .summary{
+	background-color:#00FF00
+}
+.editTable .pigcount{
+	text-align:right;
+}

@@ -1,0 +1,289 @@
+<view class="banner"></view>
+<view class='ocr'>
+    <view class="title">OCR身份证识别</view>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>姓名:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrName}}' bindinput='ocrNameInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>性别:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrSex}}' bindinput='ocrSexInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>民族:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrNation}}' bindinput='ocrNationInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>出生:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrBirth}}' bindinput='ocrBirthInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>地址:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrAddress}}' bindinput='ocrAddressInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>身份证号:</view>
+            <view class='bd'>
+                <input type='idcard' placeholder-class="placeholder" value='{{ocrIdNumber}}' bindinput='ocrIdNumberInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>签发机关:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrOffice}}' bindinput='ocrOfficeInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>有效期限:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{ocrValidityPeriod}}' bindinput='ocrValidityPeriodInput'></input>
+            </view>
+        </view>
+    </view>
+    <view class='ocrUpload'>
+        <view class="ocrUploadBtn" data-sbtype="2" bindtap='upEnclosure'>身份人面像</view>
+        <view class="ocrUploadBtn" data-sbtype="3" bindtap='upEnclosure'>身份国徽面</view>
+    </view>
+</view>
+
+
+
+<view class='ocr mt' >
+    <view class="title">OCR驾驶证识别</view>
+    <view class='ocrMain'>
+        
+        <view class='items'>
+            <view class='hd'>所有人:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{orderBy28}}' bindinput='holder1Input'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>注册/发证日期:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{orderBy29}}' bindinput='dateIssue1Input'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>使用性质:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{orderBy30}}' bindinput='nature1Input'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>住址:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{orderBy31}}' bindinput='address1Input'></input>
+            </view>
+        </view>
+    </view>
+    <view class='ocrUpload'>
+        <view class="ocrUploadBtn" data-sbtype="5" bindtap='upEnclosure'>驾驶证正本</view>
+    </view>
+</view>
+
+<!-- <view class='ocr mt' >
+    <view class="title">OCR行驶证识别</view>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>品牌/车型:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{brand}}' bindinput='brandInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车牌号:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{plateNumber}}' bindinput='plateNumberInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>所有人:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{holder}}' bindinput='holderInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>注册/发证日期:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{dateIssue}}' bindinput='dateIssueInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>使用性质:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{nature}}' bindinput='natureInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>住址:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{address}}' bindinput='addressInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车架号:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{vinno}}' bindinput='vinnoInput'></input>
+            </view>
+        </view>
+      <view class='ocrUpload'>
+        <view class="ocrUploadBtn" data-sbtype="6" bindtap='upEnclosure'>驾驶证正本</view>
+    </view>
+    </view>
+</view> -->
+
+<view class='ocr mt'>
+    <view class="title">个人资料</view>
+    <view class='data'>
+  <view class='items'>
+            <view class='hd'>电话:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写电话" value='{{telephone}}' bindinput='telephoneInput'></input>
+            </view>
+        </view>
+
+          <view class='items'>
+            <view class='hd'>单位名称:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写单位名称" value='{{orderBy6}}' bindinput='orderBy6Input'></input>
+            </view>
+        </view>
+
+          <view class='items'>
+            <view class='hd'>单位地址:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写单位地址" value='{{orderBy7}}' bindinput='orderBy7Input'></input>
+            </view>
+        </view>
+
+        <view class='items'>
+            <view class='hd'>月收入:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写月收入" value='{{orderBy8}}' bindinput='orderBy8Input'></input>
+            </view>
+        </view>
+
+        <view class='items'>
+            <view class='hd'>银行卡:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写储蓄卡" value='{{orderBy9}}' bindinput='orderBy9Input'></input>
+            </view>
+        </view>
+        <view class='items' >
+            <view class='hd'>开户行:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写开户行" value='{{orderBy10}}' bindinput='orderBy10Input'></input>
+            </view>
+        </view>
+        <view class='items' >
+            <view class='hd'>银行预留电话:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写银行预留电话" value='{{orderBy11}}' bindinput='orderBy11Input'></input>
+            </view>
+        </view>
+
+        <view class='items'>
+            <view class='hd'>现居住地址:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写居住地址" value='{{orderBy12}}' bindinput='orderBy12Input'></input>
+            </view>
+        </view>
+        <!-- <view class='items'>
+            <view class='hd'>联系电话:</view>
+            <view class='bd'>
+                <input type='number' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写联系电话" value='{{orderBy13}}' bindinput='orderBy13Input'></input>
+            </view>
+        </view> -->
+        <!-- <view class='items'>
+            <view class='hd'>婚姻状况:</view>
+            <view class='bd'>
+                <radio-group class="radio-group" bindchange="radioChange">
+                    <label class="radio">
+                        <radio value="1" color='#7aa6d1' /> 已婚
+                    </label>
+                    <label class="radio">
+                        <radio value="2" color='#7aa6d1' /> 未婚
+                    </label>
+                     <label class="radio">
+                        <radio value="3" color='#7aa6d1' /> 离异/丧偶
+                    </label>
+                </radio-group>
+            </view>
+        </view> -->
+         <!-- <view class='items'>
+            <view class='hd'>供养人数(人):</view>
+            <view class='bd'>
+                <input type='number' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写供养人数" value='{{orderBy38}}' bindinput='orderBy38Input'></input>
+            </view>
+        </view> -->
+        <!-- <view class='items'>
+    <view class='hd'>是否有子女:</view>
+      <view class='bd'>
+        <radio-group class="radio-group" bindchange="radioChangeOne">
+            <label class="radio">
+                <radio value="是" color='#7aa6d1' /> 是
+            </label>
+            <label class="radio">
+                <radio value="否" color='#7aa6d1' /> 否
+            </label>
+        </radio-group>
+      </view>
+    </view> -->
+        
+        <!-- <view class='items'>
+            <view class='hd'>紧急联系人:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写紧急联系人姓名" value='{{urgent2}}' bindinput='urgent2Input'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>联系电话:</view>
+            <view class='bd'>
+                <input type='number' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写紧急联系人电话" value='{{urgentTelephone2}}' bindinput='urgentTelephone2Input'></input>
+            </view>
+        </view> -->
+    </view>
+</view>
+
+
+<view class='ocr mt'>
+    <view class="title">上传附件</view>
+    <view class='imgMain'>
+        <view class='items' wx:for="{{fxjProAttList}}"   wx:key="id">
+            <view class='hd'>
+                <view class='con'>
+                    <view class='ico'></view>
+                    <view class='text'>{{item.attName}}</view>
+                </view>
+            </view>
+            <view class='bd'>
+                <view class='uploadimg'>
+                    <view class='items' wx:for='{{item.fxjOrderAttaList}}' wx:key='id' wx:for-index='idx'>
+                        <view class='delete' data-img-idx="{{idx}}" data-index="{{index}}" bindtap='deletePic'></view>
+                        <view class='pic' style='background-image:url({{item.attaUrl}})' data-picId="{{item.picId}}"></view>
+                    </view>
+                    <view class='items'>
+                        <view class='pic' bindtap='getEnclosurePic' data-attType="{{item.attType}}" data-index="{{index}}"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class='btnBar'>
+    <view class='btn' data-proNo="{{proNo}}" bindtap='saveBtn'>保存</view>
+    <view class='btn blue' data-proNo="{{proNo}}" bindtap='submitBtn'>提交</view>
+</view>

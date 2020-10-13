@@ -1,0 +1,134 @@
+page {
+    background-color: #FFFFFF;
+}
+
+.centerTop {
+    padding:30rpx 40rpx;
+    background-color: #7aa6d1;
+    position: relative;
+    overflow: hidden;
+    color: #FFFFFF;
+}
+.centerTop .hd {
+    width: 104rpx;
+    height: 104rpx;
+    border: 2rpx solid #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+    padding: 6rpx;
+    box-sizing: border-box;
+}
+.centerTop .hd image {
+    width: 88rpx;
+    height:88rpx;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.lendingVolume {
+    margin: 0 40rpx;
+    padding: 20rpx 0 0;
+    border-bottom: 2rpx solid #eeeeee;
+}
+
+.lendingVolume .title {
+    height: 70rpx;
+    line-height: 70rpx;
+    position: relative;
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.lendingVolume .text {
+    text-align: center;
+    font-size: 56rpx;
+    padding:20rpx 0 40rpx;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.lendingVolume .text image {
+    width: 50rpx;
+    height: 50rpx;
+    margin-right:30rpx;
+}
+.report {
+    margin:0 40rpx;
+    overflow: hidden;
+}
+
+.report .items {
+    width: 100%;
+    float: left;
+    margin: 20rpx 0;
+}
+
+.report .items .p {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+    height:60rpx;
+    line-height: 60rpx;
+    padding-left: 34rpx;
+    position: relative;
+}
+
+.report .items .percent {
+    height:50rpx;
+    line-height: 50rpx;
+    font-size: 36rpx;
+}
+
+.report .items .p::before {
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    position: absolute;
+    left:0;
+    top:20rpx;
+    content: '';
+}
+.report .items .p:nth-child(2)::before {
+    background-color: #6bce4f;
+}
+.report .items .p:nth-child(3)::before {
+    background-color: #217ce6;
+}
+.report .items .p:nth-child(4)::before {
+    background-color: #3d475e;
+}
+
+.report .items .p:last-child::before {
+    background-color: #e51c23;
+}
+
+.report .items .p text {
+   padding-left: 20rpx;
+}
+
+.report .title {
+    height: 70rpx;
+    line-height: 70rpx;
+    position: relative;
+    font-size: 36rpx;
+    margin-bottom: 20rpx;
+    font-weight: bold;
+}
+
+
+.report .items.w50 {
+    width: 50%;
+    float: left;
+    margin: 20rpx 0;
+}
+
+.report .items.w50 p {
+    width: 100%;
+    float: left;
+    margin: 20rpx 0;
+}

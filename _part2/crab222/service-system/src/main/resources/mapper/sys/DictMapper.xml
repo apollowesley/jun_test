@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baomidou.crab.sys.mapper.DictMapper">
+
+    <select id="selectByParentCode" resultType="com.baomidou.crab.sys.entity.Dict">
+        SELECT id,name,content FROM sys_dict WHERE pid=(SELECT id FROM sys_dict
+        WHERE status=0 AND deleted=0 AND code=#{parentCode} LIMIT 1) AND status=0 AND deleted=0
+        ORDER BY sort
+    </select>
+</mapper>

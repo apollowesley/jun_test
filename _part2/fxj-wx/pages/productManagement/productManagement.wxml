@@ -1,0 +1,152 @@
+<view hidden='{{pageHidden}}'>
+    <view class="centertabbar">
+        <view class="items {{orderStatusType == index ?'active':''}}" wx:for="{{tabBars}}" wx:key="index" data-index="{{index}}" bindtap='clickTab'>
+            <text>{{item.name}}</text>
+        </view>
+    </view>
+    <!-- <view class='orderList'>
+        <view class='items' wx:for="{{list}}" wx:key="id">
+            <view class='hd'>
+                <view class='r'>  {{item.createDate}}</view>
+                <view class='l'>{{item.cusName}}</view>
+            </view>
+            <view class="bd">
+                <view class='t'>
+                    <view class='l'>{{item.proName}}</view>
+                    <view class='c'>金额：{{item.orderAmount}}</view>
+                    <view class='r'>期数：{{item.orderPeriod}}</view>
+                </view>
+                <view class='middle'>
+                    <view class='l'>{{item.proNo == 30 || item.proNo == 40 ? "车型：" : "品牌："}}{{item.orderCartype}}{{item.proNo == 30 || item.proNo == 40 ? "" : ""}}</view>
+                    <view class='c'>{{item.proNo == 30 || item.proNo == 40 ? "品牌：" : "车牌："}}{{item.orderCarno}}</view>
+                </view>
+                <view class='b'>
+                    <view class='btn' bindtap='goCustomerInfo' data-orderNo="{{item.orderNo}}" data-proNo="{{item.proNo}}">客户资料</view>
+                    <view class='btn' bindtap='goApprovalLog' data-orderNo="{{item.orderNo}}">审批日志</view>
+                    <view class='btn' bindtap='goDischargePetition' data-orderNo="{{item.orderNo}}" data-id="{{item.id}}" wx:if="{{item.bpmStatus != '80'}}">撤销申请</view>
+
+                    <view class='btn' bindtap='goPaymentSchedule' data-orderNo="{{item.orderNo}}" data-id="{{item.id}}" wx:if="{{item.bpmStatus == '80'}}">计划表</view>
+
+                    <view class='btn bgBlur' bindtap='goSignedFace' data-orderNo="{{item.orderNo}}" data-id="{{item.id}}" data-proNo="{{item.proNo}}" data-mpUrl="{{item.mpUrl}}">{{item.mpName}}</view>
+                </view>
+            </view>
+        </view>
+    </view> -->
+
+    <view class="loanItem-list" wx:if="{{orderStatusType == 0}}">
+      <view class="item" data-proNo="10" data-proName="私家车险服务" bindtap='goApplyMortgage'>
+        <view class='item-l'>
+          <view class='item-pic'>
+            <image class='c' src="../../images/home/ico-home06.png"></image>
+          </view>
+          <view class='item-l-t'>私家车</view>
+        </view>
+        <view class='item-m'>
+          <view class='item-name'>私家车险服务</view>
+          <text class='item-info'>7*24h 您的私人车管家</text>
+          <view class='item-text'>
+            <text class='item-pri'>¥10/日起</text>
+            <text class='item-txt'> | 超高性价比，车险任性分</text>
+          </view>
+        </view>
+      </view>
+      <view class="item" data-proNo="20" data-proName="商车服务" bindtap='goApplyMortgage'>
+        <view class='item-l'>
+          <view class='item-pic'>
+            <image class='c' src="../../images/home/ico-home07.png"></image>
+          </view>
+          <view class='item-l-t'>商业车</view>
+        </view>
+        <view class='item-m'>
+          <view class='item-name'>商车服务</view>
+          <text class='item-info'>7*24h 您的私人车管家</text>
+          <view class='item-text'>
+            <text class='item-pri'>¥20/日起</text>
+            <text class='item-txt'> | 超高性价比，车险任性分</text>
+          </view>
+        </view>
+      </view>
+      <view class="item" data-proNo="30" data-proName="特种车辆服务" bindtap='goApplyMortgage'>
+        <view class='item-l'>
+          <view class='item-pic'>
+            <image class='c' src="../../images/home/ico-home08.png"></image>
+          </view>
+          <view class='item-l-t'>特种车</view>
+        </view>
+        <view class='item-m'>
+          <view class='item-name'>特种车辆服务</view>
+          <text class='item-info'>7*24h 您的私人车管家</text>
+          <view class='item-text'>
+            <text class='item-pri'>¥30/日起</text>
+            <text class='item-txt'> | 超高性价比，车险任性分</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="loanItem-list" wx:if="{{orderStatusType == 1}}">
+      <view class="item" data-proNo="10" data-proName="私家车险服务" bindtap='goApplyMortgage'>
+        <view class='item-l'>
+          <view class='item-pic'>
+            <image class='c' src="../../images/home/ico-home06.png"></image>
+          </view>
+          <view class='item-l-t'>私家车</view>
+        </view>
+        <view class='item-m'>
+          <view class='item-name'>私家车险服务</view>
+          <text class='item-info'>7*24h 您的私人车管家</text>
+          <view class='item-text'>
+            <text class='item-pri'>¥10/日起</text>
+            <text class='item-txt'> | 超高性价比，车险任性分</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="loanItem-list" wx:if="{{orderStatusType == 2}}">
+      <view class="item" data-proNo="20" data-proName="商车服务" bindtap='goApplyMortgage'>
+        <view class='item-l'>
+          <view class='item-pic'>
+            <image class='c' src="../../images/home/ico-home07.png"></image>
+          </view>
+          <view class='item-l-t'>商业车</view>
+        </view>
+        <view class='item-m'>
+          <view class='item-name'>商车服务</view>
+          <text class='item-info'>7*24h 您的私人车管家</text>
+          <view class='item-text'>
+            <text class='item-pri'>¥20/日起</text>
+            <text class='item-txt'> | 超高性价比，车险任性分</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="loanItem-list" wx:if="{{orderStatusType == 3}}">
+      <view class="item" data-proNo="30" data-proName="特种车辆服务" bindtap='goApplyMortgage'>
+        <view class='item-l'>
+          <view class='item-pic'>
+            <image class='c' src="../../images/home/ico-home08.png"></image>
+          </view>
+          <view class='item-l-t'>特种车</view>
+        </view>
+        <view class='item-m'>
+          <view class='item-name'>特种车辆服务</view>
+          <text class='item-info'>7*24h 您的私人车管家</text>
+          <view class='item-text'>
+            <text class='item-pri'>¥30/日起</text>
+            <text class='item-txt'> | 超高性价比，车险任性分</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- <view class='tips-upwarp' hidden="{{!loading}}">
+        <view class='upwarp-progress tips-rotate'></view>
+        <text class='upwarp-tip'>加载中..</text>
+    </view> -->
+    <view class='tips-upwarp' hidden="{{!loadingComplete}}">
+        <view class='noData' wx:if="{{list.length == 0}}">
+            <image src='../../images/mescroll-empty.png'></image>
+            <view class='text'>暂无数据</view>
+        </view>
+        <text class='upwarp-tip' wx:else>我是有底线的</text>
+    </view>
+</view>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>其他出库单</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/bootstrap-datepicker.css" />	
+		<link rel="stylesheet" href="css/f7.css" />
+		<link rel="stylesheet" href="css/layer.css" />
+		<link rel="stylesheet" href="css/loading.css" />
+		<link rel="stylesheet" href="css/otherDelivery.css" />
+	</head>
+	<body>
+		<div id="mainContent">
+			<ul>
+			<li id="bill">				
+					<span>单据号：</span>
+					<input type='text'   disabled='disabled' />			
+			</li>
+			<li id='workDate'>				
+					<span>业务日期：</span>
+					<input type='text' id='date' disabled='disabled' />				
+			</li>
+			<li id='organize'>			
+					<span>库存组织：</span>
+					<input type='text' placeholder='请选择' readonly="true" />				
+			</li>
+			<li id='affairType'>			
+					<span>事务类型：</span>
+					<input type='text' placeholder="请选择" readonly="true" />			
+			</li>
+			<li id='batch'>		
+					<span>养殖批次：</span>
+					<textarea readonly="true">	</textarea>		
+			</li>					
+			<li id='deliveryAmount'>			
+					<span>出库数量：</span>
+					<input type='text' onkeyup="return ValidateNumber($(this),value)" />				
+			</li>
+			<li id='deliveryReason'>		
+					<span>出库理由：</span>
+					<input type='text' />
+			</li>
+			<li id='remark'>	
+					<span>备注：</span>
+					<input type='text' />
+			</li>
+			<li id='raise'>
+					<span>寄养</span>
+					<input type='checkBox' />
+			</li>
+			<li id='choosePic'>
+				<span>照片：</span>
+				<img src="img/add.png" />
+			</li>			
+			</ul>
+			<div class="image-container">
+		
+		    </div>
+		</div>
+		<div class="big-image-div">
+		<img src="#" onclick="PigPlan_otherDelivery.closeBigImage(this)">
+	    </div>
+		<div id="footer" class="container">
+			<nav class="navbar navbar-default navbar-fixed-bottom">
+				<div id='bottom'>												
+						
+			    </div>
+			</nav>
+		<div>
+			<script type="text/javascript" src="js/jquery-2.1.4.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap3.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap-datepicker.js" ></script>
+		<script type="text/javascript" src="js/baseapp.js" ></script>
+		<script type="text/javascript" src="js/f7.js" ></script>
+		<script type="text/javascript" src="js/layer.js" ></script>
+		<script type="text/javascript" src="js/loading.js" ></script>
+		<script type="text/javascript" src="js/mxcore.js" ></script>
+		<script type="text/javascript" src="js/otherDelivery.js" ></script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<view class="feedback">
+    <view class='title-1'>安装人员</view>
+    <view class='selectTopic'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="weui-input">{{array[index]}}</view>
+      </picker>
+    </view>
+    <!-- <view class='items'>
+      <view class='title'>安装人员</view>
+      <input type='text' placeholder-class="placeholder" value='{{installName}}' bindinput='installNameInput'></input>
+    </view> -->
+    <view class='items'>
+      <view class='title'>联系人</view>
+      <input type='text' placeholder-class="placeholder" value='{{list.cusName}}' bindinput='cusNameInput' ></input>
+    </view>
+    <view class='items'>
+      <view class='title'>电话</view>
+      <input type='number' placeholder-class="placeholder" value='{{list.gpsMobile}}' bindinput='cusMobileInput'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>车型</view>
+      <input type='text' placeholder-class="placeholder" value='{{list.carType}}' bindinput='cartypeInput'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>车行地址</view>
+      <input type='text' placeholder-class="placeholder" value='{{list.gpsAddr}}' bindinput='caraddressInput'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>安装内容</view>
+      <input type='text' placeholder-class="placeholder" value="{{list.gpsType}}" bindinput='msgcontentInput'></input>
+    </view>
+    <view class="submitBtn" bindtap='submitBtn'>提交安装</view>
+</view>

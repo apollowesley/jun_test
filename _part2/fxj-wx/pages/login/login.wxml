@@ -1,0 +1,8 @@
+<view class="logo">
+    <!-- <image src='../../images/mtlogo.png'></image> -->
+        <!-- <image src='../../images/5alogo.jpg'></image> -->
+        <image src='../../images/logo.jpg'></image>
+
+</view>
+<button wx:if="{{canIUse}}" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信一键登录</button>
+<view wx:else class='tips'>请升级微信版本</view>

@@ -1,0 +1,13 @@
+package ${context.packageName}.service;
+
+import org.springframework.stereotype.Service;
+
+import ${context.packageName}.entity.${context.javaBeanName};
+import ${context.packageName}.dao.${context.javaBeanName}Dao;
+
+import net.oschina.durcframework.easymybatis.support.CrudService;
+
+@Service
+public class ${context.javaBeanName}Service extends CrudService<${context.javaBeanName}Dao, ${context.javaBeanName}> {
+
+}

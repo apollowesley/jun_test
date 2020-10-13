@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "业务平台",
+  "backgroundColor": "#FFFFFF",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

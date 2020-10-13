@@ -1,0 +1,30 @@
+<view class="banner">
+    <view class="search">
+        <input type='text' placeholder-class="placeholder" placeholder="请输入搜索关键字" confirm-type="search" bindconfirm="search" bindinput='searchInputValue' value='{{searchValue}}'></input>
+        <view class='delete' bindtap='deleteBtn' hidden="{{deleteBtnHide}}"></view>
+    </view>
+</view>
+
+<view class='team' wx:if="{{list.length > 0}}">
+    <view class='list' wx:for="{{list}}" wx:key="id">
+        <view class='items ico-name'>{{item.fxjx1}}</view>
+        <view class='items ico-phone'>{{item.fxjx2}}</view>
+        <view class='items ico-kpi'>KPI 月均{{item.fxjx3}}件</view>
+        <view class='items ico-kpi2'>KPI 月均{{item.fxjx3}}</view>
+        <view class='items ico-target'>本月目标:{{item.fxjx5}}</view>
+        <view class='items ico-loan'>本月完成:{{item.fxjx6}}</view>
+        <view class='items ico-time'>{{item.fxjx7}}入职</view>
+    </view>
+</view>
+
+<view class='tips-upwarp' hidden="{{!loading}}">
+    <view class='upwarp-progress tips-rotate'></view>
+    <text class='upwarp-tip'>加载中..</text>
+</view>
+<view class='tips-upwarp' hidden="{{!loadingComplete}}">
+    <view class='noData' wx:if="{{list.length == 0}}">
+        <image src='../../../images/mescroll-empty.png'></image>
+        <view class='text'>暂无数据</view>
+    </view>
+    <text class='upwarp-tip' wx:else>我是有底线的</text>
+</view>

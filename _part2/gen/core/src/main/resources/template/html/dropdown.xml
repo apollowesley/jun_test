@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <name>dropdown</name>
+    <filePath>src/main/java/com/meizu/genbatis/tmp</filePath>
+    <fileName>${ClassName}.dropdown</fileName>
+    <content>
+        <![CDATA[
+        <span>${spanName}：</span>
+                <div class="form-group">
+                    <div class="btn-group">
+                        <button type="button"
+                                class="btn btn-default btn-default-disable dropDown-style"><i
+                                id="param_${id}" value="-1">全部</i></button>
+                        <button type="button"
+                                class="btn btn-default dropdown-toggle  btn-default-disable type_list"
+                                data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown_${id}_list" id="${id}_list"
+                            role="menu" data-enum="${data_enum}" data-sel-all="${data_sel_all}" data-result-in="${data_result_in}">
+                        </ul>
+                     </div>
+                    <div class="form-group">
+                        <input type="hidden" value name="${id}" id="${id}" <#if needCheck == "true">check-type="${checkType}" required-message="${requiredMessage}"</#if>/>
+                    </div>
+                </div>
+        ]]>
+    </content>
+</template>

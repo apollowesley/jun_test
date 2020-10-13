@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build-project">
+	<!-- init -->
+	<target name="init">
+
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| Initialization |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+
+		<tstamp>
+			<format property="build.time" pattern="MM/dd/yyyy hh:mm aa" />
+		</tstamp>
+
+		<property file="build.properties" />
+		<property name="project.root.dir" value="." />
+		<property name="project.lib.dir" value="${project.root.dir}/lib" />
+		<property name="project.src.dir" value="${project.root.dir}/src/java" />
+		<property name="project.build.dir" value="${project.root.dir}/build" />
+		<property name="project.deploy.dir" value="${project.root.dir}/deploy" />
+		<property name="project.resource.dir" value="${project.root.dir}/resource" />
+
+		<path id="extern-jar">
+			<fileset dir="${project.root.dir}/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${project.deploy.dir}/libs">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${project.deploy.dir}/services/">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+	</target>
+
+	<!-- clean -->
+	<target name="clean" depends="init">
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| Clean temp folders |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+		<delete dir="${project.build.dir}" verbose="yes" />
+		<mkdir dir="${project.build.dir}" />
+	</target>
+
+	<!-- clean-project-->
+	<target name="clean-project" depends="init,clean">
+	</target>
+
+	<!-- complie project-->
+	<target name="compile-project" depends="init">
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| Compling java source files for DSB client |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+
+		<javac destdir="${project.build.dir}" debug="on" encoding="UTF-8" deprecation="on">
+			<src path="${project.src.dir}" />
+			<include name="common/framework/*.java" />
+			<include name="common/framework/datetime/*.java" />
+			<include name="common/framework/dsb/*.java" />
+			<include name="common/framework/dsb/annotation/**/*.java" />
+			<include name="common/framework/dsb/client/**/*.java" />
+			<include name="common/framework/dsb/proxy/**/*.java" />
+			<include name="common/framework/dsb/scanner/**/*.java" />
+			<include name="common/framework/dsb/service/**/*.java" />
+			<include name="common/framework/format/*.java" />
+			<include name="common/framework/log/*.java" />
+			<include name="common/framework/md5/*.java" />
+			<include name="common/framework/octet/*.java" />
+			<classpath>
+				<path refid="extern-jar" />
+				<pathelement location="${project.build.dir}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- jar project-->
+	<target name="jar-project" depends="init">
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| Archive project for dsb client |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+
+		<jar jarfile="${project.lib.dir}/dsb-client-${project.version}.jar">
+			<fileset dir="${project.build.dir}" includes="**" />
+		</jar>
+	</target>
+
+	<target name="build-project" depends="clean-project,compile-project,jar-project" />
+</project>

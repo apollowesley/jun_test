@@ -1,0 +1,114 @@
+<view class='ocr mt' >
+    <view class="title">OCR行驶证识别</view>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>品牌/车型:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{brand}}' bindinput='brandInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车牌号:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{plateNumber}}' bindinput='plateNumberInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>所有人:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{holder}}' bindinput='holderInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>注册/发证日期:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{dateIssue}}' bindinput='dateIssueInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>使用性质:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{nature}}' bindinput='natureInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>住址:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{address}}' bindinput='addressInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车架号:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{vinno}}' bindinput='vinnoInput'></input>
+            </view>
+        </view>
+        <view class='items'>
+            <view class='hd'>发动机号:</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" value='{{engineNumber}}' bindinput='engineNumberInput'></input>
+            </view>
+        </view>
+        <view class="section">
+          <picker range='{{type}}' value='{{index}}' bindchange='bindChange' range-key="name" data-id='{{type[index].id}}'>
+            <view class='picker'><text>地区:</text>{{type[index].name}}</view>
+            
+          </picker>
+        </view>
+        <view class='items'>
+            <view class='hd'>公里数(万公里):</view>
+            <view class='bd'>
+                <input type='text' placeholder-class="placeholder" cursor-spacing="120rpx" placeholder="请填写公里数" value='{{mile}}' bindinput='mileInput'></input>
+            </view>
+        </view>
+    </view>
+    <view class='ocrUpload'>
+        <view class="ocrUploadBtn" data-sbtype="6" bindtap='upEnclosure'>行驶证正本</view>
+    </view>
+    <view class="Xycx" bindtap="goche300">车300评估</view>
+</view>
+<view class='ocr mt' >
+    <view class='title'>大数据查询结果</view>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>车辆估值:</view>
+            <view class='bd'>{{arr1}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车况一般个人交易价:</view>
+            <view class='bd'>{{arr2}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车况良好个人交易价:</view>
+            <view class='bd'>{{arr3}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车况优秀个人交易价:</view>
+            <view class='bd'>{{arr4}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车辆收购价:</view>
+            <view class='bd'>{{arr5}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>个人交易价:</view>
+            <view class='bd'>{{arr6}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车商零售价:</view>
+            <view class='bd'>{{arr7}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>厂商指导价:</view>
+            <view class='bd'>{{arr9}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>排放标准:</view>
+            <view class='bd'>{{arr10}}</view>
+        </view>
+         <view class='items'>
+            <view class='hd'>车型名称:</view>
+            <view class='bd'>{{arr11}}</view>
+        </view>
+    </view>
+</view>

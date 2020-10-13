@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<title>调拨单</title>
+		<link rel="stylesheet" href="../mxbase/css/bootstrap.css" />
+		<link rel="stylesheet" href="../mxbase/css/f7.css" />
+		<link rel="stylesheet" href="../mxbase/css/loading.css" />
+		<link rel="stylesheet" href="../3th/layer/layer.css" />
+		<link rel="stylesheet" href="../css/edit.css" />
+	</head>
+
+	<body style="font-size: 18px;">
+		<nav class="h-nav">
+			<span class="juTou active">单据头</span>
+			<span class="fengLu">出库分录</span>
+		</nav>
+		<div id="mainContent" style='display: block;'>
+			<form class="form-horizontal" id="form1">
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">单据号：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" disabled='disabled' id="bill" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">业务日期：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" disabled='disabled' id='workDate' />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">库存组织：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id='organize' placeholder='请选择' readonly="true" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">事务类型：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id='affairType' placeholder='请选择' readonly="true" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">运输车辆：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id='transport' placeholder='请选择' readonly="true" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">运费：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id='transportCost' onkeyup="return ValidateNumber($(this),value)" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">备注：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id='remark' />
+					</div>
+				</div>
+				<lable id='itemTitle'>纸质单</lable>
+			</form>
+			<form class="form-horizontal" id="form2">
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">编码：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id='code' placeholder="Search for..." />
+						<button type="button" class="btn btn-default" id="btn-scan">扫描</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">照片：</label>
+					<div class="col-sm-10">
+						<img src="../img/add.png" id='choosePic' />
+					</div>
+				</div>
+			</form>
+
+			<div class="image-container">
+
+			</div>
+		</div>
+		<div class="big-image-div">
+			<img src="#" onclick="PigPlan_otherDelivery.closeBigImage(this)">
+		</div>
+		<div id='outputContent' style='display: none;'>
+			<table class="table table-striped" id='detailTable'>
+				<thead>
+					<tr style='border-bottom:1px solid silver;background-color: #16A6BB;'>
+						<td style="width:34%;">养殖批次</td>
+						<td style="width:17%;">寄养</td>
+						<td style="width:24%;">头数</td>
+						<td>重量（斤）</td>
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+			<p id="add-btn">+</p>
+			<table class="table table-striped" id='sumTable'>
+				<tr style="background-color:#FCFBDF!important;" id='sum'>
+					<td style="width:34%;">合计</td>
+					<td style="width:17%;"></td>
+					<td id='amountSum' style="width:24%;"></td>
+					<td id='pigWeightSum'></td>
+				</tr>
+			</table>
+		</div>
+		<!--弹窗-->
+		<div class="dialog-wapper" style="display:none">
+			<div class="mask-layer"></div>
+			<div class="d-inner-wapper">
+				<form class="form-horizontal" id="form3">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">养殖批次：</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id='batch' readonly="true"> </textarea>
+							<!--<input type="text" class="form-control" readOnly="readOnly" id='batch' placeholder='请选择' />-->
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">头数：</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id='amount' />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">重量(斤)：</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id='pigWeight' />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">寄养：</label>
+						<div class="col-sm-10">
+							<input type="checkbox" class="form-control" id='judge' />
+						</div>
+					</div>
+				</form>
+				<!--<div class="diw-item">
+					<label>养殖批次：</label>
+					<input type="text" id="diw-pingJi" readOnly="readOnly" data-id="">
+					<div class="clear"></div>
+				</div>
+				<div class="diw-item">
+					<label>头数：</label>
+					<input type="text" id="diw-touShu">
+					<span class="error">请填写</span>
+					<div class="clear"></div>
+				</div>
+				<div class="diw-item">
+					<label>重量(斤)：</label>
+					<input type="text" id="diw-zhongLi">
+					<span class="error">请填写</span>
+					<div class="clear"></div>
+				</div>
+				<div class="diw-jiYang-item">
+					<input type="checkbox" id="diw-jiYang">
+					<label for="diw-jiYang">寄养</label>
+				</div>-->
+				<div class="diw-btns">
+					<button id="ensure">确定</button>
+					<button id="delet">删除</button>
+					<button id="cancel">取消</button>
+				</div>
+			</div>
+		</div>
+		<div id="footer" class="container">
+			<nav class="navbar navbar-default navbar-fixed-bottom">
+				<div id='bottom'>
+
+				</div>
+			</nav>
+			<div>
+				<script src="../mxbase/js/jquery-2.1.4.min.js"></script>
+				<script src="../mxbase/js/bootstrap.min.js"></script>
+				<script src="../mxbase/js/bootstrap.min.js"></script>
+				<script src="../mxbase/js/baseapp.js"></script>
+				<script src="../mxbase/js/f7.js"></script>
+				<script src="../mxbase/js/loading.js"></script>
+				<script src="../mxbase/js/mxcore.js"></script>
+				<script src="../mxbase/js/mxhttppost.js"></script>
+				<script src="../3th/layer/layer.js"></script>
+				<script src="../js/edit.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,25 @@
+<view class="banner"></view>
+<view class="loanItem">
+    <view class="items"   wx:for="{{list}}" wx:key="id"   data-proNo="{{item.proNo}}" data-proName="{{item.proName}}"  bindtap='goApplyMortgage'>
+        <view class="title">{{item.proName}}</view>
+        <view class="c">
+            <view class="btn">立即申请</view>
+            <view class="tags">
+                <view>7成起批</view>
+                <view>1小时审批</view>
+                <view>1天放款</view>
+            </view>
+        </view>
+    </view>
+    <!-- <view class="items" wx:if="{{item.proNo == 50 }}"  wx:for="{{list}}" wx:key="id"   data-proNo="{{item.proNo}}" data-proName="{{item.proName}}"  bindtap='goApplyMortgage'>
+        <view class="title">{{item.proName}}</view>
+        <view class="c">
+            <view class="btn">立即申请</view>
+            <view class="tags">
+                <view>7成起批</view>
+                <view>1小时审批</view>
+                <view>1天放款</view>
+            </view>
+        </view>
+    </view> -->
+</view>

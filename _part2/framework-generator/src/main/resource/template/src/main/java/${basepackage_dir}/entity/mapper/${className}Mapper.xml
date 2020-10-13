@@ -1,0 +1,130 @@
+<#include "/macro.include"/>
+<#assign className = table.className>
+<#assign classNameFirstLower = table.classNameFirstLower>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro namespace>${className}.</#macro>
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="${className}">
+
+	<resultMap id="${className}Map" type="${basepackage}.entity.${className}">
+		<#list table.columns as column>
+      <result property="${column.columnNameLower}" column="${column.sqlName}"/>
+		</#list>
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="${className}.columns">
+	<![CDATA[
+		<#list table.columns as column>${column.sqlName}<#if column_has_next>, </#if></#list>
+	]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="${table.idColumn.columnNameFirstLower}">
+    <![CDATA[
+        INSERT INTO ${table.sqlName} (
+        <#list table.columns as column>
+        <#if (column.isDateTimeColumn && column.sqlName== "update_time") || (column.isDateTimeColumn && column.sqlName== "create_time")>
+        	${column.sqlName}
+        <#else>
+        	${column.sqlName}<#if column_has_next>,</#if>
+       	</#if>
+        </#list>
+        ) VALUES (
+        <#list table.columns as column>
+        <#if (column.isDateTimeColumn && column.sqlName== "update_time") || (column.isDateTimeColumn && column.sqlName== "create_time")>
+        	now()<#if column_has_next>,</#if>
+        <#else>
+        	<@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if>
+       	</#if>
+        </#list>        
+        )
+    ]]>
+	</insert>
+
+	<update id="update" >
+    <![CDATA[
+        UPDATE ${table.sqlName} SET
+	        <#list table.notPkColumns as column>
+	        <#if column.isDateTimeColumn && column.sqlName == 'create_time'>
+	        <#elseif column.isDateTimeColumn && column.sqlName == 'update_time'>
+	        ${column.sqlName} = now()<#if column_has_next>,</#if>
+	        <#else>
+	        ${column.sqlName} = <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if>
+	        </#if>
+	        </#list>
+        WHERE 
+        	<#list table.compositeIdColumns as column>
+	        ${column.sqlName} = <@mapperEl column.columnNameLower/><#if column_has_next> AND </#if>
+	        </#list>	        
+    ]]>
+	</update>
+
+    <delete id="delete">
+    <![CDATA[ DELETE FROM ${table.sqlName} WHERE <#list table.compositeIdColumns as column>${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next> AND </#if></#list> ]]>
+    </delete>
+
+	<delete id="deleteLogical">
+	<![CDATA[ UPDATE ${table.sqlName} SET deleteFlag = 1 WHERE id = <@mapperEl 'id'/> ]]>
+	</delete>
+
+    <delete id="deleteBatch">
+	<![CDATA[ DELETE FROM ${table.sqlName} WHERE id IN <foreach collection="array" item="id" open="(" close=")" separator=","><@mapperEl 'id'/></foreach> ]]>
+    </delete>
+
+	<delete id="deleteBatchLogical">
+	<![CDATA[ UPDATE ${table.sqlName} SET delete_flag = 1 WHERE id IN <foreach collection="array" item="id" open="(" close=")" separator=","><@mapperEl 'id'/></foreach> ]]>
+	</delete>
+
+    <select id="getById" resultMap="${className}Map">
+	<![CDATA[ SELECT <include refid="${className}.columns" /> FROM ${table.sqlName} WHERE <#list table.compositeIdColumns as column> ${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next> AND </#if></#list> ]]>
+	</select>
+
+    <#list table.columns as column>
+    <#if column.unique && !column.pk>
+    <select id="getBy${column.columnName}" resultMap="${className}Map" parameterType="${column.javaType}">
+	<![CDATA[ SELECT <include refid="${className}.columns"/> FROM ${table.sqlName} where ${column.sqlName} = <@mapperEl column.columnNameLower/> ]]>
+    </select>
+    </#if>
+	</#list>
+
+    <select id="findAll" resultMap="${className}Map">
+	<![CDATA[
+		SELECT <include refid="${className}.columns" /> FROM ${table.sqlName}
+	]]>
+	</select>
+
+	<sql id="${className}DynamicWhere">
+		<where>
+	       <#list table.columns as column>
+	       <#if column.isDateTimeColumn>
+	       <if test="${column.columnNameFirstLower}Begin neq null">AND ${column.sqlName} >= <@mapperEl column.columnNameFirstLower+"Begin"/></if>
+		   <if test="${column.columnNameFirstLower}End neq null">AND ${column.sqlName} &lt;= <@mapperEl column.columnNameFirstLower+"End"/></if>
+	       <#else>
+	       <if test="${column.columnNameFirstLower} neq null">AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower/></if>
+	       </#if>
+	       </#list>
+		</where>
+	</sql>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(id) FROM ${table.sqlName} <include refid="${className}DynamicWhere"/>
+    </select>
+
+    <select id="pageSelect" resultMap="${className}Map">
+    	SELECT <include refid="${className}.columns" /> FROM ${table.sqlName}
+		<include refid="${className}DynamicWhere"/>
+
+		<if test="sortColumns neq null">
+			ORDER BY <@jspEl 'sortColumns'/>
+		</if>
+
+        <if test="_offset_ neq null">
+    		LIMIT <@jspEl '_offset_'/>, <@jspEl '_limit_'/>
+    	</if>
+    </select>
+
+</mapper>

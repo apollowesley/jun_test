@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apache.center.dao.RoleResourcesMapper">
+
+	<!-- 通用查询结果列-->
+	<resultMap id="BaseResultMap" type="org.apache.center.model.RoleResources">
+ 		<result column="role_id" property="roleId" />
+ 		<result column="resources_id" property="resourcesId" />
+	</resultMap>
+
+</mapper>

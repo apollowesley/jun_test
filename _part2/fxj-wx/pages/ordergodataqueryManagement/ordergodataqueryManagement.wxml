@@ -1,0 +1,66 @@
+<view class='title-1'>
+  <view class='title'>大数据查询</view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      查询接口：{{array[index]}}
+    </view>
+  </picker>
+</view>
+
+<view class="data" >
+    <view class='items'>
+        <view class='bd'>
+            <input type='text' value='{{realname}}' bindinput='realname' placeholder='请输入客户姓名'></input>
+        </view>
+    </view>
+    <view class='items'>
+        <view class='bd'>
+            <input type='text' value='{{cardid}}' bindinput='cardid' placeholder='请输入身份证号码'></input>
+        </view>
+    </view>
+     <view class='items'>
+        <view class='bd'>
+            <input type='text' value='{{bankcardno}}' bindinput='bankcardno' placeholder='请输入银行卡号'></input>
+        </view>
+    </view>
+     <view class='items'>
+        <view class='bd'>
+            <input type='text' value='{{mobile}}' bindinput='mobile' placeholder='请输入银行卡绑定电话'></input>
+        </view>
+    </view>
+
+    <view class="btn"  bindtap='check'>查询</view>
+
+</view>
+
+<view class='wrap'>
+    <view class='title'>大数据查询结果</view>
+    <view class='resultBox'>
+        <view class='list'>
+            <view class='l'>查询结果:</view>
+            <view class='r'>{{queryResults}}</view>
+        </view>
+        <view class='list'>
+            <view class='l'>风险评分:</view>
+            <view class='r'>{{violationTimes}}</view>
+        </view>
+        <view class='list'>
+            <view class='l'>风险点:</view>
+            <view class='r'>{{totalDeduction}}</view>
+        </view>
+        <!-- <view class='list'>
+            <view class='l'>总罚款:</view>
+            <view class='r'>{{totalFine}}</view>
+        </view> -->
+    </view>
+
+    <!-- <view class='queryList' wx:for="{{list}}" wx:key="id" wx:if="list.length > 0">
+        <view class='h3'>{{item.wzxw}}</view>
+        <view class='p'>{{item.wzdd}}</view>
+        <view class='b'>
+            {{item.wzsj}}
+            <text>罚款{{item.wzfk}}</text>
+            <text>扣{{item.wzjf}}分</text>
+        </view>
+    </view> -->
+</view>

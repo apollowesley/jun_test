@@ -1,0 +1,32 @@
+<view class="centerTop">
+    <view class='hd' style='background-image:url({{rawData.avatarUrl}})'></view>
+</view>
+<view class='lendingVolume'>
+    <view class='title'>历史总金额</view>
+    <view class='text'>{{list.fxjx1}}</view>
+</view>
+
+<view class='report'>
+    <view class='items'>
+        <view class='title'>今日报表</view>
+        <view class='p'>已完成<text>{{list.fxjx2}}</text></view>
+        <view class='p'>未完成<text>{{list.fxjx3}}</text></view>
+        <view class='p'>撤销<text>{{list.fxjx4}}</text></view>
+        <view class='p'>新增<text>{{list.fxjx5}}</text></view>
+    </view>
+    <view class='items'>
+        <view class='title'>本月报表</view>
+        <view class='p'>已完成<text>{{list.fxjx6}}</text></view>
+        <view class='p'>未完成<text>{{list.fxjx7}}</text></view>
+        <view class='p'>撤销<text>{{list.fxjx8}}</text></view>
+        <view class='p'>新增<text>{{list.fxjx9}}</text></view>
+    </view>
+    <view class='items w50'>
+        <view class='title'>通过率</view>
+        <view class='percent'>{{list.fxjx10}}%</view>
+    </view>
+    <view class='items w50'>
+        <view class='title'>本月金额</view>
+        <view class='percent'>{{list.fxjx11}}元</view>
+    </view>
+</view>

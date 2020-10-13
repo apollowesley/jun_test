@@ -1,0 +1,39 @@
+<view hidden='{{pageHidden}}'>
+    <view class='myDraft'>
+        <view class='items' wx:for="{{list}}" wx:key="id">
+            <view class='hd'>
+                <view class='r'>{{item.createDate}}</view>
+                <view class='l'>{{item.cusName}}</view>
+            </view>
+            <view class="bd">
+                <view class='t'>
+                    <view class='l'>{{item.proName}}</view>
+                    <view class='c'>金额：{{item.orderAmount}}</view>
+                    <view class='r'>期数：{{item.orderPeriod}}</view>
+                </view>
+                <view class='middle'>
+                    <view class='l'>{{item.proNo == 30 || item.proNo == 40 ? "面积：" : "品牌："}}{{item.orderCartype}}{{item.proNo == 30 || item.proNo == 40 ? "平方" : ""}}</view>
+                    <view class='c'>{{item.proNo == 30 || item.proNo == 40 ? "小区：" : "车牌："}}{{item.orderCarno}}</view>
+                </view>
+                <view class='b'>
+                    <view class='btn' bindtap='goCustomerInfo' data-orderNo="{{item.orderNo}}" data-proNo="{{item.proNo}}">客户资料</view>
+                    <view class='btn' bindtap='goApprovalLog' data-orderNo="{{item.orderNo}}">审批日志</view>
+                    <view class='btn' bindtap='submit' data-orderNo="{{item.orderNo}}" data-id="{{item.id}}">提交申请</view>
+                    <view class='btn bgBlur' bindtap='continueToApply' data-orderNo="{{item.orderNo}}" data-proNo="{{item.proNo}}" data-id="{{item.id}}" >继续申请</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='tips-upwarp' hidden="{{!loading}}">
+        <view class='upwarp-progress tips-rotate'></view>
+        <text class='upwarp-tip'>加载中..</text>
+    </view>
+    <view class='tips-upwarp' hidden="{{!loadingComplete}}">
+        <view class='noData' wx:if="{{list.length == 0}}">
+            <image src='../../../images/mescroll-empty.png'></image>
+            <view class='text'>暂无数据</view>
+        </view>
+        <text class='upwarp-tip' wx:else>我是有底线的</text>
+    </view>
+</view>

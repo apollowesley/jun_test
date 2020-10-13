@@ -1,0 +1,26 @@
+<view class="centertabbar">
+    <view class="items {{tabIndex == index ?'active':''}}" wx:for="{{tabBars}}" wx:key="index" data-index="{{index}}" bindtap='clickTab'><text>{{item.name}}</text></view>
+</view>
+
+<view class="messageList">
+  <view class="items">
+    <view class='t'>彭于晏<view class='share'></view></view>
+    <view class="state">预审通过</view>
+    <view class="con">
+      <text>电话:136****0099</text>
+      <text>订单编号：GM201901252445588</text>
+      <text>业务类型:车抵押</text>
+    </view>
+    <view class="time">2019-01-25 11:00</view>
+  </view>
+  <view class="items">
+    <view class='t'>彭于晏</view>
+    <view class="state">预审通过</view>
+    <view class="con">
+      <text>电话:136****0099</text>
+      <text>订单编号：GM201901252445588</text>
+      <text>业务类型:车抵押</text>
+    </view>
+    <view class="time">2019-01-25 11:00</view>
+  </view>
+</view>

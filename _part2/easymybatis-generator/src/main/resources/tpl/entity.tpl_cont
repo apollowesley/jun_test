@@ -1,0 +1,84 @@
+package ${context.packageName}.entity;
+
+#if(${table.hasDateField})
+import java.util.Date;
+#end
+#if(${table.hasBigDecimalField})
+import java.math.BigDecimal;
+#end
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+#if(!${table.uuid})
+import javax.persistence.GenerationType;
+#end
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import net.oschina.durcframework.easymybatis.HasPk;
+
+#if("$!{table.comment}" != "" )
+/**
+  表:${table.tableName} ${table.comment}
+*/
+#end
+@Table(name = "${table.tableName}")
+public class ${context.javaBeanName} implements HasPk<${pk.javaTypeBox}> {
+
+#foreach($column in $columns)
+#if("$!{column.comment}" != "")
+	// ${column.comment}
+#end
+#if(${column.isPk})
+	@Id
+	@Column(name="${column.columnName}")
+#if(${column.isIdentity})
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+#elseif(${table.uuid})
+	@GeneratedValue(generator = "system-uuid")
+#end
+#else
+#if(${context.param.camel2underline} != "true")
+	@Column(name="${column.columnName}")
+#end
+#end
+	private ${column.javaTypeBox} ${column.javaFieldName};
+	
+#end
+
+#foreach(${column} in ${columns})
+#if("$!{column.comment}" != "")
+	/** 设置 ${column.comment},对应字段 ${table.tableName}.${column.columnName} */
+#end     
+	public void set${column.javaFieldNameUF}(${column.javaTypeBox} ${column.javaFieldName}){
+		this.${column.javaFieldName} = ${column.javaFieldName};
+	}
+#if("$!{column.comment}" != "")
+	/** 获取 ${column.comment},对应字段 ${table.tableName}.${column.columnName} */
+#end	     
+	public ${column.javaTypeBox} get${column.javaFieldNameUF}(){
+		return this.${column.javaFieldName};
+	}
+
+#end
+
+	@Override
+	public ${pk.javaTypeBox} getPk() {
+		return this.${pk.javaFieldName};
+	}
+	
+    @Override
+	public String toString() {
+    	StringBuilder sb = new StringBuilder();
+        sb.append("${context.javaBeanName} [");
+        #set ($i=0) 
+#foreach(${column} in ${columns})
+		#if($i > 0)sb.append(", ");#end
+        sb.append("${column.javaFieldName}=").append(${column.javaFieldName});
+        #set($i=$i +1)
+#end
+        sb.append("]");
+		return sb.toString();
+	}
+
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build-project">
+	<!-- init -->
+	<target name="init">
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| Initialization |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+
+		<tstamp>
+			<format property="build.time" pattern="MM/dd/yyyy hh:mm aa" />
+		</tstamp>
+		<property file="build.properties" />
+		<property name="project.root.dir" value="." />
+		<property name="project.lib.dir" value="${project.root.dir}/lib" />
+		<property name="project.src.dir" value="${project.root.dir}/src/java" />
+		<property name="project.build.dir" value="${project.root.dir}/build" />
+		<property name="project.deploy.dir" value="${project.root.dir}/deploy" />
+		<property name="project.META-INF.dir" value="${project.root.dir}/META-INF" />
+		<property name="project.resource.dir" value="${project.root.dir}/resource" />
+
+		<property name="dsb.key.file" value="dsb.key" />
+		<property name="dsb.enc.file" value="dsb.enc" />
+
+		<path id="extern-jar">
+			<pathelement path="${project.lib.dir}/commons-codec-1.6.jar" />
+			<pathelement path="${project.lib.dir}/dsb-class-encode-obf-1.0.jar" />
+			<pathelement path="${project.lib.dir}/mybatis-3.2.8.jar" />
+			<pathelement path="${project.lib.dir}/command-linker-3.0.jar" />
+		</path>
+
+		<taskdef name="encrypt" classname="com.binarysoft.code.encrypt.ClassEnodeTask">
+			<classpath>
+				<path refid="extern-jar" />
+				<pathelement location="${project.build.dir}" />
+			</classpath>
+		</taskdef>
+
+	</target>
+
+	<!-- clean -->
+	<target name="clean" depends="init">
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| Clean old folders |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+		<delete dir="${project.build.dir}" verbose="yes" />
+		<mkdir dir="${project.build.dir}" />
+	</target>
+
+	<!-- clean-project-->
+	<target name="clean-project" depends="init,clean">
+	</target>
+
+	<!-- complie project-->
+	<target name="compile-project" depends="init">
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| COMPILING java SOURCE CODE |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+
+		<javac destdir="${project.build.dir}" debug="on" encoding="UTF-8" deprecation="on" includejavaruntime="yes" includeantruntime="no">
+			<src path="${project.src.dir}" />
+
+			<include name="common/framework/**/*.java" />
+			<exclude name="common/framework/dsb/example/**" />
+			<classpath>
+				<path refid="extern-jar" />
+				<pathelement location="${project.build.dir}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="enc" depends="clean-project,compile-project">
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| Encrypt class |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+
+		<encrypt>
+		</encrypt>
+
+		<antcall target="jar-project" />
+
+	</target>
+
+	<!-- jar project-->
+	<target name="jar-project" depends="init">
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| Archive whole project |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+
+		<jar jarfile="${project.lib.dir}/${project.name}-${project.version}.jar">
+			<fileset dir="${project.build.dir}" includes="**" />
+			<!--fileset dir="${project.src.dir}" includes="**/*.java" /-->
+			<!--zipfileset src="${project.lib.dir}/activation.jar" excludes="META-INF/*" /-->
+			<!--zipfileset src="${project.lib.dir}/jaxb-api.jar" excludes="META-INF/*" /-->
+			<!--zipfileset src="${project.lib.dir}/jaxb-impl.jar" excludes="META-INF/*" /-->
+			<!--zipfileset src="${project.lib.dir}/jaxb-xjc.jar" excludes="META-INF/*" /-->
+			<!--zipfileset src="${project.lib.dir}/saaj-api.jar" excludes="META-INF/*" /-->
+			<!--zipfileset src="${project.lib.dir}/saaj-impl.jar" excludes="META-INF/*" /-->
+			<!--zipfileset src="${project.lib.dir}/sjsxp.jar" excludes="META-INF/*" /-->
+			<!--zipfileset src="${project.lib.dir}/jsr173_api.jar" excludes="META-INF/*"/-->
+			<manifest>
+				<attribute name="Manifest-Version" value="${project.version}" />
+				<attribute name="Created-By" value="${project.author}" />
+				<attribute name="Main-Class" value="common.framework.dsb.main.Main" />
+			</manifest>
+		</jar>
+	</target>
+
+
+	<target name="doc-project" depends="init">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>| DSB micro-kernel API ${project.version} |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<javadoc destdir="docs/api" author="true" version="true" use="true" windowtitle="DSB micro-kernel API 3.1">
+			<packageset dir="src/java" defaultexcludes="yes">
+				<include name="common/framework/**" />
+				<exclude name="common/framework/dsb/example/**" />
+			</packageset>
+
+			<classpath>
+				<path refid="extern-jar" />
+			</classpath>
+
+			<doctitle>
+				<![CDATA[<h1>DSB micro-kernel API ${project.version}</h1>]]></doctitle>
+		<bottom>
+			<![CDATA[<i>Copyright 2008 Ideal Corp. All Rights Reserved.</i>]]></bottom>
+	<tag name="todo" scope="all" description="To do:" />
+	<!--link offline="true" href="http://download.oracle.com/javase/6/docs/api/" packagelistLoc="C:\tmp" /-->
+	<link href="http://developer.java.sun.com/developer/products/xml/docs/api/" />
+</javadoc>
+</target>
+
+<target name="build-project" depends="clean-project,compile-project,jar-project" />
+</project>

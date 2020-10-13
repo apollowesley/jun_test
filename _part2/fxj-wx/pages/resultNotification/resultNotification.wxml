@@ -1,0 +1,45 @@
+<view class='borderbox'>
+    <view class='tbviewlist'>
+        <view class='items onafter'>
+            <view class='r'><view class='ico ico-adopt'></view>通过</view>
+            <view class='c'>审批结果</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>10000</view>
+            <view class='c'>放款金额</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>36期</view>
+            <view class='c'>放款期限</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>27770</view>
+            <view class='c'>每月还款</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>6227 00211 2255 445</view>
+            <view class='c'>放款卡号</view>
+        </view>
+    </view>
+</view>
+
+<view class='borderbox'>
+    <view class='tbviewlist'>
+        <view class='items onafter'>
+            <view class='r'>彭于晏</view>
+            <view class='c'>渠道商/业务员</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>待推荐人确定<view class='ico ico-doubt'></view></view>
+            <view class='c'>代收服务费</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>1%</view>
+            <view class='c'>服务费</view>
+        </view>
+        <view class='items onafter'>
+            <view class='r'>3%</view>
+            <view class='c'>保证金</view>
+        </view>
+    </view>
+</view>

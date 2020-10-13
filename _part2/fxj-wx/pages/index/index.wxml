@@ -1,0 +1,231 @@
+<view class='bcg'></view>
+
+<view class="title">
+  <view class="left">
+    <view class="top"></view>
+    <view class="bottom">待办任务(笔)</view>
+  </view>
+  <view class="mid">
+    <view class="top"></view>
+    <view class="bottom">本月签单(笔)</view>
+  </view>
+  <view class="right">
+    <view class="top"></view>
+    <view class="bottom">本月放款(万元)</view>
+  </view>
+</view>
+
+<view class="wrap mrb mrt padt">
+  <view class="wrap-t">任务工具</view>
+  <view class="box">
+    <view class="item" bindtap='goJjList' >
+      <view class="icon icon-01"></view>
+      <view class="info">进件</view>
+    </view>
+    <view class="item" bindtap='goDdList'>
+      <view class="icon icon-02"></view>
+      <view class="info">订单管理</view>
+    </view>
+    <view class="item" bindtap='goSpList'>
+      <view class="icon icon-03"></view>
+      <view class="info">视频管理</view>
+    </view>
+    <view class="item" bindtap='goMqList'>
+      <view class="icon icon-04"></view>
+      <view class="info">面签</view>
+    </view>
+  </view>
+    <view class="box">
+    <view class="item" bindtap='goCpList' >
+      <view class="icon icon-05"></view>
+      <view class="info">产品</view>
+    </view>
+    <view class="item" bindtap='goBbList'>
+      <view class="icon icon-06"></view>
+      <view class="info">报表</view>
+    </view>
+    <view class="item" bindtap='goWfList'>
+    </view>
+    <view class="item" bindtap='goQcList'>
+    </view>
+  </view>
+
+  <!-- <view class="box">
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">车辆抵押</view>
+    </view>
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">过户</view>
+    </view>
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">临时面签</view>
+    </view>
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">车辆查询</view>
+    </view>
+  </view>
+  <view class="box">
+    <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">银行面签</view>
+    </view>
+    <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">视频签约</view>
+    </view>
+    <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">家访</view>
+    </view>
+    <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">GPS申请</view>
+    </view>
+  </view>
+  <view class="box">
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">贷后催收</view>
+    </view>
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">付款申请</view>
+    </view>
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">绑定银行卡</view>
+    </view>
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">大数据查询</view>
+    </view>
+  </view>  
+  <view class="box">
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">信息</view>
+    </view>
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">失信被执行</view>
+    </view>
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">我的面签</view>
+    </view>
+     <view class="item" bindtap='goQcList'>
+      <view class="icon icon-04"></view>
+      <view class="info">我的面签</view>
+    </view>
+  </view> -->
+</view>
+
+
+<!-- <view class="wrap mrb">
+  <view class="wrap-t">预警管理</view>
+  <view class="box">
+    <view class="item">
+      <view class="icon icon-05"></view>
+      <view class="info">贷后报警</view>
+    </view>
+    <view class="item">
+      <view class="icon icon-06"></view>
+      <view class="info">GPS报警</view>
+    </view>
+    <view class="item"></view>
+    <view class="item"></view>
+  </view>
+</view>
+
+<view class="wrap mrb">
+  <view class="wrap-t">催收管理</view>
+  <view class="box mrb">
+    <view class="item" bindtap='goNotice'>
+      <view class="icon icon-07"></view>
+      <view class="info">还款提醒</view>
+    </view>
+    <view class="item" bindtap='goCsList' data-name="待催收订单">
+      <view class="icon icon-08"></view>
+      <view class="info">待催收订单</view>
+    </view>
+    <view class="item" bindtap='goCsList' data-name="催收中订单">
+      <view class="icon icon-09"></view>
+      <view class="info">催收中订单</view>
+    </view>
+    <view class="item" bindtap='goCsList' data-name="返C订单">
+      <view class="icon icon-10"></view>
+      <view class="info">返C订单</view>
+    </view>
+  </view>
+  <view class="box" bindtap='goCsList' data-name="已结清订单">
+    <view class="item">
+      <view class="icon icon-11"></view>
+      <view class="info">已结清订单</view>
+    </view>
+    <view class="item" bindtap='goCsList' data-name="特殊订单">
+      <view class="icon icon-12"></view>
+      <view class="info">特殊订单</view>
+    </view>
+    <view class="item" bindtap='goCsList' data-name="人车失联订单">
+      <view class="icon icon-13"></view>
+      <view class="info">人车失联订单</view>
+    </view>
+    <view class="item" bindtap='goCsList' data-name="协催订单">
+      <view class="icon icon-14"></view>
+      <view class="info">协催订单</view>
+    </view>
+  </view>
+</view> -->
+
+<view class="msg">
+  <view class="wrap-tittle">
+    <view style="font-size: 36rpx;font-weight: bold;margin-top:8rpx;">消息通知</view>
+    <!-- <view style="margin-left:180px;">更多</view> -->
+    <!-- <view><image style="width:30rpx;height:30rpx;margin-top:14rpx;" src="http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/right.png"></image></view> -->
+  </view>
+  <view class="item" wx:for="{{list}}">
+    <view class="left">
+      <view class="first">订单号：{{item.orderNo}}</view>
+      <view class="second">姓名：{{item.cusName}}</view>
+      <view class="third">类型：{{item.proClass}}</view>
+      <view class="fourth">车型：{{item.proName}}</view>
+      <view class="fivth">评估价：{{item.orderBy51}}</view>
+    </view>
+    <view class="mid" wx:if="{{item.bpmStatus ==99}}">
+      <view class="first">审批结果</view>
+      <view class="second"><image src="http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_17.png"></image></view>
+    </view>
+     <view class="mid" wx:if="{{item.bpmStatus != 99}}">
+      <view class="first">审批结果</view>
+      <view class="second"><image  src="http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/loading.png"></image></view>
+    </view>
+    <view class="right" bindtap='goSignedFace' data-orderNo="{{item.orderNo}}" data-id="{{item.id}}" data-proNo="{{item.proNo}}" data-value="{{item.orderBy51}}" data-mpUrl="{{item.mpUrl}}" data-proName="{{item.proName}}">
+      <view class="first">下一步</view>
+      <view class="second"><image src="http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_18.png"></image></view>
+      <view class="third">{{item.mpName}}</view>
+    </view>
+  </view>
+ 
+   <!-- <view class="item">
+    <view class="left">
+      <view class="first">订单号：XMZD-20190923</view>
+      <view class="second">姓名：何炅</view>
+      <view class="third">类型：企业经营贷</view>
+      <view class="fourth">房型：税E贷</view>
+      <view class="fivth">评估价：800万元</view>
+    </view>
+    <view class="mid">
+      <view class="first">审批结果</view>
+      <view class="second"><image src="http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_01.png"></image></view>
+    </view>
+    <view class="right">
+      <view class="first">下一步</view>
+      <view class="second"><image src="http://www.zhaodui.com.cn/pic/fxj-wx-icon/home1/icon_01.png"></image></view>
+      <view class="third">立即补充</view>
+    </view>
+  </view> -->
+</view>

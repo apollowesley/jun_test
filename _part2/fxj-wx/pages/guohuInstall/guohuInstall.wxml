@@ -1,0 +1,15 @@
+<view class="annexMain">
+    <view class='items' bindtap='goguohuPhotoUpload'>
+        <view class='title'>过户拍照</view>
+        <view class='p'>过户拍照</view>
+    </view>
+    <!-- <view class='items' bindtap='goCareVideoUpload'>
+        <view class='title'>录像</view>
+        <view class='p'>全方位车身信息</view>
+    </view> -->
+    <!-- <view class='items' bindtap='goRemoteSignature'>
+        <view class='title'>远程面签</view>
+        <view class='p'>评估师远程验车</view>
+    </view> -->
+    
+</view>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.ideal.sh.cn/dynamic-service-bean"
+	jaxb:version="1.0" jaxb:extensionBindingPrefixes="xjc"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:dsb="http://www.ideal.sh.cn/dynamic-service-bean">
+
+
+    <xsd:include schemaLocation="DSBConfType.xsd"></xsd:include>
+    <xsd:element name="DSBConf" type="dsb:DSBConfType"></xsd:element>
+</xsd:schema>

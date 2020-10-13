@@ -1,0 +1,238 @@
+<view class="banner"></view>
+<view class='ocr'>
+    <view class="title">OCR身份证识别</view>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>姓名:</view>
+            <view class='bd'>{{ocrName}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>性别:</view>
+            <view class='bd'>{{ocrSex}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>民族:</view>
+            <view class='bd'>{{ocrNation}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>出生:</view>
+            <view class='bd'>{{ocrBirth}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>地址:</view>
+            <view class='bd'>{{ocrAddress}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>身份证号:</view>
+            <view class='bd'>{{ocrIdNumber}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>签发机关:</view>
+            <view class='bd'>{{ocrOffice}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>有效期限:</view>
+            <view class='bd'>{{ocrValidityPeriod}}</view>
+        </view>
+    </view>
+</view>
+
+<view class='ocr mt' wx:if="{{proNo == 10 || proNo == 20}}">
+    <view class="title">OCR行驶证识别</view>
+    <view class='ocrMain'>
+        <view class='items'>
+            <view class='hd'>品牌/车型:</view>
+            <view class='bd'>{{brand}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车牌号:</view>
+            <view class='bd'>{{plateNumber}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>所有人:</view>
+            <view class='bd'>{{holder}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>注册/发证日期:</view>
+            <view class='bd'>{{dateIssue}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>使用性质:</view>
+            <view class='bd'>{{nature}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>住址:</view>
+            <view class='bd'>{{address}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>车架号:</view>
+            <view class='bd'>{{vinno}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>发动机号:</view>
+            <view class='bd'>{{engineNumber}}</view>
+        </view>
+    </view>
+</view>
+
+<view wx:if="{{proNo == 30 || proNo == 40}}">
+    <view class='ocr mt'>
+        <view class="title">汽车资料</view>
+        <view class='data'>
+            <view class='items'>
+                <view class='hd'>品牌:</view>
+                <view class='bd'>{{village}}</view>
+            </view>
+            <view class='items'>
+                <view class='hd'>车型:</view>
+                <view class='bd'>{{acreage}}</view>
+            </view>
+        </view>
+    </view>
+    <view class='ocr mt'>
+        <view class="title">申请金额</view>
+        <view class='data'>
+            <view class='items'>
+                <view class='hd'>金额:</view>
+                <view class='bd'>{{money}}</view>
+            </view>
+            <view class='items'>
+                <view class='hd'>借多久:</view>
+                <view class='bd'>{{howLong}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- <view class='ocr mt' wx:if="{{proIsdb==1}}">
+    <view class="title">担保人资料</view>
+    <view class='data'>
+        <view class='items'>
+            <view class='hd'>姓名:</view>
+            <view class='bd'>{{guaranteeName}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>电话:</view>
+            <view class='bd'>{{guaranteePhone}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>身份证号:</view>
+            <view class='bd'>{{guaranteeIdCard}}</view>
+        </view>
+    </view>
+</view> -->
+
+<view class='ocr mt'>
+    <view class="title">个人资料</view>
+    <view class='data'>
+        <view class='items'>
+            <view class='hd'>是否有子女:</view>
+            <view class='bd'>{{orderBy4}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>学历:</view>
+            <view class='bd'>{{orderBy5}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>工作单位:</view>
+            <view class='bd'>{{orderBy6}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>单位地址:</view>
+            <view class='bd'>{{orderBy7}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>月收入:</view>
+            <view class='bd'>{{orderBy8}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>储蓄卡:</view>
+            <view class='bd'>{{orderBy9}}</view>
+        </view>
+
+        <view class='items'>
+            <view class='hd'>居住地址:</view>
+            <view class='bd'>{{residentialAddress}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>联系电话:</view>
+            <view class='bd'>{{telephone}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>婚姻状况:</view>
+            <view class='bd'>{{checkedValue}}</view>
+        </view>
+        <view wx:for="{{orderEmerList}}" wx:key="id" wx:if="{{orderEmerList.length > 0}}">
+            <view class='items'>
+                <view class='hd'>紧急联系人:</view>
+                <view class='bd'>{{item.emergencyContact}}</view>
+            </view>
+            <view class='items'>
+                <view class='hd'>联系电话:</view>
+                <view class='bd'>{{item.emergencyMobile}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class='ocr mt'>
+     <view class="title">方案选择</view>
+     <view class='data'>
+        <view class='items'>
+            <view class='hd'>金额:</view>
+            <view class='bd'>{{money}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>借多久:</view>
+            <view class='bd'>{{howLong}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>利率:</view>
+            <view class='bd'>{{orderBy14}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>GPS费:</view>
+            <view class='bd'>{{orderBy15}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>服务费:</view>
+            <view class='bd'>{{orderBy16}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>其他:</view>
+            <view class='bd'>{{orderBy17}}</view>
+        </view>
+     </view>
+</view>
+
+<view class='ocr mt'>
+    <view class='title'>添加资料</view>
+    <view class='data'>
+        <view class='items wwq'>
+            <view class='items-btn' data-tit="共借人资料" data-orderNo="{{orderNo}}-01" bindtap="goGuarantee">共借人资料</view>
+            <view class='items-btn' data-tit="担保人资料1" data-orderNo="{{orderNo}}-02" bindtap="goGuarantee">担保人资料1</view>
+            <view class='items-btn' data-tit="担保人资料2" data-orderNo="{{orderNo}}-03" bindtap="goGuarantee">担保人资料2</view>
+        </view>
+    </view>
+</view>
+
+<view class='ocr mt'>
+    <view class="title">上传附件</view>
+    <view class='imgMain'>
+        <view class='items' wx:for="{{fxjProAttList}}" wx:key="id" wx:for-index="listIdx">
+            <view class='hd'>
+                <view class='con'>
+                    <view class='ico'></view>
+                    <view class='text'>{{item.attName}}</view>
+                </view>
+            </view>
+            <view class='bd'>
+                <view class='uploadimg'>
+                    <view class='items' wx:for="{{item.fxjOrderAttaList}}" wx:key="id">
+                        <view class='pic' style='background-image:url({{item.attaUrl}})' data-list-idx="{{listIdx}}" data-img-idx="{{index}}" bindtap="previewImage"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

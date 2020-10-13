@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+    <!-- 指明满足“/jsp/*.do*”请求页面，将被“/WEB-INF/jsp/decorators/decorator.jsp”所装饰 
+		    如果改成path="/WEB-INF/jsp/*"则无效,
+		    应该与springmvc的dispatcherServlet的url-pattern一致
+    -->
+    <mapping path="/jsp/*.do*" decorator="/WEB-INF/jsp/decorators/decorator.jsp" />
+    
+    <mapping path="/demo.html" decorator="/WEB-INF/jsp/decorators/decorator.html" />
+
+</sitemesh>

@@ -1,0 +1,22 @@
+
+.app-header { background-color: #fbfbfb }
+.navbar-brand { background-color: #fff }
+.app-aside { border-right: 1px solid #e5e5e5; background-color: #fff }
+.app-aside .children,
+.app-aside .aside-item.opened { background-color: #f7f7f7 !important }
+.app-aside .aside-item, .app-aside .children .fold-header { color: #454648 }
+.app-aside .aside-item > i { color: #454648; background-color: #eee }
+.app-aside .aside-item.parent:after { color: #454648 }
+.app-aside .aside-item:hover { background-color: #f7f7f7 !important; color: #007aff }
+.app-aside .aside-item.active { background-color: #dde0e5; color: #007aff; border-color: #d0d0d0 }
+.app-aside .aside-item.opened,
+.app-aside .aside-item:hover > i,
+.app-aside .aside-item.active > i,
+.app-aside .aside-item.opened > i,
+.app-aside .aside-item.opened > span { color: #007aff }
+.app-aside .aside-divider { border-color: #eee !important }
+.app-aside .children .aside-item:hover { background-color: #dde0e5 }
+.aside-folded .app-aside .children { border: 1px solid #d5d5d5 }
+@media (max-width: 991px) {
+  .app-aside .children { border: 1px solid #d5d5d5 }
+}

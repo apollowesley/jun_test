@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_10-rc2" class="java.beans.XMLDecoder"> 
+ <object class="plantix.batch.ui.model.projecttree.TreeRootModel"> 
+  <void property="templateModels"> 
+   <object class="java.util.ArrayList"> 
+    <void method="add"> 
+     <object class="plantix.batch.ui.model.projecttree.TemplateModel"> 
+      <void property="charsetModel"> 
+       <object class="plantix.batch.ui.model.projecttree.TemplateCharsetModel"/> 
+      </void> 
+      <void property="contentModel"> 
+       <object class="plantix.batch.ui.model.projecttree.TemplateContentModel"/> 
+      </void> 
+      <void property="templateName"> 
+       <string>123</string> 
+      </void> 
+     </object> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="xmlDataModel"> 
+   <object class="plantix.batch.ui.model.projecttree.XmlDataModel"/> 
+  </void> 
+ </object> 
+</java> 

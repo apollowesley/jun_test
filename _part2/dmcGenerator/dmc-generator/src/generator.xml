@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>
+		代码生成器配置文件: 
+		1.会为所有的property生成property_dir属性,如pkg=com.company => pkg_dir=com/company
+		2.可以引用环境变量: ${env.JAVA_HOME} or System.properties: ${user.home},property之间也可以相互引用
+	</comment>
+	
+	<!-- 代码目标包名前缀 -->
+	<entry key="basepackage">com.shanhu</entry> 
+	
+	<!-- 代码生成目标目录 -->
+	<entry key="outRoot">E:\generator</entry>
+	
+	<!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->
+	<entry key="tableRemovePrefixes"></entry>
+		
+	<!-- jsp namespace: web/${namespace}/${className}/list.jsp 目前不需要修改，等待version3.0.0.2增加 -->
+	<!-- <entry key="namespace">pages</entry>-->
+	
+	<!-- **********************************     MYSQL       ************************************** -->
+	
+	<!-- jeewx -->
+	<entry key="jdbc.url">jdbc:mysql://117.25.148.11:3306/jinying?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull</entry> 
+ 	<entry key="jdbc.driver">com.mysql.jdbc.Driver</entry>
+ 	<entry key="jdbc.username">root</entry>
+	<entry key="jdbc.password">RrWg3XLAVvBMEU8H</entry>
+	<entry key="baseds">jinying</entry>
+ 	
+	
+	<!-- order_interface    
+ 	<entry key="jdbc.url">jdbc:mysql://10.255.255.22/order_interface?useUnicode=true&amp;characterEncoding=UTF-8</entry> 
+ 	<entry key="jdbc.driver">com.mysql.jdbc.Driver</entry>
+ 	<entry key="jdbc.username">writeuser</entry>
+	<entry key="jdbc.password">ddbackend</entry>
+	<entry key="baseds">orderInterfaceDs</entry>
+	 -->
+  
+    <!-- configDB 
+   	<entry key="jdbc.url">jdbc:mysql://10.255.255.22/ConfigDB?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull</entry> 
+ 	<entry key="jdbc.driver">com.mysql.jdbc.Driver</entry>
+ 	<entry key="jdbc.username">writeuser</entry>
+	<entry key="jdbc.password">ddbackend</entry>
+	<entry key="baseds">configDs</entry>
+   -->
+    
+   	<!-- **********************************     ORACLE       ************************************** -->
+   	
+	<!-- erp_interface -->
+<!-- 	<entry key="jdbc.url">jdbc:oracle:thin:@10.255.255.109:1521:cbfx</entry>
+	<entry key="jdbc.driver">oracle.jdbc.driver.OracleDriver</entry>
+	<entry key="jdbc.username">erp1</entry>
+	<entry key="jdbc.password">erp</entry>
+	<entry key="jdbc.schema">ERP1</entry>
+	<entry key="jdbc.catalog"></entry>
+	<entry key="baseds">erpInterfaceDs_RW</entry> -->
+	
+	
+	<!-- erp 
+	<entry key="jdbc.url">jdbc:oracle:thin:@10.255.255.17:1521:erptest2</entry>
+	<entry key="jdbc.driver">oracle.jdbc.driver.OracleDriver</entry>
+	<entry key="jdbc.username">wmserp</entry>
+	<entry key="jdbc.password">wmserp</entry>
+	<entry key="jdbc.schema">WMSERP</entry>
+	<entry key="jdbc.catalog">WMSERP</entry>
+	<entry key="baseds">erp</entry>
+	-->
+	
+	<!-- *********************************    SQLServer  ****************************************-->
+	
+	<!-- ProdInterDB
+	<entry key="jdbc.url">jdbc:sqlserver://10.255.254.187;databaseName=ProdInterDB</entry>
+	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
+	<entry key="jdbc.username">writeuser</entry>
+	<entry key="jdbc.password">ddbackend</entry>
+	<entry key="baseds">ProdInterDB</entry>
+	 -->
+	
+		
+	<!-- ProdInterDB 
+	<entry key="jdbc.url">jdbc:sqlserver://10.255.255.118;databaseName=coupon</entry>
+	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
+	<entry key="jdbc.username">writeuser</entry>
+	<entry key="jdbc.password">ddbackend</entry>
+	<entry key="baseds">coupon</entry>
+-->
+
+	<!-- backConfigDs 
+	<entry key="jdbc.url">jdbc:sqlserver://10.255.254.185;databaseName=backConfigDB</entry>
+	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
+	<entry key="jdbc.username">writeuser</entry>
+	<entry key="jdbc.password">ddbackend</entry>
+	<entry key="baseds">backConfigDs</entry>
+	-->
+	
+	<!-- poststockDs 
+	<entry key="jdbc.url">jdbc:sqlserver://10.255.254.187;databaseName=poststock</entry>
+	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
+	<entry key="jdbc.username">writeuser</entry>
+	<entry key="jdbc.password">ddbackend</entry>
+	<entry key="baseds">poststockDs</entry>
+	-->
+	
+	
+	<!-- DDscmDs 
+	<entry key="jdbc.url">jdbc:sqlserver://10.255.255.119:14330;databaseName=DDscm</entry>
+	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
+	<entry key="jdbc.username">writeuser</entry>
+	<entry key="jdbc.password">ddbackend</entry>
+	<entry key="baseds">DDscmDs</entry>
+	-->
+	
+	<!-- 数据库类型至java类型映射  -->
+	<entry key="java_typemapping.java.sql.Timestamp">java.util.Date</entry>
+	<entry key="java_typemapping.java.sql.Date">java.util.Date</entry>
+	<entry key="java_typemapping.java.sql.Time">java.util.Date</entry>	
+	<entry key="java_typemapping.java.lang.Byte">Integer</entry>
+	<entry key="java_typemapping.java.lang.Short">Integer</entry>
+	<entry key="java_typemapping.java.math.BigDecimal">java.math.BigDecimal</entry>
+	<entry key="java_typemapping.java.sql.Clob">String</entry>
+	
+	
+	
+	<!-- SQLServer2005 	
+	<entry key="jdbc.url">jdbc:sqlserver://10.255.254.185;databaseName=Order1</entry>
+	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>-->
+
+
+	<!-- JTDs for SQLServer 
+	<entry key="jdbc.url">jdbc:jtds:sqlserver://192.168.0.102:1433/[database];tds=8.0;lastupdatecount=true</entry>
+	<entry key="jdbc.driver">net.sourceforge.jtds.jdbc.Driver</entry>
+	-->
+
+	<!-- PostgreSql
+	<entry key="jdbc.url">jdbc:postgresql://localhost/[database]</entry>
+	<entry key="jdbc.driver">org.postgresql.Driver</entry>
+	 -->
+	
+	<!-- Sybase
+	<entry key="jdbc.url">jdbc:sybase:Tds:localhost:5007/[database]</entry>
+	<entry key="jdbc.driver">com.sybase.jdbc.SybDriver</entry>
+	 -->
+	
+	<!-- DB2 
+	<entry key="jdbc.url">jdbc:db2://localhost:5000/[database]</entry>
+	<entry key="jdbc.driver">com.ibm.db2.jdbc.app.DB2Driver</entry>
+	-->
+	
+	<!-- HsqlDB 
+	<entry key="jdbc.url">jdbc:hsqldb:mem:generatorDB</entry>
+	<entry key="jdbc.driver">org.hsqldb.jdbcDriver</entry>
+	-->
+	
+	<!-- Derby 
+	<entry key="jdbc.url">jdbc:derby://localhost/databaseName</entry>
+	<entry key="jdbc.driver">org.apache.derby.jdbc.ClientDriver</entry>	
+	-->
+
+	<!-- H2 
+	<entry key="jdbc.url">jdbc:h2:tcp://localhost/~/test</entry>
+	<entry key="jdbc.driver">org.h2.Driver</entry>
+	-->
+	
+	
+	
+</properties>

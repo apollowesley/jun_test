@@ -1,0 +1,10 @@
+<%
+swtich(u.age){
+
+case 18:println("18");break;
+default:{
+	println("unkonw");
+}
+
+}
+%>

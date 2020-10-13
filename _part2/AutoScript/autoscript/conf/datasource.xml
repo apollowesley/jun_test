@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_10-rc2" class="java.beans.XMLDecoder"> 
+ <object class="com.autoscript.ext.xmldata.database.model.datasource.DataSourceModel"> 
+  <void property="dataSourceItems"> 
+   <void method="add"> 
+    <object class="com.autoscript.ext.xmldata.database.model.datasource.DataSourceItemModel"> 
+     <void property="DBType"> 
+      <string>oracle</string> 
+     </void> 
+     <void property="URL"> 
+      <string>jdbc:oracle:thin:@192.168.1.221:1521:orcl</string> 
+     </void> 
+     <void property="driverClass"> 
+      <string>oracle.jdbc.OracleDriver</string> 
+     </void> 
+     <void property="jarFiles"> 
+      <object class="java.util.ArrayList"> 
+       <void method="add"> 
+        <string>D:\DbVisualizer-6.0.7\jdbc\oracle\ojdbc5.jar</string> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="name"> 
+      <string>虚拟机oracle</string> 
+     </void> 
+     <void property="password"> 
+      <string>oracle</string> 
+     </void> 
+     <void property="user"> 
+      <string>oracle</string> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="com.autoscript.ext.xmldata.database.model.datasource.DataSourceItemModel"> 
+     <void property="DBType"> 
+      <string>oracle</string> 
+     </void> 
+     <void property="URL"> 
+      <string>jdbc:oracle:thin:@128.96.96.210:1521/eabs</string> 
+     </void> 
+     <void property="driverClass"> 
+      <string>oracle.jdbc.OracleDriver</string> 
+     </void> 
+     <void property="jarFiles"> 
+      <object class="java.util.ArrayList"> 
+       <void method="add"> 
+        <string>D:\DbVisualizer-6.0.7\jdbc\oracle\ojdbc5.jar</string> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="name"> 
+      <string>oracle</string> 
+     </void> 
+     <void property="password"> 
+      <string>eabsrels</string> 
+     </void> 
+     <void property="user"> 
+      <string>eabsrels</string> 
+     </void> 
+    </object> 
+   </void> 
+  </void> 
+ </object> 
+</java> 

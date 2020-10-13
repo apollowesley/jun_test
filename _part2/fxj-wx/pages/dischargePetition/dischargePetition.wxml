@@ -1,0 +1,22 @@
+<view class="title">
+    <view class='hd'>结果</view>
+    <view class='bd'>操作</view>
+</view>
+
+<view class='list'>
+    <view class='items' wx:for="{{loglist}}" wx:key="id">
+        <view class="t">
+            <view class='hd'>订单号:{{item.orderNo}}</view>
+            <view class='bd'>{{item.logContent}}</view>
+        </view>
+        <view class="b">
+            <view class='hd'>{{item.logDate}}</view>
+            <view class='bd'>{{item.logUser}}</view>
+        </view>
+    </view>
+</view>
+
+<view class='btnBar'>
+    <view class='btn' bindtap='definiteRevocation'>确定撤销</view>
+    <view class='btn blue' bindtap='depositDraft'>存入草稿箱</view>
+</view>

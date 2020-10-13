@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<!--
+        重要，使界面在浏览器中自适应成手机模式
+        -->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>核定出栏单</title>
+		<link href="./css/bootstrap3.css" rel="stylesheet">
+			<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+		<link href="http://cdn.bootcss.com/bootstrap-modal/2.2.6/css/bootstrap-modal.css" rel="stylesheet">
+		<link href="http://cdn.bootcss.com/bootstrap-modal/2.2.6/css/bootstrap-modal-bs3patch.css" rel="stylesheet">
+	    <link rel="stylesheet" href="css/layer.css" />
+	    <link rel="stylesheet" href="css/approve.css" />
+	    <link rel="stylesheet" href="css/bootstrap.css" />
+	</head>
+	<body>	
+	    <div class="main" id="mainContent">
+		<div class="form-input clearfix" id="bill">
+			<label>单据号：</label>
+			<input type="text" class="text-input" disabled="disabled" />
+		</div>
+		<div class="form-input clearfix" id='workDate'>
+			<label>业务日期：</label>
+			<input type="text" class="text-input" disabled="disabled" />
+		</div>
+		<div class="form-input clearfix" id='organize'>
+			<label>库存组织：</label>
+			<input type="text" class="text-input"  readOnly="readOnly" placeholder='请选择' />
+		</div>
+		<div class="form-input clearfix" id='batch'>
+			<label>养殖批次：</label>
+			<textarea readonly="true">	</textarea>		
+		</div>
+		<div class="form-input clearfix" id='type'> 
+			<label>出栏类型：</label>
+			<select>
+						  <option value="10">常规出栏</option>
+						  <option value="20">分拆出栏</option>						  
+			</select>
+		</div>
+		<div class="form-input clearfix" id='approveDate'>
+			<label>核定日期：</label>
+			<input type="text" class="text-input" readOnly="readOnly" />
+		</div>
+		<div class="form-input clearfix" id='approveAmount'>
+			<label>核定数量：</label>
+			<input type="text" class="text-input" onkeyup="return ValidateNumber($(this),value)" />
+		</div>
+		<div class="form-input clearfix" id='exceptavgweight'>
+			<label>预计均重：</label>
+			<input type="text" class="text-input" />
+		</div>
+		<div class="form-input clearfix" id='remark'>
+			<label>备注：</label>
+			<input type="text" class="text-input" />
+		</div>
+		<div class="form-input clearfix" id='judge'>
+			<label>是否尾猪：</label>
+			<input type='checkBox' />
+		</div>
+		</div>	
+		<div id="footer" class="container">
+			<nav class="navbar navbar-default navbar-fixed-bottom">
+				<div id='bottom' >
+	                    
+			    </div>
+			</nav>
+		<div>
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/bootstrap3.min.js"></script>
+		<script src="js/bootstrap-datepicker.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap-modal/2.2.6/js/bootstrap-modal.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.js"></script>
+		<script src="js/loading.js"></script>
+		<script src="js/baseapp.js"></script>
+		<script src="js/mxcore.js"></script>
+		<script src="js/f7.js"></script>
+		<script src='js/layer.js'></script>
+		<script type="text/javascript" src="js/approve.js" ></script>
+	</body>
+</html>

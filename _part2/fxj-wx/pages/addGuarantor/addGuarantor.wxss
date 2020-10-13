@@ -1,0 +1,154 @@
+.title {
+    padding:20rpx 36rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    overflow: hidden;
+}
+.title .certificate {
+    float: right;
+    color: #3c8cf0;
+    font-size: 28rpx;
+}
+
+.title .certificate::after {
+    font-family: iconfont;
+    content: "\e62a";
+    font-size: 36rpx;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 4rpx;
+}
+
+.imgMain {
+    padding:30rpx 0 0 36rpx;
+    background-color: #FFFFFF;
+}
+.imgMain .items {
+    width:100%;
+    color:#6a5038;
+}
+.imgMain .items::after {
+    content: "\200B";
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+.imgMain .hd {
+    width:130rpx;
+    height:130rpx;
+    background-color: #f7f7f7;
+    border-radius: 12rpx;
+    float: left;
+}
+
+.imgMain .con {
+    width:130rpx;
+    height:130rpx;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.imgMain .hd .ico {width: 60rpx;height:60rpx;line-height:60rpx;margin: auto;}
+.imgMain .hd .ico::before {
+    font-family: iconfont;
+    content: "\e60f";
+    font-size:52rpx;
+    
+}
+.imgMain .hd .text {
+    font-size: 20rpx;
+}
+.imgMain .bd {
+    margin-left: 130rpx;
+}
+
+.uploadimg {
+    width:100%;
+}
+
+.uploadimg::after {
+    content: "\200B";
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+.uploadimg .items {
+    width: 130rpx;
+    height: 130rpx;
+    box-sizing: border-box;
+    border: 2rpx solid #eee;
+    float: left;
+    margin:0 20rpx 30rpx 36rpx;
+    text-align: center;
+    position: relative;
+    border-radius: 12rpx;
+}
+
+.uploadimg .items::before {
+    font-family: iconfont;
+    font-size: 60rpx;
+    content: '\e633';
+    color: #ccc;
+    line-height: 126rpx;
+}
+
+.uploadimg .items .pic {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:126rpx;
+    height:126rpx;
+}
+
+
+.uploadimg .items .pic image {
+    width:126rpx;
+    height:126rpx;
+    display: block;
+    border-radius: 12rpx;
+}
+
+.uploadimg .items .delete {
+    position: absolute;
+    top: -20rpx;
+    right: -16rpx;
+    width: 52rpx;
+    height: 52rpx;
+    background: #999;
+    border-radius: 50%;
+    border: 2rpx solid #fff;
+    display: block;
+    color: #fff;
+    z-index: 10;
+    text-align: center;
+    line-height:48rpx;
+}
+
+.uploadimg .items .delete::after {
+    content: '\e62f';
+    font-size: 44rpx;
+    font-family: iconfont;
+    color: #fff;
+    line-height:48rpx;
+}
+
+
+.submitBtn {
+    width:490rpx;
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    color: #fff;
+    margin:42rpx auto;
+    background-color: #3c8cf0;
+    border-radius: 20rpx;
+    font-size: 36rpx;
+}
+
+.radio {
+    margin-right: 40rpx;
+    line-height: 60rpx;
+}

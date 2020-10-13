@@ -1,0 +1,32 @@
+{
+  "name": "halo-document",
+  "version": "1.0.0",
+  "description": "Halo | ✍️ 一款现代化的个人独立博客系统",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "authors": {
+    "name": "Ryan Wang",
+    "email": "i@ryanc.cc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halo-dev/halo.git"
+  },
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.1.0",
+    "@vuepress/plugin-google-analytics": "^1.1.0",
+    "@vuepress/plugin-medium-zoom": "^1.1.0",
+    "@vuepress/plugin-nprogress": "^1.1.0",
+    "less": "^3.10.3",
+    "less-loader": "^4.1.0",
+    "vuepress": "^1.1.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "element-ui": "^2.12.0"
+  }
+}

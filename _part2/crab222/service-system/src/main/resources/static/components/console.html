@@ -1,0 +1,241 @@
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-xs6 layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                访问量<span class="layui-badge layui-bg-blue pull-right">周</span>
+            </div>
+            <div class="layui-card-body">
+                <p class="lay-big-font" id="reqNum"></p>
+                <p>总计访问量<span class="pull-right">67万 <i class="layui-icon layui-icon-flag"></i></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                下载<span class="layui-badge layui-bg-black pull-right">月</span>
+            </div>
+            <div class="layui-card-body">
+                <p class="lay-big-font" id="downloadNum"></p>
+                <p>新下载<span class="pull-right">10% <i class="layui-icon layui-icon-download-circle"></i></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                Start<span class="layui-badge layui-bg-green pull-right">周</span>
+            </div>
+            <div class="layui-card-body">
+                <p class="lay-big-font" id="startNum"></p>
+                <p>总Start数<span class="pull-right">88万 <i class="layui-icon layui-icon-rate"></i></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                活跃用户<span class="layui-badge layui-bg-orange pull-right">月</span>
+            </div>
+            <div class="layui-card-body">
+                <p class="lay-big-font" id="activeNum"></p>
+                <p>最近一个月<span class="pull-right">15% <i class="layui-icon layui-icon-user"></i></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-sm12">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                访问量
+                <div class="layui-btn-group layuiadmin-btn-group">
+                    <a href="javascript:;" class="layui-btn layui-btn-primary layui-btn-xs">去年</a>
+                    <a href="javascript:;" class="layui-btn layui-btn-primary layui-btn-xs">今年</a>
+                </div>
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row">
+                    <div class="layui-col-sm8" id="mountNode" style="height: 350px">
+                    </div>
+                    <div class="layui-col-sm4" id="userNum">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-lg12 layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">更新日志</div>
+            <div class="layui-card-body">
+                <ul class="layui-timeline">
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <h3 class="layui-timeline-title">V 1.0&emsp;<span class="layui-badge-rim">2018-11-11</span>
+                            </h3>
+                            <ul>
+                                <li>后台 SpringBoot 、MybatisPlus 、Kisso</li>
+                                <li>前台 Layui 、 Jquery 、Q.JS 、pandyle </li>
+                                <li>前后端基础框架体系的搭建</li>
+                                <li>系统管理支持用户岗位企业公司角色权限等管理</li>
+                                <li>系统监控支持访问日志服务监控</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <div class="layui-timeline-title">
+                                Ant 默默开发中...&emsp;<span class="layui-badge-rim">更早</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/assets/libs/countUp.min.js"></script>
+<script>
+new CountUp('reqNum', 1000, 35618, 0, 9, {
+    useEasing: true,
+    useGrouping: true,
+    separator: ',',
+    decimal: '.',
+}).start();
+new CountUp('downloadNum', 1000, 66666, 0, 9, {
+    useEasing: true,
+    useGrouping: true,
+    separator: ',',
+    decimal: '.',
+}).start();
+new CountUp('startNum', 1000, 12306, 0, 9, {
+    useEasing: true,
+    useGrouping: true,
+    separator: ',',
+    decimal: '.',
+}).start();
+new CountUp('activeNum', 1000, 5321, 0, 9, {
+    useEasing: true,
+    useGrouping: true,
+    separator: ',',
+    decimal: '.',
+}).start();
+</script>
+<script>
+    $.getJSON('/assets/test.json', function(data) {
+        var dv = new DataSet.View().source(data).transform({
+            type: 'aggregate',
+            fields: ['value', 'value'],
+            operations: ['min', 'max'],
+            as: ['min', 'max'],
+            groupBy: ['country'],
+            orderBy: ['year']
+        }).rows;
+
+        data = new DataSet.View().source(data).transform({
+            type: 'sort-by',
+            field: 'year',
+            orderBy: 'ASC'
+        });
+        var valueMap = {};
+        var chart = new G2.Chart({
+            container: 'mountNode',
+            forceFit: true,
+            height: 350,
+            padding: [10, 200, 50, 50]
+        });
+        chart.source(data);
+        chart.legend({
+            attachLast: true
+        });
+        chart.line().position('year*value').color('country').size('country', function(country) {
+            if (country === 'China') return 5;
+            return 2;
+        }).label('country*value*year', function(country, value, year) {
+            var result = null;
+            for (var i = 0; i < dv.length; i++) {
+                if (dv[i].country === country) {
+                    if (dv[i].min === value && !valueMap[country + 'min']) {
+                        valueMap[country + 'min'] = year;
+                        result = value;
+                        break;
+                    }
+
+                    if (dv[i].max === value && !valueMap[country + 'max']) {
+                        valueMap[country + 'max'] = year;
+                        result = value;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }, {
+            labelLine: false,
+            offset: 10,
+            textStyle: {
+                stroke: '#fff',
+                lineWidth: 2
+            }
+        }).style({
+            lineCap: 'round'
+        });
+        chart.point().position('year*value').color('country').style({
+            lineWidth: 2
+        }).size('country*value*year', function(country, value, year) {
+            if (valueMap[country + 'min'] === year || valueMap[country + 'max'] === year) {
+                return 3;
+            }
+            return 0;
+        });
+        chart.render();
+    });
+
+
+// 用户数量统计
+var userData = [{
+    "name": "John",
+    "vote": 35654
+}, {
+    "name": "Damon",
+    "vote": 65456
+}, {
+    "name": "Patrick",
+    "vote": 45724
+}, {
+    "name": "Mark",
+    "vote": 13654
+}];
+var imageMap = {
+    'John': 'https://zos.alipayobjects.com/rmsportal/mYhpaYHyHhjYcQf.png',
+    'Damon': 'https://zos.alipayobjects.com/rmsportal/JBxkqlzhrlkGlLW.png',
+    'Patrick': 'https://zos.alipayobjects.com/rmsportal/zlkGnEMgOawcyeX.png',
+    'Mark': 'https://zos.alipayobjects.com/rmsportal/KzCdIdkwsXdtWkg.png'
+};
+var userChart = new G2.Chart({
+    container: 'userNum',
+    forceFit: true,
+    height: 350,
+    padding: [60, 20, 40, 60]
+});
+userChart.source(userData, {
+    vote: {
+        min: 0
+    }
+});
+userChart.legend(false);
+userChart.axis('vote', {
+    labels: null,
+    title: null,
+    line: null,
+    tickLine: null
+});
+userChart.interval().position('name*vote').color('name', ['#7f8da9', '#fec514', '#db4c3c', '#daf0fd']);
+userChart.point().position('name*vote').size(60).shape('name', function(name) {
+    return ['image', imageMap[name]];
+});
+userChart.render();
+</script>

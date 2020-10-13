@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.apache</groupId>
+		<artifactId>center</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>org.apache</groupId>
+	<artifactId>center-service-impl</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>center-service-impl Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies> 
+	     <dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>center-dao</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>center-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>center-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	
+	<profiles>
+		<profile>
+			<!-- 本地开发环境 -->
+			<id>dev</id>
+			<properties>
+				<profiles.active>dev</profiles.active>
+				<deploy.url>http://host:port/manager/text</deploy.url>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<!-- 测试环境 -->
+			<id>test</id>
+			<properties>
+				<profiles.active>test</profiles.active>
+				<deploy.url>http://host:port/manager/text</deploy.url>
+			</properties>
+		</profile>
+		<profile>
+			<!-- 预生产环境 -->
+			<id>pre</id>
+			<properties>
+				<profiles.active>pre</profiles.active>
+				<deploy.url>http://host:port/manager/text</deploy.url>
+			</properties>
+		</profile>
+		<profile>
+			<!-- 生产环境 -->
+			<id>prod</id>
+			<properties>
+				<profiles.active>prod</profiles.active>
+				<deploy.url>http://host:port/manager/text</deploy.url>
+			</properties>
+		</profile>
+	</profiles>
+	
+	<build>
+		<finalName>center-service-impl</finalName>
+		
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<uriEncoding>UTF-8</uriEncoding>
+					<port>8081</port>
+					<path>/</path>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.0.6.v20130930</version>
+				<configuration>
+				    <httpConnector>
+				         <port>8081</port>
+				    </httpConnector>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>8081</port>
+						</connector>
+					</connectors>
+					<webAppConfig>
+						<contextPath>/</contextPath>
+					</webAppConfig>
+					<scanIntervalSeconds>0</scanIntervalSeconds>
+					<!-- 指定监控的扫描时间间隔，0为关闭jetty自身的热部署，主要是为了使用jrebel -->
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
+				<excludes>
+				    <exclude>dev/*</exclude>
+					<exclude>test/*</exclude>
+					<exclude>pre/*</exclude>
+					<exclude>prod/*</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources/${profiles.active}</directory>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<testResources>
+			<testResource>
+				<directory>src/test/java</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+	</build>
+</project>

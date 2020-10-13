@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017. tengqingya@meizu.com qq:475804848 dingding:taizhoujiangyan.
+  -->
+
+<template>
+    <name>table</name>
+    <filePath>src/main/java/com/meizu/genbatis/tmp</filePath>
+    <fileName>${ClassName}.table</fileName>
+    <content>
+        <![CDATA[
+          query: function (refresh) {
+        var action = ${jsName}.URL.list(), argument, self = this;
+
+        argument = [
+        <#list columnNames?keys as key>
+        <#if !key_has_next>
+        {name: "${key}", value: $('input[name="${key}"]').val()}
+        <#else>
+        {name: "${key}", value: $('input[name="${key}"]').val()},
+        </#if>
+        </#list>
+        ];
+
+        var startTime = $('input[name="startTime"]').val();
+        var endTime = $('input[name="endTime"]').val();
+        if(!!startTime){
+            argument.push({
+                name: "startTime",
+                value: parseInt($.datepicker.parseDateTime('yy-mm-dd', 'HH:mm:ss', startTime).getTime() / 1000)
+            });
+        }
+        if(!!endTime){
+            argument.push({
+                name: "endTime",
+                value: parseInt($.datepicker.parseDateTime('yy-mm-dd', 'HH:mm:ss', endTime).getTime() / 1000)
+            });
+        }
+
+        this.insertTable(action, argument, refresh);
+    },
+    insertTable: function (action, argument, refresh) {
+        //获取列表
+        var self = this;
+        $.get(commentManage.URL.count(), argument, function (result) {
+            if (result.code == 200) {
+                count1 = result.value;
+                oTable.dataTableWihtCallback(action, count1, argument, self.insertResult, function () {
+                    //$(".text_C.col-num-2").parent().css("width", "200px");
+                }, {
+                    refresh: refresh,
+                    pageCount: 20
+                });
+            } else {
+                asyncbox.alert("查询失败" + (result.message == "" ? result.message : ("：" + result.message)), "提示");
+            }
+        });
+
+    },
+    insertResult: function (result) {
+        var self = this;
+        var arr = [];
+        if (result.code != 200) {
+            return;
+        }
+        var value = result.value,
+        <#list columnNames?keys as list>
+            <#if !list_has_next>
+                ${list};
+            <#else>
+                ${list},
+            </#if>
+        </#list>
+        for (var i = 0; i < value.length; i++) {
+            if (value[i].createTime > 0) {
+                createTime = new Date(value[i].createTime * 1000);
+                createTime = createTime.format("yyyy-MM-dd hh:mm:ss");
+            } else {
+                createTime = "";
+            }
+
+            <#list columnNames?keys as list>
+            ${list} = value[i].${list};
+            </#list>
+
+
+            $opera1 += '<input type="hidden" value="" name="type" id="crossOrigin" data-toggle="modal" data-target="#myModal"/>';
+            $opera2 = '<a href="javascript:void(0);" class="operation J_*****"' +
+
+            <#list columnNames?keys as list>
+            +' data-${list}=' + ${list}
+            </#list>
+            + '>' + 1 + '</a>';
+            $opera3 = '<i class="operation" style="color: #0c0c0c"'+
+            <#list columnNames?keys as list>
+            +' data-${list}=' + ${list}
+            </#list>
+             + '>' + 1 + '</i>';
+
+            arr.push([
+            <#list columnNames?keys as list>
+                <#if !list_has_next>
+                    <#if columnNames[list]=="showTitle">
+                    '<div class="text_C col-num-2" title="' + ${list} + '">' + ${list} + '</div>'
+                    <#elseif columnNames[list]=="sort">
+                    '<input type="text" data-id="' + id + '" value="' + ${list} + '" class="sortEdit" maxlength="3" style="width: 60px"/>'
+                    <#else>
+                    </#if>
+                <#else>
+                    <#if columnNames[list]=="showTitle">
+                    '<div class="text_C col-num-2" title="' + ${list} + '">' + ${list} + '</div>',
+                    <#elseif columnNames[list]=="sort">
+                    '<input type="text" data-id="' + id + '" value="' + ${list} + '" class="sortEdit" maxlength="3" style="width: 60px"/>',
+                    <#else>
+                    ${list},
+                    </#if>
+                </#if>
+            </#list>
+            ]);
+        }
+        self.num++;
+        result.draw = self.num;
+        result.recordsTotal = count1;
+        result.recordsFiltered = count1;
+        result.data = arr;
+    }
+        ]]>
+    </content>
+</template>

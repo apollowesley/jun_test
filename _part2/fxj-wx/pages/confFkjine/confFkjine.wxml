@@ -1,0 +1,22 @@
+<view class="viewlist">
+  <view class='items'>
+            <view class='hd'>放款方式:</view>
+            <view class='bd'>{{fkMethod}}</view>
+        </view>
+        <view class='items'>
+            <view class='hd'>放款金额:</view>
+            <view class='bd'>{{fkAmount}}</view>
+        </view>
+         <view class='items'>
+            <view class='hd'>放款备注:</view>
+            <view class='bd'>{{fkRemark}}</view>
+        </view>
+         <view class='items'>
+            <view class='hd'>放款日期:</view>
+            <view class='bd'>{{fkDate}}</view>
+        </view>
+</view>
+
+<view class='btnBar'>
+    <view class='btn w490' bindtap='goOrderManagement'>确定收到</view>
+</view>

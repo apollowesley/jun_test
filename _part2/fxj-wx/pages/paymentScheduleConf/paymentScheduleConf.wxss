@@ -1,0 +1,109 @@
+.tbviewlist .items {
+    padding: 0 15px;
+    line-height:80rpx;
+}
+.title {
+    height: 70rpx;
+    line-height: 70rpx;
+    margin: 0 15px 10px;
+    padding-left: 16rpx;
+    color: #7aa6d1;
+    position: relative;
+    font-size: 36rpx;
+}
+
+.title::before {
+    content: '';
+    width: 6rpx;
+    height: 30rpx;
+    background-color: #7aa6d1;
+    position: absolute;
+    left: 0;
+    top: 20rpx;
+}
+.title .download {
+    width: 80rpx;
+    float: right;
+    color: #999999;
+    font-size: 28rpx;
+    text-align: right;
+}
+.title .download::after {
+    font-family: iconfont;
+    content: "\e62a";
+    font-size:44rpx;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 4rpx;
+}
+.titlebar {
+    width: 100%;
+    height:80rpx;
+    line-height: 80rpx;
+    background-color: #FFFFFF;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eeeeee;
+    display: -webkit-box; 
+}
+.titlebar .number {
+    width: 110rpx;
+}
+.titlebar .date {
+    width: 250rpx;
+}
+.titlebar .price {
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    text-align: right;
+}
+
+.itemsbar {
+    width: 100%;
+    height:80rpx;
+    line-height:80rpx;
+    background-color: #FFFFFF;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eeeeee;
+    display: -webkit-box; 
+}
+.itemsbar .number {
+    width: 110rpx;
+    color: #999999;
+}
+.itemsbar .date {
+    width: 300rpx;
+    color: #999999;
+}
+.itemsbar .price {
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    text-align: right;
+    color: #7aa6d1;
+}
+.btnBar {
+    text-align: center;
+    margin-top: 20rpx;
+}
+
+.btnBar .btn {
+    width: 292rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #fff;
+    background-color: #df6330;
+    display: inline-block;
+    margin:0 20rpx;
+    border-radius: 12rpx;
+}
+
+.btnBar .btn.blue {
+    background-color: #7aa6d1;
+}
+
+.bd{
+    margin-top: 15rpx;
+    width: 50%;
+    text-align: right;
+}

@@ -1,0 +1,47 @@
+<view hidden='{{pageHidden}}'>
+    <view class="centertabbar">
+        <view class="items {{gpsStatus == index ?'active':''}}" wx:for="{{tabBars}}" wx:key="index" data-index="{{index}}" bindtap='clickTab'>
+            <text>{{item.name}}</text>
+        </view>
+    </view>
+    <view class='myDraft'>
+        <view class='items' wx:for="{{list}}" wx:key="id">
+            <view class='hd'>
+                <view class='r'>订单编号:{{item.orderNo}}</view>
+                <!-- <view class='l'>{{item.orderAmount}}</view> -->
+            </view>
+            <view class="bd">
+                <view class='t'>
+                    <view class='l'>客户姓名:{{item.cusName}}</view>
+                                        <view class='c'> </view>
+
+                    <!-- <view class='r'>业务：{{item.orderType}}</view> -->
+                    <!-- <view class='r'>业务类型：{{item.orderType}}</view> -->
+                </view>
+                <!-- <view class='middle'>
+                     <view class='l'>VIN:{{item.carVin}}</view> 
+                    <view class='r'>内容：{{item.gpsType}}</view> 
+                </view> -->
+                <view class='b'>
+                                    <!-- <view class='btn'  >{{item.gpsBrand}}</view>
+                                    <view class='btn'  >{{item.gpsType}}</view>
+                                     <view class='btn'  >{{item.orderType}}</view> -->
+                    <view class='btn' bindtap='confcomplete' data-id="{{item.id}}" data-orderNo="{{item.orderNo}}">确认安装完成</view>
+                    <view class='btn bgBlur' bindtap='gogpsinstall' data-orderNo="{{item.orderNo}}"  data-id="{{item.id}}" >安装GPS</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='tips-upwarp' hidden="{{!loading}}">
+        <view class='upwarp-progress tips-rotate'></view>
+        <text class='upwarp-tip'>加载中..</text>
+    </view>
+    <view class='tips-upwarp' hidden="{{!loadingComplete}}">
+        <view class='noData' wx:if="{{list.length == 0}}">
+            <image src='../../../images/mescroll-empty.png'></image>
+            <view class='text'>暂无数据</view>
+        </view>
+        <text class='upwarp-tip' wx:else>我是有底线的</text>
+    </view>
+</view>

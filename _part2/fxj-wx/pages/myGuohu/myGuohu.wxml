@@ -1,0 +1,44 @@
+<view hidden='{{pageHidden}}'>
+    <view class="centertabbar">
+        <view class="items {{gpsStatus == index ?'active':''}}" wx:for="{{tabBars}}" wx:key="index" data-index="{{index}}" bindtap='clickTab'>
+            <text>{{item.name}}</text>
+        </view>
+    </view>
+    <view class='myDraft'>
+        <view class='items' wx:for="{{list}}" wx:key="id">
+            <view class='hd'>
+                <!-- <view class='r'>{{item.carNo}}</view> -->
+                <view class='l'>{{item.carVin}}</view>
+            </view>
+            <view class="bd">
+                <view class='t'>
+                    <view class='l'>{{item.cusName}}</view>
+                    <view class='c'>备注：{{item.carRemark}}</view>
+                    <!-- <view class='r'>计划日期：{{item.diyaPlanData}}</view> -->
+                </view>
+                <!-- <view class='middle'>
+                     <view class='l'>VIN:{{item.carVin}}</view> 
+                    <view class='r'>内容：{{item.gpsType}}</view> 
+                </view> -->
+                <view class='b'>
+                                    <view class='btn'  >{{item.carNo}}</view>
+                                    <view class='btn'  >{{item.guohuPlanData}}</view>
+                    <view class='btn' bindtap='goApprovalLog' data-orderNo="{{item.orderNo}}">详情</view>
+                    <view class='btn bgBlur' bindtap='goguohuinstall' data-orderNo="{{item.orderNo}}"  data-id="{{item.id}}" >过户</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='tips-upwarp' hidden="{{!loading}}">
+        <view class='upwarp-progress tips-rotate'></view>
+        <text class='upwarp-tip'>加载中..</text>
+    </view>
+    <view class='tips-upwarp' hidden="{{!loadingComplete}}">
+        <view class='noData' wx:if="{{list.length == 0}}">
+            <image src='../../../images/mescroll-empty.png'></image>
+            <view class='text'>暂无数据</view>
+        </view>
+        <text class='upwarp-tip' wx:else>我是有底线的</text>
+    </view>
+</view>

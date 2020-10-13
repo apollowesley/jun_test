@@ -1,0 +1,55 @@
+# Spring Boot
+server:
+  port: 8088
+spring:
+  profiles:
+    # 改成您需要的环境
+    active: local
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+
+# ORM 配置
+mybatis-plus:
+  configuration:
+    cache-enabled: false
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  type-aliases-package: com.baomidou.crab.*.entity
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      table-underline: true
+      column-like: true
+
+# 单点登录
+kisso:
+  config:
+    cookie-name: ut
+    login-url: /login.html
+    logout-url: /login.html
+
+# Crab 框架配置
+# 购买 Spring Cloud 企业版联系 jobob@qq.com 演示地址：http://crab.kuaituima.com
+crab:
+  grant: 授予
+  license: 激活码，关注 sql 文件夹 cxy.png 公众号回复 crab 免费获取授权码
+
+# 日志
+logging:
+  config: classpath:log4j2.xml
+  pattern:
+    console: "%-5level - %msg%n"
+  level:
+    - error
+    - com.memorynotfound=trace
+
+# actuator 监控 http://localhost:8088/actuator
+# 监控内容介绍 https://www.cnblogs.com/ityouknow/p/8423590.html
+# 可视化管理 https://www.cnblogs.com/shihaiming/p/8488939.html
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

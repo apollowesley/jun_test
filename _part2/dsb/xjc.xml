@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="core">
+	<!-- init -->
+	<target name="init">
+		<echo>+-------------------------------------------------------+</echo>
+		<echo>| Initialization |</echo>
+		<echo>+-------------------------------------------------------+</echo>
+
+		<tstamp>
+			<format property="build.time" pattern="MM/dd/yyyy hh:mm aa" />
+		</tstamp>
+		<property file="build.properties" />
+		<property name="root.dir" value="." />
+		<property name="lib.dir" value="${root.dir}/lib" />
+		<property name="src.dir" value="${root.dir}/src/java" />
+
+	</target>
+
+	<target name="core" depends="init">
+		<antcall target="xjc-java-cmd">
+			<param name="gen-src-dir" value="${src.dir}" />
+			<param name="package-name" value="common.framework.dsb.config" />
+			<param name="classpath" value="${lib.dir}/dsb-3.2.jar" />
+			<param name="schema-dir" value="${root.dir}/schema/" />
+		</antcall>
+	</target>
+
+	<target name="test" depends="init">
+		<antcall target="xjc-cmd">
+			<param name="gen-src-dir" value="${src.dir}" />
+			<param name="package-name" value="common.framework.dsb.test" />
+			<param name="classpath" value="${lib.dir}/dsb.jar" />
+			<param name="schema-dir" value="${root.dir}/schema/Example" />
+		</antcall>
+	</target>
+
+	<target name="xjc-cmd">
+		<exec executable="xjc">
+			<arg value="-Dfile.encoding=UTF-8"/>
+			<arg value="-d" />
+			<arg value="${gen-src-dir}" />
+			<arg value="-p" />
+			<arg value="${package-name}" />
+			<arg value="-extension" />
+			<arg value="-classpath" />
+			<arg value="${classpath}" />
+			<arg value="${schema-dir}" />
+		</exec>
+	</target>
+	
+	<target name="xjc-java-cmd">
+			<exec executable="java">
+				<arg value="-Dfile.encoding=UTF-8"/>
+				<arg value="-cp"/>
+				<arg value="${java_home}/lib/tools.jar"/>
+				<arg value="com.sun.tools.internal.xjc.Driver"/>
+				<arg value="-d" />
+				<arg value="${gen-src-dir}" />
+				<arg value="-p" />
+				<arg value="${package-name}" />
+				<arg value="-extension" />
+				<arg value="-classpath" />
+				<arg value="${classpath}" />
+				<arg value="${schema-dir}" />
+			</exec>
+		</target>
+
+</project>

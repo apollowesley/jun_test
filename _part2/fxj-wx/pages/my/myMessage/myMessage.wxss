@@ -1,0 +1,69 @@
+.messageList {
+  padding:100rpx 24rpx 0;
+  overflow: hidden;
+}
+.messageList .items {
+  width:100%;
+  background-color: #FFFFFF;
+  margin-top:24rpx;
+  padding:10rpx 30rpx 20rpx;
+  float:left;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  color: #7a7a7a;
+}
+.messageList .t {
+  position: relative;
+  padding-left:58rpx;
+  height:88rpx;
+  line-height:88rpx;
+  color: #2a2a2a;
+  font-size: 32rpx;
+}
+.messageList .t::before {
+  font-family: iconfont;
+  content: "\e686";
+  position: absolute;
+  top:0;
+  left:0;
+  color: #7aa6d1;
+  font-size: 44rpx;
+}
+
+.messageList .share {
+  width: 80rpx;
+  height:88rpx;
+  line-height:88rpx;
+  position: absolute;
+  top:0;
+  right:0;
+  text-align: right;
+}
+.messageList .share::before {
+  font-family: iconfont;
+  content: "\e67f";
+  font-size: 46rpx;
+  color: #7a7a7a;
+}
+
+.messageList .state {
+  padding:0 0 0 58rpx;
+  color: #3c8cf0;
+  font-size: 36rpx;
+}
+
+.messageList .con {
+  padding:12rpx 0 0 58rpx;
+}
+
+.messageList .con text {
+  display: block;
+  padding-bottom: 10rpx;
+}
+
+.messageList .time {
+  text-align: right;
+  color: #999999;
+}
+
+

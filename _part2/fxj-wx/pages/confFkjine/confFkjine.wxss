@@ -1,0 +1,45 @@
+page {
+    background-color: #fff;
+}
+
+.viewlist .bd {
+    color: #999999;
+}
+
+.viewlist .bd input{
+    height:60rpx;
+}
+
+.btnBar {
+    text-align: center;
+    margin-top: 80rpx;
+}
+
+.btnBar .btn {
+    width: 292rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #fff;
+    background-color: #df6330;
+    display: inline-block;
+    margin:0 20rpx;
+    border-radius: 12rpx;
+}
+.btnBar .btn.w490 {
+    width:490rpx;
+}
+.btnBar .btn::before {
+    font-family: iconfont;
+    content: "\e722";
+    font-size: 44rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+
+.btnBar .btn.blue {
+    background-color: #7aa6d1;
+}
+.btnBar .btn.blue::before {
+    content: "\e602";
+}

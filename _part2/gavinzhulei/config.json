@@ -1,0 +1,107 @@
+{
+    "navDataUrl": "dev/data/menu.json",
+    "tableDataUrl": "table.json",
+    "docFrameUrl": "doc/frame.md",
+    "menus": [
+                        {
+                            "name": "首页",
+                            "link": "home",
+                            "icon": "icon-home"
+                        },
+                        {
+                            "name": "基础样式",
+                            "icon": "icon-folder",
+                            "children":[
+                                {
+                                    "name": "自定义颜色对照",
+                                    "link": "color",
+                                    "icon": "icon-doc"
+                                },
+                                {
+                                    "name": "按钮样式",
+                                    "link": "buttons",
+                                    "icon": "icon-doc"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "组件",
+                            "icon": "icon-folder",
+                            "children":[
+                                
+                                {
+                                    "name": "面板",
+                                    "link": "panel",
+                                    "icon": "icon-user"
+                                },
+                                {
+                                    "name": "表格",
+                                    "link": "table",
+                                    "icon": "icon-grid"
+                                },
+                                {
+                                    "name": "模态框",
+                                    "link": "modal",
+                                    "icon": "icon-note"
+                                },
+                                {
+                                    "name": "Form表单",
+                                    "link": "form",
+                                    "icon": "icon-doc"
+                                },
+                                {
+                                    "name": "Tab",
+                                    "link": "tab",
+                                    "icon": "icon-doc"
+                                },
+                                {
+                                    "name": "富文本编辑器",
+                                    "link": "editor",
+                                    "icon": "icon-doc"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "文档",
+                            "icon": "icon-settings",
+                            "children": [
+                                {
+                                    "name": "项目搭建",
+                                    "link": "doc-frame",
+                                    "icon": "icon-doc"
+                                },
+                                {
+                                    "name": "第一个页面",
+                                    "link": "doc-home",
+                                    "icon": "icon-doc"
+                                },
+                                {
+                                    "name": "组件",
+                                    "icon": "icon-folder",
+                                    "children":[
+                                        {
+                                            "name": "Page",
+                                            "link": "doc-page",
+                                            "icon": "icon-doc"
+                                        },
+                                        {
+                                            "name": "Navbar",
+                                            "link": "doc-navbar",
+                                            "icon": "icon-doc"
+                                        },
+                                        {
+                                            "name": "VTable",
+                                            "link": "doc-table",
+                                            "icon": "icon-doc"
+                                        },
+                                        {
+                                            "name": "QueryTable",
+                                            "link": "doc-query-table",
+                                            "icon": "icon-doc"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+}

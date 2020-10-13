@@ -1,0 +1,11 @@
+.idea/
+.settings/
+.classpath
+.project
+*.mymetadata
+**/**/libs/
+**/**/.git/
+**/**/.idea/
+**/classes/
+target/
+*.iml

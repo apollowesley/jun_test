@@ -1,0 +1,11 @@
+.notice-tit{
+  font-size: 32rpx;
+  text-align: center;
+}
+.notice-text{
+  font-size: 28rpx;
+}
+.notice-wrap{
+  background: #fff;
+  padding-bottom: 20rpx;
+}

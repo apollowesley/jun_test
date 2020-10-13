@@ -1,0 +1,12 @@
+description "Crab Common"
+
+dependencies {
+    compile("org.apache.commons:commons-lang3")
+
+    compileOnly("org.springframework.boot:spring-boot-starter-web")
+    compileOnly("org.springframework.boot:spring-boot-starter-json")
+    compileOnly("com.baomidou:mybatis-plus-extension")
+    compileOnly("org.freemarker:freemarker")
+    compileOnly("com.belerweb:pinyin4j")
+    compileOnly("com.baomidou:kisso")
+}

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leech.dao.DatatablesMapper" >
+  <resultMap id="BaseResultMap" type="com.leech.model.DatatablesBean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="first_name" property="firstName" jdbcType="VARCHAR" />
+    <result column="last_name" property="lastName" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="office" property="office" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="salary" property="salary" jdbcType="INTEGER" />
+    <result column="extn" property="extn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, first_name, last_name, position, email, office, start_date, age, salary, extn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from datatables_demo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from datatables_demo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.leech.model.DatatablesBean" >
+    insert into datatables_demo (id, first_name, last_name, 
+      position, email, office, 
+      start_date, age, salary, 
+      extn)
+    values (#{id,jdbcType=INTEGER}, #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{office,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{age,jdbcType=INTEGER}, #{salary,jdbcType=INTEGER}, 
+      #{extn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.leech.model.DatatablesBean" >
+    insert into datatables_demo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="firstName != null" >
+        first_name,
+      </if>
+      <if test="lastName != null" >
+        last_name,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="office != null" >
+        office,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="extn != null" >
+        extn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="firstName != null" >
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="office != null" >
+        #{office,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=INTEGER},
+      </if>
+      <if test="extn != null" >
+        #{extn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.leech.model.DatatablesBean" >
+    update datatables_demo
+    <set >
+      <if test="firstName != null" >
+        first_name = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        last_name = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="office != null" >
+        office = #{office,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=INTEGER},
+      </if>
+      <if test="extn != null" >
+        extn = #{extn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.leech.model.DatatablesBean" >
+    update datatables_demo
+    set first_name = #{firstName,jdbcType=VARCHAR},
+      last_name = #{lastName,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      office = #{office,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      age = #{age,jdbcType=INTEGER},
+      salary = #{salary,jdbcType=INTEGER},
+      extn = #{extn,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- 分页查询列表 -->
+  <select id="findPaginated" parameterType="map" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from datatables_demo t
+  	where 1 = 1
+  	<if test="search != null and search != ''">
+  		AND t.first_name LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or    
+			t.last_name LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.position LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.email LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.office LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.age LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.salary LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') 
+  	</if>
+  	<!-- 排序 -->
+	<if test="sortName != null and sortName != ''">
+		ORDER BY ${sortName}
+	</if>
+  	limit #{offset},#{pagesize}
+  </select>
+  
+  <!-- 查询总记录数 -->
+  <select id="findPaginatedCount" parameterType="map" resultType="long">
+  	select count(*) from datatables_demo t
+  	where 1=1
+  	<if test="search != null and search != ''">
+  		AND t.first_name LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or    
+			t.last_name LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.position LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.email LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.office LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.age LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') or
+			t.salary LIKE CONCAT(CONCAT('%', #{search,jdbcType=VARCHAR}),'%') 
+  	</if>
+  </select>	  
+  
+</mapper>

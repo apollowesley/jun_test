@@ -1,0 +1,11 @@
+
+$ ssh-keygen -t rsa -C "wuyuchao0393@foxmail.com"
+$ cat ~/.ssh/id_rsa.pub
+$ ssh -T git@git.oschina.net
+$ git clone git@git.oschina.net:zzuwangfeng/demo.git
+//创建个文件"姓名.txt"
+$ git add --all
+$ git commit -m "姓名.txt"//把代码提交到缓冲区
+$ git push origin master
+$ git pull origin master//下载
+

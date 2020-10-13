@@ -1,0 +1,13 @@
+/distrib
+/bin
+/classes-bboss-rpc
+/build.log
+/classes/
+/classes1/
+/build/
+/.gradle/
+/.settings/
+/.classpath
+/.project
+/bboss-rpc.iml
+/local.properties

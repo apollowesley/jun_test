@@ -1,0 +1,171 @@
+body{
+	font-size: 18px!important;
+}
+#mainContent {
+    margin-left: -7px;
+    margin-right: 7px;
+    margin-bottom: 50px;
+}
+ul{
+	list-style-type:none;
+}
+#bill,
+#workDate,
+#organize,
+#batch,
+#affairType,
+#deliveryReason,
+#deliveryAmount,
+#remark,
+#raise,
+#choosePic{
+	margin-bottom: 15px;
+	margin-top: 12px
+} 
+input[disabled], 
+select[disabled], 
+textarea[disabled], 
+input[readonly], 
+select[readonly],
+ textarea[readonly] {
+    cursor: not-allowed;
+    background-color: #eeeeee;
+}
+#bill span,
+#workDate span,
+#organize span,
+#batch span,
+#affairType span,
+#deliveryReason span,
+#deliveryAmount span,
+#remark span{
+	width:34%;
+}
+#bill input,
+#workDate input,
+#organize input,
+#affairType input,
+#batch textarea,
+#deliveryReason input,
+#deliveryAmount input,
+#remark input{
+	width: 54%;
+	vertical-align: middle;
+	margin-left: 18px;
+	border-radius: 3px;
+	height: 26px;
+	border-width: 1px;
+	font-size: 18px;
+	
+}
+
+#bill input{
+	margin-left: 36px;
+}
+#organize input,#batch textarea{
+	background-color:  #FCFBDF;
+}
+#batch textarea{
+	width: 54%;
+	height: 53px;
+}
+#affairType input,#deliveryAmount input{	
+	background-color:  #FCFBDF;
+	height: 26px;
+}
+#remark input{
+	margin-left: 54px;
+}
+#raise input{
+    margin-top: -2px;
+    vertical-align: middle;
+}
+#choosePic img{
+	width：22px;
+	height: 22px;
+}
+
+.image-div{
+	position: relative;
+	width: 46%;
+	display: inline-block;
+	height: 25%;
+	margin: 2% 0 2% 3%}
+.image-div img{
+	width: 100%;
+	height: 25%;
+	}	
+.image-upload-div{
+ 	position: absolute;
+ 	left: 0;
+ 	top: 0;
+ 	width: 100%;
+ 	height:100%;
+ 	z-index: 10;
+ 	background-color: #000;
+ 	opacity: 0.6;
+ 	color: #fff;
+ 	text-align: center;
+ 	font-size: 2rem}
+.image-delete-btn{
+	position: absolute;
+	right: 0;top: 0;}
+ .big-image-div{
+ 	position: fixed;
+ 	top: 0;
+ 	left: 0;
+ 	width: 100%;
+ 	background-color: #ddd;
+ 	text-align: center;
+ 	display: none;
+ 	z-index: 9999}
+ .big-image-div img
+ {width: 80%;
+ margin-top: 100px;}
+ 
+ .body-overflow-hidden
+ {overflow: hidden;}
+#bottom{
+	background-color:#16A6BB;
+	height:50px;
+	color:white;
+}
+.save{
+	margin-left:7px;
+	position: relative;
+    top: 10px;
+    font-size: 18px;
+	float: right;
+}
+.queryList{
+	margin-left:7px;
+	margin-right:11px;
+	position: relative;
+    top: 10px;
+    font-size: 18px;
+    float: right;
+}
+.nav_seprator{
+	margin-left:7px;
+	position: relative;
+    top: 10px;
+    font-size: 18px;
+    float: right;
+}
+.commit {
+    float: right;
+    position: relative;
+    top: 10px;
+    
+    margin-left: 7px;
+}
+.delete {
+    float: right;
+    position: relative;
+    top: 10px;
+    margin-left: 7px;  
+}
+.layui-layer-title,
+ .layui-layer-content {
+	font-size:18px!important;
+	}

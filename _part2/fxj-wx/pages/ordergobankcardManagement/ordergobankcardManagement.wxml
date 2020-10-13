@@ -1,0 +1,19 @@
+ <view class='co'>
+  <view class='title'>请绑定本人银行卡</view>
+<view class='all'>
+  <view class='frame'>
+    <view class='name'>
+      <text style='margin-left:50rpx;width:20%' >持卡人</text>
+      <input style='margin-left:50rpx;margin-top:18rpx;' type='text' placeholder='请输入姓名'  value='{{ocrName}}' bindinput='ocrNameInput'></input>
+       <view class="con1"><image src='../../images/i.png'></image></view>
+    </view>
+    <view class='bankCard'>
+      <text style='margin-left:50rpx;width:20%'>银行卡</text>
+      <input style='margin-left:50rpx;margin-top:18rpx;' type='text'  placeholder='请输入银行卡号' value='{{ocrName}}' bindinput='ocrNameInput'></input>  
+        <view class="con1"><image src='../../images/camera.png'></image></view>
+    </view>
+  </view>
+</view>
+<view class='btn'>提交</view>
+ </view>
+

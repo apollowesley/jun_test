@@ -1,0 +1,12 @@
+# .ignore files
+/.settings/
+build
+/.project
+/.classpath
+.idea
+out
+logs
+.gradle
+application-crab.yml
+application-local.yml
+

@@ -1,0 +1,3 @@
+<delete id="delByExpression" parameterType="net.oschina.durcframework.easymybatis.query.Pageable">
+		DELETE FROM ${table.tableName}
+</delete>

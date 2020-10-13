@@ -1,0 +1,10 @@
+.classpath
+.project
+.settings/org.eclipse.core.resources.prefs
+bin
+generator-output
+*.dll
+WebRoot/upload
+resources/dataSource.properties
+*.dll
+WebRoot/zbdp/langs

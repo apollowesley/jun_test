@@ -1,0 +1,33 @@
+<view class='title'>车管业务</view>
+
+<view class="tool">
+    <view class="col-3" bindtap='goWebUrl'><view class="con"><image src='../../images/tool/ico_tool01.png'></image><text>申请快测</text></view></view>
+    <!-- <view class="col-3" bindtap='goclpg' ><view class="con"><image src='../../images/tool/ico_tool02.png'></image><text>车辆评估</text></view></view>
+    <view class="col-3" bindtap='gojsq'><view class="con"><image src='../../images/tool/ico_tool03.png'></image><text>计算器</text></view></view> -->
+    <view class="col-3"  bindtap='goGps'><view class="con"><image src='../../images/tool/gps.png'></image><text>GPS安装</text></view></view>
+    <!-- <view class="col-3"  bindtap='goDiya'><view class="con"><image src='../../images/tool/diya.png'></image><text>车辆抵押</text></view></view> -->
+        <view class="col-3" bindtap='goGuohu'><view class="con"><image src='../../images/tool/ico_tool09.png'></image><text>过户</text></view></view>
+
+     <view class="col-3" bindtap='godkjs'><view class="con"><image src='../../images/tool/ico_tool01.png'></image><text>贷款计算器</text></view></view>
+
+    <!-- <view class="col-3"  bindtap='gomq'><view class="con"><image src='../../images/tool/ico_tool06.png'></image><text>临时面签</text></view></view> -->
+    <view class="col-3" bindtap='goviolationEnquiry'><view class="con"><image src='../../images/tool/ico_tool08.png'></image><text>车辆查询</text></view></view>
+      
+    <!-- <view class="col-3" bindtap='goyhmq'><view class="con"><image src='../../images/tool/yhsp.png'></image><text>银行面签</text></view></view> -->
+   
+    <!-- <view class="col-3" bindtap='goqdmq'><view class="con"><image src='../../images/tool/ico_tool07.png'></image><text>视频签约</text></view></view> -->
+    <!-- <view class="col-3" bindtap='gojiafang'><view class="con"><image src='../../images/tool/jiafang.png'></image><text>家访</text></view></view>   -->
+   <view class="col-3"  bindtap='gogpsapp'><view class="con"><image src='../../images/tool/ico_tool15.png'></image><text>GPS申请</text></view></view>
+    <view class="col-3"  bindtap='navigateToMiniProgram'><view class="con"><image src='../../images/tool/cuishou.png'></image><text>贷后催收</text></view></view>
+ <!-- <view class="col-3" bindtap='gofkapp'><view class="con"><image src='../../images/tool/ico_tool05.png'></image><text>付款申请</text></view></view> -->
+  <!-- <view class="col-3" bindtap='gobankcard'><view class="con"><image src='../../images/tool/ico_tool16.png'></image><text>绑定银行卡</text></view></view> -->
+    <!-- <view class="col-3" bindtap='godataquery'><view class="con"><image src='../../images/tool/ico_tool17.png'></image><text>大数据查询</text></view></view> -->
+        <!-- <view class="col-3" bindtap='gonews'><view class="con"><image src='../../images/tool/ico_tool17.png'></image><text>信息</text></view></view> -->
+    <view class="col-3" bindtap='gosxbzx'><view class="con"><image src='../../images/tool/sxbzx.png'></image><text>失信被执行</text></view></view>
+        <view class="col-3" bindtap='goche300'><view class="con"><image src='../../images/tool/sxbzx.png'></image><text>车300查询</text></view></view>
+
+ <!-- <view class="col-3" bindtap='gomymq'><view class="con"><image src='../../images/tool/ico_tool07.png'></image><text>我的面签</text></view></view> -->
+
+    <view class="col-3"><view class="con"></view></view>
+    <view class="col-3"><view class="con"></view></view>
+</view>

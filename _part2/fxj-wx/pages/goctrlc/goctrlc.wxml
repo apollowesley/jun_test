@@ -1,0 +1,49 @@
+<!-- 最外层视图page -->
+<view class='page'>
+ 
+
+</view>
+<view class='ocr mt' >
+    <view class="title">OCR驾驶证识别</view>
+   <!-- 标签名称 -->
+<view class='conents_lab'>
+  <label class='shop_left'>
+    <view class="left">{{url_name}}</view>
+    <text selectable='true' bindlongtap='copy'>{{url}}/{{orderNo}}</text>
+  </label>
+</view>
+<!-- 复制 -->
+<label class='copy' bindtap='copyBtn'>复制</label>
+</view>
+
+<view class='ocr mt'>
+    <view class="title">上传附件</view>
+    <view class='imgMain'>
+        <view class='items' wx:for="{{fxjProAttList}}"  wx:if="{{item.attType ==40  }}" wx:key="id">
+            <view class='hd'>
+                <view class='con'>
+                    <view class='ico'></view>
+                    <view class='text'>{{item.attName}}</view>
+                </view>
+            </view>
+            <view class='bd'>
+                <view class='uploadimg'>
+                    <view class='items' wx:for='{{item.fxjOrderAttaList}}' wx:key='id' wx:for-index='idx'>
+                        <view class='delete' data-img-idx="{{idx}}" data-index="{{index}}" bindtap='deletePic'></view>
+                        <view class='pic' style='background-image:url({{item.attaUrl}})' data-picId="{{item.picId}}"></view>
+                    </view>
+                    <view class='items'>
+                        <view class='pic' bindtap='getEnclosurePic' data-attType="{{item.attType}}" data-index="{{index}}"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class='btnBar'>
+<view class='submitBtn' bindtap="submitBtn" >提交申请</view>
+</view>
+ 
+ 
+ 

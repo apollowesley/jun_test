@@ -1,0 +1,22 @@
+
+.app-header { background-color: #fbfbfb }
+.navbar-brand { background-color: #2b303b }
+.app-aside { border-right: 1px solid #2d2d2b; background-color: #2b303b }
+.app-aside .children,
+.app-aside .aside-item.opened { background-color: #272b35 !important }
+.app-aside .aside-item, .app-aside .children .fold-header, .aside-title { color: #868ea0 }
+.app-aside .aside-item > i { color: #868ea0; background-color: #181a20 }
+.app-aside .aside-item.parent:after { color: #868ea0 }
+.app-aside .aside-item:hover { background-color: #272b35 !important; color: #f1f1f1 }
+.app-aside .aside-item.active { background-color: #21252d; color: #f1f1f1; border-color: #21252d }
+.app-aside .aside-item.opened,
+.app-aside .aside-item:hover > i,
+.app-aside .aside-item.active > i,
+.app-aside .aside-item.opened > i,
+.app-aside .aside-item.opened > span { color: #f1f1f1 }
+.app-aside .aside-divider { border-color: #21252d !important }
+.app-aside .children .aside-item:hover { background-color: #21252d !important }
+.aside-folded .app-aside .children { border: 1px solid #2d2d2b !important }
+@media (max-width: 991px) {
+  .app-aside .children { border: 1px solid #2d2d2b }
+}

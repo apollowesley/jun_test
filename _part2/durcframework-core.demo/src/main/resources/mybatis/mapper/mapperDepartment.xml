@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="durcframework.test.department.dao.DepartmentDao">
+
+	<resultMap id="queryResultMap" type="durcframework.test.department.entity.Department">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="department_name" property="departmentName" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT
+		t.ID AS id
+		,t.department_name AS departmentName
+
+		FROM department t
+		<include refid="expressionBlock.where" />
+		<if test="sortname == null">
+			ORDER BY ID desc
+		</if>
+		<if test="sortname != null">
+			ORDER BY #{sortname,jdbcType=VARCHAR} ${sortorder}
+		</if>
+		<if test="!isQueryAll">
+			LIMIT
+			#{firstResult,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM department t
+		<include refid="expressionBlock.where" />
+	</select>
+	
+	<insert id="save" parameterType="durcframework.test.department.entity.Department" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+		INSERT INTO department
+		(department_name)
+		VALUES(
+		#{departmentName,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<update id="update" parameterType="durcframework.test.department.entity.Department">
+		UPDATE department 
+		SET
+			department_name = #{departmentName,jdbcType=VARCHAR}
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+	
+	
+	<select id="get" resultMap="queryResultMap" parameterType="java.io.Serializable">
+		SELECT
+		t.ID AS id
+		,t.department_name AS departmentName
+
+		FROM department t
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="durcframework.test.department.entity.Department">
+		DELETE FROM department
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

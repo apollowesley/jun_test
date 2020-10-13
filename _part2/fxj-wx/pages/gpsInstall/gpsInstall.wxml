@@ -1,0 +1,18 @@
+<view class="annexMain">
+    <view class='items' bindtap='gogpsPhotoUpload'>
+        <view class='title'>拍照</view>
+        <view class='p'>GPS安装拍照</view>
+    </view>
+    <!-- <view class='items' bindtap='goCareVideoUpload'>
+        <view class='title'>钥匙验证录像</view>
+        <view class='p'>验证钥匙信息</view>
+    </view> -->
+    <!-- <view class='items' bindtap='goRemoteSignature'>
+        <view class='title'>远程面签</view>
+        <view class='p'>评估师远程验车</view>
+    </view> -->
+     <!-- <view class='items' bindtap='gogpsinfo'>
+        <view class='title'>车辆状况确认</view>
+        <view class='p'>确认车辆情况</view>
+    </view> -->
+</view>

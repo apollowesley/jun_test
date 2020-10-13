@@ -1,0 +1,1349 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_20" class="java.beans.XMLDecoder"> 
+ <object class="com.autoscript.ui.config.AutoScriptConfig"> 
+  <void property="extConfigModels"> 
+   <void method="add"> 
+    <object class="com.autoscript.ui.model.extconfig.XmlDataPopupMenuConfigModel"> 
+     <void property="menuItems"> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.menu.XmlDataPopupMenuItemConfigModel"> 
+        <void property="acceleratorKey"> 
+         <char>P</char> 
+        </void> 
+        <void property="describe"> 
+         <string>转pdm为xml</string> 
+        </void> 
+        <void property="iconFile"> 
+         <string></string> 
+        </void> 
+        <void property="implClassName"> 
+         <string>com.autoscript.ext.xmldata.pdm.MakeXmlDataFromPdm</string> 
+        </void> 
+        <void property="name"> 
+         <string>转pdm为xml</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.menu.XmlDataPopupMenuItemConfigModel"> 
+        <void property="acceleratorKey"> 
+         <char>D</char> 
+        </void> 
+        <void property="describe"> 
+         <string>转db为xml</string> 
+        </void> 
+        <void property="iconFile"> 
+         <string></string> 
+        </void> 
+        <void property="implClassName"> 
+         <string>com.autoscript.ext.xmldata.database.MakeXmlDataFromDB</string> 
+        </void> 
+        <void property="name"> 
+         <string>转db为xml</string> 
+        </void> 
+       </object> 
+      </void> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="com.autoscript.ui.model.extconfig.TemplateFunctionConfigModel"> 
+     <void property="functionItems"> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>获取当前日期，调用举例currentdate(&apos;yyyy-MM-dd&apos;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.CurrentDate</string> 
+        </void> 
+        <void property="name"> 
+         <string>currentdate</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>日期格式化，调用举例：dateformat(date,&apos;yyyy/MM/dd&apos;) date为java.util.Date类型</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.DateFormat</string> 
+        </void> 
+        <void property="name"> 
+         <string>dateformat</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>多个单词首字符变小写,调用举例:wordfirstlower(&apos;Word1_Word2&apos;,&apos;_&apos;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.WordFirstCharLower</string> 
+        </void> 
+        <void property="name"> 
+         <string>wordfirstlower</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>多个单词首字符变大写,调用举例:wordfirstupper(&apos;word1_word2&apos;,&apos;_&apos;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.WordFirstCharUpper</string> 
+        </void> 
+        <void property="name"> 
+         <string>wordfirstupper</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>字符串转换为大写,调用举例:uppercase(&quot;test&quot;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.UpperCase</string> 
+        </void> 
+        <void property="name"> 
+         <string>uppercase</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>字符串转换为小写,调用举例:lowercase(&quot;TEST&quot;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.LowerCase</string> 
+        </void> 
+        <void property="name"> 
+         <string>lowercase</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>替换字符串，调用举例：replace(&quot;a_b&quot;,&quot;_&quot;,&quot;&quot;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.Replace</string> 
+        </void> 
+        <void property="name"> 
+         <string>replace</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>判断字符串以什么开头，调用示例：startswith(&quot;xxxx&quot;,&quot;x&quot;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.StartsWith</string> 
+        </void> 
+        <void property="name"> 
+         <string>startswith</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>判断字符串以什么结束，调用示例：endswith(&quot;xxxx&quot;,&quot;x&quot;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.EndsWith</string> 
+        </void> 
+        <void property="name"> 
+         <string>endswith</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>忽略大小写判断字符串以什么结束，调用示例：endswithignorecase(&quot;xxxx&quot;,&quot;x&quot;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.EndsWithIgnoreCase</string> 
+        </void> 
+        <void property="name"> 
+         <string>endswithignorecase</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>忽略大小写判断字符串以什么开始，调用示例：startswithignorecase(&quot;xxxx&quot;,&quot;x&quot;)</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.StartsWithIgnoreCase</string> 
+        </void> 
+        <void property="name"> 
+         <string>startswithignorecase</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>字符串截断函数，调用示例:substring(&quot;abc&quot;,1)返回&quot;bc&quot;,substring(&quot;abcd&quot;,1,2)返回&quot;bc&quot;</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.SubString</string> 
+        </void> 
+        <void property="name"> 
+         <string>substring</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>字符串查找函数，调用示例:index(&quot;abc&quot;,&quot;a&quot;)返回0,index(&quot;abc&quot;,&quot;bc&quot;)返回1</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.Index</string> 
+        </void> 
+        <void property="name"> 
+         <string>index</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>字符串拆分函数,调用示例:splitstring(&quot;a,b,c&quot;,&quot;,&quot;)返回list对象，包含a,b,c三个元素</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.SplitString</string> 
+        </void> 
+        <void property="name"> 
+         <string>splitstring</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.function.FunctionConfigModel"> 
+        <void property="describe"> 
+         <string>文件内容查找函数,调用示例:filecontentfind(&quot;c:\1.txt&quot;,&quot;abc&quot;) 存在返回true;否则返回false</string> 
+        </void> 
+        <void property="functionClass"> 
+         <string>com.autoscript.ui.template.function.FileContentFind</string> 
+        </void> 
+        <void property="name"> 
+         <string>filecontentfind</string> 
+        </void> 
+       </object> 
+      </void> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="com.autoscript.ui.model.extconfig.KBConfigModel"> 
+     <void property="kbItems"> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>判断字符串是否以指定的字符串开头</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>startswith</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>startswith(&quot;_abc&quot;,&quot;_&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>获取当前日期</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>currentdate</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>currentdate(&quot;yyyy-MM-dd&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>日期格式化，调用举例：dateformat(date,&quot;yyyy/MM/dd&quot;),date为java.util.Date类型</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>dateformat</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>dateformat(date,&quot;yyyy/MM/dd&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>多个单词首字符变小写。第一个参数为单词串，第二参数为单词分隔符</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>wordfirstlower</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>wordfirstlower(&quot;Word1_Word2&quot;,&quot;_&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>多个单词首字符变大写。第一个参数为单词串，第二参数为单词分隔符</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>wordfirstupper</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>wordfirstupper(&quot;word1_word2&quot;,&quot;_&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>字符串转换为大写</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>uppercase</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>uppercase(&quot;xxxx&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>字符串转换为小写</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>lowercase</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>lowercase(&quot;xxxx&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>替换字符串。第一个参数为被替换的字符串,第二参数为旧串，第三参数为新串</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>replace</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>replace(&quot;xx_xx&quot;,&quot;_&quot;,&quot;&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>判断字符串以什么结束</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>endswith</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>endswith(&quot;xxxx&quot;,&quot;x&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>忽略大小写判断字符串以什么结束</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>endswithignorecase</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>endswithignorecase(&quot;xxxx&quot;,&quot;x&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>忽略大小写判断字符串以什么开始</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>startswithignorecase</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>startswithignorecase(&quot;xxxx&quot;,&quot;x&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>判断语句</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#if</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#if condition&gt;   ... &lt;#elseif condition2&gt;   ... &lt;#elseif condition3&gt;   ... ... &lt;#else&gt;   ... &lt;/#if&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>多路判断语句</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#switch</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#switch value&gt;   &lt;#case refValue1&gt;     ...     &lt;#break&gt;   &lt;#case refValue2&gt;     ...     &lt;#break&gt;   ...   &lt;#case refValueN&gt;     ...     &lt;#break&gt;   &lt;#default&gt;     ... &lt;/#switch&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>循环语句。item_index:是list当前值的下标 item_has_next:判断list是否还有值;用例 &lt;#assign seq = [&quot;winter&quot;, &quot;spring&quot;, &quot;summer&quot;, &quot;autumn&quot;]&gt; &lt;#list seq as x&gt;   ${x_index + 1}. ${x}&lt;#if x_has_next&gt;,&lt;/#if&gt; &lt;/#list&gt;</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#list</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#list sequence as item&gt; ... &lt;#if item = &quot;spring&quot;&gt;&lt;#break&gt;&lt;/#if&gt; ... &lt;/#list&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>引用公共模板.&lt;#include filename options&gt; options包含两个属性 encoding=”GBK” 编码格式 parse=true 是否作为ftl语法解析,默认是true，false就是以文本方式引入.注意在ftl文件里布尔值都是直接赋值的如parse=true,而不是parse=”true”</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#include</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#include filename encoding=&quot;GBK&quot; parse=true&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>类似于java里的import,它导入文件，然后就可以在当前文件里使用被导入文件里的宏组件  用例  假设mylib.ftl里定义了宏copyright那么我们在其他模板页面里可以这样使用 &lt;#import &quot;/libs/mylib.ftl&quot; as my&gt;  &lt;@my.copyright date=&quot;1999-2002&quot;/&gt;  &quot;my&quot;在freemarker里被称作namespace</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#import</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#import path as hash&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>用来压缩空白空间和空白的行.&lt;#compress&gt;   1 2  3   4    5   ${moo}   test only    I said, test only  &lt;/#compress&gt; 输出 (1 2 3 4 5 moo test only I said, test only) escape, noescape</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#compress&gt;</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#compress&gt;   ... &lt;/#compress&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>主要使用在相似的字符串变量输出，比如某一个模块的所有字符串输出都必须是html安全的，这个时候就可以使用该表达式 &lt;#escape x as x?html&gt;   First name: ${firstName}   &lt;#noescape&gt;Last name: ${lastName}&lt;/#noescape&gt;   Maiden name: ${maidenName} &lt;/#escape&gt; 相同表达式    First name: ${firstName?html}   Last name: ${lastName }   Maiden name: ${maidenName?html}</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#escape</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#escape identifier as expression&gt;   ...   &lt;#noescape&gt;...&lt;/#noescape&gt;   ... &lt;/#escape&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>给变量赋值。语法 &lt;#assign name=value&gt; or &lt;#assign name1=value1 name2=value2 ... nameN=valueN&gt; or &lt;#assign same as above... in namespacehash&gt; or &lt;#assign name&gt;   capture this &lt;/#assign&gt; or &lt;#assign name in namespacehash&gt;   capture this &lt;/#assign&gt;</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#assign</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#assign name&gt;   capture this &lt;/#assign&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>全局赋值语法，利用这个语法给变量赋值，那么这个变量在所有的namespace中是可见的,如果这个变量被当前的assign语法覆盖 如&lt;#global x=2&gt; &lt;#assign x=1&gt; 在当前页面里x=2将被隐藏，或者通过${.global.x}来访问 语法 &lt;#global name=value&gt; or &lt;#global name1=value1 name2=value2 ... nameN=valueN&gt; or &lt;#global name&gt;   capture this &lt;/#global&gt;</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#global </string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#global name&gt;   capture this &lt;/#global&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>用来设置整个系统的一个环境.用来设置整个系统的一个环境 locale number_format boolean_format date_format, time_format, datetime_format time_zone classic_compatible 用例 假如当前是匈牙利的设置，然后修改成美国 ${1.2} &lt;#setting locale=&quot;en_US&quot;&gt; ${1.2}  输出 1,2 1.2 因为匈牙利是采用“,”作为十进制的分隔符，美国是用“.”</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#setting</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#setting name=value&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>宏定义.用例 &lt;#macro test foo bar=&quot;Bar&quot; baaz=-1&gt;   Test text, and the params: ${foo}, ${bar}, ${baaz} &lt;/#macro&gt; &lt;@test foo=&quot;a&quot; bar=&quot;b&quot; baaz=5*5-2/&gt; &lt;@test foo=&quot;a&quot; bar=&quot;b&quot;/&gt; &lt;@test foo=&quot;a&quot; baaz=5*5-2/&gt; &lt;@test foo=&quot;a&quot;/&gt; 输出   Test text, and the params: a, b, 23   Test text, and the params: a, b, -1   Test text, and the params: a, Bar, 23   Test text, and the params: a, Bar, -1</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#macro</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#macro name param1 param2 ... paramN&gt;   ...   &lt;#nested loopvar1, loopvar2, ..., loopvarN&gt;   ...   &lt;#return&gt;   ... &lt;/#macro&gt; 调用：&lt;@name param1=&quot;xxx&quot; param2=&quot;xxx&quot; ... paramN=&quot;xxxx&quot; /&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string> 去掉左右空白和回车换行</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#t&gt;</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>xxxxx&lt;#t&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>去掉左边空白和回车换行</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#lt&gt;</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>xxxx&lt;#lt&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>去掉右边空白和回车换行</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#rt&gt;</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>xxxx&lt;#rt&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>取消&lt;#t&gt;,&lt;#lt&gt;,&lt;#rt&gt;的效果</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>&lt;#nt&gt;</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>xxxx&lt;#t&gt;&lt;#nt&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>${expression}计算expression并输出</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>${expression}</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>${expression}</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>#{ expression }数字计算#{ expression ;format}安格式输出数字format为M和m M表示小数点后最多的位数,m表示小数点后最少的位数如#{121.2322;m2M2}输出121.23</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>#{ expression }</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>#{ expression ;format}</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>1..5 表示从1到5</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>数字循环</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>number..number</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>${123.23?int} 输出123</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>对浮点取整数</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>${123.23?int}</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string> ${var?default(“hello world&lt;br&gt;”)?html}如果var is null那么将会被hello world&lt;br&gt;替代</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>给变量默认值</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>${var?default(“hello world&lt;br&gt;”)?html}</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>判断对象是不是null</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>判断对象是不是null</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#if mouse?exists&gt; 或者 ${mouse?if_exists})</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>常用格式化日期</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>常用格式化日期</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>${openingTime?date} ${openingTime?date_time} ${openingTime?time}</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>返回安全的html输出,替换掉html代码</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>html安全输出</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?html</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>直接调用java对象的方法</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>直接调用java对象的方法</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>${object.methed(args)} </string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>页面实现可以通过global指令,具体查看指令里的global部分</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>添加全局共享变量数据模型</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>cfg = Configuration.getDefaultConfiguration(); cfg.setSharedVariable(&quot;global&quot;, &quot;you good&quot;); </string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>xml安全输出</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>xml安全输出</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?xml</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>字符串截取.&lt;#assign user=”hello jeen”&gt; ${user[0]}${user[4]} ${user[1..4]} 输出 : ho ello  </string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>substring</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>${user[0]}${user[4]} ${user[1..4]}</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>字符串拆分</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>split</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&quot;abc;def;ghi&quot;?split(&quot;;&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>取得字符串长度</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>取得字符串长度</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?length</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>大写输出字符</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>大写输出字符</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?upper_case</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>小写输出字符</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>小写输出字符</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?lower_case</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>首字符大写</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>首字符大写</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?cap_first</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>首字符小写</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>首字符小写</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?uncap_first</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>去掉字符串前后空格</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>去掉字符串前后空格</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?trim</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>每个单词的首字符大写</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>每个单词的首字符大写</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?capitalize</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>类似String.indexof:  “babcdabcd”?index_of(“abc”) 返回1  “babcdabcd”?index_of(“abc”,2) 返回5 类似String.lastIndexOf  last_index_of和String.lastIndexOf类似,同上</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>indexof</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&quot;babcdabcd&quot;?index_of(&quot;abc&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>j_string: 在字符串引号前加”\”  &lt;#assign beanName = &apos;The &quot;foo&quot; bean.&apos;&gt;  String BEAN_NAME = &quot;${beanName?j_string}&quot;; 打印输出:  String BEAN_NAME = &quot;The \&quot;foo\&quot; bean.&quot;;</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>代码使用\&quot;</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>var?j_string</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>替换字符串 replace ${s?replace(‘ba’, ‘XY’ )} ${s?replace(‘ba’, ‘XY’ , ‘规则参数’)}将s里的所有的ba替换成xy 规则参数包含: i r m s c f 具体含义如下: · i: 大小写不区分. · f: 只替换第一个出现被替换字符串的字符串 · r:  XY是正则表达式</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>replace</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>${s?replace(&apos;ba&apos;,&apos;XY&apos;)}</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>注释标志</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>注释标志</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#-- 这里是注释 --&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>sequences内置方法 sequence?first 返回sequence的第一个值;前提条件sequence不能是null sequence?last  返回sequence最后一个值 sequence?reverse  反转sequence的值 sequence?size  返回sequence的大小 sequence?sort  对sequence按里面的对象toString()的结果进行排序 sequence?sort_by(value) 对sequence 按里面的对象的属性value进行排序 如: sequence里面放入的是10 个user对象，user对象里面包含name,age等属性 sequence?sort_by(name) 表示所有的user按user.name进行排序</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>sequences</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>sequence?first</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>hashes内置方法 hash?keys  返回hash里的所有keys, 返回结果类型sequence hash?values  返回hash里的所有value, 返回结果类型sequence</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>hashes</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>hash?keys</string> 
+        </void> 
+        <void property="type"> 
+         <string>FreeMarker</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>循环生成文件</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>循环生成文件</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;#list rootnode.getChildNodesByPath(&quot;xxxx.xxx&quot;) as node&gt; ... @{createTextFile(&quot;filename&quot;,false)} ... @{closeFile()} &lt;/#list&gt;</string> 
+        </void> 
+        <void property="type"> 
+         <string>模板框架</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>获取节点名</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>getName</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>${node.getName()}</string> 
+        </void> 
+        <void property="type"> 
+         <string>XmlNode</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>获取节点值</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>getVal</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>${node.getVal()}</string> 
+        </void> 
+        <void property="type"> 
+         <string>XmlNode</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>获取所有子节点列表</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>getChildNodes</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>node.getChildNodes()</string> 
+        </void> 
+        <void property="type"> 
+         <string>XmlNode</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>获取所有属性列表</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>getAttributes</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>node.getAttributes()</string> 
+        </void> 
+        <void property="type"> 
+         <string>XmlNode</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string> 以当前节点为起点根据路径获取子节点列表</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>getChildNodesByPath</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>node.getChildNodesByPath(&quot;xx.zz.yy&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>XmlNode</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>判断当前节点是否包含指定的属性名</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>isContain</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>&lt;# if node.isContain(&quot;xxx&quot;)&gt;...</string> 
+        </void> 
+        <void property="type"> 
+         <string>XmlNode</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>根据属性名获取属性值</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>getAttributeVal</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>node.getAttributeVal(&quot;xxx&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>XmlNode</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>获取属性名称</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>getName</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>attr.getName()</string> 
+        </void> 
+        <void property="type"> 
+         <string>XmlAttribute</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>获取属性值</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>getValue</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>attr.getValue</string> 
+        </void> 
+        <void property="type"> 
+         <string>XmlAttribute</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>创建文本文件，@{createTextFile(fileName,append)}.第一个参数为文件名，第二参数表示是否追加文件内容；false--表示覆盖，true---表示追加.</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>createTextFile</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>@{createTextFile(fileName,false)}</string> 
+        </void> 
+        <void property="type"> 
+         <string>文件操作</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>关闭文件。表示文件操作结束</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>closeFile</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>@{closeFile()}</string> 
+        </void> 
+        <void property="type"> 
+         <string>文件操作</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>字符串截断函数，调用示例:substring(&quot;abc&quot;,1)返回&quot;bc&quot;,substring(&quot;abcd&quot;,1,2)返回&quot;bc&quot;</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>substring</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>substring(&quot;xxx&quot;,1,2)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>字符串查找函数，调用示例:index(&quot;abc&quot;,&quot;a&quot;)返回0,index(&quot;abc&quot;,&quot;bc&quot;)返回1</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>index</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>index(&quot;motherstr&quot;,&quot;findstr&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>字符串拆分函数,调用示例:splitstring(&quot;a,b,c&quot;,&quot;,&quot;)返回list对象，包含a,b,c三个元素</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>splitstring</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>splitstring(&quot;a,b,c&quot;,&quot;,&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="com.autoscript.ui.model.extconfig.kb.KBItemModel"> 
+        <void property="describe"> 
+         <string>文件内容查找函数,调用示例:filecontentfind(&quot;c:\1.txt&quot;,&quot;abc&quot;) 存在返回true;否则返回false</string> 
+        </void> 
+        <void property="keyFun"> 
+         <string>filecontentfind</string> 
+        </void> 
+        <void property="syntax"> 
+         <string>filecontentfind(&quot;c:\1.txt&quot;,&quot;abc&quot;)</string> 
+        </void> 
+        <void property="type"> 
+         <string>函数</string> 
+        </void> 
+       </object> 
+      </void> 
+     </void> 
+    </object> 
+   </void> 
+  </void> 
+  <void property="workdir"> 
+   <string>d:\tmp</string> 
+  </void> 
+ </object> 
+</java> 

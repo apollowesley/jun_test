@@ -1,0 +1,83 @@
+ <view class="feedback">
+  <view class="title">车款</view>
+  <view class='items'>
+      <view class='title'>开户行</view>
+      <input type='text' placeholder-class="placeholder" value='{{fkBy11}}' bindinput='fkBy11Input' ></input>
+    </view>
+    <view class='items'>
+      <view class='title'>户名</view>
+      <input type='text' placeholder-class="placeholder" value='{{fkBy21}}' bindinput='fkBy21Input'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>卡号</view>
+      <input type='number' placeholder-class="placeholder" value='{{fkBy31}}' bindinput='fkBy31Input'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>付款金额</view>
+      <input type='text' placeholder-class="placeholder" value="{{fkAmount1}}" bindinput='fkAmount1Input'></input>
+    </view>
+
+ <view class="title">返点</view>
+  <view class='items'>
+      <view class='title'>开户行</view>
+      <input type='text' placeholder-class="placeholder" value='{{fkBy12}}' bindinput='fkBy12Input' ></input>
+    </view>
+    <view class='items'>
+      <view class='title'>户名</view>
+      <input type='text' placeholder-class="placeholder" value='{{fkBy22}}' bindinput='fkBy22Input'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>卡号</view>
+      <input type='number' placeholder-class="placeholder" value='{{fkBy32}}' bindinput='fkBy32Input'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>付款金额</view>
+      <input type='text' placeholder-class="placeholder" value="{{fkAmount2}}" bindinput='fkAmount2Input'></input>
+    </view>
+
+
+
+     <view class="title">保险返点</view>
+  <view class='items'>
+      <view class='title'>开户行</view>
+      <input type='text' placeholder-class="placeholder" value='{{fkBy13}}' bindinput='fkBy13Input' ></input>
+    </view>
+    <view class='items'>
+      <view class='title'>户名</view>
+      <input type='text' placeholder-class="placeholder" value='{{fkBy23}}' bindinput='fkBy23Input'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>卡号</view>
+      <input type='number' placeholder-class="placeholder" value='{{fkBy33}}' bindinput='fkBy33Input'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>付款金额</view>
+      <input type='text' placeholder-class="placeholder" value="{{fkAmount3}}" bindinput='fkAmount3Input'></input>
+    </view>
+
+
+     <view class="title">其他</view>
+  <view class='items'>
+      <view class='title'>开户行</view>
+      <input type='text' placeholder-class="placeholder" value='{{fkBy14}}' bindinput='fkBy14Input' ></input>
+    </view>
+    <view class='items'>
+      <view class='title'>户名</view>
+      <input type='text' placeholder-class="placeholder" value='{{fkBy24}}' bindinput='fkBy24Input'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>卡号</view>
+      <input type='number' placeholder-class="placeholder" value='{{fkBy34}}' bindinput='fkBy34Input'></input>
+    </view>
+    <view class='items'>
+      <view class='title'>付款金额</view>
+      <input type='text' placeholder-class="placeholder" value="{{fkAmount4}}" bindinput='fkAmount4Input'></input>
+    </view>
+
+
+
+<!-- <view class="submitBtn" bindtap='submitBtn'>保存申请</view> -->
+
+<view class="submitBtn" bindtap='submitBtn'>提交申请</view>
+</view>
+

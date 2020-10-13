@@ -1,0 +1,5 @@
+
+<view class='notice-wrap'>
+    <view class='notice-tit'>{{noticeTitle}}</view>
+    <view class="notice-text">{{noticecontent}}</view>
+</view>

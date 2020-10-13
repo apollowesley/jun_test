@@ -1,0 +1,62 @@
+body{
+	font-size: 18px;
+}
+#dateContent{
+    margin-top: 7px;
+    margin-left:  -2px;
+}
+#dateContent input{
+	width:90%;
+	border-radius: 3px;
+	border-width: 1px;
+	border-right-color: gray;
+    border-bottom-color: gray;
+}
+#start {
+    margin-left: 13px;
+}
+#end{
+	margin-left: 13px;
+}
+#startDate {
+    margin-bottom: 2px;
+ }
+ #listContent {
+    margin-left: 6px;
+    text-align: center;
+}
+.approveDate{
+	width: 35%;
+}
+.batchName{
+	width:43%;
+	text-align: left;
+}
+.batchType{
+	width: 26%;
+}
+.icon-r
+{
+	float: right;
+	font-size: 16px;
+	text-align: right;
+	color: #8dc420;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 30px;
+ }
+#bottom{
+	background-color:#16A6BB;
+	height:50px;
+	color:white;
+}
+.add{
+	margin-left:7px;
+	position: relative;
+    top: 10px;
+    font-size: 18px;
+}

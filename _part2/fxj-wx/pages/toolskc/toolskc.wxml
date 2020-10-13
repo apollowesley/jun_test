@@ -1,0 +1,71 @@
+<view class='title'>额度快测输入</view>
+<view class="data">
+    <view class='items'>
+         <view class='bd'>估值/万:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{lsnum}}' bindinput='lsnumInput' placeholder='请输入估值/万'></input>
+        </view>
+    </view>
+       <view class='items'>
+         <view class='bd'>贷款成数:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{lsnum2}}' bindinput='lsnum2Input' placeholder='请输入贷款成数'></input>
+        </view>
+    </view>
+    <view class='items'>
+         <view class='bd'>利息/厘:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{frameno}}' bindinput='framenoInput' placeholder='请输入利息/厘'></input>
+        </view>
+    </view>
+    <view class='items'>
+               <view class='bd'>申请期数/月:</view>
+               <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{engineno}}' bindinput='enginenoInput' placeholder='请输入申请期数/月'></input>
+        </view>
+    </view>
+
+      <view class='items'>
+         <view class='bd'>银行方费率:</view>
+         <view class='bd'>
+            <input type='text' placeholder-class="placeholder" value='{{engineno1}}' bindinput='engineno1Input' placeholder='请输入银行方费率'></input>
+        </view>
+    </view>
+    <view class="btn" bindtap='sbumitBtn'>一键快测</view>
+</view>
+
+<view class='wrap'>
+    <view class='title'>额度快测结果</view>
+    <view class='resultBox'>
+        <view class='list'>
+            <view class='l'>车行报贷:</view>
+            <view class='r'>{{queryResults}}</view>
+        </view>
+        <view class='list'>
+            <view class='l'>银行申请:</view>
+            <view class='r'>{{violationTimes}}</view>
+        </view>
+         <view class='list'>
+            <view class='l'>月还款元:</view>
+            <view class='r'>{{queryResults2}}</view>
+        </view>
+        <!-- <view class='list'>
+            <view class='l'>总扣分:</view>
+            <view class='r'>{{totalDeduction}}</view>
+        </view>
+        <view class='list'>
+            <view class='l'>总罚款:</view>
+            <view class='r'>{{totalFine}}</view>
+        </view> -->
+    </view>
+
+    <!-- <view class='queryList' wx:for="{{list}}" wx:key="id" wx:if="list.length > 0">
+        <view class='h3'>{{item.wzxw}}</view>
+        <view class='p'>{{item.wzdd}}</view>
+        <view class='b'>
+            {{item.wzsj}}
+            <text>罚款{{item.wzfk}}</text>
+            <text>扣{{item.wzjf}}分</text>
+        </view>
+    </view> -->
+</view>

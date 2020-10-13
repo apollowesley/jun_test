@@ -1,0 +1,10 @@
+<view class="topBar">
+    <view class='title'>面签录像</view>
+</view>
+<view class='videupload'>
+    <video id="myVideo" src="{{videoSrc}}" controls style="width:100%;height:100%;" objectFit="cover" wx:if="{{videoSrc}}"></video>
+</view>
+<!-- <view class="videotape">
+    <view class="upload" bindtap='uploadVideo' wx:if="{{!videoSrc}}">上传</view>
+    <view class="delete" bindtap='removeVideo' data-fileId="{{fileId}}">删除</view>
+</view> -->

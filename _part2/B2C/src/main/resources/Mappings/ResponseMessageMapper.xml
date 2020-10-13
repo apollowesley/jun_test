@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.zjut.b2c.dao.ResponseMessageDao" >
+  <resultMap id="BaseResultMap" type="com.cn.zjut.b2c.pojo.ResponseMessage" >
+	<id column="id" jdbcType="BIGINT" property="id" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="encoding" jdbcType="VARCHAR" property="encoding" />
+    <result column="certId" jdbcType="VARCHAR" property="certid" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+    <result column="signMethod" jdbcType="VARCHAR" property="signmethod" />
+    <result column="txnType" jdbcType="VARCHAR" property="txntype" />
+    <result column="txnSubType" jdbcType="VARCHAR" property="txnsubtype" />
+    <result column="bizType" jdbcType="VARCHAR" property="biztype" />
+    <result column="accessType" jdbcType="VARCHAR" property="accesstype" />
+    <result column="merId" jdbcType="VARCHAR" property="merid" />
+    <result column="orderId" jdbcType="VARCHAR" property="orderid" />
+    <result column="origQryId" jdbcType="VARCHAR" property="origqryid" />
+    <result column="txnTime" jdbcType="VARCHAR" property="txntime" />
+    <result column="txnAmt" jdbcType="VARCHAR" property="txnamt" />
+    <result column="reqReserved" jdbcType="VARCHAR" property="reqreserved" />
+    <result column="reserved" jdbcType="VARCHAR" property="reserved" />
+    <result column="queryId" jdbcType="VARCHAR" property="queryid" />
+    <result column="respCode" jdbcType="VARCHAR" property="respcode" />
+    <result column="respMsg" jdbcType="VARCHAR" property="respmsg" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    *
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from response_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from response_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.cn.zjut.b2c.pojo.ResponseMessage" >
+    insert into response_message (version, encoding, certId, 
+      signature, signMethod, txnType, 
+      txnSubType, bizType, accessType, 
+      merId, orderId, origQryId, 
+      txnTime, txnAmt, reqReserved, 
+      reserved, queryId, respCode, 
+      respMsg)
+    values (#{version,jdbcType=VARCHAR}, #{encoding,jdbcType=VARCHAR}, #{certid,jdbcType=VARCHAR}, 
+      #{signature,jdbcType=VARCHAR}, #{signmethod,jdbcType=VARCHAR}, #{txntype,jdbcType=VARCHAR}, 
+      #{txnsubtype,jdbcType=VARCHAR}, #{biztype,jdbcType=VARCHAR}, #{accesstype,jdbcType=VARCHAR}, 
+      #{merid,jdbcType=VARCHAR}, #{orderid,jdbcType=VARCHAR}, #{origqryid,jdbcType=VARCHAR}, 
+      #{txntime,jdbcType=VARCHAR}, #{txnamt,jdbcType=VARCHAR}, #{reqreserved,jdbcType=VARCHAR}, 
+      #{reserved,jdbcType=VARCHAR}, #{queryid,jdbcType=VARCHAR}, #{respcode,jdbcType=VARCHAR}, 
+      #{respmsg,jdbcType=VARCHAR})
+  </insert>
+  
+    <insert id="insertSelective" parameterType="com.cn.zjut.b2c.pojo.ResponseMessage" >
+    insert into response_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="version != null">
+        version,
+      </if>
+      <if test="encoding != null">
+        encoding,
+      </if>
+      <if test="certid != null">
+        certId,
+      </if>
+      <if test="signature != null">
+        signature,
+      </if>
+      <if test="signmethod != null">
+        signMethod,
+      </if>
+      <if test="txntype != null">
+        txnType,
+      </if>
+      <if test="txnsubtype != null">
+        txnSubType,
+      </if>
+      <if test="biztype != null">
+        bizType,
+      </if>
+      <if test="accesstype != null">
+        accessType,
+      </if>
+      <if test="merid != null">
+        merId,
+      </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="origqryid != null">
+        origQryId,
+      </if>
+      <if test="txntime != null">
+        txnTime,
+      </if>
+      <if test="txnamt != null">
+        txnAmt,
+      </if>
+      <if test="reqreserved != null">
+        reqReserved,
+      </if>
+      <if test="reserved != null">
+        reserved,
+      </if>
+      <if test="queryid != null">
+        queryId,
+      </if>
+      <if test="respcode != null">
+        respCode,
+      </if>
+      <if test="respmsg != null">
+        respMsg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="encoding != null">
+        #{encoding,jdbcType=VARCHAR},
+      </if>
+      <if test="certid != null">
+        #{certid,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="signmethod != null">
+        #{signmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="txntype != null">
+        #{txntype,jdbcType=VARCHAR},
+      </if>
+      <if test="txnsubtype != null">
+        #{txnsubtype,jdbcType=VARCHAR},
+      </if>
+      <if test="biztype != null">
+        #{biztype,jdbcType=VARCHAR},
+      </if>
+      <if test="accesstype != null">
+        #{accesstype,jdbcType=VARCHAR},
+      </if>
+      <if test="merid != null">
+        #{merid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="origqryid != null">
+        #{origqryid,jdbcType=VARCHAR},
+      </if>
+      <if test="txntime != null">
+        #{txntime,jdbcType=VARCHAR},
+      </if>
+      <if test="txnamt != null">
+        #{txnamt,jdbcType=VARCHAR},
+      </if>
+      <if test="reqreserved != null">
+        #{reqreserved,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved != null">
+        #{reserved,jdbcType=VARCHAR},
+      </if>
+      <if test="queryid != null">
+        #{queryid,jdbcType=VARCHAR},
+      </if>
+      <if test="respcode != null">
+        #{respcode,jdbcType=VARCHAR},
+      </if>
+      <if test="respmsg != null">
+        #{respmsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  	</insert>
+ 
+ 
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.zjut.b2c.pojo.ResponseMessage" >
+	update response_message
+    <set>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="encoding != null">
+        encoding = #{encoding,jdbcType=VARCHAR},
+      </if>
+      <if test="certid != null">
+        certId = #{certid,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="signmethod != null">
+        signMethod = #{signmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="txntype != null">
+        txnType = #{txntype,jdbcType=VARCHAR},
+      </if>
+      <if test="txnsubtype != null">
+        txnSubType = #{txnsubtype,jdbcType=VARCHAR},
+      </if>
+      <if test="biztype != null">
+        bizType = #{biztype,jdbcType=VARCHAR},
+      </if>
+      <if test="accesstype != null">
+        accessType = #{accesstype,jdbcType=VARCHAR},
+      </if>
+      <if test="merid != null">
+        merId = #{merid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="origqryid != null">
+        origQryId = #{origqryid,jdbcType=VARCHAR},
+      </if>
+      <if test="txntime != null">
+        txnTime = #{txntime,jdbcType=VARCHAR},
+      </if>
+      <if test="txnamt != null">
+        txnAmt = #{txnamt,jdbcType=VARCHAR},
+      </if>
+      <if test="reqreserved != null">
+        reqReserved = #{reqreserved,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved != null">
+        reserved = #{reserved,jdbcType=VARCHAR},
+      </if>
+      <if test="queryid != null">
+        queryId = #{queryid,jdbcType=VARCHAR},
+      </if>
+      <if test="respcode != null">
+        respCode = #{respcode,jdbcType=VARCHAR},
+      </if>
+      <if test="respmsg != null">
+        respMsg = #{respmsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.cn.zjut.b2c.pojo.ResponseMessage" >
+	update response_message
+    set version = #{version,jdbcType=VARCHAR},
+      encoding = #{encoding,jdbcType=VARCHAR},
+      certId = #{certid,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      signMethod = #{signmethod,jdbcType=VARCHAR},
+      txnType = #{txntype,jdbcType=VARCHAR},
+      txnSubType = #{txnsubtype,jdbcType=VARCHAR},
+      bizType = #{biztype,jdbcType=VARCHAR},
+      accessType = #{accesstype,jdbcType=VARCHAR},
+      merId = #{merid,jdbcType=VARCHAR},
+      orderId = #{orderid,jdbcType=VARCHAR},
+      origQryId = #{origqryid,jdbcType=VARCHAR},
+      txnTime = #{txntime,jdbcType=VARCHAR},
+      txnAmt = #{txnamt,jdbcType=VARCHAR},
+      reqReserved = #{reqreserved,jdbcType=VARCHAR},
+      reserved = #{reserved,jdbcType=VARCHAR},
+      queryId = #{queryid,jdbcType=VARCHAR},
+      respCode = #{respcode,jdbcType=VARCHAR},
+      respMsg = #{respmsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from response_message
+    where orderId = #{orderId,jdbcType=VARCHAR}
+  </select>
+</mapper>

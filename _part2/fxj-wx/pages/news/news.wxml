@@ -1,0 +1,26 @@
+<view>
+    <view class="loanItem-list">
+      <view class='item' wx:for="{{list}}" wx:key="id">
+        <!-- <view class='item-l'>
+          <image src='../../images/ico-my.png'></image>
+        </view> -->
+        <view class='item-c'>
+          <view class='item-tit'>{{item.noticeTitle}}</view>
+          <view class='item-txt'>{{item.noticeContent}}</view>
+        </view>
+        <view class='item-r' data-id="{{item.id}}" data-noticeTitle="{{item.noticeTitle}}" data-noticeContent="{{item.noticeContent}}" bindtap='viewNotice'>查看</view>
+      </view>
+    </view>
+
+    <view class='tips-upwarp' hidden="{{!loading}}">
+        <view class='upwarp-progress tips-rotate'></view>
+        <text class='upwarp-tip'>加载中..</text>
+    </view>
+    <view class='tips-upwarp'>
+        <view class='noData' wx:if="{{list.length == 0}}">
+            <image src='../../images/mescroll-empty.png'></image>
+            <view class='text'>暂无数据</view>
+        </view>
+        <text class='upwarp-tip' wx:else>我是有底线的</text>
+    </view>
+</view>

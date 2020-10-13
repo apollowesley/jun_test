@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcatProjectProperties>
+    <rootDir>/webapp</rootDir>
+    <exportSource>false</exportSource>
+    <reloadable>false</reloadable>
+    <redirectLogger>false</redirectLogger>
+    <updateXml>true</updateXml>
+    <warLocation>C:\Documents and Settings\Administrator\桌面\cocook.war</warLocation>
+    <extraInfo></extraInfo>
+    <webPath>/cocook</webPath>
+</tomcatProjectProperties>

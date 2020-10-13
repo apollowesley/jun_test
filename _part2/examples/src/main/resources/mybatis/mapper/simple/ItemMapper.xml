@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wangxin.mapper.simple.ItemMapper">
+
+	<resultMap id="baseMap" type="com.wangxin.entity.simple.Item">
+		<result column="item_id" property="id" />
+		<result column="goods_name" property="goodsName" />
+		<result column="brand_name" property="brandName" />
+		<result column="word" property="word" />
+		<result column="gkey" property="gkey" />
+		<result column="create_time" property="createTime" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.wangxin.entity.simple.Item">
+		INSERT INTO go_item_t(item_id , goods_name , brand_name , word , gkey, create_time) VALUES(#{id} , #{goodsName} , #{brandName} , #{word} , #{gkey}, #{createTime})
+	</insert>
+
+	<sql id="find_xxx">
+	    <![CDATA[
+			SELECT item_id , goods_name , brand_name , word , gkey ,create_time
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+	    <![CDATA[
+	    	FROM go_item_t
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+	    <![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findById" parameterType="string" resultMap="baseMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE ID=#{id}
+		]]>
+	</select>
+
+	<select id="findItemByPage" parameterType="string" resultMap="baseMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		order by id desc
+	</select>
+	
+	<select id="findAll" resultMap="baseMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		order by create_time
+	</select>
+
+	<update id="update" parameterType="com.wangxin.entity.simple.Item">
+		UPDATE go_item_t
+		<set>
+			<if test="goodsName != null and goodsName!='' ">
+				goods_name = #{goodsName},
+			</if>
+			<if test="brandName != null and brandName!=''">
+				brand_name = #{brandName},
+			</if>
+			<if test="word != null and word!='' ">
+				word = #{word},
+			</if>
+			<if test="gkey != null and gkey!=''">
+				gkey = #{gkey},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+		</set>
+		WHERE item_id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM go_item_t WHERE item_id = #{id}
+	</delete>
+
+</mapper>

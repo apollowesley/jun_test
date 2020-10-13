@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>优学网</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/offcanvas.css" rel="stylesheet">
+    <link href="../css/select2/select2.css" rel="stylesheet">
+    <link href="../css/select2/select2-bootstrap.css" rel="stylesheet">
+    <link href="../css/iCheck/square/blue.css" rel="stylesheet">
+    <link href="../css/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">导航</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">优学网</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">847215251@qq.com <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#"><i class="fa fa-info-circle"></i>&nbsp;我的信息</a></li>
+                  <li><a href="#"><i class="fa fa-cog"></i>&nbsp;账号设置</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#"><i class="fa fa-sign-out"></i>&nbsp;退出</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+	<div class="container"> 
+    	<div class="row row-offcanvas row-offcanvas-left">
+        	<div class="col-xs-6 col-sm-5 col-md-4 col-lg-3 sidebar-offcanvas" id="sidebar" role="navigation">
+              <div class="list-group">
+              	<div class="list-group-item site list-group-title"><i class="fa fa-suitcase"></i>&nbsp;辅导管理</div> 
+                <a href="home.html" class="list-group-item">所有辅导</a>
+                <a href="add-tutorship-kid.html" class="list-group-item active">添加辅导</a>
+              	<div class="list-group-item site list-group-title"><i class="fa fa-user"></i>&nbsp;用户管理</div> 
+                <a href="kids.html" class="list-group-item">所有学生</a>
+                <a href="teachers.html" class="list-group-item">所有教师</a>
+                <div class="dropdown list-group-item">
+                    <div class="dropdown-toggle site pointer-cursor" data-toggle="dropdown" aria-expanded="false">
+                    	添加用户 <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="add-kid.html">学生</a></li>
+                      <li><a href="add-teacher.html">教师</a></li>
+                    </ul>
+                </div>
+                <div class="list-group-item site list-group-title"><i class="fa fa-book"></i>&nbsp;超级课程管理</div> 
+                <a href="#" class="list-group-item">所有课程</a>
+                <a href="#" class="list-group-item">添加课程</a>
+                <div class="list-group-item site list-group-title"><i class="fa fa-headphones"></i>&nbsp;访谈管理</div> 
+                <a href="#" class="list-group-item">所有访谈</a>
+                <a href="#" class="list-group-item">添加访谈</a>
+                <div class="list-group-item site list-group-title"><i class="fa fa-leaf"></i>&nbsp;广告管理</div> 
+                <a href="#" class="list-group-item">所有广告</a>
+                <a href="#" class="list-group-item">发布广告</a>
+                <div class="list-group-item site list-group-title"><i class="fa fa-cog"></i>&nbsp;系统管理</div> 
+                <a href="#" class="list-group-item">优教账号</a>
+                <a href="#" class="list-group-item">账号设置</a>
+                <a href="#" class="list-group-item">退出</a>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+            	<div class="visible-xs">
+                	<h4 class="site a"><a href="#" data-toggle="offcanvas" data-to-show="y">展开左侧列表</a></h4>
+                </div>
+            	<div class="jumbotron">
+                	
+              	</div>
+                <div class="page-header">
+        			<h4>添加辅导信息</h4>
+       			</div>
+                <div class="row">
+                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    	<form class="form-horizontal" role="form" method="post">
+                          <p class="site section-title">辅导基本信息</p>
+                          <div class="form-group">
+                            <label for="subject" class="col-sm-2 control-label">科目</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="subject" placeholder="请输入辅导科目">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="class-hours" class="col-sm-2 control-label">计划课时</label>
+                            <div class="col-sm-10">
+                            	<input type="text" class="form-control" id="class-hours" placeholder="请输入计划课时，如20，每个课时1个小时">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="location" class="col-sm-2 control-label">辅导地点</label>
+                            <div class="col-sm-10">
+                            	<input type="text" class="form-control" id="location" placeholder="请输入辅导所在地点">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="class-time" class="col-sm-2 control-label">上课时间</label>
+                            <div class="col-sm-10">
+                            	<input type="text" class="form-control" id="class-time" placeholder="请输入上课时间要求">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="start-time" class="col-sm-2 control-label">开始时间</label>
+                            <div class="col-sm-10">
+                                <div class="input-group date form_date" data-date-format="yyyy-mm-dd" data-link-field="start-time">
+                                    <input type="text" class="form-control" placeholder="请选择辅导开始的日期" readonly>
+                                    <span class="input-group-addon"><span class="fa fa-remove"></span></span>
+                                    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            	</div>
+                            	<input type="hidden" id="start-time" value="">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="end-time" class="col-sm-2 control-label">结束时间</label>
+                            <div class="col-sm-10">
+                            	<div class="input-group date form_date" data-date-format="yyyy-mm-dd" data-link-field="end-time">
+                                    <input type="text" class="form-control" placeholder="请选择辅导结束的日期（可不填）" readonly>
+                                    <span class="input-group-addon"><span class="fa fa-remove"></span></span>
+                                    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            	</div>
+                            	<input type="hidden" id="end-time" value="">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="others" class="col-sm-2 control-label">要求或备注</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" id="others" placeholder="请输入辅导要求或备注"></textarea>
+                            </div>
+                          </div>
+                          
+                          <p class="site section-title">全部完成</p>
+                          <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                              <button type="button" class="btn btn-primary">保存</button>
+                              <button type="button" class="btn btn-primary">取消</button>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <footer class="site footer">
+      <div class="container">
+        <div class="row site footer-top">
+          <div class="col-sm-4 col-lg-5">
+            <h4>
+              <a href="index.html">优学网</a>
+            </h4>
+            <p>为学生提供优质的教学及兴趣辅导，让学生更加快乐地成长！</p>
+          </div>
+          <div class="col-sm-8  col-lg-6 col-lg-offset-1">
+            <div class="row site about">
+              <div class="col-xs-6 col-lg-3">
+                <h4>关于</h4>
+                <ul class="list-unstyled">
+                  <li><a href="about.html">关于我们</a></li>
+                  <li><a href="evaluation.html">用户评价</a></li>
+                  <li><a href="help.html">问题及帮助</a></li>
+                  <li><a href="suggestion.html">留言及建议</a></li>
+                  <li><a href="blacklist.html">黑名单</a></li>
+                  <li><a href="privacy.html">隐私声明</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-6 col-lg-3">
+                <h4>合作与赞助</h4>
+                <ul class="list-unstyled">
+                	<li><a href="school.html">学校列表</a></li>
+                    <li><a href="brand.html">品牌列表</a></li>
+                    <li><a href="sponsor.html">赞助商列表</a></li>
+                    <li><a href="ads.html">广告合作</a></li>
+                  	<li><a href="links.html">友情链接</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                <h4>联系方式</h4>
+                <ul class="list-unstyled">
+                	<li><a href="contact.html"><i class="fa fa-qq"></i> QQ：847315251</a></li>
+                	<li><a href="contact.html"><i class="fa fa-wechat"></i> 微信：Wgssmart</a></li>
+                  <li><a href="contact.html"><i class="fa fa-weibo"></i> 新浪微博：@Wgssmart</a></li>
+                  <li><a href="contact.html"><i class="fa fa-envelope"></i> 邮箱：847315251@qq.com</a></li>
+                </ul>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+        <hr>
+        <div class="row site footer-bottom">
+          <ul class="list-inline text-center">
+            <li>Copyright &copy; 2015 - 优学网</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/scrollup/2.4.0/jquery.scrollUp.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-paginator.min.js"></script>
+    <script src="../js/jquery.page-back.js"></script>
+    <script src="../js/offcanvas.js"></script>
+    <script src="../js/select2/select2.min.js"></script>
+    <script src="../js/select2/select2_locale_zh-CN.js"></script>
+    <script src="../js/icheck.min.js"></script>
+    <script src="../js/bootstrap-switch.min.js"></script>
+    <script src="../js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="../js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    	$('#app-pager').bootstrapPaginator(pager_options);
+		$("#speciality").select2({
+		  placeholder: "请选择专长",
+		  allowClear: true,
+		  minimumResultsForSearch:-1,
+		  maximumSelectionSize: 3
+		});
+		$('input[name="gender"]').iCheck({
+			radioClass: 'iradio_square-blue',
+			increaseArea: '20%' // optional
+		});
+		$('.form_date').datetimepicker({
+			language:  'zh-CN',
+			weekStart: 0,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0,
+			pickerPosition:"bottom-left"
+		});
+    </script>
+  </body>
+</html>
